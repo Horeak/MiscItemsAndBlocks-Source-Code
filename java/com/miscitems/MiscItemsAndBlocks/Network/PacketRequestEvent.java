@@ -6,7 +6,9 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-public class PacketRequestEvent extends ModPacket {
+import net.minecraft.entity.player.EntityPlayer;
+
+public class PacketRequestEvent extends IPacket {
 
     public byte eventType;
     public int originX, originY, originZ;
@@ -14,14 +16,10 @@ public class PacketRequestEvent extends ModPacket {
     public byte rangeX, rangeY, rangeZ;
     public String data;
 
-    public PacketRequestEvent() {
-
-        super(PacketTypeHandler.REQUEST_EVENT, false);
-    }
+    public PacketRequestEvent() {}
 
     public PacketRequestEvent(byte eventType, int originX, int originY, int originZ, byte sideHit, byte rangeX, byte rangeY, byte rangeZ, String data) {
 
-        super(PacketTypeHandler.REQUEST_EVENT, false);
         this.eventType = eventType;
         this.originX = originX;
         this.originY = originY;
@@ -34,7 +32,7 @@ public class PacketRequestEvent extends ModPacket {
     }
 
     @Override
-    public void writeData(DataOutputStream data) throws IOException {
+    public void write(DataOutputStream data) throws IOException {
 
         data.writeByte(eventType);
         data.writeInt(originX);
@@ -48,7 +46,7 @@ public class PacketRequestEvent extends ModPacket {
     }
 
     @Override
-    public void readData(DataInputStream data) throws IOException {
+    public void read(DataInputStream data) throws IOException {
 
         eventType = data.readByte();
         originX = data.readInt();
@@ -62,7 +60,9 @@ public class PacketRequestEvent extends ModPacket {
     }
 
     @Override
-    public void execute(INetworkManager manager, Player player) {
+    public void execute(EntityPlayer player) {
 
     }
+
+
 }

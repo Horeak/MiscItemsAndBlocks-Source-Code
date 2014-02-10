@@ -154,10 +154,10 @@ private IIcon _icon4;
     public void registerIcons(IIconRegister par1IconRegister)
     {
     	
-    	_icon1 = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + getUnlocalizedName().substring(5) + "_normal");
-    	_icon2 = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + getUnlocalizedName().substring(5) + "_1");
-    	_icon3 = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + getUnlocalizedName().substring(5) + "_2");
-    	_icon4 = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + getUnlocalizedName().substring(5) + "_3");
+    	_icon1 = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "SilverBow" + "_normal");
+    	_icon2 = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "SilverBow" + "_1");
+    	_icon3 = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "SilverBow" + "_2");
+    	_icon4 = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "SilverBow" + "_3");
     	
     	itemIcon = _icon1;
     }

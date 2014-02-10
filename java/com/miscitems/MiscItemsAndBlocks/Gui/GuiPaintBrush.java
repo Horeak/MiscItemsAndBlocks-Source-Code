@@ -12,7 +12,8 @@ import net.minecraft.util.StatCollector;
 
 import org.lwjgl.opengl.GL11;
 
-import com.miscitems.MiscItemsAndBlocks.Network.PacketHandler;
+import com.miscitems.MiscItemsAndBlocks.Main.Main;
+import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerPaintBrushChangePacket;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityPaintBlock;
 
 public class GuiPaintBrush extends GuiScreen
@@ -134,7 +135,7 @@ public class GuiPaintBrush extends GuiScreen
 		    	}
 	        	
 		    	
-		    	PacketHandler.sendPaintBrushColorChange((int) ((SliderRed.sliderValue * 100) * Max / 100), (int) ((SliderGreen.sliderValue * 100) * Max / 100), (int) ((SliderBlue.sliderValue * 100) * Max / 100));
+		    	Main.NETWORK_MANAGER.sendPacketToServer(new ServerPaintBrushChangePacket((int) ((SliderRed.sliderValue * 100) * Max / 100), (int) ((SliderGreen.sliderValue * 100) * Max / 100), (int) ((SliderBlue.sliderValue * 100) * Max / 100)));
 	        	break;
 	        }
 

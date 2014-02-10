@@ -70,13 +70,13 @@ public class ModItemCircuit extends Item{
 	    	
 	    }
 	    
-	    public String getItemDisplayName(ItemStack stack)
+	    public String getUnlocalizedName(ItemStack stack)
 	    {
 	    	int meta = stack.getItemDamage();
 
 	    	
-	    	if(meta == 0)return StatCollector.translateToLocal("items.name.circuit.basic");
-	    	if(meta == 1)return StatCollector.translateToLocal("items.name.circuit.advanced");
+	    	if(meta == 0)return "item.circuit.basic";
+	    	if(meta == 1)return "item.circuit.advanced";
 
 	    	return null;
 	    }

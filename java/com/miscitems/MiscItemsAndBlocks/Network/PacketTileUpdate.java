@@ -8,23 +8,20 @@ import java.io.IOException;
 
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class PacketTileUpdate extends ModPacket {
+public class PacketTileUpdate extends IPacket {
 
     public int x, y, z;
     public byte orientation;
     public byte state;
     public String customName;
 
-    public PacketTileUpdate() {
-
-        super(PacketTypeHandler.TILE, true);
-    }
+    public PacketTileUpdate() {}
 
     public PacketTileUpdate(int x, int y, int z, ForgeDirection orientation, byte state, String customName) {
 
-        super(PacketTypeHandler.TILE, true);
         this.x = x;
         this.y = y;
         this.z = z;
@@ -34,7 +31,7 @@ public class PacketTileUpdate extends ModPacket {
     }
 
     @Override
-    public void writeData(DataOutputStream data) throws IOException {
+    public void write(DataOutputStream data) throws IOException {
 
         data.writeInt(x);
         data.writeInt(y);
@@ -45,7 +42,7 @@ public class PacketTileUpdate extends ModPacket {
     }
 
     @Override
-    public void readData(DataInputStream data) throws IOException {
+    public void read(DataInputStream data) throws IOException {
 
         x = data.readInt();
         y = data.readInt();
@@ -56,9 +53,11 @@ public class PacketTileUpdate extends ModPacket {
     }
 
     @Override
-    public void execute(INetworkManager manager, Player player) {
+    public void execute(EntityPlayer player) {
 
         Main.proxy.handleTileEntityPacket(x, y, z, ForgeDirection.getOrientation(orientation), state, customName);
     }
+
+
 
 }

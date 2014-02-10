@@ -12,6 +12,7 @@ import net.minecraft.nbt.NBTTagCompound;
 
 import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
+import com.miscitems.MiscItemsAndBlocks.Network.Packet.Client.ClientMetalPressPacketUpdate;
 
 public class TileEntityMetalPress extends TileEntityPowerInv implements ISidedInventory{
 
@@ -225,25 +226,8 @@ public class TileEntityMetalPress extends TileEntityPowerInv implements ISidedIn
 			public void WorkTimeAdd(){
 				WorkTime++;
 				
-	        	 ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-	             DataOutputStream stream = new DataOutputStream(bytes);
 
-//	             try
-//	             {
-//	            	 
-//	            	 stream.writeInt(xCoord);
-//	            	 stream.writeInt(yCoord);
-//	            	 stream.writeInt(zCoord);
-//	            	 
-//	            	 stream.writeInt(WorkTime);
-//	            	 
-//	            	 stream.writeBoolean(false);
-//	                     
-//	            	 //TODO
-//	                     PacketDispatcher.sendPacketToAllPlayers(new Packet131MapData((short)Main.getNetId(), (short)6, bytes.toByteArray()));
-//	             }
-//	             catch(IOException e)
-//	             {}
+				Main.NETWORK_MANAGER.sendPacketToAllAround(new ClientMetalPressPacketUpdate(this.xCoord, this.yCoord, this.zCoord, WorkTime, false), this.worldObj.getWorldInfo().getVanillaDimension(), xCoord, yCoord, zCoord, 100);
 	    	}
 			
 			
@@ -253,25 +237,9 @@ public class TileEntityMetalPress extends TileEntityPowerInv implements ISidedIn
 				
 				
 
-//	        	 ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-//	             DataOutputStream stream = new DataOutputStream(bytes);
-//
-//	             try
-//	             {
-//	            	 
-//	            	 stream.writeInt(xCoord);
-//	            	 stream.writeInt(yCoord);
-//	            	 stream.writeInt(zCoord);
-//	            	 
-//	            	 stream.writeInt(WorkTime);
-//	            	 
-//	            	 stream.writeBoolean(true);
-//	                     
-				//TODO
-//	                     PacketDispatcher.sendPacketToAllPlayers(new Packet131MapData((short)Main.getNetId(), (short)6, bytes.toByteArray()));
-//	             }
-//	             catch(IOException e)
-//	             {}
+
+				Main.NETWORK_MANAGER.sendPacketToAllAround(new ClientMetalPressPacketUpdate(this.xCoord, this.yCoord, this.zCoord, WorkTime, true), this.worldObj.getWorldInfo().getVanillaDimension(), xCoord, yCoord, zCoord, 100);
+	    	
 	    	}
 
 			@Override
@@ -284,25 +252,9 @@ public class TileEntityMetalPress extends TileEntityPowerInv implements ISidedIn
 			
 				WorkTime = i;
 				
-	        	 ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-	             DataOutputStream stream = new DataOutputStream(bytes);
 
-//	             try
-//	             {
-//	            	 
-//	            	 stream.writeInt(xCoord);
-//	            	 stream.writeInt(yCoord);
-//	            	 stream.writeInt(zCoord);
-//	            	 
-//	            	 stream.writeInt(WorkTime);
-//	            	 
-//	            	 stream.writeBoolean(false);
-//	                     
-	             //TODO
-//	                     PacketDispatcher.sendPacketToAllPlayers(new Packet131MapData((short)Main.getNetId(), (short)6, bytes.toByteArray()));
-//	             }
-//	             catch(IOException e)
-//	             {}
+				Main.NETWORK_MANAGER.sendPacketToAllAround(new ClientMetalPressPacketUpdate(this.xCoord, this.yCoord, this.zCoord, WorkTime, false), this.worldObj.getWorldInfo().getVanillaDimension(), xCoord, yCoord, zCoord, 100);
+	    	
 			}
 			
 			}

@@ -12,7 +12,6 @@ public class ModConfig {
 
 
 	/** Booleans **/
-	public static boolean BlastProofOverRe;
 	
 	public static boolean SpawnParticles;
 	public static boolean AllowFlightChest;

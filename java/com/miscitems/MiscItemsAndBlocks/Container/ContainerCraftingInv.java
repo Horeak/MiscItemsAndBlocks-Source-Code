@@ -109,7 +109,7 @@ public void putStacksInSlots(ItemStack[] par1ArrayOfItemStack) {
 tileEntity.containerInit = true;
 super.putStacksInSlots(par1ArrayOfItemStack);
 tileEntity.containerInit = false;
-tileEntity.onInventoryChanged();
+//tileEntity.onInventoryChanged();
 }
 @Override
 public void putStackInSlot(int slot, ItemStack itemStack) {

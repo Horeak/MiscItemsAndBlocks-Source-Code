@@ -82,55 +82,55 @@ public class ModItems {
 	public static void Init(){
 		
 		XpExtractor = new ModItemXpExtractor();
-		Register(XpExtractor, StatCollector.translateToLocal("items.name.xpextractor"));
+		Register(XpExtractor, StatCollector.translateToLocal("xpextractor"));
 		
 		SilverIngot = new ModItemSilverIngot().setUnlocalizedName("SilverIngot");
-		Register(SilverIngot, StatCollector.translateToLocal("items.name.silveringot"));
+		Register(SilverIngot, StatCollector.translateToLocal("silveringot"));
 		
 		SilverNugget = new ModItemSilverNugget().setUnlocalizedName("SilverNugget");
-		Register(SilverNugget, StatCollector.translateToLocal("items.name.silvernugget"));
+		Register(SilverNugget, StatCollector.translateToLocal("silvernugget"));
 		
 		SilverSword = new ModItemSilverSword(SilverMaterial).setUnlocalizedName("SilverSword");
-		Register(SilverSword, StatCollector.translateToLocal("items.name.silversword"));
+		Register(SilverSword, StatCollector.translateToLocal("silversword"));
 		
 		SilverBow = new ModItemSilverBow().setUnlocalizedName("SilverBow");
-		Register(SilverBow, StatCollector.translateToLocal("items.name.silverbow"));
+		Register(SilverBow, StatCollector.translateToLocal("silverbow"));
 		
 		SilverArrow = new ModItemSilverArrow().setUnlocalizedName("SilverArrow");
-		Register(SilverArrow, StatCollector.translateToLocal("items.name.silverarrow"));
+		Register(SilverArrow, StatCollector.translateToLocal("silverarrow"));
 		
-        DivingHelmet = (new ModItemPowerArmor(PowerArmor, Main.proxy.addArmor("Power"), 0, 1)).setUnlocalizedName("DivingHelmet");
-        Register(DivingHelmet, StatCollector.translateToLocal("items.name.powerarmor.helmet"));
+        DivingHelmet = (new ModItemPowerArmor(PowerArmor, Main.proxy.addArmor("Power"), 0, 1, "DivingHelmet")).setUnlocalizedName("DivingHelmet");
+        Register(DivingHelmet, StatCollector.translateToLocal("powerarmor.helmet"));
 		
-        FlightChestPlate = (new ModItemPowerArmor(PowerArmor, Main.proxy.addArmor("Power"), 1, 2)).setUnlocalizedName("FlightChestplate");
-        Register(FlightChestPlate, StatCollector.translateToLocal("items.name.powerarmor.chestplate"));
+        FlightChestPlate = (new ModItemPowerArmor(PowerArmor, Main.proxy.addArmor("Power"), 1, 2, "FlightChestplate")).setUnlocalizedName("FlightChestplate");
+        Register(FlightChestPlate, StatCollector.translateToLocal("powerarmor.chestplate"));
         
-        RunningLeggings = (new ModItemPowerArmor(PowerArmor, Main.proxy.addArmor("Power"), 2, 3)).setUnlocalizedName("RunningLeggings");
-        Register(RunningLeggings, StatCollector.translateToLocal("items.name.powerarmor.leggings"));
+        RunningLeggings = (new ModItemPowerArmor(PowerArmor, Main.proxy.addArmor("Power"), 2, 3, "RunningLeggings")).setUnlocalizedName("RunningLeggings");
+        Register(RunningLeggings, StatCollector.translateToLocal("powerarmor.leggings"));
         
-        JumpingBoots = (new ModItemPowerArmor(PowerArmor, Main.proxy.addArmor("Power"), 3, 4)).setUnlocalizedName("JumpingBoots");
-        Register(JumpingBoots, StatCollector.translateToLocal("items.name.powerarmor.boots"));
+        JumpingBoots = (new ModItemPowerArmor(PowerArmor, Main.proxy.addArmor("Power"), 3, 4, "JumpingBoots")).setUnlocalizedName("JumpingBoots");
+        Register(JumpingBoots, StatCollector.translateToLocal("powerarmor.boots"));
         
         Cardboard = new ModItemCardboard().setUnlocalizedName("Cardboard");
-        Register(Cardboard, StatCollector.translateToLocal("items.name.cardboard"));
+        Register(Cardboard, StatCollector.translateToLocal("cardboard"));
         
         Tomato = new ModItemTomato(3, 1F, false).setUnlocalizedName("Tomato");
-        Register(Tomato, StatCollector.translateToLocal("items.name.tomato"));
+        Register(Tomato, StatCollector.translateToLocal("tomato"));
         
         Flour = new ModItemFlour().setUnlocalizedName("Flour");
-        Register(Flour, StatCollector.translateToLocal("items.name.flour"));
+        Register(Flour, StatCollector.translateToLocal("flour"));
         
         TomatoSeeds = new ModItemTomatoSeeds(ModBlocks.TomatoPlant, Blocks.farmland);
-        Register(TomatoSeeds, StatCollector.translateToLocal("items.name.tomatoseeds"));
+        Register(TomatoSeeds, StatCollector.translateToLocal("tomatoseeds"));
         
         PizzaBottom = new ModItemPizzaBottom().setUnlocalizedName("PizzaBottom");
-        Register(PizzaBottom, StatCollector.translateToLocal("items.name.pizzabase"));
+        Register(PizzaBottom, StatCollector.translateToLocal("pizzabase"));
         
         Liquid = new ModItemLiquid().setUnlocalizedName("Liquid");
         RegisterOutName(Liquid, "Liquid");
         
         Cheese = new ModItemCheese().setUnlocalizedName("Cheese");
-        Register(Cheese, StatCollector.translateToLocal("items.name.cheese"));
+        Register(Cheese, StatCollector.translateToLocal("cheese"));
         
         PizzaRaw = new ModItemPizzaRaw().setUnlocalizedName("PizzaRaw");
         RegisterOutName(PizzaRaw, "Pizza Raw");
@@ -139,66 +139,66 @@ public class ModItems {
         RegisterOutName(Pizza, "Pizza");
         
         Orange = new ModItemOrange().setUnlocalizedName("Orange");
-        Register(Orange, StatCollector.translateToLocal("items.name.orange"));
+        Register(Orange, StatCollector.translateToLocal("orange"));
         
         DisarmStick = new ModItemDisarmStick().setUnlocalizedName("DisarmStick");
-        Register(DisarmStick, StatCollector.translateToLocal("items.name.disarmstick"));
+        Register(DisarmStick, StatCollector.translateToLocal("disarmstick"));
         
         Drill = new ModItemDrill(ToolMaterial.EMERALD).setUnlocalizedName("Drill");
-        Register(Drill, StatCollector.translateToLocal("items.name.drill"));
+        Register(Drill, StatCollector.translateToLocal("drill"));
         
         Circuit = new ModItemCircuit().setUnlocalizedName("Circuit");
         RegisterOutName(Circuit, "Circuit Board");
         
         ModuleConnecter = new ModItemModuleConnecter().setUnlocalizedName("ModuleConnecter");
-        Register(ModuleConnecter, StatCollector.translateToLocal("items.name.moduleconnecter"));
+        Register(ModuleConnecter, StatCollector.translateToLocal("moduleconnecter"));
         
         SolarCells = new ModItemSolarCells().setUnlocalizedName("SolarCells");
-        Register(SolarCells, StatCollector.translateToLocal("items.name.solarcells"));
+        Register(SolarCells, StatCollector.translateToLocal("solarcells"));
         
         Turbine = new ModItemTurbine().setUnlocalizedName("Turbine");
-        Register(Turbine, StatCollector.translateToLocal("items.name.turbine"));
+        Register(Turbine, StatCollector.translateToLocal("turbine"));
         
         Battery = new ModItemBattery().setUnlocalizedName("Battery");
-        Register(Battery, StatCollector.translateToLocal("items.name.battery"));
+        Register(Battery, StatCollector.translateToLocal("battery"));
         
         BigBattery = new ModItemBigBattery().setUnlocalizedName("BigBattery");
-        Register(BigBattery, StatCollector.translateToLocal("items.name.bigbattery"));
+        Register(BigBattery, StatCollector.translateToLocal("bigbattery"));
         
         AdvancedBattery = new ModItemAdvancedBattery().setUnlocalizedName("AdvancedBattery");
-        Register(AdvancedBattery, StatCollector.translateToLocal("items.name.advancedbattery"));
+        Register(AdvancedBattery, StatCollector.translateToLocal("advancedbattery"));
         
         ElectricShears = new ModItemElectricShear().setUnlocalizedName("ELShears");
-        Register(ElectricShears, StatCollector.translateToLocal("items.name.electricshears"));
+        Register(ElectricShears, StatCollector.translateToLocal("electricshears"));
         
         ElectricBow = new ModItemElectricBow().setUnlocalizedName("ElBow");
-        Register(ElectricBow, StatCollector.translateToLocal("items.name.electricbow"));
+        Register(ElectricBow, StatCollector.translateToLocal("electricbow"));
         
        Upgrades = new ModItemUpgrades().setUnlocalizedName("Upgrades");
         RegisterOutName(Upgrades, "Upgrades");
         
         Wrench = new ModItemWrench().setUnlocalizedName("Wrench");
-        Register(Wrench, StatCollector.translateToLocal("items.name.wrench"));
+        Register(Wrench, StatCollector.translateToLocal("wrench"));
         
         IronPlate = new ModItemIronPlate().setUnlocalizedName("IronPlate");
         Register(IronPlate, "Iron Plate");
         
         HeatDrill = new ModItemHeatDrill().setUnlocalizedName("HeatDrill");
-        Register(HeatDrill, StatCollector.translateToLocal("items.name.heatdrill"));
+        Register(HeatDrill, StatCollector.translateToLocal("heatdrill"));
         
         PaintBrush = new ModItemPaintBrush().setUnlocalizedName("PaintBrush");
         RegisterOutName(PaintBrush, "Paint Brush");
         
         FloatBlockPlacer = new ModItemFloatBlockPlacer().setUnlocalizedName("FloatPlacer").setTextureName(Refrence.Mod_Id + ":FloatBlockPlacer");
-        Register(FloatBlockPlacer, StatCollector.translateToLocal("items.name.floatblockplacer"));
+        Register(FloatBlockPlacer, StatCollector.translateToLocal("floatblockplacer"));
         
         Main.proxy.addArmor("AntiFall");
         
         AntiFallChestPlate = (new ModItemAntiFallChest(1, 1)).setUnlocalizedName("AntiFallChestPlate").setTextureName(Refrence.Mod_Id + ":AntiFallChest");
-        Register(AntiFallChestPlate, StatCollector.translateToLocal("items.name.antifallchestplate"));
+        Register(AntiFallChestPlate, StatCollector.translateToLocal("antifallchestplate"));
         
         InfoScreenHelmet = new ModItemInfoScreenHelmet(1, 0).setUnlocalizedName("InfoScreenHelmet").setTextureName(Refrence.Mod_Id + ":InfoScreenHelmet");
-        Register(InfoScreenHelmet, StatCollector.translateToLocal("items.name.infoscreen"));
+        Register(InfoScreenHelmet, StatCollector.translateToLocal("infoscreen"));
         
         DataChip = new ModItemDataChip().setUnlocalizedName("DataChip");
         Register(DataChip, "Data Chip");

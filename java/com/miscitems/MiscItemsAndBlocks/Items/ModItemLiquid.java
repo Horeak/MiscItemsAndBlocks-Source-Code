@@ -81,15 +81,15 @@ public class ModItemLiquid extends Item{
 
     }
     
-    public String getItemDisplayName(ItemStack stack)
+    public String getUnlocalizedName(ItemStack stack)
     {
     	int meta = stack.getItemDamage();
 
     	
-    	if(meta == 0)return StatCollector.translateToLocal("items.name.liquid.1");
-    	if(meta == 1)return StatCollector.translateToLocal("items.name.liquid.2");
-    	if(meta == 2)return StatCollector.translateToLocal("items.name.liquid.3");
-    	if(meta == 3)return StatCollector.translateToLocal("items.name.liquid.4");
+    	if(meta == 0)return "item.liquid.1";
+    	if(meta == 1)return "item.liquid.2";
+    	if(meta == 2)return "item.liquid.3";
+    	if(meta == 3)return "item.liquid.4";
     	
     	
     	

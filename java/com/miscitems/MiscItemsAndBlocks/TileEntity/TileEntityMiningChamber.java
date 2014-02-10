@@ -2,7 +2,6 @@ package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
 import java.util.List;
 
-import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
@@ -10,13 +9,14 @@ import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.network.Packet;
 import net.minecraftforge.common.util.Constants;
 
 import com.miscitems.MiscItemsAndBlocks.LibMisc.BlockUtil;
 import com.miscitems.MiscItemsAndBlocks.LibMisc.Utils;
+import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Misc.ItemHelper;
 import com.miscitems.MiscItemsAndBlocks.Network.PacketTileWithItemUpdate;
-import com.miscitems.MiscItemsAndBlocks.Network.PacketTypeHandler;
 
 public class TileEntityMiningChamber extends TileEntityPowerInv{
 
@@ -428,17 +428,17 @@ public class TileEntityMiningChamber extends TileEntityPowerInv{
 
     }
     
-    //TODO
-//    @Override
-//    public Packet getDescriptionPacket() {
-//
-//        ItemStack itemStack = getStackInSlot(0);
-//
-//        if (itemStack != null && itemStack.stackSize > 0)
-//            return PacketTypeHandler.populatePacket(new PacketTileWithItemUpdate(xCoord, yCoord, zCoord, orientation, state, customName, itemStack.itemID, itemStack.getItemDamage(), itemStack.stackSize, ItemHelper.getColor(itemStack)));
-//        else
-//            return super.getDescriptionPacket();
-//    }
+
+    @Override
+    public Packet getDescriptionPacket() {
+
+        ItemStack itemStack = getStackInSlot(0);
+
+        if (itemStack != null && itemStack.stackSize > 0)
+            return Main.NETWORK_MANAGER.populatePacket(new PacketTileWithItemUpdate(xCoord, yCoord, zCoord, orientation, state, customName, itemStack.getItem().getIdFromItem(itemStack.getItem()), itemStack.getItemDamage(), itemStack.stackSize, ItemHelper.getColor(itemStack)));
+        else
+            return super.getDescriptionPacket();
+    }
 	
     private void mineStack(ItemStack stack) {
     	

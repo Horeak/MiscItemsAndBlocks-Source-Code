@@ -47,15 +47,15 @@ public class ModItemPizzaRaw extends ItemFood{
     	
     }
     
-    public String getItemDisplayName(ItemStack stack)
+    public String getUnlocalizedName(ItemStack stack)
     {
     	int meta = stack.getItemDamage();
-
     	
-    	if(meta == 0)return StatCollector.translateToLocal("items.name.pizza.raw.1");
-    	if(meta == 1)return StatCollector.translateToLocal("items.name.pizza.raw.2");
-    	if(meta == 2)return StatCollector.translateToLocal("items.name.pizza.raw.3");
-    	if(meta == 3)return StatCollector.translateToLocal("items.name.pizza.raw.4");
+    	
+    	if(meta == 0)return "item.pizzaRaw.1";
+    	if(meta == 1)return "item.pizzaRaw.2";
+    	if(meta == 2)return "item.pizzaRaw.3";
+    	if(meta == 3)return "item.pizzaRaw.4";
     	
     	
     	

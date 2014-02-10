@@ -11,9 +11,6 @@ import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.network.INetHandler;
-import net.minecraft.network.Packet;
-import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 
@@ -22,6 +19,8 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
 import com.miscitems.MiscItemsAndBlocks.Container.ContainerChatBlock;
+import com.miscitems.MiscItemsAndBlocks.Main.Main;
+import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerChatMessagePacket;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityComputer;
 
 public class GuiChat extends GuiContainer{
@@ -33,18 +32,15 @@ public class GuiChat extends GuiContainer{
     public GuiTextField ChannelBar;
     
     public ArrayList<String> chatMessages = new ArrayList<String>();
-    public ArrayList<String> PlayerList = new ArrayList<String>();
     
 
     
     public String Channel = "Default";
     
     public float chatScroll;
-    public float PlayerListScroll;
 
     
     public boolean chatScrolling;
-    public boolean PlayerScrolling;
     
 
     
@@ -55,7 +51,7 @@ public class GuiChat extends GuiContainer{
 	public GuiChat(InventoryPlayer InvPlayer, TileEntityComputer tile) {
 		super(new ContainerChatBlock(InvPlayer, tile));
 		
-	    this.xSize = 249;
+	    this.xSize = 198;
 	    this.ySize = 152;
 		
 	    
@@ -65,24 +61,7 @@ public class GuiChat extends GuiContainer{
 	
 	        
 	}
-    public void onGuiClosed() {
-    	
-        
-        ByteArrayOutputStream bytes1 = new ByteArrayOutputStream();
-        DataOutputStream stream2 = new DataOutputStream(bytes1);
 
-        try
-        {
-        	    stream2.writeByte((byte)6);
-        	    stream2.writeBytes(mc.thePlayer.getCommandSenderName() + "-" + "Gui was closed" + "-" + Channel);
-
-                PacketBuffer.sendPacketToAllPlayers(PacketBuffer.getPacket("MiscItems", bytes1.toByteArray()));
-                PacketBuffer.sendPacketToServer(PacketBuffer.getPacket("MiscItems", bytes1.toByteArray()));
-        }
-        catch(IOException e)
-        {}
-    	
-    }
 	
   
   public void drawScreen(int par1, int par2, float par3)
@@ -102,16 +81,12 @@ public class GuiChat extends GuiContainer{
       {
 
               chatScrolling = false;
-              PlayerScrolling = false;
       }
       else if(chatScrolling)
       {
               chatScroll = MathHelper.clamp_float((float)((guiTop + 95 + 7) - par2) / 82F, 0.0F, 0.77F);
       }
-      else if(PlayerScrolling)
-      {
-    	  PlayerListScroll = MathHelper.clamp_float((float)((guiTop + 95 + 7) - par2) / 82F, 0.0F, 0.77F);
-      }
+
 	    
 	    super.drawScreen(par1, par2, par3);
 	    
@@ -119,7 +94,6 @@ public class GuiChat extends GuiContainer{
 	    	 fontRendererObj.drawString("Channel:" + Channel, guiLeft + 96, guiTop + 10, 0, false);
 	    
         drawChat();
-        drawPlayerList();
         
         if(ChannelBar.getVisible())
         {
@@ -145,7 +119,7 @@ public class GuiChat extends GuiContainer{
       GL11.glColorMask(false, false, false, false);
 
       GL11.glStencilFunc(GL11.GL_ALWAYS, 1, 0xFF);
-      GL11.glStencilOp(GL11.GL_KEEP, GL11.GL_KEEP, GL11.GL_REPLACE); // draw 1s on test fail (always)
+      GL11.glStencilOp(GL11.GL_KEEP, GL11.GL_KEEP, GL11.GL_REPLACE);
       GL11.glStencilMask(0xFF);
       GL11.glClear(GL11.GL_STENCIL_BUFFER_BIT);
 
@@ -166,7 +140,7 @@ public class GuiChat extends GuiContainer{
           {
                    String msg = chatMessages.get(i);
                   
-          List list = fontRendererObj.listFormattedStringToWidth(msg, 342);
+          List<?> list = fontRendererObj.listFormattedStringToWidth(msg, 342);
                   
           lines += list.size();
           }
@@ -182,7 +156,7 @@ public class GuiChat extends GuiContainer{
           {
                    String msg = chatMessages.get(i);
                   
-          List list = fontRendererObj.listFormattedStringToWidth(msg, 342);
+          List<?> list = fontRendererObj.listFormattedStringToWidth(msg, 342);
                   
                   for(int kk = 0; kk < list.size(); kk++)
                   {
@@ -227,93 +201,7 @@ public class GuiChat extends GuiContainer{
           }
   }
   
-  public void drawPlayerList()
-  {
-	  
-          
-          
-      GL11.glEnable(GL11.GL_STENCIL_TEST);
-      GL11.glColorMask(false, false, false, false);
-
-      GL11.glStencilFunc(GL11.GL_ALWAYS, 1, 0xFF);
-      GL11.glStencilOp(GL11.GL_KEEP, GL11.GL_KEEP, GL11.GL_REPLACE); // draw 1s on test fail (always)
-      GL11.glStencilMask(0xFF);
-      GL11.glClear(GL11.GL_STENCIL_BUFFER_BIT);
-
-          drawSolidRect(guiLeft + 205, guiTop + 33, 31, 78, 0xffffff, 1.0F);
-          
-              GL11.glStencilMask(0x00);
-              GL11.glStencilFunc(GL11.GL_EQUAL, 1, 0xFF);
-
-      GL11.glColorMask(true, true, true, true);
-          
-              GL11.glPushMatrix();
-              float scale = 0.5F;
-              
-      GL11.glScalef(scale, scale, scale);
-      int lines = 0; 
-      
-          for(int i = 0; i < PlayerList.size(); i++)
-          {
-                   String msg = PlayerList.get(i);
-                  
-          List list = fontRendererObj.listFormattedStringToWidth(msg, 77);
-                  
-          lines += list.size();
-          }
-          
-          if(lines > 15)
-          {
-                  GL11.glTranslatef(0.0F, -(lines - 15) *13.0F * (0.77F - PlayerListScroll), 0.0F);
-          }
-          
-          lines = 0;
-          
-          for(int i = 0; i < PlayerList.size(); i++)
-          {
-                   String msg = PlayerList.get(i);
-                  
-          List list = fontRendererObj.listFormattedStringToWidth(msg, 77);
-                  
-                  for(int kk = 0; kk < list.size(); kk++)
-                  {
-                	  
-
-                               if(kk == 0)
-                               {
-                            	   
-                            	   String text = list.get(kk).toString();
-                            	   
-
-                      
-                                       fontRendererObj.drawString(text, (int)((guiLeft + 205) / scale), (int)((guiTop + 33 + (lines * 5)) / scale), 0, false);
-                            	   }
-                            	   
-                               else
-                               {
-                                       fontRendererObj.drawString(" " + (String)list.get(kk).toString(), (int)((guiLeft + 205) / scale), (int)((guiTop + 38 + (lines * 5)) / scale), 0, false);
-                               }
-                               
-                          }
-                  if(list.size() > 1)
-                	  lines++;
-
-                           lines++;
-                  }
-          
-          
-      GL11.glDisable(GL11.GL_STENCIL_TEST);
-          
-          GL11.glPopMatrix();
-          GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-          if(lines > 15){
-                  GL11.glPushMatrix();
-          	    mc.renderEngine.bindTexture(Texture);
-                  GL11.glTranslatef(0.0F, -82F * PlayerListScroll, 0.0F);
-                  drawTexturedModalRect(guiLeft + 238, guiTop + 96, 3, 154, 4, 15);
-                  GL11.glPopMatrix();
-          }
-  }
+ 
   
   protected void mouseClicked(int x, int y, int par3)
   {
@@ -327,12 +215,7 @@ public class GuiChat extends GuiContainer{
       {
               chatScrolling = true;
       }
-      
-      boolean isOnPlayerScroll = x >= guiLeft + 238 && x < guiLeft + 238 + 4 && y >= guiTop + 95 - 82 && y < guiTop + 95 + 15;
-      if(isOnPlayerScroll)
-      {
-              PlayerScrolling = true;
-      }
+
 
       
       
@@ -363,11 +246,6 @@ public class GuiChat extends GuiContainer{
 
 	    Minecraft.getMinecraft().renderEngine.bindTexture(Texture);
 	         drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
-
-
-	         
-	         int x = (this.width - this.xSize) / 2;
-	         int y = (this.height - this.ySize) / 2;
 	   	  
 
 	}
@@ -379,18 +257,11 @@ public class GuiChat extends GuiContainer{
         
         if(chatBar.isFocused() && par2 == Keyboard.KEY_RETURN && !chatBar.getText().isEmpty())
         {
-                ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-                DataOutputStream stream1 = new DataOutputStream(bytes);
 
-                try
-                {
-                	    stream1.writeByte((byte)3);
-                	    stream1.writeBytes(mc.thePlayer.getCommandSenderName() + "-" + chatBar.getText() + "-" + Channel);
 
-                        PacketDispatcher.sendPacketToServer(PacketDispatcher.getPacket("MiscItems", bytes.toByteArray()));
-                }
-                catch(IOException e)
-                {}
+
+        	Main.NETWORK_MANAGER.sendPacketToServer(new ServerChatMessagePacket(mc.thePlayer.getCommandSenderName() + "-" + chatBar.getText() + "-" + Channel));
+
                 
                 
                 chatBar.setText("");
@@ -398,49 +269,8 @@ public class GuiChat extends GuiContainer{
         }else if(ChannelBar.isFocused() && par2 == Keyboard.KEY_RETURN && !ChannelBar.getText().isEmpty())
             {
         	if(ChannelBar.getText() != Channel){
-        		  for(int i = 0; i < PlayerList.size() - 1; i++){
-                  	PlayerList.remove(i);
-                  	PlayerList.remove(i);
-                  }
         		  
-        		  for(int i = 0; i < PlayerList.size() - 1; i++){
-                    	PlayerList.remove(i);
-                    	PlayerList.remove(i);
-                    }
-        		  
-        		  for(int i = 0; i < PlayerList.size() - 1; i++){
-                    	PlayerList.remove(i);
-                    	PlayerList.remove(i);
-                    }
-        		  
-                    
-                    ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-                    DataOutputStream stream1 = new DataOutputStream(bytes);
 
-                    try
-                    {
-                    	    stream1.writeByte((byte)5);
-                    	    stream1.writeBytes(mc.thePlayer.getCommandSenderName() + "-" + ChannelBar.getText());
-
-                            PacketDispatcher.sendPacketToAllPlayers(PacketDispatcher.getPacket("MiscItems", bytes.toByteArray()));
-                            PacketDispatcher.sendPacketToServer(PacketDispatcher.getPacket("MiscItems", bytes.toByteArray()));
-                    }
-                    catch(IOException e)
-                    {}
-                    
-                    ByteArrayOutputStream bytes1 = new ByteArrayOutputStream();
-                    DataOutputStream stream2 = new DataOutputStream(bytes1);
-
-                    try
-                    {
-                    	    stream2.writeByte((byte)6);
-                    	    stream2.writeBytes(mc.thePlayer.getCommandSenderName() + "-" + "Channel switched" + "-" + Channel);
-
-                            PacketDispatcher.sendPacketToAllPlayers(PacketDispatcher.getPacket("MiscItems", bytes1.toByteArray()));
-                            PacketDispatcher.sendPacketToServer(PacketDispatcher.getPacket("MiscItems", bytes1.toByteArray()));
-                    }
-                    catch(IOException e)
-                    {}
                     
                     
                     Channel = ChannelBar.getText();
@@ -474,19 +304,7 @@ public class GuiChat extends GuiContainer{
 		super.initGui();
 		buttonList.clear();
 		
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        DataOutputStream stream1 = new DataOutputStream(bytes);
 
-        try
-        {
-        	    stream1.writeByte((byte)5);
-        	    stream1.writeBytes(mc.thePlayer.getCommandSenderName() + "-" + "Default");
-
-                PacketDispatcher.sendPacketToAllPlayers(PacketDispatcher.getPacket("MiscItems", bytes.toByteArray()));
-                PacketDispatcher.sendPacketToServer(PacketDispatcher.getPacket("MiscItems", bytes.toByteArray()));
-        }
-        catch(IOException e)
-        {}
         
 		
         int posX = (this.width - this.xSize) / 2;
@@ -529,19 +347,9 @@ public class GuiChat extends GuiContainer{
 		String Channel = text1[2];
 		
 		if(this.Channel.equals(Channel)){
-			
-			if(Message.contains("#JC#") && !PlayerList.contains(Player)){
-				PlayerList.add(Player);
-				AddMessage("##" + Player + "-" + Message.subSequence(4, Message.length()));
-				
-			}else if (Message.contains("#LC#") && !PlayerList.contains(Player)){
-				PlayerList.remove(Player);
-				AddMessage("##" + Player + "-" + Message.subSequence(4, Message.length()));
-				
-	
-				
-			}else if (!(Message.contains("#JC#")) && !(Message.contains("#LC#")) && !Message.startsWith("/")){
-			AddMessage(Player + "-" + Message);
+
+			if (!Message.startsWith("/")){
+			AddMessage("  " + Player + "-" + Message);
 			}
 			
 			
@@ -553,18 +361,9 @@ public class GuiChat extends GuiContainer{
 		
 		
 	public void SendMessage(String Message){
-		 ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-         DataOutputStream stream1 = new DataOutputStream(bytes);
+    	Main.NETWORK_MANAGER.sendPacketToServer(new ServerChatMessagePacket(mc.thePlayer.getCommandSenderName() + "-" + Message + "-" + Channel));
 
-         try
-         {
-         	    stream1.writeByte((byte)3);
-         	    stream1.writeBytes(mc.thePlayer.getCommandSenderName() + "-" + Message + "-" + Channel);
-
-                 PacketDispatcher.sendPacketToServer(PacketDispatcher.getPacket("MiscItems", bytes.toByteArray()));
-         }
-         catch(IOException e)
-         {}
+        
          
 		
 	}

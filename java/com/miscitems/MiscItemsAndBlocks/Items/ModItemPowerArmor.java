@@ -24,17 +24,13 @@ public class ModItemPowerArmor extends ItemArmor {
     
     private static ArmorMaterial material = ModItems.PowerArmor;
     
-    public ModItemPowerArmor(ArmorMaterial par2EnumArmorMaterial, int par3, int par4, int par5) {
+    public ModItemPowerArmor(ArmorMaterial par2EnumArmorMaterial, int par3, int par4, int par5, String Icon) {
         super(par2EnumArmorMaterial, par3, par4);
         this.setCreativeTab(Main.CreativeTab);
+        iconName = Icon;
 
     }
 
-    @Override
-    public Item setUnlocalizedName(String par1Str) {
-    iconName = par1Str;
-    return super.setUnlocalizedName(par1Str);
-    }
 
     @Override
         @SideOnly(Side.CLIENT)

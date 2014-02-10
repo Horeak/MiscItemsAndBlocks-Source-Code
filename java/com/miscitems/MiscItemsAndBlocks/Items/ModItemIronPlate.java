@@ -41,14 +41,14 @@ public class ModItemIronPlate extends Item{
 
     }
     
-    public String getItemDisplayName(ItemStack stack)
+    public String getUnlocalizedName(ItemStack stack)
     {
     	int meta = stack.getItemDamage();
 
     	
-    	if(meta == 0)return StatCollector.translateToLocal("items.name.ironplate.1");
-    	if(meta == 1)return StatCollector.translateToLocal("items.name.ironplate.2");
-    	if(meta == 2)return StatCollector.translateToLocal("items.name.ironplate.3");
+    	if(meta == 0)return "item.ironplate.1";
+    	if(meta == 1)return "item.ironplate.2";
+    	if(meta == 2)return "ites.ironplate.3";
     	
     	
     	

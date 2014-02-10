@@ -8,9 +8,11 @@ import java.io.IOException;
 
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class PacketTileWithItemUpdate extends ModPacket {
+public class PacketTileWithItemUpdate extends IPacket {
 
     public int x, y, z;
     public byte orientation;
@@ -18,14 +20,10 @@ public class PacketTileWithItemUpdate extends ModPacket {
     public String customName;
     public int itemID, metaData, stackSize, color;
 
-    public PacketTileWithItemUpdate() {
-
-        super(PacketTypeHandler.TILE_WITH_ITEM, true);
-    }
+    public PacketTileWithItemUpdate() {}
 
     public PacketTileWithItemUpdate(int x, int y, int z, ForgeDirection orientation, byte state, String customName, int itemID, int metaData, int stackSize, int color) {
 
-        super(PacketTypeHandler.TILE_WITH_ITEM, true);
         this.x = x;
         this.y = y;
         this.z = z;
@@ -39,7 +37,7 @@ public class PacketTileWithItemUpdate extends ModPacket {
     }
 
     @Override
-    public void writeData(DataOutputStream data) throws IOException {
+    public void write(DataOutputStream data) throws IOException {
 
         data.writeInt(x);
         data.writeInt(y);
@@ -54,7 +52,7 @@ public class PacketTileWithItemUpdate extends ModPacket {
     }
 
     @Override
-    public void readData(DataInputStream data) throws IOException {
+    public void read(DataInputStream data) throws IOException {
 
         x = data.readInt();
         y = data.readInt();
@@ -69,8 +67,10 @@ public class PacketTileWithItemUpdate extends ModPacket {
     }
 
     @Override
-    public void execute(INetworkManager manager, Player player) {
+    public void execute(EntityPlayer player) {
 
-        Main.proxy.handleTileWithItemPacket(x, y, z, ForgeDirection.getOrientation(orientation), state, customName, itemID, metaData, stackSize, color);
+        Main.proxy.handleTileWithItemPacket(x, y, z, ForgeDirection.getOrientation(orientation), state, customName, Item.getItemById(itemID), metaData, stackSize, color);
     }
+
+
 }

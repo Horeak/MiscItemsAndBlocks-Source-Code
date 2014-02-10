@@ -4,6 +4,8 @@ package com.miscitems.MiscItemsAndBlocks.Network;
 import java.util.EnumMap;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S3FPacketCustomPayload;
 
 import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
 
@@ -50,4 +52,17 @@ public class NetworkManager {
             this.serverOutboundChannel.writeOutbound(packet);
         }
     }
+    
+    
+    public static Packet populatePacket(IPacket ModPacket) {
+
+        byte[] data = ModPacket.populate();
+
+        S3FPacketCustomPayload packet250 = new S3FPacketCustomPayload(Refrence.Channel, data);
+
+        return packet250;
+    }
+    
+    
+    
 }

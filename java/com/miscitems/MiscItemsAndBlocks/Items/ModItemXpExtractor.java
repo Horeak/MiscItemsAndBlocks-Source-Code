@@ -57,13 +57,14 @@ private IIcon _icon3;
     }
     
 
+    @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister par1IconRegister)
     {
     	
-    	_icon1 = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + getUnlocalizedName().substring(5) + ".1");
-    	_icon2 = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + getUnlocalizedName().substring(5) + ".2");
-    	_icon3 = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + getUnlocalizedName().substring(5) + ".3");
+    	_icon1 = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "XpExtractor" + ".1");
+    	_icon2 = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "XpExtractor" + ".2");
+    	_icon3 = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "XpExtractor" + ".3");
     	
     	itemIcon = _icon1;
     }

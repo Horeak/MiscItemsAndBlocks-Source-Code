@@ -1,5 +1,6 @@
 itemGroup.tabMisc=MiscItems
 
+tile.xp_storage_block.name= Xp storage block
 tile.trash_bin.name=Trash Bin
 tile.disarm_trap.name=Disarm Trap
 tile.silver_ore.name=Silver Ore
@@ -33,8 +34,54 @@ tile.dice_stand.name=Dice stand
 tile.teleporter.name=Teleporter
 tile.wireless_redstone.name=Wireless redstone
 tile.silver_block.name=Silver block
-tile.wierless_item_trasnfer.name=Wireless item transfer
+tile.wierless_item_transfer.name=Wireless item transfer
 tile.metal_press.name=Metal press
+
+item.xp_extractor.name=Xp extractor
+item.silver_ingot.name=Silver ingot
+item.silver_nugget.name=Silver nugget
+item.silver_sword.name=Silver sword
+item.silver_bow.name=Silver bow
+item.silver_arrow.name=Silver arrow
+item.diving_helmet.name= Diving helmet
+item.flight_chestplate.name=Flight chestplate
+item.speed_leggings.name=Speed leggings
+item.jumping_boots.name=Jumping boots
+item.cardboard.name=Cardboard
+item.tomato.name=Tomato
+item.flour.name=Flour
+item.tomato_seeds.name=Tomato seeds
+item.pizza_base.name=Pizza base
+item.liquid.1.name=Apple Juice
+item.liquid.2.name=Tomato Sauce
+item.liquid.3.name=Orange Juice
+item.liquid.4.name=Carrot Juice
+item.cheese.name=Cheese
+item.pizzaRaw.1.name=Raw Fish Pizza
+item.pizzaRaw.2.name=Raw Pork Pizza
+item.pizzaRaw.3.name=Raw Beef Pizza
+item.pizzaRaw.4.name=Raw Chicken Pizza
+item.pizza.1.name=Fish Pizza
+item.pizza.2.name=Pork Pizza
+item.pizza.3.name=Beef Pizza
+item.pizza.4.name=Chicken Pizza
+item.orange.name=Orange
+item.disarm_stick.name=Disarm stick
+item.drill.name=Drill
+item.circuit.basic.name=Circuit Board
+item.circuit.advanced.name=Advanced Circuit Board
+item.ironplate.1.name=Iron Plate
+item.ironplate.2.name=Small Hardened Iron Plate
+itemsironplate.3.name=Hardened Iron Plate
+item.paintbrush.1.name=Blank Paint Brush
+item.paintbrush.2.name=Red Paint Brush
+item.paintbrush.3.name=Green Paint Brush
+item.paintbrush.4.name=Blue Paint Brush
+item.paintbrush.5.name=Paint Copy Brush
+item.paintbrush.6.name=Paint Editor Brush
+
+
+
 
 item.GamePart.Number.0.name=Blank Game Piece
 item.GamePart.Number.1.name=Red Game Piece
@@ -193,88 +240,8 @@ items.desc.xpextractor.1=Requirements
 items.desc.xpextractor.2=You require xp levels
 items.desc.xpextractor.3=You require at least 1 glass bottle
 
-
-items.name.circuit.basic=Circuit Board
-items.name.circuit.advanced=Advanced Circuit Board
-
-items.name.ironplate.1=Iron Plate
-items.name.ironplate.2=Small Hardened Iron Plate
-items.name.ironplate.3=Hardened Iron Plate
-
-items.name.liquid.1=Apple Juice
-items.name.liquid.2=Tomato Sauce
-items.name.liquid.3=Orange Juice
-items.name.liquid.4=Carrot Juice
-
-items.name.paintbrush.1=Blank Paint Brush
-items.name.paintbrush.2=Red Paint Brush
-items.name.paintbrush.3=Green Paint Brush
-items.name.paintbrush.4=Blue Paint Brush
-items.name.paintbrush.5=Paint Copy Brush
-items.name.paintbrush.6=Paint Editor Brush
-
-items.name.pizza.1=Fish Pizza
-items.name.pizza.2=Pork Pizza
-items.name.pizza.3=Beef Pizza
-items.name.pizza.4=Chicken Pizza
-
-items.name.pizza.raw.1=Raw Fish Pizza
-items.name.pizza.raw.2=Raw Pork Pizza
-items.name.pizza.raw.3=Raw Beef Pizza
-items.name.pizza.raw.4=Raw Chicken Pizza
-
-items.name.upgrades.power=Power Upgrade
-
-items.name.xpextractor=Xp Extractor
-
-items.name.silveringot=Silver Ingot
-items.name.silvernugget=Silver Nugget
-items.name.silversword=Silver Sword
-items.name.silverbow=Silver Bow
-items.name.silverarrow=Silver Arrow
-
-items.name.powerarmor.helmet=Diving Helmet
-items.name.powerarmor.chestplate=Flight Chestplate
-items.name.powerarmor.leggings=Speed Leggings
-items.name.powerarmor.boots=Jumping Boots
-
-items.name.cardboard=Cardboard
-
-items.name.tomato=Tomato
-items.name.tomatoseeds=Tomato Seeds
-
-items.name.flour=Flour
-
-items.name.pizzabase=Pizza Base
-
-items.name.cheese=Cheese
-
-items.name.orange=Orange
-
-items.name.disarmstick=Disarm Stick
-
-items.name.drill=Drill
-items.name.electricshears=Electric Shears
-items.name.electricbow=Electric Bow
-items.name.heatdrill=Heat Drill
-items.name.floatblockplacer=Floating Platform Placer
-items.name.antifallchestplate=Anti-fall and flight Chestplate
-items.name.infoscreen=Info Display Screen
-
-items.name.moduleconnecter=Module Connector Part
-items.name.solarcells=Solar Cells
-items.name.turbine=Turbine
-
-items.name.battery=Battery
-items.name.bigbattery=Big Battery
-items.name.advancedbattery=Advanced Battery
-
-items.name.wrench=Wrench
-
-
-
-entity.powerarrow=Power Arrow
-entity.silverarrow=Silver Arrow
+entity.powerarrow.name=Power Arrow
+entity.silverarrow.name=Silver Arrow
 
 
 string.death.silversword=%Killed Was slaing with a Silver Sword by %Killer

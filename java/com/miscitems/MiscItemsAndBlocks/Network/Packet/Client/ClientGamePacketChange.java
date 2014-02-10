@@ -17,6 +17,7 @@ public class ClientGamePacketChange extends IPacket{
 	String Player_1;
 	String Player_2;
 	
+	public ClientGamePacketChange(){}
 	public ClientGamePacketChange(int Number, int Player, String Player_1, String Player_2){
 		this.Number = Number;
 		this.Player = Player;

@@ -4,11 +4,12 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.Properties;
 
+import net.minecraftforge.common.MinecraftForge;
+
 import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 
 import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.relauncher.Side;
 
 public class VersionChecker implements Runnable{
 
@@ -103,7 +104,7 @@ tries++;
 if(result == OUT_OF_DATE){
 Main.UP_TO_DATE = false;
 checkLatestChanges();
-TickRegistry.registerTickHandler(new VersionCheckTicker(), Side.CLIENT);
+MinecraftForge.EVENT_BUS.register(VersionCheckTicker.class);
 }
 if(result == UP_TO_DATE)
 System.out.println(Refrence.Mod_Id + ":  is up to date.");

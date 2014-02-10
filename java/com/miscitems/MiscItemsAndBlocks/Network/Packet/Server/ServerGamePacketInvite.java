@@ -20,6 +20,7 @@ public class ServerGamePacketInvite extends IPacket {
 
 	public String Player;
 	
+	public ServerGamePacketInvite(){}
 	public ServerGamePacketInvite(String Player){
 		this.Player = Player;
 	}
@@ -44,25 +45,21 @@ public class ServerGamePacketInvite extends IPacket {
 	public void execute(EntityPlayer player) {
 
 		
+		
 		  EntityPlayerMP plyr = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().getPlayerForUsername(Player);
           
-          GameInvite tr1 = ServerProxy.tickHandlerServer.playerGameRequests.get(player.getCommandSenderName());
-          
-          if(tr1 != null && tr1.Name.equalsIgnoreCase(plyr.getCommandSenderName()))
-          {
-          	ServerProxy.tickHandlerServer.initializeGame(player, plyr);
-          }
-          
+		  if(plyr != null){
           GameInvite tr = ServerProxy.tickHandlerServer.playerGameRequests.get(plyr.getCommandSenderName());
           if(tr == null || !tr.Name.equalsIgnoreCase(player.getCommandSenderName()))
           {
+        	  
           	ServerProxy.tickHandlerServer.playerGameRequests.put(plyr.getCommandSenderName(), new GameInvite(player.getCommandSenderName()));
-               
-          	
-          	
-          	
           	Main.NETWORK_MANAGER.sendPacketToPlayer(new ClientGamePacketInviteRecived(player.getCommandSenderName()), plyr);
           }
+		  }
+          	
+          	
+          
 	}
 
 }

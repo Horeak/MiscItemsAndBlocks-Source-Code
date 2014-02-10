@@ -52,12 +52,12 @@ public class ModItemPaintBrush extends Item{
 	    {
 	    	int meta = stack.getItemDamage();
 
-	    	if(meta == 0)return "items.name.paintbrush.1";
-	    	if(meta == 1)return "items.name.paintbrush.2";
-	    	if(meta == 2)return "items.name.paintbrush.3";
-	    	if(meta == 3)return "items.name.paintbrush.4";
-	    	if(meta == 4)return "items.name.paintbrush.5";
-	    	if(meta == 5)return "items.name.paintbrush.6";
+	    	if(meta == 0)return "item.paintbrush.1";
+	    	if(meta == 1)return "item.paintbrush.2";
+	    	if(meta == 2)return "item.paintbrush.3";
+	    	if(meta == 3)return "item.paintbrush.4";
+	    	if(meta == 4)return "item.paintbrush.5";
+	    	if(meta == 5)return "item.paintbrush.6";
 	    	
 	    	
 	    	

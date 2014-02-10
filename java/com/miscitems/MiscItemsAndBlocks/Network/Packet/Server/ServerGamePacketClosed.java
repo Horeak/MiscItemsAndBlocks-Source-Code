@@ -15,6 +15,7 @@ public class ServerGamePacketClosed extends IPacket{
 	String Player1;
 	String Player2;
 	
+	public ServerGamePacketClosed(){}
 	public ServerGamePacketClosed(String Player_1, String Player_2){
 		
 		Player1 = Player_1;

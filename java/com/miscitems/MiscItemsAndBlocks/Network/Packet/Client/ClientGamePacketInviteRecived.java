@@ -18,6 +18,7 @@ public class ClientGamePacketInviteRecived extends IPacket{
 
 	String Player;
 	
+	public ClientGamePacketInviteRecived(){}
 	public ClientGamePacketInviteRecived(String Pl){
 		Player = Pl;
 	}
@@ -40,7 +41,7 @@ public class ClientGamePacketInviteRecived extends IPacket{
 		
         Minecraft.getMinecraft().theWorld.playSoundEffect((float)Minecraft.getMinecraft().thePlayer.posX, (float)Minecraft.getMinecraft().thePlayer.posY, (float)Minecraft.getMinecraft().thePlayer.posZ, "random.successful_hit", 1.0F, 1.0F);
 
-        Minecraft.getMinecraft().thePlayer.addChatComponentMessage(IChatComponent.Serializer.func_150699_a(EnumChatFormatting.GOLD + "You have recived a game invite to play tic tac toe!"));
+        Minecraft.getMinecraft().thePlayer.addChatMessage(IChatComponent.Serializer.func_150699_a(EnumChatFormatting.GOLD + "You have recived a game invite to play tic tac toe!"));
         
 	}
 

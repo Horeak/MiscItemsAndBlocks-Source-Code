@@ -112,7 +112,7 @@ public class ModBlockGamePart extends BlockContainer{
     		  
 		  }else{
     	  
-    	  if(world.getBlock(x - 1, y, z) == Blocks.grass || world.getBlock(x - 1, y, z) == Blocks.water || world.getBlock(x - 1, y,z) == Blocks.air){
+    	  if(world.getBlock(x - 1, y, z) == Blocks.water || world.getBlock(x - 1, y,z) == Blocks.air){
 
     		  
     		  world.setBlock(x, y, z, Blocks.air);
@@ -134,7 +134,7 @@ public class ModBlockGamePart extends BlockContainer{
     		  
 		  }else{
 			  
-    	  if(world.getBlock(x, y, z - 1) == Blocks.grass || world.getBlock(x, y, z - 1) == Blocks.water || world.getBlock(x, y, z - 1) == Blocks.air){
+    	  if(world.getBlock(x, y, z - 1) == Blocks.water || world.getBlock(x, y, z - 1) == Blocks.air){
 
     		  
     		  world.setBlock(x, y, z, Blocks.air);
@@ -157,7 +157,7 @@ public class ModBlockGamePart extends BlockContainer{
     		  
 		  }else{
     	  
-    	  if(world.getBlock(x + 1, y,z) == Blocks.grass || world.getBlock(x + 1, y, z) == Blocks.water || world.getBlock(x + 1, y,z) == Blocks.air){
+    	  if(world.getBlock(x + 1, y, z) == Blocks.water || world.getBlock(x + 1, y,z) == Blocks.air){
     		  
     		  world.setBlock(x, y, z, Blocks.air);
     		  world.setBlock(x + 1, y, z, ModBlocks.GamePart, Meta , 2);
@@ -206,7 +206,7 @@ public class ModBlockGamePart extends BlockContainer{
     public void blockFall(World world, int x, int y, int z){
 
     	
-    	if(world.getBlock(x, y - 1, z) == Blocks.air || world.getBlock(x, y - 1, z) == Blocks.grass || world.getBlock(x, y - 1, z) == Blocks.water){
+    	if(world.getBlock(x, y - 1, z) == Blocks.air || world.getBlock(x, y - 1, z) == Blocks.water){
     		
     		Block Block = world.getBlock(x, y, z);
     		int Meta = world.getBlockMetadata(x, y, z);

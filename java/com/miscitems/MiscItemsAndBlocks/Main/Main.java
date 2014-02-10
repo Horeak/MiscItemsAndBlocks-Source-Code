@@ -83,7 +83,7 @@ public class Main {
     public static ServerProxy proxy;
     
     
-	public static boolean VERSION_CHECK = false;
+	public static boolean VERSION_CHECK = true;
 	
     public static final String RELEASE_VERSION = Refrence.Version;
     public static String LATEST_CHANGES = "[Error]";
@@ -127,8 +127,6 @@ public void preInit(FMLPreInitializationEvent event) {
 	//TODO Add sometype of ore doubling
 	
     	
-	//GameRegistry.registerCraftingHandler(new ModCraftingHandler());
-	
         Configuration configMisc = new Configuration(new File(event.getModConfigurationDirectory() + "/tm1990's mods/MiscItemsAndBlocksConfig.cfg")); 
         
     	try
@@ -178,17 +176,7 @@ public void preInit(FMLPreInitializationEvent event) {
         
         EntityRegistry.registerGlobalEntityID(EntityPowerArrow.class, "PowerArrow", EntityRegistry.findGlobalUniqueEntityId());
         EntityRegistry.registerModEntity(EntityPowerArrow.class, "PowerArrow", 1, this, 128, 1, true);
-    	
-//        LanguageRegistry.instance().addStringLocalization("itemGroup."+Refrence.Mod_Name, "en_US", Refrence.Mod_Id);
-//        LanguageRegistry.instance().addStringLocalization("entity.SilverArrow.name", "Silver Arrow");
-//        LanguageRegistry.instance().addStringLocalization("entity.PowerArrow.name", "Power Arrow");
-//        
-//        LanguageRegistry.instance().addStringLocalization("item.GamePart.Number.0.name", "Blank Game Piece");
-//        LanguageRegistry.instance().addStringLocalization("item.GamePart.Number.1.name", "Red Game Piece");
-//        LanguageRegistry.instance().addStringLocalization("item.GamePart.Number.2.name", "Blue Game Piece");
-//        LanguageRegistry.instance().addStringLocalization("item.GamePart.Number.3.name", "Green Game Piece");
-//        LanguageRegistry.instance().addStringLocalization("item.GamePart.Number.4.name", "Yellow Game Piece");
-//        
+
         GameRegistry.registerTileEntity(TileEntityXpStorage.class, "TileEntityXpStorage");
         GameRegistry.registerTileEntity(TileEntityBin.class, "TileEntityBin");
         GameRegistry.registerTileEntity(TileEntityDisarmTrap.class, "TileEntityTrap");

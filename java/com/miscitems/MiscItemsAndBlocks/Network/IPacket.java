@@ -45,4 +45,20 @@ e.printStackTrace();
 
 return null;
 }
+
+public byte[] populate() {
+
+    ByteArrayOutputStream bos = new ByteArrayOutputStream();
+    DataOutputStream dos = new DataOutputStream(bos);
+
+    try {
+        dos.writeByte(PacketType.getIdFromClass(this.getClass()));
+        this.write(dos);
+    }
+    catch (IOException e) {
+        e.printStackTrace(System.err);
+    }
+
+    return bos.toByteArray();
+}
 }

@@ -1,13 +1,12 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
+import com.miscitems.MiscItemsAndBlocks.Network.PacketTileUpdate;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
-
-import com.miscitems.MiscItemsAndBlocks.Network.PacketTileUpdate;
-import com.miscitems.MiscItemsAndBlocks.Network.PacketTypeHandler;
 
 public class ModTileEntity extends TileEntity {
 
@@ -81,13 +80,13 @@ public class ModTileEntity extends TileEntity {
         super.writeToNBT(nbtTagCompound);
 
     }
-    //TODO
 
-//    @Override
-//    public Packet getDescriptionPacket() {
-//
-//        return PacketTypeHandler.populatePacket(new PacketTileUpdate(xCoord, yCoord, zCoord, orientation, state, customName));
-//    }
+    @Override
+    public Packet getDescriptionPacket() {
+    	
+    	
+        return null;
+    }
 
     @Override
     public String toString() {

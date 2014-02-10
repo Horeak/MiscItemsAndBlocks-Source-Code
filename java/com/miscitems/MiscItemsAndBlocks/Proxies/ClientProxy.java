@@ -26,9 +26,9 @@ import com.miscitems.MiscItemsAndBlocks.ItemRender.TableItemRender;
 import com.miscitems.MiscItemsAndBlocks.ItemRender.TeleporterItemRender;
 import com.miscitems.MiscItemsAndBlocks.ItemRender.TrashBinItemRender;
 import com.miscitems.MiscItemsAndBlocks.Lib.Colours;
+import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Misc.ItemHelper;
 import com.miscitems.MiscItemsAndBlocks.Network.PacketRequestEvent;
-import com.miscitems.MiscItemsAndBlocks.Network.PacketTypeHandler;
 import com.miscitems.MiscItemsAndBlocks.Render.PowerArrowRender;
 import com.miscitems.MiscItemsAndBlocks.Render.SilverArrowRender;
 import com.miscitems.MiscItemsAndBlocks.Tick.TickHandlerClient;
@@ -138,7 +138,8 @@ public class ClientProxy extends ServerProxy{
     @Override
     public void sendRequestEventPacket(byte eventType, int originX, int originY, int originZ, byte sideHit, byte rangeX, byte rangeY, byte rangeZ, String data) {
 
-       // PacketDispatcher.sendPacketToServer(PacketTypeHandler.populatePacket(new PacketRequestEvent(eventType, originX, originY, originZ, sideHit, rangeX, rangeY, rangeZ, data)));
+  
+    Main.NETWORK_MANAGER.sendPacketToServer(new PacketRequestEvent(eventType, originX, originY, originZ, sideHit, rangeX, rangeY, rangeZ, data));
     }
 
 
@@ -146,35 +147,33 @@ public class ClientProxy extends ServerProxy{
     public void handleTileWithItemPacket(int x, int y, int z, ForgeDirection orientation, byte state, String customName, Item itemID, int metaData, int stackSize, int color) {
 
      World world = FMLClientHandler.instance().getClient().theWorld;
-//        TileEntity tileEntity = world.getTileEntity(x, y, z);
-//
-//        this.handleTileEntityPacket(x, y, z, orientation, state, customName);
-//
-//        if (tileEntity != null) {
-//            if (tileEntity instanceof TileEntityItemPedestal) {
-//
-//                ItemStack itemStack = new ItemStack(itemID, stackSize, metaData);
-//                if (color != Integer.parseInt(Colours.PURE_WHITE, 16)) {
-//                    ItemHelper.setColor(itemStack, color);
-//                }
-//
-//                ((TileEntityItemPedestal) tileEntity).setInventorySlotContents(0, itemStack);
-//                world.updateAllLightTypes(x, y, z);
-//            }
-//            
-//            if (tileEntity instanceof TileEntityMiningChamber) {
-//
-//                ItemStack itemStack = new ItemStack(itemID, stackSize, metaData);
-//                if (color != Integer.parseInt(Colours.PURE_WHITE, 16)) {
-//                    ItemHelper.setColor(itemStack, color);
-//                }
-//
-//                ((TileEntityMiningChamber) tileEntity).setInventorySlotContents(0, itemStack);
-//                world.updateAllLightTypes(x, y, z);
-//            }
-//            
-//          
-//        }
+        TileEntity tileEntity = world.getTileEntity(x, y, z);
+
+        this.handleTileEntityPacket(x, y, z, orientation, state, customName);
+
+        if (tileEntity != null) {
+            if (tileEntity instanceof TileEntityItemPedestal) {
+
+                ItemStack itemStack = new ItemStack(itemID, stackSize, metaData);
+                if (color != Integer.parseInt(Colours.PURE_WHITE, 16)) {
+                    ItemHelper.setColor(itemStack, color);
+                }
+
+                ((TileEntityItemPedestal) tileEntity).setInventorySlotContents(0, itemStack);
+            }
+            
+            if (tileEntity instanceof TileEntityMiningChamber) {
+
+                ItemStack itemStack = new ItemStack(itemID, stackSize, metaData);
+                if (color != Integer.parseInt(Colours.PURE_WHITE, 16)) {
+                    ItemHelper.setColor(itemStack, color);
+                }
+
+                ((TileEntityMiningChamber) tileEntity).setInventorySlotContents(0, itemStack);
+            }
+            
+          
+        }
     }
     
     @Override

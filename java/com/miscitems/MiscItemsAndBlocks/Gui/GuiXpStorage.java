@@ -13,7 +13,8 @@ import org.lwjgl.opengl.GL11;
 
 import com.miscitems.MiscItemsAndBlocks.Container.ContainerXpStorage;
 import com.miscitems.MiscItemsAndBlocks.Lib.Messages;
-import com.miscitems.MiscItemsAndBlocks.Network.PacketHandler;
+import com.miscitems.MiscItemsAndBlocks.Main.Main;
+import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerButtonPacket;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityXpStorage;
 
 public class GuiXpStorage extends GuiContainer{
@@ -88,8 +89,7 @@ public class GuiXpStorage extends GuiContainer{
 	
 	@Override
 	protected void actionPerformed(GuiButton button){
-		PacketHandler.sendButtonPacket((byte)button.id);
-
+		Main.NETWORK_MANAGER.sendPacketToServer(new ServerButtonPacket((byte)button.id));
 		
 		switch(button.id){
 		  

@@ -19,6 +19,7 @@ public class ServerGamePacketAccept extends IPacket {
 	
 	String Player;
 	
+	public ServerGamePacketAccept(){}
 	public ServerGamePacketAccept(String Player){
 		this.Player = Player;
 	}

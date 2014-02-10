@@ -4,7 +4,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.IChatComponent;
 
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerGamePacketAccept;
+import com.miscitems.MiscItemsAndBlocks.Network.Packet.Client.ClientGamePacketBegin;
 
 public class GameInfo
 {
@@ -25,8 +25,8 @@ public class GameInfo
         {
 
 
-        	Main.NETWORK_MANAGER.sendPacketToPlayer(new ServerGamePacketAccept(Player_2.getCommandSenderName()), Player_1);
-        	Main.NETWORK_MANAGER.sendPacketToPlayer(new ServerGamePacketAccept(Player_1.getCommandSenderName()), Player_2);
+        	Main.NETWORK_MANAGER.sendPacketToPlayer(new ClientGamePacketBegin(Player_1.getCommandSenderName(), Player_2.getCommandSenderName()), Player_1);
+        	Main.NETWORK_MANAGER.sendPacketToPlayer(new ClientGamePacketBegin(Player_1.getCommandSenderName(), Player_2.getCommandSenderName()), Player_2);
         
         return this;
         }

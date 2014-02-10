@@ -214,7 +214,7 @@ public abstract class ModGuiContainer extends GuiScreen
         {
             if (k == 0)
             {
-                list.set(k, "\u00a7" + Integer.toHexString(par1ItemStack.getRarity().rarityColor) + (String) list.get(k));
+             //   list.set(k, "\u00a7" + Integer.toHexString(par1ItemStack.getRarity().rarityColor) + (String) list.get(k));
             }
             else
             {

@@ -12,6 +12,7 @@ import com.miscitems.MiscItemsAndBlocks.Network.IPacket;
 
 public class ClientGamePacketRestart extends IPacket{
 
+	public ClientGamePacketRestart(){}
 	
 	@Override
 	public void read(DataInputStream data) throws IOException {
