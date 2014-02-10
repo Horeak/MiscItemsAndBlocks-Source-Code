@@ -21,16 +21,16 @@ public class Crafting {
 		
 		
 		
-//		SqueezerRecipes.instance().AddRecipe(new ItemStack(Items.apple), new ItemStack(ModItems.Liquid, 1, 0));
-//		SqueezerRecipes.instance().AddRecipe(new ItemStack(ModItems.Orange), new ItemStack(ModItems.Liquid, 1, 2));
-//		SqueezerRecipes.instance().AddRecipe(new ItemStack(Items.carrot), new ItemStack(ModItems.Liquid, 1, 3));
-//		
-//		MillRecipes.instance().AddRecipe(new ItemStack(Items.wheat), new ItemStack(ModItems.Flour));
-//		MillRecipes.instance().AddRecipe(new ItemStack(Items.rotten_flesh), new ItemStack(Items.leather));
+		SqueezerRecipes.instance().AddRecipe(new ItemStack(Items.apple), new ItemStack(ModItems.Liquid, 1, 0));
+		SqueezerRecipes.instance().AddRecipe(new ItemStack(ModItems.Orange), new ItemStack(ModItems.Liquid, 1, 2));
+		SqueezerRecipes.instance().AddRecipe(new ItemStack(Items.carrot), new ItemStack(ModItems.Liquid, 1, 3));
+		
+		MillRecipes.instance().AddRecipe(new ItemStack(Items.wheat), new ItemStack(ModItems.Flour));
+		MillRecipes.instance().AddRecipe(new ItemStack(Items.rotten_flesh), new ItemStack(Items.leather));
 		
 		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.Liquid, 1, 1), new Object[]{Items.bucket, ModItems.Tomato});
 		
-		//GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.DiceHolder), new Object[]{ModBlocks.ItemPedestal, ModBlocks.Dice});
+		GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.DiceHolder), new Object[]{ModBlocks.ItemPedestal, ModBlocks.Dice});
 		GameRegistry.addShapedRecipe(new ItemStack(ModItems.DataChip, 2), new Object[]{"CCC", "CGC", "III", 'C', ModItems.Cardboard, 'G', new ItemStack(ModItems.Circuit, 1, 0), 'I', Items.iron_ingot});
 		GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.Teleporter), new Object[]{"HCH", "BEB", "HCH", 'H', new ItemStack(ModItems.IronPlate, 1, 2), 'C', new ItemStack(ModItems.Circuit, 1, 1), 'B', new ItemStack(ModItems.AdvancedBattery, 1, 0), 'E', Items.ender_pearl});
 		GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.WireLessRedstone, 2), new Object[]{"IEI", "ERE", "ICI", 'I', new ItemStack(ModItems.IronPlate, 1, 0), 'E', Items.ender_pearl, 'R', Blocks.redstone_block, 'C', new ItemStack(ModItems.Circuit, 1, 1)});
@@ -46,7 +46,7 @@ public class Crafting {
 		GameRegistry.addRecipe(new ItemStack(ModBlocks.StorageBlock), new Object[]{"ICI", "CBC", "ICI", 'I', Blocks.iron_block, 'C', Blocks.chest, 'B', ModBlocks.Box});
 		
         GameRegistry.addRecipe(new ShapedOreRecipe(ModBlocks.CraftingInv, new Object[] {"WWW", "PIP", "PCP", 'W', Blocks.wool, Character.valueOf('P'), "plankWood", 'C', Blocks.chest, 'I', Blocks.crafting_table}));
-		//GameRegistry.addRecipe(new ShapedOreRecipe(ModBlocks.Dice, new Object[]{"PPP", "PDP", "PPP", Character.valueOf('P'), "plankWood", 'D', Items.dye}));
+		GameRegistry.addRecipe(new ShapedOreRecipe(ModBlocks.Dice, new Object[]{"PPP", "PDP", "PPP", Character.valueOf('P'), "plankWood", 'D', Items.dye}));
 		GameRegistry.addRecipe(new ShapedOreRecipe(ModBlocks.Table, new Object[]{"CCC", "HHH", "P P", 'C', new ItemStack(Blocks.carpet, 1, 14), Character.valueOf('P'), "plankWood", Character.valueOf('H'), "slabWood"}));	
 		GameRegistry.addRecipe(new ShapedOreRecipe(ModItems.Turbine, new Object[]{"S S", " P ", "S S", 'S', Items.stick, Character.valueOf('P'), "plankWood"}));
 

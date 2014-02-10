@@ -68,9 +68,14 @@ public class ModItemSilverSword extends ItemSword {
     	        }
     	        
     	        
-    	        itemstack.stackTagCompound.setString("LastMob", EntityHit.func_145748_c_().toString());
+    	        itemstack.stackTagCompound.setString("LastMob", EntityHit.getCommandSenderName().toString());
     	        
+    	        if(EntityAttacker instanceof EntityPlayer){
+    	        	EntityPlayer player = (EntityPlayer)EntityAttacker;
+    	        	
+    	        	if(!player.capabilities.isCreativeMode)
     	        itemstack.attemptDamageItem(1, EntityHit.worldObj.rand);
+    	        }
     			
     		
     	}

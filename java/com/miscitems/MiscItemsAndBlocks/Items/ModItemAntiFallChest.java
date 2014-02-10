@@ -2,6 +2,8 @@ package com.miscitems.MiscItemsAndBlocks.Items;
 
 import java.util.List;
 
+import org.lwjgl.input.Keyboard;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -41,7 +43,6 @@ public class ModItemAntiFallChest extends ModItemElArmor{
 	    {
 			list.add(StatCollector.translateToLocal("items.desc.antifallchestplate.1"));
 			list.add(StatCollector.translateToLocal("items.desc.antifallchestplate.2"));
-			list.add(StatCollector.translateToLocal("items.desc.antifallchestplate.3"));
 	    	int i = itemstack.getMaxDamage() - itemstack.getItemDamage();
 	    	
 
@@ -70,7 +71,6 @@ public class ModItemAntiFallChest extends ModItemElArmor{
 					if(player.worldObj.rand.nextInt(50) == 1)
 					player.inventory.armorInventory[2].attemptDamageItem(1, world.rand);
 						}
-						
 					
 
 				}

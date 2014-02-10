@@ -88,6 +88,8 @@ public class ModBlocks {
 	
 	public static Block DiceHolder;
 	
+	public static Block LensBench;
+	
 	
 	public static ModBlockStair StoneStair;
 	
@@ -116,8 +118,8 @@ public class ModBlocks {
         CraftingInv = new ModBlockCraftingInv();
         Register(CraftingInv, "Worktable", true);
         
-//        Dice = new ModBlockDice();
-//        Register(Dice, ModItemBlockDice.class, "Dice", true);
+        Dice = new ModBlockDice();
+        Register(Dice, ModItemBlockDice.class, "Dice", true);
         
         SpeedBlock = new ModBlockSpeedBlock();
         Register(SpeedBlock, "Speed Block", true);
@@ -223,6 +225,9 @@ public class ModBlocks {
         
         MetalPress = new ModBlockMetalPress();
         Register(MetalPress, ModItemBlockMetalPress.class, "Metal Press", true);
+        
+        LensBench = new ModBlockLenseBench();
+        Register(LensBench, "Lens Bench", true);
         
         
         

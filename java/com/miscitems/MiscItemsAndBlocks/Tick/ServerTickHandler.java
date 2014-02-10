@@ -10,6 +10,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 
+import com.miscitems.MiscItemsAndBlocks.Items.ModItemAntiFallChest;
 import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
 import com.miscitems.MiscItemsAndBlocks.Lib.ModConfig;
 import com.miscitems.MiscItemsAndBlocks.Misc.GameInfo;
@@ -17,6 +18,7 @@ import com.miscitems.MiscItemsAndBlocks.Misc.GameInvite;
 
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.gameevent.TickEvent;
+import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
 
 public class ServerTickHandler{
 	
@@ -42,6 +44,8 @@ public class ServerTickHandler{
  
     }
     
+    
+ 
     
     @EventHandler
     public void tick(TickEvent.PlayerTickEvent event){

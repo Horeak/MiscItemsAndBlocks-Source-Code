@@ -98,10 +98,6 @@ public class Main {
     
 	public static CreativeTabs CreativeTab = new CreativeTabs("tabMisc") {
 
-	    public boolean hasSearchBar()
-	    {
-	        return true;
-	    }
 
 		@Override
 		@SideOnly(Side.CLIENT)
@@ -110,7 +106,7 @@ public class Main {
 		}
 		
 	    
-	}.setBackgroundImageName("item_search.png");
+	};
 	
        
 	
