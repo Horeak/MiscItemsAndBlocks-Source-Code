@@ -49,6 +49,8 @@ public class ModGuiSlider extends GuiButton {
     }
 
     public boolean mousePressed(Minecraft par1Minecraft, int par2, int par3) {
+    	
+    	
             if (super.mousePressed(par1Minecraft, par2, par3)) {
                     this.sliderValue = (float) (par2 - (this.xPosition + 4)) / (float) (this.width - 8);
 
@@ -60,7 +62,10 @@ public class ModGuiSlider extends GuiButton {
                             this.sliderValue = 1.0F;
                     }
 
+                    if(!this.dragging)
                     this.dragging = true;
+                    else
+                 	   this.dragging = false;
                     return true;
             } else {
                     return false;

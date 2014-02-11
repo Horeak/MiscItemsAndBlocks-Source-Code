@@ -11,6 +11,8 @@ import com.miscitems.MiscItemsAndBlocks.Container.ContainerComputer;
 import com.miscitems.MiscItemsAndBlocks.Container.ContainerCraftingInv;
 import com.miscitems.MiscItemsAndBlocks.Container.ContainerElectricFurnace;
 import com.miscitems.MiscItemsAndBlocks.Container.ContainerGenerator;
+import com.miscitems.MiscItemsAndBlocks.Container.ContainerLaser;
+import com.miscitems.MiscItemsAndBlocks.Container.ContainerLensBench;
 import com.miscitems.MiscItemsAndBlocks.Container.ContainerMetalPress;
 import com.miscitems.MiscItemsAndBlocks.Container.ContainerMill;
 import com.miscitems.MiscItemsAndBlocks.Container.ContainerMiningChamber;
@@ -29,6 +31,8 @@ import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityComputer;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityCraftingInv;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityElectricFurnace;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityGenerator;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLaser;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLensBench;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMetalPress;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMill;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMiningChamber;
@@ -66,6 +70,15 @@ public class GuiHandler implements IGuiHandler{
         
         if(tile_entity instanceof TileEntityWirelessItemTrans){
         	return new ContainerWirelessItemTransfer(player.inventory, (TileEntityWirelessItemTrans)tile_entity);
+        }
+        
+        if(tile_entity instanceof TileEntityLaser){
+        	return new ContainerLaser(player.inventory, (TileEntityLaser)tile_entity);
+        }
+        
+        
+        if(tile_entity instanceof TileEntityLensBench){
+        	return new ContainerLensBench(player.inventory, (TileEntityLensBench)tile_entity);
         }
         
         if(tile_entity instanceof TileEntityMetalPress){
@@ -182,8 +195,18 @@ public class GuiHandler implements IGuiHandler{
             	
         }
         
+
+        
+        if(tile_entity instanceof TileEntityLensBench){
+        	return new GuiLensBench(player.inventory, (TileEntityLensBench)tile_entity);
+        }
+        
         if(tile_entity instanceof TileEntityWirelessRedstone){
         	return new GuiWirelessRedstone(player.inventory, (TileEntityWirelessRedstone)tile_entity);
+        }
+        
+        if(tile_entity instanceof TileEntityLaser){
+        	return new GuiLaser(player.inventory, (TileEntityLaser)tile_entity);
         }
         
         if(tile_entity instanceof TileEntityWirelessItemTrans){

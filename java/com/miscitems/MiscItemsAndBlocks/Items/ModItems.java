@@ -202,7 +202,7 @@ public class ModItems {
         DataChip = new ModItemDataChip().setUnlocalizedName("DataChip");
         Register(DataChip, "Data Chip");
         
-        Lens = new ModItemLens();
+        Lens = new ModItemLens().setUnlocalizedName("Lens");
         Register(Lens, "Lens");
 		
 		

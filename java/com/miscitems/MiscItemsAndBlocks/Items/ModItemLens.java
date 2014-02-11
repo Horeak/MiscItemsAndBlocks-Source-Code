@@ -30,8 +30,8 @@ public class ModItemLens extends Item{
 	   @SideOnly(Side.CLIENT)
 	   public void registerIcons(IIconRegister icon)
 	   {
-		   Item = icon.registerIcon(Refrence.Mod_Id + ":" + "Lens");
-		   Item_Lens = icon.registerIcon(Refrence.Mod_Id + ":" + "Lens_Part");
+		   Item = icon.registerIcon(Refrence.Mod_Id + ":Lens");
+		   Item_Lens = icon.registerIcon(Refrence.Mod_Id + ":Lens_Part");
 		   
 	   }
 	   
@@ -78,6 +78,9 @@ public class ModItemLens extends Item{
 	    		
 	    		list.add("Power used: " + stack.stackTagCompound.getInteger("PowerUse"));
 	    		
+	    		if(stack.stackTagCompound.getBoolean("TransferPower") || stack.stackTagCompound.getBoolean("Redstone") || stack.stackTagCompound.getBoolean("Safe"))
+	    			list.add("Modifiers:");
+	    		
 	    		if(stack.stackTagCompound.getBoolean("TransferPower"))
 	    			list.add("Transfers Power");
 	    		
@@ -85,9 +88,11 @@ public class ModItemLens extends Item{
 	    			list.add("Activates Redstone Recivers");
 	    		
 	    		if(stack.stackTagCompound.getBoolean("Safe"))
-	    			list.add("Safe lasers");
+	    			list.add("Does no damage");
 	    		
 	    		
+	    	}else{
+	    		list.add("No info stored");
 	    	}
 	    	
 	    	

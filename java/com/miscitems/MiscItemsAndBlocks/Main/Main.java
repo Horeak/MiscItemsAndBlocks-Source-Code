@@ -14,44 +14,18 @@ import net.minecraftforge.common.config.Configuration;
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.Entity.EntityPowerArrow;
 import com.miscitems.MiscItemsAndBlocks.Entity.EntitySilverArrow;
-import com.miscitems.MiscItemsAndBlocks.GamePart.TileEntityGamePart;
 import com.miscitems.MiscItemsAndBlocks.Gui.GuiHandler;
 import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
 import com.miscitems.MiscItemsAndBlocks.Lib.Crafting;
 import com.miscitems.MiscItemsAndBlocks.Lib.Messages;
 import com.miscitems.MiscItemsAndBlocks.Lib.ModConfig;
 import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
+import com.miscitems.MiscItemsAndBlocks.LibMisc.DefaultLaser;
+import com.miscitems.MiscItemsAndBlocks.LibMisc.LaserRegistry;
 import com.miscitems.MiscItemsAndBlocks.Misc.BoneMealEvent;
 import com.miscitems.MiscItemsAndBlocks.Network.NetworkManager;
 import com.miscitems.MiscItemsAndBlocks.Proxies.ServerProxy;
 import com.miscitems.MiscItemsAndBlocks.Render.CapeRender;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityBin;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityBox;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityCharger;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityComputer;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityCraftingInv;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityDiceHolder;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityDisarmTrap;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityElectricFurnace;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityGenerator;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityItemPedestal;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMetalPress;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMill;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMiningChamber;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityOvenCore;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityPaintBlock;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityPillar;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityPowerCable;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntitySolarPanel;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntitySquezer;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityStorageBlock;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityTable;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityTeleporter;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityTimedBlock;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityWindMill;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityWirelessItemTrans;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityWirelessRedstone;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityXpStorage;
 import com.miscitems.MiscItemsAndBlocks.VersionChecker.VersionChecker;
 import com.miscitems.MiscItemsAndBlocks.WorldGen.ModWorldGenerator;
 
@@ -172,39 +146,7 @@ public void preInit(FMLPreInitializationEvent event) {
         EntityRegistry.registerGlobalEntityID(EntityPowerArrow.class, "PowerArrow", EntityRegistry.findGlobalUniqueEntityId());
         EntityRegistry.registerModEntity(EntityPowerArrow.class, "PowerArrow", 1, this, 128, 1, true);
 
-        GameRegistry.registerTileEntity(TileEntityXpStorage.class, "TileEntityXpStorage");
-        GameRegistry.registerTileEntity(TileEntityBin.class, "TileEntityBin");
-        GameRegistry.registerTileEntity(TileEntityDisarmTrap.class, "TileEntityTrap");
-        GameRegistry.registerTileEntity(TileEntityBox.class, "TileEntityBox");
-        GameRegistry.registerTileEntity(TileEntityCraftingInv.class, "TileEntityCraftingInv");
-        GameRegistry.registerTileEntity(TileEntityMill.class, "TileEntityMill");
-        GameRegistry.registerTileEntity(TileEntitySquezer.class, "TileEntitySquezer");
-        GameRegistry.registerTileEntity(TileEntityOvenCore.class, "TileEntityOvenCore");
-        
-        GameRegistry.registerTileEntity(TileEntityItemPedestal.class, "TileEntityItemPedestal");
-        GameRegistry.registerTileEntity(TileEntityMiningChamber.class, "TileEntityMiningChamber");
-        
-        GameRegistry.registerTileEntity(TileEntityCharger.class, "TileEntityCharger");
-        GameRegistry.registerTileEntity(TileEntitySolarPanel.class, "TileEntitySolarPanel");
-        GameRegistry.registerTileEntity(TileEntityWindMill.class, "TileEntityWindMill");
-        GameRegistry.registerTileEntity(TileEntityGenerator.class, "TileEntityGenerator");
-        GameRegistry.registerTileEntity(TileEntityPowerCable.class, "TileEntityPowerCable");
-        
-        GameRegistry.registerTileEntity(TileEntityGamePart.class, "TileEntityGamePart");
-        GameRegistry.registerTileEntity(TileEntityPillar.class, "TileEntityPillar");
-        GameRegistry.registerTileEntity(TileEntityTimedBlock.class, "TileEntityTimedBLock");
-        GameRegistry.registerTileEntity(TileEntityElectricFurnace.class, "TileEntityElectricFurnace");
-        GameRegistry.registerTileEntity(TileEntityTable.class, "TileEntityTable");
-        GameRegistry.registerTileEntity(TileEntityPaintBlock.class, "TileEntityPaintBlock");
-        GameRegistry.registerTileEntity(TileEntityComputer.class, "TileEntityComputer");
-        GameRegistry.registerTileEntity(TileEntityStorageBlock.class, "TileEntityStorageBlock");
-        
-        GameRegistry.registerTileEntity(TileEntityDiceHolder.class, "TileEntityDiceHolder");
-        GameRegistry.registerTileEntity(TileEntityTeleporter.class, "TileEntityTeleporter");
-        GameRegistry.registerTileEntity(TileEntityWirelessRedstone.class, "TileEntityWirelessRedstone");
-        GameRegistry.registerTileEntity(TileEntityWirelessItemTrans.class, "TileEntityWirelessItemTransfer");
-        
-        GameRegistry.registerTileEntity(TileEntityMetalPress.class, "TileEntityMetalPress");
+
         
         
         GameRegistry.registerWorldGenerator(new ModWorldGenerator(), 3);
@@ -224,7 +166,7 @@ public void preInit(FMLPreInitializationEvent event) {
     
 @EventHandler
     public void PostInit(FMLPostInitializationEvent event){
-
+	LaserRegistry.registerLaser("default", new DefaultLaser());
 	}
 
 	

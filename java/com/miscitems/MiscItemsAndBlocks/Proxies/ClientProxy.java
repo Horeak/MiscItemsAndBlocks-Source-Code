@@ -38,6 +38,7 @@ import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityComputer;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityDiceHolder;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityDisarmTrap;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityItemPedestal;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLaser;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMetalPress;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMiningChamber;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityPillar;
@@ -50,6 +51,7 @@ import com.miscitems.MiscItemsAndBlocks.TileEntityRenderer.TileEntityDiceHolderR
 import com.miscitems.MiscItemsAndBlocks.TileEntityRenderer.TileEntityDisarmTrapRenderer;
 import com.miscitems.MiscItemsAndBlocks.TileEntityRenderer.TileEntityGamePartRender;
 import com.miscitems.MiscItemsAndBlocks.TileEntityRenderer.TileEntityItemPedestalRender;
+import com.miscitems.MiscItemsAndBlocks.TileEntityRenderer.TileEntityLaserRender;
 import com.miscitems.MiscItemsAndBlocks.TileEntityRenderer.TileEntityMetalPressRender;
 import com.miscitems.MiscItemsAndBlocks.TileEntityRenderer.TileEntityMiningChamberRender;
 import com.miscitems.MiscItemsAndBlocks.TileEntityRenderer.TileEntityPillarRender;
@@ -76,6 +78,8 @@ public class ClientProxy extends ServerProxy{
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMiningChamber.class, new TileEntityMiningChamberRender());
         
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGamePart.class, new TileEntityGamePartRender());
+        
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityLaser.class, new TileEntityLaserRender());
 
         
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPillar.class, new TileEntityPillarRender());
