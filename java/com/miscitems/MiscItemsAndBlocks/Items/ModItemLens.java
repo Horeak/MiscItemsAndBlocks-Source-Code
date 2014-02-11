@@ -63,7 +63,8 @@ public class ModItemLens extends Item{
 	    }
 	    
 	    
-	    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
+	    @SuppressWarnings({ "unchecked", "rawtypes" })
+		public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
 	    	if(stack.stackTagCompound != null){
 	    		if(stack.stackTagCompound.getBoolean("Color")){
 	    			list.add("Colored");
