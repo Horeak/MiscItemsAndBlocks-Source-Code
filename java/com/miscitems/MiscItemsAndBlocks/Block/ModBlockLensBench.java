@@ -1,28 +1,28 @@
 package com.miscitems.MiscItemsAndBlocks.Block;
 
-import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
 
-public class ModBlockLenseBench extends Block{
+import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
+
+public class ModBlockLensBench extends Block{
 
 	IIcon Top;
     IIcon Side;
     IIcon Bottom;
 	
-	protected ModBlockLenseBench() {
+	protected ModBlockLensBench() {
 		super(Material.rock);
 	}
 
 	
     public void registerBlockIcons(IIconRegister icon)
     {
-    	Top = icon.registerIcon(Refrence.Mod_Id + ":" + "LenseBenchTop");
-    	Side = icon.registerIcon(Refrence.Mod_Id + ":" + "LenseBenchSide");
-    	Bottom = icon.registerIcon("furnace_top");
+    	Top = icon.registerIcon(Refrence.Mod_Id + ":" + "LensBenchTop");
+    	Side = icon.registerIcon(Refrence.Mod_Id + ":" + "LensBenchSide");
+    	Bottom = icon.registerIcon(Refrence.Mod_Id + ":" + "LensBenchBottom");
     	
     }
     

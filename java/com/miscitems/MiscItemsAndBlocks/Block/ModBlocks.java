@@ -226,7 +226,7 @@ public class ModBlocks {
         MetalPress = new ModBlockMetalPress();
         Register(MetalPress, ModItemBlockMetalPress.class, "Metal Press", true);
         
-        LensBench = new ModBlockLenseBench();
+        LensBench = new ModBlockLensBench();
         Register(LensBench, "Lens Bench", true);
         
         

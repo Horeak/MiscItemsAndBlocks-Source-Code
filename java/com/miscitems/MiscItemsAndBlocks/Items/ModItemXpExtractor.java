@@ -105,7 +105,6 @@ return stack;
 
 	{
 
-		//TODO Look at before 1.7
 		if(usingItem != null && usingItem.getItem() == this)
 
 		{

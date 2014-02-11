@@ -19,6 +19,7 @@ import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.relauncher.ReflectionHelper;
 
 public class CapeRender
 {
@@ -60,7 +61,8 @@ public class CapeRender
 
                 capePlayers.add(abstractClientPlayer);
 
-                abstractClientPlayer.getTextureCape().textureUploaded = false;
+                ReflectionHelper.setPrivateValue(AbstractClientPlayer.class, abstractClientPlayer, false, "textureUploaded");
+               // abstractClientPlayer.getTextureCape().textureUploaded = false;
                 new Thread(new CloakThread(abstractClientPlayer, cloakURL)).start();
                 event.renderCape = true;
             }
@@ -132,7 +134,8 @@ public class CapeRender
                 Image cape = new ImageIcon(new URL(cloakURL)).getImage();
                 BufferedImage bo = new BufferedImage(cape.getWidth(null), cape.getHeight(null), BufferedImage.TYPE_INT_ARGB);
                 bo.getGraphics().drawImage(cape, 0, 0, null);
-                abstractClientPlayer.getTextureCape().bufferedImage = bo;
+                ReflectionHelper.setPrivateValue(AbstractClientPlayer.class, abstractClientPlayer, bo, "bufferedImage");
+               // abstractClientPlayer.getTextureCape().bufferedImage = bo;
             }
             catch (MalformedURLException e)
             {

@@ -72,7 +72,7 @@ public class ModItems {
 	public static Item AntiFallChestPlate;
 	public static Item InfoScreenHelmet;
 	
-	public static Item Lense;
+	public static Item Lens;
 	
 	
 	
@@ -205,8 +205,8 @@ public class ModItems {
         DataChip = new ModItemDataChip().setUnlocalizedName("DataChip");
         Register(DataChip, "Data Chip");
         
-        Lense = new ModItemLense();
-        Register(Lense, "lense");
+        Lens = new ModItemLens();
+        Register(Lens, "Lens");
 		
 		
 	RegisterOreDictionary(new ItemStack(SilverIngot), "ingotSilver");

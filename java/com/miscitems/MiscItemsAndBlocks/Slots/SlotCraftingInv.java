@@ -44,7 +44,6 @@ boolean metaSens = false;
          {
         	 
         	 
-        	 //TODO Fix before 1.7
          if(!craftComponentStack.isItemStackDamageable() && craftComponentStack.getMaxDamage() == 0
          && craftComponentStack!= new ItemStack(Blocks.planks)
          && craftComponentStack != new ItemStack(Blocks.wool)

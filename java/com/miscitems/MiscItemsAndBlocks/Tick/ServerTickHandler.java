@@ -13,6 +13,7 @@ import net.minecraft.potion.PotionEffect;
 import com.miscitems.MiscItemsAndBlocks.Items.ModItemAntiFallChest;
 import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
 import com.miscitems.MiscItemsAndBlocks.Lib.ModConfig;
+import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Misc.GameInfo;
 import com.miscitems.MiscItemsAndBlocks.Misc.GameInvite;
 
@@ -235,6 +236,8 @@ public class ServerTickHandler{
                GameInfo ti = activeGames.get(i);
 			   if(ti.terminate){
 				   //TODO Find a new way!
+				   ti.Player_1.openGui(Main.instance, 0, null, 0, 0, 0);
+				   ti.Player_2.openGui(Main.instance, 0, null, 0, 0, 0);
 //				   ti.Player_1.closeScreen();
 //				   ti.Player_2.closeScreen();
 				   activeGames.remove(i);

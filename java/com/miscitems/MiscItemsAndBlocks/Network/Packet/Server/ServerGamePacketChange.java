@@ -61,7 +61,6 @@ public class ServerGamePacketChange extends IPacket{
 		 else
 			 plyr = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().getPlayerForUsername(Player_1);
 		 
-		 //TODO Add Client
 		Main.NETWORK_MANAGER.sendPacketToPlayer(new ClientGamePacketChange(Number, Player, Player_1, Player_2), plyr);
 	}
 

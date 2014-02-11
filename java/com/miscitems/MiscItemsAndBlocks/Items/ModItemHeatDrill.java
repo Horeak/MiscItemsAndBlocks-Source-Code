@@ -162,7 +162,6 @@ public class ModItemHeatDrill extends ModItemPowerTool{
 
 		                        	
 	                    				
-	                    				//TODO Remove .itemID before 1.7
 		                        	if(result.getItem() instanceof ItemBlock){
 
 

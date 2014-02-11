@@ -3,6 +3,9 @@ package com.miscitems.MiscItemsAndBlocks.TileEntity;
 import java.awt.Color;
 
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 
 public class TileEntityPaintBlock extends TileEntity{
@@ -96,21 +99,20 @@ public class TileEntityPaintBlock extends TileEntity{
   		
   	}
 
-  	//TODO
-//  	@Override
-//  	public Packet getDescriptionPacket()
-//  	{
-//  	 NBTTagCompound var1 = new NBTTagCompound();
-//  	 this.writeToNBT(var1);
-//  	 return new Packet132TileEntityData(this.xCoord, this.yCoord, this.zCoord, 2, var1);
-//  	}
-//  	        
-//  	@Override
-//  	public void onDataPacket(INetworkManager netManager, Packet132TileEntityData packet)
-//  	{
-//  		
-//  	 readFromNBT(packet.data);
-//  	}
+  	@Override
+  	public Packet getDescriptionPacket()
+  	{
+  	 NBTTagCompound var1 = new NBTTagCompound();
+  	 this.writeToNBT(var1);
+  	 return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 2, var1);
+  	}
+  	        
+  	@Override
+  	public void onDataPacket(NetworkManager netManager, S35PacketUpdateTileEntity packet)
+  	{
+  		
+  	 readFromNBT(packet.func_148857_g());
+  	}
 
 
 

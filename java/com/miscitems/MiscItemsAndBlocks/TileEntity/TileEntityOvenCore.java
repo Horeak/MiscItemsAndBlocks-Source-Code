@@ -266,7 +266,6 @@ public class TileEntityOvenCore extends TileEntityInvBase implements ISidedInven
     	if(item != null){
     
     		
-    		//TODO Remove ID refrences before 1.7
     	if(item.getItem() == Items.coal)return 7;
     	if(item == new ItemStack(Blocks.log))return 4;
     	if(item == new ItemStack(Blocks.planks))return 2;

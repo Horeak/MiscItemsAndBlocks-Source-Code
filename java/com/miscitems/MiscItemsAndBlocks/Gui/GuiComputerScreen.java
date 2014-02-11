@@ -173,8 +173,6 @@ public class GuiComputerScreen extends GuiContainer{
 		        int posY = (this.height - ySizeOfTexture) / 2;
 		        
 
-		        //TODO Make background color changeable thru RGB
-		        
 		        drawTexturedModalRect(posX, posY, 0, 0, xSizeOfTexture, ySizeOfTexture);
 		        
 		        
