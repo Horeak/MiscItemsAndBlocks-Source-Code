@@ -41,6 +41,7 @@ public class ModItems {
 	public static Item Battery;
 	public static Item BigBattery;
 	public static Item AdvancedBattery;
+	public static Item CreativeBattery;
 	
 	public static Item Circuit;
 	public static Item ModuleConnecter;
@@ -204,7 +205,9 @@ public class ModItems {
         
         Lens = new ModItemLens().setUnlocalizedName("Lens");
         Register(Lens, "Lens");
-		
+        
+		CreativeBattery = new ModItemCreativeBattery().setUnlocalizedName("CreativeBattery");
+		Register(CreativeBattery, "Creative Battery");
 		
 	RegisterOreDictionary(new ItemStack(SilverIngot), "ingotSilver");
 	RegisterOreDictionary(new ItemStack(SilverNugget), "nuggetSilver");

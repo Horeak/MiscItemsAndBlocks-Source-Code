@@ -15,7 +15,6 @@ import com.miscitems.MiscItemsAndBlocks.Items.ModItemAntiFallChest;
 import com.miscitems.MiscItemsAndBlocks.Items.ModItemPowerTool;
 import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
 
-import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -31,6 +30,7 @@ public class GuiOverlayInfoScreen extends GuiIngame{
 	
 	int yPlus;
 	
+	@SuppressWarnings("unused")
 	@SideOnly(Side.CLIENT)
 	public void renderOverlay()
 	{

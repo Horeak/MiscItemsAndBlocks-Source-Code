@@ -6,6 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
 import com.miscitems.MiscItemsAndBlocks.Items.ModItemBattery;
+import com.miscitems.MiscItemsAndBlocks.Items.ModItemPowerStorage;
 import com.miscitems.MiscItemsAndBlocks.Items.ModItemUpgrades;
 
 public class ModSlotBatterySlot extends Slot{
@@ -16,7 +17,7 @@ public class ModSlotBatterySlot extends Slot{
 	
 	public boolean isItemValid(ItemStack stack)
     {
-        return stack.getItem() instanceof ModItemBattery;
+        return stack.getItem() instanceof ModItemPowerStorage;
     }
     
     public IIcon getBackgroundIconIndex()

@@ -2,9 +2,6 @@ package com.miscitems.MiscItemsAndBlocks.Items;
 
 import java.util.List;
 
-import javax.swing.Icon;
-
-import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -194,7 +191,8 @@ private IIcon _icon4;
 	}
 		
 		
-	    @Override
+	    @SuppressWarnings({ "unchecked", "rawtypes" })
+		@Override
 	    public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean par4)
 	    {
 	    	list.add(StatCollector.translateToLocal("items.desc.electricbow"));

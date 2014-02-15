@@ -1,7 +1,5 @@
 package com.miscitems.MiscItemsAndBlocks.Network;
 
-import ibxm.Player;
-
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;

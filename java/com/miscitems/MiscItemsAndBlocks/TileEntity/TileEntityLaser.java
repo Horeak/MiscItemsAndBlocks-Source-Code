@@ -5,6 +5,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Facing;
 import net.minecraft.world.World;
 
+import com.miscitems.MiscItemsAndBlocks.Items.ModItemPowerStorage;
 import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
 import com.miscitems.MiscItemsAndBlocks.LibMisc.ILaserProvider;
 import com.miscitems.MiscItemsAndBlocks.LibMisc.ILaserReciver;
@@ -19,7 +20,7 @@ public class TileEntityLaser extends TileEntityLaserBase implements ILaserProvid
 
 	
 public TileEntityLaser() {
-		super(1, "Laser Block", 1, 1000);
+		super(2, "Laser Block", 1, 1000);
 	}
 
 public boolean Powered = false;
@@ -32,10 +33,29 @@ public int Green = 0;
 public int Power = 0;
 public int Strength = 0;
 
+public int BreakTime = 0;
+public int MaxTime = 2000;
+
 public boolean Valid = false;
 
 @Override
 public void updateEntity() {
+	
+	if(!this.worldObj.isRemote){
+			if(BreakTime < MaxTime){
+				BreakTime++;
+			}else{
+				if(BreakTime >= MaxTime){
+					BreakTime = 0;
+					
+				}
+
+			}
+
+		
+		
+	}
+	
 	
 	this.lagReduce += 1;
 	if(this.lagReduce % LaserUtil.TICK_RATE != 0) return;
@@ -67,6 +87,7 @@ Strength = 0;
 				
 				Valid = true;
 				
+
 				
 				
 			}else{
@@ -92,9 +113,21 @@ Strength = 0;
 if(this.worldObj.isRemote) return;
 
 
+if(this.GetPower() < this.PowerMax)
+if(this.getStackInSlot(1) != null && this.getStackInSlot(1).getItem() instanceof ModItemPowerStorage){
+	if(this.getStackInSlot(1).getItem() == ModItems.CreativeBattery)
+		this.SetPower(PowerMax);
+	else if (this.getStackInSlot(1).getItemDamage() < this.getStackInSlot(1).getMaxDamage()){
+		this.getStackInSlot(1).damageItem(1, null);
+		this.SetPower(this.GetPower() + 1);
+	}
+	
+	
+}
 
 
-
+if(Valid && (this.worldObj.isBlockIndirectlyGettingPowered(this.xCoord, this.yCoord, this.zCoord)))
+	this.SetPower(this.GetPower() - this.getStackInSlot(0).stackTagCompound.getInteger("PowerUse"));
 
 if(Valid){
 ILaserReciver reciver = LaserUtil.getFirstReciver(this, this.getBlockMetadata());
@@ -182,6 +215,55 @@ return this.worldObj.isBlockIndirectlyGettingPowered(this.xCoord, this.yCoord, t
 	public boolean CanAcceptPower() {
 		return true;
 	}
+
+	@Override
+	public int GetLensStrength() {
+		
+		if(this.getStackInSlot(0) != null && this.getStackInSlot(0).getItem() == ModItems.Lens){
+			if(this.getStackInSlot(0).stackTagCompound != null)
+				return this.getStackInSlot(0).stackTagCompound.getInteger("Strength");
+			
+			
+		}
+		
+		return 0;
+	}
+
+	@Override
+	public int GetLensPower() {
+		
+		if(this.getStackInSlot(0) != null && this.getStackInSlot(0).getItem() == ModItems.Lens){
+			if(this.getStackInSlot(0).stackTagCompound != null)
+				return this.getStackInSlot(0).stackTagCompound.getInteger("Power");
+			
+			
+		}
+		return 0;
+	}
+
+	@Override
+	public boolean TransfersPower() {
+		if(this.getStackInSlot(0) != null && this.getStackInSlot(0).getItem() == ModItems.Lens){
+			if(this.getStackInSlot(0).stackTagCompound != null)
+				return this.getStackInSlot(0).stackTagCompound.getBoolean("TransferPower");
+			
+			
+		}
+		return false;
+	}
+
+	@Override
+	public boolean EmitsRedstone() {
+		if(this.getStackInSlot(0) != null && this.getStackInSlot(0).getItem() == ModItems.Lens){
+			if(this.getStackInSlot(0).stackTagCompound != null)
+				return this.getStackInSlot(0).stackTagCompound.getBoolean("Redstone");
+			
+			
+		}
+		return false;
+	}
+
+
 
 }
 

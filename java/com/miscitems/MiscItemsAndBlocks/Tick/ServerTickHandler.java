@@ -1,16 +1,13 @@
 package com.miscitems.MiscItemsAndBlocks.Tick;
 
 import java.util.ArrayList;
-import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Random;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 
-import com.miscitems.MiscItemsAndBlocks.Items.ModItemAntiFallChest;
 import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
 import com.miscitems.MiscItemsAndBlocks.Lib.ModConfig;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
@@ -19,7 +16,6 @@ import com.miscitems.MiscItemsAndBlocks.Misc.GameInvite;
 
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.gameevent.TickEvent;
-import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
 
 public class ServerTickHandler{
 	

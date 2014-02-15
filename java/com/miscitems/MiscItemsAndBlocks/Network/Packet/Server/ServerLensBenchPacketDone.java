@@ -19,6 +19,11 @@ public class ServerLensBenchPacketDone extends IPacket{
 	
 	public ServerLensBenchPacketDone(){}
 	public ServerLensBenchPacketDone(boolean Color, int Red, int Green, int Blue, int Power, int Strength, int X, int Y, int Z){
+		
+		
+		if(Strength <= 0)
+			Strength = 1;
+		
 		this.Color = Color;
 		this.Red = Red;
 		this.Green = Green;
@@ -28,6 +33,7 @@ public class ServerLensBenchPacketDone extends IPacket{
 		x = X;
 		y = Y;
 		z = Z;
+		
 			
 		
 	}
@@ -91,11 +97,21 @@ public class ServerLensBenchPacketDone extends IPacket{
     		tile.getStackInSlot(0).stackTagCompound.setInteger("Green", Green);
     		tile.getStackInSlot(0).stackTagCompound.setInteger("Blue", Blue);
     		}else{
+    			if(tile.getStackInSlot(0).stackTagCompound.getBoolean("Color") != true)
     			tile.getStackInSlot(0).stackTagCompound.setBoolean("Color", false);
     		}
     		
     		tile.getStackInSlot(0).stackTagCompound.setInteger("Power", Power);
     		tile.getStackInSlot(0).stackTagCompound.setInteger("Strength", Strength);
+    		
+    		if(Power > 1 || tile.getStackInSlot(2) != null || tile.getStackInSlot(1) != null){
+    		tile.getStackInSlot(0).stackTagCompound.setInteger("PowerUse", ((Power) * 3) + ((Strength / 2)));
+    		if(tile.getStackInSlot(0).stackTagCompound.getInteger("PowerUse") < 0){
+        		tile.getStackInSlot(0).stackTagCompound.setInteger("PowerUse", 0);
+    		}
+    		
+    		}else
+        		tile.getStackInSlot(0).stackTagCompound.setInteger("PowerUse", 0);
     		
     		
     		if(tile.getStackInSlot(1) != null){

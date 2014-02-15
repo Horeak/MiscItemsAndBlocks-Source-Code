@@ -1,7 +1,5 @@
 package com.miscitems.MiscItemsAndBlocks.Block;
 
-import javax.swing.Icon;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -77,6 +75,7 @@ public class ModBlockGenerator extends BlockContainer{
 	        
 	    }
 	    
+		@SuppressWarnings("unused")
 		@Override
 		public IIcon getIcon(int side, int metadata)
 		{

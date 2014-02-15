@@ -3,6 +3,7 @@ package com.miscitems.MiscItemsAndBlocks.TileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
+import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
 import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Electric.IPowerItem;
 
 public class TileEntityCharger extends TileEntityInvBase{
@@ -130,11 +131,15 @@ public class TileEntityCharger extends TileEntityInvBase{
 
     		
     		if(emptyStack.getItem() instanceof IPowerItem){
+    			if (emptyStack.getItem() == ModItems.CreativeBattery)
+    				this.SetPower(this.GetMaxPower());
+    			else{
     			int i = emptyStack.getMaxDamage() - emptyStack.getItemDamage();
     			if(i > 0){
     				emptyStack.setItemDamage(emptyStack.getItemDamage() + 1);
     				Power++;
     				
+    			}
     			}
     			
     		}

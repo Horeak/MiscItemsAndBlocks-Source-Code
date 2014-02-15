@@ -2,8 +2,6 @@ package com.miscitems.MiscItemsAndBlocks.Items;
 
 import java.util.List;
 
-import javax.swing.Icon;
-
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -22,6 +20,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ModItemXpExtractor extends Item{
 
+	@SuppressWarnings("unused")
 	private static EntityPlayer player;
 	
 	private IIcon _icon1;
@@ -127,7 +126,8 @@ public int getMaxItemUseDuration(ItemStack stack)
 return 32;
 }
 	
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public void addInformation(ItemStack itemstack, EntityPlayer player, @SuppressWarnings("rawtypes") List list, boolean par4)
     {
             list.add(StatCollector.translateToLocal("items.desc.xpextractor.1") + ": ");

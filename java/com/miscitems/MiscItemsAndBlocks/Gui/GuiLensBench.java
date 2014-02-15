@@ -60,7 +60,12 @@ public class GuiLensBench extends GuiContainer{
 	         int y = (this.height - this.ySize) / 2;
 	         drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
 
-
+	         if(!Power.func_146115_a())Power.dragging = false;
+	         if(!Strength.func_146115_a())Strength.dragging = false;
+	         
+	         if(!Red.func_146115_a())Red.dragging = false;
+	         if(!Green.func_146115_a())Green.dragging = false;
+	         if(!Blue.func_146115_a())Blue.dragging = false;
 	}
 	
 	@Override

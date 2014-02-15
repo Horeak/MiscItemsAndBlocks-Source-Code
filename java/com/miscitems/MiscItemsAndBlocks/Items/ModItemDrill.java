@@ -21,7 +21,6 @@ import net.minecraft.util.StatCollector;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
 
 import cpw.mods.fml.relauncher.Side;
@@ -39,7 +38,6 @@ public class ModItemDrill extends ModItemPowerTool{
 	
 	
 	
-	private boolean Mode3 = false;
 	
 	
 	protected ModItemDrill(ToolMaterial par2) {
@@ -113,7 +111,8 @@ public class ModItemDrill extends ModItemPowerTool{
 		   
 	   }
 	   
-	    @Override
+	    @SuppressWarnings({ "unchecked", "rawtypes" })
+		@Override
 	    public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean par4)
 	    {
 	    	int i = itemstack.getMaxDamage() - itemstack.getItemDamage();
@@ -310,7 +309,7 @@ public class ModItemDrill extends ModItemPowerTool{
 	    	        }
 	    	        }
             if (!world.isRemote)
-                world.playAuxSFX(2001, x, y, z, block.getIdFromBlock(block) + (meta << 12));
+                world.playAuxSFX(2001, x, y, z, Block.getIdFromBlock(block) + (meta << 12));
             return true;
 	    		
             

@@ -4,7 +4,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.eventhandler.EventPriority;
 
 public class GuiListener {
 	

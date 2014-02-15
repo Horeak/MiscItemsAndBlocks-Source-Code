@@ -1,8 +1,5 @@
 package com.miscitems.MiscItemsAndBlocks.Gui;
 
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 

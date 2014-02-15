@@ -14,6 +14,7 @@ import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerGamePacketCl
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerGamePacketInvite;
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerLensBenchPacketDone;
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerPaintBrushChangePacket;
+import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerSetBlockPacket;
 
 public enum PacketType {
 
@@ -32,6 +33,7 @@ public enum PacketType {
 	ServerGamePacketClosed(ServerGamePacketClosed.class),
 	ServerGamePacketInvite(ServerGamePacketInvite.class),
 	ServerLensBenchPacketDone(ServerLensBenchPacketDone.class),
+	ServerSetBlockPacket(ServerSetBlockPacket.class),
 	
 	PacketRequestEvent(PacketRequestEvent.class),
 	PacketTileUpdate(PacketTileUpdate.class),

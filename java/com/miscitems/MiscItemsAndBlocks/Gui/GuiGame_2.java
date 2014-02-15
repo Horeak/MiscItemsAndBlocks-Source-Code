@@ -135,6 +135,8 @@ public class GuiGame_2 extends GuiScreen{
 	        this.guiLeft = (this.width - this.xSize) / 2;
 	        this.guiTop = (this.height - this.ySize) / 2;
 	        
+	        
+	        
 	        for(int i = 1; i < Colors.length; i++){
 	        	
 	        	Colors[i] = new GuiColorButton(i, guiLeft + 157, (guiTop + 6) + ((i - 1) * 14), i);

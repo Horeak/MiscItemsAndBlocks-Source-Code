@@ -40,7 +40,7 @@ public class ModItemLens extends Item{
 	    {
 	    	if(par2 == 0)
 	    		return super.getColorFromItemStack(par1ItemStack, par2);
-	    	else{
+	    	else if (par2 == 1){
 	    		if(par1ItemStack.stackTagCompound != null){
 	    			if(par1ItemStack.stackTagCompound.getBoolean("Color")){
 	    			int Red = par1ItemStack.stackTagCompound.getInteger("Red");
@@ -59,7 +59,10 @@ public class ModItemLens extends Item{
 	    			return super.getColorFromItemStack(par1ItemStack, par2);
 	    		}
 	    		
-	    	}
+	    	}else{
+    			return super.getColorFromItemStack(par1ItemStack, par2);
+    		}
+	    	
 	    }
 	    
 	    

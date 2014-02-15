@@ -2,8 +2,6 @@ package com.miscitems.MiscItemsAndBlocks.Items;
 
 import java.util.List;
 
-import javax.swing.Icon;
-
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -35,7 +33,8 @@ public class ModItemCircuit extends Item{
 		   
 	   }
 	   
-	    @Override
+	    @SuppressWarnings({ "unchecked", "rawtypes" })
+		@Override
 	    public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean par4)
 	    {
 	    	
@@ -49,7 +48,8 @@ public class ModItemCircuit extends Item{
 	    
 	    
 	    
-	    public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List list)
+	    @SuppressWarnings({ "unchecked", "rawtypes" })
+		public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List list)
 	    {
 	        super.getSubItems(par1, par2CreativeTabs, list);
 	        

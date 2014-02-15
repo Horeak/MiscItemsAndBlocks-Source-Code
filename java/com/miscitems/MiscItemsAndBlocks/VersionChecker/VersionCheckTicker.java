@@ -1,7 +1,5 @@
 package com.miscitems.MiscItemsAndBlocks.VersionChecker;
 
-import java.util.EnumSet;
-
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.util.StatCollector;
@@ -11,7 +9,6 @@ import com.miscitems.MiscItemsAndBlocks.Main.Main;
 
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.ClientTickEvent;
 
 public class VersionCheckTicker{

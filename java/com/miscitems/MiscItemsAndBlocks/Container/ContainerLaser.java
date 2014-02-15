@@ -9,6 +9,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
+import com.miscitems.MiscItemsAndBlocks.Slots.ModSlotBatterySlot;
 import com.miscitems.MiscItemsAndBlocks.Slots.ModSlotItemsOnly;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLaser;
 
@@ -46,6 +47,7 @@ public class ContainerLaser  extends Container {
     	
     	addSlotToContainer(new ModSlotItemsOnly(tile, 0, 80, 30, new Item[]{ModItems.Lens}));
 
+    	addSlotToContainer(new ModSlotBatterySlot(tile, 1, 146, 29));
 
 }
     

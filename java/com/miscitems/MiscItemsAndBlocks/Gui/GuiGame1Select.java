@@ -1,14 +1,12 @@
 package com.miscitems.MiscItemsAndBlocks.Gui;
 
 import java.awt.Color;
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,6 +17,7 @@ import org.lwjgl.opengl.GL12;
 
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerGamePacketAccept;
+import com.miscitems.MiscItemsAndBlocks.Proxies.ServerProxy;
 
 import cpw.mods.fml.client.FMLClientHandler;
 
@@ -55,13 +54,13 @@ public class GuiGame1Select extends GuiScreen{
 	        drawTexturedModalRect(posX, posY, 0, 0, xSize, ySize);
 	        
 	        
-	        this.drawRect(posX + 5, posY + 28, posX + 5 + 165, posY + 28 + 55, new Color(100, 100, 100).getRGB());
+	        Gui.drawRect(posX + 5, posY + 28, posX + 5 + 165, posY + 28 + 55, new Color(100, 100, 100).getRGB());
 
-	        if(Main.proxy.tickHandlerClient.tradeReq != null){
-	        	this.drawString(this.fontRendererObj, "Invite from: " + Main.proxy.tickHandlerClient.tradeReq, posX + 7, posY + 30 , new Color(200, 200, 200).getRGB());
+	        if(ServerProxy.tickHandlerClient.tradeReq != null){
+	        	this.drawString(this.fontRendererObj, "Invite from: " + ServerProxy.tickHandlerClient.tradeReq, posX + 7, posY + 30 , new Color(200, 200, 200).getRGB());
 	        }
 	        
-	        Accept.enabled = Main.proxy.tickHandlerClient.tradeReq != null;
+	        Accept.enabled = ServerProxy.tickHandlerClient.tradeReq != null;
 	        
 	        
 	        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
@@ -79,7 +78,8 @@ public class GuiGame1Select extends GuiScreen{
 	    }
 	    
 	    
-	    @Override
+	    @SuppressWarnings("unchecked")
+		@Override
 	    public void initGui() {
 			super.initGui();
 			buttonList.clear();
@@ -94,7 +94,7 @@ public class GuiGame1Select extends GuiScreen{
 	        buttonList.add(Accept);
 	        
 
-	        Accept.enabled = Main.proxy.tickHandlerClient.tradeReq != null;
+	        Accept.enabled = ServerProxy.tickHandlerClient.tradeReq != null;
 	        
 
 	        
@@ -135,7 +135,7 @@ public class GuiGame1Select extends GuiScreen{
             
             if(btn.id == 2){
             	
-            drawTooltip(Arrays.asList(new String[] {Main.proxy.tickHandlerClient.tradeReq != null ? "Accept game invite from: " + Main.proxy.tickHandlerClient.tradeReq : "No game invites."}), par1, par2);
+            drawTooltip(Arrays.asList(new String[] {ServerProxy.tickHandlerClient.tradeReq != null ? "Accept game invite from: " + ServerProxy.tickHandlerClient.tradeReq : "No game invites."}), par1, par2);
           
             }else if (btn.id == 1){
             	
@@ -150,7 +150,8 @@ public class GuiGame1Select extends GuiScreen{
         
         }
         
-        protected void drawTooltip(List par1List, int par2, int par3)
+        @SuppressWarnings("rawtypes")
+		protected void drawTooltip(List par1List, int par2, int par3)
         {
             if (!par1List.isEmpty())
             {

@@ -45,6 +45,7 @@ public class ModGuiSlider extends GuiButton {
                     GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
                     this.drawTexturedModalRect(this.xPosition + (int) (this.sliderValue * (float) (this.width - 8)), this.yPosition, 0, 66, 4, 20);
                     this.drawTexturedModalRect(this.xPosition + (int) (this.sliderValue * (float) (this.width - 8)) + 4, this.yPosition, 196, 66, 4, 20);
+                    
             }
     }
 
@@ -62,10 +63,10 @@ public class ModGuiSlider extends GuiButton {
                             this.sliderValue = 1.0F;
                     }
 
-                    if(!this.dragging)
+                    if(!dragging)
                     this.dragging = true;
                     else
-                 	   this.dragging = false;
+                    	dragging = false;
                     return true;
             } else {
                     return false;
@@ -73,6 +74,7 @@ public class ModGuiSlider extends GuiButton {
     }
 
     public void mouseReleased(int par1, int par2) {
+    	System.out.println("t");
             this.dragging = false;
     }
 }

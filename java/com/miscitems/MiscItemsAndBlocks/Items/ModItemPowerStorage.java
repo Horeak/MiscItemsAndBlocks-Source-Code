@@ -49,8 +49,8 @@ public abstract class ModItemPowerStorage extends ModItemPowerTool{
     	
     	return false;
     }
-    
-    public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List list)
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List list)
     {
         super.getSubItems(par1, par2CreativeTabs, list);
         

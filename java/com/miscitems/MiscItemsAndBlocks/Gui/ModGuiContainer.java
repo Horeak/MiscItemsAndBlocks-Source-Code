@@ -5,8 +5,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import javax.swing.Icon;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -58,7 +56,8 @@ public abstract class ModGuiContainer extends GuiScreen
     protected ItemStack returningStack = null;
     protected Slot field_92033_y = null;
     protected long field_92032_z = 0L;
-    protected final Set field_94077_p = new HashSet();
+    @SuppressWarnings("rawtypes")
+	protected final Set field_94077_p = new HashSet();
     protected boolean field_94076_q;
     protected int field_94071_C = 0;
     protected int field_94067_D = 0;
@@ -206,7 +205,8 @@ public abstract class ModGuiContainer extends GuiScreen
         itemRenderer.zLevel = 0.0F;
     }
 
-    protected void drawItemStackTooltip (ItemStack par1ItemStack, int par2, int par3)
+    @SuppressWarnings("unchecked")
+	protected void drawItemStackTooltip (ItemStack par1ItemStack, int par2, int par3)
     {
         List list = par1ItemStack.getTooltip(this.mc.thePlayer, this.mc.gameSettings.advancedItemTooltips);
 

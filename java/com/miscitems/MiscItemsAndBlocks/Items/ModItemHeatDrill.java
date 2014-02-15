@@ -10,6 +10,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
@@ -17,7 +18,6 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
 
 import cpw.mods.fml.relauncher.Side;
@@ -101,7 +101,8 @@ public class ModItemHeatDrill extends ModItemPowerTool{
 		   
 	   }
 	   
-	   @Override
+	   @SuppressWarnings({ "unchecked", "rawtypes" })
+	@Override
 	    public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean par4)
 	    {
 	    	int i = itemstack.getMaxDamage() - itemstack.getItemDamage();
@@ -138,7 +139,8 @@ public class ModItemHeatDrill extends ModItemPowerTool{
 			}
 	   }
 	   
-	    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int par7, float par8, float par9, float par10)
+	    @SuppressWarnings({ "unused", "null" })
+		public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int par7, float par8, float par9, float par10)
 	    {
 	    	int Luck = EnchantmentHelper.getEnchantmentLevel(35, player.inventory.getCurrentItem());
 	    	
@@ -168,7 +170,7 @@ public class ModItemHeatDrill extends ModItemPowerTool{
 		                        		ItemBlock t = (ItemBlock)result.getItem();
 
 		                    				
-		                    				world.setBlock(x, y, z, block.getBlockById(t.getIdFromItem(t)));
+		                    				world.setBlock(x, y, z, Block.getBlockById(Item.getIdFromItem(t)));
 		                    				player.inventory.getCurrentItem().damageItem(1, player);
 		                    				
 		                    			}
@@ -180,7 +182,7 @@ public class ModItemHeatDrill extends ModItemPowerTool{
 
 	    		                        		ItemBlock t = (ItemBlock)result.getItem();
 			                    				
-			                    				world.setBlock(x, y, z, block.getBlockById(t.getIdFromItem(t)));
+			                    				world.setBlock(x, y, z, Block.getBlockById(Item.getIdFromItem(t)));
 			                    				player.inventory.getCurrentItem().damageItem(1, player);
 			                    				
 			                    			}
