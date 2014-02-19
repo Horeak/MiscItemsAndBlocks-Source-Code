@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-import net.minecraft.item.ItemGlassBottle;
 import net.minecraft.item.ItemStack;
 
 public class MillRecipes

@@ -1,6 +1,5 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
-import net.minecraft.item.ItemStack;
 
 public class TileEntityLensBench extends TileEntityInvBase{
 

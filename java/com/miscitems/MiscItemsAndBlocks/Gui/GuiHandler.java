@@ -56,6 +56,7 @@ public class GuiHandler implements IGuiHandler{
     public static final int PlayerFindID = 4;
     public static final int TicTacToeID = 5;
     public static final int MasterMindID = 6;
+    public static int manualGuiID = -1;
 	
     @Override
 
@@ -63,6 +64,9 @@ public class GuiHandler implements IGuiHandler{
 
         TileEntity tile_entity = world.getTileEntity(x, y, z);
        
+        
+        if (ID < 0)
+            return null;
         
         if(tile_entity instanceof TileEntityComputer){
         	return new ContainerComputer((TileEntityComputer)tile_entity);
@@ -176,7 +180,8 @@ public class GuiHandler implements IGuiHandler{
 
         TileEntity tile_entity = world.getTileEntity(x, y, z);
 
-
+        
+        
         switch(ID){
         
         case ChatID:
@@ -303,11 +308,9 @@ public class GuiHandler implements IGuiHandler{
         }
 
 
-
         return null;
 
     }
     
-
 
 }

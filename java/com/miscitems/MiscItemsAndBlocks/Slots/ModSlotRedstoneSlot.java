@@ -6,7 +6,6 @@ import net.minecraft.item.ItemRedstone;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
-import com.miscitems.MiscItemsAndBlocks.Items.ModItemBattery;
 import com.miscitems.MiscItemsAndBlocks.Items.ModItemUpgrades;
 
 public class ModSlotRedstoneSlot extends Slot{

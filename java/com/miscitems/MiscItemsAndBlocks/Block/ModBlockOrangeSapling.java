@@ -2,10 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.Block;
 
 import java.util.Random;
 
-import javax.swing.Icon;
-
 import net.minecraft.block.BlockBush;
-import net.minecraft.block.BlockFlower;
 import net.minecraft.block.IGrowable;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.init.Blocks;

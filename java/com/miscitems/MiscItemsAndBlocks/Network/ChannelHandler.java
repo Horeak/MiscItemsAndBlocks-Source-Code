@@ -11,7 +11,6 @@ import java.io.DataOutputStream;
 import net.minecraft.entity.player.EntityPlayer;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.network.FMLIndexedMessageToMessageCodec;
 
 public class ChannelHandler extends FMLIndexedMessageToMessageCodec<IPacket>{

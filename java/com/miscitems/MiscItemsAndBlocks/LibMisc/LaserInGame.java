@@ -156,7 +156,7 @@ return this.laserType.size();
 public boolean equals(Object obj) {
 if(obj instanceof LaserInGame) {
 LaserInGame laser = (LaserInGame)obj;
-return this.red == laser.red && this.green == laser.green && this.blue == laser.blue; //TODO && this.laserType.equals(laser.laserType);
+return this.red == laser.red && this.green == laser.green && this.blue == laser.blue; 
 }
 return false;
 

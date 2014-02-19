@@ -3,7 +3,6 @@ package com.miscitems.MiscItemsAndBlocks.Lib;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;

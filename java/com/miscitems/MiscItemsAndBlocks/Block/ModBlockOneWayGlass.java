@@ -1,7 +1,5 @@
 package com.miscitems.MiscItemsAndBlocks.Block;
 
-import javax.swing.Icon;
-
 import net.minecraft.block.BlockRotatedPillar;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;

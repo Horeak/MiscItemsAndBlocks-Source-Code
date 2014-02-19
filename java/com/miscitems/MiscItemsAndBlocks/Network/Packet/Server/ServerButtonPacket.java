@@ -4,6 +4,9 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.Container;
+
 import com.miscitems.MiscItemsAndBlocks.Container.ContainerMetalPress;
 import com.miscitems.MiscItemsAndBlocks.Container.ContainerMiningChamber;
 import com.miscitems.MiscItemsAndBlocks.Container.ContainerXpStorage;
@@ -11,9 +14,6 @@ import com.miscitems.MiscItemsAndBlocks.Network.IPacket;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMetalPress;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMiningChamber;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityXpStorage;
-
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.Container;
 
 public class ServerButtonPacket extends IPacket{
 

@@ -72,6 +72,8 @@ public class ModItems {
 	
 	public static Item Lens;
 	
+	public static Item GuideBook;
+	
 	
 	
 	
@@ -80,6 +82,9 @@ public class ModItems {
     public static ArmorMaterial PowerArmor = EnumHelper.addArmorMaterial("PowerArmor", 37, new int[] {2, 4, 3, 2} , 30);
 	
 	public static void Init(){
+		
+        GuideBook = new ModItemGuideBook().setUnlocalizedName("item.guidebook").setCreativeTab(Main.CreativeTab).setTextureName(Refrence.Mod_Id + ":" + "book");
+        Register(GuideBook, "GuideBook");
 		
 		XpExtractor = new ModItemXpExtractor();
 		Register(XpExtractor, StatCollector.translateToLocal("xpextractor"));
@@ -208,6 +213,10 @@ public class ModItems {
         
 		CreativeBattery = new ModItemCreativeBattery().setUnlocalizedName("CreativeBattery");
 		Register(CreativeBattery, "Creative Battery");
+		
+		
+		
+		
 		
 	RegisterOreDictionary(new ItemStack(SilverIngot), "ingotSilver");
 	RegisterOreDictionary(new ItemStack(SilverNugget), "nuggetSilver");

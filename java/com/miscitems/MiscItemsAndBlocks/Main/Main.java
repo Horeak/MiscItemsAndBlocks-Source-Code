@@ -11,10 +11,12 @@ import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.Entity.EntityPowerArrow;
 import com.miscitems.MiscItemsAndBlocks.Entity.EntitySilverArrow;
-import com.miscitems.MiscItemsAndBlocks.Gui.GuiHandler;
 import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
 import com.miscitems.MiscItemsAndBlocks.Lib.Crafting;
 import com.miscitems.MiscItemsAndBlocks.Lib.Messages;
@@ -49,7 +51,7 @@ public class Main {
 
 	public static final Logger Log = Logger.getLogger("MiscItems");
 	
-    @Instance(value = Refrence.Mod_Id)
+    @Instance(Refrence.Mod_Id)
     public static Main instance = new Main();
     
     @SidedProxy(clientSide = "com.miscitems.MiscItemsAndBlocks.Proxies.ClientProxy", serverSide = "com.miscitems.MiscItemsAndBlocks.Proxies.ServerProxy")
@@ -67,6 +69,8 @@ public class Main {
     public static String UpdateMessage = StatCollector.translateToLocal("string.versioncheck.newversion").replace("%EnumRed", EnumChatFormatting.RED + "").replace("%EnumYellow", EnumChatFormatting.YELLOW + "").replace("%EnumBlue", EnumChatFormatting.BLUE + "").replace("%EnumGold", EnumChatFormatting.GOLD + "").replace("%ModName", Refrence.Mod_Name).replace("%NewVersion", Main.LATEST_VERSION).replace("%DowLink", Main.UPDATE_URL).replace("%Changes", Main.LATEST_CHANGES);
     
     
+    public static final org.apache.logging.log4j.Logger logger = LogManager.getLogger("MiscItems");
+    
 	public static NetworkManager NETWORK_MANAGER;
     
 	public static CreativeTabs CreativeTab = new CreativeTabs("tabMisc") {
@@ -75,7 +79,7 @@ public class Main {
 		@Override
 		@SideOnly(Side.CLIENT)
 		public Item getTabIconItem() {
-			return ModItems.XpExtractor;
+			return ModItems.GuideBook;
 		}
 		
 	    
@@ -105,7 +109,7 @@ public void preInit(FMLPreInitializationEvent event) {
     	
     	} catch(Exception ex)
     	{
-    	//FMLLog.log(Level.SEVERE, ex.getMessage(), Refrence.Mod_Id + ": Error encountered while loading config file.");
+    		logger.log(Level.ERROR, ex.getMessage(), Refrence.Mod_Id + ": Error encountered while loading config file.");
     	} finally
     	{
     	configMisc.save();
@@ -124,6 +128,8 @@ public void preInit(FMLPreInitializationEvent event) {
         proxy.RegisterListeners();
     	
         proxy.registerRenderThings();
+        
+        
     }
     
     
@@ -156,7 +162,7 @@ public void preInit(FMLPreInitializationEvent event) {
         MinecraftForge.EVENT_BUS.register(new BoneMealEvent());
         
 
-        NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
+        NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);
         
         
         
@@ -167,6 +173,7 @@ public void preInit(FMLPreInitializationEvent event) {
 @EventHandler
     public void PostInit(FMLPostInitializationEvent event){
 	LaserRegistry.registerLaser("default", new DefaultLaser());
+	
 	}
 
 	

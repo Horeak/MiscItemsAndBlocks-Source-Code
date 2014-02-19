@@ -1,6 +1,5 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
-import net.minecraft.tileentity.TileEntity;
 
 public abstract class TileEntityLaserBase extends TileEntityPowerInv{
 
