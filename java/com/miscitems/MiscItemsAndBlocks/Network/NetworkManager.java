@@ -17,6 +17,10 @@ import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
 import cpw.mods.fml.relauncher.Side;
 
 public class NetworkManager {
+	
+	/**
+	 * @author ProPercivalalb <https://github.com/ProPercivalalb/LaserMod>
+	 */
 
     public final ChannelHandler channelHandler;
     private final FMLEmbeddedChannel clientOutboundChannel;

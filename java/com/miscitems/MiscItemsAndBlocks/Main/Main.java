@@ -17,13 +17,14 @@ import org.apache.logging.log4j.LogManager;
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.Entity.EntityPowerArrow;
 import com.miscitems.MiscItemsAndBlocks.Entity.EntitySilverArrow;
+import com.miscitems.MiscItemsAndBlocks.Gui.GuiHandler;
 import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
+import com.miscitems.MiscItemsAndBlocks.Laser.DefaultLaser;
+import com.miscitems.MiscItemsAndBlocks.Laser.LaserRegistry;
 import com.miscitems.MiscItemsAndBlocks.Lib.Crafting;
 import com.miscitems.MiscItemsAndBlocks.Lib.Messages;
 import com.miscitems.MiscItemsAndBlocks.Lib.ModConfig;
 import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
-import com.miscitems.MiscItemsAndBlocks.LibMisc.DefaultLaser;
-import com.miscitems.MiscItemsAndBlocks.LibMisc.LaserRegistry;
 import com.miscitems.MiscItemsAndBlocks.Misc.BoneMealEvent;
 import com.miscitems.MiscItemsAndBlocks.Network.NetworkManager;
 import com.miscitems.MiscItemsAndBlocks.Proxies.ServerProxy;
@@ -85,7 +86,7 @@ public class Main {
 	    
 	};
 	
-       
+       public static Configuration config;
 	
 @EventHandler
 public void preInit(FMLPreInitializationEvent event) {
@@ -100,19 +101,19 @@ public void preInit(FMLPreInitializationEvent event) {
 	//TODO Add sometype of ore doubling
 	
     	
-        Configuration configMisc = new Configuration(new File(event.getModConfigurationDirectory() + "/tm1990's mods/MiscItemsAndBlocksConfig.cfg")); 
+         config = new Configuration(new File(event.getModConfigurationDirectory() + "/tm1990's mods/MiscItemsAndBlocksConfig.cfg")); 
         
     	try
     	{
         
-    	ModConfig.Init(configMisc);
+    	ModConfig.Init(config);
     	
     	} catch(Exception ex)
     	{
     		logger.log(Level.ERROR, ex.getMessage(), Refrence.Mod_Id + ": Error encountered while loading config file.");
     	} finally
     	{
-    	configMisc.save();
+    		config.save();
     	}
     	
     	if(VERSION_CHECK)
@@ -162,7 +163,7 @@ public void preInit(FMLPreInitializationEvent event) {
         MinecraftForge.EVENT_BUS.register(new BoneMealEvent());
         
 
-        NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);
+        NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
         
         
         

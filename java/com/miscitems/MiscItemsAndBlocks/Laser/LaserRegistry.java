@@ -1,4 +1,4 @@
-package com.miscitems.MiscItemsAndBlocks.LibMisc;
+package com.miscitems.MiscItemsAndBlocks.Laser;
 
 import java.util.Arrays;
 import java.util.Hashtable;
@@ -10,6 +10,10 @@ import net.minecraft.item.ItemStack;
 
 public class LaserRegistry {
 
+	/**
+	 * @author ProPercivalalb <https://github.com/ProPercivalalb/LaserMod>
+	 */
+	
 private static Hashtable<String, ILaser> mappings = new Hashtable<String, ILaser>();
 private static Hashtable<List<Object>, ILaser> mappingItems = new Hashtable<List<Object>, ILaser>();
 

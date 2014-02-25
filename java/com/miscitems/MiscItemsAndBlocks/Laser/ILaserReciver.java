@@ -1,9 +1,14 @@
-package com.miscitems.MiscItemsAndBlocks.LibMisc;
+package com.miscitems.MiscItemsAndBlocks.Laser;
+
 
 import net.minecraft.world.World;
 
 public interface ILaserReciver {
 
+	/**
+	 * @author ProPercivalalb <https://github.com/ProPercivalalb/LaserMod>
+	 */
+	
 public int getX();
 public int getY();
 public int getZ();

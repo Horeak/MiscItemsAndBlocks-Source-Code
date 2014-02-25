@@ -7,11 +7,11 @@ import net.minecraft.world.World;
 
 import com.miscitems.MiscItemsAndBlocks.Items.ModItemPowerStorage;
 import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
-import com.miscitems.MiscItemsAndBlocks.LibMisc.ILaserProvider;
-import com.miscitems.MiscItemsAndBlocks.LibMisc.ILaserReciver;
-import com.miscitems.MiscItemsAndBlocks.LibMisc.LaserInGame;
-import com.miscitems.MiscItemsAndBlocks.LibMisc.LaserRegistry;
-import com.miscitems.MiscItemsAndBlocks.LibMisc.LaserUtil;
+import com.miscitems.MiscItemsAndBlocks.Laser.ILaserProvider;
+import com.miscitems.MiscItemsAndBlocks.Laser.ILaserReciver;
+import com.miscitems.MiscItemsAndBlocks.Laser.LaserInGame;
+import com.miscitems.MiscItemsAndBlocks.Laser.LaserRegistry;
+import com.miscitems.MiscItemsAndBlocks.Laser.LaserUtil;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -261,6 +261,17 @@ return this.worldObj.isBlockIndirectlyGettingPowered(this.xCoord, this.yCoord, t
 			
 		}
 		return false;
+	}
+
+	@Override
+	public boolean DoesDamage() {
+		if(this.getStackInSlot(0) != null && this.getStackInSlot(0).getItem() == ModItems.Lens){
+			if(this.getStackInSlot(0).stackTagCompound != null)
+				return !this.getStackInSlot(0).stackTagCompound.getBoolean("Safe");
+			
+			
+		}
+		return true;
 	}
 
 

@@ -1,4 +1,4 @@
-package com.miscitems.MiscItemsAndBlocks.LibMisc;
+package com.miscitems.MiscItemsAndBlocks.Laser;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,6 +10,10 @@ import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 
 public class LaserWhitelist {
+	
+	/**
+	 * @author ProPercivalalb <https://github.com/ProPercivalalb/LaserMod>
+	 */
 
 public static int ALL_METADATA = -1;
 

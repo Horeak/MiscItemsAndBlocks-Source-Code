@@ -88,7 +88,6 @@ public class ModBlocks {
 	public static Block Teleporter;
 	public static Block WireLessRedstone;
 	public static Block WirelessItemTrans;
-	public static Block WirelessPowerTransfer;
 	
 	public static Block MetalPress;
 	
@@ -248,8 +247,6 @@ public class ModBlocks {
         WirelessItemTrans = new ModBlockWirelessItemTransfer();
         Register(WirelessItemTrans, "Wireless Item Transfer", true);
         
-        WirelessPowerTransfer = new ModBlockEmptyBlock().setHardness(1.5F);
-        Register(WirelessPowerTransfer, "[TODO]Wireless Power Transfer", true);
         
         MetalPress = new ModBlockMetalPress();
         Register(MetalPress, ModItemBlockMetalPress.class, "Metal Press", true);
@@ -304,6 +301,9 @@ public class ModBlocks {
         GameRegistry.registerTileEntity(TileEntityMetalPress.class, "TileEntityMetalPress");
         GameRegistry.registerTileEntity(TileEntityLensBench.class, "TileEntityensBench");
         GameRegistry.registerTileEntity(TileEntityLaser.class, "TileEntityensLaser");
+        
+        
+        Main.config.save();
 		
 	}
 	
@@ -314,6 +314,8 @@ public class ModBlocks {
 		public static void Register(Block block, String Name, boolean AddTab){
 			
 			
+			if(Main.config.get("Enable/Disable Blocks", "Enable " + Name + "?", true).getBoolean(true)){
+				
 	        block.setBlockName(Name.toLowerCase().replace(" ", "_"));
 		        GameRegistry.registerBlock(block, Name.toLowerCase().replace(" ", "_"));
 
@@ -321,18 +323,21 @@ public class ModBlocks {
 	        if(AddTab)
 	        block.setCreativeTab(Main.CreativeTab);
 
+			}
 		}
 		
 public static void Register(Block Block, Class<? extends ItemBlock> itemclass, String Name, boolean AddTab){
 			
 		
 	
+	if(Main.config.get("Enable/Disable Blocks", "Enable " + Name + "?", true).getBoolean(true)){
 	
 	              Block.setBlockName(Name.toLowerCase().replace(" ", "_"));
 		        GameRegistry.registerBlock(Block, itemclass, Name.toLowerCase().replace(" ", "_"));
 
 	        if(AddTab)
 	        Block.setCreativeTab(Main.CreativeTab);
+	}
 
 		}
 		

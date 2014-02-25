@@ -1,4 +1,4 @@
-package com.miscitems.MiscItemsAndBlocks.LibMisc;
+package com.miscitems.MiscItemsAndBlocks.Laser;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -17,6 +17,10 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class LaserInGame {
 
+	/**
+	 * @author ProPercivalalb <https://github.com/ProPercivalalb/LaserMod>
+	 */
+	
 private double strength = 100D;
 private ArrayList<ILaser> laserType = new ArrayList<ILaser>();
 private int side = -1;

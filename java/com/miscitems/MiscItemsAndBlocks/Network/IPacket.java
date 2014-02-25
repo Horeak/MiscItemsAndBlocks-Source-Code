@@ -17,7 +17,11 @@ import cpw.mods.fml.common.FMLCommonHandler;
 
 public abstract class IPacket {
 
-public abstract void read(DataInputStream data) throws IOException;
+	/**
+	 * @author ProPercivalalb <https://github.com/ProPercivalalb/LaserMod>
+	 */
+	
+	public abstract void read(DataInputStream data) throws IOException;
 public abstract void write(DataOutputStream data) throws IOException;
 
 public abstract void execute(EntityPlayer player);

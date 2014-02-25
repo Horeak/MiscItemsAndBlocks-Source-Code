@@ -1,9 +1,14 @@
-package com.miscitems.MiscItemsAndBlocks.LibMisc;
+package com.miscitems.MiscItemsAndBlocks.Laser;
+
 
 import net.minecraft.world.World;
 
 public interface ILaserProvider {
 
+	/**
+	 * @author ProPercivalalb <https://github.com/ProPercivalalb/LaserMod>
+	 */
+	
 	
 public int getX();
 public int getY();
@@ -16,6 +21,7 @@ public int GetLensPower();
 
 public boolean TransfersPower();
 public boolean EmitsRedstone();
+public boolean DoesDamage();
 
 
 public boolean isSendingSignalFromSide(World world, int askerX, int askerY, int askerZ, int side);

@@ -15,6 +15,11 @@ import cpw.mods.fml.common.network.FMLIndexedMessageToMessageCodec;
 
 public class ChannelHandler extends FMLIndexedMessageToMessageCodec<IPacket>{
 
+	
+	/**
+	 * @author ProPercivalalb <https://github.com/ProPercivalalb/LaserMod>
+	 */
+	
     public ChannelHandler() {
         for (int i = 0; i < PacketType.values().length; i++)
             addDiscriminator(i, PacketType.values()[i].packetClass);
@@ -39,8 +44,6 @@ byte[] data = new byte[bytes.capacity()];
 for(int i = 0; i < data.length; ++i)
 data[i] = bytes.readByte();
 
-//FMLLog.info("Size: " + data.length * 4);
-
 ByteArrayInputStream bis = new ByteArrayInputStream(data);
 DataInputStream dis = new DataInputStream(bis);
 
@@ -51,8 +54,6 @@ player = FMLClientHandler.instance().getClientPlayerEntity();
 else
 player = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().getPlayerForUsername(dis.readUTF());
 
-//if(player != null)
-//FMLLog.info(player.getCommandSenderName());
 
 msg.read(dis);
 msg.execute(player);

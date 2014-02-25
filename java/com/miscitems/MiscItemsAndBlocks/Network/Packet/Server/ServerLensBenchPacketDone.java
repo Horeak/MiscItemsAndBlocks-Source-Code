@@ -16,9 +16,10 @@ public class ServerLensBenchPacketDone extends IPacket{
 
 	boolean Color;
 	int Red, Green, Blue, Power, Strength, x, y, z;
+	boolean TransferPower, Damage, Redstone;
 	
 	public ServerLensBenchPacketDone(){}
-	public ServerLensBenchPacketDone(boolean Color, int Red, int Green, int Blue, int Power, int Strength, int X, int Y, int Z){
+	public ServerLensBenchPacketDone(boolean Color, int Red, int Green, int Blue, int Power, int Strength, boolean TransferPower, boolean Damage, boolean Redstone, int X, int Y, int Z){
 		
 		
 		if(Strength <= 0)
@@ -33,6 +34,9 @@ public class ServerLensBenchPacketDone extends IPacket{
 		x = X;
 		y = Y;
 		z = Z;
+		this.TransferPower = TransferPower;
+		this.Damage = Damage;
+		this.Redstone = Redstone;
 		
 			
 		
@@ -54,6 +58,10 @@ public class ServerLensBenchPacketDone extends IPacket{
 		x = data.readInt();
 		y = data.readInt();
 		z = data.readInt();
+		
+		TransferPower = data.readBoolean();
+		Damage = data.readBoolean();
+		Redstone = data.readBoolean();
 	}
 
 	@Override
@@ -73,6 +81,10 @@ public class ServerLensBenchPacketDone extends IPacket{
 		data.writeInt(y);
 		data.writeInt(z);
 		
+		data.writeBoolean(TransferPower);
+		data.writeBoolean(Damage);
+		data.writeBoolean(Redstone);
+		
 		
 	}
 
@@ -90,44 +102,48 @@ public class ServerLensBenchPacketDone extends IPacket{
 			if(tile.getStackInSlot(0) != null && tile.getStackInSlot(0).getItem() == ModItems.Lens){
 			if(tile.getStackInSlot(0).stackTagCompound == null)
     			tile.getStackInSlot(0).setTagCompound(new NBTTagCompound());
+			
+			tile.getStackInSlot(0).stackTagCompound.setBoolean("Color", Color);
     		
     		if(Color){
     			tile.getStackInSlot(0).stackTagCompound.setBoolean("Color", true);
     		tile.getStackInSlot(0).stackTagCompound.setInteger("Red", Red);
     		tile.getStackInSlot(0).stackTagCompound.setInteger("Green", Green);
     		tile.getStackInSlot(0).stackTagCompound.setInteger("Blue", Blue);
-    		}else{
-    			if(tile.getStackInSlot(0).stackTagCompound.getBoolean("Color") != true)
-    			tile.getStackInSlot(0).stackTagCompound.setBoolean("Color", false);
     		}
     		
     		tile.getStackInSlot(0).stackTagCompound.setInteger("Power", Power);
     		tile.getStackInSlot(0).stackTagCompound.setInteger("Strength", Strength);
     		
-    		if(Power > 1 || tile.getStackInSlot(2) != null || tile.getStackInSlot(1) != null){
-    		tile.getStackInSlot(0).stackTagCompound.setInteger("PowerUse", ((Power) * 3) + ((Strength / 2)));
+    		tile.getStackInSlot(0).stackTagCompound.setInteger("PowerUse", (((Power) * 3) + ((Strength / 4))) + (Damage ? 5 : 0) + (TransferPower ? 2 : 0) + (Redstone ? 1 : 0));
+    		
     		if(tile.getStackInSlot(0).stackTagCompound.getInteger("PowerUse") < 0){
         		tile.getStackInSlot(0).stackTagCompound.setInteger("PowerUse", 0);
     		}
+
     		
-    		}else
-        		tile.getStackInSlot(0).stackTagCompound.setInteger("PowerUse", 0);
-    		
-    		
-    		if(tile.getStackInSlot(1) != null){
-    			tile.decrStackSize(1, 1);
+    		if(TransferPower){
     			tile.getStackInSlot(0).stackTagCompound.setBoolean("TransferPower", true);
+    		}else{
+    			tile.getStackInSlot(0).stackTagCompound.setBoolean("TransferPower", false);
     		}
+    			
     		
-    		if(tile.getStackInSlot(2) != null){
-    			tile.decrStackSize(2, 1);
+    		
+    		
+    		if(Redstone){
     			tile.getStackInSlot(0).stackTagCompound.setBoolean("Redstone", true);
+    		}else{
+    			tile.getStackInSlot(0).stackTagCompound.setBoolean("Redstone", false);
     		}
     		
-    		if(tile.getStackInSlot(3) != null){
-    			tile.decrStackSize(3, 1);
+    		
+    		if(!Damage){
     			tile.getStackInSlot(0).stackTagCompound.setBoolean("Safe", true);
+    		}else{
+    			tile.getStackInSlot(0).stackTagCompound.setBoolean("Safe", false);
     		}
+    			
     		
     		
     		

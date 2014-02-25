@@ -4,14 +4,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
-import com.miscitems.MiscItemsAndBlocks.Slots.ModSlotBatterySlot;
-import com.miscitems.MiscItemsAndBlocks.Slots.ModSlotItemsOnly;
-import com.miscitems.MiscItemsAndBlocks.Slots.ModSlotLapisSlot;
-import com.miscitems.MiscItemsAndBlocks.Slots.ModSlotRedstoneSlot;
+import com.miscitems.MiscItemsAndBlocks.Slots.ModSlotLensSlot;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLensBench;
 
 public class ContainerLensBench  extends Container {
@@ -42,13 +37,7 @@ public class ContainerLensBench  extends Container {
     	
     	
     	
-    	addSlotToContainer(new ModSlotItemsOnly(tile, 0, 7, 7, new Item[]{ModItems.Lens}));
-    	
-    	addSlotToContainer(new ModSlotBatterySlot(tile, 1, 68, 17));
-    	
-    	addSlotToContainer(new ModSlotRedstoneSlot(tile, 2, 86, 17));
-
-    	addSlotToContainer(new ModSlotLapisSlot(tile, 3, 104, 17));
+    	addSlotToContainer(new ModSlotLensSlot(tile, 0, 7, 7));
 
 }
     

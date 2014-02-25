@@ -6,7 +6,7 @@ import net.minecraft.util.AxisAlignedBB;
 
 import org.lwjgl.opengl.GL11;
 
-import com.miscitems.MiscItemsAndBlocks.LibMisc.LaserUtil;
+import com.miscitems.MiscItemsAndBlocks.Laser.LaserUtil;
 import com.miscitems.MiscItemsAndBlocks.Render.LaserRender;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLaser;
 
@@ -27,6 +27,7 @@ public class TileEntityLaserRender extends TileEntitySpecialRenderer {
 
      LaserRender.postLaserRender();
         GL11.glPopMatrix();
+        
 
     }
 

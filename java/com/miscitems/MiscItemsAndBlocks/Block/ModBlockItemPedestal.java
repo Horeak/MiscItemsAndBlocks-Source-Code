@@ -74,9 +74,6 @@ public class ModBlockItemPedestal extends BlockContainer{
 					 player.inventory.addItemStackToInventory(tile.getStackInSlot(0));
 	    				tile.setInventorySlotContents(0, null);
 					  return true;
-				  }else{
-			        	FMLNetworkHandler.openGui(player, Main.instance, 0, world, x, y, z);
-			            return true;
 				  }
 
 			  }else if (player.inventory.getCurrentItem() != null){
@@ -89,7 +86,7 @@ public class ModBlockItemPedestal extends BlockContainer{
 					  }else{
 					  tile.setInventorySlotContents(0, new ItemStack(player.inventory.getCurrentItem().getItem(), 1, player.inventory.getCurrentItem().getItemDamage()));
 					  }
-					  player.inventory.consumeInventoryItem(player.inventory.getCurrentItem().getItem());
+					  player.inventory.getCurrentItem().stackSize -= 1;
 					  return true;
 					  
 				  

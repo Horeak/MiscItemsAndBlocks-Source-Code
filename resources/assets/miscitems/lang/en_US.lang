@@ -89,7 +89,7 @@ item.battery.name=Battery
 item.bigbattery.name=Big battery
 item.advancedbattery.name=Advanced battery
 item.electricshears.name=Electric shears
-item.electricbow.name=Electric bow
+item.electricbow.name=Electric bow 
 item.Upgrades.name=Power upgrade
 item.wrench.name=Wrench
 item.heatdrill.name=Heat drill
@@ -263,8 +263,9 @@ items.desc.xpextractor.3=You require at least 1 glass bottle
 entity.powerarrow.name=Power Arrow
 entity.silverarrow.name=Silver Arrow
 
+death.attack.laser.damage=%1$s was fried by a laser.
 
-string.death.silversword=%Killed Was slaing with a Silver Sword by %Killer
+string.death.silversword=%1$s Was slaing with a Silver Sword by %2$s
 string.versioncheck.newversion=%EnumRed A new version of %ModName is available. Version: %EnumYellow%NewVersion%EnumGold  Download link: %DowLink %EnumBlue Changes in this version: %Changes
 
 

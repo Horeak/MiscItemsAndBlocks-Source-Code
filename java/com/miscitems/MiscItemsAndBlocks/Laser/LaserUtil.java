@@ -1,6 +1,9 @@
-package com.miscitems.MiscItemsAndBlocks.LibMisc;
+package com.miscitems.MiscItemsAndBlocks.Laser;
+
+import java.util.List;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
@@ -8,9 +11,14 @@ import net.minecraft.util.Facing;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
+import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerLaserPacketEntities;
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerSetBlockPacket;
 
 public class LaserUtil {
+	
+	/**
+	 * @author ProPercivalalb <https://github.com/ProPercivalalb/LaserMod>
+	 */
 
 public static int TICK_RATE = 2;
 public static double LASER_SIZE = 0.4D; 
@@ -64,7 +72,7 @@ break;
 }
 
 
-@SuppressWarnings("unused")
+@SuppressWarnings({ "unused", "rawtypes", "unchecked" })
 public static AxisAlignedBB getLaserOutline(ILaserProvider laserProvider, int meta, double renderX, double renderY, double renderZ) {
 int orientation = getOrientation(meta);
 double offsetMin = 0.5D - LASER_SIZE / 2;
@@ -84,7 +92,24 @@ Block block = laserProvider.getWorld().getBlock(xTemp, yTemp, zTemp);
 int blockMeta = laserProvider.getWorld().getBlockMetadata(xTemp, yTemp, zTemp);
 TileEntity tile = laserProvider.getWorld().getTileEntity(xTemp, yTemp, zTemp);
 
-if(LaserWhitelist.canLaserPassThrought(block, blockMeta))
+AxisAlignedBB aabb = AxisAlignedBB.getAABBPool().getAABB(xTemp, yTemp, zTemp, xTemp + offsetMax, yTemp + offsetMax, zTemp + offsetMax);
+
+List ents = laserProvider.getWorld().getEntitiesWithinAABB(Entity.class, aabb);
+if(ents.size() > 0){
+	
+	LaserRegistry.getLaserFromId("default").performActionOnEntitiesClient(ents, orientation, laserProvider);
+	
+	Main.NETWORK_MANAGER.sendPacketToServer(new ServerLaserPacketEntities(xTemp, yTemp, zTemp, xTemp + offsetMax, yTemp + offsetMax, zTemp + offsetMax, laserProvider.EmitsRedstone(), laserProvider.DoesDamage(), laserProvider.TransfersPower(), orientation, laserProvider.GetLensPower()));
+	
+	extra[orientation] += 1.3 - offsetMax + 0.01D;
+	
+	break;
+}
+	
+
+
+
+if(LaserWhitelist.canLaserPassThrought(block, blockMeta) || !block.isOpaqueCube() && !block.hasTileEntity(blockMeta))
 extra[orientation] += 1;
 else {
 extra[orientation] += 1 - offsetMax + 0.01D;
@@ -95,8 +120,8 @@ if(laserProvider.GetLensPower() >= block.getBlockHardness(laserProvider.getWorld
 	if(!block.hasTileEntity(blockMeta)){
 
 
-
 		
+
 		Main.NETWORK_MANAGER.sendPacketToServer(new ServerSetBlockPacket(laserProvider.getWorld().getWorldInfo().getVanillaDimension(), xTemp, yTemp, zTemp, Blocks.air));
 		
 		
@@ -110,6 +135,9 @@ break;
 }
 
         boundingBox.setBounds(boundingBox.minX - extra[4], boundingBox.minY - extra[0], boundingBox.minZ - extra[2], boundingBox.maxX + extra[5], boundingBox.maxY + extra[1], boundingBox.maxZ + extra[3]);
+        
+
+        
         
         return boundingBox;
 }

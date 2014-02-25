@@ -221,6 +221,9 @@ public class ModItems {
 	RegisterOreDictionary(new ItemStack(SilverIngot), "ingotSilver");
 	RegisterOreDictionary(new ItemStack(SilverNugget), "nuggetSilver");
 		
+	
+	
+    Main.config.save();
 		
 		
 		
@@ -237,9 +240,12 @@ public class ModItems {
 	public static void Register(Item Item, String Name){
 		
 		
+		if(Main.config.get("Enable/Disable Items", "Enable " + Name + "?", true).getBoolean(true)){
+			
         Item.setUnlocalizedName((Name.toLowerCase().replace(" ", "_")));
         GameRegistry.registerItem(Item, (Name.toLowerCase().replace(" ", "_")));
         Item.setCreativeTab(Main.CreativeTab);
+	}
 	}
 	
 	public static void RegisterOutName(Item Item, String Name){
