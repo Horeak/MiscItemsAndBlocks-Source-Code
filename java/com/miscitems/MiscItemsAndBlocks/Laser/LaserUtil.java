@@ -13,6 +13,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerLaserPacketEntities;
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerSetBlockPacket;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLaserReciver;
 
 public class LaserUtil {
 	
@@ -111,6 +112,26 @@ if(ents.size() > 0){
 
 if(LaserWhitelist.canLaserPassThrought(block, blockMeta) || !block.isOpaqueCube() && !block.hasTileEntity(blockMeta))
 extra[orientation] += 1;
+
+else if (laserProvider.getWorld().getTileEntity(xTemp, yTemp, zTemp) instanceof TileEntityLaserReciver){
+	
+
+	int Meta = laserProvider.getWorld().getBlockMetadata(xTemp, yTemp, zTemp);
+	int Ont = orientation;
+	
+	if(Meta == 3 && Ont == 2 || Meta == 4 && Ont == 5 || Meta == 2 && Ont == 3 || Meta == 5 && Ont == 4){
+	extra[orientation] += 1.9 - offsetMax + 0.01D;
+
+	
+	break;
+	
+	
+	}else{
+		extra[orientation] += 1;
+		continue;
+	}
+		
+}
 else {
 extra[orientation] += 1 - offsetMax + 0.01D;
 

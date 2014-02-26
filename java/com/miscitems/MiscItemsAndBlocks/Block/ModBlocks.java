@@ -15,6 +15,7 @@ import com.miscitems.MiscItemsAndBlocks.ItemBlock.ModItemBlockDiceHolder;
 import com.miscitems.MiscItemsAndBlocks.ItemBlock.ModItemBlockDisarmTrap;
 import com.miscitems.MiscItemsAndBlocks.ItemBlock.ModItemBlockGamePiece;
 import com.miscitems.MiscItemsAndBlocks.ItemBlock.ModItemBlockItemPedestal;
+import com.miscitems.MiscItemsAndBlocks.ItemBlock.ModItemBlockLaserReciver;
 import com.miscitems.MiscItemsAndBlocks.ItemBlock.ModItemBlockMetalPress;
 import com.miscitems.MiscItemsAndBlocks.ItemBlock.ModItemBlockMiningChamber;
 import com.miscitems.MiscItemsAndBlocks.ItemBlock.ModItemBlockPillar;
@@ -37,6 +38,7 @@ import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityElectricFurnace;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityGenerator;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityItemPedestal;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLaser;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLaserReciver;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLensBench;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMetalPress;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMill;
@@ -119,6 +121,8 @@ public class ModBlocks {
 	
 	
 	public static ModBlockStair StoneStair;
+	
+	public static Block LaserReciver;
 	
 	
 	
@@ -257,6 +261,9 @@ public class ModBlocks {
         Laser = new ModBlockLaser();
         Register(Laser, "Laser", true);
         
+        LaserReciver = new ModBlockLaserReciver().setBlockTextureName("furnace_top");
+        Register(LaserReciver, ModItemBlockLaserReciver.class, "Laser Reciver", true);
+        
         
         
 		RegisterOreDictionary(new ItemStack(SilverOre), "oreSilver");
@@ -301,6 +308,7 @@ public class ModBlocks {
         GameRegistry.registerTileEntity(TileEntityMetalPress.class, "TileEntityMetalPress");
         GameRegistry.registerTileEntity(TileEntityLensBench.class, "TileEntityensBench");
         GameRegistry.registerTileEntity(TileEntityLaser.class, "TileEntityensLaser");
+        GameRegistry.registerTileEntity(TileEntityLaserReciver.class, "TileEntityensLaserReciver");
         
         
         Main.config.save();

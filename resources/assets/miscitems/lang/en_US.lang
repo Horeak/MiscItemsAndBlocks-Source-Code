@@ -39,6 +39,7 @@ tile.metal_press.name=Metal press
 tile.dice.name=Dice
 tile.lens_bench.name=Lens bench
 tile.laser.name=Laser
+tile.laser_reciver.name=Laser receiver
 
 item.xpextractor.name=Xp extractor
 item.silveringot.name=Silver ingot

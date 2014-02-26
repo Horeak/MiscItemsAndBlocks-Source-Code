@@ -21,6 +21,7 @@ import com.miscitems.MiscItemsAndBlocks.ItemRender.DiceHolderItemRender;
 import com.miscitems.MiscItemsAndBlocks.ItemRender.DisarmTrapItemRender;
 import com.miscitems.MiscItemsAndBlocks.ItemRender.ItemPedestalItemRender;
 import com.miscitems.MiscItemsAndBlocks.ItemRender.ItemRenderMetalPress;
+import com.miscitems.MiscItemsAndBlocks.ItemRender.LaserReciverItemRender;
 import com.miscitems.MiscItemsAndBlocks.ItemRender.MiningChamberItemRender;
 import com.miscitems.MiscItemsAndBlocks.ItemRender.PillarItemRender;
 import com.miscitems.MiscItemsAndBlocks.ItemRender.PowerCableItemRender;
@@ -42,6 +43,7 @@ import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityDiceHolder;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityDisarmTrap;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityItemPedestal;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLaser;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLaserReciver;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMetalPress;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMiningChamber;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityPillar;
@@ -54,6 +56,7 @@ import com.miscitems.MiscItemsAndBlocks.TileEntityRenderer.TileEntityDiceHolderR
 import com.miscitems.MiscItemsAndBlocks.TileEntityRenderer.TileEntityDisarmTrapRenderer;
 import com.miscitems.MiscItemsAndBlocks.TileEntityRenderer.TileEntityGamePartRender;
 import com.miscitems.MiscItemsAndBlocks.TileEntityRenderer.TileEntityItemPedestalRender;
+import com.miscitems.MiscItemsAndBlocks.TileEntityRenderer.TileEntityLaserReciverRender;
 import com.miscitems.MiscItemsAndBlocks.TileEntityRenderer.TileEntityLaserRender;
 import com.miscitems.MiscItemsAndBlocks.TileEntityRenderer.TileEntityMetalPressRender;
 import com.miscitems.MiscItemsAndBlocks.TileEntityRenderer.TileEntityMiningChamberRender;
@@ -109,6 +112,7 @@ public class ClientProxy extends ServerProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTeleporter.class, new TileEntityTeleporterRender());
         
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMetalPress.class, new TileEntityMetalPressRender());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityLaserReciver.class, new TileEntityLaserReciverRender());
         
         
         RenderingRegistry.registerEntityRenderingHandler(EntitySilverArrow.class, new SilverArrowRender());
@@ -133,6 +137,7 @@ public class ClientProxy extends ServerProxy {
         MinecraftForgeClient.registerItemRenderer(new ItemStack(ModBlocks.Teleporter).getItem(), new TeleporterItemRender());
         
         MinecraftForgeClient.registerItemRenderer(new ItemStack(ModBlocks.MetalPress).getItem(), new ItemRenderMetalPress());
+        MinecraftForgeClient.registerItemRenderer(new ItemStack(ModBlocks.LaserReciver).getItem(), new LaserReciverItemRender());
 
 }
     

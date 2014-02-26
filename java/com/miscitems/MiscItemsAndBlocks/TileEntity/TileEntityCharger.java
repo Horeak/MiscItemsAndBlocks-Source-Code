@@ -5,8 +5,9 @@ import net.minecraft.nbt.NBTTagCompound;
 
 import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
 import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Electric.IPowerItem;
+import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Electric.IPowerTile;
 
-public class TileEntityCharger extends TileEntityInvBase{
+public class TileEntityCharger extends TileEntityInvBase implements IPowerTile{
 
 	public TileEntityCharger() {
 		super(6, "Charger", 64);
