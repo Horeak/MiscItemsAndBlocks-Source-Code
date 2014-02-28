@@ -1,2 +1,129 @@
 <?xml version="1.0"?>
 
+<book>
+<page type="intro">
+<text>MiscItemsAndBlocks Guide
+
+
+- This guide book will show all new recipes added by MiscItemsAndBlocks. It will also give some small descriptions for all the changes and additions.
+</text>
+</page>
+
+<page type="contents">
+<text>The contents of the guide book</text>
+
+<link>
+<text>Blocks</text>
+<icon>xp_storage</icon>
+</link>
+
+<link>
+<text>Items</text>
+<icon>guide_book</icon>
+</link>
+
+<link>
+<text>Other changes and additions</text>
+<icon>writable_book</icon>
+</link>
+</page>
+
+<page type="text">
+<title>Xp Storage block</title>
+<text>The Xp Storage Block allows a player to save the xp levels in a safe location. The Xp Storage block does not have any upper limits of how many levels it can store. The xp storage block is blast proof and also when it is broken by a player it saves the levels in the block so they are not lost. 
+</text>
+</page>
+<page type="crafting">
+<text>Recipe</text>
+<recipe>
+<name>xp_storage_block_res</name>
+<size>three</size>
+</recipe>
+</page>
+
+
+<page type="text">
+<title>Trash Bin</title>
+<text>The Trash Bin blocks does what you would expect it deletes any items that are put into it. The trash bin slowly deletes the items so it is possible to take items out if you change your mind. 
+</text>
+</page>
+<page type="crafting">
+<text>Recipe</text>
+<recipe>
+<name>trash_bin_res</name>
+<size>three</size>
+</recipe>
+</page>
+
+
+<page type="text">
+<title>Disarm Trap</title>
+<text>The Disarm Trap is a block that works kinda like a pressure plate by that it is activated when someone steps on it but the disarm trap disarms the player that steps on it and throws all the items.
+</text>
+</page>
+<page type="crafting">
+<text>Recipe</text>
+<recipe>
+<name>disarm_trap_res</name>
+<size>three</size>
+</recipe>
+</page>
+
+
+
+<page type="text">
+<title>Silver Ore</title>
+<text>The Silver Ore is a ore which spawns at Y 14 and below but it is very rare. Silver ore itself is useless but it can be smelted into silver ingots.
+</text>
+</page>
+<page type="furnace">
+<text>Use</text>
+<recipe>silver_ore_use</recipe>
+</page>
+
+
+<page type="text">
+<title>Stone Stair</title>
+<text>Stone Stairs works exactly as any other type of stair the only difference is that these look like a normal stone block.
+</text>
+</page>
+<page type="crafting">
+<text>Recipe</text>
+<recipe>
+<name>stone_stair_res</name>
+<size>three</size>
+</recipe>
+</page>
+
+
+<page type="text">
+<title>Cardboard Box</title>
+<text>The Cardboard Box is a kind of cheaper type of chest or item storage. But the cardboard box can also be picked up and moved without losing the inventory.
+</text>
+</page>
+<page type="crafting">
+<text>Recipe</text>
+<recipe>
+<name>cardboard_box_res</name>
+<size>three</size>
+</recipe>
+</page>
+
+
+<page type="text">
+<title>Worktable</title>
+<text>The worktable is like a upgraded version of the normal crafting table. It will save the crafting grid and it also has a internal inventory where you can store items. The worktable will automatically use any items from the internal inventory to craft it they are available.
+</text>
+</page>
+<page type="crafting">
+<text>Recipe</text>
+<recipe>
+<name>worktable_res</name>
+<size>three</size>
+</recipe>
+</page>
+
+
+
+
+</book>

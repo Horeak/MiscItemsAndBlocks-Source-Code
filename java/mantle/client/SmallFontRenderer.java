@@ -1,4 +1,4 @@
-package com.miscitems.MiscItemsAndBlocks.Render;
+package mantle.client;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;

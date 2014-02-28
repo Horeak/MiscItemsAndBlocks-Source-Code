@@ -1,13 +1,12 @@
 package mantle.client;
 
-import static mantle.lib.CoreRepo.logger;
-
 import java.util.HashMap;
 import java.util.Map;
 
+import mantle.CoreRepo;
+import mantle.MProxyCommon;
 import mantle.books.BookData;
 import mantle.books.BookDataStore;
-import mantle.client.block.SmallFontRenderer;
 import mantle.client.gui.GuiManual;
 import mantle.client.pages.BlankPage;
 import mantle.client.pages.BookPage;
@@ -19,12 +18,12 @@ import mantle.client.pages.SectionPage;
 import mantle.client.pages.SidebarPage;
 import mantle.client.pages.TextPage;
 import mantle.client.pages.TitlePage;
-import mantle.common.MProxyCommon;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+
 
 public class MProxyClient extends MProxyCommon
 {
@@ -35,9 +34,9 @@ public class MProxyClient extends MProxyCommon
     {
         Minecraft mc = Minecraft.getMinecraft();
         if (mc.getTextureManager() == null)
-            logger.error("vanilla texture man is null");
+        	CoreRepo.logger.error("vanilla texture man is null");
         if (mc.renderEngine == null)
-            logger.error("vanilla render engine is null");
+        	CoreRepo.logger.error("vanilla render engine is null");
         smallFontRenderer = new SmallFontRenderer(mc.gameSettings, new ResourceLocation("minecraft:textures/font/ascii.png"), mc.renderEngine, false);
     }
 
@@ -81,11 +80,11 @@ public class MProxyClient extends MProxyCommon
         {
             ItemStack stack = player.getCurrentEquippedItem();
             if (stack == null)
-                logger.error("stack null in book");
+            	CoreRepo.logger.error("stack null in book");
             if (stack != null && stack.getItem() == null)
-                logger.error("item null in book");
+            	CoreRepo.logger.error("item null in book");
             if (stack != null && stack.getItem() != null && stack.getItem().getUnlocalizedName() == null)
-                logger.error("unlocalized name null in book");
+            	CoreRepo.logger.error("unlocalized name null in book");
             else
             {
                 return new GuiManual(stack, MProxyClient.getBookDataFromStack(stack));

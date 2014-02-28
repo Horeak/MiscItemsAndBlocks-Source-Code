@@ -1,6 +1,6 @@
 package mantle.client.pages;
 
-import mantle.lib.client.MantleClientRegistry;
+import mantle.client.MantleClientRegistry;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -70,7 +70,7 @@ public class CraftingPage extends BookPage
         {
             manual.renderitem.renderItemAndEffectIntoGUI(manual.fonts, manual.getMC().renderEngine, icons[0], (localWidth + 138) / 2, (localHeight + 70) / 2);
             if (icons[0].stackSize > 1)
-                manual.renderitem.renderItemOverlayIntoGUI(manual.fonts, manual.getMC().renderEngine, icons[0], (localWidth + 126) / 2, (localHeight + 68) / 2, String.valueOf(icons[0].stackSize));
+                manual.renderitem.renderItemOverlayIntoGUI(manual.fonts, manual.getMC().renderEngine, icons[0], (localWidth + 134) / 2, (localHeight + 68) / 2, String.valueOf(icons[0].stackSize));
             for (int i = 0; i < icons.length - 1; i++)
             {
                 if (icons[i + 1] != null)

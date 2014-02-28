@@ -3,7 +3,6 @@ package com.miscitems.MiscItemsAndBlocks.Items;
 import mantle.books.BookData;
 import mantle.books.BookDataStore;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StatCollector;
 
 import org.w3c.dom.Document;
 

@@ -1,4 +1,4 @@
-package mantle.lib.client;
+package mantle.client;
 
 import java.util.HashMap;
 import java.util.Map;

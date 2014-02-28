@@ -1,15 +1,7 @@
 package mantle;
 
-import static mantle.lib.CoreRepo.logger;
-import static mantle.lib.CoreRepo.modId;
-import static mantle.lib.CoreRepo.modName;
-import static mantle.lib.CoreRepo.modVersion;
 import mantle.books.BookData;
 import mantle.books.BookDataStore;
-import mantle.common.MProxyCommon;
-import mantle.items.Manual;
-import mantle.lib.CoreRepo;
-import mantle.lib.environment.EnvironmentChecks;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -18,7 +10,6 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 /**
  * Mantle
@@ -27,7 +18,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
  *
  * @author Sunstrike <sun@sunstrike.io>
  */
-@Mod(modid = modId, name = modName, version = modVersion, dependencies = "required-after:Forge")
+@Mod(modid = CoreRepo.modId, name = CoreRepo.modName, version = CoreRepo.modVersion, dependencies = "required-after:Forge")
 //@[8.9,)")
 public class Mantle
 {
@@ -37,7 +28,9 @@ public class Mantle
     /* Proxies for sides, used for graphics processing */
     @SidedProxy(clientSide = "mantle.client.MProxyClient", serverSide = "mantle.common.MProxyCommon")
     public static MProxyCommon proxy;
-    public static Manual mantleBook;
+
+
+    
 
     /**
      * FML preinitialisation handler
@@ -49,10 +42,9 @@ public class Mantle
     @EventHandler
     public void preInit (FMLPreInitializationEvent evt)
     {
-        logger.info("Mantle (" + modVersion + ") -- Preparing for launch.");
-        logger.info("Entering preinitialization phase.");
+    	CoreRepo.logger.info("Mantle (" + CoreRepo.modVersion + ") -- Preparing for launch.");
+    	CoreRepo.logger.info("Entering preinitialization phase.");
 
-        EnvironmentChecks.verifyEnvironmentSanity();
         NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);
 
    //     mantleBook = (Manual) new Manual().setUnlocalizedName("mantle.manual");
@@ -70,7 +62,7 @@ public class Mantle
     @EventHandler
     public void Init (FMLInitializationEvent evt)
     {
-        logger.info("Entering initialization phase.");
+    	CoreRepo.logger.info("Entering initialization phase.");
         proxy.registerRenderer();
 
     }
@@ -85,7 +77,7 @@ public class Mantle
     @EventHandler
     public void postInit (FMLPostInitializationEvent evt)
     {
-        logger.info("Entering postinitialization phase.");
+    	CoreRepo.logger.info("Entering postinitialization phase.");
         proxy.readManuals();
         BookData data = new BookData();
         data.unlocalizedName = "item.mantle.manual.test";

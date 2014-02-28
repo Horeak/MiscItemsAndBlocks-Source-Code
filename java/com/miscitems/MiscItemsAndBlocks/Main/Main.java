@@ -120,8 +120,8 @@ public void preInit(FMLPreInitializationEvent event) {
     		VersionChecker.go();
 
 
-    	ModItems.Init();
     	ModBlocks.Init();
+    	ModItems.Init();
     	
     	Messages.Init();
     	

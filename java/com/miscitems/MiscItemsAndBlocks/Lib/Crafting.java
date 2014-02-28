@@ -3,17 +3,14 @@ package com.miscitems.MiscItemsAndBlocks.Lib;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import mantle.lib.client.MantleClientRegistry;
+import mantle.client.MantleClientRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.ShapedRecipes;
-import net.minecraft.item.crafting.ShapelessRecipes;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlockXpStorage;
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
 import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Recipes.MillRecipes;
@@ -61,6 +58,11 @@ public class Crafting {
 		    GameRegistry.addRecipe(new ShapedOreRecipe(ModBlocks.Table, new Object[]{"CCC", "HHH", "P P", 'C', new ItemStack(Blocks.carpet, 1, 14), Character.valueOf('P'), "plankWood", Character.valueOf('H'), "slabWood"}));	
 		    GameRegistry.addRecipe(new ShapedOreRecipe(ModItems.Turbine, new Object[]{"S S", " P ", "S S", 'S', Items.stick, Character.valueOf('P'), "plankWood"}));
 		
+		    MantleClientRegistry.registerManualLargeRecipe("worktable_res", new ItemStack(ModBlocks.CraftingInv), new ItemStack[]{new ItemStack(Blocks.wool),new ItemStack(Blocks.wool), new ItemStack(Blocks.wool), new ItemStack(Blocks.planks), new ItemStack(Blocks.chest), new ItemStack(Blocks.planks), new ItemStack(Blocks.planks), new ItemStack(Blocks.crafting_table), new ItemStack(Blocks.planks)});
+		    MantleClientRegistry.registerManualLargeRecipe("dice_res", new ItemStack(ModBlocks.Dice), new ItemStack[]{new ItemStack(Blocks.planks), new ItemStack(Blocks.planks), new ItemStack(Blocks.planks), new ItemStack(Blocks.planks), new ItemStack(Items.dye), new ItemStack(Blocks.planks), new ItemStack(Blocks.planks), new ItemStack(Blocks.planks), new ItemStack(Blocks.planks)});
+		    MantleClientRegistry.registerManualLargeRecipe("table_res", new ItemStack(ModBlocks.Table), new ItemStack(Blocks.carpet, 1, 14), new ItemStack(Blocks.carpet, 1, 14), new ItemStack(Blocks.carpet, 1, 14), new ItemStack(Blocks.wooden_slab), new ItemStack(Blocks.wooden_slab), new ItemStack(Blocks.wooden_slab), new ItemStack(Blocks.planks), null, new ItemStack(Blocks.planks));
+		    MantleClientRegistry.registerManualLargeRecipe("turbine_res", new ItemStack(ModItems.Turbine), new ItemStack[]{new ItemStack(Items.stick), null, new ItemStack(Items.stick), null, new ItemStack(Blocks.planks), null, new ItemStack(Items.stick), null, new ItemStack(Items.stick)});
+		    
 		    AddRecipe(new ItemStack(ModItems.DataChip, 2), new Object[]{"CCC", "CGC", "III", 'C', ModItems.Cardboard, 'G', new ItemStack(ModItems.Circuit, 1, 0), 'I', Items.iron_ingot});
 	     	AddRecipe(new ItemStack(ModBlocks.Teleporter), new Object[]{"HCH", "BEB", "HCH", 'H', new ItemStack(ModItems.IronPlate, 1, 2), 'C', new ItemStack(ModItems.Circuit, 1, 1), 'B', new ItemStack(ModItems.AdvancedBattery, 1, 0), 'E', Items.ender_pearl});
 		    AddRecipe(new ItemStack(ModBlocks.WireLessRedstone, 2), new Object[]{"IEI", "ERE", "ICI", 'I', new ItemStack(ModItems.IronPlate, 1, 0), 'E', Items.ender_pearl, 'R', Blocks.redstone_block, 'C', new ItemStack(ModItems.Circuit, 1, 1)});
@@ -79,7 +81,7 @@ public class Crafting {
 	        AddRecipe(new ItemStack(ModItems.SilverArrow, 8), new Object[] {" N ", " S ", " F ", 'N', ModItems.SilverNugget, 'S', Items.stick, 'F', Items.feather});
 			AddRecipe(new ItemStack(ModBlocks.StoneStair, 4), new Object[]{"S  ", "SS ", "SSS", 'S', Blocks.stone});
 			AddRecipe(new ItemStack(ModBlocks.StoneStair, 4), new Object[]{"  S", " SS", "SSS", 'S', Blocks.stone});
-	        AddRecipe(new ItemStack(ModBlocks.DisarmTrap), new Object[] {"IHI", "HPH", "IDI", 'I', Items.iron_ingot, 'H', Blocks.hopper, 'P', Blocks.light_weighted_pressure_plate, 'D', Blocks.dispenser});
+	        AddRecipe(new ItemStack(ModBlocks.DisarmTrap), new Object[] {"IHI", "HPH", "IDI", 'I', Items.iron_ingot, 'H', Blocks.hopper, 'P', Blocks.heavy_weighted_pressure_plate, 'D', Blocks.dispenser});
 	        AddRecipe(new ItemStack(ModBlocks.Bin), new Object[] {"I I", "IBI", " I ", 'I', Items.iron_ingot, 'B', Items.bucket});
 			AddRecipe(new ItemStack(ModBlocks.Box), new Object[]{"CCC", "C C", "CCC", 'C', ModItems.Cardboard});
 			AddRecipe(new ItemStack(ModItems.DivingHelmet), new Object[] {"SNS", "SGS", "   ", 'S', ModItems.SilverIngot, 'N', Items.nether_star, 'G', Blocks.glass});

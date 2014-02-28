@@ -34,7 +34,7 @@ public class ModItemGuideBook extends CraftingItem{
     public void addInformation (ItemStack stack, EntityPlayer player, List list, boolean par4)
     {
     	
-    	list.add("\u00a7o" + "MiscItemsAndBlocsk Guide");
+    	list.add("\u00a7o" + "MiscItemsAndBlocks Guide");
     }
     
     @Override

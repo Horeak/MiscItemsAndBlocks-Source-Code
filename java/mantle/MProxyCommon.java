@@ -1,4 +1,4 @@
-package mantle.common;
+package mantle;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;

@@ -1,6 +1,6 @@
 package mantle.client.pages;
 
-import mantle.lib.client.MantleClientRegistry;
+import mantle.client.MantleClientRegistry;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;

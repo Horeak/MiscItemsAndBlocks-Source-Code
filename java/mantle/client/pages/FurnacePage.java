@@ -1,12 +1,8 @@
 package mantle.client.pages;
 
-import mantle.lib.client.MantleClientRegistry;
-import net.minecraft.block.Block;
+import mantle.client.MantleClientRegistry;
 import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 
@@ -59,7 +55,7 @@ public class FurnacePage extends BookPage
         GL11.glDisable(GL12.GL_RESCALE_NORMAL);
     }
 
-    private static final ResourceLocation background = new ResourceLocation("mantle", "textures/gui/bookfurnace.png");
+    private static final ResourceLocation background = new ResourceLocation("miscitems", "textures/gui/bookfurnace.png");
 
     public void renderBackgroundLayer (int localWidth, int localHeight)
     {

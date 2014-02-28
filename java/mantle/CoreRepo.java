@@ -1,15 +1,15 @@
-package mantle.lib;
+package mantle;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
- * Mantle object repository
- *
- * Storage area for objects accessible throughout Mantle, such as loggers
- *
- * @author Sunstrike <sun@sunstrike.io>
- */
+* Mantle object repository
+*
+* Storage area for objects accessible throughout Mantle, such as loggers
+*
+* @author Sunstrike <sun@sunstrike.io>
+*/
 public final class CoreRepo
 {
 
