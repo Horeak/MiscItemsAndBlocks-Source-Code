@@ -269,9 +269,7 @@ public class ModBlocks {
 		RegisterOreDictionary(new ItemStack(SilverOre), "oreSilver");
 		RegisterOreDictionary(new ItemStack(OrangeLog), "logWood");
 		RegisterOreDictionary(new ItemStack(OrangePlanks), "plankWood");
-		
-		
-		
+
 		
         GameRegistry.registerTileEntity(TileEntityXpStorage.class, "TileEntityXpStorage");
         GameRegistry.registerTileEntity(TileEntityBin.class, "TileEntityBin");
@@ -322,7 +320,7 @@ public class ModBlocks {
 		public static void Register(Block block, String Name, boolean AddTab){
 			
 			
-			if(Main.config.get("Enable/Disable Blocks", "Enable " + Name + "?", true).getBoolean(true)){
+			if(Main.config.get("Blocks", "Enable " + Name + "?", true).getBoolean(true)){
 				
 	        block.setBlockName(Name.toLowerCase().replace(" ", "_"));
 		        GameRegistry.registerBlock(block, Name.toLowerCase().replace(" ", "_"));
@@ -338,7 +336,7 @@ public static void Register(Block Block, Class<? extends ItemBlock> itemclass, S
 			
 		
 	
-	if(Main.config.get("Enable/Disable Blocks", "Enable " + Name + "?", true).getBoolean(true)){
+	if(Main.config.get("Blocks", "Enable " + Name + "?", true).getBoolean(true)){
 	
 	              Block.setBlockName(Name.toLowerCase().replace(" ", "_"));
 		        GameRegistry.registerBlock(Block, itemclass, Name.toLowerCase().replace(" ", "_"));

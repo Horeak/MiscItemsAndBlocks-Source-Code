@@ -1,6 +1,15 @@
 package com.miscitems.MiscItemsAndBlocks.Proxies;
 
+import java.io.InputStream;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import mantle.lib.client.MantleClientRegistry;
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -9,6 +18,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import org.w3c.dom.Document;
 
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.Entity.EntityPowerArrow;
@@ -28,6 +39,8 @@ import com.miscitems.MiscItemsAndBlocks.ItemRender.PowerCableItemRender;
 import com.miscitems.MiscItemsAndBlocks.ItemRender.TableItemRender;
 import com.miscitems.MiscItemsAndBlocks.ItemRender.TeleporterItemRender;
 import com.miscitems.MiscItemsAndBlocks.ItemRender.TrashBinItemRender;
+import com.miscitems.MiscItemsAndBlocks.Items.ManualInfo;
+import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
 import com.miscitems.MiscItemsAndBlocks.Lib.Colours;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Misc.ItemHelper;
@@ -219,7 +232,56 @@ public class ClientProxy extends ServerProxy {
     }
 
 
-
     
+    public static Document Guide;
+    public static ManualInfo manualData;
+    
+    
+    @Override
+    public void readManuals()
+    {
+        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+        Guide = readManual("/assets/miscitems/manuals/guide.xml", dbFactory);
+
+        RegisterGuideRecipes();
+        manualData = new ManualInfo();
+    }
+
+    Document readManual (String location, DocumentBuilderFactory dbFactory)
+    {
+        try
+        {
+            InputStream stream = Main.class.getResourceAsStream(location);
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(stream);
+            doc.getDocumentElement().normalize();
+            return doc;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public void RegisterGuideRecipes(){
+    	
+    	
+    	MantleClientRegistry.registerManualIcon("coal", new ItemStack(Items.coal, 1, 0));
+    	MantleClientRegistry.registerManualIcon("guide_book", new ItemStack(ModItems.GuideBook));
+    	MantleClientRegistry.registerManualIcon("xp_storage", new ItemStack(ModBlocks.XpStorage));
+    	MantleClientRegistry.registerManualIcon("writable_book", new ItemStack(Items.writable_book));
+    	
+    	
+ }
+    
+    
+    public ItemStack Stack(Item item){
+    	return new ItemStack(item, 1 ,0);
+    }
+    
+    public ItemStack Stack(Block block){
+    	return new ItemStack(block, 1 ,0);
+    }
 
 }

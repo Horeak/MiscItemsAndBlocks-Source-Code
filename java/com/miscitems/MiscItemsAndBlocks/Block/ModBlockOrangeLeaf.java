@@ -34,7 +34,7 @@ public class ModBlockOrangeLeaf extends BlockLeavesBase implements IShearable
         super(Material.leaves, false);
         this.setTickRandomly(true);
         this.setStepSound(soundTypeGlass);
-        this.setHardness(0.7F);
+        this.setHardness(0.2F);
     }
 
     @SideOnly(Side.CLIENT)

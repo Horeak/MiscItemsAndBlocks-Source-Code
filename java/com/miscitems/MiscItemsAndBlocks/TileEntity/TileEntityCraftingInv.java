@@ -53,16 +53,6 @@ private int sync = 0;
 private int supplyMatrixStart = 9;
 private int supplyMatrixSize = 18;
 
-//TODO
-//@Override
-//public void onInventoryChanged()
-//{
-//if(!containerInit && shouldUpdate){
-//findRecipe(false);
-//shouldUpdate = false;
-//}
-//super.onInventoryChanged();
-//}
 public TileEntityCraftingInv()
 {
 craftSupplyMatrix = new InventoryBasic("CraftingSupply", true, 18);
@@ -160,8 +150,8 @@ if(stack.stackSize == 0)
 {
 setInventorySlotContents(slot, null);
 }
-	//TODO
-//onInventoryChanged();
+
+OnInvChanged();
 }
 }
 return stack;
@@ -175,8 +165,7 @@ if(stack != null)
 {
 setInventorySlotContents(slot, null);
 }
-//TODO
-//onInventoryChanged();
+OnInvChanged();
 return stack;
 }
 
@@ -190,8 +179,7 @@ stack.stackSize = getInventoryStackLimit();
 }
 if(slot < 9 && !initSlots)
 markShouldUpdate();
-//TODO
-//onInventoryChanged();
+OnInvChanged();
 }
 
 public void emptyCraftingMatrix() {
@@ -386,6 +374,14 @@ public void closeInventory() {
 	
 }
 
+
+public void OnInvChanged(){
+	if(!containerInit && shouldUpdate){
+		findRecipe(false);
+		shouldUpdate = false;
+		}
+	
+}
 }
 
 

@@ -208,12 +208,12 @@ public class ModItems {
         DataChip = new ModItemDataChip().setUnlocalizedName("DataChip");
         Register(DataChip, "Data Chip");
         
-        Lens = new ModItemLens().setUnlocalizedName("Lens");
-        Register(Lens, "Lens");
         
 		CreativeBattery = new ModItemCreativeBattery().setUnlocalizedName("CreativeBattery");
 		Register(CreativeBattery, "Creative Battery");
 		
+		Lens = new ModItemLens().setUnlocalizedName("Lens");
+		Register(Lens, "Lens");
 		
 		
 		
@@ -240,7 +240,7 @@ public class ModItems {
 	public static void Register(Item Item, String Name){
 		
 		
-		if(Main.config.get("Enable/Disable Items", "Enable " + Name + "?", true).getBoolean(true)){
+		if(Main.config.get("Items", "Enable " + Name + "?", true).getBoolean(true)){
 			
         Item.setUnlocalizedName((Name.toLowerCase().replace(" ", "_")));
         GameRegistry.registerItem(Item, (Name.toLowerCase().replace(" ", "_")));

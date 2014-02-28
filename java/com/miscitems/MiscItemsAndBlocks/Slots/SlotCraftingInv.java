@@ -9,6 +9,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.PlayerDestroyItemEvent;
 
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityCraftingInv;
+
 public class SlotCraftingInv extends SlotCrafting
 {
 private EntityPlayer thePlayer;
@@ -16,11 +18,14 @@ private final IInventory craftMatrix;
 private IInventory craftResultMatrix;
 private IInventory craftSupplyMatrix;
 
+TileEntityCraftingInv tile;
+
 public SlotCraftingInv(Container parent, EntityPlayer player, IInventory craftingMatrix,
 IInventory craftingResultMatrix, IInventory craftingSupplyMatrix,
-int slotID, int xDisplay, int yDisplay)
+int slotID, int xDisplay, int yDisplay, TileEntityCraftingInv tile)
 {
 super(player, craftingMatrix, craftingResultMatrix, slotID, xDisplay, yDisplay);
+this.tile = tile;
 thePlayer = player;
 craftMatrix = craftingMatrix;
 craftResultMatrix = craftingResultMatrix;
@@ -30,6 +35,8 @@ craftSupplyMatrix = craftingSupplyMatrix;
 @Override
 public void onPickupFromSlot(EntityPlayer player, ItemStack stack)
     {
+	tile.OnInvChanged();
+	
 boolean found = false;
 boolean metaSens = false;
 //        GameRegistry.onItemCrafted(thePlayer, stack, craftMatrix);
@@ -135,5 +142,11 @@ break;
 @Override
 public ItemStack decrStackSize(int amount) {
 return this.inventory.getStackInSlot(this.slotNumber);
+}
+
+public void onSlotChange(ItemStack par1ItemStack, ItemStack par2ItemStack)
+{
+	super.onSlotChange(par1ItemStack, par2ItemStack);
+	tile.OnInvChanged();
 }
 }

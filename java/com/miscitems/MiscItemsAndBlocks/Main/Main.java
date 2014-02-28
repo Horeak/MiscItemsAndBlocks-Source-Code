@@ -129,7 +129,7 @@ public void preInit(FMLPreInitializationEvent event) {
         proxy.RegisterListeners();
     	
         proxy.registerRenderThings();
-        
+        proxy.readManuals();
         
     }
     

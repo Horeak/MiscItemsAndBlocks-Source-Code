@@ -25,7 +25,7 @@ public ContainerCraftingInv(InventoryPlayer invPlayer, TileEntityCraftingInv tpb
 tileEntity = tpb;
 craftSupplyMatrix = tileEntity.craftSupplyMatrix;
 addSlotToContainer(new SlotCraftingInv(this, invPlayer.player, tileEntity, tileEntity.craftResult,
-tileEntity, craftResultSlot, 128, 31));
+tileEntity, craftResultSlot, 128, 31, tileEntity));
 layoutContainer(invPlayer, tileEntity);
 bindPlayerInventory(invPlayer);
 containerChanged = true;

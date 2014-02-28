@@ -1,5 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Block;
 
+import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -100,4 +102,10 @@ public class ModBlockXpStorage extends BlockContainer{
 	    }
 
 }
+	   
+	   
+	    public int quantityDropped(Random p_149745_1_)
+	    {
+	        return 0;
+	    }
 }

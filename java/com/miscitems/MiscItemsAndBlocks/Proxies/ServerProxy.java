@@ -39,10 +39,10 @@ public class ServerProxy{
 
 	public void registerClientTickHandler() {
 
-		
-		
-		
 	}
+	
+
+    	
 	
 	public String getMinecraftVersion() {
 return Loader.instance().getMinecraftModContainer().getVersion();
@@ -63,7 +63,10 @@ public void handleTileWithItemPacket(int x, int y, int z, ForgeDirection orienta
 }
 
 
-
+public void readManuals()
+{
+	
+}
 
 
 }
