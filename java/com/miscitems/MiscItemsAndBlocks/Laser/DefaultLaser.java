@@ -18,7 +18,7 @@ public void performActionOnEntitiesServer(List<Entity> entities, int direction, 
 	if(Damage && LensPower > 1){
 		if(entities.size() > 0)
 		for(int i = 0; i < entities.size(); i++){
-			entities.get(i).setFire(5);
+			entities.get(i).setFire(LensPower);
 			entities.get(i).attackEntityFrom(new DamageSource("laser.damage"), LensPower - 2);
 			
 			

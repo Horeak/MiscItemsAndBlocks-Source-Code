@@ -1,4 +1,4 @@
-package com.miscitems.MiscItemsAndBlocks.Render;
+package com.miscitems.MiscItemsAndBlocks.Event;
 
 import java.awt.Graphics;
 import java.awt.Image;
@@ -19,9 +19,10 @@ import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.ReflectionHelper;
 
-public class CapeRender
+public class CapeRenderEvent
 {
 
     private final String serverLocation = "https://raw.github.com/tm1990/ModInfoRepo/master/DevCapes.txt";
@@ -31,15 +32,14 @@ public class CapeRender
     private HashMap<String, String> cloaks = new HashMap<String, String>();
     private ArrayList<AbstractClientPlayer> capePlayers = new ArrayList<AbstractClientPlayer>();
 
-    public static CapeRender instance;
+    public static CapeRenderEvent instance;
 
-    public CapeRender()
+    public CapeRenderEvent()
     {
         buildCloakURLDatabase();
         instance = this;
     }
-
-   @EventHandler
+	@SubscribeEvent
     public void onPreRenderSpecials (RenderPlayerEvent.Specials.Pre event)
     {
         if (Loader.isModLoaded("shadersmod"))
@@ -61,8 +61,8 @@ public class CapeRender
 
                 capePlayers.add(abstractClientPlayer);
 
-                ReflectionHelper.setPrivateValue(AbstractClientPlayer.class, abstractClientPlayer, false, "textureUploaded");
-               // abstractClientPlayer.getTextureCape().textureUploaded = false;
+               // ReflectionHelper.setPrivateValue(AbstractClientPlayer.class, abstractClientPlayer, false, "downloadImageCape.textureUploaded");
+                abstractClientPlayer.getTextureCape().textureUploaded = false;
                 new Thread(new CloakThread(abstractClientPlayer, cloakURL)).start();
                 event.renderCape = true;
             }
@@ -134,8 +134,8 @@ public class CapeRender
                 Image cape = new ImageIcon(new URL(cloakURL)).getImage();
                 BufferedImage bo = new BufferedImage(cape.getWidth(null), cape.getHeight(null), BufferedImage.TYPE_INT_ARGB);
                 bo.getGraphics().drawImage(cape, 0, 0, null);
-                ReflectionHelper.setPrivateValue(AbstractClientPlayer.class, abstractClientPlayer, bo, "bufferedImage");
-               // abstractClientPlayer.getTextureCape().bufferedImage = bo;
+               // ReflectionHelper.setPrivateValue(AbstractClientPlayer.class, abstractClientPlayer, bo, "downloadImageCape.bufferedImage");
+                abstractClientPlayer.getTextureCape().bufferedImage = bo;
             }
             catch (MalformedURLException e)
             {

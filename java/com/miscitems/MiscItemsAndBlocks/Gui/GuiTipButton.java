@@ -1,5 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Gui;
 
+import com.miscitems.MiscItemsAndBlocks.Lib.ChatMessageHandler;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.util.IChatComponent;
@@ -25,8 +27,8 @@ public class GuiTipButton extends GuiButton{
     	if(par2 > x + 149 && par2 < x + 149 + 20){
     		if(par3 > y + 4 && par3 < y + 4 + 20){
     			
-    			mc.getMinecraft().thePlayer.addChatComponentMessage(IChatComponent.Serializer.func_150699_a("["+ StatCollector.translateToLocal("words.info") +"]" + MessageList[Current]));
-    			
+    			ChatMessageHandler.sendChatToPlayer(mc.getMinecraft().thePlayer, "["+ StatCollector.translateToLocal("words.info") +"]" + MessageList[Current]);
+
 				if(MessageList[Current + 1] == null){
 					Current = 0;
 				}else{

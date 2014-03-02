@@ -196,7 +196,11 @@ public class ModBlockTomatoPlant extends BlockCrops {
 	        par1World.setBlockMetadataWithNotify(par2, par3, par4, l, 2);
 	    }
 	    
-	    
+	    @SideOnly(Side.CLIENT)
+	    public Item getItem(World p_149694_1_, int p_149694_2_, int p_149694_3_, int p_149694_4_)
+	    {
+	        return this.getSeedItem();
+	    }
 
 
 }

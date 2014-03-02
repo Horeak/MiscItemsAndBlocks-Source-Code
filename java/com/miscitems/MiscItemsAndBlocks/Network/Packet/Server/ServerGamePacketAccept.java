@@ -8,6 +8,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.IChatComponent;
 
+import com.miscitems.MiscItemsAndBlocks.Lib.ChatMessageHandler;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Misc.GameInvite;
 import com.miscitems.MiscItemsAndBlocks.Network.IPacket;
@@ -43,7 +44,7 @@ public class ServerGamePacketAccept extends IPacket {
         GameInvite tr = Main.proxy.tickHandlerServer.playerGameRequests.get(player.getCommandSenderName());
         if(tr == null)
         {
-                player.addChatComponentMessage(IChatComponent.Serializer.func_150699_a("Cannot Accept Game Invite"));
+        	ChatMessageHandler.sendChatToPlayer(player, "Cannot Acceppt Game Invite");
         }
         
         
@@ -58,7 +59,8 @@ public class ServerGamePacketAccept extends IPacket {
         }
         else
         {
-                player.addChatComponentMessage(IChatComponent.Serializer.func_150699_a("Cannot Accept Game Invite"));
+        	
+        	ChatMessageHandler.sendChatToPlayer(player, "Cannot Acceppt Game Invite");
 
         }
         

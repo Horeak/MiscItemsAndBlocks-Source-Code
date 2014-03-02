@@ -1,6 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Items;
 
 import java.util.List;
+import java.util.Set;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -18,6 +19,7 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
+import com.google.common.collect.Sets;
 import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
 
 import cpw.mods.fml.relauncher.Side;
@@ -25,11 +27,17 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ModItemHeatDrill extends ModItemPowerTool{
 
-	//private static Block[] MineableBlocks = new Block[]{Block.stone, Block.dirt, Block.gravel, Block.sand, Block.oreCoal, Block.oreDiamond, Block.oreEmerald, Block.oreGold, Block.oreIron, Block.oreLapis, Block.oreNetherQuartz, Block.oreRedstone, Block.oreRedstoneGlowing, Block.grass, ModBlocks.SilverOre, Block.obsidian, Block.cobblestone, Block.stoneDoubleSlab, Block.stoneSingleSlab, Block.stone, Block.sandStone, Block.cobblestoneMossy, Block.oreIron, Block.oreCoal, Block.blockGold, Block.oreGold, Block.oreDiamond, Block.blockDiamond, Block.ice, Block.netherrack, Block.oreLapis, Block.blockLapis, Block.oreRedstone, Block.oreRedstoneGlowing, Block.rail, Block.railDetector, Block.railPowered, Block.planks, Block.bookShelf, Block.wood, Block.chest, Block.stoneDoubleSlab, Block.stoneSingleSlab, Block.pumpkin, Block.pumpkinLantern, Block.grass, Block.dirt, Block.sand, Block.gravel, Block.snow, Block.blockSnow, Block.blockClay, Block.tilledField, Block.slowSand, Block.mycelium,};
+	
+    private static final Set field_150916_c = Sets.newHashSet(new Block[] {Blocks.grass, Blocks.dirt, Blocks.sand, Blocks.gravel, Blocks.snow_layer, Blocks.snow, Blocks.clay, Blocks.farmland, Blocks.soul_sand, Blocks.mycelium});
+    
+    private static final Set field_150915_c = Sets.newHashSet(new Block[] {Blocks.cobblestone, Blocks.double_stone_slab, Blocks.stone_slab, Blocks.stone, Blocks.sandstone, Blocks.mossy_cobblestone, Blocks.iron_ore, Blocks.iron_block, Blocks.coal_ore, Blocks.gold_block, Blocks.gold_ore, Blocks.diamond_ore, Blocks.diamond_block, Blocks.ice, Blocks.netherrack, Blocks.lapis_ore, Blocks.lapis_block, Blocks.redstone_ore, Blocks.lit_redstone_ore, Blocks.rail, Blocks.detector_rail, Blocks.golden_rail, Blocks.activator_rail});
+	
+    static Set Mineable = Sets.newHashSet(field_150915_c, field_150916_c);
+    
 	
 	
 	public ModItemHeatDrill() {
-		super(0.1F, ToolMaterial.EMERALD, null);
+		super(0.1F, ToolMaterial.EMERALD, Mineable);
 		
 		this.efficiencyOnProperMaterial = 8;
 		this.setMaxDamage(930);

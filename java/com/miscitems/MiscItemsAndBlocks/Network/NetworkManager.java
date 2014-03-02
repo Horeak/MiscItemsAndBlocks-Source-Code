@@ -59,9 +59,7 @@ public class NetworkManager {
     
     
     public static Packet populatePacket(IPacket ModPacket) {
-
         byte[] data = ModPacket.populate();
-
         S3FPacketCustomPayload packet250 = new S3FPacketCustomPayload(Refrence.Channel, data);
 
         return packet250;

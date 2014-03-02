@@ -104,16 +104,16 @@ public class ModItems {
 		SilverArrow = new ModItemSilverArrow().setUnlocalizedName("SilverArrow");
 		Register(SilverArrow, StatCollector.translateToLocal("silverarrow"));
 		
-        DivingHelmet = (new ModItemPowerArmor(PowerArmor, Main.proxy.addArmor("Power"), 0, 1, "DivingHelmet")).setUnlocalizedName("DivingHelmet");
+        DivingHelmet = (new ModItemPowerArmor(PowerArmor, Main.proxy.addArmor("Power"), 0, 1, "PowerarmorHelmet")).setUnlocalizedName("Powerarmor Helmet");
         Register(DivingHelmet, StatCollector.translateToLocal("powerarmor.helmet"));
 		
-        FlightChestPlate = (new ModItemPowerArmor(PowerArmor, Main.proxy.addArmor("Power"), 1, 2, "FlightChestplate")).setUnlocalizedName("FlightChestplate");
+        FlightChestPlate = (new ModItemPowerArmor(PowerArmor, Main.proxy.addArmor("Power"), 1, 2, "PowerarmorChestplate")).setUnlocalizedName("Powerarmor Chestplate");
         Register(FlightChestPlate, StatCollector.translateToLocal("powerarmor.chestplate"));
         
-        RunningLeggings = (new ModItemPowerArmor(PowerArmor, Main.proxy.addArmor("Power"), 2, 3, "RunningLeggings")).setUnlocalizedName("RunningLeggings");
+        RunningLeggings = (new ModItemPowerArmor(PowerArmor, Main.proxy.addArmor("Power"), 2, 3, "PowerarmorLeggings")).setUnlocalizedName("Powerarmor Leggings");
         Register(RunningLeggings, StatCollector.translateToLocal("powerarmor.leggings"));
         
-        JumpingBoots = (new ModItemPowerArmor(PowerArmor, Main.proxy.addArmor("Power"), 3, 4, "JumpingBoots")).setUnlocalizedName("JumpingBoots");
+        JumpingBoots = (new ModItemPowerArmor(PowerArmor, Main.proxy.addArmor("Power"), 3, 4, "PowerarmorBoots")).setUnlocalizedName("Powerarmor Boots");
         Register(JumpingBoots, StatCollector.translateToLocal("powerarmor.boots"));
         
         Cardboard = new ModItemCardboard().setUnlocalizedName("Cardboard");

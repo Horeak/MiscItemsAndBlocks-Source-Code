@@ -74,7 +74,6 @@ public class ModGuiSlider extends GuiButton {
     }
 
     public void mouseReleased(int par1, int par2) {
-    	System.out.println("t");
             this.dragging = false;
     }
 }

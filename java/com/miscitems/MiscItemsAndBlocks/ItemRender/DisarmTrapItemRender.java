@@ -50,7 +50,7 @@ public class DisarmTrapItemRender implements IItemRenderer
 		TrapModel model = new TrapModel();
 		    
 		    GL11.glPushMatrix();
-	        GL11.glTranslatef((float) 0.5F, (float) 1.5F, (float) 0.5F);
+	        GL11.glTranslatef((float) 0.5F, (float) 1.9F, (float) 0.5F);
 	        
 	        
 	       Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("textures/blocks/quartz_block_top.png"));
@@ -59,7 +59,7 @@ public class DisarmTrapItemRender implements IItemRenderer
 	     GL11.glPushMatrix();
 	        GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
 	        
-	        model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F, false);
+	        model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F, true);
 	        
 	        
 	        GL11.glPopMatrix();

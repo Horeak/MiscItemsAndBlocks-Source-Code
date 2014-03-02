@@ -10,6 +10,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import com.miscitems.MiscItemsAndBlocks.Gui.GuiGame_1;
 import com.miscitems.MiscItemsAndBlocks.Network.IPacket;
 
+import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.common.FMLCommonHandler;
+
 public class ClientGamePacketChange extends IPacket{
 
 	int Number;
@@ -49,11 +52,11 @@ public class ClientGamePacketChange extends IPacket{
 	@Override
 	public void execute(EntityPlayer player) {
 		
-		
+	     if (FMLCommonHandler.instance().getEffectiveSide().isClient())
 		if((Player == 1 && Minecraft.getMinecraft().thePlayer.getCommandSenderName().equalsIgnoreCase(Player_2)) || (Player == 2 && Minecraft.getMinecraft().thePlayer.getCommandSenderName().equalsIgnoreCase(Player_1)) ){
       		
     		
-    		if(Minecraft.getMinecraft().currentScreen instanceof GuiGame_1){
+    		if(FMLClientHandler.instance().getClient().currentScreen instanceof GuiGame_1){
     			GuiGame_1 gui = (GuiGame_1)Minecraft.getMinecraft().currentScreen;
     			
 

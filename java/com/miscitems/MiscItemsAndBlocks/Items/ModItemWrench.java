@@ -9,6 +9,7 @@ import net.minecraft.util.IChatComponent;
 import net.minecraft.world.World;
 
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlockPowerCable;
+import com.miscitems.MiscItemsAndBlocks.Lib.ChatMessageHandler;
 import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
 
 import cpw.mods.fml.relauncher.Side;
@@ -47,7 +48,7 @@ public class ModItemWrench extends Item{
 		    		    	Meta = world.getBlockMetadata(x, y, z);
 		    	    	}
 		    	    	
-		    	    		player.addChatMessage(IChatComponent.Serializer.func_150699_a(ModBlockPowerCable.messages[Meta]));
+		    			ChatMessageHandler.sendChatToPlayer(player, ModBlockPowerCable.messages[Meta]);
 
 		    			
 		    		}

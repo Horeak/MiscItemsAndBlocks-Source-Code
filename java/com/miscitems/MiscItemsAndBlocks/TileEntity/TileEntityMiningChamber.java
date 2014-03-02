@@ -349,7 +349,7 @@ public class TileEntityMiningChamber extends TileEntityPowerInv{
                 this.SetPower(this.GetPower() - 1);
                 this.getStackInSlot(ToolSlot).attemptDamageItem(1, this.worldObj.rand);
                 
-                this.worldObj.destroyBlockInWorldPartially(0, x, y, z, 0);
+                this.worldObj.setBlock(x, y, z, Blocks.air);
                
         Time = 0;
     	
@@ -377,12 +377,14 @@ public class TileEntityMiningChamber extends TileEntityPowerInv{
     		if(LastY > 0)
     			LastY--;
     		
+    		
     		CanMine = true;
     		Ready = false;
     		break;
     		
     	case 2:
-    		LastY = LastY + 1;
+    		if(LastY + 1 < yCoord)
+    		LastY += 1;
     		
     		CanMine = true;
     		Ready = false;
@@ -426,6 +428,7 @@ public class TileEntityMiningChamber extends TileEntityPowerInv{
     	
     	
 
+    	
     }
     
 

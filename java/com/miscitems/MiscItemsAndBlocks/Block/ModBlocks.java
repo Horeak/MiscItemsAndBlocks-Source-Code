@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.oredict.OreDictionary;
 
 import com.miscitems.MiscItemsAndBlocks.GamePart.ModBlockGamePart;
@@ -76,7 +77,7 @@ public class ModBlocks {
 	public static Block TomatoPlant;
 	public static Block Mill;
 	public static Block Squezer;
-	public static Block OrangeSapling;
+	public static IPlantable OrangeSapling;
 	public static Block OrangeLeaf;
 	public static Block PizzaOven;
 	public static Block OrangeLog;
@@ -175,7 +176,7 @@ public class ModBlocks {
         Register(OrangeLeaf, "Orange Tree Leaves", true);
         
         OrangeSapling = new ModBlockOrangeSapling();
-        Register(OrangeSapling, "Orange Tree Sapling", true);
+        Register((Block)OrangeSapling, "Orange Tree Sapling", true);
         
         
         //Renamed to Oven
@@ -245,7 +246,7 @@ public class ModBlocks {
         WireLessRedstone = new ModBlockWirelessRedstone();
         Register(WireLessRedstone, "Wireless Redstone", true);
         
-        SilverBlock = new ModBlockEmptyBlock().setBlockTextureName(Refrence.Mod_Id + ":" + "SilverBlock").setHardness(1.7F);
+        SilverBlock = new ModBlockEmptyBlock().setBlockTextureName(Refrence.Mod_Id + ":" + "SilverBlock").setHardness(2.7F);
         Register(SilverBlock, "Silver Block", true);
         
         WirelessItemTrans = new ModBlockWirelessItemTransfer();

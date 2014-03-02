@@ -1,5 +1,8 @@
 package com.miscitems.MiscItemsAndBlocks.Proxies;
 
+import java.util.ArrayList;
+
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -11,6 +14,7 @@ import cpw.mods.fml.common.Loader;
 
 public class ServerProxy{
 
+	public static ArrayList<EntityPlayer> JoinedPlayers = new ArrayList<EntityPlayer>();
 	
     public static TickHandlerClient tickHandlerClient;
     public static ServerTickHandler tickHandlerServer;

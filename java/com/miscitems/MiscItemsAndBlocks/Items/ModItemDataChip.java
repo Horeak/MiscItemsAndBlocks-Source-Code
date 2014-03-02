@@ -10,6 +10,7 @@ import net.minecraft.util.IChatComponent;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
+import com.miscitems.MiscItemsAndBlocks.Lib.ChatMessageHandler;
 import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
 
 import cpw.mods.fml.relauncher.Side;
@@ -63,7 +64,7 @@ public class ModItemDataChip extends Item{
 	    	if(player.isSneaking() && item.getItemDamage() == 1){
 	    		item.setTagCompound(null);
 	    		item.setItemDamage(0);
-	    		player.addChatMessage(IChatComponent.Serializer.func_150699_a("Removed Data from Chip"));
+	    		ChatMessageHandler.sendChatToPlayer(player, "Removed Data from Chip");
 	    		
 	    	}
 	    	}

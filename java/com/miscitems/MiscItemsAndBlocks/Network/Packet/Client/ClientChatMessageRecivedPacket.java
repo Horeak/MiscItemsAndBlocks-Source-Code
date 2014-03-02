@@ -10,6 +10,7 @@ import com.miscitems.MiscItemsAndBlocks.Gui.GuiChat;
 import com.miscitems.MiscItemsAndBlocks.Network.IPacket;
 
 import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.common.FMLCommonHandler;
 
 public class ClientChatMessageRecivedPacket extends IPacket{
 
@@ -40,7 +41,7 @@ public class ClientChatMessageRecivedPacket extends IPacket{
 	@Override
 	public void execute(EntityPlayer player) {
 		
-		
+	     if (FMLCommonHandler.instance().getEffectiveSide().isClient()){
 		String fullLine1 = Line;
 		
 		
@@ -52,4 +53,5 @@ public class ClientChatMessageRecivedPacket extends IPacket{
 		}
 	}
 
+	}
 }

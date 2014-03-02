@@ -101,13 +101,13 @@ public class ModBlockDisarmTrap extends BlockContainer{
 			
 			if(!player.capabilities.isCreativeMode){
 			player.inventory.dropAllItems();
-			entity.attackEntityFrom(DamageSource.anvil, 2);
+			entity.attackEntityFrom(new DamageSource("step.disarm"), 2);
 			}
 		}else{
 			if(entity instanceof EntityItem){
 				
 		}else{
-			entity.attackEntityFrom(DamageSource.anvil, 2);
+			entity.attackEntityFrom(new DamageSource("step.disarm"), 2);
 			
 			
 		}

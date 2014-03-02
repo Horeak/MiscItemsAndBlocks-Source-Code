@@ -10,6 +10,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import com.miscitems.MiscItemsAndBlocks.Gui.GuiGame_1;
 import com.miscitems.MiscItemsAndBlocks.Network.IPacket;
 
+import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.common.FMLCommonHandler;
+
 public class ClientGamePacketRestart extends IPacket{
 
 	public ClientGamePacketRestart(){}
@@ -27,7 +30,8 @@ public class ClientGamePacketRestart extends IPacket{
 	@Override
 	public void execute(EntityPlayer player) {
 
-    if(Minecraft.getMinecraft().currentScreen instanceof GuiGame_1){
+	     if (FMLCommonHandler.instance().getEffectiveSide().isClient())
+    if(FMLClientHandler.instance().getClient().currentScreen instanceof GuiGame_1){
 		GuiGame_1 gui = (GuiGame_1)Minecraft.getMinecraft().currentScreen;
 		
 		for(int i = 0; i < gui.Buttons.length; i++){

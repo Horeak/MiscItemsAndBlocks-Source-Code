@@ -1,6 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Items;
 
 import java.util.List;
+import java.util.Set;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -21,6 +22,8 @@ import net.minecraft.util.StatCollector;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
+import com.google.common.collect.Sets;
+import com.miscitems.MiscItemsAndBlocks.Lib.ChatMessageHandler;
 import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
 
 import cpw.mods.fml.relauncher.Side;
@@ -36,12 +39,16 @@ public class ModItemDrill extends ModItemPowerTool{
 	IIcon DrillOrange;
 	IIcon DrillRed;
 	
+    private static final Set field_150916_c = Sets.newHashSet(new Block[] {Blocks.grass, Blocks.dirt, Blocks.sand, Blocks.gravel, Blocks.snow_layer, Blocks.snow, Blocks.clay, Blocks.farmland, Blocks.soul_sand, Blocks.mycelium});
+    
+    private static final Set field_150915_c = Sets.newHashSet(new Block[] {Blocks.cobblestone, Blocks.double_stone_slab, Blocks.stone_slab, Blocks.stone, Blocks.sandstone, Blocks.mossy_cobblestone, Blocks.iron_ore, Blocks.iron_block, Blocks.coal_ore, Blocks.gold_block, Blocks.gold_ore, Blocks.diamond_ore, Blocks.diamond_block, Blocks.ice, Blocks.netherrack, Blocks.lapis_ore, Blocks.lapis_block, Blocks.redstone_ore, Blocks.lit_redstone_ore, Blocks.rail, Blocks.detector_rail, Blocks.golden_rail, Blocks.activator_rail});
 	
-	
+    static Set Mineable = Sets.newHashSet(field_150915_c, field_150916_c);
+    
 	
 	
 	protected ModItemDrill(ToolMaterial par2) {
-		super(0, par2, null);
+		super(0, par2, Mineable);
 		this.setMaxStackSize(1);
 		this.setMaxDamage(MaxCharge);
 		this.efficiencyOnProperMaterial = 8;
@@ -156,7 +163,7 @@ public class ModItemDrill extends ModItemPowerTool{
 	    		if(!HasInfo(item)){
 	    			compound.setString("Mode", StatCollector.translateToLocal("items.drill.mode.2"));
 	    		if(world.isRemote)
-  				  player.addChatMessage(IChatComponent.Serializer.func_150699_a(StatCollector.translateToLocal("items.drill.change.2")));
+	    			ChatMessageHandler.sendChatToPlayer(player, StatCollector.translateToLocal("items.drill.change.2"));
 	    		}
 	    		
 	    		if(HasInfo(item)){
@@ -166,17 +173,17 @@ public class ModItemDrill extends ModItemPowerTool{
 	    				  
 	    				  compound.setString("Mode", StatCollector.translateToLocal("items.drill.mode.2"));
 	    		    		if(world.isRemote)
-	    				  player.addChatMessage(IChatComponent.Serializer.func_150699_a(StatCollector.translateToLocal("items.drill.change.2")));
+	    		    			ChatMessageHandler.sendChatToPlayer(player, StatCollector.translateToLocal("items.drill.change.2"));
 	    				  
 	    			  }else if (Compound.getString("Mode") == StatCollector.translateToLocal("items.drill.mode.2")){
 	    				  compound.setString("Mode", StatCollector.translateToLocal("items.drill.mode.3"));
 	    		    		if(world.isRemote)
-	    				  player.addChatMessage(IChatComponent.Serializer.func_150699_a(StatCollector.translateToLocal("items.drill.change.3")));
+	    		    			ChatMessageHandler.sendChatToPlayer(player, StatCollector.translateToLocal("items.drill.change.3"));
 	    				  
 	    			  }else if (Compound.getString("Mode") == StatCollector.translateToLocal("items.drill.mode.3")){
 	    				  compound.setString("Mode", StatCollector.translateToLocal("items.drill.mode.1"));
 	    		    		if(world.isRemote)
-	    				  player.addChatMessage(IChatComponent.Serializer.func_150699_a(StatCollector.translateToLocal("items.drill.change.1")));
+	    		    			ChatMessageHandler.sendChatToPlayer(player, StatCollector.translateToLocal("items.drill.change.1"));
 	    				  
 	    			  }else{
 	    				  compound.setString("Mode", StatCollector.translateToLocal("items.drill.mode.2"));

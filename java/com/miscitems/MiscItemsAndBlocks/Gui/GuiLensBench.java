@@ -117,7 +117,9 @@ public class GuiLensBench extends GuiContainer{
         
         
         //Reset Color
-        buttonList.add(new GuiButton(13, posX + 93, posY + 130, 70, 20, "Reset Color"));
+        buttonList.add(new GuiButton(13, posX + 90, posY + 120, 70, 20, "Reset Color"));
+        
+        buttonList.add(new GuiButton(14, posX + 86, posY + 142, 80, 20, "Load from Lens"));
         
         buttonList.add(DamageBTN);
         buttonList.add(RedstoneBTN);
@@ -259,6 +261,49 @@ public class GuiLensBench extends GuiContainer{
 	    	}
 		}
 			
+		
+		if(id == 14){
+			 
+   		 if(this.tile.getStackInSlot(0) != null){
+   				if(this.tile.getStackInSlot(0).stackTagCompound != null){
+   					Red = this.tile.getStackInSlot(0).stackTagCompound.getInteger("Red");
+   					Green = this.tile.getStackInSlot(0).stackTagCompound.getInteger("Green");
+   					Blue = this.tile.getStackInSlot(0).stackTagCompound.getInteger("Blue");
+   					
+   					Power = this.tile.getStackInSlot(0).stackTagCompound.getInteger("Power");
+   					Strength = this.tile.getStackInSlot(0).stackTagCompound.getInteger("Strength");
+   					
+   					Color = this.tile.getStackInSlot(0).stackTagCompound.getBoolean("Color");
+   					
+   					if(this.tile.getStackInSlot(0).stackTagCompound.getBoolean("TransferPower")){
+   						TransferPower = true;
+   						PowerBTN.Mode = 1;
+   					}else{
+   						TransferPower = false;
+   						PowerBTN.Mode = 2;
+   					}
+   					
+   					if(this.tile.getStackInSlot(0).stackTagCompound.getBoolean("Redstone")){
+   						Redstone = true;
+   						RedstoneBTN.Mode = 1;
+   					}else{
+   						Redstone = false;
+   						RedstoneBTN.Mode = 2;
+   					}
+   					
+   					
+    					if(this.tile.getStackInSlot(0).stackTagCompound.getBoolean("Safe")){
+    						Damage = false;
+   						DamageBTN.Mode = 2;
+    					}else{
+    						Damage = true;
+   						DamageBTN.Mode = 1;
+    					}
+   					
+   				}
+   				
+   			}
+		}
 
 
     	if(tile.getStackInSlot(0) != null){

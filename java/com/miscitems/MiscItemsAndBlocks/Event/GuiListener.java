@@ -1,9 +1,14 @@
-package com.miscitems.MiscItemsAndBlocks.Gui;
+package com.miscitems.MiscItemsAndBlocks.Event;
+
+import java.util.ArrayList;
+
+import com.miscitems.MiscItemsAndBlocks.Gui.GuiOverlayInfoScreen;
 
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class GuiListener {
 	
@@ -15,10 +20,10 @@ public class GuiListener {
 	}
 	
 
-@EventHandler
+	@SubscribeEvent 
 	public void onRenderGameOverlay(RenderGameOverlayEvent event) {
 		if (event.type == ElementType.TEXT) {
-			if (!event.isCancelable() && !Minecraft.getMinecraft().playerController.isInCreativeMode()) {
+			if (!Minecraft.getMinecraft().playerController.isInCreativeMode()) {
 				overlay.renderOverlay();
 			}
 		} 

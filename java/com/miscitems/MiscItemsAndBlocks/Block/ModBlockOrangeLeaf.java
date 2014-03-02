@@ -33,7 +33,7 @@ public class ModBlockOrangeLeaf extends BlockLeavesBase implements IShearable
     {
         super(Material.leaves, false);
         this.setTickRandomly(true);
-        this.setStepSound(soundTypeGlass);
+        this.setStepSound(soundTypeGrass);
         this.setHardness(0.2F);
     }
 
@@ -253,7 +253,7 @@ public class ModBlockOrangeLeaf extends BlockLeavesBase implements IShearable
 
     public Item getItemDropped(int par1, Random par2Random, int par3)
     {
-        return new ItemStack(ModBlocks.OrangeSapling).getItem();
+        return new ItemStack((Block)ModBlocks.OrangeSapling).getItem();
     }
 
 

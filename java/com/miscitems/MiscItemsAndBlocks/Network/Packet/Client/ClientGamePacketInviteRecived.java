@@ -9,8 +9,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IChatComponent;
 
+import com.miscitems.MiscItemsAndBlocks.Lib.ChatMessageHandler;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Network.IPacket;
+
+import cpw.mods.fml.common.FMLCommonHandler;
 
 public class ClientGamePacketInviteRecived extends IPacket{
 
@@ -34,13 +37,14 @@ public class ClientGamePacketInviteRecived extends IPacket{
 	@Override
 	public void execute(EntityPlayer player) {
 		
-		
+	     if (FMLCommonHandler.instance().getEffectiveSide().isClient()){
 		Main.proxy.tickHandlerClient.tradeReq = Player;
 		
         Minecraft.getMinecraft().theWorld.playSoundEffect((float)Minecraft.getMinecraft().thePlayer.posX, (float)Minecraft.getMinecraft().thePlayer.posY, (float)Minecraft.getMinecraft().thePlayer.posZ, "random.successful_hit", 1.0F, 1.0F);
 
-        Minecraft.getMinecraft().thePlayer.addChatMessage(IChatComponent.Serializer.func_150699_a(EnumChatFormatting.GOLD + "You have recived a game invite to play tic tac toe!"));
+        ChatMessageHandler.sendChatToPlayer(Minecraft.getMinecraft().thePlayer, EnumChatFormatting.GOLD + "You have recived a game invite to play tic tac toe!");
         
+	}
 	}
 
 }

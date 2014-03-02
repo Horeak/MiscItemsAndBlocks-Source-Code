@@ -8,6 +8,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -31,7 +32,7 @@ public class ChannelHandler extends FMLIndexedMessageToMessageCodec<IPacket>{
      DataOutputStream dos = new DataOutputStream(bos);
     
      if (FMLCommonHandler.instance().getEffectiveSide().isClient())
-         dos.writeUTF(FMLClientHandler.instance().getClientPlayerEntity().getCommandSenderName());
+         dos.writeUTF(Minecraft.getMinecraft().theWorld.getPlayerEntityByName(Minecraft.getMinecraft().thePlayer.getCommandSenderName()).getCommandSenderName());
 
      msg.write(dos);
      bytes.writeBytes(bos.toByteArray());
@@ -49,14 +50,16 @@ DataInputStream dis = new DataInputStream(bis);
 
 EntityPlayer player;
 
-if(FMLCommonHandler.instance().getEffectiveSide().isClient())
-player = FMLClientHandler.instance().getClientPlayerEntity();
-else
+if(FMLCommonHandler.instance().getEffectiveSide().isClient()){
+	player = (EntityPlayer)Minecraft.getMinecraft().theWorld.getPlayerEntityByName(Minecraft.getMinecraft().thePlayer.getCommandSenderName());
+}else{
+
 player = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().getPlayerForUsername(dis.readUTF());
 
+}
 
 msg.read(dis);
-msg.execute(player);
+msg.execute((EntityPlayer)player);
 }
      catch(Exception e) {
 e.printStackTrace();

@@ -3,6 +3,7 @@ package com.miscitems.MiscItemsAndBlocks.Misc;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.IChatComponent;
 
+import com.miscitems.MiscItemsAndBlocks.Lib.ChatMessageHandler;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.Client.ClientGamePacketBegin;
 
@@ -34,9 +35,8 @@ public class GameInfo
         public void terminate(EntityPlayer terminator)
         {
         	terminate = true;
-        	
-        	Player_1.addChatComponentMessage(IChatComponent.Serializer.func_150699_a("Game was closed."));
-        	Player_2.addChatComponentMessage(IChatComponent.Serializer.func_150699_a("Game was closed."));
+        	ChatMessageHandler.sendChatToPlayer(Player_1, "Game was closed.");
+        	ChatMessageHandler.sendChatToPlayer(Player_2, "Game was closed.");
         	
         }
     

@@ -19,6 +19,8 @@ public class GuiMiningChamber extends GuiContainer{
 	private TileEntityMiningChamber tile;
 	private final ResourceLocation Texture = new ResourceLocation("miscitems" , "textures/gui/MiningChamberGui.png");
 	
+	GuiButton Start;
+	
 	public GuiMiningChamber(InventoryPlayer InvPlayer, TileEntityMiningChamber tile) {
 		super(new ContainerMiningChamber(InvPlayer, tile));
 		
@@ -60,7 +62,7 @@ public class GuiMiningChamber extends GuiContainer{
 	         if(YLeft > 0)
 	         fontRendererObj.drawString(StatCollector.translateToLocal("words.mining") + ": " + YLeft + " "+  StatCollector.translateToLocal("words.deeper") + ".", x + 59, y + 37, 0x000000);
 	         else
-		         fontRendererObj.drawString(StatCollector.translateToLocal("words.mining") + "0" + StatCollector.translateToLocal("words.deeper") , x + 59, y + 37, 0x000000);
+		         fontRendererObj.drawString(StatCollector.translateToLocal("words.mining") + " " + 0 + " " + StatCollector.translateToLocal("words.deeper") , x + 59, y + 37, 0x000000);
 	         fontRendererObj.drawString(StatCollector.translateToLocal("gui.string.miningdownto") + ": " + LastY, x + 59, y + 47, 0x000000);
 	         fontRendererObj.drawString(StatCollector.translateToLocal("gui.string.currentlyat") + ": " + CurrentY, x + 59, y + 57, 0x000000);
 	         
@@ -76,10 +78,12 @@ public class GuiMiningChamber extends GuiContainer{
 		
 		int Meta = this.tile.getWorldObj().getBlockMetadata(tile.xCoord, tile.yCoord, tile.zCoord);
 		
+		Start = new GuiButton(3, guiLeft + 5, guiTop + 86, 40, 20, StatCollector.translateToLocal("words.start"));
+		
 		buttonList.add(new GuiButton(1, guiLeft + 48, guiTop + 86, 19, 20, "y-"));
 		buttonList.add(new GuiButton(2, guiLeft + 70,  guiTop + 86, 19, 20, "y+"));
 		
-		buttonList.add(new GuiButton(3, guiLeft + 5, guiTop + 86, 40, 20, Meta == 1 ? StatCollector.translateToLocal("words.stop") : StatCollector.translateToLocal("words.start")));
+		buttonList.add(Start);
 
 		buttonList.add(new GuiButton(4, guiLeft + 92,  guiTop + 86, 79, 20, StatCollector.translateToLocal("gui.string.settostart")  + " y"));
 		
@@ -94,6 +98,14 @@ public class GuiMiningChamber extends GuiContainer{
 	@Override
 	protected void actionPerformed(GuiButton button){
 		Main.NETWORK_MANAGER.sendPacketToServer(new ServerButtonPacket((byte)button.id));
+		
+		if(button.id == 3){
+			if(Start.displayString == StatCollector.translateToLocal("words.start")){
+				Start.displayString = StatCollector.translateToLocal("words.stop");
+			}else if (Start.displayString == StatCollector.translateToLocal("words.stop")){
+				Start.displayString = StatCollector.translateToLocal("words.start");
+			}
+		}
 
 	}
 	

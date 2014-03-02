@@ -164,8 +164,6 @@ public class Crafting {
     
     public static void RegisterGuideRes(ItemStack stack, Object ... par2ArrayOfObj)
     {
-        if(stack.getItem() == new ItemStack(ModBlocks.Bin).getItem())
-        	System.out.println(stack.getDisplayName().toLowerCase().replace(" ", "_") + "_res");
 
     	
         String s = "";

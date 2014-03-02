@@ -75,7 +75,7 @@ public class GuiGame_2 extends GuiScreen{
 			
 			
 			ColorList.add(g);
-			System.out.println(ColorList.get(ColorList.size() - 1));
+//			System.out.println(ColorList.get(ColorList.size() - 1));
 			
 		}
 

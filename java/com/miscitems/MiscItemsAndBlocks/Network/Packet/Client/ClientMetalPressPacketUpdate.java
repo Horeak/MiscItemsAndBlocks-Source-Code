@@ -11,6 +11,8 @@ import net.minecraft.world.World;
 import com.miscitems.MiscItemsAndBlocks.Network.IPacket;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMetalPress;
 
+import cpw.mods.fml.common.FMLCommonHandler;
+
 public class ClientMetalPressPacketUpdate extends IPacket{
 
 	
@@ -56,6 +58,7 @@ public class ClientMetalPressPacketUpdate extends IPacket{
 
 	@Override
 	public void execute(EntityPlayer player) {
+	     if (FMLCommonHandler.instance().getEffectiveSide().isClient()){
 		World world = player.worldObj;
     	
         TileEntity tile_e = world.getTileEntity(x, y, z);
@@ -72,6 +75,7 @@ public class ClientMetalPressPacketUpdate extends IPacket{
         		
         	}
         }
+	}
 	}
 
 }

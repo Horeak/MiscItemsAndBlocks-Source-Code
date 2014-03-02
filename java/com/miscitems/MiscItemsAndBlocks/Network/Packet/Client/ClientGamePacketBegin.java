@@ -12,6 +12,7 @@ import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Network.IPacket;
 
 import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.common.FMLCommonHandler;
 
 public class ClientGamePacketBegin extends IPacket{
 
@@ -40,8 +41,10 @@ public class ClientGamePacketBegin extends IPacket{
 	@Override
 	public void execute(EntityPlayer player) {
 		
+	     if (FMLCommonHandler.instance().getEffectiveSide().isClient()){
         FMLClientHandler.instance().displayGuiScreen(Minecraft.getMinecraft().thePlayer, new GuiGame_1(Player1, Player2));
         Main.proxy.tickHandlerClient.tradeReq = null;
+	     }
 	}
 
 }

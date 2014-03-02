@@ -17,6 +17,10 @@ import org.apache.logging.log4j.LogManager;
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.Entity.EntityPowerArrow;
 import com.miscitems.MiscItemsAndBlocks.Entity.EntitySilverArrow;
+import com.miscitems.MiscItemsAndBlocks.Event.CapeRenderEvent;
+import com.miscitems.MiscItemsAndBlocks.Event.DisarmStickEvent;
+import com.miscitems.MiscItemsAndBlocks.Event.GuiListener;
+import com.miscitems.MiscItemsAndBlocks.Event.PlayerFirstJoinEvent;
 import com.miscitems.MiscItemsAndBlocks.Gui.GuiHandler;
 import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
 import com.miscitems.MiscItemsAndBlocks.Laser.DefaultLaser;
@@ -28,7 +32,6 @@ import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
 import com.miscitems.MiscItemsAndBlocks.Misc.BoneMealEvent;
 import com.miscitems.MiscItemsAndBlocks.Network.NetworkManager;
 import com.miscitems.MiscItemsAndBlocks.Proxies.ServerProxy;
-import com.miscitems.MiscItemsAndBlocks.Render.CapeRender;
 import com.miscitems.MiscItemsAndBlocks.VersionChecker.VersionChecker;
 import com.miscitems.MiscItemsAndBlocks.WorldGen.ModWorldGenerator;
 
@@ -92,11 +95,7 @@ public class Main {
 public void preInit(FMLPreInitializationEvent event) {
     	
 	
-	
-	//TODO Continue localization support.
-	
-	//TODO Add Wireless power transfer
-	//TODO (maybe)Add wireless liquid transfer
+
 	//TODO Add unbreakable sword
 	//TODO Add sometype of ore doubling
 	
@@ -131,7 +130,32 @@ public void preInit(FMLPreInitializationEvent event) {
         proxy.registerRenderThings();
         proxy.readManuals();
         
+        
+        //Register Events
+        RegisterServerEvents();
+        
+    	if(event.getSide() == Side.CLIENT){
+    		RegisterClientEvents();
+    	}
+        
     }
+
+public void RegisterClientEvents(){
+	
+	
+    MinecraftForge.EVENT_BUS.register(new GuiListener());	
+	
+}
+
+
+public void RegisterServerEvents(){
+	
+	
+	
+    MinecraftForge.EVENT_BUS.register(new BoneMealEvent());
+    MinecraftForge.EVENT_BUS.register(new PlayerFirstJoinEvent());
+    MinecraftForge.EVENT_BUS.register(new DisarmStickEvent());
+}
     
     
 @EventHandler
@@ -139,7 +163,7 @@ public void preInit(FMLPreInitializationEvent event) {
     	
 	
     	if(event.getSide() == Side.CLIENT)
-        MinecraftForge.EVENT_BUS.register(new CapeRender());
+        MinecraftForge.EVENT_BUS.register(new CapeRenderEvent());
     	
         
 		NETWORK_MANAGER = new NetworkManager();
@@ -160,13 +184,10 @@ public void preInit(FMLPreInitializationEvent event) {
         
         MinecraftForge.addGrassSeed(new ItemStack(ModItems.TomatoSeeds), 10);
         
-        MinecraftForge.EVENT_BUS.register(new BoneMealEvent());
         
 
         NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
-        
-        
-        
+
         
 
     }

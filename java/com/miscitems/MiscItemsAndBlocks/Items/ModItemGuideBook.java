@@ -22,6 +22,7 @@ public class ModItemGuideBook extends CraftingItem{
 	public ModItemGuideBook() {
 		super(new String[]{"Guide"}, new String[]{"book"}, "", "miscitems", Main.CreativeTab);
 		this.setUnlocalizedName("guidebook");
+		this.setMaxStackSize(1);
 	}
 
     private BookData getData (ItemStack stack)
