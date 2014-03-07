@@ -294,24 +294,24 @@ public class EntityPowerArrow extends Entity implements IProjectile
 
 	                    if (this.shootingEntity == null)
 	                    {
-	                        damagesource = DamageSource.causeThrownDamage(this, this);
+	                        damagesource = new DamageSource("silverarrow.shot");
 	                    }
 	                    else
 	                    {
-	                        damagesource = DamageSource.causeThrownDamage(this, this.shootingEntity);
+	                        damagesource = new DamageSource("silverarrow.shotby");
 	                    }
 
 	                    if (this.isBurning() && !(movingobjectposition.entityHit instanceof EntityEnderman))
 	                    {
 	                        movingobjectposition.entityHit.setFire(5);
 	                    }
+                        if (movingobjectposition.entityHit instanceof EntityLivingBase)
+                        {
+                            EntityLivingBase entitylivingbase = (EntityLivingBase)movingobjectposition.entityHit;
 
-	                    if (movingobjectposition.entityHit.attackEntityFrom(damagesource, (float)i1))
+
+	                    if (entitylivingbase.attackEntityAsMob(this) && entitylivingbase.attackEntityFrom(damagesource, i1))
 	                    {
-	                        if (movingobjectposition.entityHit instanceof EntityLivingBase)
-	                        {
-	                            EntityLivingBase entitylivingbase = (EntityLivingBase)movingobjectposition.entityHit;
-
 	                            if (!this.worldObj.isRemote)
 	                            {
 	                                entitylivingbase.setArrowCountInEntity(entitylivingbase.getArrowCountInEntity() + 1);
@@ -337,7 +337,7 @@ public class EntityPowerArrow extends Entity implements IProjectile
 	                            {
 	                            	((EntityPlayerMP)this.shootingEntity).playerNetServerHandler.sendPacket(new S2BPacketChangeGameState(6, 0.0F));
 	                            }
-	                        }
+	                        
 
 	                        this.playSound("random.bowhit", 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
 
@@ -354,6 +354,7 @@ public class EntityPowerArrow extends Entity implements IProjectile
 	                        this.rotationYaw += 180.0F;
 	                        this.prevRotationYaw += 180.0F;
 	                        this.ticksInAir = 0;
+	                    }
 	                    }
 	                }
 	                else

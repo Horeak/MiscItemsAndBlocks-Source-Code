@@ -162,7 +162,8 @@ public class Crafting {
     	RegisterShaplessGuideRes(output, Array);
     }
     
-    public static void RegisterGuideRes(ItemStack stack, Object ... par2ArrayOfObj)
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	public static void RegisterGuideRes(ItemStack stack, Object ... par2ArrayOfObj)
     {
 
     	
@@ -258,7 +259,8 @@ public class Crafting {
         
         }
     
-    public static void RegisterShaplessGuideRes(ItemStack par1ItemStack, Object ... par2ArrayOfObj)
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	public static void RegisterShaplessGuideRes(ItemStack par1ItemStack, Object ... par2ArrayOfObj)
     {
         ArrayList arraylist = new ArrayList();
         Object[] aobject = par2ArrayOfObj;

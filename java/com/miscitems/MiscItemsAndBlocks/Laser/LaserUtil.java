@@ -11,7 +11,6 @@ import net.minecraft.util.Facing;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerLaserPacketEntities;
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerSetBlockPacket;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLaserReciver;
 
@@ -97,11 +96,7 @@ AxisAlignedBB aabb = AxisAlignedBB.getAABBPool().getAABB(xTemp, yTemp, zTemp, xT
 
 List ents = laserProvider.getWorld().getEntitiesWithinAABB(Entity.class, aabb);
 if(ents.size() > 0){
-	
-	LaserRegistry.getLaserFromId("default").performActionOnEntitiesClient(ents, orientation, laserProvider);
-	
-	Main.NETWORK_MANAGER.sendPacketToServer(new ServerLaserPacketEntities(xTemp, yTemp, zTemp, xTemp + offsetMax, yTemp + offsetMax, zTemp + offsetMax, laserProvider.EmitsRedstone(), laserProvider.DoesDamage(), laserProvider.TransfersPower(), orientation, laserProvider.GetLensPower()));
-	
+
 	extra[orientation] += 1.3 - offsetMax + 0.01D;
 	
 	break;

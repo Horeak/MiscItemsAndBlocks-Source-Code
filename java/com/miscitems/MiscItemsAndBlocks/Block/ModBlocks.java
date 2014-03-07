@@ -37,6 +37,7 @@ import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityDiceHolder;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityDisarmTrap;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityElectricFurnace;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityGenerator;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityGhostBlock;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityItemPedestal;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLaser;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLaserReciver;
@@ -77,7 +78,6 @@ public class ModBlocks {
 	public static Block TomatoPlant;
 	public static Block Mill;
 	public static Block Squezer;
-	public static IPlantable OrangeSapling;
 	public static Block OrangeLeaf;
 	public static Block PizzaOven;
 	public static Block OrangeLog;
@@ -85,46 +85,32 @@ public class ModBlocks {
 	public static Block Table;
 	public static Block TimedBlock;
 	public static Block StorageBlock;
-	
 	public static Block Computer;
-	
 	public static Block Teleporter;
 	public static Block WireLessRedstone;
 	public static Block WirelessItemTrans;
-	
 	public static Block MetalPress;
-	
 	public static Block PaintBlock;
 	public static Block SilverBlock;
-	
 	public static Block ElectricFurnace;
-	
 	public static Block ItemPedestal;
 	public static Block MiningChamber;
-	
 	public static Block PowerCable;
 	public static Block Charger;
 	public static Block SolarPanel;
 	public static Block WindMill;
 	public static Block Generator;
-	
 	public static Block OneWayGlass;
-	
 	public static Block MachinePart;
-
-	
-	public static Block GamePart;
-	
+	public static Block GamePart;	
 	public static Block DiceHolder;
-	
 	public static Block LensBench;
 	public static Block Laser;
-	
+	public static Block LaserReciver;
+	public static Block GhostBlock;
 	
 	public static ModBlockStair StoneStair;
-	
-	public static Block LaserReciver;
-	
+	public static IPlantable OrangeSapling;
 	
 	
 	public static void Init(){
@@ -265,6 +251,9 @@ public class ModBlocks {
         LaserReciver = new ModBlockLaserReciver().setBlockTextureName("furnace_top");
         Register(LaserReciver, ModItemBlockLaserReciver.class, "Laser Reciver", true);
         
+        GhostBlock = new ModBlockGhostBlock();
+        Register(GhostBlock, "Ghost Block", true);
+        
         
         
 		RegisterOreDictionary(new ItemStack(SilverOre), "oreSilver");
@@ -280,16 +269,13 @@ public class ModBlocks {
         GameRegistry.registerTileEntity(TileEntityMill.class, "TileEntityMill");
         GameRegistry.registerTileEntity(TileEntitySquezer.class, "TileEntitySquezer");
         GameRegistry.registerTileEntity(TileEntityOvenCore.class, "TileEntityOvenCore");
-        
         GameRegistry.registerTileEntity(TileEntityItemPedestal.class, "TileEntityItemPedestal");
         GameRegistry.registerTileEntity(TileEntityMiningChamber.class, "TileEntityMiningChamber");
-        
         GameRegistry.registerTileEntity(TileEntityCharger.class, "TileEntityCharger");
         GameRegistry.registerTileEntity(TileEntitySolarPanel.class, "TileEntitySolarPanel");
         GameRegistry.registerTileEntity(TileEntityWindMill.class, "TileEntityWindMill");
         GameRegistry.registerTileEntity(TileEntityGenerator.class, "TileEntityGenerator");
         GameRegistry.registerTileEntity(TileEntityPowerCable.class, "TileEntityPowerCable");
-        
         GameRegistry.registerTileEntity(TileEntityGamePart.class, "TileEntityGamePart");
         GameRegistry.registerTileEntity(TileEntityPillar.class, "TileEntityPillar");
         GameRegistry.registerTileEntity(TileEntityTimedBlock.class, "TileEntityTimedBLock");
@@ -298,16 +284,15 @@ public class ModBlocks {
         GameRegistry.registerTileEntity(TileEntityPaintBlock.class, "TileEntityPaintBlock");
         GameRegistry.registerTileEntity(TileEntityComputer.class, "TileEntityComputer");
         GameRegistry.registerTileEntity(TileEntityStorageBlock.class, "TileEntityStorageBlock");
-        
         GameRegistry.registerTileEntity(TileEntityDiceHolder.class, "TileEntityDiceHolder");
         GameRegistry.registerTileEntity(TileEntityTeleporter.class, "TileEntityTeleporter");
         GameRegistry.registerTileEntity(TileEntityWirelessRedstone.class, "TileEntityWirelessRedstone");
         GameRegistry.registerTileEntity(TileEntityWirelessItemTrans.class, "TileEntityWirelessItemTransfer");
-        
         GameRegistry.registerTileEntity(TileEntityMetalPress.class, "TileEntityMetalPress");
         GameRegistry.registerTileEntity(TileEntityLensBench.class, "TileEntityensBench");
         GameRegistry.registerTileEntity(TileEntityLaser.class, "TileEntityensLaser");
         GameRegistry.registerTileEntity(TileEntityLaserReciver.class, "TileEntityensLaserReciver");
+        GameRegistry.registerTileEntity(TileEntityGhostBlock.class, "TileEntityGhostBlock");
         
         
         Main.config.save();

@@ -15,6 +15,7 @@ import com.miscitems.MiscItemsAndBlocks.Misc.GameInfo;
 import com.miscitems.MiscItemsAndBlocks.Misc.GameInvite;
 
 import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 
 public class ServerTickHandler{
@@ -33,7 +34,7 @@ public class ServerTickHandler{
     public ArrayList<GameInfo> activeGames = new ArrayList<GameInfo>();
 	
 	
-    @EventHandler
+	@SubscribeEvent
     public void tick(TickEvent.ServerTickEvent event){
 
             ServerTick();
@@ -44,7 +45,7 @@ public class ServerTickHandler{
     
  
     
-    @EventHandler
+	@SubscribeEvent
     public void tick(TickEvent.PlayerTickEvent event){
     	
     	onPlayerTick(event.player);

@@ -62,6 +62,8 @@ public class Main {
     public static ServerProxy proxy;
     
     
+    public static boolean Dev = true;
+    
 	public static boolean VERSION_CHECK = true;
 	
     public static final String RELEASE_VERSION = Refrence.Version;
@@ -131,6 +133,7 @@ public void preInit(FMLPreInitializationEvent event) {
         proxy.readManuals();
         
         
+        
         //Register Events
         RegisterServerEvents();
         
@@ -144,7 +147,7 @@ public void RegisterClientEvents(){
 	
 	
     MinecraftForge.EVENT_BUS.register(new GuiListener());	
-	
+    MinecraftForge.EVENT_BUS.register(new CapeRenderEvent());
 }
 
 
@@ -161,10 +164,7 @@ public void RegisterServerEvents(){
 @EventHandler
     public void Init(FMLInitializationEvent event){
     	
-	
-    	if(event.getSide() == Side.CLIENT)
-        MinecraftForge.EVENT_BUS.register(new CapeRenderEvent());
-    	
+
         
 		NETWORK_MANAGER = new NetworkManager();
     	

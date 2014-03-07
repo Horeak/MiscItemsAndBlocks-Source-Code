@@ -56,19 +56,16 @@ this.sideIconon = iconRegister.registerIcon(Refrence.Mod_Id + ":LaserSide_on");
 @Override
 public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side) {
 int meta = LaserUtil.getOrientation(world.getBlockMetadata(x, y, z));
-if(world.getTileEntity(x, y, z) instanceof TileEntityLaser){
-TileEntityLaser tile = (TileEntityLaser)world.getTileEntity(x, y, z);
+
+boolean powered = world.getTileEntity(x, y, z).getWorldObj().isBlockIndirectlyGettingPowered(x, y, z);
 
 if (meta > 5)
-return tile.Powered ? frontIconon : frontIconoff;
+return powered ? frontIconon : frontIconoff;
 if (side == meta)
-return tile.Powered ? frontIconon : frontIconoff;
+return powered ? frontIconon : frontIconoff;
 else
+	return powered ? sideIconon : sideIconoff;
 	
-return tile.Powered ? sideIconon : sideIconoff;
-
-}
-return sideIconoff;
     }
 
 @Override

@@ -62,7 +62,7 @@ public class CapeRenderEvent
                 capePlayers.add(abstractClientPlayer);
 
                // ReflectionHelper.setPrivateValue(AbstractClientPlayer.class, abstractClientPlayer, false, "downloadImageCape.textureUploaded");
-                abstractClientPlayer.getTextureCape().textureUploaded = false;
+              //TODO  abstractClientPlayer.getTextureCape().textureUploaded = false;
                 new Thread(new CloakThread(abstractClientPlayer, cloakURL)).start();
                 event.renderCape = true;
             }
@@ -135,7 +135,7 @@ public class CapeRenderEvent
                 BufferedImage bo = new BufferedImage(cape.getWidth(null), cape.getHeight(null), BufferedImage.TYPE_INT_ARGB);
                 bo.getGraphics().drawImage(cape, 0, 0, null);
                // ReflectionHelper.setPrivateValue(AbstractClientPlayer.class, abstractClientPlayer, bo, "downloadImageCape.bufferedImage");
-                abstractClientPlayer.getTextureCape().bufferedImage = bo;
+              //TODO abstractClientPlayer.getTextureCape().bufferedImage = bo;
             }
             catch (MalformedURLException e)
             {

@@ -1,17 +1,25 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
+import java.util.List;
+
+import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Facing;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.common.util.ForgeDirection;
 
 import com.miscitems.MiscItemsAndBlocks.Items.ModItemPowerStorage;
 import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
+import com.miscitems.MiscItemsAndBlocks.Laser.ILaser;
 import com.miscitems.MiscItemsAndBlocks.Laser.ILaserProvider;
 import com.miscitems.MiscItemsAndBlocks.Laser.ILaserReciver;
 import com.miscitems.MiscItemsAndBlocks.Laser.LaserInGame;
 import com.miscitems.MiscItemsAndBlocks.Laser.LaserRegistry;
 import com.miscitems.MiscItemsAndBlocks.Laser.LaserUtil;
+import com.miscitems.MiscItemsAndBlocks.Laser.LaserWhitelist;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -38,8 +46,14 @@ public int MaxTime = 2000;
 
 public boolean Valid = false;
 
+public int[] reciverCords = new int[3];
+
+LaserInGame laser = new LaserInGame(LaserRegistry.getLaserFromId("default"));
+
 @Override
 public void updateEntity() {
+	
+	
 	
 	if(!this.worldObj.isRemote){
 			if(BreakTime < MaxTime){
@@ -56,6 +70,29 @@ public void updateEntity() {
 		
 	}
 	
+	
+	boolean hasSignal = this.worldObj.isBlockIndirectlyGettingPowered(this.xCoord, this.yCoord, this.zCoord);
+ILaserReciver reciver = LaserUtil.getFirstReciver(this, this.getBlockMetadata());
+if(reciver != null) {
+if(!hasSignal) {
+reciver.removeLasersFromSide(worldObj, this.xCoord, this.yCoord, this.zCoord, Facing.oppositeSide[this.getBlockMetadata()]);
+}
+else if(reciver.canPassOnSide(worldObj, this.xCoord, this.yCoord, this.zCoord, Facing.oppositeSide[this.getBlockMetadata()], laser)) {
+reciver.passLaser(worldObj, this.xCoord, this.yCoord, this.zCoord, Facing.oppositeSide[this.getBlockMetadata()], laser);
+}
+}
+
+if(hasSignal) {
+AxisAlignedBB boundingBox = getLaserBox(this.xCoord, this.yCoord, this.zCoord);
+List<Entity> entities = this.worldObj.getEntitiesWithinAABB(Entity.class, boundingBox);
+for(ILaser la : laser.getLaserType()) {
+la.performActionOnBoth(entities, this.getBlockMetadata(), this);
+if(this.worldObj.isRemote)
+la.performActionOnEntitiesClient(entities, this.getBlockMetadata(), this);
+else
+la.performActionOnEntitiesServer(entities, this.getBlockMetadata(), this);
+}
+}
 	
 	this.lagReduce += 1;
 	if(this.lagReduce % LaserUtil.TICK_RATE != 0) return;
@@ -130,9 +167,7 @@ if(Valid && (this.worldObj.isBlockIndirectlyGettingPowered(this.xCoord, this.yCo
 	this.SetPower(this.GetPower() - this.getStackInSlot(0).stackTagCompound.getInteger("PowerUse"));
 
 if(Valid){
-ILaserReciver reciver = LaserUtil.getFirstReciver(this, this.getBlockMetadata());
 if(reciver != null) {
-boolean hasSignal = (this.worldObj.isBlockIndirectlyGettingPowered(this.xCoord, this.yCoord, this.zCoord));
 Powered = hasSignal && Valid;
 
 LaserInGame laserInGame = this.getOutputLaser(this.getBlockMetadata());
@@ -275,6 +310,90 @@ return this.worldObj.isBlockIndirectlyGettingPowered(this.xCoord, this.yCoord, t
 	}
 
 
+	public AxisAlignedBB getLaserBox(double x, double y, double z) {
+int meta = this.worldObj.getBlockMetadata(this.xCoord, this.yCoord, this.zCoord);
+double laserSize = 0.4D;
+AxisAlignedBB boundingBox = AxisAlignedBB.getBoundingBox(x + 0.5D - laserSize / 2, y + 0.5D - laserSize / 2, z + 0.5D - laserSize / 2, x + 0.5D + laserSize / 2, y + 0.5D + laserSize / 2, z + 0.5D + laserSize / 2);
 
+double extraMinX = 0.0D;
+double extraMinY = 0.0D;
+double extraMinZ = 0.0D;
+
+double extraMaxX = 0.0D;
+double extraMaxY = 0.0D;
+double extraMaxZ = 0.0D;
+
+        if (meta == ForgeDirection.DOWN.ordinal()) {
+         for(int i = this.yCoord - 1; this.yCoord - i >= 0; --i) {
+         if(LaserWhitelist.canLaserPassThrought(this.worldObj, this.xCoord, i, this.zCoord)) {
+         extraMinY++;
+         }
+         else {
+         extraMinY += 1.0D - laserSize;
+         break;
+         }
+         }
+        }
+        else if (meta == ForgeDirection.UP.ordinal()) {
+         for(int i = this.yCoord + 1; i < this.yCoord + this.GetLensStrength(); ++i) {
+         if(LaserWhitelist.canLaserPassThrought(this.worldObj, this.xCoord, i, this.zCoord)) {
+         extraMaxY++;
+         }
+         else {
+         extraMaxY += 1.0D - laserSize;
+         break;
+         }
+         }
+        }
+        else if (meta == ForgeDirection.NORTH.ordinal()) {
+         for(int i = 1; i < this.GetLensStrength(); ++i) {
+         if(LaserWhitelist.canLaserPassThrought(this.worldObj, this.xCoord, this.yCoord, this.zCoord - i)) {
+         extraMinZ++;
+         }
+         else {
+         extraMinZ += 1.0D - laserSize;
+         break;
+         }
+         }
+        }
+        else if (meta == ForgeDirection.SOUTH.ordinal()) {
+         for(int i = 1; i < this.GetLensStrength(); ++i) {
+         if(LaserWhitelist.canLaserPassThrought(this.worldObj, this.xCoord, this.yCoord, this.zCoord + i)) {
+         extraMaxZ++;
+         }
+         else {
+         extraMaxZ += 1.0D - laserSize;
+         break;
+         }
+         }
+        }
+        else if (meta == ForgeDirection.WEST.ordinal()) {
+         for(int i = 1; i < this.GetLensStrength(); ++i) {
+         if(LaserWhitelist.canLaserPassThrought(this.worldObj, this.xCoord - i, this.yCoord, this.zCoord)) {
+         extraMinX++;
+         }
+         else {
+         extraMinX += 1.0D - laserSize;
+         break;
+         }
+         }
+        }
+        else if (meta == ForgeDirection.EAST.ordinal()) {
+         for(int i = 1; i < this.GetLensStrength(); ++i) {
+         if(LaserWhitelist.canLaserPassThrought(this.worldObj, this.xCoord + i, this.yCoord, this.zCoord)) {
+         extraMaxX++;
+         }
+         else {
+         extraMaxX += 1.0D - laserSize;
+         break;
+         }
+         }
+        }
+        boundingBox.setBounds(boundingBox.minX - extraMinX, boundingBox.minY - extraMinY, boundingBox.minZ - extraMinZ, boundingBox.maxX + extraMaxX, boundingBox.maxY + extraMaxY, boundingBox.maxZ + extraMaxZ);
+        
+        return boundingBox;
+}
+	
+	
 }
 

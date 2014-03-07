@@ -26,6 +26,7 @@ public class ContainerMiningChamber  extends Container {
     int LastY;
     int LastLastY;
     int LastHoleSize;
+    int LastState;
 
 	
     public ContainerMiningChamber(InventoryPlayer InvPlayer, TileEntityMiningChamber tile)
@@ -98,6 +99,7 @@ public class ContainerMiningChamber  extends Container {
         par1ICrafting.sendProgressBarUpdate(this, 1, this.tile.GetMinedY());
         par1ICrafting.sendProgressBarUpdate(this, 2, this.tile.GetLastY());
         par1ICrafting.sendProgressBarUpdate(this, 3, this.tile.GetSize());
+        par1ICrafting.sendProgressBarUpdate(this, 4, this.tile.GetValue());
     }
 
     public void detectAndSendChanges()
@@ -129,12 +131,18 @@ public class ContainerMiningChamber  extends Container {
                 icrafting.sendProgressBarUpdate(this, 3, this.tile.GetSize());
             }
             
+            if (this.LastState != this.tile.GetValue())
+            {
+                icrafting.sendProgressBarUpdate(this, 4, this.tile.GetValue());
+            }
+            
         }
 
         this.LastPower = this.tile.GetPower();
         this.LastY = this.tile.GetMinedY();
         this.LastLastY = this.tile.GetLastY();
         this.LastHoleSize = this.tile.GetSize();
+        this.LastState = this.tile.GetValue();
     }
 
     @SideOnly(Side.CLIENT)
@@ -159,6 +167,11 @@ public class ContainerMiningChamber  extends Container {
         if (par1 == 3)
         {
             this.tile.SetSize(par2);
+        }
+        
+        if (par1 == 4)
+        {
+            this.tile.SetValue(par2);
         }
         
 

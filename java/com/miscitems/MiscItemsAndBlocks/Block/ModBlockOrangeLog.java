@@ -41,7 +41,7 @@ public class ModBlockOrangeLog extends BlockRotatedPillar {
 
     public Item getItemDropped(int par1, Random par2Random, int par3)
     {
-        return new ItemStack((Block)ModBlocks.OrangeSapling).getItem();
+        return new ItemStack(ModBlocks.OrangeLog).getItem();
     }
 
 

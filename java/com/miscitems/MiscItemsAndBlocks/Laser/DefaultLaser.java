@@ -13,20 +13,7 @@ public class DefaultLaser implements ILaser {
 	 */
 	
 @Override
-public void performActionOnEntitiesServer(List<Entity> entities, int direction, boolean Redstone, boolean Power, boolean Damage, int LensPower) {
-	
-	if(Damage && LensPower > 1){
-		if(entities.size() > 0)
-		for(int i = 0; i < entities.size(); i++){
-			entities.get(i).setFire(LensPower);
-			entities.get(i).attackEntityFrom(new DamageSource("laser.damage"), LensPower - 2);
-			
-			
-		}
-		
-		
-		
-	}
+public void performActionOnEntitiesServer(List<Entity> entities, int direction, ILaserProvider laser) {
 	
 	
 }
@@ -35,6 +22,26 @@ public void performActionOnEntitiesServer(List<Entity> entities, int direction, 
 public void performActionOnEntitiesClient(List<Entity> entities, int direction, ILaserProvider laser) {
 	
 }
+
+@Override
+public void performActionOnBoth(List<Entity> entities, int direction, ILaserProvider laser) {
+	
+	
+	
+	if(laser.DoesDamage() && laser.GetLensPower() > 1){
+		if(entities.size() > 0)
+		for(int i = 0; i < entities.size(); i++){
+			entities.get(i).setFire(laser.GetLensPower());
+			entities.get(i).attackEntityFrom(new DamageSource("laser.damage"), laser.GetLensPower() - 2);
+			
+			
+		}
+		
+		
+		
+	}
+}
+
 
 
 @Override

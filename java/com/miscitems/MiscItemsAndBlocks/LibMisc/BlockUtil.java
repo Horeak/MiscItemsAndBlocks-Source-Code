@@ -22,18 +22,22 @@ import cpw.mods.fml.common.FMLCommonHandler;
 
 public class BlockUtil {
 
-    public static List<ItemStack> getItemStackFromBlock(World world, int i, int j, int k, int fortune) {
-            Block block = world.getBlock(j, j, k);
+    public static List<ItemStack> getItemStackFromBlock(World world, int x, int y, int z, int fortune) {
+            Block block = world.getBlock(x, y, z);
 
-            if (block == null)
+            if (block == null){
                     return null;
+            }
 
-            if (block.isAir(world, i, j, k))
+            if (world.isAirBlock(x, y, z)){
                     return null;
+            }
 
-            int meta = world.getBlockMetadata(i, j, k);
+            
+            int meta = world.getBlockMetadata(x, y, z);
+            
 
-            return block.getDrops(world, i, j, k, meta, fortune);
+            return block.getDrops(world, x, y, z, meta, fortune);
     }
 
     public static void breakBlock(World world, int x, int y, int z) {

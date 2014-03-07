@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockLeavesBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -22,7 +24,7 @@ import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ModBlockOrangeLeaf extends BlockLeavesBase implements IShearable
+public class ModBlockOrangeLeaf extends BlockLeaves implements IShearable
 {
 
 
@@ -31,7 +33,6 @@ public class ModBlockOrangeLeaf extends BlockLeavesBase implements IShearable
 
     protected ModBlockOrangeLeaf()
     {
-        super(Material.leaves, false);
         this.setTickRandomly(true);
         this.setStepSound(soundTypeGrass);
         this.setHardness(0.2F);
@@ -244,6 +245,15 @@ public class ModBlockOrangeLeaf extends BlockLeavesBase implements IShearable
         par1World.setBlockToAir(par2, par3, par4);
     }
 
+    
+    protected void removeLeaves(World p_150124_1_, int p_150124_2_, int p_150124_3_, int p_150124_4_, int p_150124_5_, int p_150124_6_)
+    {
+        if ((p_150124_5_ & 3) == 0 && p_150124_1_.rand.nextInt(p_150124_6_) == 0)
+        {
+            this.dropBlockAsItem(p_150124_1_, p_150124_2_, p_150124_3_, p_150124_4_, new ItemStack(Items.apple, 1, 0));
+        }
+    }
+
 
     public int quantityDropped(Random par1Random)
     {
@@ -257,21 +267,15 @@ public class ModBlockOrangeLeaf extends BlockLeavesBase implements IShearable
     }
 
 
-    @Override
-    public void dropBlockAsItemWithChance(World par1World, int par2, int par3, int par4, int par5, float par6, int par7)
+    public void dropBlockAsItemWithChance(World p_149690_1_, int p_149690_2_, int p_149690_3_, int p_149690_4_, int p_149690_5_, float p_149690_6_, int p_149690_7_)
     {
-        if (!par1World.isRemote)
+        if (!p_149690_1_.isRemote)
         {
-            int j1 = 20;
+            int j1 = this.func_150123_b(p_149690_5_);
 
-            if ((par5 & 3) == 3)
+            if (p_149690_7_ > 0)
             {
-                j1 = 40;
-            }
-
-            if (par7 > 0)
-            {
-                j1 -= 2 << par7;
+                j1 -= 2 << p_149690_7_;
 
                 if (j1 < 10)
                 {
@@ -279,20 +283,35 @@ public class ModBlockOrangeLeaf extends BlockLeavesBase implements IShearable
                 }
             }
 
-            if (par1World.rand.nextInt(j1) == 0)
+            if (p_149690_1_.rand.nextInt(j1) == 0)
             {
-                Item k1 = this.getItemDropped(par5, par1World.rand, par7);
-                this.dropBlockAsItem(par1World, par2, par3, par4, new ItemStack(k1, 1, this.damageDropped(par5)));
+                Item item = this.getItemDropped(p_149690_5_, p_149690_1_.rand, p_149690_7_);
+                this.dropBlockAsItem(p_149690_1_, p_149690_2_, p_149690_3_, p_149690_4_, new ItemStack(item, 1, this.damageDropped(p_149690_5_)));
             }
 
+            j1 = 200;
 
-            if ((par5 & 3) == 0 && par1World.rand.nextInt(20) == 0)
+            if (p_149690_7_ > 0)
             {
-                this.dropBlockAsItem(par1World, par2, par3, par4, new ItemStack(ModItems.Orange, 1, 0));
+                j1 -= 10 << p_149690_7_;
+
+                if (j1 < 40)
+                {
+                    j1 = 40;
+                }
             }
+
+            this.func_150124_c(p_149690_1_, p_149690_2_, p_149690_3_, p_149690_4_, p_149690_5_, j1);
         }
     }
 
+    protected void func_150124_c(World p_150124_1_, int p_150124_2_, int p_150124_3_, int p_150124_4_, int p_150124_5_, int p_150124_6_)
+    {
+        if ((p_150124_5_ & 3) == 0 && p_150124_1_.rand.nextInt(p_150124_6_) == 0)
+        {
+            this.dropBlockAsItem(p_150124_1_, p_150124_2_, p_150124_3_, p_150124_4_, new ItemStack(ModItems.Orange, 1, 0));
+        }
+    }
 
     public void harvestBlock(World par1World, EntityPlayer par2EntityPlayer, int par3, int par4, int par5, int par6)
     {
@@ -306,6 +325,17 @@ public class ModBlockOrangeLeaf extends BlockLeavesBase implements IShearable
     }
 
 
+    protected int func_150123_b(int p_150123_1_)
+    {
+        int j = 20;
+
+        if ((p_150123_1_ & 3) == 3)
+        {
+            j = 40;
+        }
+
+        return j;
+    }
 
     @SideOnly(Side.CLIENT)
 
@@ -352,6 +382,13 @@ public class ModBlockOrangeLeaf extends BlockLeavesBase implements IShearable
     @Override
     public void beginLeavesDecay(World world, int x, int y, int z)
     {
+
+        int i2 = world.getBlockMetadata(x, y, z);
+
+        if ((i2 & 8) == 0)
+        {
+            world.setBlockMetadataWithNotify(x, y, z, i2 | 8, 4);
+        }
         world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z) | 8, 4);
     }
 
@@ -365,6 +402,11 @@ public class ModBlockOrangeLeaf extends BlockLeavesBase implements IShearable
     {
         return 0;
     }
+
+	@Override
+	public String[] func_150125_e() {
+		return new String[]{"orange_log"};
+	}
     
     
 }

@@ -12,7 +12,6 @@ import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerGamePacketAc
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerGamePacketChange;
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerGamePacketClosed;
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerGamePacketInvite;
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerLaserPacketEntities;
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerLensBenchPacketDone;
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerPaintBrushChangePacket;
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerSetBlockPacket;
@@ -39,7 +38,6 @@ public enum PacketType {
 	ServerGamePacketInvite(ServerGamePacketInvite.class),
 	ServerLensBenchPacketDone(ServerLensBenchPacketDone.class),
 	ServerSetBlockPacket(ServerSetBlockPacket.class),
-	ServerLaserPacketEntities(ServerLaserPacketEntities.class),
 	
 	PacketRequestEvent(PacketRequestEvent.class),
 	PacketTileUpdate(PacketTileUpdate.class),

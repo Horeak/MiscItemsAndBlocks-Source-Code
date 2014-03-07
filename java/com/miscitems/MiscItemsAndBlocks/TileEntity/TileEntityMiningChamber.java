@@ -2,6 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
 import java.util.List;
 
+import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
@@ -209,6 +210,7 @@ public class TileEntityMiningChamber extends TileEntityPowerInv{
     		this.MiningTime = 80;
     	}
     	
+    	
     	if(Luck > 0){
     		Fortune = Luck;
     	}
@@ -267,7 +269,6 @@ public class TileEntityMiningChamber extends TileEntityPowerInv{
     	
     	if(Time == MiningTime){
     		Time = 0;
-    		
     		
     		
     		if(!this.worldObj.isRemote){
@@ -329,11 +330,11 @@ public class TileEntityMiningChamber extends TileEntityPowerInv{
     
     public void MineBlock(int x, int y, int z){
 
+
     	if(this.worldObj.getBlock(x, y, z) != Blocks.air){
     	if(this.worldObj.getBlock(x, y, z).getBlockHardness(this.worldObj, x, y, z) != -1){
     	
 
-    	
         List<ItemStack> stacks = BlockUtil.getItemStackFromBlock(worldObj, x, y, z, Fortune);
 
         if (stacks != null) {
@@ -345,15 +346,18 @@ public class TileEntityMiningChamber extends TileEntityPowerInv{
         
         
         
-    	
+    	}
                 this.SetPower(this.GetPower() - 1);
                 this.getStackInSlot(ToolSlot).attemptDamageItem(1, this.worldObj.rand);
                 
-                this.worldObj.setBlock(x, y, z, Blocks.air);
-               
-        Time = 0;
+                if (!worldObj.isRemote)
+                    worldObj.playAuxSFX(2001, x, y, z, Block.getIdFromBlock(worldObj.getBlock(x, y, z)) + (worldObj.getBlockMetadata(x, y, z) << 12));
+       
     	
-    	}
+                this.worldObj.setBlock(x, y, z, Blocks.air);
+                
+                Time = 0;
+    	
     	}
     }
     	
@@ -444,6 +448,7 @@ public class TileEntityMiningChamber extends TileEntityPowerInv{
     }
 	
     private void mineStack(ItemStack stack) {
+    	
     	
         // First, try to add to a nearby chest
         stack.stackSize -= Utils.addToRandomInventoryAround(worldObj, xCoord, yCoord, zCoord, stack);

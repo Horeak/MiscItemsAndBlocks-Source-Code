@@ -64,10 +64,17 @@ public class GuiMiningChamber extends GuiContainer{
 	         else
 		         fontRendererObj.drawString(StatCollector.translateToLocal("words.mining") + " " + 0 + " " + StatCollector.translateToLocal("words.deeper") , x + 59, y + 37, 0x000000);
 	         fontRendererObj.drawString(StatCollector.translateToLocal("gui.string.miningdownto") + ": " + LastY, x + 59, y + 47, 0x000000);
-	         fontRendererObj.drawString(StatCollector.translateToLocal("gui.string.currentlyat") + ": " + CurrentY, x + 59, y + 57, 0x000000);
+	         fontRendererObj.drawString(StatCollector.translateToLocal("gui.string.currentlyat") + ": " + (CurrentY - 1), x + 59, y + 57, 0x000000);
 	         
 	         
 
+	          if(tile.GetValue() == 1){
+	        	  Start.displayString = StatCollector.translateToLocal("words.stop");
+	          }else if (tile.GetValue() != 1){
+	        	  Start.displayString = StatCollector.translateToLocal("words.start");
+	          }
+	          
+	         
 	}
 	
 	
@@ -99,13 +106,13 @@ public class GuiMiningChamber extends GuiContainer{
 	protected void actionPerformed(GuiButton button){
 		Main.NETWORK_MANAGER.sendPacketToServer(new ServerButtonPacket((byte)button.id));
 		
-		if(button.id == 3){
-			if(Start.displayString == StatCollector.translateToLocal("words.start")){
-				Start.displayString = StatCollector.translateToLocal("words.stop");
-			}else if (Start.displayString == StatCollector.translateToLocal("words.stop")){
-				Start.displayString = StatCollector.translateToLocal("words.start");
-			}
-		}
+//		if(button.id == 3){
+//			if(Start.displayString == StatCollector.translateToLocal("words.start")){
+//				Start.displayString = StatCollector.translateToLocal("words.stop");
+//			}else if (Start.displayString == StatCollector.translateToLocal("words.stop")){
+//				Start.displayString = StatCollector.translateToLocal("words.start");
+//			}
+//		}
 
 	}
 	

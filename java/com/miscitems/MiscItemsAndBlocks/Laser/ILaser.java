@@ -12,7 +12,10 @@ public interface ILaser {
 	 */
 	
 public void performActionOnEntitiesClient(List<Entity> entities, int direction, ILaserProvider laser);
-public void performActionOnEntitiesServer(List<Entity> entities, int direction, boolean Redstone, boolean Power, boolean Safe, int LensPower);
+public void performActionOnEntitiesServer(List<Entity> entities, int direction, ILaserProvider laser);
+public void performActionOnBoth(List<Entity> entities, int direction, ILaserProvider laser);
+
+
 
 public boolean shouldRenderLaser(EntityPlayer player, int direction);
 }
