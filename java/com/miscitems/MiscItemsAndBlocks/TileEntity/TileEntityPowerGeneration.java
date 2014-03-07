@@ -1,18 +1,23 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
+import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Electric.IPowerGeneration;
+import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Electric.IPowerTile;
+
+import net.minecraft.inventory.IInventory;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public abstract class TileEntityPowerGeneration extends TileEntityPowerInv{
+public abstract  class TileEntityPowerGeneration extends TileEntityInvBase implements IPowerGeneration{
 
-	public TileEntityPowerGeneration(int Slots, String Name, int Size, int PowerMax) {
-		super(Slots, Name, Size, PowerMax);
+	public TileEntityPowerGeneration(int Slots, String Name, int Size) {
+		super(Slots, Name, Size);
 	}
 	
 	public abstract boolean CanWork(World world, int X, int Y, int Z);
 	public abstract int WorkTime();
-	public abstract int PowerProduced();
+	
+	public int Produced;
 	
     public void OnWork(World world, int x, int y, int z){}
     
@@ -21,10 +26,6 @@ public abstract class TileEntityPowerGeneration extends TileEntityPowerInv{
     int Time = 0;
     
     
-	@Override
-	public boolean CanAcceptPower() {
-		return false;
-	}
 	
 	
 	public int GetX(){
@@ -45,6 +46,7 @@ public abstract class TileEntityPowerGeneration extends TileEntityPowerInv{
 		
 		compound.setBoolean("Providing", isProvidingPower);
 		compound.setInteger("Time", Time);
+		compound.setInteger("Prod", Produced);
 
 	}
 	
@@ -53,6 +55,7 @@ public abstract class TileEntityPowerGeneration extends TileEntityPowerInv{
 		super.readFromNBT(compound);
 		isProvidingPower = compound.getBoolean("Providing");
 		Time = compound.getInteger("Time");
+		Produced = compound.getInteger("Prod");
 
 	}
 	
@@ -96,7 +99,7 @@ public abstract class TileEntityPowerGeneration extends TileEntityPowerInv{
     	
     	for(int h = 0; h < 6; h++){
     		if(Sides[h] == true){
-    			SendPower(this.worldObj ,GetXCord(h), GetYCord(h), GetZCord(h), this.PowerProduced() / ActiveSides);
+    			SendPower(this.worldObj ,GetXCord(h), GetYCord(h), GetZCord(h), Produced / ActiveSides);
 }
     	}
     	
@@ -210,30 +213,19 @@ public abstract class TileEntityPowerGeneration extends TileEntityPowerInv{
     	
     	
     	
-    	if(tile_e instanceof TileEntityPowerInv){
-    		TileEntityPowerInv tile = (TileEntityPowerInv)tile_e;
+    	if(tile_e instanceof IPowerTile){
+    		IPowerTile tile = (IPowerTile)tile_e;
     		
-    		if(tile.CanAcceptPower()){
-    		if(tile.GetPower() < tile.PowerMax && tile.GetPower() + Amount <= tile.PowerMax){
-    			tile.SetPower(tile.GetPower() + Amount);
-    		}
-    			return;
-    		}else{
-    			tile.SetPower(tile.PowerMax);
-    			return;
-    		}
-    		
-    	}else if (tile_e instanceof TileEntityCharger){
-    		TileEntityCharger tile = (TileEntityCharger)tile_e;
-    		
+    		if(tile.AcceptsPower()){
     		if(tile.GetPower() < tile.GetMaxPower() && tile.GetPower() + Amount <= tile.GetMaxPower()){
     			tile.SetPower(tile.GetPower() + Amount);
+    		}
     			return;
-    		
     		}else{
     			tile.SetPower(tile.GetMaxPower());
     			return;
     		}
+
     		
     	}else if (tile_e instanceof TileEntityPowerCable){
     		TileEntityPowerCable tile = (TileEntityPowerCable)tile_e;
@@ -254,22 +246,17 @@ public abstract class TileEntityPowerGeneration extends TileEntityPowerInv{
     public boolean AceptsPower(int x, int y, int z){
     	
     	TileEntity tile_e = this.worldObj.getTileEntity(x, y, z);
-    	if(tile_e instanceof TileEntityPowerInv || tile_e instanceof TileEntityPowerCable || tile_e instanceof TileEntityCharger){
-    		
-    		if(tile_e instanceof TileEntityPowerInv){
-    			TileEntityPowerInv tile = (TileEntityPowerInv)tile_e;
-    			
-    			return tile.CanAcceptPower() && tile.PowerMax < tile.PowerMax;
-    		}else if (tile_e instanceof TileEntityCharger){
-    			TileEntityCharger tile = (TileEntityCharger)tile_e;
-
-    			return y <= this.yCoord && tile.GetPower() < tile.GetMaxPower();
-    		}else if (tile_e instanceof TileEntityPowerCable){
+    	if(tile_e instanceof IPowerTile){
+    		 if (tile_e instanceof TileEntityPowerCable){
     			int Meta = this.worldObj.getBlockMetadata(x, y, z);
     			TileEntityPowerCable tile = (TileEntityPowerCable)tile_e;
     			
     			return Meta != 1 && tile.GetPower() < tile.MaxPower;
 
+    		}else if (tile_e instanceof IPowerTile){
+    			IPowerTile tile = (IPowerTile)tile_e;
+    			
+    			return tile.GetPower() < tile.GetMaxPower();
     		}
     		
     		return true;
@@ -279,5 +266,12 @@ public abstract class TileEntityPowerGeneration extends TileEntityPowerInv{
     	
 
     }
+
+
+	@Override
+	public void SetGeneratedPower(int i) {
+		Produced = i;
+	}
+
 
 }

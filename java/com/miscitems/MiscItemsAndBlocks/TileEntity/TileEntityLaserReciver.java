@@ -5,6 +5,7 @@ import net.minecraft.world.World;
 
 import com.miscitems.MiscItemsAndBlocks.Laser.ILaserReciver;
 import com.miscitems.MiscItemsAndBlocks.Laser.LaserInGame;
+import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Electric.IPowerTile;
 
 public class TileEntityLaserReciver extends TileEntity implements ILaserReciver{
 
@@ -70,47 +71,37 @@ public class TileEntityLaserReciver extends TileEntity implements ILaserReciver{
 		if(side == 4){
 			
 			if(Power)
-			if(world.getTileEntity(xCoord + 1, yCoord, zCoord) instanceof TileEntityPowerInv || world.getTileEntity(xCoord + 1, yCoord, zCoord) instanceof TileEntityCharger){
-				if(world.getTileEntity(xCoord + 1, yCoord, zCoord) instanceof TileEntityPowerInv){
-					TileEntityPowerInv tilePow = (TileEntityPowerInv)world.getTileEntity(xCoord + 1, yCoord, zCoord);
-					if(tile.GetPower() > 0 && tilePow.GetPower() < tilePow.PowerMax){
+			if(world.getTileEntity(xCoord + 1, yCoord, zCoord) instanceof IPowerTile){
+				if(world.getTileEntity(xCoord + 1, yCoord, zCoord) instanceof IPowerTile){
+					IPowerTile tilePow = (IPowerTile)world.getTileEntity(xCoord + 1, yCoord, zCoord);
+					if(tile.GetPower() > 0 && tilePow.GetPower() < tilePow.GetMaxPower()){
 					tile.SetPower(tile.GetPower() - 1);
 					tilePow.SetPower(tilePow.GetPower() + 1);
 					
 					}
-				}else if (world.getTileEntity(xCoord + 1, yCoord, zCoord) instanceof TileEntityCharger){
-					TileEntityCharger tilePow = (TileEntityCharger)world.getTileEntity(xCoord + 1, yCoord, zCoord);
-					if(tile.GetPower() > 0 && tilePow.GetPower() < tilePow.MaxPower){
-					tile.SetPower(tile.GetPower() - 1);
-					tilePow.SetPower(tilePow.GetPower() + 1);
 				}
 			}
 			
 			
-		}
+		
 
 		
 		}else if(side == 3){
 
 			if(Power)
-			if(world.getTileEntity(xCoord, yCoord, zCoord - 1) instanceof TileEntityPowerInv || world.getTileEntity(xCoord, yCoord, zCoord - 1) instanceof TileEntityCharger){
-				if(world.getTileEntity(xCoord, yCoord, zCoord - 1) instanceof TileEntityPowerInv){
-					TileEntityPowerInv tilePow = (TileEntityPowerInv)world.getTileEntity(xCoord, yCoord, zCoord - 1);
-					if(tile.GetPower() > 0 && tilePow.GetPower() < tilePow.PowerMax){
+			if(world.getTileEntity(xCoord, yCoord, zCoord - 1) instanceof IPowerTile){
+				if(world.getTileEntity(xCoord, yCoord, zCoord - 1) instanceof IPowerTile){
+					IPowerTile tilePow = (IPowerTile)world.getTileEntity(xCoord, yCoord, zCoord - 1);
+					if(tile.GetPower() > 0 && tilePow.GetPower() < tilePow.GetMaxPower()){
 					tile.SetPower(tile.GetPower() - 1);
 					tilePow.SetPower(tilePow.GetPower() + 1);
 					
 					}
-				}else if (world.getTileEntity(xCoord, yCoord, zCoord - 1) instanceof TileEntityCharger){
-					TileEntityCharger tilePow = (TileEntityCharger)world.getTileEntity(xCoord, yCoord, zCoord - 1);
-					if(tile.GetPower() > 0 && tilePow.GetPower() < tilePow.MaxPower){
-					tile.SetPower(tile.GetPower() - 1);
-					tilePow.SetPower(tilePow.GetPower() + 1);
 				}
 			}
 			
 			
-		}
+		
 			
 
 		
@@ -118,21 +109,15 @@ public class TileEntityLaserReciver extends TileEntity implements ILaserReciver{
 			
 			
 			if(Power)
-			if(world.getTileEntity(xCoord, yCoord, zCoord + 1) instanceof TileEntityPowerInv || world.getTileEntity(xCoord, yCoord, zCoord + 1) instanceof TileEntityCharger){
-				if(world.getTileEntity(xCoord, yCoord, zCoord + 1) instanceof TileEntityPowerInv){
-					TileEntityPowerInv tilePow = (TileEntityPowerInv)world.getTileEntity(xCoord, yCoord, zCoord + 1);
-					if(tile.GetPower() > 0 && tilePow.GetPower() < tilePow.PowerMax){
+			if(world.getTileEntity(xCoord, yCoord, zCoord + 1) instanceof IPowerTile ){
+				if(world.getTileEntity(xCoord, yCoord, zCoord + 1) instanceof IPowerTile){
+					IPowerTile tilePow = (IPowerTile)world.getTileEntity(xCoord, yCoord, zCoord + 1);
+					if(tile.GetPower() > 0 && tilePow.GetPower() < tilePow.GetMaxPower()){
 					tile.SetPower(tile.GetPower() - 1);
 					tilePow.SetPower(tilePow.GetPower() + 1);
 					
 					}
-				}else if (world.getTileEntity(xCoord, yCoord, zCoord + 1) instanceof TileEntityCharger){
-					TileEntityCharger tilePow = (TileEntityCharger)world.getTileEntity(xCoord, yCoord, zCoord + 1);
-					if(tile.GetPower() > 0 && tilePow.GetPower() < tilePow.MaxPower){
-					tile.SetPower(tile.GetPower() - 1);
-					tilePow.SetPower(tilePow.GetPower() + 1);
 				}
-			}
 			
 			
 		}
@@ -143,21 +128,15 @@ public class TileEntityLaserReciver extends TileEntity implements ILaserReciver{
 		}else if (side == 5){
 			
 			if(Power)
-				if(world.getTileEntity(xCoord - 1, yCoord, zCoord) instanceof TileEntityPowerInv || world.getTileEntity(xCoord - 1, yCoord, zCoord) instanceof TileEntityCharger){
-					if(world.getTileEntity(xCoord - 1, yCoord, zCoord) instanceof TileEntityPowerInv){
-						TileEntityPowerInv tilePow = (TileEntityPowerInv)world.getTileEntity(xCoord - 1, yCoord, zCoord);
-						if(tile.GetPower() > 0 && tilePow.GetPower() < tilePow.PowerMax){
+				if(world.getTileEntity(xCoord - 1, yCoord, zCoord) instanceof IPowerTile){
+					if(world.getTileEntity(xCoord - 1, yCoord, zCoord) instanceof IPowerTile){
+						IPowerTile tilePow = (IPowerTile)world.getTileEntity(xCoord - 1, yCoord, zCoord);
+						if(tile.GetPower() > 0 && tilePow.GetPower() < tilePow.GetMaxPower()){
 						tile.SetPower(tile.GetPower() - 1);
 						tilePow.SetPower(tilePow.GetPower() + 1);
 						
 						}
-					}else if (world.getTileEntity(xCoord - 1, yCoord, zCoord) instanceof TileEntityCharger){
-						TileEntityCharger tilePow = (TileEntityCharger)world.getTileEntity(xCoord - 1, yCoord, zCoord);
-						if(tile.GetPower() > 0 && tilePow.GetPower() < tilePow.MaxPower){
-						tile.SetPower(tile.GetPower() - 1);
-						tilePow.SetPower(tilePow.GetPower() + 1);
 					}
-				}
 				
 				
 			}

@@ -28,7 +28,6 @@ public class ModBlockPowerCable extends BlockContainer{
 	public static String[] messages = new String[]{"[PowerCable]The cable will now connect to everything.",
 			                         "[PowerCable]The cable will not connect to machines.",
 			                         "[PowerCable]The cable will not connect to other cables.",
-			                         "[PowerCable]The cable will not connect to chargers.",
 			                         "[PowerCable]The cable is now in private mode.",
 			                         "[PowerCable]The cable is now in private-public mode."
 			};
@@ -81,7 +80,7 @@ public class ModBlockPowerCable extends BlockContainer{
 		    	if(player.inventory.getCurrentItem().getItem() instanceof ModItemWrench){
 
 		    	
-		    	if(Meta < 5){
+		    	if(Meta < 4){
 		    		world.setBlockMetadataWithNotify(x, y, z, Meta + 1, 2);
 			    	Meta = world.getBlockMetadata(x, y, z);
 		    	}else{

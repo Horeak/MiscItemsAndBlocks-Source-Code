@@ -20,6 +20,7 @@ public class ContainerMetalPress extends Container{
     int LastPower;
     int LastMode;
     int LastWorkTime;
+    int LastMaxPower;
     
     public ContainerMetalPress(InventoryPlayer InvPlayer, TileEntityMetalPress tile)
     {
@@ -79,6 +80,7 @@ public class ContainerMetalPress extends Container{
 	        par1ICrafting.sendProgressBarUpdate(this, 0, this.tile.GetPower());
 	        par1ICrafting.sendProgressBarUpdate(this, 1, this.tile.GetMode());
 	        par1ICrafting.sendProgressBarUpdate(this, 2, this.tile.GetWorkTime());
+	        par1ICrafting.sendProgressBarUpdate(this, 3, this.tile.GetMaxPower());
 	        
 	    }
 
@@ -108,11 +110,18 @@ public class ContainerMetalPress extends Container{
 	            
 	        }
 	            
+	            if (this.LastMaxPower != this.tile.GetMaxPower())
+	            {
+	                icrafting.sendProgressBarUpdate(this, 3, this.tile.GetMaxPower());
+	            }
+	            
 	        }
 
 	        this.LastPower = this.tile.GetPower();
 	        this.LastMode = this.tile.GetMode();
 	        this.LastWorkTime = this.tile.GetWorkTime();
+	        this.LastMaxPower = this.tile.GetMaxPower();
+			
 	        
 	    }
 
@@ -134,6 +143,10 @@ public class ContainerMetalPress extends Container{
 	        	this.tile.SetWorkTime(par2);
 	        }
 
+	        if (par1 == 3)
+        {
+            this.tile.SetMaxPower(par2);
+        }
 	        
 
 	    }

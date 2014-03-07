@@ -14,6 +14,8 @@ import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
+import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Electric.IPowerTile;
+
 public class Utils {
 
     public static final Random RANDOM = new Random();
@@ -27,7 +29,13 @@ public class Utils {
                    Position pos = new Position(x, y, z, orientation);
                    pos.moveForwards(1.0);
 
+                   
                    TileEntity tileInventory = world.getTileEntity((int) pos.x, (int) pos.y, (int) pos.z);
+                   
+                   if(tileInventory instanceof IPowerTile)
+                	  continue;
+                   
+                   
                    ITransactor transactor = Transactor.getTransactorFor(tileInventory);
                    if (transactor != null && transactor.add(stack, orientation.getOpposite(), false).stackSize > 0) {
                            return transactor.add(stack, orientation.getOpposite(), true).stackSize;

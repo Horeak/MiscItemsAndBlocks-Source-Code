@@ -52,7 +52,7 @@ public class GuiElectricFurnace extends GuiContainer{
 	         
 	         
 	         int Power = this.tile.GetPower();
-	         fontRendererObj.drawString(StatCollector.translateToLocal("words.power") + ": " + Power + "/" + tile.PowerMax, x + 5, y + 39, 4210752);
+	         fontRendererObj.drawString(StatCollector.translateToLocal("words.power") + ": " + Power + "/" + tile.GetMaxPower(), x + 5, y + 39, 4210752);
 	         
 	         
 

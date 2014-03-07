@@ -11,7 +11,7 @@ public class TileEntitySolarPanel extends TileEntityPowerGeneration{
 
 
 	public TileEntitySolarPanel() {
-		super(0, "Solar", 0, 1);
+		super(0, "Solar", 0);
 	}
 
 	int Meta = 0;
@@ -80,8 +80,9 @@ public class TileEntitySolarPanel extends TileEntityPowerGeneration{
 	        }
 	    }
 
+
 	@Override
-	public int PowerProduced() {
+	public int GeneratedPower() {
 		return 10;
 	}
 }

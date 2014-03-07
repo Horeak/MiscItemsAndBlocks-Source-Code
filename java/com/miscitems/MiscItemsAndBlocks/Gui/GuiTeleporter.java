@@ -47,7 +47,7 @@ public class GuiTeleporter extends GuiContainer{
 	         int x = (this.width - this.xSize) / 2;
 	         int y = (this.height - this.ySize) / 2;
 	         
-	     	this.drawString(fontRendererObj, "Power: " + tile.GetPower() + "/" + tile.PowerMax, x + 62, y + 44, 0x666666);
+	     	this.drawString(fontRendererObj, "Power: " + tile.GetPower() + "/" + tile.GetMaxPower(), x + 62, y + 44, 0x666666);
 	     	
 	     	
 

@@ -25,6 +25,7 @@ public class ContainerElectricFurnace  extends Container {
     
     int LastPower;
     int LastWorkTime;
+    int LastMaxPower;
 	
     public ContainerElectricFurnace(InventoryPlayer InvPlayer, TileEntityElectricFurnace tile)
     {
@@ -63,6 +64,7 @@ public class ContainerElectricFurnace  extends Container {
         super.addCraftingToCrafters(par1ICrafting);
         par1ICrafting.sendProgressBarUpdate(this, 0, this.tile.GetPower());
         par1ICrafting.sendProgressBarUpdate(this, 1, this.tile.GetWorkTime());
+        par1ICrafting.sendProgressBarUpdate(this, 2, this.tile.GetMaxPower());
     }
 
     public void detectAndSendChanges()
@@ -83,12 +85,19 @@ public class ContainerElectricFurnace  extends Container {
                 icrafting.sendProgressBarUpdate(this, 1, this.tile.GetWorkTime());
             }
             
+            if (this.LastMaxPower != this.tile.GetMaxPower())
+            {
+                icrafting.sendProgressBarUpdate(this, 2, this.tile.GetMaxPower());
+            }
+            
             
             
         }
 
         this.LastPower = this.tile.GetPower();
         this.LastWorkTime = this.tile.GetWorkTime();
+        this.LastMaxPower = this.tile.GetMaxPower();
+        
     }
 
     @SideOnly(Side.CLIENT)
@@ -102,6 +111,11 @@ public class ContainerElectricFurnace  extends Container {
         if (par1 == 1)
         {
             this.tile.SetWorkTime(par2);
+        }
+        
+        if (par1 == 2)
+        {
+            this.tile.SetMaxPower(par2);
         }
         
         

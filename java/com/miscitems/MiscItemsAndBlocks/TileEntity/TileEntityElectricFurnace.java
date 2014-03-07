@@ -10,7 +10,7 @@ import net.minecraftforge.common.util.Constants;
 public class TileEntityElectricFurnace extends TileEntityPowerInv implements ISidedInventory{
 
 	public TileEntityElectricFurnace() {
-		super(3, "ElFurnace", 64, 250);
+		super(3, "ElFurnace", 64);
 	}
 	
 	private static final int[] sidedSlotSides = new int[] { 0 };
@@ -24,7 +24,7 @@ public class TileEntityElectricFurnace extends TileEntityPowerInv implements ISi
     public void updateEntity()
     {
     	
-    	if(this.GetPower() < this.PowerMax){
+    	if(this.GetPower() < this.GetMaxPower()){
     	if(this.getStackInSlot(1) != null){
     		if(this.getStackInSlot(1).getItemDamage() < this.getStackInSlot(1).getMaxDamage()){
     			this.getStackInSlot(1).attemptDamageItem(1, this.worldObj.rand);
@@ -33,8 +33,8 @@ public class TileEntityElectricFurnace extends TileEntityPowerInv implements ISi
     	}
     	}
     	
-    	if(this.GetPower() > this.PowerMax){
-    		this.SetPower(this.PowerMax);
+    	if(this.GetPower() > this.GetMaxPower()){
+    		this.SetPower(this.GetMaxPower());
     	}
     	
     	if(this.GetPower() > 2){
@@ -109,7 +109,6 @@ public class TileEntityElectricFurnace extends TileEntityPowerInv implements ISi
 
 		
 		compound.setTag("Items", Items);
-		compound.setInteger("Power", Power);
 		
 		compound.setInteger("Work", WorkTime);
 		
@@ -137,7 +136,6 @@ public class TileEntityElectricFurnace extends TileEntityPowerInv implements ISi
         }
 		
 		
-		Power = compound.getInteger("Power");
 		WorkTime = compound.getInteger("Work");
 		
 		
@@ -181,6 +179,13 @@ public class TileEntityElectricFurnace extends TileEntityPowerInv implements ISi
 	@Override
 	public boolean CanAcceptPower() {
 		return true;
+	}
+
+
+
+	@Override
+	public int GetMaxPower() {
+		return 250;
 	}
 
 

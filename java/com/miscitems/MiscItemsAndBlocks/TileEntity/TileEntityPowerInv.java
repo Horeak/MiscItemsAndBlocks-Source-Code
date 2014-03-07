@@ -12,14 +12,14 @@ import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Electric.IPowerTile;
 public abstract class TileEntityPowerInv  extends TileEntityInvBase implements IInventory, IPowerTile{
 	
 
-	public TileEntityPowerInv(int Slots, String Name, int Size, int PowerMax) {
+	public TileEntityPowerInv(int Slots, String Name, int Size) {
 		super(Slots, Name, Size);
 
-		this.PowerMax = PowerMax;
 	}
 
 	public int Power;
 	public int PowerMax;
+	
 	
 	
 	public void SetPower(int i){
@@ -71,6 +71,8 @@ public abstract class TileEntityPowerInv  extends TileEntityInvBase implements I
     		
     		compound.setTag("Items", Items);
     		compound.setInteger("Power", Power);
+    		compound.setInteger("MaxPower", PowerMax);
+    		
     		
     		
     		
@@ -97,8 +99,35 @@ public abstract class TileEntityPowerInv  extends TileEntityInvBase implements I
     		
     		
     		Power = compound.getInteger("Power");
+    		PowerMax = compound.getInteger("MaxPower");
     		
     		
     		
     	}
+
+
+		@Override
+		public void AddPower(int Amount) {
+			if(GetPower() + Amount < GetMaxPower())
+				SetPower(GetPower() + Amount);
+			else
+				SetPower(GetMaxPower());
+		}
+
+		@Override
+		public boolean AcceptsPower() {
+			return CanAcceptPower();
+		}
+
+		@Override
+		public boolean ConnectesToCables() {
+			return AcceptsPower();
+		}
+
+
+		@Override
+		public void SetMaxPower(int i) {
+			if(i > 0)
+				PowerMax = i;
+		}
 }

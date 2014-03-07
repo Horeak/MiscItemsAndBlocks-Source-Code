@@ -6,6 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -22,7 +23,7 @@ import com.miscitems.MiscItemsAndBlocks.Network.PacketTileWithItemUpdate;
 public class TileEntityMiningChamber extends TileEntityPowerInv{
 
 	public TileEntityMiningChamber() {
-		super(1, "Mining Chamber", 64, MaxPower);
+		super(1, "Mining Chamber", 64);
 	}
 	
 	int Power = this.GetPower();
@@ -38,7 +39,6 @@ public class TileEntityMiningChamber extends TileEntityPowerInv{
 	int Fortune = 0;
 	int MiningTime = 0;
 	
-	public static int MaxPower = 100;
 	public static int ToolSlot = 0;
 	
 	 int LastY = 0;
@@ -477,6 +477,20 @@ public class TileEntityMiningChamber extends TileEntityPowerInv{
 	public boolean CanAcceptPower() {
 		return true;
 	}
+
+	@Override
+	public int GetMaxPower() {
+		return 100;
+	}
     
+	@Override
+	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
+
+		return false;
+		
+		
+	}
+
+
    
 }

@@ -4,6 +4,10 @@ import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
+
+import com.miscitems.MiscItemsAndBlocks.Laser.LaserUtil;
+import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Electric.IPowerTile;
 
 public class TileEntityPowerCable extends TileEntity{
 
@@ -114,15 +118,12 @@ public class TileEntityPowerCable extends TileEntity{
     	int Meta = this.worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
 
     	if(Meta != 1)
-    	if(tile instanceof TileEntityPowerInv)return true;
+    	if(tile instanceof IPowerTile)return true;
     	if(Meta != 2)
     	if(tile instanceof TileEntityPowerCable)return true;
-    	if(Meta != 1 && Meta != 3)
-    	if(tile instanceof TileEntityCharger)return true;
     	
     	// 1 No Machines
     	// 2 No Cables
-    	// 1 & 3 No chargers
 
     	
     	return false;
@@ -130,50 +131,48 @@ public class TileEntityPowerCable extends TileEntity{
  public void SendPowerToPowerReciver(World world, int x, int y, int z){
 	 
  	int Meta = this.worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
-	 
-	 
+    int BMeta = world.getBlockMetadata(x, y, z);
+    
+    
+    if(Meta != 1){
+    	if(world.getTileEntity(x, y, z) instanceof TileEntityCharger){
+		if(this.xCoord != x + ForgeDirection.getOrientation(LaserUtil.getOrientation(BMeta)).offsetX || this.yCoord != y + ForgeDirection.getOrientation(LaserUtil.getOrientation(BMeta)).offsetY || this.zCoord != z + ForgeDirection.getOrientation(LaserUtil.getOrientation(BMeta)).offsetZ){
+			if(world.getTileEntity(x, y, z) instanceof IPowerTile){
+				IPowerTile tile = (IPowerTile)world.getTileEntity(x, y, z);
+	    		
+	    		if(tile.GetPower() < tile.GetMaxPower()){
+	    			if(Power > 0){
+	    				tile.SetPower(tile.GetPower() + 1);
+	    				Power--;
+	    			}
+	    		}else{
+	    			tile.SetPower(tile.GetMaxPower());
+	    		}
+	    		
+	    	}
+		}
+    	
+    	
+    
 
-	 if(Meta != 1){
-		if(world.getTileEntity(x, y, z) instanceof TileEntityPowerInv){
-    		TileEntityPowerInv tile = (TileEntityPowerInv)world.getTileEntity(x, y, z);
+
+    }else if(world.getTileEntity(x, y, z) instanceof IPowerTile){
+			IPowerTile tile = (IPowerTile)world.getTileEntity(x, y, z);
     		
-    		if(tile.GetPower() < tile.PowerMax){
+    		if(tile.GetPower() < tile.GetMaxPower()){
     			if(Power > 0){
     				tile.SetPower(tile.GetPower() + 1);
     				Power--;
     			}
     		}else{
-    			tile.SetPower(tile.PowerMax);
+    			tile.SetPower(tile.GetMaxPower());
     		}
     		
-    	}else{
-		
+    	}
 
 		
-		if(Meta != 3){
-			if( world.getTileEntity(x, y, z) instanceof TileEntityCharger){
-				TileEntityCharger tile = (TileEntityCharger)world.getTileEntity(x, y, z);
-				
-				if(y <= this.yCoord){
-					if(tile.GetPower() < tile.MaxPower && tile.GetPower() + 1 <= tile.GetMaxPower()){
-						if(Power > 0){
-							SetPower(GetPower() - 1);
-							tile.SetPower(tile.GetPower() + 1);
-							
-							
-						}
-					}
-					
-					
-				}
-				
-			}
-			
-			
-		}
-    	}
-		
-	 }
+    }
+	 
 
 	 int Meta2 = world.getBlockMetadata(x, y, z);
 

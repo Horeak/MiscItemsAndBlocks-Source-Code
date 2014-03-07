@@ -2,23 +2,27 @@ package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.common.util.ForgeDirection;
 
 import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
+import com.miscitems.MiscItemsAndBlocks.Laser.LaserUtil;
 import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Electric.IPowerItem;
 import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Electric.IPowerTile;
 
-public class TileEntityCharger extends TileEntityInvBase implements IPowerTile{
+public class TileEntityCharger extends TileEntityPowerInv{
 
 	public TileEntityCharger() {
 		super(6, "Charger", 64);
 	}
 	
 	int Power = 0;
-	int Ticks = 5;
+	int Ticks = 3;
 	int GenerateTime = 0;
 	int CurrentTick = 0;
 	public int PrimePower = 5000;
 	public int MaxPower = PrimePower;
+	
+	public int UpgradeAmount = 100;
 	
 	
 	public int GetPower(){
@@ -35,9 +39,6 @@ public class TileEntityCharger extends TileEntityInvBase implements IPowerTile{
 	}
 	
 	
-	public void SetMaxPower(int i){
-		this.MaxPower = i;
-	}
 	
 	   @Override
 	public void writeToNBT(NBTTagCompound compound){
@@ -78,25 +79,25 @@ public class TileEntityCharger extends TileEntityInvBase implements IPowerTile{
     	
     	if(this.getStackInSlot(2) != null){
     		if(this.getStackInSlot(2).getItemDamage() == 0){
-    			Bigger += this.getStackInSlot(2).stackSize * 100;
+    			Bigger += this.getStackInSlot(2).stackSize * UpgradeAmount;
     		}
     	}
     	
     	if(this.getStackInSlot(3) != null){
     		if(this.getStackInSlot(3).getItemDamage() == 0){
-    			Bigger += this.getStackInSlot(3).stackSize * 100;
+    			Bigger += this.getStackInSlot(3).stackSize * UpgradeAmount;
     		}
     	}
     	
     	if(this.getStackInSlot(4) != null){
     		if(this.getStackInSlot(4).getItemDamage() == 0){
-    			Bigger += this.getStackInSlot(4).stackSize * 100;
+    			Bigger += this.getStackInSlot(4).stackSize * UpgradeAmount;
     		}
     	}
     	
     	if(this.getStackInSlot(5) != null){
     		if(this.getStackInSlot(5).getItemDamage() == 0){
-    			Bigger += this.getStackInSlot(5).stackSize * 100;
+    			Bigger += this.getStackInSlot(5).stackSize * UpgradeAmount;
     		}
     	}
     	
@@ -162,10 +163,11 @@ public class TileEntityCharger extends TileEntityInvBase implements IPowerTile{
     	if(CurrentTick >= Ticks){
     		CurrentTick = 0;
     		
+    		
 
     		
-    		if(this.worldObj.getTileEntity(xCoord, yCoord - 1, zCoord) instanceof TileEntityCharger){
-    			TileEntityCharger tile = (TileEntityCharger)this.worldObj.getTileEntity(xCoord, yCoord - 1, zCoord);
+    		if(this.worldObj.getTileEntity(xCoord + ForgeDirection.getOrientation(LaserUtil.getOrientation(this.blockMetadata)).offsetX, yCoord + ForgeDirection.getOrientation(LaserUtil.getOrientation(this.blockMetadata)).offsetY, zCoord + ForgeDirection.getOrientation(LaserUtil.getOrientation(this.blockMetadata)).offsetZ) instanceof IPowerTile){
+    			IPowerTile tile = (IPowerTile)this.worldObj.getTileEntity(xCoord + ForgeDirection.getOrientation(LaserUtil.getOrientation(this.blockMetadata)).offsetX, yCoord + ForgeDirection.getOrientation(LaserUtil.getOrientation(this.blockMetadata)).offsetY, zCoord + ForgeDirection.getOrientation(LaserUtil.getOrientation(this.blockMetadata)).offsetZ);
     			if(Power > 0){
     				if(tile.GetPower() < tile.GetMaxPower()){
     					this.SetPower(this.GetPower() - 1);
@@ -175,9 +177,9 @@ public class TileEntityCharger extends TileEntityInvBase implements IPowerTile{
     		}
     		
     		
-    		if(this.worldObj.getTileEntity(xCoord, yCoord - 1, zCoord) instanceof TileEntityPowerCable){
-    			TileEntityPowerCable tile = (TileEntityPowerCable)this.worldObj.getTileEntity(xCoord, yCoord - 1, zCoord);
-    			if(this.worldObj.getBlockMetadata(xCoord, yCoord - 1, zCoord) != 1 && this.worldObj.getBlockMetadata(xCoord, yCoord - 1, zCoord) != 3){
+    		if(this.worldObj.getTileEntity(xCoord + ForgeDirection.getOrientation(LaserUtil.getOrientation(this.blockMetadata)).offsetX, yCoord + ForgeDirection.getOrientation(LaserUtil.getOrientation(this.blockMetadata)).offsetY, zCoord + ForgeDirection.getOrientation(LaserUtil.getOrientation(this.blockMetadata)).offsetZ) instanceof TileEntityPowerCable){
+    			TileEntityPowerCable tile = (TileEntityPowerCable)this.worldObj.getTileEntity(xCoord + ForgeDirection.getOrientation(LaserUtil.getOrientation(this.blockMetadata)).offsetX, yCoord + ForgeDirection.getOrientation(LaserUtil.getOrientation(this.blockMetadata)).offsetY, zCoord + ForgeDirection.getOrientation(LaserUtil.getOrientation(this.blockMetadata)).offsetZ);
+    			if(this.worldObj.getBlockMetadata(xCoord + ForgeDirection.getOrientation(LaserUtil.getOrientation(this.blockMetadata)).offsetX, yCoord + ForgeDirection.getOrientation(LaserUtil.getOrientation(this.blockMetadata)).offsetY, zCoord + ForgeDirection.getOrientation(LaserUtil.getOrientation(this.blockMetadata)).offsetZ) != 1 && this.worldObj.getBlockMetadata(xCoord + ForgeDirection.getOrientation(LaserUtil.getOrientation(this.blockMetadata)).offsetX, yCoord + ForgeDirection.getOrientation(LaserUtil.getOrientation(this.blockMetadata)).offsetY, zCoord + ForgeDirection.getOrientation(LaserUtil.getOrientation(this.blockMetadata)).offsetZ) != 3){
     				if(Power > 0){
     				if(tile.GetPower() < tile.MaxPower){
     					SetPower(GetPower() - 1);
@@ -204,6 +206,14 @@ public class TileEntityCharger extends TileEntityInvBase implements IPowerTile{
 
     	
     }
+
+
+
+
+	@Override
+	public boolean CanAcceptPower() {
+		return true;
+	}
 	
 	
 	

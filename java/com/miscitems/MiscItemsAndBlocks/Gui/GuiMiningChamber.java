@@ -57,7 +57,7 @@ public class GuiMiningChamber extends GuiContainer{
 	         
 	         int YLeft = CurrentY - LastY;
 	         
-	         fontRendererObj.drawString(StatCollector.translateToLocal("words.power") + ": " + Power + "/" + tile.MaxPower, x + 59, y + 17, 0x000000);
+	         fontRendererObj.drawString(StatCollector.translateToLocal("words.power") + ": " + Power + "/" + tile.GetMaxPower(), x + 59, y + 17, 0x000000);
 	         fontRendererObj.drawString(StatCollector.translateToLocal("words.holesize") + ": " + HoleSize + "x" + HoleSize, x + 59, y + 27, 0x000000);
 	         if(YLeft > 0)
 	         fontRendererObj.drawString(StatCollector.translateToLocal("words.mining") + ": " + YLeft + " "+  StatCollector.translateToLocal("words.deeper") + ".", x + 59, y + 37, 0x000000);

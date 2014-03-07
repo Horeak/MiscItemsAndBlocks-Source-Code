@@ -15,7 +15,7 @@ public class TileEntityMetalPress extends TileEntityPowerInv implements ISidedIn
 	
 	
 	public TileEntityMetalPress() {
-		super(6, "Metal Press", 64, 1000);
+		super(6, "Metal Press", 64);
 	}
 
 	public int WorkTime = 1;
@@ -250,6 +250,11 @@ public class TileEntityMetalPress extends TileEntityPowerInv implements ISidedIn
 
 				Main.NETWORK_MANAGER.sendPacketToAllAround(new ClientMetalPressPacketUpdate(this.xCoord, this.yCoord, this.zCoord, WorkTime, false), this.worldObj.getWorldInfo().getVanillaDimension(), xCoord, yCoord, zCoord, 100);
 	    	
+			}
+
+			@Override
+			public int GetMaxPower() {
+				return 1000;
 			}
 			
 			}

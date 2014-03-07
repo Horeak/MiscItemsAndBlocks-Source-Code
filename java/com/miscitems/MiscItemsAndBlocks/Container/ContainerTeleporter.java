@@ -20,6 +20,7 @@ public class ContainerTeleporter extends Container{
     
     int LastPower;
     int LastCardMode;
+    int LastMaxPower;
     
     int LastX;
     int LastY;
@@ -74,6 +75,7 @@ public class ContainerTeleporter extends Container{
 	        par1ICrafting.sendProgressBarUpdate(this, 2, this.tile.GetX());
 	        par1ICrafting.sendProgressBarUpdate(this, 3, this.tile.GetY());
 	        par1ICrafting.sendProgressBarUpdate(this, 4, this.tile.GetZ());
+	        par1ICrafting.sendProgressBarUpdate(this, 5, this.tile.GetMaxPower());
 	    }
 
 	    public void detectAndSendChanges()
@@ -109,6 +111,10 @@ public class ContainerTeleporter extends Container{
 	            {
 	                icrafting.sendProgressBarUpdate(this, 4, this.tile.GetZ());
 	            }
+	            if (this.LastMaxPower != this.tile.GetMaxPower())
+	            {
+	                icrafting.sendProgressBarUpdate(this, 5, this.tile.GetMaxPower());
+	            }
 	            
 	            
 	        }
@@ -119,6 +125,7 @@ public class ContainerTeleporter extends Container{
 	        this.LastX = this.tile.GetX();
 	        this.LastY = this.tile.GetY();
 	        this.LastZ = this.tile.GetZ();
+	        this.LastMaxPower = this.tile.GetMaxPower();
 	        
 	    }
 
@@ -147,6 +154,10 @@ public class ContainerTeleporter extends Container{
 	        	this.tile.SetZ(par2);
 	        }
 
+	        if (par1 == 5)
+        {
+            this.tile.SetMaxPower(par2);
+        }
 	        
 
 	    }

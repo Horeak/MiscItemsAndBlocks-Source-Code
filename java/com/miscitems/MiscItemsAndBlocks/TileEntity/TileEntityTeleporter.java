@@ -16,7 +16,7 @@ public class TileEntityTeleporter extends TileEntityPowerInv{
 
 	
 	public TileEntityTeleporter() {
-		super(3, "Teleporter", 1, 500);
+		super(3, "Teleporter", 1);
 	}
 	
 	int CurrentUpdateTick = 0;
@@ -241,5 +241,10 @@ public class TileEntityTeleporter extends TileEntityPowerInv{
 		@Override
 		public boolean CanAcceptPower() {
 			return true;
+		}
+
+		@Override
+		public int GetMaxPower() {
+			return 050;
 		}
 }

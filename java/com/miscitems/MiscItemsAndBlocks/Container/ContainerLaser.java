@@ -24,6 +24,7 @@ public class ContainerLaser  extends Container {
 	}
 	
     int LastPower;
+    int LastMaxPower;
     public TileEntityLaser tile;
 
 	
@@ -65,6 +66,8 @@ public class ContainerLaser  extends Container {
     {
         super.addCraftingToCrafters(par1ICrafting);
         par1ICrafting.sendProgressBarUpdate(this, 0, this.tile.GetPower());
+        par1ICrafting.sendProgressBarUpdate(this, 1, this.tile.GetMaxPower());
+		
     }
 
     public void detectAndSendChanges()
@@ -80,12 +83,18 @@ public class ContainerLaser  extends Container {
                 icrafting.sendProgressBarUpdate(this, 0, this.tile.GetPower());
             }
             
+            if (this.LastMaxPower != this.tile.GetMaxPower())
+{
+    icrafting.sendProgressBarUpdate(this, 1, this.tile.GetMaxPower());
+}
+            
             
             
             
         }
 
         this.LastPower = this.tile.GetPower();
+        this.LastMaxPower = this.tile.GetMaxPower();
     }
 
     @SideOnly(Side.CLIENT)
@@ -96,6 +105,10 @@ public class ContainerLaser  extends Container {
             this.tile.SetPower(par2);
         }
 
+        if (par1 == 1)
+    {
+        this.tile.SetMaxPower(par2);
+    }
         
         
 

@@ -28,7 +28,7 @@ public class TileEntityLaser extends TileEntityLaserBase implements ILaserProvid
 
 	
 public TileEntityLaser() {
-		super(2, "Laser Block", 1, 1000);
+		super(2, "Laser Block", 1);
 	}
 
 public boolean Powered = false;
@@ -393,6 +393,11 @@ double extraMaxZ = 0.0D;
         
         return boundingBox;
 }
+
+	@Override
+	public int GetMaxPower() {
+		return 1000;
+	}
 	
 	
 }

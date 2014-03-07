@@ -16,8 +16,7 @@ public class SlotUpgrades extends Slot{
 
     public boolean isItemValid(ItemStack item)
     {
-    	
-    	
+
     	return item.getItem() instanceof ModItemUpgradeItem;
     	
     }

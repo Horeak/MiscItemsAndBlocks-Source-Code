@@ -10,7 +10,7 @@ import net.minecraftforge.common.util.Constants;
 public class TileEntityGenerator extends TileEntityPowerGeneration{
 
 	public TileEntityGenerator() {
-		super(1, "CoalGenerator", 64, 1);
+		super(1, "CoalGenerator", 64);
 	}
 	
 	
@@ -133,16 +133,16 @@ public class TileEntityGenerator extends TileEntityPowerGeneration{
 		return MaxTime + 10;
 	}
 
-	@Override
-	public int PowerProduced() {
-		return 1;
-	}
-	
     public void OnWork(World world, int x, int y, int z){
     	Power--;
     	
     	
     }
+
+	@Override
+	public int GeneratedPower() {
+		return 1;
+	}
 	
    
 

@@ -48,7 +48,7 @@ public class GuiLaser extends GuiContainer{
 	         drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
 
 
-	         this.drawCenteredString(fontRendererObj, tile.GetPower() + "/" + tile.PowerMax, x + 88, y + 56, 0x666666);
+	         this.drawCenteredString(fontRendererObj, tile.GetPower() + "/" + tile.GetMaxPower(), x + 88, y + 56, 0x666666);
 
 	         
 
