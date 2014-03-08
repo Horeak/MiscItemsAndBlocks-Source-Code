@@ -11,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
+import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityItemPedestal;
 
@@ -49,7 +50,7 @@ public class ModBlockItemPedestal extends BlockContainer{
 	
     public void registerBlockIcons(IIconRegister par1IconRegister)
     {
-        this.blockIcon = par1IconRegister.registerIcon("furnace_top");
+        this.blockIcon = par1IconRegister.registerIcon(Refrence.Mod_Id + ":ItemPedestal");
         
     }
     

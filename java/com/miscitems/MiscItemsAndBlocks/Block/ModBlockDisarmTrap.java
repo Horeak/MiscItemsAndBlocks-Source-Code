@@ -16,6 +16,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityDisarmTrap;
 
@@ -81,7 +82,7 @@ public class ModBlockDisarmTrap extends BlockContainer{
     
     
     public void registerBlockIcons(IIconRegister icon) {
-        this.blockIcon = icon.registerIcon("quartz_block_top");
+        this.blockIcon = icon.registerIcon(Refrence.Mod_Id + ":DisarmTrap");
 }
     
     

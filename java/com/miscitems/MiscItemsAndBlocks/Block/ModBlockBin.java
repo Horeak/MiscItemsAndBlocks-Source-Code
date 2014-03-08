@@ -8,6 +8,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityBin;
 
@@ -46,7 +47,7 @@ public class ModBlockBin extends BlockContainer{
 }
     
     public void registerBlockIcons(IIconRegister icon) {
-        this.blockIcon = icon.registerIcon("stone");
+        this.blockIcon = icon.registerIcon(Refrence.Mod_Id + ":" + "TrashBin");
 }
 
     

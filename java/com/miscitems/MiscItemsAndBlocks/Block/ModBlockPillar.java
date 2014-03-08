@@ -7,6 +7,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityPillar;
 
 public class ModBlockPillar extends BlockContainer {
@@ -54,7 +55,7 @@ public class ModBlockPillar extends BlockContainer {
     public void registerBlockIcons(IIconRegister par1IconRegister)
     {
     	
-        this.blockIcon = par1IconRegister.registerIcon("quartz_block_side");
+        this.blockIcon = par1IconRegister.registerIcon(Refrence.Mod_Id + ":BlankPillar");
         
     }
  

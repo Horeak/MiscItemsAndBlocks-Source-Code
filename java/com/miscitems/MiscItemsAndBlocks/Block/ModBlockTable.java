@@ -10,6 +10,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityTable;
 
 public class ModBlockTable extends BlockContainer{
@@ -48,7 +49,7 @@ public class ModBlockTable extends BlockContainer{
 }
     
     public void registerBlockIcons(IIconRegister icon) {
-        this.blockIcon = icon.registerIcon("planks_spruce");
+        this.blockIcon = icon.registerIcon(Refrence.Mod_Id + ":Table");
 }
     
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)

@@ -242,14 +242,14 @@ public class ModBlocks {
         MetalPress = new ModBlockMetalPress();
         Register(MetalPress, ModItemBlockMetalPress.class, "Metal Press", true);
         
-        LensBench = new ModBlockLensBench();
-        Register(LensBench, "Lens Bench", true);
-        
-        Laser = new ModBlockLaser();
-        Register(Laser, "Laser", true);
-        
-        LaserReciver = new ModBlockLaserReciver().setBlockTextureName("furnace_top");
-        Register(LaserReciver, ModItemBlockLaserReciver.class, "Laser Reciver", true);
+//        LensBench = new ModBlockLensBench();
+//        Register(LensBench, "Lens Bench", true);
+//        
+//        Laser = new ModBlockLaser();
+//        Register(Laser, "Laser", true);
+//        
+//        LaserReciver = new ModBlockLaserReciver().setBlockTextureName(Refrence.Mod_Id + ":LaserReciver");
+//        Register(LaserReciver, ModItemBlockLaserReciver.class, "Laser Reciver", true);
         
         GhostBlock = new ModBlockGhostBlock();
         Register(GhostBlock, "Ghost Block", true);

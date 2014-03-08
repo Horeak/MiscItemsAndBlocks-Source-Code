@@ -212,8 +212,8 @@ public class ModItems {
 		CreativeBattery = new ModItemCreativeBattery().setUnlocalizedName("CreativeBattery");
 		Register(CreativeBattery, "Creative Battery");
 		
-		Lens = new ModItemLens().setUnlocalizedName("Lens");
-		Register(Lens, "Lens");
+//		Lens = new ModItemLens().setUnlocalizedName("Lens");
+//		Register(Lens, "Lens");
 		
 		
 		

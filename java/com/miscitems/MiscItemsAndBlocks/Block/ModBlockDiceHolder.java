@@ -12,6 +12,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityDiceHolder;
 
 public class ModBlockDiceHolder extends BlockContainer{
@@ -60,7 +61,7 @@ public class ModBlockDiceHolder extends BlockContainer{
 	}
 	    
 	    public void registerBlockIcons(IIconRegister icon) {
-	        this.blockIcon = icon.registerIcon("furnace_top");
+	        this.blockIcon = icon.registerIcon(Refrence.Mod_Id + ":DiceStand");
 	}
 	    
 	    public boolean canConnectRedstone(IBlockAccess world, int x, int y, int z, int side)

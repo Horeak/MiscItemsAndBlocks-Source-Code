@@ -14,6 +14,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import com.miscitems.MiscItemsAndBlocks.Gui.GuiHandler;
+import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityComputer;
 
@@ -49,7 +50,7 @@ public class ModBlockComputer extends BlockContainer{
 	    }
 	   
 	    public void registerBlockIcons(IIconRegister icon) {
-	        this.blockIcon = icon.registerIcon("stone");
+	        this.blockIcon = icon.registerIcon(Refrence.Mod_Id + ":Computer");
 	}
 	   
 		public boolean shouldSideBeRendered(IBlockAccess iblockaccess, int i, int j, int k, int l)
