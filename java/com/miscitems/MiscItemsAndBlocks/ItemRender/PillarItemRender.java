@@ -51,7 +51,7 @@ public class PillarItemRender implements IItemRenderer
 		PillarModel model = new PillarModel();
 	    
 	    GL11.glPushMatrix();
-        GL11.glTranslatef((float) 0.5F, (float) 1.5F, (float) 0.5F);
+        GL11.glTranslatef((float) 0.5F, (float) 1.4F, (float) 0.5F);
         
         
        Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("textures/blocks/quartz_block_top.png"));

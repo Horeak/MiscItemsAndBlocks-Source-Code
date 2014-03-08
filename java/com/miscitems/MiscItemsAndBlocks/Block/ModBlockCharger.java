@@ -11,11 +11,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Facing;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 
+import com.miscitems.MiscItemsAndBlocks.Items.ModItemWrench;
 import com.miscitems.MiscItemsAndBlocks.Laser.LaserUtil;
 import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
@@ -101,8 +102,17 @@ public class ModBlockCharger extends BlockContainer{
 	        return OutIcon;
 	    }
 		
-	    public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
+	    public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int side, float par7, float par8, float par9)
 	    {
+	    	if(par5EntityPlayer.getHeldItem() != null && par5EntityPlayer.getHeldItem().getItem() instanceof ModItemWrench){
+	    		if(par5EntityPlayer.isSneaking()){
+	    			par1World.setBlockMetadataWithNotify(par2, par3, par4, ForgeDirection.getOrientation(side).getOpposite().ordinal(), 2);
+	    		}else{
+	    		par1World.setBlockMetadataWithNotify(par2, par3, par4, side, 2);
+	    		}
+	    		return true;
+	    	}
+	    	
 	        if (par1World.isRemote)
 	        {
 	        	

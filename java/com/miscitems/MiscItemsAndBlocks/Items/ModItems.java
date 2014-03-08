@@ -173,13 +173,16 @@ public class ModItems {
         AdvancedBattery = new ModItemAdvancedBattery().setUnlocalizedName("AdvancedBattery");
         Register(AdvancedBattery, StatCollector.translateToLocal("advancedbattery"));
         
+		CreativeBattery = new ModItemCreativeBattery().setUnlocalizedName("CreativeBattery");
+		Register(CreativeBattery, "Creative Battery");
+        
         ElectricShears = new ModItemElectricShear().setUnlocalizedName("ELShears");
         Register(ElectricShears, StatCollector.translateToLocal("electricshears"));
         
         ElectricBow = new ModItemElectricBow().setUnlocalizedName("ElBow");
         Register(ElectricBow, StatCollector.translateToLocal("electricbow"));
         
-       Upgrades = new ModItemUpgrades().setUnlocalizedName("Upgrades");
+        Upgrades = new ModItemUpgrades().setUnlocalizedName("Upgrades");
         RegisterOutName(Upgrades, "Upgrades");
         
         Wrench = new ModItemWrench().setUnlocalizedName("Wrench");
@@ -207,13 +210,9 @@ public class ModItems {
         
         DataChip = new ModItemDataChip().setUnlocalizedName("DataChip");
         Register(DataChip, "Data Chip");
-        
-        
-		CreativeBattery = new ModItemCreativeBattery().setUnlocalizedName("CreativeBattery");
-		Register(CreativeBattery, "Creative Battery");
 		
-//		Lens = new ModItemLens().setUnlocalizedName("Lens");
-//		Register(Lens, "Lens");
+		Lens = new ModItemLens().setUnlocalizedName("Lens");
+		Register(Lens, "Lens");
 		
 		
 		

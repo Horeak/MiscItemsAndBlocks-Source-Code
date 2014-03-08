@@ -1,5 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Block;
 
+import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -12,13 +14,17 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityElectricFurnace;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityGenerator;
 
 import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ModBlockGenerator extends BlockContainer{
 
@@ -37,6 +43,7 @@ public class ModBlockGenerator extends BlockContainer{
 	IIcon IconTop;
 	IIcon IconSide;
 	IIcon IconFront;
+	IIcon IconFrontLit;
 
 	@Override
 	public TileEntity createNewTileEntity(World world, int i) {
@@ -72,6 +79,7 @@ public class ModBlockGenerator extends BlockContainer{
 	        this.IconTop = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "ModuleBlank");
 	        this.IconSide = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "ModuleBlank");
 	        this.IconFront = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "GeneratorFront");
+	        this.IconFrontLit = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "GeneratorFrontLit");
 	        
 	    }
 	    
@@ -157,5 +165,65 @@ public class ModBlockGenerator extends BlockContainer{
 		            return true;
 		        }
 		    }
+		    
+		    @Override
+			public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side)
+			{
+				int Meta = world.getBlockMetadata(x, y, z);
+				
+				if(world.getTileEntity(x, y, z) instanceof TileEntityGenerator){
+					TileEntityGenerator tile = (TileEntityGenerator)world.getTileEntity(x, y, z);
+				
+					boolean Running = tile.GetTimeLeft() > 0;
+				
+				
+				return (side == getSideFromFacing(Meta) ? (Running ?  IconFrontLit : IconFront) : (side == 1 ? this.IconSide : side == 0 ? IconSide : this.IconSide));
+				}
+				return getIcon(side, Meta);
+			}
 
+		    
+		    @SideOnly(Side.CLIENT)
+		    public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random)
+		    {
+		    	
+		        
+		    	if(par1World.getTileEntity(par2, par3, par4) instanceof TileEntityGenerator){
+		    		TileEntityGenerator tile = (TileEntityGenerator)par1World.getTileEntity(par2, par3, par4);
+		    	
+		    	
+		    	if(tile.GetTimeLeft() > 0)
+		    	
+		        {
+		            int Meta = par1World.getBlockMetadata(par2, par3, par4);
+		            int l = getSideFromFacing(Meta);
+		            float f = (float)par2 + 0.5F;
+		            float f1 = (float)par3 + 0.0F + par5Random.nextFloat() * 6.0F / 16.0F;
+		            float f2 = (float)par4 + 0.5F;
+		            float f3 = 0.52F;
+		            float f4 = par5Random.nextFloat() * 0.6F - 0.3F;
+
+		            if (l == 4)
+		            {
+		                par1World.spawnParticle("smoke", (double)(f - f3), (double)f1, (double)(f2 + f4), 0.0D, 0.0D, 0.0D);
+		                par1World.spawnParticle("flame", (double)(f - f3), (double)f1, (double)(f2 + f4), 0.0D, 0.0D, 0.0D);
+		            }
+		            else if (l == 5)
+		            {
+		                par1World.spawnParticle("smoke", (double)(f + f3), (double)f1, (double)(f2 + f4), 0.0D, 0.0D, 0.0D);
+		                par1World.spawnParticle("flame", (double)(f + f3), (double)f1, (double)(f2 + f4), 0.0D, 0.0D, 0.0D);
+		            }
+		            else if (l == 2)
+		            {
+		                par1World.spawnParticle("smoke", (double)(f + f4), (double)f1, (double)(f2 - f3), 0.0D, 0.0D, 0.0D);
+		                par1World.spawnParticle("flame", (double)(f + f4), (double)f1, (double)(f2 - f3), 0.0D, 0.0D, 0.0D);
+		            }
+		            else if (l == 3)
+		            {
+		                par1World.spawnParticle("smoke", (double)(f + f4), (double)f1, (double)(f2 + f3), 0.0D, 0.0D, 0.0D);
+		                par1World.spawnParticle("flame", (double)(f + f4), (double)f1, (double)(f2 + f3), 0.0D, 0.0D, 0.0D);
+		            }
+		        }
+		    }
+		    }
 }

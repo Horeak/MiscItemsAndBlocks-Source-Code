@@ -78,6 +78,7 @@ public class TileEntityGenerator extends TileEntityPowerGeneration{
     	
     	if(Power < 1)
     	if(this.getStackInSlot(0) != null){
+    		worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
     		if(this.getStackInSlot(0).getItem() == Items.coal){
     			if(TimeLeft == MaxTime){
     				TimeLeft = 0;
@@ -87,11 +88,15 @@ public class TileEntityGenerator extends TileEntityPowerGeneration{
     				
     			}else{
     				TimeLeft++;
+    				
     			}
     			
     			
     		}
     	}
+    	
+    	else
+    		worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
     	
     	super.updateEntity();
     	

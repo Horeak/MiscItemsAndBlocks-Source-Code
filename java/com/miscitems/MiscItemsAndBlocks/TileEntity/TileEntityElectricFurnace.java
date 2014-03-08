@@ -21,6 +21,8 @@ public class TileEntityElectricFurnace extends TileEntityPowerInv implements ISi
 	int WorkTime = 0;
 	int MaxWorkTime = 100;
 	
+	public boolean Working;
+	
     public void updateEntity()
     {
     	
@@ -46,7 +48,10 @@ public class TileEntityElectricFurnace extends TileEntityPowerInv implements ISi
     			
     			
     			ItemStack smeltingItem = this.getStackInSlot(0);
+    			if(!Working)
+        			worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
     			
+    			Working = true;
     			
     			if(WorkTime >= MaxWorkTime){
     				WorkTime = 0;
@@ -60,11 +65,14 @@ public class TileEntityElectricFurnace extends TileEntityPowerInv implements ISi
     						this.decrStackSize(0, 1);
     						this.SetPower(this.GetPower() - 2);
     						this.setInventorySlotContents(2, resultItem);
+    						
     					}else if (this.getStackInSlot(2).getItem() == resultItem.getItem() && this.getStackInSlot(2).stackSize < 64){
 
     						this.decrStackSize(0, 1);
     						this.SetPower(this.GetPower() - 2);
     						this.getStackInSlot(2).stackSize = this.getStackInSlot(2).stackSize + 1;
+    						
+    						
     					}
     					
     					
@@ -76,9 +84,18 @@ public class TileEntityElectricFurnace extends TileEntityPowerInv implements ISi
     			}
     		}else{
     			WorkTime = 0;
+    			if(Working)
+        			worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+        		Working = false;
+    			
     		}
     	}else{
     		WorkTime = 0;
+
+			if(Working)
+    			worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+			
+	   		Working = false;
     	}
     	
     	

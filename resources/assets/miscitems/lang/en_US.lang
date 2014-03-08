@@ -102,6 +102,7 @@ item.data_chip.name=Data chip
 item.lens.name=Lens
 item.creative_battery.name=Creative Battery
 item.guidebook.Guide.name=Guide Book
+item.turbine.name=Turbine
 
 
 
@@ -138,7 +139,7 @@ gui.string.redvalue=Red Value
 gui.string.greenvalue=Green Value
 gui.string.bluevalue=Blue Value
 gui.string.levelsstored=Levels stored
-gui.string.miningdownto=Planed Y destination
+gui.string.miningdownto=Mingind down to
 gui.string.currentlyat=Mining at
 gui.string.settostart=Set to start
 gui.string.setcolor=Set colour

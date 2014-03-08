@@ -9,10 +9,10 @@ import net.minecraft.world.World;
 
 import org.lwjgl.opengl.GL11;
 
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlockCharger;
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlockPowerCable;
+import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Electric.IPowerGeneration;
+import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Electric.IPowerTile;
 import com.miscitems.MiscItemsAndBlocks.Models.ModelPowerCable;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityPowerInv;
 
 public class TileEntityPowerCableRender extends TileEntitySpecialRenderer {
     
@@ -104,11 +104,13 @@ public class TileEntityPowerCableRender extends TileEntitySpecialRenderer {
     	    	if(block instanceof ModBlockPowerCable && Meta2 != 2 && Meta2 != 4)return true;
     	
     	
-    	
-    	if(Meta != 1 && Meta != 3)
-    	if(block instanceof ModBlockCharger)return true;
     	if(Meta != 1)
-    	if(tile instanceof TileEntityPowerInv)return true;
+    	if(tile instanceof IPowerTile)return true;
+    	
+    	else if(tile instanceof IPowerGeneration)return true;
+
+    	else
+    		return false;
 
     	
     	return false;

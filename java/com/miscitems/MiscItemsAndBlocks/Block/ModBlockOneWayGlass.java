@@ -7,6 +7,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -43,9 +44,18 @@ public class ModBlockOneWayGlass extends BlockRotatedPillar {
     }
     
     
+	   @Override
+	   public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side) {
+		   int Meta = world.getBlockMetadata(x, y, z);
+		   
+	        int k = getOrientation(Meta);
+	        return k > 5 ? this.topIcon : (side == k ? (this.topIcon ) : (sideIcon));
+		   
+	   }
+    
     public IIcon getIcon(int par1, int par2)
     {
-        int k = getOrientation(par2);
+        int k = 3;
         return k > 5 ? this.topIcon : (par1 == k ? (this.topIcon ) : (sideIcon));
     }
     

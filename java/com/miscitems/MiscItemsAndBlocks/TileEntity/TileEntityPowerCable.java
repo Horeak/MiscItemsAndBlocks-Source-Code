@@ -7,6 +7,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import com.miscitems.MiscItemsAndBlocks.Laser.LaserUtil;
+import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Electric.IPowerGeneration;
 import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Electric.IPowerTile;
 
 public class TileEntityPowerCable extends TileEntity{
@@ -119,6 +120,8 @@ public class TileEntityPowerCable extends TileEntity{
 
     	if(Meta != 1)
     	if(tile instanceof IPowerTile)return true;
+    	if(Meta != 1)
+    	if(tile instanceof IPowerGeneration)return true;
     	if(Meta != 2)
     	if(tile instanceof TileEntityPowerCable)return true;
     	

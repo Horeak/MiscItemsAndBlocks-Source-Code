@@ -175,6 +175,9 @@ public class ModBlocks {
         OrangePlanks = new ModBlockOrangePlanks();
         Register(OrangePlanks, "Orange Tree Planks", true);
         
+        MachinePart = new ModBlockMachinePart();
+        Register(MachinePart, "Machine Part", true);
+        
         Charger = new ModBlockCharger();
         Register(Charger, "Charger", true);
         
@@ -190,24 +193,35 @@ public class ModBlocks {
         PowerCable = new ModBlockPowerCable();
         Register(PowerCable, ModItemBlockPowerCable.class, "Power Cable", true);
         
+        MetalPress = new ModBlockMetalPress();
+        Register(MetalPress, ModItemBlockMetalPress.class, "Metal Press", true);
         
-        ItemPedestal = new ModBlockItemPedestal();
-        Register(ItemPedestal, ModItemBlockItemPedestal.class, "Item Pedestal", true);
+        LensBench = new ModBlockLensBench();
+        Register(LensBench, "Lens Bench", true);
+        
+        Laser = new ModBlockLaser();
+        Register(Laser, "Laser", true);
+        
+        LaserReciver = new ModBlockLaserReciver().setBlockTextureName(Refrence.Mod_Id + ":LaserReciver");
+        Register(LaserReciver, ModItemBlockLaserReciver.class, "Laser Reciver", true);
         
         MiningChamber = new ModBlockMiningChamber();
         Register(MiningChamber, ModItemBlockMiningChamber.class, "Mining Station", true);
         
+        ElectricFurnace = new ModBlockElectricFurnace();
+        Register(ElectricFurnace, "Electric Furnace", true);
+        
+        Teleporter = new ModBlockTeleporter();
+        Register(Teleporter, ModItemBlockTeleporter.class, "Teleporter", true);
+        
+        ItemPedestal = new ModBlockItemPedestal();
+        Register(ItemPedestal, ModItemBlockItemPedestal.class, "Item Pedestal", true);
+        
         Table = new ModBlockTable();
         Register(Table, ModItemBlockTable.class ,"Table", true);
         
-        MachinePart = new ModBlockMachinePart();
-        Register(MachinePart, "Machine Part", true);
-        
         PaintBlock = new ModBlockPaintBlock();
         Register(PaintBlock, "Paint Block", true);
-        
-        ElectricFurnace = new ModBlockElectricFurnace();
-        Register(ElectricFurnace, "Electric Furnace", true);
         
         TimedBlock = new ModBlockTimedBlock();
         Register(TimedBlock, "Float Block", false);
@@ -221,13 +235,8 @@ public class ModBlocks {
         StorageBlock = new ModBlockStorageBlock();
         Register(StorageBlock, ModItemBlockStorageBlock.class, "Storage Block", true);
         
-        
         DiceHolder = new ModBlockDiceHolder();
         Register(DiceHolder, ModItemBlockDiceHolder.class, "Dice Stand", true);
-
-        
-        Teleporter = new ModBlockTeleporter();
-        Register(Teleporter, ModItemBlockTeleporter.class, "Teleporter", true);
         
         WireLessRedstone = new ModBlockWirelessRedstone();
         Register(WireLessRedstone, "Wireless Redstone", true);
@@ -237,19 +246,6 @@ public class ModBlocks {
         
         WirelessItemTrans = new ModBlockWirelessItemTransfer();
         Register(WirelessItemTrans, "Wireless Item Transfer", true);
-        
-        
-        MetalPress = new ModBlockMetalPress();
-        Register(MetalPress, ModItemBlockMetalPress.class, "Metal Press", true);
-        
-//        LensBench = new ModBlockLensBench();
-//        Register(LensBench, "Lens Bench", true);
-//        
-//        Laser = new ModBlockLaser();
-//        Register(Laser, "Laser", true);
-//        
-//        LaserReciver = new ModBlockLaserReciver().setBlockTextureName(Refrence.Mod_Id + ":LaserReciver");
-//        Register(LaserReciver, ModItemBlockLaserReciver.class, "Laser Reciver", true);
         
         GhostBlock = new ModBlockGhostBlock();
         Register(GhostBlock, "Ghost Block", true);
