@@ -1,13 +1,12 @@
 package com.miscitems.MiscItemsAndBlocks.Misc;
 
-import java.util.Comparator;
-
+import com.miscitems.MiscItemsAndBlocks.Lib.Colours;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.oredict.OreDictionary;
 
-import com.miscitems.MiscItemsAndBlocks.Lib.Colours;
+import java.util.Comparator;
 
 
 public class ItemHelper {

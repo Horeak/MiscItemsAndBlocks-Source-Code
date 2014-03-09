@@ -1,9 +1,8 @@
 package com.miscitems.MiscItemsAndBlocks.Block;
 
+import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStairs;
-
-import com.miscitems.MiscItemsAndBlocks.Main.Main;
 
 public class ModBlockStair extends BlockStairs{
 

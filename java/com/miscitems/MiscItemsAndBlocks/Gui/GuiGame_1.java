@@ -1,22 +1,20 @@
 package com.miscitems.MiscItemsAndBlocks.Gui;
 
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-
+import com.miscitems.MiscItemsAndBlocks.Main.Main;
+import com.miscitems.MiscItemsAndBlocks.Network.Packet.Client.ClientGamePacketRestart;
+import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerGamePacketChange;
+import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerGamePacketClosed;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
 
-import com.miscitems.MiscItemsAndBlocks.Main.Main;
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.Client.ClientGamePacketRestart;
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerGamePacketChange;
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerGamePacketClosed;
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 
 
 public class GuiGame_1 extends GuiScreen

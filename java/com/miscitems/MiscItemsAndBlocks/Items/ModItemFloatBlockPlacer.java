@@ -1,7 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Items;
 
-import java.util.List;
-
+import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -11,7 +10,7 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
+import java.util.List;
 
 public class ModItemFloatBlockPlacer extends ModItemPowerTool{
 

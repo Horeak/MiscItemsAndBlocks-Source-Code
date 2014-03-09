@@ -2,7 +2,6 @@ package mantle.client.pages;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
-
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 

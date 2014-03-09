@@ -1,17 +1,15 @@
 package com.miscitems.MiscItemsAndBlocks.Gui;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
+import com.miscitems.MiscItemsAndBlocks.GuiObjects.GuiColorButton;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
 
-import com.miscitems.MiscItemsAndBlocks.GuiObjects.GuiColorButton;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class GuiGame_2 extends GuiScreen{
 

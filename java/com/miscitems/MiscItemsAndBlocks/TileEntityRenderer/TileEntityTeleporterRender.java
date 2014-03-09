@@ -1,15 +1,13 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntityRenderer;
 
+import com.miscitems.MiscItemsAndBlocks.Models.TeleporterModel;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityTeleporter;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-
 import org.lwjgl.opengl.GL11;
-
-import com.miscitems.MiscItemsAndBlocks.Models.TeleporterModel;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityTeleporter;
 
 public class TileEntityTeleporterRender extends TileEntitySpecialRenderer {
     

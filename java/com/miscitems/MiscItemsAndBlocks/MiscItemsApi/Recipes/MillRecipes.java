@@ -1,10 +1,10 @@
 package com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Recipes;
 
+import net.minecraft.item.ItemStack;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-
-import net.minecraft.item.ItemStack;
 
 public class MillRecipes
 {

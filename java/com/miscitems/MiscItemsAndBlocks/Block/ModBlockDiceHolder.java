@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Block;
 
-import java.util.Random;
-
+import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityDiceHolder;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -12,8 +12,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityDiceHolder;
+import java.util.Random;
 
 public class ModBlockDiceHolder extends BlockContainer{
 

@@ -1,5 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Block;
 
+import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityTable;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -9,9 +11,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
-import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityTable;
 
 public class ModBlockTable extends BlockContainer{
 

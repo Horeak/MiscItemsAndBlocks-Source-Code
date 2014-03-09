@@ -1,16 +1,15 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
-import java.util.List;
-import java.util.Random;
-
+import com.miscitems.MiscItemsAndBlocks.Items.ModItemDataChip;
+import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 
-import com.miscitems.MiscItemsAndBlocks.Items.ModItemDataChip;
-import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
+import java.util.List;
+import java.util.Random;
 
 public class TileEntityTeleporter extends TileEntityPowerInv{
 

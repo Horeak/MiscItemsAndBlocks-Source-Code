@@ -1,12 +1,14 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
-import java.util.List;
-
+import com.miscitems.MiscItemsAndBlocks.LibMisc.BlockUtil;
+import com.miscitems.MiscItemsAndBlocks.LibMisc.Utils;
+import com.miscitems.MiscItemsAndBlocks.Main.Main;
+import com.miscitems.MiscItemsAndBlocks.Misc.ItemHelper;
+import com.miscitems.MiscItemsAndBlocks.Network.PacketTileWithItemUpdate;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -14,11 +16,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.Packet;
 import net.minecraftforge.common.util.Constants;
 
-import com.miscitems.MiscItemsAndBlocks.LibMisc.BlockUtil;
-import com.miscitems.MiscItemsAndBlocks.LibMisc.Utils;
-import com.miscitems.MiscItemsAndBlocks.Main.Main;
-import com.miscitems.MiscItemsAndBlocks.Misc.ItemHelper;
-import com.miscitems.MiscItemsAndBlocks.Network.PacketTileWithItemUpdate;
+import java.util.List;
 
 public class TileEntityMiningChamber extends TileEntityPowerInv{
 

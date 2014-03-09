@@ -1,13 +1,12 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
+import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Recipes.SqueezerRecipes;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.util.Constants;
-
-import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Recipes.SqueezerRecipes;
 
 public class TileEntitySquezer extends TileEntityInvBase implements ISidedInventory {
 

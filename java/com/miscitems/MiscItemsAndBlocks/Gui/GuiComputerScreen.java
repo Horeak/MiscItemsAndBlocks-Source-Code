@@ -1,18 +1,16 @@
 package com.miscitems.MiscItemsAndBlocks.Gui;
 
-import java.util.Random;
-
+import com.miscitems.MiscItemsAndBlocks.Container.ContainerComputer;
+import com.miscitems.MiscItemsAndBlocks.Main.Main;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityComputer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
-
 import org.lwjgl.opengl.GL11;
 
-import com.miscitems.MiscItemsAndBlocks.Container.ContainerComputer;
-import com.miscitems.MiscItemsAndBlocks.Main.Main;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityComputer;
+import java.util.Random;
 
 public class GuiComputerScreen extends GuiContainer{
 

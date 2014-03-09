@@ -1,5 +1,9 @@
 package com.miscitems.MiscItemsAndBlocks.Block;
 
+import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityGhostBlock;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -13,12 +17,6 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
-import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityGhostBlock;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class ModBlockGhostBlock extends BlockContainer{
 
@@ -47,7 +45,10 @@ public class ModBlockGhostBlock extends BlockContainer{
     		if(player.getHeldItem() != null){
     			if(player.getHeldItem().getItem() instanceof ItemBlock){
     				Block block = Block.getBlockById(Item.getIdFromItem(player.getHeldItem().getItem()));
-    				
+    				if(block.hasTileEntity(player.getHeldItem().getItemDamage()))
+                        return true;
+
+
     				if(block != null && block != Blocks.air){
     					tile.Camo = block;
     					tile.Meta = player.getHeldItem().getItemDamage();

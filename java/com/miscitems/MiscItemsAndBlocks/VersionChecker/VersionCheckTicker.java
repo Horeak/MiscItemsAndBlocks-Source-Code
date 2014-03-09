@@ -1,15 +1,13 @@
 package com.miscitems.MiscItemsAndBlocks.VersionChecker;
 
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.IChatComponent;
-import net.minecraft.util.StatCollector;
-
 import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
-
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.gameevent.TickEvent.ClientTickEvent;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.IChatComponent;
+import net.minecraft.util.StatCollector;
 
 public class VersionCheckTicker{
 

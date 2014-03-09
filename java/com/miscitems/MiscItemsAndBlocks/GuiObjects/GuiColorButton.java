@@ -1,15 +1,14 @@
 package com.miscitems.MiscItemsAndBlocks.GuiObjects;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 
 public class GuiColorButton extends GuiButton{
 

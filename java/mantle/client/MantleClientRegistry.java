@@ -1,10 +1,10 @@
 package mantle.client;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MantleClientRegistry
 {

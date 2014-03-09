@@ -1,7 +1,8 @@
 package com.miscitems.MiscItemsAndBlocks.Gui;
 
-import java.awt.Color;
-
+import com.miscitems.MiscItemsAndBlocks.Main.Main;
+import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerPaintBrushChangePacket;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityPaintBlock;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -9,12 +10,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
-
 import org.lwjgl.opengl.GL11;
 
-import com.miscitems.MiscItemsAndBlocks.Main.Main;
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerPaintBrushChangePacket;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityPaintBlock;
+import java.awt.*;
 
 public class GuiPaintBrush extends GuiScreen
 {

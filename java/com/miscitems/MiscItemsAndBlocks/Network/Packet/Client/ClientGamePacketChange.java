@@ -1,17 +1,15 @@
 package com.miscitems.MiscItemsAndBlocks.Network.Packet.Client;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-
+import com.miscitems.MiscItemsAndBlocks.Gui.GuiGame_1;
+import com.miscitems.MiscItemsAndBlocks.Network.IPacket;
+import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.common.FMLCommonHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 
-import com.miscitems.MiscItemsAndBlocks.Gui.GuiGame_1;
-import com.miscitems.MiscItemsAndBlocks.Network.IPacket;
-
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.common.FMLCommonHandler;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 
 public class ClientGamePacketChange extends IPacket{
 

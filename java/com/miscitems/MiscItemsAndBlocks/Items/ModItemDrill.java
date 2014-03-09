@@ -1,8 +1,10 @@
 package com.miscitems.MiscItemsAndBlocks.Items;
 
-import java.util.List;
-import java.util.Set;
-
+import com.google.common.collect.Sets;
+import com.miscitems.MiscItemsAndBlocks.Lib.ChatMessageHandler;
+import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -13,21 +15,11 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.IChatComponent;
-import net.minecraft.util.IIcon;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.util.StatCollector;
-import net.minecraft.util.Vec3;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
 
-import com.google.common.collect.Sets;
-import com.miscitems.MiscItemsAndBlocks.Lib.ChatMessageHandler;
-import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.List;
+import java.util.Set;
 
 public class ModItemDrill extends ModItemPowerTool{
 	int MaxCharge = 750;

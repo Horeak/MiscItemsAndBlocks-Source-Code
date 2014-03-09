@@ -1,12 +1,10 @@
 package com.miscitems.MiscItemsAndBlocks.Items;
 
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.item.Item;
-
 import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.item.Item;
 
 public class ModItemCardboard extends Item{
 

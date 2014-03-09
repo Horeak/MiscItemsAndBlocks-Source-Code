@@ -1,10 +1,10 @@
 package com.miscitems.MiscItemsAndBlocks.Laser;
 
-import java.util.List;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
+
+import java.util.List;
 
 public class DefaultLaser implements ILaser {
 

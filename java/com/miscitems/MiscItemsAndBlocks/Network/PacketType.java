@@ -1,20 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Network;
 
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.Client.ClientChatMessageRecivedPacket;
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.Client.ClientGamePacketBegin;
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.Client.ClientGamePacketChange;
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.Client.ClientGamePacketInviteRecived;
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.Client.ClientGamePacketRestart;
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.Client.ClientMetalPressPacketUpdate;
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerButtonPacket;
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerChatMessagePacket;
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerGamePacketAccept;
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerGamePacketChange;
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerGamePacketClosed;
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerGamePacketInvite;
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerLensBenchPacketDone;
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerPaintBrushChangePacket;
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerSetBlockPacket;
+import com.miscitems.MiscItemsAndBlocks.Network.Packet.Client.*;
+import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.*;
 
 public enum PacketType {
 	

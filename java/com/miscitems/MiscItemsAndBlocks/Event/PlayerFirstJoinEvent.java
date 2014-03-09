@@ -1,13 +1,11 @@
 package com.miscitems.MiscItemsAndBlocks.Event;
 
+import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
+import com.miscitems.MiscItemsAndBlocks.Proxies.ServerProxy;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-
-import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
-import com.miscitems.MiscItemsAndBlocks.Proxies.ServerProxy;
-
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class PlayerFirstJoinEvent {
 

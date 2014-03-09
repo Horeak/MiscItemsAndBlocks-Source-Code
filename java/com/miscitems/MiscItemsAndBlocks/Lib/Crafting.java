@@ -1,8 +1,10 @@
 package com.miscitems.MiscItemsAndBlocks.Lib;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
+import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
+import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
+import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Recipes.MillRecipes;
+import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Recipes.SqueezerRecipes;
+import cpw.mods.fml.common.registry.GameRegistry;
 import mantle.client.MantleClientRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -11,12 +13,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
-import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
-import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Recipes.MillRecipes;
-import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Recipes.SqueezerRecipes;
-
-import cpw.mods.fml.common.registry.GameRegistry;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Crafting {
 

@@ -1,15 +1,13 @@
 package com.miscitems.MiscItemsAndBlocks.VersionChecker;
 
+import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Main.Main;
+import cpw.mods.fml.common.Loader;
+import net.minecraftforge.common.MinecraftForge;
+
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Properties;
-
-import net.minecraftforge.common.MinecraftForge;
-
-import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
-import com.miscitems.MiscItemsAndBlocks.Main.Main;
-
-import cpw.mods.fml.common.Loader;
 
 public class VersionChecker implements Runnable{
 

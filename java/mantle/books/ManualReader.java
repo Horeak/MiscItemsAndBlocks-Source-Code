@@ -1,14 +1,12 @@
 package mantle.books;
 
-import java.io.InputStream;
+import mantle.CoreRepo;
+import mantle.Mantle;
+import org.w3c.dom.Document;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-
-import mantle.CoreRepo;
-import mantle.Mantle;
-
-import org.w3c.dom.Document;
+import java.io.InputStream;
 
 public class ManualReader
 {

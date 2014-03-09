@@ -1,25 +1,23 @@
 package com.miscitems.MiscItemsAndBlocks.Gui;
 
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
-
+import com.miscitems.MiscItemsAndBlocks.Container.ContainerLensBench;
+import com.miscitems.MiscItemsAndBlocks.GuiObjects.GuiLensBenchButton;
+import com.miscitems.MiscItemsAndBlocks.Main.Main;
+import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerLensBenchPacketDone;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLensBench;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-import com.miscitems.MiscItemsAndBlocks.Container.ContainerLensBench;
-import com.miscitems.MiscItemsAndBlocks.GuiObjects.GuiLensBenchButton;
-import com.miscitems.MiscItemsAndBlocks.Main.Main;
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerLensBenchPacketDone;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLensBench;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 
 public class GuiLensBench extends GuiContainer{
 

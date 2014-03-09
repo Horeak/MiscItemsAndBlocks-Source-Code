@@ -1,12 +1,11 @@
 package com.miscitems.MiscItemsAndBlocks.Block;
 
+import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityTimedBlock;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-
-import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityTimedBlock;
 
 public class ModBlockTimedBlock extends BlockContainer{
 

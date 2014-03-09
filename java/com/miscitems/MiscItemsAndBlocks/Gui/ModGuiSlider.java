@@ -2,7 +2,6 @@ package com.miscitems.MiscItemsAndBlocks.Gui;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
-
 import org.lwjgl.opengl.GL11;
 
 public class ModGuiSlider extends GuiButton {

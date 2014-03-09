@@ -1,13 +1,12 @@
 package com.miscitems.MiscItemsAndBlocks.Container;
 
+import com.miscitems.MiscItemsAndBlocks.Slots.ModSlotLensSlot;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLensBench;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-
-import com.miscitems.MiscItemsAndBlocks.Slots.ModSlotLensSlot;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLensBench;
 
 public class ContainerLensBench  extends Container {
 

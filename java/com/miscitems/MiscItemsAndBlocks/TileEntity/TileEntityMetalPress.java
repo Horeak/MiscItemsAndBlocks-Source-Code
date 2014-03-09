@@ -1,13 +1,12 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
+import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
+import com.miscitems.MiscItemsAndBlocks.Main.Main;
+import com.miscitems.MiscItemsAndBlocks.Network.Packet.Client.ClientMetalPressPacketUpdate;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-
-import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
-import com.miscitems.MiscItemsAndBlocks.Main.Main;
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.Client.ClientMetalPressPacketUpdate;
 
 public class TileEntityMetalPress extends TileEntityPowerInv implements ISidedInventory{
 

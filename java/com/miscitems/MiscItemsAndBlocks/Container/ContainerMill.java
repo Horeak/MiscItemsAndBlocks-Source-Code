@@ -1,17 +1,15 @@
 package com.miscitems.MiscItemsAndBlocks.Container;
 
+import com.miscitems.MiscItemsAndBlocks.Slots.SlotOutput;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMill;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-
-import com.miscitems.MiscItemsAndBlocks.Slots.SlotOutput;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMill;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class ContainerMill  extends Container {
 

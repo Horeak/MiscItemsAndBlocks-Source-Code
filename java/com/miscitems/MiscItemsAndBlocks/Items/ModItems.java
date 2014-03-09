@@ -1,5 +1,9 @@
 package com.miscitems.MiscItemsAndBlocks.Items;
 
+import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
+import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Main.Main;
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
@@ -9,12 +13,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.oredict.OreDictionary;
-
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
-import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
-import com.miscitems.MiscItemsAndBlocks.Main.Main;
-
-import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ModItems {
 

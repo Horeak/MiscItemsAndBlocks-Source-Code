@@ -1,28 +1,18 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
-import java.util.List;
-
-import net.minecraft.block.Block;
+import com.miscitems.MiscItemsAndBlocks.Items.ModItemPowerStorage;
+import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
+import com.miscitems.MiscItemsAndBlocks.Laser.*;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Facing;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import com.miscitems.MiscItemsAndBlocks.Items.ModItemPowerStorage;
-import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
-import com.miscitems.MiscItemsAndBlocks.Laser.ILaser;
-import com.miscitems.MiscItemsAndBlocks.Laser.ILaserProvider;
-import com.miscitems.MiscItemsAndBlocks.Laser.ILaserReciver;
-import com.miscitems.MiscItemsAndBlocks.Laser.LaserInGame;
-import com.miscitems.MiscItemsAndBlocks.Laser.LaserRegistry;
-import com.miscitems.MiscItemsAndBlocks.Laser.LaserUtil;
-import com.miscitems.MiscItemsAndBlocks.Laser.LaserWhitelist;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.List;
 
 public class TileEntityLaser extends TileEntityLaserBase implements ILaserProvider{
 

@@ -1,13 +1,12 @@
 package com.miscitems.MiscItemsAndBlocks.LibMisc;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.miscitems.MiscItemsAndBlocks.LibMisc.InventoryIterator.IInvSlot;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import com.miscitems.MiscItemsAndBlocks.LibMisc.InventoryIterator.IInvSlot;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TransactorSimple extends Transactor {
 

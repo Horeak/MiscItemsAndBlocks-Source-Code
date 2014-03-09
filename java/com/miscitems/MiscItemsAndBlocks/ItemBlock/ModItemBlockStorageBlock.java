@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.ItemBlock;
 
-import java.util.List;
-
+import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityStorageBlock;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
@@ -11,8 +11,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityStorageBlock;
+import java.util.List;
 
 public class ModItemBlockStorageBlock extends ItemBlock {
 

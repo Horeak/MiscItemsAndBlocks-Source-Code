@@ -1,15 +1,13 @@
 package com.miscitems.MiscItemsAndBlocks.Gui;
 
+import com.miscitems.MiscItemsAndBlocks.Container.ContainerCharger;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityCharger;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
-
 import org.lwjgl.opengl.GL11;
-
-import com.miscitems.MiscItemsAndBlocks.Container.ContainerCharger;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityCharger;
 
 public class GuiCharger extends GuiContainer{
 
@@ -29,8 +27,8 @@ public class GuiCharger extends GuiContainer{
   protected void drawGuiContainerForegroundLayer(int param1, int param2) {
 
           fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
-          fontRendererObj.drawString(StatCollector.translateToLocal("gui.charger") , 2, 3, 4210752);
-          
+          fontRendererObj.drawString(StatCollector.translateToLocal("gui.charger") , 2, 2, 4210752);
+
           
   }
 

@@ -1,7 +1,6 @@
 package mantle.books;
 
 import net.minecraft.util.ResourceLocation;
-
 import org.w3c.dom.Document;
 
 public class BookData

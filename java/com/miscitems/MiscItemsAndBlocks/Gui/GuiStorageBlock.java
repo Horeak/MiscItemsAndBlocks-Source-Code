@@ -1,18 +1,16 @@
 package com.miscitems.MiscItemsAndBlocks.Gui;
 
-import java.util.Iterator;
-import java.util.List;
-
+import com.miscitems.MiscItemsAndBlocks.Container.ContainerStorageBlock;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityStorageBlock;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-import com.miscitems.MiscItemsAndBlocks.Container.ContainerStorageBlock;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityStorageBlock;
+import java.util.Iterator;
+import java.util.List;
 
 public class GuiStorageBlock extends ModGuiContainer{
 

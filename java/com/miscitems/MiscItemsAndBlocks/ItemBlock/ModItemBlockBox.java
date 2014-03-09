@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.ItemBlock;
 
-import java.util.List;
-
+import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityBox;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,11 +12,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
-
 import org.lwjgl.input.Keyboard;
 
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityBox;
+import java.util.List;
 
 public class ModItemBlockBox extends ItemBlock {
 

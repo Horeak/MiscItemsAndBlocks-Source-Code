@@ -1,5 +1,9 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntityRenderer;
 
+import com.miscitems.MiscItemsAndBlocks.Models.MiningChamberModel;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMiningChamber;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -10,14 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-
 import org.lwjgl.opengl.GL11;
-
-import com.miscitems.MiscItemsAndBlocks.Models.MiningChamberModel;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMiningChamber;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class TileEntityMiningChamberRender extends TileEntitySpecialRenderer {

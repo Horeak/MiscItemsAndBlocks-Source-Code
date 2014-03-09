@@ -1,17 +1,15 @@
 package com.miscitems.MiscItemsAndBlocks.Network.Packet.Client;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-
+import com.miscitems.MiscItemsAndBlocks.Network.IPacket;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMetalPress;
+import cpw.mods.fml.common.FMLCommonHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-import com.miscitems.MiscItemsAndBlocks.Network.IPacket;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMetalPress;
-
-import cpw.mods.fml.common.FMLCommonHandler;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 
 public class ClientMetalPressPacketUpdate extends IPacket{
 

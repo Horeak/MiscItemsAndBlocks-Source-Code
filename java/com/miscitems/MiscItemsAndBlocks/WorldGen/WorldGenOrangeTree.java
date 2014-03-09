@@ -1,9 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.WorldGen;
 
-import java.util.Random;
-
+import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockSapling;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.Direction;
@@ -11,7 +9,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
+import java.util.Random;
 
 public class WorldGenOrangeTree extends WorldGenerator
 {

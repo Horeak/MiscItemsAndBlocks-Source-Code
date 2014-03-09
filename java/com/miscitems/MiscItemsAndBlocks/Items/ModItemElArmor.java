@@ -1,11 +1,10 @@
 package com.miscitems.MiscItemsAndBlocks.Items;
 
+import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Electric.IPowerItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-
-import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Electric.IPowerItem;
 
 public abstract class ModItemElArmor extends ItemArmor implements IPowerItem{
 

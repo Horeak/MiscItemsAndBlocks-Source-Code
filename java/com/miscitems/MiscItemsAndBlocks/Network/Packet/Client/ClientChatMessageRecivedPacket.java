@@ -1,16 +1,14 @@
 package com.miscitems.MiscItemsAndBlocks.Network.Packet.Client;
 
+import com.miscitems.MiscItemsAndBlocks.Gui.GuiChat;
+import com.miscitems.MiscItemsAndBlocks.Network.IPacket;
+import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.common.FMLCommonHandler;
+import net.minecraft.entity.player.EntityPlayer;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-
-import net.minecraft.entity.player.EntityPlayer;
-
-import com.miscitems.MiscItemsAndBlocks.Gui.GuiChat;
-import com.miscitems.MiscItemsAndBlocks.Network.IPacket;
-
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.common.FMLCommonHandler;
 
 public class ClientChatMessageRecivedPacket extends IPacket{
 

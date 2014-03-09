@@ -1,10 +1,9 @@
 package com.miscitems.MiscItemsAndBlocks.Gui;
 
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
-
+import com.miscitems.MiscItemsAndBlocks.Container.ActiveContainer;
+import com.miscitems.MiscItemsAndBlocks.Container.ActiveSlot;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -18,16 +17,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
-
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-import com.miscitems.MiscItemsAndBlocks.Container.ActiveContainer;
-import com.miscitems.MiscItemsAndBlocks.Container.ActiveSlot;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
 
 @SideOnly(Side.CLIENT)
 public abstract class ModGuiContainer extends GuiScreen

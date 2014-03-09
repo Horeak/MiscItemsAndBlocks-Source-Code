@@ -1,15 +1,14 @@
 package com.miscitems.MiscItemsAndBlocks.ItemBlock;
 
-import java.util.List;
-
+import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityXpStorage;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityXpStorage;
+import java.util.List;
 
 public class ModItemXpStorageBlock extends ItemBlock{
 

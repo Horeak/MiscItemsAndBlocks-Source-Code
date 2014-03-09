@@ -1,11 +1,9 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
+import com.miscitems.MiscItemsAndBlocks.Main.Main;
+import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
-
-import com.miscitems.MiscItemsAndBlocks.Main.Main;
-
-import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 
 public class TileEntitySolarPanel extends TileEntityPowerGeneration{
 

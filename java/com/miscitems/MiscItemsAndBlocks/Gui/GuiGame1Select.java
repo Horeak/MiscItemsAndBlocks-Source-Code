@@ -1,25 +1,22 @@
 package com.miscitems.MiscItemsAndBlocks.Gui;
 
-import java.awt.Color;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
-
+import com.miscitems.MiscItemsAndBlocks.Main.Main;
+import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerGamePacketAccept;
+import com.miscitems.MiscItemsAndBlocks.Proxies.ServerProxy;
+import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-import com.miscitems.MiscItemsAndBlocks.Main.Main;
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerGamePacketAccept;
-import com.miscitems.MiscItemsAndBlocks.Proxies.ServerProxy;
-
-import cpw.mods.fml.client.FMLClientHandler;
+import java.awt.*;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 
 public class GuiGame1Select extends GuiScreen{
 

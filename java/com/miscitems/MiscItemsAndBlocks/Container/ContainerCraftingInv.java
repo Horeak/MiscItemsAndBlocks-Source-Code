@@ -1,15 +1,14 @@
 package com.miscitems.MiscItemsAndBlocks.Container;
 
+import com.miscitems.MiscItemsAndBlocks.Slots.ModSlotArmor;
+import com.miscitems.MiscItemsAndBlocks.Slots.SlotCraftingInv;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityCraftingInv;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-
-import com.miscitems.MiscItemsAndBlocks.Slots.ModSlotArmor;
-import com.miscitems.MiscItemsAndBlocks.Slots.SlotCraftingInv;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityCraftingInv;
 
 public class ContainerCraftingInv extends Container
 {

@@ -1,5 +1,10 @@
 package com.miscitems.MiscItemsAndBlocks.Gui;
 
+import com.miscitems.MiscItemsAndBlocks.Items.ModItemAntiFallChest;
+import com.miscitems.MiscItemsAndBlocks.Items.ModItemPowerTool;
+import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.gui.GuiIngame;
@@ -8,15 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
-
 import org.lwjgl.opengl.GL11;
-
-import com.miscitems.MiscItemsAndBlocks.Items.ModItemAntiFallChest;
-import com.miscitems.MiscItemsAndBlocks.Items.ModItemPowerTool;
-import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class GuiOverlayInfoScreen extends GuiIngame{
 

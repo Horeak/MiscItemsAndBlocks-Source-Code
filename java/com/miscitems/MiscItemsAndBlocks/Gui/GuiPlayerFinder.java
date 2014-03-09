@@ -1,8 +1,5 @@
 package com.miscitems.MiscItemsAndBlocks.Gui;
 
-import java.awt.Color;
-import java.util.ArrayList;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -10,8 +7,10 @@ import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
-
 import org.lwjgl.opengl.GL11;
+
+import java.awt.*;
+import java.util.ArrayList;
 
 public class GuiPlayerFinder extends GuiScreen{
 

@@ -1,5 +1,9 @@
 package com.miscitems.MiscItemsAndBlocks.Block;
 
+import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Main.Main;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityTeleporter;
+import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -14,12 +18,6 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
-
-import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
-import com.miscitems.MiscItemsAndBlocks.Main.Main;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityTeleporter;
-
-import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 
 public class ModBlockTeleporter extends BlockContainer{
 

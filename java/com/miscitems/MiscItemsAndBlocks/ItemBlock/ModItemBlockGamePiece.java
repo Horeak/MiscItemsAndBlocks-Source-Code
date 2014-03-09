@@ -1,7 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.ItemBlock;
 
 import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;

@@ -1,21 +1,18 @@
 package com.miscitems.MiscItemsAndBlocks.Gui;
 
 
-import java.util.ArrayList;
-import java.util.Collections;
-
+import com.miscitems.MiscItemsAndBlocks.Main.Main;
+import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerGamePacketInvite;
+import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
 
-import com.miscitems.MiscItemsAndBlocks.Main.Main;
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerGamePacketInvite;
-
-import cpw.mods.fml.client.FMLClientHandler;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class GuiGame_1_Invite extends GuiScreen{
 

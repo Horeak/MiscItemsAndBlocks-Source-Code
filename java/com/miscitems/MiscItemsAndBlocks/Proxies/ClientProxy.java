@@ -1,10 +1,28 @@
 package com.miscitems.MiscItemsAndBlocks.Proxies;
 
-import java.io.InputStream;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
+import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
+import com.miscitems.MiscItemsAndBlocks.Entity.EntityPowerArrow;
+import com.miscitems.MiscItemsAndBlocks.Entity.EntitySilverArrow;
+import com.miscitems.MiscItemsAndBlocks.Event.GuiListener;
+import com.miscitems.MiscItemsAndBlocks.GamePart.GamePartItemRender;
+import com.miscitems.MiscItemsAndBlocks.GamePart.TileEntityGamePart;
+import com.miscitems.MiscItemsAndBlocks.ItemRender.*;
+import com.miscitems.MiscItemsAndBlocks.Items.ManualInfo;
+import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
+import com.miscitems.MiscItemsAndBlocks.Lib.Colours;
+import com.miscitems.MiscItemsAndBlocks.Main.Main;
+import com.miscitems.MiscItemsAndBlocks.Misc.ItemHelper;
+import com.miscitems.MiscItemsAndBlocks.Network.PacketRequestEvent;
+import com.miscitems.MiscItemsAndBlocks.Render.PowerArrowRender;
+import com.miscitems.MiscItemsAndBlocks.Render.SilverArrowRender;
+import com.miscitems.MiscItemsAndBlocks.Tick.TickHandlerClient;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.*;
+import com.miscitems.MiscItemsAndBlocks.TileEntityRenderer.*;
+import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.client.registry.ClientRegistry;
+import cpw.mods.fml.client.registry.RenderingRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import mantle.client.MantleClientRegistry;
 import mantle.client.SmallFontRenderer;
 import net.minecraft.block.Block;
@@ -18,70 +36,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
-
 import org.w3c.dom.Document;
 
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
-import com.miscitems.MiscItemsAndBlocks.Entity.EntityPowerArrow;
-import com.miscitems.MiscItemsAndBlocks.Entity.EntitySilverArrow;
-import com.miscitems.MiscItemsAndBlocks.Event.GuiListener;
-import com.miscitems.MiscItemsAndBlocks.GamePart.GamePartItemRender;
-import com.miscitems.MiscItemsAndBlocks.GamePart.TileEntityGamePart;
-import com.miscitems.MiscItemsAndBlocks.ItemRender.ComputerItemRender;
-import com.miscitems.MiscItemsAndBlocks.ItemRender.DiceHolderItemRender;
-import com.miscitems.MiscItemsAndBlocks.ItemRender.DisarmTrapItemRender;
-import com.miscitems.MiscItemsAndBlocks.ItemRender.ItemPedestalItemRender;
-import com.miscitems.MiscItemsAndBlocks.ItemRender.ItemRenderMetalPress;
-import com.miscitems.MiscItemsAndBlocks.ItemRender.LaserReciverItemRender;
-import com.miscitems.MiscItemsAndBlocks.ItemRender.MiningChamberItemRender;
-import com.miscitems.MiscItemsAndBlocks.ItemRender.PillarItemRender;
-import com.miscitems.MiscItemsAndBlocks.ItemRender.PowerCableItemRender;
-import com.miscitems.MiscItemsAndBlocks.ItemRender.TableItemRender;
-import com.miscitems.MiscItemsAndBlocks.ItemRender.TeleporterItemRender;
-import com.miscitems.MiscItemsAndBlocks.ItemRender.TrashBinItemRender;
-import com.miscitems.MiscItemsAndBlocks.Items.ManualInfo;
-import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
-import com.miscitems.MiscItemsAndBlocks.Lib.Colours;
-import com.miscitems.MiscItemsAndBlocks.Main.Main;
-import com.miscitems.MiscItemsAndBlocks.Misc.ItemHelper;
-import com.miscitems.MiscItemsAndBlocks.Network.PacketRequestEvent;
-import com.miscitems.MiscItemsAndBlocks.Render.PowerArrowRender;
-import com.miscitems.MiscItemsAndBlocks.Render.SilverArrowRender;
-import com.miscitems.MiscItemsAndBlocks.Tick.TickHandlerClient;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.ModTileEntity;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityBin;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityComputer;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityDiceHolder;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityDisarmTrap;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityItemPedestal;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLaser;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLaserReciver;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMetalPress;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMiningChamber;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityPillar;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityPowerCable;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityTable;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityTeleporter;
-import com.miscitems.MiscItemsAndBlocks.TileEntityRenderer.TileEntityBinRender;
-import com.miscitems.MiscItemsAndBlocks.TileEntityRenderer.TileEntityComputerRender;
-import com.miscitems.MiscItemsAndBlocks.TileEntityRenderer.TileEntityDiceHolderRender;
-import com.miscitems.MiscItemsAndBlocks.TileEntityRenderer.TileEntityDisarmTrapRenderer;
-import com.miscitems.MiscItemsAndBlocks.TileEntityRenderer.TileEntityGamePartRender;
-import com.miscitems.MiscItemsAndBlocks.TileEntityRenderer.TileEntityItemPedestalRender;
-import com.miscitems.MiscItemsAndBlocks.TileEntityRenderer.TileEntityLaserReciverRender;
-import com.miscitems.MiscItemsAndBlocks.TileEntityRenderer.TileEntityLaserRender;
-import com.miscitems.MiscItemsAndBlocks.TileEntityRenderer.TileEntityMetalPressRender;
-import com.miscitems.MiscItemsAndBlocks.TileEntityRenderer.TileEntityMiningChamberRender;
-import com.miscitems.MiscItemsAndBlocks.TileEntityRenderer.TileEntityPillarRender;
-import com.miscitems.MiscItemsAndBlocks.TileEntityRenderer.TileEntityPowerCableRender;
-import com.miscitems.MiscItemsAndBlocks.TileEntityRenderer.TileEntityTableRender;
-import com.miscitems.MiscItemsAndBlocks.TileEntityRenderer.TileEntityTeleporterRender;
-
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.client.registry.ClientRegistry;
-import cpw.mods.fml.client.registry.RenderingRegistry;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import java.io.InputStream;
 
 
 public class ClientProxy extends ServerProxy {

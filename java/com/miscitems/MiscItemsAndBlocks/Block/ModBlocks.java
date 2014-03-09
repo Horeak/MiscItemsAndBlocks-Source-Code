@@ -1,66 +1,18 @@
 package com.miscitems.MiscItemsAndBlocks.Block;
 
+import com.miscitems.MiscItemsAndBlocks.GamePart.ModBlockGamePart;
+import com.miscitems.MiscItemsAndBlocks.GamePart.TileEntityGamePart;
+import com.miscitems.MiscItemsAndBlocks.ItemBlock.*;
+import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Main.Main;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.*;
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.oredict.OreDictionary;
-
-import com.miscitems.MiscItemsAndBlocks.GamePart.ModBlockGamePart;
-import com.miscitems.MiscItemsAndBlocks.GamePart.TileEntityGamePart;
-import com.miscitems.MiscItemsAndBlocks.ItemBlock.ModItemBlockBox;
-import com.miscitems.MiscItemsAndBlocks.ItemBlock.ModItemBlockComputer;
-import com.miscitems.MiscItemsAndBlocks.ItemBlock.ModItemBlockDice;
-import com.miscitems.MiscItemsAndBlocks.ItemBlock.ModItemBlockDiceHolder;
-import com.miscitems.MiscItemsAndBlocks.ItemBlock.ModItemBlockDisarmTrap;
-import com.miscitems.MiscItemsAndBlocks.ItemBlock.ModItemBlockGamePiece;
-import com.miscitems.MiscItemsAndBlocks.ItemBlock.ModItemBlockItemPedestal;
-import com.miscitems.MiscItemsAndBlocks.ItemBlock.ModItemBlockLaserReciver;
-import com.miscitems.MiscItemsAndBlocks.ItemBlock.ModItemBlockMetalPress;
-import com.miscitems.MiscItemsAndBlocks.ItemBlock.ModItemBlockMiningChamber;
-import com.miscitems.MiscItemsAndBlocks.ItemBlock.ModItemBlockPillar;
-import com.miscitems.MiscItemsAndBlocks.ItemBlock.ModItemBlockPowerCable;
-import com.miscitems.MiscItemsAndBlocks.ItemBlock.ModItemBlockStorageBlock;
-import com.miscitems.MiscItemsAndBlocks.ItemBlock.ModItemBlockTable;
-import com.miscitems.MiscItemsAndBlocks.ItemBlock.ModItemBlockTeleporter;
-import com.miscitems.MiscItemsAndBlocks.ItemBlock.ModItemBlockTrashBin;
-import com.miscitems.MiscItemsAndBlocks.ItemBlock.ModItemXpStorageBlock;
-import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
-import com.miscitems.MiscItemsAndBlocks.Main.Main;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityBin;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityBox;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityCharger;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityComputer;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityCraftingInv;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityDiceHolder;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityDisarmTrap;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityElectricFurnace;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityGenerator;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityGhostBlock;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityItemPedestal;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLaser;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLaserReciver;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLensBench;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMetalPress;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMill;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMiningChamber;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityOvenCore;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityPaintBlock;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityPillar;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityPowerCable;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntitySolarPanel;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntitySquezer;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityStorageBlock;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityTable;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityTeleporter;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityTimedBlock;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityWindMill;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityWirelessItemTrans;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityWirelessRedstone;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityXpStorage;
-
-import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ModBlocks {
 
@@ -246,12 +198,12 @@ public class ModBlocks {
         
         WirelessItemTrans = new ModBlockWirelessItemTransfer();
         Register(WirelessItemTrans, "Wireless Item Transfer", true);
-        
+
         GhostBlock = new ModBlockGhostBlock();
         Register(GhostBlock, "Ghost Block", true);
-        
-        
-        
+
+
+
 		RegisterOreDictionary(new ItemStack(SilverOre), "oreSilver");
 		RegisterOreDictionary(new ItemStack(OrangeLog), "logWood");
 		RegisterOreDictionary(new ItemStack(OrangePlanks), "plankWood");

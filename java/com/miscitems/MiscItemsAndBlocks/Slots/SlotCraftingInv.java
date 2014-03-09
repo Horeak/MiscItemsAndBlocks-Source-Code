@@ -1,5 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Slots;
 
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityCraftingInv;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.Container;
@@ -8,8 +9,6 @@ import net.minecraft.inventory.SlotCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.PlayerDestroyItemEvent;
-
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityCraftingInv;
 
 public class SlotCraftingInv extends SlotCrafting
 {

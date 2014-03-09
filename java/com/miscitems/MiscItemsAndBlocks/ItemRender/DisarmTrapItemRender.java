@@ -1,18 +1,15 @@
 package com.miscitems.MiscItemsAndBlocks.ItemRender;
 
+import com.miscitems.MiscItemsAndBlocks.Models.TrapModel;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityDisarmTrap;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
-
 import org.lwjgl.opengl.GL11;
-
-import com.miscitems.MiscItemsAndBlocks.Models.TrapModel;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityDisarmTrap;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class DisarmTrapItemRender implements IItemRenderer

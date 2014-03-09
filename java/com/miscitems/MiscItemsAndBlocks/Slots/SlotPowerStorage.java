@@ -1,11 +1,10 @@
 package com.miscitems.MiscItemsAndBlocks.Slots;
 
+import com.miscitems.MiscItemsAndBlocks.Items.ModItemElArmor;
+import com.miscitems.MiscItemsAndBlocks.Items.ModItemPowerTool;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-
-import com.miscitems.MiscItemsAndBlocks.Items.ModItemElArmor;
-import com.miscitems.MiscItemsAndBlocks.Items.ModItemPowerTool;
 
 public class SlotPowerStorage extends Slot{
 

@@ -1,7 +1,12 @@
 package com.miscitems.MiscItemsAndBlocks.Event;
 
-import java.awt.Graphics;
-import java.awt.Image;
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraft.client.entity.AbstractClientPlayer;
+import net.minecraftforge.client.event.RenderPlayerEvent;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,15 +17,6 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import javax.swing.ImageIcon;
-
-import net.minecraft.client.entity.AbstractClientPlayer;
-import net.minecraftforge.client.event.RenderPlayerEvent;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.relauncher.ReflectionHelper;
 
 public class CapeRenderEvent
 {

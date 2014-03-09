@@ -1,13 +1,12 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
+import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Electric.IPowerTile;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.util.Constants;
-
-import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Electric.IPowerTile;
 
 public abstract class TileEntityPowerInv  extends TileEntityInvBase implements IInventory, IPowerTile{
 	

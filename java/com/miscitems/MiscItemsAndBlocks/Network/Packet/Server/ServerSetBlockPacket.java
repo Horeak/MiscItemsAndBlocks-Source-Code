@@ -1,13 +1,12 @@
 package com.miscitems.MiscItemsAndBlocks.Network.Packet.Server;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-
+import com.miscitems.MiscItemsAndBlocks.Network.IPacket;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 
-import com.miscitems.MiscItemsAndBlocks.Network.IPacket;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 
 public class ServerSetBlockPacket extends IPacket{
 	

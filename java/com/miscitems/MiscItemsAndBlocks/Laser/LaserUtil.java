@@ -1,7 +1,8 @@
 package com.miscitems.MiscItemsAndBlocks.Laser;
 
-import java.util.List;
-
+import com.miscitems.MiscItemsAndBlocks.Main.Main;
+import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerSetBlockPacket;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLaserReciver;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
@@ -10,9 +11,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Facing;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import com.miscitems.MiscItemsAndBlocks.Main.Main;
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerSetBlockPacket;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLaserReciver;
+import java.util.List;
 
 public class LaserUtil {
 	

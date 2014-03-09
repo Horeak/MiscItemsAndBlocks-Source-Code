@@ -1,14 +1,13 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
+import com.miscitems.MiscItemsAndBlocks.Laser.LaserUtil;
+import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Electric.IPowerGeneration;
+import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Electric.IPowerTile;
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
-
-import com.miscitems.MiscItemsAndBlocks.Laser.LaserUtil;
-import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Electric.IPowerGeneration;
-import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Electric.IPowerTile;
 
 public class TileEntityPowerCable extends TileEntity{
 

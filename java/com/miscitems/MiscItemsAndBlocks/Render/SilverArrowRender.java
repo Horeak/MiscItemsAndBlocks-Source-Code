@@ -1,18 +1,15 @@
 package com.miscitems.MiscItemsAndBlocks.Render;
 
+import com.miscitems.MiscItemsAndBlocks.Entity.EntitySilverArrow;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
-
-import com.miscitems.MiscItemsAndBlocks.Entity.EntitySilverArrow;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class SilverArrowRender extends Render

@@ -1,11 +1,10 @@
 package com.miscitems.MiscItemsAndBlocks.Items;
 
-import java.util.Set;
-
+import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Electric.IPowerItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 
-import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Electric.IPowerItem;
+import java.util.Set;
 
 public abstract class ModItemPowerTool extends ItemTool implements IPowerItem{
 

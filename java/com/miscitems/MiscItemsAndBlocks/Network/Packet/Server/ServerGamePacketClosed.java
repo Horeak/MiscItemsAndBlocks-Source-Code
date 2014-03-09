@@ -1,14 +1,13 @@
 package com.miscitems.MiscItemsAndBlocks.Network.Packet.Server;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-
-import net.minecraft.entity.player.EntityPlayer;
-
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Misc.GameInfo;
 import com.miscitems.MiscItemsAndBlocks.Network.IPacket;
+import net.minecraft.entity.player.EntityPlayer;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 
 public class ServerGamePacketClosed extends IPacket{
 

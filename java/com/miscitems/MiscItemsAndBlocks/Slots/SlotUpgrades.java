@@ -1,12 +1,11 @@
 package com.miscitems.MiscItemsAndBlocks.Slots;
 
+import com.miscitems.MiscItemsAndBlocks.Items.ModItemUpgradeItem;
+import com.miscitems.MiscItemsAndBlocks.Items.ModItemUpgrades;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-
-import com.miscitems.MiscItemsAndBlocks.Items.ModItemUpgradeItem;
-import com.miscitems.MiscItemsAndBlocks.Items.ModItemUpgrades;
 
 public class SlotUpgrades extends Slot{
 

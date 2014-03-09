@@ -1,10 +1,9 @@
 package com.miscitems.MiscItemsAndBlocks.Models;
 
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMetalPress;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMetalPress;
 
 public class MetalPressModel extends ModelBase
 {

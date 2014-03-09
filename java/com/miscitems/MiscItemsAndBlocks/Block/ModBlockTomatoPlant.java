@@ -1,9 +1,9 @@
 package com.miscitems.MiscItemsAndBlocks.Block;
 
-import static net.minecraftforge.common.util.ForgeDirection.UP;
-
-import java.util.Random;
-
+import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
+import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -14,11 +14,9 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
-import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
+import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import static net.minecraftforge.common.util.ForgeDirection.UP;
 
 public class ModBlockTomatoPlant extends BlockCrops {
 

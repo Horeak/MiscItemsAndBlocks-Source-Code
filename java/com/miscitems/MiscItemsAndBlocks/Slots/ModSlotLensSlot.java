@@ -1,10 +1,9 @@
 package com.miscitems.MiscItemsAndBlocks.Slots;
 
-import net.minecraft.inventory.Slot;
-import net.minecraft.item.ItemStack;
-
 import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLensBench;
+import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemStack;
 
 public class ModSlotLensSlot extends Slot{
 

@@ -1,20 +1,17 @@
 package com.miscitems.MiscItemsAndBlocks.Items;
 
-import java.util.List;
-
+import com.miscitems.MiscItemsAndBlocks.Lib.ChatMessageHandler;
+import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IChatComponent;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
-import com.miscitems.MiscItemsAndBlocks.Lib.ChatMessageHandler;
-import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.List;
 
 public class ModItemDataChip extends Item{
 

@@ -1,7 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
-import java.util.Random;
-
+import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.ISidedInventory;
@@ -11,7 +10,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.util.Constants;
 
-import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
+import java.util.Random;
 
 public class TileEntityOvenCore extends TileEntityInvBase implements ISidedInventory{
 

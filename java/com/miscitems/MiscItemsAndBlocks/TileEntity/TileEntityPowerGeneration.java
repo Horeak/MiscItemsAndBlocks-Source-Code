@@ -2,8 +2,6 @@ package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
 import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Electric.IPowerGeneration;
 import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Electric.IPowerTile;
-
-import net.minecraft.inventory.IInventory;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;

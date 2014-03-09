@@ -1,8 +1,9 @@
 package com.miscitems.MiscItemsAndBlocks.Gui;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.miscitems.MiscItemsAndBlocks.Container.ContainerChatBlock;
+import com.miscitems.MiscItemsAndBlocks.Main.Main;
+import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerChatMessagePacket;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityComputer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -10,15 +11,12 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
-import com.miscitems.MiscItemsAndBlocks.Container.ContainerChatBlock;
-import com.miscitems.MiscItemsAndBlocks.Main.Main;
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerChatMessagePacket;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityComputer;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GuiChat extends GuiContainer{
 

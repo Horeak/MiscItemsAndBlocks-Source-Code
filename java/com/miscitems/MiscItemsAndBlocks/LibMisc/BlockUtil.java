@@ -1,7 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.LibMisc;
 
-import java.util.List;
-
+import cpw.mods.fml.common.FMLCommonHandler;
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,13 +11,9 @@ import net.minecraft.network.play.server.S27PacketExplosion;
 import net.minecraft.world.ChunkPosition;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
-import net.minecraftforge.fluids.BlockFluidBase;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidContainerRegistry;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.IFluidBlock;
-import cpw.mods.fml.common.FMLCommonHandler;
+import net.minecraftforge.fluids.*;
+
+import java.util.List;
 
 public class BlockUtil {
 

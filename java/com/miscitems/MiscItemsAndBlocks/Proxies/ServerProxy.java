@@ -1,16 +1,14 @@
 package com.miscitems.MiscItemsAndBlocks.Proxies;
 
-import java.util.ArrayList;
-
+import com.miscitems.MiscItemsAndBlocks.Tick.ServerTickHandler;
+import com.miscitems.MiscItemsAndBlocks.Tick.TickHandlerClient;
+import cpw.mods.fml.common.Loader;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import com.miscitems.MiscItemsAndBlocks.Tick.ServerTickHandler;
-import com.miscitems.MiscItemsAndBlocks.Tick.TickHandlerClient;
-
-import cpw.mods.fml.common.Loader;
+import java.util.ArrayList;
 
 public class ServerProxy{
 

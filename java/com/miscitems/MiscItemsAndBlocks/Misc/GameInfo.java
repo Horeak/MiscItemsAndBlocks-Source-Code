@@ -1,11 +1,9 @@
 package com.miscitems.MiscItemsAndBlocks.Misc;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.IChatComponent;
-
 import com.miscitems.MiscItemsAndBlocks.Lib.ChatMessageHandler;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.Client.ClientGamePacketBegin;
+import net.minecraft.entity.player.EntityPlayer;
 
 public class GameInfo
 {

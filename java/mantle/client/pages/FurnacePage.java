@@ -5,7 +5,6 @@ import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
-
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 import org.w3c.dom.Element;

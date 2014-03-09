@@ -1,15 +1,12 @@
 package com.miscitems.MiscItemsAndBlocks.Items;
 
+import com.miscitems.MiscItemsAndBlocks.Proxies.ClientProxy;
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.relauncher.Side;
 import mantle.books.BookData;
 import mantle.books.BookDataStore;
 import net.minecraft.util.ResourceLocation;
-
 import org.w3c.dom.Document;
-
-import com.miscitems.MiscItemsAndBlocks.Proxies.ClientProxy;
-
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.relauncher.Side;
 
 public class ManualInfo
 {

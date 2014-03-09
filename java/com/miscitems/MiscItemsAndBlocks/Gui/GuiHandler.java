@@ -1,51 +1,11 @@
 package com.miscitems.MiscItemsAndBlocks.Gui;
 
+import com.miscitems.MiscItemsAndBlocks.Container.*;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.*;
+import cpw.mods.fml.common.network.IGuiHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-
-import com.miscitems.MiscItemsAndBlocks.Container.ContainerBin;
-import com.miscitems.MiscItemsAndBlocks.Container.ContainerBox;
-import com.miscitems.MiscItemsAndBlocks.Container.ContainerCharger;
-import com.miscitems.MiscItemsAndBlocks.Container.ContainerComputer;
-import com.miscitems.MiscItemsAndBlocks.Container.ContainerCraftingInv;
-import com.miscitems.MiscItemsAndBlocks.Container.ContainerElectricFurnace;
-import com.miscitems.MiscItemsAndBlocks.Container.ContainerGenerator;
-import com.miscitems.MiscItemsAndBlocks.Container.ContainerLaser;
-import com.miscitems.MiscItemsAndBlocks.Container.ContainerLensBench;
-import com.miscitems.MiscItemsAndBlocks.Container.ContainerMetalPress;
-import com.miscitems.MiscItemsAndBlocks.Container.ContainerMill;
-import com.miscitems.MiscItemsAndBlocks.Container.ContainerMiningChamber;
-import com.miscitems.MiscItemsAndBlocks.Container.ContainerPizzaOven;
-import com.miscitems.MiscItemsAndBlocks.Container.ContainerSolarPanel;
-import com.miscitems.MiscItemsAndBlocks.Container.ContainerSquezer;
-import com.miscitems.MiscItemsAndBlocks.Container.ContainerStorageBlock;
-import com.miscitems.MiscItemsAndBlocks.Container.ContainerTeleporter;
-import com.miscitems.MiscItemsAndBlocks.Container.ContainerWirelessItemTransfer;
-import com.miscitems.MiscItemsAndBlocks.Container.ContainerWirelessRedstone;
-import com.miscitems.MiscItemsAndBlocks.Container.ContainerXpStorage;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityBin;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityBox;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityCharger;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityComputer;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityCraftingInv;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityElectricFurnace;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityGenerator;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLaser;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLensBench;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMetalPress;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMill;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMiningChamber;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityOvenCore;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntitySolarPanel;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntitySquezer;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityStorageBlock;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityTeleporter;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityWirelessItemTrans;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityWirelessRedstone;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityXpStorage;
-
-import cpw.mods.fml.common.network.IGuiHandler;
 
 public class GuiHandler implements IGuiHandler{
 

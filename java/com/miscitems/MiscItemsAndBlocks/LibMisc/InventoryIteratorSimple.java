@@ -1,11 +1,10 @@
 package com.miscitems.MiscItemsAndBlocks.LibMisc;
 
-import java.util.Iterator;
-
+import com.miscitems.MiscItemsAndBlocks.LibMisc.InventoryIterator.IInvSlot;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 
-import com.miscitems.MiscItemsAndBlocks.LibMisc.InventoryIterator.IInvSlot;
+import java.util.Iterator;
 
 /**
 * @author CovertJaguar <http://www.railcraft.info>

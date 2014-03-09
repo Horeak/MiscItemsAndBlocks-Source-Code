@@ -1,9 +1,9 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
-import java.awt.Color;
-
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+
+import java.awt.*;
 
 public class TileEntityComputer extends TileEntity{
 	

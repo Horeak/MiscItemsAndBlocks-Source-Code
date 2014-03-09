@@ -1,10 +1,8 @@
 package com.miscitems.MiscItemsAndBlocks.Gui;
 
 import com.miscitems.MiscItemsAndBlocks.Lib.ChatMessageHandler;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.util.IChatComponent;
 import net.minecraft.util.StatCollector;
 
 public class GuiTipButton extends GuiButton{

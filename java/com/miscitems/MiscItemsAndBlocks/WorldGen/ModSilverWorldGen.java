@@ -1,13 +1,12 @@
 package com.miscitems.MiscItemsAndBlocks.WorldGen;
 
-import java.util.Random;
-
+import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
+import java.util.Random;
 
 public class ModSilverWorldGen extends WorldGenerator {
 	

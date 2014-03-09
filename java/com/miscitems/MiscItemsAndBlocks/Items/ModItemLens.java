@@ -1,8 +1,8 @@
 package com.miscitems.MiscItemsAndBlocks.Items;
 
-import java.awt.Color;
-import java.util.List;
-
+import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -11,10 +11,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
-import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.awt.*;
+import java.util.List;
 
 public class ModItemLens extends Item{
 

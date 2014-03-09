@@ -1,13 +1,12 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.common.util.ForgeDirection;
-
 import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
 import com.miscitems.MiscItemsAndBlocks.Laser.LaserUtil;
 import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Electric.IPowerItem;
 import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Electric.IPowerTile;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class TileEntityCharger extends TileEntityPowerInv{
 

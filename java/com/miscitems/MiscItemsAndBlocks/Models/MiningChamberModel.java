@@ -1,13 +1,11 @@
 package com.miscitems.MiscItemsAndBlocks.Models;
 
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMiningChamber;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
-
 import org.lwjgl.opengl.GL11;
-
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMiningChamber;
 
 public class MiningChamberModel extends ModelBase
 {

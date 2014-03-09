@@ -1,12 +1,12 @@
 package com.miscitems.MiscItemsAndBlocks.Laser;
 
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+
 import java.util.Arrays;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Set;
-
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 
 public class LaserRegistry {
 

@@ -1,14 +1,12 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntityRenderer;
 
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.AxisAlignedBB;
-
-import org.lwjgl.opengl.GL11;
-
 import com.miscitems.MiscItemsAndBlocks.Laser.LaserUtil;
 import com.miscitems.MiscItemsAndBlocks.Render.LaserRender;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLaser;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
+import org.lwjgl.opengl.GL11;
 
 public class TileEntityLaserRender extends TileEntitySpecialRenderer {
 

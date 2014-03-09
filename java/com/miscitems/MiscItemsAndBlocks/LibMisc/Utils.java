@@ -1,11 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.LibMisc;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
-
+import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Electric.IPowerTile;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryLargeChest;
 import net.minecraft.item.ItemStack;
@@ -14,7 +9,7 @@ import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Electric.IPowerTile;
+import java.util.*;
 
 public class Utils {
 

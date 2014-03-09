@@ -1,19 +1,5 @@
 package com.miscitems.MiscItemsAndBlocks.Main;
 
-import java.io.File;
-import java.util.logging.Logger;
-
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.StatCollector;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.config.Configuration;
-
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.LogManager;
-
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.Entity.EntityPowerArrow;
 import com.miscitems.MiscItemsAndBlocks.Entity.EntitySilverArrow;
@@ -34,7 +20,6 @@ import com.miscitems.MiscItemsAndBlocks.Network.NetworkManager;
 import com.miscitems.MiscItemsAndBlocks.Proxies.ServerProxy;
 import com.miscitems.MiscItemsAndBlocks.VersionChecker.VersionChecker;
 import com.miscitems.MiscItemsAndBlocks.WorldGen.ModWorldGenerator;
-
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -47,6 +32,18 @@ import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.StatCollector;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.config.Configuration;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+
+import java.io.File;
+import java.util.logging.Logger;
 
 
 @Mod(modid = Refrence.Mod_Id, name = Refrence.Mod_Name, version = Refrence.Version)
@@ -98,7 +95,6 @@ public void preInit(FMLPreInitializationEvent event) {
     	
 	
 
-	//TODO Add unbreakable sword
 	//TODO Add sometype of ore doubling
 	
     	

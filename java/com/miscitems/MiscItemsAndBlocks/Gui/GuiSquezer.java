@@ -1,16 +1,14 @@
 package com.miscitems.MiscItemsAndBlocks.Gui;
 
+import com.miscitems.MiscItemsAndBlocks.Container.ContainerSquezer;
+import com.miscitems.MiscItemsAndBlocks.Lib.Messages;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntitySquezer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
-
 import org.lwjgl.opengl.GL11;
-
-import com.miscitems.MiscItemsAndBlocks.Container.ContainerSquezer;
-import com.miscitems.MiscItemsAndBlocks.Lib.Messages;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntitySquezer;
 
 
 public class GuiSquezer extends GuiContainer{

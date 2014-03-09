@@ -1,7 +1,6 @@
 package mantle.client.pages;
 
 import mantle.client.gui.GuiManual;
-
 import org.w3c.dom.Element;
 
 public abstract class BookPage

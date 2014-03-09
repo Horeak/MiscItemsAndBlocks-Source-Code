@@ -1,5 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Block;
 
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLaserReciver;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -11,8 +12,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLaserReciver;
 
 public class ModBlockLaserReciver extends BlockContainer{
 

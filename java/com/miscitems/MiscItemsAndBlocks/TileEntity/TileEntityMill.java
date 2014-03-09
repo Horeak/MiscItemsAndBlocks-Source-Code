@@ -1,13 +1,12 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
-import java.util.Random;
-
+import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Recipes.MillRecipes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.util.Constants;
 
-import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Recipes.MillRecipes;
+import java.util.Random;
 
 public class TileEntityMill extends TileEntityInvBase{
 

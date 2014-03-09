@@ -16,7 +16,7 @@ tile.orange_tree_sapling.name=Orange tree sapling
 tile.oven.name=Oven
 tile.orange_tree_wood.name=Orange tree wood
 tile.orange_tree_planks.name=Orange tree planks
-tile.charger.name=Charger
+tile.charger.name=Energy Storage Cube
 tile.solar_panel.name=Solar panel
 tile.wind_mill.name= Wind mill
 tile.coal_generator.name=Coal generator
@@ -115,7 +115,7 @@ item.GamePart.Number.4.name=Yellow Game Piece
 
 
 
-gui.charger=Charger Block
+gui.charger=Energy Storage Cube
 gui.cardboardbox=Cardboard Box
 gui.worktable=WorkTable
 gui.electricfurnace=Electric Furnace
@@ -139,7 +139,7 @@ gui.string.redvalue=Red Value
 gui.string.greenvalue=Green Value
 gui.string.bluevalue=Blue Value
 gui.string.levelsstored=Levels stored
-gui.string.miningdownto=Mingind down to
+gui.string.miningdownto=Mining down to
 gui.string.currentlyat=Mining at
 gui.string.settostart=Set to start
 gui.string.setcolor=Set colour

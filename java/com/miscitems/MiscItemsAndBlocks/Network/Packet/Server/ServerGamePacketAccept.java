@@ -1,19 +1,16 @@
 package com.miscitems.MiscItemsAndBlocks.Network.Packet.Server;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.util.IChatComponent;
-
 import com.miscitems.MiscItemsAndBlocks.Lib.ChatMessageHandler;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Misc.GameInvite;
 import com.miscitems.MiscItemsAndBlocks.Network.IPacket;
-
 import cpw.mods.fml.common.FMLCommonHandler;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 
 public class ServerGamePacketAccept extends IPacket {
 

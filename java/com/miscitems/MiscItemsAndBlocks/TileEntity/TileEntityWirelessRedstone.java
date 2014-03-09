@@ -1,10 +1,9 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-
 import com.miscitems.MiscItemsAndBlocks.Items.ModItemDataChip;
 import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 
 public class TileEntityWirelessRedstone extends TileEntityInvBase{
 

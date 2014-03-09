@@ -1,13 +1,12 @@
 package com.miscitems.MiscItemsAndBlocks.Network.Packet.Server;
 
+import com.miscitems.MiscItemsAndBlocks.Items.ModItemPaintBrush;
+import com.miscitems.MiscItemsAndBlocks.Network.IPacket;
+import net.minecraft.entity.player.EntityPlayer;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-
-import net.minecraft.entity.player.EntityPlayer;
-
-import com.miscitems.MiscItemsAndBlocks.Items.ModItemPaintBrush;
-import com.miscitems.MiscItemsAndBlocks.Network.IPacket;
 
 public class ServerPaintBrushChangePacket extends IPacket{
 

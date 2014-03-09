@@ -1,13 +1,13 @@
 package com.miscitems.MiscItemsAndBlocks.Laser;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class LaserWhitelist {
 	
