@@ -1,5 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
+import com.miscitems.MiscItemsAndBlocks.Items.ModItemCreativeBattery;
 import com.miscitems.MiscItemsAndBlocks.Items.ModItemPowerStorage;
 import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
 import com.miscitems.MiscItemsAndBlocks.Laser.*;
@@ -36,7 +37,6 @@ public int MaxTime = 2000;
 
 public boolean Valid = false;
 
-public int[] reciverCords = new int[3];
 
 LaserInGame laser = new LaserInGame(LaserRegistry.getLaserFromId("default"));
 
@@ -44,21 +44,26 @@ LaserInGame laser = new LaserInGame(LaserRegistry.getLaserFromId("default"));
 public void updateEntity() {
 	
 	
-	
-	if(!this.worldObj.isRemote){
-			if(BreakTime < MaxTime){
-				BreakTime++;
-			}else{
-				if(BreakTime >= MaxTime){
-					BreakTime = 0;
-					
-				}
+	if(this.getStackInSlot(1) != null){
+        if(this.getStackInSlot(1).getItem() instanceof ModItemPowerStorage){
 
-			}
+            int Damage = this.getStackInSlot(1).getItemDamage();
 
-		
-		
-	}
+            if(this.getStackInSlot(1).getItem() instanceof ModItemCreativeBattery){
+                SetPower(GetMaxPower());
+            }else{
+                if(Damage > 0){
+                    if(GetPower() < GetMaxPower()){
+                        SetPower(GetPower() + 1);
+                        this.getStackInSlot(1).attemptDamageItem(1, worldObj.rand);
+                    }
+
+
+                }
+            }
+        }
+    }
+
 	
 	
 	boolean hasSignal = this.worldObj.isBlockIndirectlyGettingPowered(this.xCoord, this.yCoord, this.zCoord);

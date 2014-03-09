@@ -15,6 +15,7 @@ public enum PacketType {
 	ClientGamePacketBegin(ClientGamePacketBegin.class),
 	ClientMetalPressPacketUpdate(ClientMetalPressPacketUpdate.class),
 	ClinetChatMessageRecivedPacket(ClientChatMessageRecivedPacket.class),
+    ClientGhostBlockPacket(ClientGhostBlockPacket.class),
 	
 	ServerChatMessagePacket(ServerChatMessagePacket.class),
 	ServerPaintBrushChangePacket(ServerPaintBrushChangePacket.class),

@@ -35,7 +35,7 @@ public class ModWorldGenerator extends WorldGenerator implements IWorldGenerator
     	
     	for(int i = 0; i < 1; i++){
     		if(world.getBiomeGenForCoords(ChunkX, ChunkZ) == BiomeGenBase.plains){
-    		
+
     		int Xcoord1 = ChunkX + random.nextInt(16);
     		int Ycoord1 = random.nextInt(90);
     		int Zcoord1 = ChunkZ + random.nextInt(16);

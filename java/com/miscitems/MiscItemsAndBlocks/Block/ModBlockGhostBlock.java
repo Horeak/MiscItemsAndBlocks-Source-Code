@@ -50,20 +50,22 @@ public class ModBlockGhostBlock extends BlockContainer{
 
 
     				if(block != null && block != Blocks.air){
-    					tile.Camo = block;
+    					tile.Id = Block.getIdFromBlock(block);
     					tile.Meta = player.getHeldItem().getItemDamage();
     					
 
+                        world.setBlockMetadataWithNotify(x, y, z, 0, 3);
     	    			world.markBlockForUpdate(x, y, z);
-    	    			
     					return true;
     				}
     				
     			}
     		}else{
-    			tile.Camo = null;
-    			
+    			tile.Id = 0;
+                tile.Meta = 0;
 
+
+                world.setBlockMetadataWithNotify(x, y, z, 0, 3);
     			world.markBlockForUpdate(x, y, z);
 				return true;
     		}
@@ -78,16 +80,17 @@ public class ModBlockGhostBlock extends BlockContainer{
     {
         return null;
     }
-    @SideOnly(Side.CLIENT)
     public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side)
     {
-    	
     	if(world.getTileEntity(x, y, z) instanceof TileEntityGhostBlock){
     		TileEntityGhostBlock tile = (TileEntityGhostBlock)world.getTileEntity(x, y, z);
-    		
-    		if(tile.Camo != null){
+
+            System.out.println(tile.Id + " : " + tile.Meta + " :1");
+
+    		if(tile.Id != 0){
+                Block block = Block.getBlockById(tile.Id);
     			
-    			return tile.Camo.getIcon(side, tile.Meta);
+    			return block.getIcon(side, tile.Meta);
     		}
     		
     	}
