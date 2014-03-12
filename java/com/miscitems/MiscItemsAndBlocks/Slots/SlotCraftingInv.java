@@ -81,7 +81,7 @@ else
 craftSupplyMatrix.decrStackSize(supplyInv, 1);
 found = true;
 }
-if (supplyMatrixStack.getItem().hasContainerItem())
+if (supplyMatrixStack.getItem().hasContainerItem(supplyMatrixStack))
 {
 ItemStack contStack = supplyMatrixStack.getItem().getContainerItem(supplyMatrixStack);
 
@@ -110,7 +110,7 @@ break;
              if(!found)
          {
          craftSupplyMatrix.decrStackSize(invIndex, 1);
-         if (craftComponentStack.getItem().hasContainerItem())
+         if (craftComponentStack.getItem().hasContainerItem(craftComponentStack))
                     {
                         ItemStack conStack = craftComponentStack.getItem().getContainerItem(craftComponentStack);
                         
