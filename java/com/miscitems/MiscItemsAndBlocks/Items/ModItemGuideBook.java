@@ -18,7 +18,7 @@ import java.util.List;
 public class ModItemGuideBook extends CraftingItem{
 
 	public ModItemGuideBook() {
-		super(new String[]{"Guide"}, new String[]{"book"}, "", "miscitems", Main.CreativeTab);
+		super(new String[]{"Guide"}, new String[]{"book"}, "", "miscitems", Main.MiscTab);
 		this.setUnlocalizedName("guidebook");
 		this.setMaxStackSize(1);
 	}

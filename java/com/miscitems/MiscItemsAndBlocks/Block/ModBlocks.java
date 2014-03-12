@@ -66,141 +66,143 @@ public class ModBlocks {
 	
 	
 	public static void Init(){
+
+        Main.config.addCustomCategoryComment("Blocks", "Disabling blocks will require a world which has not used the mod before(a new one or a world you have not used the mod in yet)");
+
+		XpStorage = new ModBlockXpStorage().setCreativeTab(Main.MiscTab);
+		Register(XpStorage, ModItemXpStorageBlock.class, "Xp Storage Block");
 		
-		XpStorage = new ModBlockXpStorage();
-		Register(XpStorage, ModItemXpStorageBlock.class, "Xp Storage Block", true);
+		Bin = new ModBlockBin().setCreativeTab(Main.MiscTab);
+		Register(Bin, ModItemBlockTrashBin.class,"Trash Bin");
 		
-		Bin = new ModBlockBin();
-		Register(Bin, ModItemBlockTrashBin.class,"Trash Bin", true);
+		DisarmTrap = new ModBlockDisarmTrap().setCreativeTab(Main.MiscTab);
+		Register(DisarmTrap, ModItemBlockDisarmTrap.class,"Disarm Trap");
 		
-		DisarmTrap = new ModBlockDisarmTrap();
-		Register(DisarmTrap, ModItemBlockDisarmTrap.class,"Disarm Trap", true);
-		
-		SilverOre = new ModBlockSilverOre();
-		Register(SilverOre, "Silver Ore", true);
+		SilverOre = new ModBlockSilverOre().setCreativeTab(Main.MiscTab);
+		Register(SilverOre, "Silver Ore");
 
         StoneStair = new ModBlockStair(Blocks.stone, 0);
-        Register(StoneStair, "Stone Stair", true);
+        Register(StoneStair, "Stone Stair");
         
-        Box = new ModBlockBox();
-        Register(Box, ModItemBlockBox.class, "Cardboard Box", true);
+        Box = new ModBlockBox().setCreativeTab(Main.MiscTab);
+        Register(Box, ModItemBlockBox.class, "Cardboard Box");
         
-        CraftingInv = new ModBlockCraftingInv();
-        Register(CraftingInv, "Worktable", true);
+        CraftingInv = new ModBlockCraftingInv().setCreativeTab(Main.MiscTab);
+        Register(CraftingInv, "Worktable");
         
-        Dice = new ModBlockDice();
-        Register(Dice, ModItemBlockDice.class, "Dice", true);
+        Dice = new ModBlockDice().setCreativeTab(Main.MiscTab);
+        Register(Dice, ModItemBlockDice.class, "Dice");
         
-        SpeedBlock = new ModBlockSpeedBlock();
-        Register(SpeedBlock, "Speed Block", true);
+        SpeedBlock = new ModBlockSpeedBlock().setCreativeTab(Main.MiscTab);
+        Register(SpeedBlock, "Speed Block");
         
-        GamePart = new ModBlockGamePart();
-        Register(GamePart, ModItemBlockGamePiece.class, "Game Piece", true);
+        GamePart = new ModBlockGamePart().setCreativeTab(Main.MiscTab);
+        Register(GamePart, ModItemBlockGamePiece.class, "Game Piece");
 
         
-        Pillar = new ModBlockPillar();
-        Register(Pillar, ModItemBlockPillar.class,"Pillar", true);
+        Pillar = new ModBlockPillar().setCreativeTab(Main.MiscTab);
+        Register(Pillar, ModItemBlockPillar.class,"Pillar");
         
         TomatoPlant = new ModBlockTomatoPlant();
-        Register(TomatoPlant, "Tomato Plant", false);
+        Register(TomatoPlant, "Tomato Plant");
 
-        Mill = new ModBlockMill();
-        Register(Mill, "Mill", true);
+        Mill = new ModBlockMill().setCreativeTab(Main.MiscTab);
+        Register(Mill, "Mill");
 
-        Squezer = new ModBlockSquezer();
-        Register(Squezer, "Squeezer", true);
+        Squezer = new ModBlockSquezer().setCreativeTab(Main.MiscTab);
+        Register(Squezer, "Squeezer");
         
-        OrangeLeaf = new ModBlockOrangeLeaf();
-        Register(OrangeLeaf, "Orange Tree Leaves", true);
+        OrangeLeaf = new ModBlockOrangeLeaf().setCreativeTab(Main.MiscTab);
+        Register(OrangeLeaf, "Orange Tree Leaves");
         
         OrangeSapling = new ModBlockOrangeSapling();
-        Register((Block)OrangeSapling, "Orange Tree Sapling", true);
+        Register((Block) OrangeSapling, "Orange Tree Sapling");
         
         
         //Renamed to Oven
-        PizzaOven = new ModBlockOvenCore();
-        Register(PizzaOven, "Oven", true);
+        PizzaOven = new ModBlockOvenCore().setCreativeTab(Main.MiscTab);
+        Register(PizzaOven, "Oven");
         
-        OrangeLog = new ModBlockOrangeLog();
-        Register(OrangeLog, "Orange Tree Wood", true);
+        OrangeLog = new ModBlockOrangeLog().setCreativeTab(Main.MiscTab);
+        Register(OrangeLog, "Orange Tree Wood");
         
-        OrangePlanks = new ModBlockOrangePlanks();
-        Register(OrangePlanks, "Orange Tree Planks", true);
+        OrangePlanks = new ModBlockOrangePlanks().setCreativeTab(Main.MiscTab);
+        Register(OrangePlanks, "Orange Tree Planks");
         
-        MachinePart = new ModBlockMachinePart();
-        Register(MachinePart, "Machine Part", true);
+        MachinePart = new ModBlockMachinePart().setCreativeTab(Main.ElectricTab);
+        Register(MachinePart, "Machine Part");
         
-        Charger = new ModBlockCharger();
-        Register(Charger, "Charger", true);
+        Charger = new ModBlockCharger().setCreativeTab(Main.ElectricTab);
+        Register(Charger, "Charger");
         
-        SolarPanel = new ModBlockSolarPanel();
-        Register(SolarPanel, "Solar Panel", true);
+        SolarPanel = new ModBlockSolarPanel().setCreativeTab(Main.ElectricTab);
+        Register(SolarPanel, "Solar Panel");
         
-        WindMill = new ModBlockWindMill();
-        Register(WindMill, "Wind Mill", true);
+        WindMill = new ModBlockWindMill().setCreativeTab(Main.ElectricTab);
+        Register(WindMill, "Wind Mill");
         
-        Generator = new ModBlockGenerator();
-        Register(Generator, "Coal Generator", true);
+        Generator = new ModBlockGenerator().setCreativeTab(Main.ElectricTab);
+        Register(Generator, "Coal Generator");
+
+        ElectricFurnace = new ModBlockElectricFurnace().setCreativeTab(Main.ElectricTab);
+        Register(ElectricFurnace, "Electric Furnace");
         
-        PowerCable = new ModBlockPowerCable();
-        Register(PowerCable, ModItemBlockPowerCable.class, "Power Cable", true);
+        PowerCable = new ModBlockPowerCable().setCreativeTab(Main.ElectricTab);
+        Register(PowerCable, ModItemBlockPowerCable.class, "Power Cable");
         
-        MetalPress = new ModBlockMetalPress();
-        Register(MetalPress, ModItemBlockMetalPress.class, "Metal Press", true);
+        MetalPress = new ModBlockMetalPress().setCreativeTab(Main.ElectricTab);
+        Register(MetalPress, ModItemBlockMetalPress.class, "Metal Press");
         
-        LensBench = new ModBlockLensBench();
-        Register(LensBench, "Lens Bench", true);
+        LensBench = new ModBlockLensBench().setCreativeTab(Main.ElectricTab);
+        Register(LensBench, "Lens Bench");
         
-        Laser = new ModBlockLaser();
-        Register(Laser, "Laser", true);
+        Laser = new ModBlockLaser().setCreativeTab(Main.ElectricTab);
+        Register(Laser, "Laser");
         
-        LaserReciver = new ModBlockLaserReciver().setBlockTextureName(Refrence.Mod_Id + ":LaserReciver");
-        Register(LaserReciver, ModItemBlockLaserReciver.class, "Laser Reciver", true);
+        LaserReciver = new ModBlockLaserReciver().setBlockTextureName(Refrence.Mod_Id + ":LaserReciver").setCreativeTab(Main.ElectricTab);
+        Register(LaserReciver, ModItemBlockLaserReciver.class, "Laser Reciver");
         
-        MiningChamber = new ModBlockMiningChamber();
-        Register(MiningChamber, ModItemBlockMiningChamber.class, "Mining Station", true);
+        MiningChamber = new ModBlockMiningChamber().setCreativeTab(Main.ElectricTab);
+        Register(MiningChamber, ModItemBlockMiningChamber.class, "Mining Station");
         
-        ElectricFurnace = new ModBlockElectricFurnace();
-        Register(ElectricFurnace, "Electric Furnace", true);
+        Teleporter = new ModBlockTeleporter().setCreativeTab(Main.ElectricTab);
+        Register(Teleporter, ModItemBlockTeleporter.class, "Teleporter");
         
-        Teleporter = new ModBlockTeleporter();
-        Register(Teleporter, ModItemBlockTeleporter.class, "Teleporter", true);
+        ItemPedestal = new ModBlockItemPedestal().setCreativeTab(Main.MiscTab);
+        Register(ItemPedestal, ModItemBlockItemPedestal.class, "Item Pedestal");
         
-        ItemPedestal = new ModBlockItemPedestal();
-        Register(ItemPedestal, ModItemBlockItemPedestal.class, "Item Pedestal", true);
+        Table = new ModBlockTable().setCreativeTab(Main.MiscTab);
+        Register(Table, ModItemBlockTable.class ,"Table");
         
-        Table = new ModBlockTable();
-        Register(Table, ModItemBlockTable.class ,"Table", true);
-        
-        PaintBlock = new ModBlockPaintBlock();
-        Register(PaintBlock, "Paint Block", true);
+        PaintBlock = new ModBlockPaintBlock().setCreativeTab(Main.MiscTab);
+        Register(PaintBlock, "Paint Block");
         
         TimedBlock = new ModBlockTimedBlock();
-        Register(TimedBlock, "Float Block", false);
+        Register(TimedBlock, "Float Block");
         
-        OneWayGlass = new ModBlockOneWayGlass();
-        Register(OneWayGlass, "One Way Glass", true);
+        OneWayGlass = new ModBlockOneWayGlass().setCreativeTab(Main.MiscTab);
+        Register(OneWayGlass, "One Way Glass");
         
-        Computer = new ModBlockComputer();
-        Register(Computer, ModItemBlockComputer.class, "Computer", true);
+        Computer = new ModBlockComputer().setCreativeTab(Main.MiscTab);
+        Register(Computer, ModItemBlockComputer.class, "Computer");
         
-        StorageBlock = new ModBlockStorageBlock();
-        Register(StorageBlock, ModItemBlockStorageBlock.class, "Storage Block", true);
+        StorageBlock = new ModBlockStorageBlock().setCreativeTab(Main.MiscTab);
+        Register(StorageBlock, ModItemBlockStorageBlock.class, "Storage Block");
         
-        DiceHolder = new ModBlockDiceHolder();
-        Register(DiceHolder, ModItemBlockDiceHolder.class, "Dice Stand", true);
+        DiceHolder = new ModBlockDiceHolder().setCreativeTab(Main.MiscTab);
+        Register(DiceHolder, ModItemBlockDiceHolder.class, "Dice Stand");
         
-        WireLessRedstone = new ModBlockWirelessRedstone();
-        Register(WireLessRedstone, "Wireless Redstone", true);
+        WireLessRedstone = new ModBlockWirelessRedstone().setCreativeTab(Main.MiscTab);
+        Register(WireLessRedstone, "Wireless Redstone");
         
-        SilverBlock = new ModBlockEmptyBlock().setBlockTextureName(Refrence.Mod_Id + ":" + "SilverBlock").setHardness(2.7F);
-        Register(SilverBlock, "Silver Block", true);
+        SilverBlock = new ModBlockEmptyBlock().setBlockTextureName(Refrence.Mod_Id + ":" + "SilverBlock").setHardness(2.7F).setCreativeTab(Main.MiscTab);
+        Register(SilverBlock, "Silver Block");
         
-        WirelessItemTrans = new ModBlockWirelessItemTransfer();
-        Register(WirelessItemTrans, "Wireless Item Transfer", true);
+        WirelessItemTrans = new ModBlockWirelessItemTransfer().setCreativeTab(Main.MiscTab);
+        Register(WirelessItemTrans, "Wireless Item Transfer");
 
-        GhostBlock = new ModBlockGhostBlock();
-        Register(GhostBlock, "Ghost Block", true);
+        GhostBlock = new ModBlockGhostBlock().setCreativeTab(Main.MiscTab);
+        Register(GhostBlock, "Ghost Block");
 
 
 
@@ -251,7 +253,7 @@ public class ModBlocks {
 	
 	
 	    
-		public static void Register(Block block, String Name, boolean AddTab){
+		public static void Register(Block block, String Name){
 			
 			
 			if(Main.config.get("Blocks", "Enable " + Name + "?", true).getBoolean(true)){
@@ -259,14 +261,12 @@ public class ModBlocks {
 	        block.setBlockName(Name.toLowerCase().replace(" ", "_"));
 		        GameRegistry.registerBlock(block, Name.toLowerCase().replace(" ", "_"));
 
-	        
-	        if(AddTab)
-	        block.setCreativeTab(Main.CreativeTab);
+
 
 			}
 		}
 		
-public static void Register(Block Block, Class<? extends ItemBlock> itemclass, String Name, boolean AddTab){
+public static void Register(Block Block, Class<? extends ItemBlock> itemclass, String Name){
 			
 		
 	
@@ -275,8 +275,6 @@ public static void Register(Block Block, Class<? extends ItemBlock> itemclass, S
 	              Block.setBlockName(Name.toLowerCase().replace(" ", "_"));
 		        GameRegistry.registerBlock(Block, itemclass, Name.toLowerCase().replace(" ", "_"));
 
-	        if(AddTab)
-	        Block.setCreativeTab(Main.CreativeTab);
 	}
 
 		}

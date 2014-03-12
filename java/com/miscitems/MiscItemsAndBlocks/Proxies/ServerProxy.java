@@ -13,10 +13,11 @@ import java.util.ArrayList;
 public class ServerProxy{
 
 	public static ArrayList<EntityPlayer> JoinedPlayers = new ArrayList<EntityPlayer>();
-	
+
+public static ServerTickHandler tickHandlerServer;
     public static TickHandlerClient tickHandlerClient;
-    public static ServerTickHandler tickHandlerServer;
-	
+
+
     public void registerRenderThings(){
         
     }
@@ -25,24 +26,20 @@ public class ServerProxy{
     public int addArmor(String armor){
         return 0;
     }
-    
-	public void registerServerTickHandler()
-	 {
-		
-        tickHandlerServer = new ServerTickHandler();
-        MinecraftForge.EVENT_BUS.register(tickHandlerServer);
-	 }
 
+
+    public void RegisterServerTickhandler(){
+        tickHandlerServer = new ServerTickHandler();
+
+    }
+
+    public void RegisterClientTickhandler(){
+    }
 	
 	public void RegisterListeners(){
 		
 		
 	}
-
-	public void registerClientTickHandler() {
-
-	}
-	
 
     	
 	

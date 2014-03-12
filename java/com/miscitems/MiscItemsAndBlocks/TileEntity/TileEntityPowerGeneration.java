@@ -1,5 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
+import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Electric.IPowerCable;
 import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Electric.IPowerGeneration;
 import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Electric.IPowerTile;
 import net.minecraft.nbt.NBTTagCompound;
@@ -14,8 +15,8 @@ public abstract  class TileEntityPowerGeneration extends TileEntityInvBase imple
 	
 	public abstract boolean CanWork(World world, int X, int Y, int Z);
 	public abstract int WorkTime();
-	
-	public int Produced;
+
+    private int Produced;
 	
     public void OnWork(World world, int x, int y, int z){}
     
@@ -62,6 +63,9 @@ public abstract  class TileEntityPowerGeneration extends TileEntityInvBase imple
 	
     public void updateEntity()
     {
+        Produced = GeneratedPower();
+
+        if(!worldObj.isRemote){
   	   World world = this.worldObj;
        int X = this.xCoord;
        int Y = this.yCoord;
@@ -111,6 +115,7 @@ public abstract  class TileEntityPowerGeneration extends TileEntityInvBase imple
        }
        }
     	
+    }
     }
     
     public int GetXCord(int h){
@@ -208,15 +213,28 @@ public abstract  class TileEntityPowerGeneration extends TileEntityInvBase imple
     public void SendPower(World world, int x, int y, int z, int Amount){
     	
     	TileEntity tile_e = world.getTileEntity(x, y, z);
-    	
-    	
-    	
-    	if(tile_e instanceof IPowerTile){
+
+
+        if (tile_e instanceof IPowerCable){
+            IPowerCable tile = (IPowerCable)tile_e;
+
+            if(tile.GetPower() + Amount <= tile.GetMaxPower()){
+                tile.AddPower(Amount);
+                return;
+            }else{
+                tile.SetPower(tile.GetMaxPower());
+                return;
+            }
+
+        }
+
+
+        if(tile_e instanceof IPowerTile){
     		IPowerTile tile = (IPowerTile)tile_e;
     		
     		if(tile.AcceptsPower()){
     		if(tile.GetPower() < tile.GetMaxPower() && tile.GetPower() + Amount <= tile.GetMaxPower()){
-    			tile.SetPower(tile.GetPower() + Amount);
+                tile.AddPower(Amount);
     		}
     			return;
     		}else{
@@ -225,42 +243,34 @@ public abstract  class TileEntityPowerGeneration extends TileEntityInvBase imple
     		}
 
     		
-    	}else if (tile_e instanceof TileEntityPowerCable){
-    		TileEntityPowerCable tile = (TileEntityPowerCable)tile_e;
-    		
-    		if(tile.GetPower() < tile.MaxPower && tile.GetPower() + Amount <= tile.MaxPower){
-    			tile.SetPower(tile.GetPower() + Amount);
-    			return;
-    		}else{
-    			tile.SetPower(tile.MaxPower);
-    			return;
-    		}
-    		
     	}
-   
+
+
     	
     }
+
     
     public boolean AceptsPower(int x, int y, int z){
     	
     	TileEntity tile_e = this.worldObj.getTileEntity(x, y, z);
-    	if(tile_e instanceof IPowerTile){
-    		 if (tile_e instanceof TileEntityPowerCable){
+        if(tile_e instanceof TileEntityPowerCable || tile_e instanceof IPowerTile){
+    	if(tile_e instanceof TileEntityPowerCable){
     			int Meta = this.worldObj.getBlockMetadata(x, y, z);
     			TileEntityPowerCable tile = (TileEntityPowerCable)tile_e;
     			
-    			return Meta != 1 && tile.GetPower() < tile.MaxPower;
+    			return Meta != 1 && tile.GetPower() < tile.GetMaxPower();
 
     		}else if (tile_e instanceof IPowerTile){
     			IPowerTile tile = (IPowerTile)tile_e;
     			
     			return tile.GetPower() < tile.GetMaxPower();
     		}
-    		
-    		return true;
-    	}
 
-    	return false;
+
+            return true;
+        }
+    		return false;
+
     	
 
     }

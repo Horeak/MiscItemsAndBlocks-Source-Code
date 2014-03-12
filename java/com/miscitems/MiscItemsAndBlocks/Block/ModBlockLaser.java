@@ -33,7 +33,6 @@ public IIcon sideIconon;
 public ModBlockLaser() {
 super(Material.rock);
 this.setHardness(1.0F);
-this.setCreativeTab(Main.CreativeTab);
 }
 
 @Override

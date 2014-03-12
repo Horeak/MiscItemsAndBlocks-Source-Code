@@ -27,8 +27,7 @@ private IIcon _icon3;
 	
 	public ModItemXpExtractor() {
 		super();
-		
-		setCreativeTab(Main.CreativeTab);
+
         this.maxStackSize = 1;
         this.setUnlocalizedName("XpExtractor");
        

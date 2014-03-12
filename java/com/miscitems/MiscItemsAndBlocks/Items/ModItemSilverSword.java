@@ -22,7 +22,6 @@ public class ModItemSilverSword extends ItemSword {
 
     public ModItemSilverSword(ToolMaterial ToolMaterial){
         super(ToolMaterial);
-        setCreativeTab(Main.CreativeTab);
     }
       
     
@@ -50,7 +49,7 @@ public class ModItemSilverSword extends ItemSword {
     		DamageSource dmg = new DamageSource("SilverSwordHit");
     		dmg.setDamageBypassesArmor();
     		
-    		EntityHit.attackEntityFrom(dmg, 20);
+    		EntityHit.attackEntityFrom(dmg, 30);
     		EntityHit.attackEntityAsMob(EntityHit);
     		
 			

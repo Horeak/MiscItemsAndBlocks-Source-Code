@@ -26,7 +26,6 @@ public class ModBlockDisarmTrap extends BlockContainer{
 	protected ModBlockDisarmTrap() {
 		super(Material.iron);
 		setHardness(8);
-		setCreativeTab(Main.CreativeTab);
 		this.setBlockBounds(0F, 0F, 0F, 1F, 0.1F, 1F);
 	}
 

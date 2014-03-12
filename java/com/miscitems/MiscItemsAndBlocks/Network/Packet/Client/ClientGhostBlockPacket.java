@@ -12,15 +12,17 @@ import java.io.IOException;
 
 public class ClientGhostBlockPacket extends IPacket {
     int x, y, z, ID, Meta;
+    String Player;
 
     public ClientGhostBlockPacket(){}
-    public ClientGhostBlockPacket(int x, int y, int z, int ID, int Meta){
+    public ClientGhostBlockPacket(int x, int y, int z, int ID, int Meta, String Player){
         this.x = x;
         this.y = y;
         this.z = z;
 
         this.ID = ID;
         this.Meta = Meta;
+        this.Player = Player;
 
     }
 
@@ -32,6 +34,8 @@ public class ClientGhostBlockPacket extends IPacket {
 
         ID =  data.readInt();
         Meta = data.readInt();
+
+        Player = data.readUTF();
     }
 
     @Override
@@ -43,6 +47,8 @@ public class ClientGhostBlockPacket extends IPacket {
 
         data.writeInt(ID);
         data.writeInt(Meta);
+
+        data.writeUTF(Player);
     }
 
     @Override
@@ -56,6 +62,7 @@ public class ClientGhostBlockPacket extends IPacket {
             TileEntityGhostBlock tile = (TileEntityGhostBlock)world.getTileEntity(x, y, z);
             tile.Id = ID;
             tile.Meta = Meta;
+            tile.Placer = Player;
 
 
         }

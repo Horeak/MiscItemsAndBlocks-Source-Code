@@ -146,7 +146,7 @@ public class TileEntityGenerator extends TileEntityPowerGeneration{
 
 	@Override
 	public int GeneratedPower() {
-		return 1;
+		return 4;
 	}
 	
    

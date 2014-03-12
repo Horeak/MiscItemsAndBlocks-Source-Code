@@ -3,10 +3,7 @@ package com.miscitems.MiscItemsAndBlocks.Main;
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.Entity.EntityPowerArrow;
 import com.miscitems.MiscItemsAndBlocks.Entity.EntitySilverArrow;
-import com.miscitems.MiscItemsAndBlocks.Event.CapeRenderEvent;
-import com.miscitems.MiscItemsAndBlocks.Event.DisarmStickEvent;
-import com.miscitems.MiscItemsAndBlocks.Event.GuiListener;
-import com.miscitems.MiscItemsAndBlocks.Event.PlayerFirstJoinEvent;
+import com.miscitems.MiscItemsAndBlocks.Event.*;
 import com.miscitems.MiscItemsAndBlocks.Gui.GuiHandler;
 import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
 import com.miscitems.MiscItemsAndBlocks.Laser.DefaultLaser;
@@ -18,6 +15,8 @@ import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
 import com.miscitems.MiscItemsAndBlocks.Misc.BoneMealEvent;
 import com.miscitems.MiscItemsAndBlocks.Network.NetworkManager;
 import com.miscitems.MiscItemsAndBlocks.Proxies.ServerProxy;
+import com.miscitems.MiscItemsAndBlocks.Tick.ServerTickHandler;
+import com.miscitems.MiscItemsAndBlocks.Tick.TickHandlerClient;
 import com.miscitems.MiscItemsAndBlocks.VersionChecker.VersionChecker;
 import com.miscitems.MiscItemsAndBlocks.WorldGen.ModWorldGenerator;
 import cpw.mods.fml.common.Mod;
@@ -33,7 +32,9 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
@@ -75,19 +76,45 @@ public class Main {
     public static final org.apache.logging.log4j.Logger logger = LogManager.getLogger("MiscItems");
     
 	public static NetworkManager NETWORK_MANAGER;
+
     
-	public static CreativeTabs CreativeTab = new CreativeTabs("tabMisc") {
+	public static CreativeTabs MiscTab = new CreativeTabs("tabMiscMisc") {
 
 
 		@Override
 		@SideOnly(Side.CLIENT)
 		public Item getTabIconItem() {
+            if(Main.config.get("Items", "Enable " + "Guide Book" + "?", true).getBoolean(true)){
+                Main.config.save();
 			return ModItems.GuideBook;
-		}
+            }else{
+                Main.config.save();
+                return ItemBlock.getItemFromBlock(Blocks.bedrock);
+            }
+        }
 		
 	    
 	};
-	
+
+
+    public static CreativeTabs ElectricTab = new CreativeTabs("tabMiscElectric") {
+
+
+        @Override
+        @SideOnly(Side.CLIENT)
+        public Item getTabIconItem() {
+            if(Main.config.get("Blocks", "Enable " + "Charger" + "?", true).getBoolean(true)){
+                Main.config.save();
+            return ItemBlock.getItemFromBlock(ModBlocks.Charger);
+            }else{
+                Main.config.save();
+                return ItemBlock.getItemFromBlock(Blocks.bedrock);
+            }
+        }
+
+
+    };
+
        public static Configuration config;
 	
 @EventHandler
@@ -128,7 +155,9 @@ public void preInit(FMLPreInitializationEvent event) {
         proxy.registerRenderThings();
         proxy.readManuals();
         
-        
+
+    proxy.RegisterClientTickhandler();
+    proxy.RegisterServerTickhandler();
         
         //Register Events
         RegisterServerEvents();
@@ -144,6 +173,8 @@ public void RegisterClientEvents(){
 	
     MinecraftForge.EVENT_BUS.register(new GuiListener());	
     MinecraftForge.EVENT_BUS.register(new CapeRenderEvent());
+
+    MinecraftForge.EVENT_BUS.register(Main.proxy.tickHandlerServer);
 }
 
 
@@ -154,6 +185,9 @@ public void RegisterServerEvents(){
     MinecraftForge.EVENT_BUS.register(new BoneMealEvent());
     MinecraftForge.EVENT_BUS.register(new PlayerFirstJoinEvent());
     MinecraftForge.EVENT_BUS.register(new DisarmStickEvent());
+    MinecraftForge.EVENT_BUS.register(new GhostBlockBreakEvent());
+
+    MinecraftForge.EVENT_BUS.register(Main.proxy.tickHandlerClient);
 }
     
     
@@ -163,9 +197,7 @@ public void RegisterServerEvents(){
 
         
 		NETWORK_MANAGER = new NetworkManager();
-    	
-        proxy.registerClientTickHandler();
-        proxy.registerServerTickHandler();
+
     
         EntityRegistry.registerGlobalEntityID(EntitySilverArrow.class, "SilverArrow", EntityRegistry.findGlobalUniqueEntityId());
         EntityRegistry.registerModEntity(EntitySilverArrow.class, "SilverArrow", 0, this, 128, 1, true);

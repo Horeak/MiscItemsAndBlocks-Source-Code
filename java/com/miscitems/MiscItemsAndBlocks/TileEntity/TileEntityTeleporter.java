@@ -244,6 +244,6 @@ public class TileEntityTeleporter extends TileEntityPowerInv{
 
 		@Override
 		public int GetMaxPower() {
-			return 050;
+			return 500;
 		}
 }

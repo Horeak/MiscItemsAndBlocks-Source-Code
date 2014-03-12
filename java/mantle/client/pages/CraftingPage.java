@@ -2,6 +2,7 @@ package mantle.client.pages;
 
 import mantle.client.MantleClientRegistry;
 import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
@@ -39,8 +40,9 @@ public class CraftingPage extends BookPage
             text = StatCollector.translateToLocal(text);
         if (size.equals("two"))
             drawCraftingPage(text, icons, 2, localWidth, localHeight + 12);
-        if (size.equals("three"))
+        if (size.equals("three")){
             drawCraftingPage(text, icons, 3, localWidth + (side != 1 ? 6 : 0), localHeight + 12);
+        }
     }
 
     public void drawCraftingPage (String info, ItemStack[] icons, int recipeSize, int localWidth, int localHeight)
@@ -53,27 +55,37 @@ public class CraftingPage extends BookPage
         RenderHelper.enableGUIStandardItemLighting();
         manual.renderitem.zLevel = 100;
 
+
         if (recipeSize == 2)
         {
+
+            if(icons != null && icons[0] != null && icons.length > 1){
             manual.renderitem.renderItemAndEffectIntoGUI(manual.fonts, manual.getMC().renderEngine, icons[0], (localWidth + 126) / 2, (localHeight + 68) / 2);
             if (icons[0].stackSize > 1)
                 manual.renderitem.renderItemOverlayIntoGUI(manual.fonts, manual.getMC().renderEngine, icons[0], (localWidth + 126) / 2, (localHeight + 68) / 2, String.valueOf(icons[0].stackSize));
             for (int i = 0; i < icons.length - 1; i++)
             {
-                if (icons[i + 1] != null)
+                if (icons[i + 1] != null && Item.itemRegistry.containsId(Item.getIdFromItem(icons[i + 1].getItem())))
                     manual.renderitem.renderItemAndEffectIntoGUI(manual.fonts, manual.getMC().renderEngine, icons[i + 1], (localWidth + 14 + 36 * (i % 2)) / 2, (localHeight + 36 * (i / 2) + 52) / 2);
             }
+        }
         }
 
         if (recipeSize == 3)
         {
+
+
+
+            if(icons != null && icons[0] != null){
             manual.renderitem.renderItemAndEffectIntoGUI(manual.fonts, manual.getMC().renderEngine, icons[0], (localWidth + 138) / 2, (localHeight + 70) / 2);
             if (icons[0].stackSize > 1)
                 manual.renderitem.renderItemOverlayIntoGUI(manual.fonts, manual.getMC().renderEngine, icons[0], (localWidth + 134) / 2, (localHeight + 68) / 2, String.valueOf(icons[0].stackSize));
             for (int i = 0; i < icons.length - 1; i++)
             {
-                if (icons[i + 1] != null)
+
+                if (icons[i + 1] != null && Item.itemRegistry.containsId(Item.getIdFromItem(icons[i + 1].getItem())))
                     manual.renderitem.renderItemAndEffectIntoGUI(manual.fonts, manual.getMC().renderEngine, icons[i + 1], (localWidth - 2 + 36 * (i % 3)) / 2, (localHeight + 36 * (i / 3) + 34) / 2);
+            }
             }
         }
 

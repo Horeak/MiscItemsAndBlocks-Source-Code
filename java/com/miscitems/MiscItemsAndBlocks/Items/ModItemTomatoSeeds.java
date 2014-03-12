@@ -1,6 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Items;
 
 import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -17,6 +18,7 @@ public class ModItemTomatoSeeds extends ItemSeeds implements IPlantable{
 
 	public ModItemTomatoSeeds(Block par2, Block par3) {
 		super(par2, par3);
+        this.setCreativeTab(Main.MiscTab);
 	}
 	
 	   @SideOnly(Side.CLIENT)

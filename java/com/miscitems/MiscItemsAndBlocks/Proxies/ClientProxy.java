@@ -52,6 +52,10 @@ public class ClientProxy extends ServerProxy {
     public static final int TicTacToeID = 5;
     public static final int MasterMindID = 6;
     public static int manualGuiID = -1;
+
+    public void RegisterClientTickhandler(){
+        tickHandlerClient = new TickHandlerClient();
+    }
 	
     public static SmallFontRenderer smallFontRenderer;
     public void registerRenderThings() {
@@ -121,16 +125,7 @@ public class ClientProxy extends ServerProxy {
     public int addArmor(String armor){
         return RenderingRegistry.addNewArmourRendererPrefix(armor);
     }
-    
-    @Override
-    public void registerClientTickHandler()
-    {
-    	
-        tickHandlerClient = new TickHandlerClient();
-        MinecraftForge.EVENT_BUS.register(tickHandlerClient);
 
-    }
-    
     
 	public void RegisterListeners(){
 		

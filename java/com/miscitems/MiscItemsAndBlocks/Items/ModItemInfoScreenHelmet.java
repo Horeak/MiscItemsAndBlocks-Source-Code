@@ -18,7 +18,6 @@ public class ModItemInfoScreenHelmet extends ModItemElArmor{
 
 	public ModItemInfoScreenHelmet(int RenderIndex, int ArmorType) {
 		super(RenderIndex, ArmorType);
-		this.setCreativeTab(Main.CreativeTab);
 		this.setMaxDamage(152);
 	}
 

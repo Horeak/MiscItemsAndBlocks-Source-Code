@@ -44,6 +44,8 @@ public class ModItemBlockStorageBlock extends ItemBlock {
 		 }else{
 			 world.setBlock(x, y, z, ModBlocks.StorageBlock); 
 		 }
+
+            ModBlocks.StorageBlock.onBlockPlacedBy(world, x, y, z, player, stack);
 	       return true;
 	    }
 	 

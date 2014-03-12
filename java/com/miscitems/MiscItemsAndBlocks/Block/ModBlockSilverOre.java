@@ -12,7 +12,6 @@ public class ModBlockSilverOre extends Block{
 
 	public ModBlockSilverOre() {
 		super(Material.rock);
-		this.setCreativeTab(Main.CreativeTab);
 		this.setHardness(46);
 	}
 	

@@ -16,8 +16,8 @@ public abstract class TileEntityPowerInv  extends TileEntityInvBase implements I
 
 	}
 
-	public int Power;
-	public int PowerMax;
+	private int Power;
+    private int PowerMax;
 	
 	
 	

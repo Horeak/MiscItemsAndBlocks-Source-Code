@@ -1,6 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
 import com.miscitems.MiscItemsAndBlocks.Laser.LaserUtil;
+import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Electric.IPowerCable;
 import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Electric.IPowerGeneration;
 import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Electric.IPowerTile;
 import net.minecraft.block.Block;
@@ -9,12 +10,13 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class TileEntityPowerCable extends TileEntity{
+public class TileEntityPowerCable extends TileEntity implements IPowerCable {
+
 
 	
        
-       int Power = 0;
-       int MaxPower = 4;
+      private int Power = 0;
+    private int MaxPower = 4;
 
        
        
@@ -102,7 +104,12 @@ public class TileEntityPowerCable extends TileEntity{
     public int GetMaxPower(){
     	return Power;
     }
-    
+
+    @Override
+    public void SetMaxPower(int i) {
+        MaxPower = i;
+    }
+
     public int GetPowerSpaceLeft(){
     	return MaxPower - Power;
     }
@@ -110,8 +117,17 @@ public class TileEntityPowerCable extends TileEntity{
     public void SetPower(int i){
     	Power = i;
     }
-    
- public boolean IsPowerBlock(World world, int x, int y, int z){
+
+    @Override
+    public void AddPower(int Amount) {
+
+        if(Power + Amount <= MaxPower)
+            Power += Amount;
+        else
+            Power = MaxPower;
+    }
+
+    public boolean IsPowerBlock(World world, int x, int y, int z){
     	
     	Block block = world.getBlock(x, y, z);
     	TileEntity tile = world.getTileEntity(x, y, z);
@@ -122,7 +138,7 @@ public class TileEntityPowerCable extends TileEntity{
     	if(Meta != 1)
     	if(tile instanceof IPowerGeneration)return true;
     	if(Meta != 2)
-    	if(tile instanceof TileEntityPowerCable)return true;
+    	if(tile instanceof IPowerCable)return true;
     	
     	// 1 No Machines
     	// 2 No Cables
@@ -144,7 +160,7 @@ public class TileEntityPowerCable extends TileEntity{
 	    		
 	    		if(tile.GetPower() < tile.GetMaxPower()){
 	    			if(Power > 0){
-	    				tile.SetPower(tile.GetPower() + 1);
+	    				tile.AddPower(1);
 	    				Power--;
 	    			}
 	    		}else{

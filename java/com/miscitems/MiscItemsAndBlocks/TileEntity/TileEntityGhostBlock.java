@@ -17,6 +17,8 @@ public class TileEntityGhostBlock extends TileEntity{
 
 	public int Meta;
     public int Id;
+    public boolean Locked;
+    public String Placer = "";
 	
 	
 	//TODO //FIXME Try to find a way to encode block id in meta data
@@ -28,9 +30,10 @@ public class TileEntityGhostBlock extends TileEntity{
             Id = NBT.getInteger("ID");
 		  
 		  Meta = NBT.getInteger("Meta");
+            Locked = NBT.getBoolean("Locked");
 
+            Placer = NBT.getString("Pl");
 
-            System.out.println(Id + " : " + Meta + " :2");
 	    }
 
 
@@ -42,14 +45,17 @@ public class TileEntityGhostBlock extends TileEntity{
 	      
 	      NBT.setInteger("Meta", Meta);
 
+            NBT.setBoolean("Locked", Locked);
+            NBT.setString("Pl", Placer);
+
 	    }
 
     @Override
     public Packet getDescriptionPacket() {
 
 
-        if (Id > 0)
-            return Main.NETWORK_MANAGER.populatePacket(new ClientGhostBlockPacket(xCoord, yCoord, zCoord, Id, Meta));
+        if (Id > 0 || Placer != null)
+            return Main.NETWORK_MANAGER.populatePacket(new ClientGhostBlockPacket(xCoord, yCoord, zCoord, Id, Meta, Placer));
         else
             return super.getDescriptionPacket();
     }

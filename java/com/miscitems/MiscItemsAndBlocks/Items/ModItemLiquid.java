@@ -31,7 +31,6 @@ public class ModItemLiquid extends Item{
 		this.setHasSubtypes(true);
         this.setMaxDamage(0);
         this.setMaxStackSize(16);
-        this.setCreativeTab(Main.CreativeTab);
 		
 	}
 	

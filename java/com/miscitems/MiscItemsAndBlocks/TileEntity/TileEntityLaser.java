@@ -145,10 +145,10 @@ Strength = 0;
 if(this.worldObj.isRemote) return;
 
 
-if(this.GetPower() < this.PowerMax)
+if(this.GetPower() < this.GetMaxPower())
 if(this.getStackInSlot(1) != null && this.getStackInSlot(1).getItem() instanceof ModItemPowerStorage){
 	if(this.getStackInSlot(1).getItem() == ModItems.CreativeBattery)
-		this.SetPower(PowerMax);
+		this.SetPower(GetMaxPower());
 	else if (this.getStackInSlot(1).getItemDamage() < this.getStackInSlot(1).getMaxDamage()){
 		this.getStackInSlot(1).damageItem(1, worldObj.getClosestPlayer(xCoord, yCoord, zCoord, -1));
 		this.SetPower(this.GetPower() + 1);

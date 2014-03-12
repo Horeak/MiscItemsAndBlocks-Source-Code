@@ -6,6 +6,8 @@
 
 
 - This guide book will show all new recipes added by MiscItemsAndBlocks. It will also give some small descriptions for all the changes and additions.
+
+- If the recipe for a block/item is blank it means that it is disabled in the config.
 </text>
 </page>
 
@@ -122,6 +124,179 @@
 <size>three</size>
 </recipe>
 </page>
+
+<page type="text">
+<title>Dice</title>
+<text>The dice is a item which was added to be used together with the game pieces. The dice can be dropped on the ground and it will change to a random number between 1 and 6.
+</text>
+</page>
+<page type="crafting">
+<text>Recipe</text>
+<recipe>
+<name>dice_res</name>
+<size>three</size>
+</recipe>
+</page>
+
+<page type="text">
+<title>Speed Block</title>
+<text>The speed block is a block which will speed up any entity travelling on top of it. So it can be useful for item or mob transfer systems.
+</text>
+</page>
+<page type="crafting">
+<text>Recipe</text>
+<recipe>
+<name>speed_block_res</name>
+<size>three</size>
+</recipe>
+</page>
+
+<page type="text">
+<title>Game Pieces</title>
+<text>The game pieces are blocks which is meant to be used in games. The game pieces can be right clicked to push it one block in that direction. The game pieces can also be pushed up blocks and on top of other game pieces of the same colour. And the games pieces can be found in five types: Blank, Red, Blue, Green, Yellow. To get the different types of game pieces you combine a blank game piece with that colour of dye.
+</text>
+</page>
+<page type="crafting">
+<text>Recipe</text>
+<recipe>
+<name>blank_game_piece_res</name>
+<size>three</size>
+</recipe>
+</page>
+
+
+<page type="text">
+<title>Pillar</title>
+<text>The pillar is a block very similar to the game pieces by looks but the pillar can not be pushed like the game pieces. The pillar can also unlike the game pieces connect sideways and the pillar is meant as a decorative block.
+</text>
+</page>
+<page type="crafting">
+<text>Recipe</text>
+<recipe>
+<name>pillar_res</name>
+<size>three</size>
+</recipe>
+</page>
+
+<page type="text">
+<title>Mill</title>
+<text>The mill is a machine that can be used to make bread making more efficient by allowing you to make 1 to 1 bread. You can put wheat into the mill and it will make flour which can then be smelted into bread. The mill is a machine which is meant to not be automated so you can only store 16 items, cant input or output items with hoppers and you cant use shift-click.
+</text>
+</page>
+<page type="crafting">
+<text>Recipe</text>
+<recipe>
+<name>mill_res</name>
+<size>three</size>
+</recipe>
+</page>
+
+<page type="text">
+<title>Squeezer</title>
+<text>The squeezer is a machine which is meant to be used to make different types of fruit juice. Some of the juices you can make are: Apple, Orange and Carrot.
+</text>
+</page>
+<page type="crafting">
+<text>Recipe</text>
+<recipe>
+<name>squeezer_res</name>
+<size>three</size>
+</recipe>
+</page>
+
+<page type="text">
+<title>Oven</title>
+<text>The oven is a new type of furnace made specially for food. The oven uses coal to heat up and will slowly lose the heat over time but the higher the heat is the faster it will cook the food.
+</text>
+</page>
+<page type="crafting">
+<text>Recipe</text>
+<recipe>
+<name>oven_res</name>
+<size>three</size>
+</recipe>
+</page>
+
+<page type="text">
+<title>Item Pedestal</title>
+<text>The item pedestal is a decorative block where you can place any item on top of it by right clicking it with the item you want to display. To get the item back right click with a empty hand on it.
+</text>
+</page>
+<page type="crafting">
+<text>Recipe</text>
+<recipe>
+<name>item_pedestal_res</name>
+<size>three</size>
+</recipe>
+</page>
+
+<page type="text">
+<title>Table</title>
+<text>The table is a decorative block. If the table is placed next to other tables they will connect forming one table. The table can also be right clicked with a red carpet to add table cloth.
+</text>
+</page>
+<page type="crafting">
+<text>Recipe</text>
+<recipe>
+<name>table_res</name>
+<size>three</size>
+</recipe>
+</page>
+
+<page type="text">
+<title>Paint Block</title>
+<text>The paint block is a block which uses the colour system called RGB (Red, Green, Blue) You can chose between millions of colours on the block by using the different types of paint brushes added to the mod.
+</text>
+</page>
+<page type="crafting">
+<text>Recipe</text>
+<recipe>
+<name>paint_block_res</name>
+<size>three</size>
+</recipe>
+</page>
+
+<page type="text">
+<title>One Way Glass</title>
+<text>The one way glass does exactly what it sounds like. When placed it will face the player with a glass side the other side of the block will be shown as stone.
+</text>
+</page>
+<page type="crafting">
+<text>Recipe</text>
+<recipe>
+<name>one_way_glass_res</name>
+<size>three</size>
+</recipe>
+</page>
+
+<page type="text">
+<title>Computer</title>
+<text>The computer is a minecraft computer where you can do different things like private chat, play games and other things. 
+</text>
+</page>
+<page type="crafting">
+<text>Recipe</text>
+<recipe>
+<name>computer_res</name>
+<size>three</size>
+</recipe>
+</page>
+
+<page type="text">
+<title>Storage Block</title>
+<text>The storage block is a huge storage block which has 800! inventory slots where you can store items. The storage block also stores its contents so it can be picked up and moved.
+</text>
+</page>
+<page type="crafting">
+<text>Recipe</text>
+<recipe>
+<name>storage_block_res</name>
+<size>three</size>
+</recipe>
+</page>
+
+
+
 
 <page type="text">
 <title>Work In Progress</title>

@@ -1,6 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Block;
 
 import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.WorldGen.WorldGenOrangeTree;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -27,6 +28,7 @@ public class ModBlockOrangeSapling extends BlockBush implements IGrowable
         float f = 0.4F;
         this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, f * 2.0F, 0.5F + f);
         this.setStepSound(soundTypeGrass);
+        this.setCreativeTab(Main.MiscTab);
     }
 
     public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random)

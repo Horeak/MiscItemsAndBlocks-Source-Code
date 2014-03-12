@@ -29,8 +29,8 @@ public class ServerTickHandler{
     public HashMap<String, GameInvite> playerGameRequests = new HashMap<String, GameInvite>();
     
     public ArrayList<GameInfo> activeGames = new ArrayList<GameInfo>();
-	
-	
+
+
 	@SubscribeEvent
     public void tick(TickEvent.ServerTickEvent event){
 
@@ -38,10 +38,10 @@ public class ServerTickHandler{
     	
  
     }
-    
-    
- 
-    
+
+
+
+
 	@SubscribeEvent
     public void tick(TickEvent.PlayerTickEvent event){
     	

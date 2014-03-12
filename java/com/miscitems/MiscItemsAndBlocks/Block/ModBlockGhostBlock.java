@@ -1,5 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Block;
 
+import com.miscitems.MiscItemsAndBlocks.Lib.ChatMessageHandler;
 import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityGhostBlock;
 import cpw.mods.fml.relauncher.Side;
@@ -8,10 +9,12 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
@@ -35,21 +38,57 @@ public class ModBlockGhostBlock extends BlockContainer{
 		return new TileEntityGhostBlock();
 	}
 
-	
+    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase ent, ItemStack stack) {
+
+
+        if(ent instanceof EntityPlayer){
+            EntityPlayer player = (EntityPlayer)ent;
+            if(world.getTileEntity(z, y, z) instanceof TileEntityGhostBlock){
+                TileEntityGhostBlock tile = (TileEntityGhostBlock)world.getTileEntity(x, y, z);
+
+                System.out.println(3);
+                tile.Placer = player.getDisplayName();
+
+            }else{
+                world.setTileEntity(x, y, z, this.createNewTileEntity(world, stack.getItemDamage()));
+                TileEntityGhostBlock tile = (TileEntityGhostBlock)world.getTileEntity(x, y, z);
+                tile.Placer = player.getDisplayName();
+
+            }
+
+        }
+
+
+    }
+
+
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_)
     {
     	
     	if(world.getTileEntity(x, y, z) instanceof TileEntityGhostBlock){
     		TileEntityGhostBlock tile = (TileEntityGhostBlock)world.getTileEntity(x, y, z);
 
-    		if(player.getHeldItem() != null){
+    		if(player.getHeldItem() != null && !player.isSneaking()){
     			if(player.getHeldItem().getItem() instanceof ItemBlock){
     				Block block = Block.getBlockById(Item.getIdFromItem(player.getHeldItem().getItem()));
-    				if(block.hasTileEntity(player.getHeldItem().getItemDamage()))
+    				if(!block.isOpaqueCube())
                         return true;
 
 
     				if(block != null && block != Blocks.air){
+                        if(tile.Locked){
+                            if(tile.Placer == "" || player.getDisplayName().equalsIgnoreCase(tile.Placer)){
+
+                                tile.Id = Block.getIdFromBlock(block);
+                                tile.Meta = player.getHeldItem().getItemDamage();
+
+
+                                world.setBlockMetadataWithNotify(x, y, z, 0, 3);
+                                world.markBlockForUpdate(x, y, z);
+                                return true;
+                            }
+                        }else{
+
     					tile.Id = Block.getIdFromBlock(block);
     					tile.Meta = player.getHeldItem().getItemDamage();
     					
@@ -57,20 +96,54 @@ public class ModBlockGhostBlock extends BlockContainer{
                         world.setBlockMetadataWithNotify(x, y, z, 0, 3);
     	    			world.markBlockForUpdate(x, y, z);
     					return true;
+                        }
     				}
     				
     			}
     		}else{
-    			tile.Id = 0;
-                tile.Meta = 0;
+                if(!world.isRemote)
+                if(player.isSneaking()){
+                    if(tile.Placer == "" || player.getDisplayName().equalsIgnoreCase(tile.Placer) || player.capabilities.isCreativeMode){
 
 
-                world.setBlockMetadataWithNotify(x, y, z, 0, 3);
-    			world.markBlockForUpdate(x, y, z);
-				return true;
+                    tile.Locked ^= true;
+
+
+                    ChatMessageHandler.sendChatToPlayer(player, "Ghost block " + (tile.Locked ? "is now Locked" : "is no longer locked"));
+                    }else{
+                        ChatMessageHandler.sendChatToPlayer(player, "You cant change " + tile.Placer + "`s Ghost block");
+                    }
+
+
+
+
+                }else{
+
+                    if(tile.Placer == "" || player.getDisplayName().equalsIgnoreCase(tile.Placer) || player.capabilities.isCreativeMode){
+
+                        tile.Id = 0;
+                        tile.Meta = 0;
+
+
+                        world.setBlockMetadataWithNotify(x, y, z, 0, 3);
+                        world.markBlockForUpdate(x, y, z);
+                        return true;
+                    }
+                }else{
+
+                    tile.Id = 0;
+                    tile.Meta = 0;
+
+
+                    world.setBlockMetadataWithNotify(x, y, z, 0, 3);
+                    world.markBlockForUpdate(x, y, z);
+                    return true;
+                }
+
+                }
     		}
     		
-    	}
+
     	
     	
         return false;
@@ -85,7 +158,6 @@ public class ModBlockGhostBlock extends BlockContainer{
     	if(world.getTileEntity(x, y, z) instanceof TileEntityGhostBlock){
     		TileEntityGhostBlock tile = (TileEntityGhostBlock)world.getTileEntity(x, y, z);
 
-            System.out.println(tile.Id + " : " + tile.Meta + " :1");
 
     		if(tile.Id != 0){
                 Block block = Block.getBlockById(tile.Id);

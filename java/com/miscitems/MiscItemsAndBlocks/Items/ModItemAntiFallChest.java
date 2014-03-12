@@ -17,7 +17,6 @@ public class ModItemAntiFallChest extends ModItemElArmor{
 
 	public ModItemAntiFallChest(int RenderIndex, int ArmorType) {
 		super(RenderIndex, ArmorType);
-		this.setCreativeTab(Main.CreativeTab);
 		this.setMaxDamage(2453);
 	}
 

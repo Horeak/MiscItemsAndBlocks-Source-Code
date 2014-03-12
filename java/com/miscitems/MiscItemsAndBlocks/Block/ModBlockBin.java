@@ -16,7 +16,6 @@ public class ModBlockBin extends BlockContainer{
 
 	public ModBlockBin() {
 		super(Material.iron);
-		setCreativeTab(Main.CreativeTab);
         this.setBlockBounds(0.13F, 0.0F, 0.13F, 0.87F, 0.8F, 0.87F);
 		this.setHardness(5);
 	}

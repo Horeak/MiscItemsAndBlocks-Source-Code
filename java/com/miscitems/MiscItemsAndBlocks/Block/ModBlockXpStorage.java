@@ -23,8 +23,7 @@ public class ModBlockXpStorage extends BlockContainer{
 
 	public ModBlockXpStorage() {
 		super(Material.iron);
-		
-		setCreativeTab(Main.CreativeTab);
+
 		this.setHardness(7);
 		this.setResistance(100000000);
 

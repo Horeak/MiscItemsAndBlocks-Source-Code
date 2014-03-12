@@ -23,7 +23,6 @@ public class ModItemPowerArmor extends ItemArmor {
     
     public ModItemPowerArmor(ArmorMaterial par2EnumArmorMaterial, int par3, int par4, int par5, String Icon) {
         super(par2EnumArmorMaterial, par3, par4);
-        this.setCreativeTab(Main.CreativeTab);
         iconName = Icon;
 
     }

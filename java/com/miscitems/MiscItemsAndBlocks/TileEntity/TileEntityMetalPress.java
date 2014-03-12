@@ -63,7 +63,7 @@ public class TileEntityMetalPress extends TileEntityPowerInv implements ISidedIn
 		
 		if(!this.worldObj.isRemote){
 			
-			if(Mode == 1 ? Power > 10 : Power > 20){
+			if(Mode == 1 ? GetPower() > 10 : GetPower() > 20){
 		if(WorkTime <= MaxWorkTime ){
 		if(Mode == 1){
 			if(this.getStackInSlot(1) != null && this.getStackInSlot(1).getItem() == Items.iron_ingot

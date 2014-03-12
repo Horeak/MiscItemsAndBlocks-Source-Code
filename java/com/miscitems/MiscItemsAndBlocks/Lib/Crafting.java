@@ -10,6 +10,7 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
@@ -37,7 +38,7 @@ public class Crafting {
 		    AddShapelessRecipe(new ItemStack(ModItems.Cheese), Items.milk_bucket);
 		    AddShapelessRecipe(new ItemStack(ModItems.Liquid, 1, 1), new Object[]{Items.bucket, ModItems.Tomato});
 		    AddShapelessRecipe(new ItemStack(ModItems.TomatoSeeds, 4), ModItems.Tomato);
-		    AddShapelessRecipe(new ItemStack(ModBlocks.DiceHolder), new Object[]{ModBlocks.ItemPedestal, ModBlocks.Dice});
+		    AddShapelessRecipe(new ItemStack(ModBlocks.DiceHolder, 1, 0), new Object[]{ModBlocks.ItemPedestal, ModBlocks.Dice});
 		    AddShapelessRecipe(new ItemStack(ModItems.SilverNugget, 9), ModItems.SilverIngot);
             AddShapelessRecipe(new ItemStack(ModBlocks.OrangePlanks, 4), ModBlocks.OrangeLog);
             AddShapelessRecipe(new ItemStack(ModItems.Cardboard, 2), new Object[]{Items.paper, Items.paper, Items.paper});
@@ -151,20 +152,27 @@ public class Crafting {
     }
     
     public static void AddRecipe(ItemStack output, Object... Array){
+
+
+        if(CheckBigRecipe(output, Array)){
     	GameRegistry.addShapedRecipe(output, Array);
-    	RegisterGuideRes(output, Array);
+    	RegisterGuideRes(output.getDisplayName(), output, Array);
+        }
     }
     
     public static void AddShapelessRecipe(ItemStack output, Object... Array){
+        if(CheckSmallRecipe(output, Array)){
     	GameRegistry.addShapelessRecipe(output, Array);
-    	RegisterShaplessGuideRes(output, Array);
+    	RegisterShaplessGuideRes(output.getDisplayName(), output, Array);
+        }
     }
-    
+
     @SuppressWarnings({ "rawtypes", "unchecked" })
-	public static void RegisterGuideRes(ItemStack stack, Object ... par2ArrayOfObj)
+    public static boolean CheckBigRecipe(ItemStack stack, Object ... par2ArrayOfObj)
     {
 
-    	
+
+
         String s = "";
         int i = 0;
         int j = 0;
@@ -231,34 +239,27 @@ public class Crafting {
                 aitemstack[i1] = null;
             }
         }
-        
-        String name = stack.getDisplayName().toLowerCase().replace(" ", "_") + "_res";
 
-        if(aitemstack.length > 4){
-        MantleClientRegistry.registerManualLargeRecipe(name, stack, new ItemStack[]{aitemstack[0], aitemstack[1], aitemstack[2], aitemstack[3], aitemstack[4], aitemstack[5], aitemstack[6], aitemstack[7], aitemstack[8]});
-        }else{
-        	if(aitemstack.length == 1){
-        		MantleClientRegistry.registerManualSmallRecipe(name, stack, new ItemStack[]{aitemstack[0], null, null, null});
-        		
-        	}else if (aitemstack.length == 2){
-        		MantleClientRegistry.registerManualSmallRecipe(name, stack, new ItemStack[]{aitemstack[0], aitemstack[1], null, null});
-        		
-        	}else if (aitemstack.length == 3){
-        		MantleClientRegistry.registerManualSmallRecipe(name, stack, new ItemStack[]{aitemstack[0], aitemstack[1], aitemstack[2], null});
-        		
-        	}else if (aitemstack.length == 4){
-        		MantleClientRegistry.registerManualSmallRecipe(name, stack, new ItemStack[]{aitemstack[0], aitemstack[1], aitemstack[2], aitemstack[3]});
-        		
-        	}else
-        		System.err.println("ERROR INVALID RECIPE");
-        	
+        if(Item.itemRegistry.containsId(Item.getIdFromItem(stack.getItem()))){
+        for(int z = 0; z  < aitemstack.length; z++){
+            if(aitemstack[z] != null){
+                if(Item.itemRegistry.containsId(Item.getIdFromItem(aitemstack[z].getItem())) == false){
+                    return false;
+                }
+
+            }
         }
-        
-        
+
+    }else{
+            return false;
         }
-    
+
+        return true;
+    }
+
+
     @SuppressWarnings({ "rawtypes", "unchecked" })
-	public static void RegisterShaplessGuideRes(ItemStack par1ItemStack, Object ... par2ArrayOfObj)
+    public static boolean CheckSmallRecipe(ItemStack par1ItemStack, Object ... par2ArrayOfObj)
     {
         ArrayList arraylist = new ArrayList();
         Object[] aobject = par2ArrayOfObj;
@@ -285,9 +286,164 @@ public class Crafting {
 
                 arraylist.add(new ItemStack((Block)object1));
             }
+
+        }
+
+        if(Item.itemRegistry.containsId(Item.getIdFromItem(par1ItemStack.getItem()))){
+            for(int z = 0; z  < arraylist.size(); z++){
+                if((ItemStack)arraylist.get(z) != null){
+                if(Item.itemRegistry.containsId(Item.getIdFromItem(((ItemStack)arraylist.get(z)).getItem())) == false){
+                    return false;
+                }
+
+            }
+            }
+
+        }else
+            return false;
+
+
+      return true;
+    }
+
+
+
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	public static void RegisterGuideRes(String Name, ItemStack stack, Object ... par2ArrayOfObj)
+    {
+
+        String name = Name.toLowerCase().replace(" ", "_") + "_res";
+
+
+        String s = "";
+        int i = 0;
+        int j = 0;
+        int k = 0;
+
+
+        if (par2ArrayOfObj[i] instanceof String[])
+        {
+            String[] astring = (String[])((String[])par2ArrayOfObj[i++]);
+
+            for (int l = 0; l < astring.length; ++l)
+            {
+                String s1 = astring[l];
+                ++k;
+                j = s1.length();
+                s = s + s1;
+            }
+        }
+        else
+        {
+            while (par2ArrayOfObj[i] instanceof String)
+            {
+                String s2 = (String)par2ArrayOfObj[i++];
+                ++k;
+                j = s2.length();
+                s = s + s2;
+            }
+        }
+
+        HashMap hashmap;
+
+        for (hashmap = new HashMap(); i < par2ArrayOfObj.length; i += 2)
+        {
+            Character character = (Character)par2ArrayOfObj[i];
+            ItemStack itemstack1 = null;
+
+            if (par2ArrayOfObj[i + 1] instanceof Item)
+            {
+                itemstack1 = new ItemStack((Item)par2ArrayOfObj[i + 1]);
+            }
+            else if (par2ArrayOfObj[i + 1] instanceof Block)
+            {
+                itemstack1 = new ItemStack((Block)par2ArrayOfObj[i + 1], 1, 32767);
+            }
+            else if (par2ArrayOfObj[i + 1] instanceof ItemStack)
+            {
+                itemstack1 = (ItemStack)par2ArrayOfObj[i + 1];
+            }
+
+            hashmap.put(character, itemstack1);
+        }
+
+        ItemStack[] aitemstack = new ItemStack[j * k];
+
+        for (int i1 = 0; i1 < j * k; ++i1)
+        {
+            char c0 = s.charAt(i1);
+
+            if (hashmap.containsKey(Character.valueOf(c0)))
+            {
+                aitemstack[i1] = ((ItemStack)hashmap.get(Character.valueOf(c0))).copy();
+            }
+            else
+            {
+                aitemstack[i1] = null;
+            }
+        }
+
+        if(aitemstack.length > 4){
+        MantleClientRegistry.registerManualLargeRecipe(name, stack, new ItemStack[]{aitemstack[0], aitemstack[1], aitemstack[2], aitemstack[3], aitemstack[4], aitemstack[5], aitemstack[6], aitemstack[7], aitemstack[8]});
+        }else{
+        	if(aitemstack.length == 1){
+        		MantleClientRegistry.registerManualSmallRecipe(name, stack, new ItemStack[]{aitemstack[0], null, null, null});
+        		
+        	}else if (aitemstack.length == 2){
+        		MantleClientRegistry.registerManualSmallRecipe(name, stack, new ItemStack[]{aitemstack[0], aitemstack[1], null, null});
+        		
+        	}else if (aitemstack.length == 3){
+        		MantleClientRegistry.registerManualSmallRecipe(name, stack, new ItemStack[]{aitemstack[0], aitemstack[1], aitemstack[2], null});
+        		
+        	}else if (aitemstack.length == 4){
+        		MantleClientRegistry.registerManualSmallRecipe(name, stack, new ItemStack[]{aitemstack[0], aitemstack[1], aitemstack[2], aitemstack[3]});
+        		
+        	}else
+        		System.err.println("ERROR INVALID RECIPE");
+            MantleClientRegistry.registerManualLargeRecipe(name, new ItemStack(Blocks.air), new ItemStack[]{new ItemStack(Blocks.air), new ItemStack(Blocks.air), new ItemStack(Blocks.air), new ItemStack(Blocks.air), new ItemStack(Blocks.air), new ItemStack(Blocks.air), new ItemStack(Blocks.air), new ItemStack(Blocks.air), new ItemStack(Blocks.air),});
+
+
+        }
+        
+        
+        }
+    
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	public static void RegisterShaplessGuideRes(String Name, ItemStack par1ItemStack, Object ... par2ArrayOfObj)
+    {
+        ArrayList arraylist = new ArrayList();
+        Object[] aobject = par2ArrayOfObj;
+        int i = par2ArrayOfObj.length;
+
+
+        for (int j = 0; j < i; ++j)
+        {
+            Object object1 = aobject[j];
+
+            if (object1 instanceof ItemStack)
+            {
+                arraylist.add(((ItemStack)object1).copy());
+            }
+            else if (object1 instanceof Item)
+            {
+                arraylist.add(new ItemStack((Item)object1));
+            }
+            else
+            {
+                if(object1 == null){
+                    arraylist.add(new ItemStack(Blocks.bedrock));
+                }else{
+                if (!(object1 instanceof Block))
+                {
+                    throw new RuntimeException("Invalid shapeless recipy!");
+                }
+
+                arraylist.add(new ItemStack((Block)object1));
+                }
+            }
             
             
-            String name = par1ItemStack.getDisplayName().toLowerCase().replace(" ", "_") + "_res";
+            String name = Name.toLowerCase().replace(" ", "_") + "_res";
 
             
             
@@ -305,6 +461,7 @@ public class Crafting {
             		
             	}else
             		System.err.println("ERROR INVALID RECIPE");
+            MantleClientRegistry.registerManualSmallRecipe(name, new ItemStack(Blocks.air), new ItemStack[]{new ItemStack(Blocks.air), new ItemStack(Blocks.air), new ItemStack(Blocks.air), new ItemStack(Blocks.air)});
             	
             }
             

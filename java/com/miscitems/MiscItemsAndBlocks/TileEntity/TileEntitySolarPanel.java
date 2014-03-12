@@ -12,6 +12,11 @@ public class TileEntitySolarPanel extends TileEntityPowerGeneration{
 		super(0, "Solar", 0);
 	}
 
+    public void updateEntity()
+    {
+        super.updateEntity();
+    }
+
 	int Meta = 0;
 	
     
