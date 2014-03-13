@@ -173,7 +173,7 @@ public void preInit(FMLPreInitializationEvent event) {
     		RegisterClientEvents();
     	//############Mob code Section################//
     		proxy.registerRenderers();
-    		registerEntity(EntityPenguin.class, "Penguin");
+    		registerEntity(EntityPenguin.class, "Penguin", 0x070A0A, 0xFFF8F7);
     	}
     	 	
         
@@ -237,17 +237,16 @@ public void RegisterServerEvents(){
 	
 	}
 
-       public static void registerEntity(Class EntityPenguin, String name)
+
+       public static void registerEntity(Class Entity, String name, int PrimColor, int SecColor)
        {
        int entityID = EntityRegistry.findGlobalUniqueEntityId();
        long seed = name.hashCode();
        Random rand = new Random(seed);
-       int primaryColor = rand.nextInt() * 16777215;
-       int secondaryColor = rand.nextInt() * 16777215;
 
-       EntityRegistry.registerGlobalEntityID(EntityPenguin, name, entityID);
-       EntityRegistry.registerModEntity(EntityPenguin, name, entityID, instance, 64, 1, true);
-       EntityList.entityEggs.put(Integer.valueOf(entityID), new EntityList.EntityEggInfo(entityID, primaryColor, secondaryColor));
+       EntityRegistry.registerGlobalEntityID(Entity, name, entityID);
+       EntityRegistry.registerModEntity(Entity, name, entityID, instance, 64, 1, true);
+       EntityList.entityEggs.put(Integer.valueOf(entityID), new EntityList.EntityEggInfo(entityID, PrimColor, SecColor));
        }
 	
 }

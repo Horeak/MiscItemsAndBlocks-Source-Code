@@ -1,0 +1,21 @@
+{
+ "penguinSay": {
+    "category": "master",
+    "sounds": [
+     "mobs/penguin/say1",
+	 "mobs/penguin/say2",
+	 "mobs/penguin/say3"
+    ]
+  },
+  "penguinHurt": {
+    "category": "master",
+    "sounds": [
+     "mobs/penguin/hurt1",
+	 "mobs/penguin/hurt2",
+	 "mobs/penguin/hurt3"
+    ]
+  }
+  
+  
+  
+  }
