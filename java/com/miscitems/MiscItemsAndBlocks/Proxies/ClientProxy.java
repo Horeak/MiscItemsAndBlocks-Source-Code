@@ -12,12 +12,16 @@ import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
 import com.miscitems.MiscItemsAndBlocks.Lib.Colours;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Misc.ItemHelper;
+import com.miscitems.MiscItemsAndBlocks.Mobs.EntityPenguin;
+import com.miscitems.MiscItemsAndBlocks.Mobs.ModelPenguin;
+import com.miscitems.MiscItemsAndBlocks.Mobs.RenderPenguin;
 import com.miscitems.MiscItemsAndBlocks.Network.PacketRequestEvent;
 import com.miscitems.MiscItemsAndBlocks.Render.PowerArrowRender;
 import com.miscitems.MiscItemsAndBlocks.Render.SilverArrowRender;
 import com.miscitems.MiscItemsAndBlocks.Tick.TickHandlerClient;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.*;
 import com.miscitems.MiscItemsAndBlocks.TileEntityRenderer.*;
+
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -36,10 +40,12 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
+
 import org.w3c.dom.Document;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+
 import java.io.InputStream;
 
 
@@ -118,6 +124,13 @@ public class ClientProxy extends ServerProxy {
         }
         Main.config.save();
 }
+    
+    //############Mob stuff##########//
+    @Override
+    public void registerRenderers() {
+    RenderingRegistry.registerEntityRenderingHandler(EntityPenguin.class, new RenderPenguin(new ModelPenguin(), 0.5F));
+
+    }
     
     
     @SideOnly(Side.CLIENT)

@@ -13,12 +13,14 @@ import com.miscitems.MiscItemsAndBlocks.Lib.Messages;
 import com.miscitems.MiscItemsAndBlocks.Lib.ModConfig;
 import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
 import com.miscitems.MiscItemsAndBlocks.Misc.BoneMealEvent;
+import com.miscitems.MiscItemsAndBlocks.Mobs.EntityPenguin;
 import com.miscitems.MiscItemsAndBlocks.Network.NetworkManager;
 import com.miscitems.MiscItemsAndBlocks.Proxies.ServerProxy;
 import com.miscitems.MiscItemsAndBlocks.Tick.ServerTickHandler;
 import com.miscitems.MiscItemsAndBlocks.Tick.TickHandlerClient;
 import com.miscitems.MiscItemsAndBlocks.VersionChecker.VersionChecker;
 import com.miscitems.MiscItemsAndBlocks.WorldGen.ModWorldGenerator;
+
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -32,6 +34,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityList;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -40,10 +43,12 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
+
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 
 import java.io.File;
+import java.util.Random;
 import java.util.logging.Logger;
 
 
@@ -116,6 +121,8 @@ public class Main {
     };
 
        public static Configuration config;
+      
+       private Object entityRenderMap;
 	
 @EventHandler
 public void preInit(FMLPreInitializationEvent event) {
@@ -164,7 +171,11 @@ public void preInit(FMLPreInitializationEvent event) {
         
     	if(event.getSide() == Side.CLIENT){
     		RegisterClientEvents();
+    	//############Mob code Section################//
+    		proxy.registerRenderers();
+    		registerEntity(EntityPenguin.class, "Penguin");
     	}
+    	 	
         
     }
 
@@ -226,5 +237,17 @@ public void RegisterServerEvents(){
 	
 	}
 
+       public static void registerEntity(Class EntityPenguin, String name)
+       {
+       int entityID = EntityRegistry.findGlobalUniqueEntityId();
+       long seed = name.hashCode();
+       Random rand = new Random(seed);
+       int primaryColor = rand.nextInt() * 16777215;
+       int secondaryColor = rand.nextInt() * 16777215;
+
+       EntityRegistry.registerGlobalEntityID(EntityPenguin, name, entityID);
+       EntityRegistry.registerModEntity(EntityPenguin, name, entityID, instance, 64, 1, true);
+       EntityList.entityEggs.put(Integer.valueOf(entityID), new EntityList.EntityEggInfo(entityID, primaryColor, secondaryColor));
+       }
 	
 }

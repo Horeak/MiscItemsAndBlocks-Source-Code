@@ -67,6 +67,10 @@ public void readManuals()
 {
 	
 }
+    //##########Mob Stuff############//
+    public void registerRenderers() {
+	// Nothing here as the server doesn't render graphics or entities!
+	}
 
 
 }

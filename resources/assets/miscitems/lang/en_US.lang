@@ -263,6 +263,7 @@ items.desc.xpextractor.3=You require at least 1 glass bottle
 
 entity.powerarrow.name=Power Arrow
 entity.silverarrow.name=Silver Arrow
+entity.Penguin.name=Penguin
 
 death.attack.laser.damage=%1$s was fried by a laser.
 death.attack.disarmed=%1$s was disarmed.
