@@ -35,12 +35,15 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityList;
+import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.client.event.sound.SoundEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 
@@ -171,12 +174,23 @@ public void preInit(FMLPreInitializationEvent event) {
         
     	if(event.getSide() == Side.CLIENT){
     		RegisterClientEvents();
-    	//############Mob code Section################//
+    	
+    		
+        //############Mob code Section################//
     		proxy.registerRenderers();
     		registerEntity(EntityPenguin.class, "Penguin");
-    	}
-    	 	
-        
+    		}
+    	}	
+    
+    	public void addSpawn(Class<EntityPenguin> entityClass, int spawnProb, int min, int max, BiomeGenBase[] biomes) {
+            if (spawnProb > 0) {
+                    EntityRegistry.addSpawn(EntityPenguin.class, 100, 1, 3, EnumCreatureType.creature, BiomeGenBase.taigaHills, BiomeGenBase.jungle, 
+                    		BiomeGenBase.jungleHills, BiomeGenBase.plains, BiomeGenBase.taiga, BiomeGenBase.forest, 
+                    		BiomeGenBase.forestHills, BiomeGenBase.swampland, BiomeGenBase.river, BiomeGenBase.beach, 
+                    		BiomeGenBase.desert, BiomeGenBase.extremeHills, BiomeGenBase.extremeHillsEdge);
+        //example   EntityRegistry.addSpawn(entityClass, spawnProb, min, max, EnumCreatureType.creature, biomes);
+            } 
+      //#####################################################//
     }
 
 public void RegisterClientEvents(){

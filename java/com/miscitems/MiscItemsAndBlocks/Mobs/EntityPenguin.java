@@ -36,7 +36,7 @@ public class EntityPenguin extends EntityAnimal
         this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(7, new EntityAILookIdle(this));
     }
-
+      
     /**
      * Returns true if the newer Entity AI code should be run
      */
@@ -57,7 +57,7 @@ public class EntityPenguin extends EntityAnimal
      */
     protected String getLivingSound()
     {
-    return "Penguin";
+    return "miscitems:mob.Penguin.say";
     }
 
     /**
@@ -65,20 +65,20 @@ public class EntityPenguin extends EntityAnimal
    //  */
     protected String getHurtSound()
     {
-        return "Penguin";
+        return "miscitems:mob.Penguin.hurt";
     }
 
     /**
      * Returns the sound this mob makes on death.
      */
-  //  protected String getDeathSound()
-   // {
-  //      return "mob.cow.hurt";
-  //  }
+    protected String getDeathSound()
+    {
+        return "miscitems:mob.Penguin.death";
+    }
 
     protected void func_145780_a(int p_145780_1_, int p_145780_2_, int p_145780_3_, Block p_145780_4_)
     {
-        this.playSound("mob.cow.step", 0.15F, 1.0F);
+        this.playSound("mob.chicken.step", 0.15F, 1.0F);
     }
 
     /**

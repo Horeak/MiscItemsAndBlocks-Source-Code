@@ -1,0 +1,23 @@
+{
+  "mob.Penguin.hurt": {
+    "category": "neutral",
+    "sounds": [
+      "mob/Penguin/hurt1",
+      "mob/Penguin/hurt2"
+    ]
+  },
+  "mob.Penguin.say": {
+    "category": "neutral",
+    "sounds": [
+      "mob/Penguin/say1",
+      "mob/Penguin/say2",
+      "mob/Penguin/say3"
+    ]
+  },
+  "mob.Penguin.death": {
+    "category": "neutral",
+    "sounds": [
+      "mob/Penguin/death"
+    ]
+  }
+}
