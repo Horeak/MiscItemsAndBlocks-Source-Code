@@ -73,4 +73,10 @@ public void readManuals()
 	}
 
 
+	public void registerSoundHandler() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 }

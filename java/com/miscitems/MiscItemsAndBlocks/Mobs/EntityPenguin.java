@@ -1,6 +1,5 @@
 package com.miscitems.MiscItemsAndBlocks.Mobs;
 
-import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -21,6 +20,7 @@ import net.minecraft.world.World;
 
 public class EntityPenguin extends EntityAnimal
 {
+    private static final String __OBFID = "CL_00001640";
 
     public EntityPenguin(World par1World)
     {
@@ -37,7 +37,7 @@ public class EntityPenguin extends EntityAnimal
         this.tasks.addTask(7, new EntityAILookIdle(this));
         this.tasks.addTask(8, new EntityAISwimming(this));
     }
-
+      
     /**
      * Returns true if the newer Entity AI code should be run
      */
@@ -58,25 +58,29 @@ public class EntityPenguin extends EntityAnimal
      */
     protected String getLivingSound()
     {
-    return Refrence.SoundPrefix + "penguinSay";
+    return "miscitems:mob.Penguin.say";
     }
 
     /**
-     * Returns the sound this mob makes when it is hurt.
-    */
+   //  * Returns the sound this mob makes when it is hurt.
+   //  */
     protected String getHurtSound()
     {
-        return Refrence.SoundPrefix + "penguinHurt";
+        return "miscitems:mob.Penguin.hurt";
     }
 
     /**
      * Returns the sound this mob makes on death.
      */
     protected String getDeathSound()
-   {
-        return "penguinHurt";
+    {
+        return "miscitems:mob.Penguin.death";
     }
 
+    protected void func_145780_a(int p_145780_1_, int p_145780_2_, int p_145780_3_, Block p_145780_4_)
+    {
+        this.playSound("mob.chicken.step", 0.15F, 1.0F);
+    }
 
     /**
      * Returns the volume for the sounds this mob makes.
@@ -90,8 +94,6 @@ public class EntityPenguin extends EntityAnimal
     {
         return Items.feather;
     }
-
-
 
     /**
      * Drop 0-2 items of this living's type. @param par1 - Whether this entity has recently been hit by a player. @param
@@ -125,28 +127,28 @@ public class EntityPenguin extends EntityAnimal
     /**
      * Called when a player interacts with a mob. e.g. gets milk from a cow, gets into the saddle on a pig.
      */
-//    public boolean interact(EntityPlayer par1EntityPlayer)
-//    {
-//        ItemStack itemstack = par1EntityPlayer.inventory.getCurrentItem();
-//
-//        if (itemstack != null && itemstack.getItem() == Items.bucket && !par1EntityPlayer.capabilities.isCreativeMode)
-//        {
-//            if (itemstack.stackSize-- == 1)
-//            {
-//                par1EntityPlayer.inventory.setInventorySlotContents(par1EntityPlayer.inventory.currentItem, new ItemStack(Items.milk_bucket));
-//            }
-//            else if (!par1EntityPlayer.inventory.addItemStackToInventory(new ItemStack(Items.milk_bucket)))
-//            {
-//                par1EntityPlayer.dropPlayerItemWithRandomChoice(new ItemStack(Items.milk_bucket, 1, 0), false);
-//            }
-//
-//            return true;
-//        }
-//        else
-//        {
-//            return super.interact(par1EntityPlayer);
-//        }
-//    }
+    public boolean interact(EntityPlayer par1EntityPlayer)
+    {
+        ItemStack itemstack = par1EntityPlayer.inventory.getCurrentItem();
+
+        if (itemstack != null && itemstack.getItem() == Items.bucket && !par1EntityPlayer.capabilities.isCreativeMode)
+        {
+            if (itemstack.stackSize-- == 1)
+            {
+                par1EntityPlayer.inventory.setInventorySlotContents(par1EntityPlayer.inventory.currentItem, new ItemStack(Items.milk_bucket));
+            }
+            else if (!par1EntityPlayer.inventory.addItemStackToInventory(new ItemStack(Items.milk_bucket)))
+            {
+                par1EntityPlayer.dropPlayerItemWithRandomChoice(new ItemStack(Items.milk_bucket, 1, 0), false);
+            }
+
+            return true;
+        }
+        else
+        {
+            return super.interact(par1EntityPlayer);
+        }
+    }
 
     public EntityPenguin createChild(EntityAgeable par1EntityAgeable)
     {

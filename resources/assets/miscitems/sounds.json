@@ -1,21 +1,23 @@
 {
- "penguinSay": {
-    "category": "master",
+  "mob.Penguin.hurt": {
+    "category": "neutral",
     "sounds": [
-     "mobs/penguin/say1",
-	 "mobs/penguin/say2",
-	 "mobs/penguin/say3"
+      "mob/Penguin/hurt1",
+      "mob/Penguin/hurt2"
     ]
   },
-  "penguinHurt": {
-    "category": "master",
+  "mob.Penguin.say": {
+    "category": "neutral",
     "sounds": [
-     "mobs/penguin/hurt1",
-	 "mobs/penguin/hurt2",
-	 "mobs/penguin/hurt3"
+      "mob/Penguin/say1",
+      "mob/Penguin/say2",
+      "mob/Penguin/say3"
+    ]
+  },
+  "mob.Penguin.death": {
+    "category": "neutral",
+    "sounds": [
+      "mob/Penguin/death"
     ]
   }
-  
-  
-  
-  }
+}

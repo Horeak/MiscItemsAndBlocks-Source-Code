@@ -9,7 +9,6 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import java.util.Random;
 
 public class ModWorldGenerator extends WorldGenerator implements IWorldGenerator {
-
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
         switch(world.provider.dimensionId){
