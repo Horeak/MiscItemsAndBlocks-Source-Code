@@ -1,5 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Mobs;
 
+import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -58,7 +59,7 @@ public class EntityPenguin extends EntityAnimal
      */
     protected String getLivingSound()
     {
-    return "miscitems:mob.Penguin.say";
+    return Refrence.SoundPrefix + "mob.Penguin.say";
     }
 
     /**
@@ -66,7 +67,7 @@ public class EntityPenguin extends EntityAnimal
    //  */
     protected String getHurtSound()
     {
-        return "miscitems:mob.Penguin.hurt";
+        return Refrence.SoundPrefix + "mob.Penguin.hurt";
     }
 
     /**
@@ -74,7 +75,7 @@ public class EntityPenguin extends EntityAnimal
      */
     protected String getDeathSound()
     {
-        return "miscitems:mob.Penguin.death";
+        return Refrence.SoundPrefix + ":mob.Penguin.death";
     }
 
     protected void func_145780_a(int p_145780_1_, int p_145780_2_, int p_145780_3_, Block p_145780_4_)
@@ -87,7 +88,7 @@ public class EntityPenguin extends EntityAnimal
      */
     protected float getSoundVolume()
     {
-        return 0.4F;
+        return 0.1F;
     }
 
     protected Item getDropItem()

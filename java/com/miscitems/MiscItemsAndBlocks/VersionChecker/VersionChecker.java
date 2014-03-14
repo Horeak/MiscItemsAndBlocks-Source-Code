@@ -2,6 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.VersionChecker;
 
 import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Loader;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -102,7 +103,7 @@ tries++;
 if(result == OUT_OF_DATE){
 Main.UP_TO_DATE = false;
 checkLatestChanges();
-MinecraftForge.EVENT_BUS.register(VersionCheckTicker.class);
+    FMLCommonHandler.instance().bus().register(VersionCheckTicker.class);
 }
 if(result == UP_TO_DATE)
 System.out.println(Refrence.Mod_Id + ":  is up to date.");
