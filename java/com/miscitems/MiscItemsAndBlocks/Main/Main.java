@@ -57,213 +57,224 @@ import java.util.Random;
 import java.util.logging.Logger;
 
 
-@Mod(modid = Refrence.Mod_Id, name = Refrence.Mod_Name, version = Refrence.Version)
-public class Main {
+	@Mod(modid = Refrence.Mod_Id, name = Refrence.Mod_Name, version = Refrence.Version)
+	public class Main 
+	{
 	
 
-	public static final Logger Log = Logger.getLogger("MiscItems");
+		public static final Logger Log = Logger.getLogger("MiscItems");
 	
-    @Instance(Refrence.Mod_Id)
-    public static Main instance = new Main();
+		@Instance(Refrence.Mod_Id)
+		public static Main instance = new Main();
     
-    @SidedProxy(clientSide = "com.miscitems.MiscItemsAndBlocks.Proxies.ClientProxy", serverSide = "com.miscitems.MiscItemsAndBlocks.Proxies.ServerProxy")
-    public static ServerProxy proxy;
+		@SidedProxy(clientSide = "com.miscitems.MiscItemsAndBlocks.Proxies.ClientProxy", serverSide = "com.miscitems.MiscItemsAndBlocks.Proxies.ServerProxy")
+		public static ServerProxy proxy;
     
     
-    public static boolean Dev = true;
+		public static boolean Dev = true;
     
-	public static boolean VERSION_CHECK = true;
+		public static boolean VERSION_CHECK = true;
 	
-    public static final String RELEASE_VERSION = Refrence.Version;
-    public static String LATEST_CHANGES = "[Error]";
-    public static String LATEST_VERSION = "[Error]";
-    public static String UPDATE_URL = "http://adf.ly/U25ua";
-    public static boolean UP_TO_DATE = false;
+		public static final String RELEASE_VERSION = Refrence.Version;
+        public static String LATEST_CHANGES = "[Error]";
+        public static String LATEST_VERSION = "[Error]";
+        public static String UPDATE_URL = "http://adf.ly/U25ua";
+        public static boolean UP_TO_DATE = false;
     
-    public static String UpdateMessage = StatCollector.translateToLocal("string.versioncheck.newversion").replace("%EnumRed", EnumChatFormatting.RED + "").replace("%EnumYellow", EnumChatFormatting.YELLOW + "").replace("%EnumBlue", EnumChatFormatting.BLUE + "").replace("%EnumGold", EnumChatFormatting.GOLD + "").replace("%ModName", Refrence.Mod_Name).replace("%NewVersion", Main.LATEST_VERSION).replace("%DowLink", Main.UPDATE_URL).replace("%Changes", Main.LATEST_CHANGES);
+        public static String UpdateMessage = StatCollector.translateToLocal("string.versioncheck.newversion").replace("%EnumRed", EnumChatFormatting.RED + "").replace("%EnumYellow", EnumChatFormatting.YELLOW + "").replace("%EnumBlue", EnumChatFormatting.BLUE + "").replace("%EnumGold", EnumChatFormatting.GOLD + "").replace("%ModName", Refrence.Mod_Name).replace("%NewVersion", Main.LATEST_VERSION).replace("%DowLink", Main.UPDATE_URL).replace("%Changes", Main.LATEST_CHANGES);
     
     
-    public static final org.apache.logging.log4j.Logger logger = LogManager.getLogger("MiscItems");
+        public static final org.apache.logging.log4j.Logger logger = LogManager.getLogger("MiscItems");
     
-	public static NetworkManager NETWORK_MANAGER;
+        public static NetworkManager NETWORK_MANAGER;
 
     
-	public static CreativeTabs MiscTab = new CreativeTabs("tabMiscMisc") {
+        public static CreativeTabs MiscTab = new CreativeTabs("tabMiscMisc") 
+        {
 
 
-		@Override
-		@SideOnly(Side.CLIENT)
-		public Item getTabIconItem() {
-            if(Main.config.get("Items", "Enable " + "Guide Book" + "?", true).getBoolean(true)){
-                Main.config.save();
-			return ModItems.GuideBook;
-            }else{
-                Main.config.save();
-                return ItemBlock.getItemFromBlock(Blocks.bedrock);
-            }
-        }
+        	@Override
+        	@SideOnly(Side.CLIENT)
+        	public Item getTabIconItem() 
+        	{
+        		if(Main.config.get("Items", "Enable " + "Guide Book" + "?", true).getBoolean(true))
+        		{
+        			Main.config.save();
+        			return ModItems.GuideBook;
+        		}else
+             
+        		{
+        			Main.config.save();
+        			return ItemBlock.getItemFromBlock(Blocks.bedrock);
+        		}
+        	}
 		
-	    
-	};
+        };
 
 
-    public static CreativeTabs ElectricTab = new CreativeTabs("tabMiscElectric") {
+        public static CreativeTabs ElectricTab = new CreativeTabs("tabMiscElectric")
+        {
 
 
-        @Override
-        @SideOnly(Side.CLIENT)
-        public Item getTabIconItem() {
-            if(Main.config.get("Blocks", "Enable " + "Charger" + "?", true).getBoolean(true)){
-                Main.config.save();
-            return ItemBlock.getItemFromBlock(ModBlocks.Charger);
-            }else{
-                Main.config.save();
-                return ItemBlock.getItemFromBlock(Blocks.bedrock);
-            }
+        	@Override
+        	@SideOnly(Side.CLIENT)
+        	public Item getTabIconItem() 
+        	{
+        		if(Main.config.get("Blocks", "Enable " + "Charger" + "?", true).getBoolean(true)){
+        			Main.config.save();
+        			return ItemBlock.getItemFromBlock(ModBlocks.Charger);
+        			}else
+        			{
+        				Main.config.save();
+        				return ItemBlock.getItemFromBlock(Blocks.bedrock);
+        			}
+        	}
+
+        };
+
+        public static Configuration config;
+      
+        private Object entityRenderMap;
+	
+        @EventHandler
+        public void preInit(FMLPreInitializationEvent event) 
+        {
+    	
+	
+        	//TODO Add some type of ore doubling
+	
+    	
+        	config = new Configuration(new File(event.getModConfigurationDirectory() + "/tm1990's mods/MiscItemsAndBlocksConfig.cfg")); 
+        
+        	try
+        	{
+        
+        		ModConfig.Init(config);
+    	
+        	} 
+        	
+        	catch(Exception ex)
+        	{
+        		logger.log(Level.ERROR, ex.getMessage(), Refrence.Mod_Id + ": Error encountered while loading config file.");
+        	} 
+        	finally
+        	{
+        		config.save();
+        	}
+    	
+        	if(VERSION_CHECK)
+        		VersionChecker.go();
+
+
+        	ModBlocks.Init();
+        	ModItems.Init();
+    	
+        	Messages.Init();
+    	
+        	Crafting.RegisterRecipes();
+        	proxy.RegisterListeners();
+    	
+        	proxy.registerRenderThings();
+        	proxy.readManuals();
+        
+        	proxy.RegisterClientTickhandler();
+        	proxy.RegisterServerTickhandler();
+        
+        	//Register Events
+        	if(event.getSide() == Side.SERVER)
+        		RegisterServerEvents();
+        
+        	if(event.getSide() == Side.CLIENT)
+        		RegisterClientEvents();
+        }
+
+        public void RegisterClientEvents()
+        {
+	
+	
+        	MinecraftForge.EVENT_BUS.register(new GuiListener());	
+        	MinecraftForge.EVENT_BUS.register(new CapeRenderEvent());
+
+        	FMLCommonHandler.instance().bus().register(Main.proxy.tickHandlerServer);
         }
 
 
-    };
-
-       public static Configuration config;
-      
-       private Object entityRenderMap;
-	
-@EventHandler
-public void preInit(FMLPreInitializationEvent event) {
-    	
-	
-
-	//TODO Add sometype of ore doubling
-	
-    	
-         config = new Configuration(new File(event.getModConfigurationDirectory() + "/tm1990's mods/MiscItemsAndBlocksConfig.cfg")); 
-        
-    	try
-    	{
-        
-    	ModConfig.Init(config);
-    	
-    	} catch(Exception ex)
-    	{
-    		logger.log(Level.ERROR, ex.getMessage(), Refrence.Mod_Id + ": Error encountered while loading config file.");
-    	} finally
-    	{
-    		config.save();
-    	}
-    	
-    	if(VERSION_CHECK)
-    		VersionChecker.go();
-
-
-    	ModBlocks.Init();
-    	ModItems.Init();
-    	
-    	Messages.Init();
-    	
-        Crafting.RegisterRecipes();
-        proxy.RegisterListeners();
-    	
-        proxy.registerRenderThings();
-        proxy.readManuals();
-        
-
-    proxy.RegisterClientTickhandler();
-    proxy.RegisterServerTickhandler();
-        
-        //Register Events
-    if(event.getSide() == Side.SERVER)
-        RegisterServerEvents();
-        
-    	if(event.getSide() == Side.CLIENT)
-    		RegisterClientEvents();
-   }
-
-public void RegisterClientEvents(){
-	
-	
-    MinecraftForge.EVENT_BUS.register(new GuiListener());	
-    MinecraftForge.EVENT_BUS.register(new CapeRenderEvent());
-
-    FMLCommonHandler.instance().bus().register(Main.proxy.tickHandlerServer);
-}
-
-
-public void RegisterServerEvents(){
+        public void RegisterServerEvents()
+        {
 	
 	
 	
-    MinecraftForge.EVENT_BUS.register(new BoneMealEvent());
-    MinecraftForge.EVENT_BUS.register(new PlayerFirstJoinEvent());
-    MinecraftForge.EVENT_BUS.register(new DisarmStickEvent());
-    MinecraftForge.EVENT_BUS.register(new GhostBlockBreakEvent());
+        	MinecraftForge.EVENT_BUS.register(new BoneMealEvent());
+        	MinecraftForge.EVENT_BUS.register(new PlayerFirstJoinEvent());
+        	MinecraftForge.EVENT_BUS.register(new DisarmStickEvent());
+        	MinecraftForge.EVENT_BUS.register(new GhostBlockBreakEvent());
 
-    FMLCommonHandler.instance().bus().register(Main.proxy.tickHandlerClient);
-}
+        	FMLCommonHandler.instance().bus().register(Main.proxy.tickHandlerClient);
+        }
     
     
-@EventHandler
-    public void Init(FMLInitializationEvent event){
+        @EventHandler
+        public void Init(FMLInitializationEvent event){
     
-	//############Mob code Section###########################################//
-	proxy.registerRenderers();
-	registerEntity(EntityPenguin.class, "Penguin", 0x070A0A, 0xFFF8F7, 64);
-    //############### This is Where the Entity is registered ^^^^^^^^^  #####//
+        	//############Mob code Section###########################################//
+        	proxy.registerRenderers();
+        	registerEntity(EntityPenguin.class, "Penguin", 0x070A0A, 0xFFF8F7, 64);
+        	//############### This is Where the Entity is registered ^^^^^^^^^  #####//
 	
-	//#################THIS IS THE WORLD GENERATION CODE###################//
-	int id =0;
-	        EntityRegistry.registerModEntity(EntityPenguin.class, "Penguin", id, this, 80, 1, true);//id is an internal mob id, you can start at 0 and continue adding them up.
-	        id++;
-	        EntityRegistry.addSpawn(EntityPenguin.class, 100, 4, 8, EnumCreatureType.creature, BiomeGenBase.desert, BiomeGenBase.plains, 
-	        		                                                                           BiomeGenBase.forest, BiomeGenBase.frozenOcean, 
-	        		                                                                           BiomeGenBase.frozenRiver, BiomeGenBase.coldBeach, 
-	        		                                                                           BiomeGenBase.coldTaiga, BiomeGenBase.extremeHillsPlus);//change the values to vary the spawn rarity, biome, etc.              
-	    //    proxy.registerRenderThings();//calls the methods in our proxy, which will do things on client side
+        	//#################THIS IS THE WORLD GENERATION CODE###################//
+        	int id =0; //id is an internal mob id, you can start at 0 and continue adding them up.
+        	EntityRegistry.registerModEntity(EntityPenguin.class, "Penguin", id, this, 80, 1, true);
+        	id++;
+        	EntityRegistry.addSpawn(EntityPenguin.class, 100, 4, 8, EnumCreatureType.creature, 
+        			BiomeGenBase.desert, BiomeGenBase.plains, 
+	        		BiomeGenBase.forest, BiomeGenBase.frozenOcean, 
+	        		BiomeGenBase.frozenRiver, BiomeGenBase.coldBeach, 
+	        		BiomeGenBase.coldTaiga, BiomeGenBase.extremeHillsPlus);//change the values to vary the spawn rarity, biome, etc.
 
-	//####################################################################//
+        	//####################################################################//
     	
 
         
-		NETWORK_MANAGER = new NetworkManager();
+        	NETWORK_MANAGER = new NetworkManager();
 
     
-        EntityRegistry.registerGlobalEntityID(EntitySilverArrow.class, "SilverArrow", EntityRegistry.findGlobalUniqueEntityId());
-        EntityRegistry.registerModEntity(EntitySilverArrow.class, "SilverArrow", 0, this, 128, 1, true);
+        	EntityRegistry.registerGlobalEntityID(EntitySilverArrow.class, "SilverArrow", EntityRegistry.findGlobalUniqueEntityId());
+        	EntityRegistry.registerModEntity(EntitySilverArrow.class, "SilverArrow", 0, this, 128, 1, true);
         
-        EntityRegistry.registerGlobalEntityID(EntityPowerArrow.class, "PowerArrow", EntityRegistry.findGlobalUniqueEntityId());
-        EntityRegistry.registerModEntity(EntityPowerArrow.class, "PowerArrow", 1, this, 128, 1, true);
+        	EntityRegistry.registerGlobalEntityID(EntityPowerArrow.class, "PowerArrow", EntityRegistry.findGlobalUniqueEntityId());
+        	EntityRegistry.registerModEntity(EntityPowerArrow.class, "PowerArrow", 1, this, 128, 1, true);
 
 
         
         
-        GameRegistry.registerWorldGenerator(new ModWorldGenerator(), 3);
+        	GameRegistry.registerWorldGenerator(new ModWorldGenerator(), 3);
         
-        MinecraftForge.addGrassSeed(new ItemStack(ModItems.TomatoSeeds), 10);
+        	MinecraftForge.addGrassSeed(new ItemStack(ModItems.TomatoSeeds), 10);
         
-        
-
-        NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
-
         
 
-    }
+        	NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
+
+        
+
+        }
     
-@EventHandler
-    public void PostInit(FMLPostInitializationEvent event){
-	LaserRegistry.registerLaser("default", new DefaultLaser());
+        @EventHandler
+        public void PostInit(FMLPostInitializationEvent event){
+        	LaserRegistry.registerLaser("default", new DefaultLaser());
+	
+        }
+
+
+        public static void registerEntity(Class Entity, String name, int PrimColor, int SecColor, int Tracking)
+        {
+        	int entityID = EntityRegistry.findGlobalUniqueEntityId();
+        	long seed = name.hashCode();
+        	Random rand = new Random(seed);
+
+        	EntityRegistry.registerGlobalEntityID(Entity, name, entityID);
+        	EntityRegistry.registerModEntity(Entity, name, entityID, instance, Tracking, 1, true);
+        	EntityList.entityEggs.put(entityID, new EntityList.EntityEggInfo(entityID, PrimColor, SecColor));
+        }
 	
 	}
-
-
-       public static void registerEntity(Class Entity, String name, int PrimColor, int SecColor, int Tracking)
-       {
-       int entityID = EntityRegistry.findGlobalUniqueEntityId();
-       long seed = name.hashCode();
-       Random rand = new Random(seed);
-
-       EntityRegistry.registerGlobalEntityID(Entity, name, entityID);
-       EntityRegistry.registerModEntity(Entity, name, entityID, instance, Tracking, 1, true);
-       EntityList.entityEggs.put(entityID, new EntityList.EntityEggInfo(entityID, PrimColor, SecColor));
-       }
-	
-}
