@@ -102,7 +102,7 @@ public class TileEntityPowerCable extends TileEntity implements IPowerCable {
     }
     
     public int GetMaxPower(){
-    	return Power;
+    	return MaxPower;
     }
 
     @Override
@@ -155,13 +155,14 @@ public class TileEntityPowerCable extends TileEntity implements IPowerCable {
     if(Meta != 1){
     	if(world.getTileEntity(x, y, z) instanceof TileEntityCharger){
 		if(this.xCoord != x + ForgeDirection.getOrientation(LaserUtil.getOrientation(BMeta)).offsetX || this.yCoord != y + ForgeDirection.getOrientation(LaserUtil.getOrientation(BMeta)).offsetY || this.zCoord != z + ForgeDirection.getOrientation(LaserUtil.getOrientation(BMeta)).offsetZ){
-			if(world.getTileEntity(x, y, z) instanceof IPowerTile){
+
+            if(world.getTileEntity(x, y, z) instanceof IPowerTile){
 				IPowerTile tile = (IPowerTile)world.getTileEntity(x, y, z);
 	    		
 	    		if(tile.GetPower() < tile.GetMaxPower()){
-	    			if(Power > 0){
+	    			if(GetPower() > 0){
 	    				tile.AddPower(1);
-	    				Power--;
+                        SetPower(GetPower() - 1);
 	    			}
 	    		}else{
 	    			tile.SetPower(tile.GetMaxPower());
@@ -169,69 +170,63 @@ public class TileEntityPowerCable extends TileEntity implements IPowerCable {
 	    		
 	    	}
 		}
-    	
-    	
-    
-
-
     }else if(world.getTileEntity(x, y, z) instanceof IPowerTile){
 			IPowerTile tile = (IPowerTile)world.getTileEntity(x, y, z);
     		
     		if(tile.GetPower() < tile.GetMaxPower()){
-    			if(Power > 0){
+    			if(GetPower() > 0){
     				tile.SetPower(tile.GetPower() + 1);
-    				Power--;
+                    SetPower(GetPower() - 1);
     			}
     		}else{
     			tile.SetPower(tile.GetMaxPower());
     		}
     		
-    	}
+    	}else if (world.getTileEntity(x, y, z) instanceof IPowerCable){
+            int Meta2 = world.getBlockMetadata(x, y, z);
 
-		
+
+            if(GetPower() > 0){
+            if(Meta == 4 && Meta2 == 4)
+                Cable(world, x, y, z);
+            else if (Meta == 4 && Meta2 == 5)
+                Cable(world, x, y, z);
+            else if (Meta == 5)
+                Cable(world, x, y, z);
+            else
+            if (Meta != 2 && Meta != 4 && Meta2 != 4)
+                Cable(world, x, y, z);
+        }
+
+        }
     }
 	 
 
-	 int Meta2 = world.getBlockMetadata(x, y, z);
-
-	 
-	 if(Meta == 4 && Meta2 == 4)
-		 Cable(world, x, y, z);
-	 else if (Meta == 4 && Meta2 == 5)
-		 Cable(world, x, y, z);
-	 else if (Meta == 5)
-		 Cable(world, x, y, z);
-	 else 
-		 if (Meta != 2 && Meta != 4 && Meta2 != 4)
-		 Cable(world, x, y, z);
 
 
 	 
 	
  }
- 
 
-
-	 
- 
- 
- 
-   
- 
    public void Cable(World world, int x, int y, int z){
-	   if(world.getTileEntity(x, y, z) instanceof TileEntityPowerCable){
-			TileEntityPowerCable tile = (TileEntityPowerCable)world.getTileEntity(x, y, z);
-			
-			
-			if(Power > tile.GetPower()){
-				tile.SetPower(tile.GetPower() + 1);
-				Power--;
+	   if(world.getTileEntity(x, y, z) instanceof IPowerCable){
 
-			}
-   }
-   }
-   
+           IPowerCable tile = (IPowerCable)world.getTileEntity(x, y, z);
 
+           if(tile.GetPower() < tile.GetMaxPower() && tile.GetPower() < GetPower()){
+               if(GetPower() > 0){
+                   tile.SetPower(tile.GetPower() + 1);
+                   SetPower(GetPower() - 1);
+               }
+           }else{
+               tile.SetPower(tile.GetMaxPower());
+           }
+
+
+       }
+
+
+   }
 }
 
 

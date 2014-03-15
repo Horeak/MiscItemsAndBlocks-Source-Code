@@ -21,6 +21,7 @@ import com.miscitems.MiscItemsAndBlocks.Tick.TickHandlerClient;
 import com.miscitems.MiscItemsAndBlocks.VersionChecker.VersionChecker;
 import com.miscitems.MiscItemsAndBlocks.WorldGen.ModWorldGenerator;
 
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -35,7 +36,9 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityList;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -43,7 +46,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraftforge.client.event.sound.SoundEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 
@@ -170,37 +172,37 @@ public void preInit(FMLPreInitializationEvent event) {
     proxy.RegisterServerTickhandler();
         
         //Register Events
+    if(event.getSide() == Side.SERVER)
         RegisterServerEvents();
         
-    	if(event.getSide() == Side.CLIENT){
+    	if(event.getSide() == Side.CLIENT)
     		RegisterClientEvents();
-    	
-    		
-        //############Mob code Section################//
+
+    	//############Mob code Section################//
     		proxy.registerRenderers();
-    		registerEntity(EntityPenguin.class, "Penguin");
-    		}
-    	}	
-public void addSpawn(Class<EntityPenguin> entityClass, int spawnProb, int min, int max, BiomeGenBase[] biomes) {
-    if (spawnProb > 0) {
-            EntityRegistry.addSpawn(EntityPenguin.class, 100, 1, 3, EnumCreatureType.creature, BiomeGenBase.taigaHills, BiomeGenBase.jungle, 
-            		BiomeGenBase.jungleHills, BiomeGenBase.plains, BiomeGenBase.taiga, BiomeGenBase.forest, 
-            		BiomeGenBase.forestHills, BiomeGenBase.swampland, BiomeGenBase.river, BiomeGenBase.beach, 
-            		BiomeGenBase.desert, BiomeGenBase.extremeHills, BiomeGenBase.extremeHillsEdge);
-//example   EntityRegistry.addSpawn(entityClass, spawnProb, min, max, EnumCreatureType.creature, biomes);
-    } 
-//#####################################################//
+    		registerEntity(EntityPenguin.class, "Penguin", 0x070A0A, 0xFFF8F7, 64);
+
+    if(event.getSide() == Side.SERVER)
+            addSpawn(EntityPenguin.class, 100, 1, 3, new BiomeGenBase[]{BiomeGenBase.frozenOcean, BiomeGenBase.frozenRiver, BiomeGenBase.coldBeach, BiomeGenBase.coldTaiga, BiomeGenBase.extremeHillsPlus});
+
 }
-   
-    	
-            
+
+
+
+    public void addSpawn(Class entityClass, int spawnProb, int min, int max, BiomeGenBase[] biomes) {
+        if (spawnProb > 0) {
+            EntityRegistry.addSpawn(entityClass, spawnProb, min, max, EnumCreatureType.creature, biomes);
+            //example EntityRegistry.addSpawn(entityClass, spawnProb, min, max, EnumCreatureType.creature, biomes);
+        }
+    }
+
 public void RegisterClientEvents(){
 	
 	
     MinecraftForge.EVENT_BUS.register(new GuiListener());	
     MinecraftForge.EVENT_BUS.register(new CapeRenderEvent());
 
-    MinecraftForge.EVENT_BUS.register(Main.proxy.tickHandlerServer);
+    FMLCommonHandler.instance().bus().register(Main.proxy.tickHandlerServer);
 }
 
 
@@ -213,7 +215,7 @@ public void RegisterServerEvents(){
     MinecraftForge.EVENT_BUS.register(new DisarmStickEvent());
     MinecraftForge.EVENT_BUS.register(new GhostBlockBreakEvent());
 
-    MinecraftForge.EVENT_BUS.register(Main.proxy.tickHandlerClient);
+    FMLCommonHandler.instance().bus().register(Main.proxy.tickHandlerClient);
 }
     
     
@@ -245,24 +247,23 @@ public void RegisterServerEvents(){
         
 
     }
- 
+    
 @EventHandler
     public void PostInit(FMLPostInitializationEvent event){
 	LaserRegistry.registerLaser("default", new DefaultLaser());
 	
 	}
 
-       public static void registerEntity(Class EntityPenguin, String name)
+
+       public static void registerEntity(Class Entity, String name, int PrimColor, int SecColor, int Tracking)
        {
        int entityID = EntityRegistry.findGlobalUniqueEntityId();
        long seed = name.hashCode();
        Random rand = new Random(seed);
-       int primaryColor = rand.nextInt() * 16777215;
-       int secondaryColor = rand.nextInt() * 16777215;
 
-       EntityRegistry.registerGlobalEntityID(EntityPenguin, name, entityID);
-       EntityRegistry.registerModEntity(EntityPenguin, name, entityID, instance, 64, 1, true);
-       EntityList.entityEggs.put(Integer.valueOf(entityID), new EntityList.EntityEggInfo(entityID, primaryColor, secondaryColor));
+       EntityRegistry.registerGlobalEntityID(Entity, name, entityID);
+       EntityRegistry.registerModEntity(Entity, name, entityID, instance, Tracking, 1, true);
+       EntityList.entityEggs.put(entityID, new EntityList.EntityEggInfo(entityID, PrimColor, SecColor));
        }
 	
 }

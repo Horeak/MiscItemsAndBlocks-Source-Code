@@ -10,6 +10,7 @@ import cpw.mods.fml.common.gameevent.TickEvent;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import sun.net.www.protocol.http.AuthCacheValue;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,25 +32,30 @@ public class ServerTickHandler{
     public ArrayList<GameInfo> activeGames = new ArrayList<GameInfo>();
 
 
-	@SubscribeEvent
-    public void tick(TickEvent.ServerTickEvent event){
+    @SubscribeEvent
+    public void tick(TickEvent event){
 
+        if(event.type == TickEvent.Type.SERVER)
             ServerTick();
-    	
- 
+
+
+
     }
 
-
-
-
-	@SubscribeEvent
+    @SubscribeEvent
     public void tick(TickEvent.PlayerTickEvent event){
-    	
-    	onPlayerTick(event.player);
-    	
+
+       if (event.type == TickEvent.Type.PLAYER){
+            onPlayerTick(event.player);
+        }
+
+
     }
-    
-	boolean Helmet = false;
+
+
+
+
+    boolean Helmet = false;
 	boolean ChestPlate = false;
 	boolean Leggings = false;
 	boolean Boots = false;
@@ -64,7 +70,6 @@ public class ServerTickHandler{
 	
 	
 	public void onPlayerTick(EntityPlayer player) {
-
 
 		
 		if(Counter >= 50){

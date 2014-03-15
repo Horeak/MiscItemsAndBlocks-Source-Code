@@ -15,7 +15,6 @@ public class GhostBlockBreakEvent {
         if(event.world.getTileEntity(event.x, event.y, event.z) instanceof TileEntityGhostBlock){
             TileEntityGhostBlock tile =  (TileEntityGhostBlock)event.world.getTileEntity(event.x, event.y, event.z);
 
-            System.out.println(tile.Placer + " : " + event.getPlayer().getDisplayName() + " : " + event.getPlayer().getDisplayName().equalsIgnoreCase(tile.Placer));
 
             if(tile.Locked){
             if(tile.Placer != "" && !event.getPlayer().getDisplayName().equalsIgnoreCase(tile.Placer) && !event.getPlayer().capabilities.isCreativeMode){

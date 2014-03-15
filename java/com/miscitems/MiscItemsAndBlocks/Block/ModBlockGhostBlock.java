@@ -46,7 +46,6 @@ public class ModBlockGhostBlock extends BlockContainer{
             if(world.getTileEntity(z, y, z) instanceof TileEntityGhostBlock){
                 TileEntityGhostBlock tile = (TileEntityGhostBlock)world.getTileEntity(x, y, z);
 
-                System.out.println(3);
                 tile.Placer = player.getDisplayName();
 
             }else{
