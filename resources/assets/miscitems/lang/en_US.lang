@@ -2,6 +2,7 @@ itemGroup.tabMiscMisc=MiscItemsAndBlocks Misc
 itemGroup.tabMiscElectric=MiscItemsAndBlocks Electric
 
 tile.xp_storage_block.name= Xp storage block
+tile.tv.name=Tv
 tile.trash_bin.name=Trash Bin
 tile.disarm_trap.name=Disarm Trap
 tile.silver_ore.name=Silver Ore
@@ -105,7 +106,7 @@ item.creative_battery.name=Creative Battery
 item.guidebook.Guide.name=Guide Book
 item.turbine.name=Turbine
 item.rawpenguinmeat.name=Raw Penguin
-item.cookedpenguinmeat=Cooked Penguin
+item.cookedpenguin.name=Cooked Penguin
 
 
 
