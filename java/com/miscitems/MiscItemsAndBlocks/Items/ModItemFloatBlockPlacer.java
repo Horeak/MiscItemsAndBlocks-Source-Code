@@ -1,6 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Items;
 
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
+import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,7 +16,7 @@ import java.util.List;
 public class ModItemFloatBlockPlacer extends ModItemPowerTool{
 
 	protected ModItemFloatBlockPlacer() {
-		super(0, ToolMaterial.WOOD, null);
+		super(0, ToolMaterial.WOOD, Main.EmptyToolSet);
 		this.setMaxDamage(325);
 		
 		

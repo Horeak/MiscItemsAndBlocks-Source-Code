@@ -2,8 +2,10 @@ package com.miscitems.MiscItemsAndBlocks.Main;
 
 import java.io.File;
 import java.util.Random;
+import java.util.Set;
 import java.util.logging.Logger;
 
+import com.google.common.collect.Sets;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EnumCreatureType;
@@ -70,7 +72,9 @@ import cpw.mods.fml.relauncher.SideOnly;
     
 		@SidedProxy(clientSide = "com.miscitems.MiscItemsAndBlocks.Proxies.ClientProxy", serverSide = "com.miscitems.MiscItemsAndBlocks.Proxies.ServerProxy")
 		public static ServerProxy proxy;
-    
+
+
+        public static Set EmptyToolSet = Sets.newHashSet();
     
 		public static boolean Dev = true;
     
@@ -214,24 +218,14 @@ import cpw.mods.fml.relauncher.SideOnly;
             
         @EventHandler
         public void Init(FMLInitializationEvent event){
-    
-        	//############Mob code Section###########################################//
+
         	proxy.registerRenderers();
         	registerEntity(EntityPenguin.class, "Penguin", 0x070A0A, 0xFFF8F7, 64);
-        	//############### This is Where the Entity is registered ^^^^^^^^^  #####//
-	
-        	//#################THIS IS THE WORLD GENERATION CODE###################//
-        	int id =0; //id is an internal mob id, you can start at 0 and continue adding them up.
-        	EntityRegistry.registerModEntity(EntityPenguin.class, "Penguin", id, this, 80, 1, true);
-        	id++;
-        	EntityRegistry.addSpawn(EntityPenguin.class, 100, 4, 8, EnumCreatureType.creature, 
-        			BiomeGenBase.desert, BiomeGenBase.plains, 
-	        		BiomeGenBase.forest, BiomeGenBase.frozenOcean, 
-	        		BiomeGenBase.frozenRiver, BiomeGenBase.coldBeach, 
-	        		BiomeGenBase.coldTaiga, BiomeGenBase.extremeHillsPlus);//change the values to vary the spawn rarity, biome, etc.
-
-        	//####################################################################//
-    	
+            RegisterEntitySpawning(EntityPenguin.class, 100, 4, 8, EnumCreatureType.creature, new BiomeGenBase[]{BiomeGenBase.desert, BiomeGenBase.plains,
+                    BiomeGenBase.forest, BiomeGenBase.frozenOcean,
+                    BiomeGenBase.frozenRiver, BiomeGenBase.coldBeach,
+                    BiomeGenBase.coldTaiga, BiomeGenBase.extremeHillsPlus});
+     	
 
         
         	NETWORK_MANAGER = new NetworkManager();
@@ -257,7 +251,11 @@ import cpw.mods.fml.relauncher.SideOnly;
         
 
         }
-    
+
+
+
+
+
         @EventHandler
         public void PostInit(FMLPostInitializationEvent event)
         {
@@ -267,11 +265,13 @@ import cpw.mods.fml.relauncher.SideOnly;
         }
 
 
+        public static void RegisterEntitySpawning(Class Entity, int SpawnChance, int MinSpawn, int MaxSpawn, EnumCreatureType Creature, BiomeGenBase[] biomes){
+            EntityRegistry.addSpawn(Entity, SpawnChance, MinSpawn, MaxSpawn, Creature, biomes);
+        }
+
         public static void registerEntity(Class Entity, String name, int PrimColor, int SecColor, int Tracking)
         {
         	int entityID = EntityRegistry.findGlobalUniqueEntityId();
-        	long seed = name.hashCode();
-        	Random rand = new Random(seed);
 
         	EntityRegistry.registerGlobalEntityID(Entity, name, entityID);
         	EntityRegistry.registerModEntity(Entity, name, entityID, instance, Tracking, 1, true);

@@ -311,11 +311,11 @@ public class EntitySilverArrow extends Entity implements IProjectile
 
 	                    if (this.shootingEntity == null)
 	                    {
-	                        damagesource = DamageSource.causeThrownDamage(this, this);
+                            damagesource = new DamageSource("silverarrow.shot");
 	                    }
 	                    else
 	                    {
-	                        damagesource = DamageSource.causeThrownDamage(this, this.shootingEntity);
+                            damagesource = new DamageSource("silverarrow.shotby");
 	                    }
 
 	                    if (this.isBurning() && !(movingobjectposition.entityHit instanceof EntityEnderman))

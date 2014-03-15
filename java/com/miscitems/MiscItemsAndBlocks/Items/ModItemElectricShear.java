@@ -1,6 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Items;
 
 import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -24,7 +25,7 @@ import java.util.Random;
 public class ModItemElectricShear extends ModItemPowerTool{
 
 	public ModItemElectricShear() {
-		super(0, ToolMaterial.IRON, null);
+		super(0, ToolMaterial.IRON, Main.EmptyToolSet);
 
 		this.setMaxDamage(430);
 		this.setMaxStackSize(1);

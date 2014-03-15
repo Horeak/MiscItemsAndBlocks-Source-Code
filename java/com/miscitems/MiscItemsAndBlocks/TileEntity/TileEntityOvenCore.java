@@ -5,7 +5,9 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.util.Constants;
@@ -210,7 +212,7 @@ public class TileEntityOvenCore extends TileEntityInvBase implements ISidedInven
     						WorkTime = WorkTime + 5;
     						
     					}else if(Heat > 75 && Heat <= 100){
-    						WorkTime = WorkTime + 8;
+    						WorkTime = WorkTime + 10;
     						
     						
     					}
@@ -288,14 +290,24 @@ public class TileEntityOvenCore extends TileEntityInvBase implements ISidedInven
     	Item item = itemU.getItem();
     	
     	
-    	if(item == ModItems.PizzaRaw)return new ItemStack(ModItems.Pizza, 1, this.getStackInSlot(1).getItemDamage());
-    	if(item == Item.itemRegistry.getObject("beef"))return new ItemStack((Item)Item.itemRegistry.getObject("cooked_beef"));
-    	if(item == Item.itemRegistry.getObject("porkchop"))return new ItemStack((Item)Item.itemRegistry.getObject("cooked_porkchop"));
-    	if(item == Item.itemRegistry.getObject("fish"))return new ItemStack((Item)Item.itemRegistry.getObject("cooked_fish"));
-    	if(item == Item.itemRegistry.getObject("chicken"))return new ItemStack((Item)Item.itemRegistry.getObject("cooked_chicken"));
-    	if(item == ModItems.Flour)return new ItemStack(Items.bread);
-    	if(item == ModItems.RawPenguinMeat)return new ItemStack(ModItems.CookedPenguin);
-    	
+//    	if(item == ModItems.PizzaRaw)return new ItemStack(ModItems.Pizza, 1, this.getStackInSlot(1).getItemDamage());
+//    	if(item == Item.itemRegistry.getObject("beef"))return new ItemStack((Item)Item.itemRegistry.getObject("cooked_beef"));
+//    	if(item == Item.itemRegistry.getObject("porkchop"))return new ItemStack((Item)Item.itemRegistry.getObject("cooked_porkchop"));
+//    	if(item == Item.itemRegistry.getObject("fish"))return new ItemStack((Item)Item.itemRegistry.getObject("cooked_fish"));
+//    	if(item == Item.itemRegistry.getObject("chicken"))return new ItemStack((Item)Item.itemRegistry.getObject("cooked_chicken"));
+//    	if(item == ModItems.Flour)return new ItemStack(Items.bread);
+//    	if(item == ModItems.RawPenguinMeat)return new ItemStack(ModItems.CookedPenguin);
+
+            if(item instanceof ItemFood){
+                if(FurnaceRecipes.smelting().getSmeltingResult(itemU) != null){
+
+                    return FurnaceRecipes.smelting().getSmeltingResult(itemU);
+
+                }
+
+            }else{
+                if(item == ModItems.Flour)return new ItemStack(Items.bread);
+            }
     	
     	}
     	
