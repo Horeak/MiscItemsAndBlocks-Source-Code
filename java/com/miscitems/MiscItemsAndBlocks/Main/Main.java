@@ -181,18 +181,19 @@ public void preInit(FMLPreInitializationEvent event) {
     		registerEntity(EntityPenguin.class, "Penguin");
     		}
     	}	
-    
-    	public void addSpawn(Class<EntityPenguin> entityClass, int spawnProb, int min, int max, BiomeGenBase[] biomes) {
-            if (spawnProb > 0) {
-                    EntityRegistry.addSpawn(EntityPenguin.class, 100, 1, 3, EnumCreatureType.creature, BiomeGenBase.taigaHills, BiomeGenBase.jungle, 
-                    		BiomeGenBase.jungleHills, BiomeGenBase.plains, BiomeGenBase.taiga, BiomeGenBase.forest, 
-                    		BiomeGenBase.forestHills, BiomeGenBase.swampland, BiomeGenBase.river, BiomeGenBase.beach, 
-                    		BiomeGenBase.desert, BiomeGenBase.extremeHills, BiomeGenBase.extremeHillsEdge);
-        //example   EntityRegistry.addSpawn(entityClass, spawnProb, min, max, EnumCreatureType.creature, biomes);
-            } 
-      //#####################################################//
-    }
-
+public void addSpawn(Class<EntityPenguin> entityClass, int spawnProb, int min, int max, BiomeGenBase[] biomes) {
+    if (spawnProb > 0) {
+            EntityRegistry.addSpawn(EntityPenguin.class, 100, 1, 3, EnumCreatureType.creature, BiomeGenBase.taigaHills, BiomeGenBase.jungle, 
+            		BiomeGenBase.jungleHills, BiomeGenBase.plains, BiomeGenBase.taiga, BiomeGenBase.forest, 
+            		BiomeGenBase.forestHills, BiomeGenBase.swampland, BiomeGenBase.river, BiomeGenBase.beach, 
+            		BiomeGenBase.desert, BiomeGenBase.extremeHills, BiomeGenBase.extremeHillsEdge);
+//example   EntityRegistry.addSpawn(entityClass, spawnProb, min, max, EnumCreatureType.creature, biomes);
+    } 
+//#####################################################//
+}
+   
+    	
+            
 public void RegisterClientEvents(){
 	
 	
@@ -244,7 +245,7 @@ public void RegisterServerEvents(){
         
 
     }
-    
+ 
 @EventHandler
     public void PostInit(FMLPostInitializationEvent event){
 	LaserRegistry.registerLaser("default", new DefaultLaser());
