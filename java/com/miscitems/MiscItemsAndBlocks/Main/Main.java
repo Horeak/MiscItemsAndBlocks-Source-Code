@@ -177,24 +177,7 @@ public void preInit(FMLPreInitializationEvent event) {
         
     	if(event.getSide() == Side.CLIENT)
     		RegisterClientEvents();
-
-    	//############Mob code Section################//
-    		proxy.registerRenderers();
-    		registerEntity(EntityPenguin.class, "Penguin", 0x070A0A, 0xFFF8F7, 64);
-
-    if(event.getSide() == Side.SERVER)
-            addSpawn(EntityPenguin.class, 100, 1, 3, new BiomeGenBase[]{BiomeGenBase.frozenOcean, BiomeGenBase.frozenRiver, BiomeGenBase.coldBeach, BiomeGenBase.coldTaiga, BiomeGenBase.extremeHillsPlus});
-
-}
-
-
-
-    public void addSpawn(Class entityClass, int spawnProb, int min, int max, BiomeGenBase[] biomes) {
-        if (spawnProb > 0) {
-            EntityRegistry.addSpawn(entityClass, spawnProb, min, max, EnumCreatureType.creature, biomes);
-            //example EntityRegistry.addSpawn(entityClass, spawnProb, min, max, EnumCreatureType.creature, biomes);
-        }
-    }
+   }
 
 public void RegisterClientEvents(){
 	
@@ -221,6 +204,23 @@ public void RegisterServerEvents(){
     
 @EventHandler
     public void Init(FMLInitializationEvent event){
+    
+	//############Mob code Section###########################################//
+	proxy.registerRenderers();
+	registerEntity(EntityPenguin.class, "Penguin", 0x070A0A, 0xFFF8F7, 64);
+    //############### This is Where the Entity is registered ^^^^^^^^^  #####//
+	
+	//#################THIS IS THE WORLD GENERATION CODE###################//
+	int id =0;
+	        EntityRegistry.registerModEntity(EntityPenguin.class, "Penguin", id, this, 80, 1, true);//id is an internal mob id, you can start at 0 and continue adding them up.
+	        id++;
+	        EntityRegistry.addSpawn(EntityPenguin.class, 100, 4, 8, EnumCreatureType.creature, BiomeGenBase.desert, BiomeGenBase.plains, 
+	        		                                                                           BiomeGenBase.forest, BiomeGenBase.frozenOcean, 
+	        		                                                                           BiomeGenBase.frozenRiver, BiomeGenBase.coldBeach, 
+	        		                                                                           BiomeGenBase.coldTaiga, BiomeGenBase.extremeHillsPlus);//change the values to vary the spawn rarity, biome, etc.              
+	    //    proxy.registerRenderThings();//calls the methods in our proxy, which will do things on client side
+
+	//####################################################################//
     	
 
         
