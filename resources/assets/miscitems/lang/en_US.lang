@@ -2,7 +2,6 @@ itemGroup.tabMiscMisc=MiscItemsAndBlocks Misc
 itemGroup.tabMiscElectric=MiscItemsAndBlocks Electric
 
 tile.xp_storage_block.name= Xp storage block
-tile.tv.name=Tv
 tile.trash_bin.name=Trash Bin
 tile.disarm_trap.name=Disarm Trap
 tile.silver_ore.name=Silver Ore
@@ -106,7 +105,7 @@ item.creative_battery.name=Creative Battery
 item.guidebook.Guide.name=Guide Book
 item.turbine.name=Turbine
 item.rawpenguinmeat.name=Raw Penguin
-item.cookedpenguin.name=Cooked Penguin
+item.cookedpenguin=Cooked Penguin
 
 
 
@@ -267,6 +266,9 @@ items.desc.xpextractor.3=You require at least 1 glass bottle
 entity.powerarrow.name=Power Arrow
 entity.silverarrow.name=Silver Arrow
 entity.Penguin.name=Penguin
+
+death.attack.powerarrow.shotby=%1$s was shot by %2$s with a electric bow.
+death.attack.silverarrow.shotby=%1$s was shot by %2$s with a silver bow.
 
 death.attack.laser.damage=%1$s was fried by a laser.
 death.attack.disarmed=%1$s was disarmed.

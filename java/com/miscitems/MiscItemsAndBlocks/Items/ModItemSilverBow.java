@@ -2,6 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.Items;
 
 import com.miscitems.MiscItemsAndBlocks.Entity.EntitySilverArrow;
 import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -30,7 +31,7 @@ private IIcon _icon4;
 
     public ModItemSilverBow()
     {
-        super(0 , ToolMaterial.WOOD, null);
+        super(0 , ToolMaterial.WOOD, Main.EmptyToolSet);
         this.maxStackSize = 1;
         this.setMaxDamage(384);
     }

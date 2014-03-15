@@ -16,6 +16,7 @@ public enum PacketType {
 	ClientMetalPressPacketUpdate(ClientMetalPressPacketUpdate.class),
 	ClinetChatMessageRecivedPacket(ClientChatMessageRecivedPacket.class),
     ClientGhostBlockPacket(ClientGhostBlockPacket.class),
+    ClientLaserUpdatePacket(ClientLaserUpdatePacket.class),
 	
 	ServerChatMessagePacket(ServerChatMessagePacket.class),
 	ServerPaintBrushChangePacket(ServerPaintBrushChangePacket.class),
