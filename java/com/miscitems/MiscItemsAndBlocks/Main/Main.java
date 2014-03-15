@@ -1,9 +1,33 @@
 package com.miscitems.MiscItemsAndBlocks.Main;
 
+import java.io.File;
+import java.util.Random;
+import java.util.logging.Logger;
+
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityList;
+import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.StatCollector;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.config.Configuration;
+
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.Entity.EntityPowerArrow;
 import com.miscitems.MiscItemsAndBlocks.Entity.EntitySilverArrow;
-import com.miscitems.MiscItemsAndBlocks.Event.*;
+import com.miscitems.MiscItemsAndBlocks.Event.CapeRenderEvent;
+import com.miscitems.MiscItemsAndBlocks.Event.DisarmStickEvent;
+import com.miscitems.MiscItemsAndBlocks.Event.GhostBlockBreakEvent;
+import com.miscitems.MiscItemsAndBlocks.Event.GuiListener;
+import com.miscitems.MiscItemsAndBlocks.Event.PlayerFirstJoinEvent;
 import com.miscitems.MiscItemsAndBlocks.Gui.GuiHandler;
 import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
 import com.miscitems.MiscItemsAndBlocks.Laser.DefaultLaser;
@@ -16,8 +40,6 @@ import com.miscitems.MiscItemsAndBlocks.Misc.BoneMealEvent;
 import com.miscitems.MiscItemsAndBlocks.Mobs.EntityPenguin;
 import com.miscitems.MiscItemsAndBlocks.Network.NetworkManager;
 import com.miscitems.MiscItemsAndBlocks.Proxies.ServerProxy;
-import com.miscitems.MiscItemsAndBlocks.Tick.ServerTickHandler;
-import com.miscitems.MiscItemsAndBlocks.Tick.TickHandlerClient;
 import com.miscitems.MiscItemsAndBlocks.VersionChecker.VersionChecker;
 import com.miscitems.MiscItemsAndBlocks.WorldGen.ModWorldGenerator;
 
@@ -34,27 +56,6 @@ import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EntityList;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.entity.passive.EntityAnimal;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.StatCollector;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.config.Configuration;
-
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.LogManager;
-
-import java.io.File;
-import java.util.Random;
-import java.util.logging.Logger;
 
 
 	@Mod(modid = Refrence.Mod_Id, name = Refrence.Mod_Name, version = Refrence.Version)
@@ -138,8 +139,7 @@ import java.util.logging.Logger;
 	
         @EventHandler
         public void preInit(FMLPreInitializationEvent event) 
-        {
-    	
+        {    	
 	
         	//TODO Add some type of ore doubling
 	
@@ -211,8 +211,7 @@ import java.util.logging.Logger;
 
         	FMLCommonHandler.instance().bus().register(Main.proxy.tickHandlerClient);
         }
-    
-    
+            
         @EventHandler
         public void Init(FMLInitializationEvent event){
     
@@ -260,7 +259,9 @@ import java.util.logging.Logger;
         }
     
         @EventHandler
-        public void PostInit(FMLPostInitializationEvent event){
+        public void PostInit(FMLPostInitializationEvent event)
+        {
+        	
         	LaserRegistry.registerLaser("default", new DefaultLaser());
 	
         }

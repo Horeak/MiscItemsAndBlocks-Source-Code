@@ -3,7 +3,9 @@ package com.miscitems.MiscItemsAndBlocks.Items;
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
+
 import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
@@ -72,7 +74,9 @@ public class ModItems {
 	
 	public static Item GuideBook;
 	
+	public static Item RawPenguinMeat;
 	
+	public static Item CookedPenguin;
 	
 	
 	
@@ -215,6 +219,11 @@ public class ModItems {
 		Lens = new ModItemLens().setUnlocalizedName("Lens").setCreativeTab(Main.ElectricTab);
 		Register(Lens, "Lens");
 		
+		CookedPenguin = new CookedPenguinMeat(6002, 4, true).setUnlocalizedName("CookedPenguin").setCreativeTab(CreativeTabs.tabFood);
+		Register(CookedPenguin, "CookedPenguin");
+		
+		RawPenguinMeat = new RawPenguinMeat(6001, 1, true).setUnlocalizedName("RawPenguinMeat").setCreativeTab(CreativeTabs.tabFood);
+		Register(RawPenguinMeat, "RawPenguinMeat");
 		
 		
 		

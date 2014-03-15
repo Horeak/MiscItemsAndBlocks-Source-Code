@@ -294,6 +294,7 @@ public class TileEntityOvenCore extends TileEntityInvBase implements ISidedInven
     	if(item == Item.itemRegistry.getObject("fish"))return new ItemStack((Item)Item.itemRegistry.getObject("cooked_fish"));
     	if(item == Item.itemRegistry.getObject("chicken"))return new ItemStack((Item)Item.itemRegistry.getObject("cooked_chicken"));
     	if(item == ModItems.Flour)return new ItemStack(Items.bread);
+    	if(item == ModItems.RawPenguinMeat)return new ItemStack(ModItems.CookedPenguin);
     	
     	
     	}

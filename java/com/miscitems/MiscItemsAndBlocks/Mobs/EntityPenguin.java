@@ -1,6 +1,8 @@
 package com.miscitems.MiscItemsAndBlocks.Mobs;
 
+import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
 import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -116,11 +118,11 @@ public class EntityPenguin extends EntityAnimal
         {
             if (this.isBurning())
             {
-                this.dropItem(Items.cooked_fished, 1);
+                this.dropItem(ModItems.CookedPenguin, 1);
             }
             else
             {
-                this.dropItem(Items.fish, 1);
+                this.dropItem(ModItems.RawPenguinMeat , 1);
             }
         }
     }
