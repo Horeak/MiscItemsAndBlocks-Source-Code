@@ -290,7 +290,7 @@ public class TileEntityOvenCore extends TileEntityInvBase implements ISidedInven
     	
     	if(item == ModItems.PizzaRaw)return new ItemStack(ModItems.Pizza, 1, this.getStackInSlot(1).getItemDamage());
     	if(item == Item.itemRegistry.getObject("beef"))return new ItemStack((Item)Item.itemRegistry.getObject("cooked_beef"));
-    	if(item == Item.itemRegistry.getObject("porkchop"))return new ItemStack((Item)Item.itemRegistry.getObject("cooked_pork"));
+    	if(item == Item.itemRegistry.getObject("porkchop"))return new ItemStack((Item)Item.itemRegistry.getObject("cooked_porkchop"));
     	if(item == Item.itemRegistry.getObject("fish"))return new ItemStack((Item)Item.itemRegistry.getObject("cooked_fish"));
     	if(item == Item.itemRegistry.getObject("chicken"))return new ItemStack((Item)Item.itemRegistry.getObject("cooked_chicken"));
     	if(item == ModItems.Flour)return new ItemStack(Items.bread);
