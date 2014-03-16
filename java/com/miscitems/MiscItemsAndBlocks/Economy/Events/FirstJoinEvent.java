@@ -11,8 +11,8 @@ public class FirstJoinEvent {
 
 
     @SubscribeEvent
-    public void PlayerJoin(EntityJoinWorldEvent event){
-
+    public void PlayerJoined(EntityJoinWorldEvent event){
+        System.out.println("t");
 
         if(!event.world.isRemote){
             if(event.entity instanceof EntityPlayer){

@@ -1,5 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Mobs;
 
+import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
+import com.miscitems.MiscItemsAndBlocks.ItemBlock.ModItemBlockTurtleShell;
 import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
 import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
 
@@ -21,15 +23,15 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class EntityPenguin extends EntityAnimal
+public class EntityTurtle extends EntityAnimal
 {
     private static final String __OBFID = "CL_00001640";
 
-    public EntityPenguin(World par1World)
+    public EntityTurtle(World par1World)
     {
         super(par1World);
         this.setSize(0.8F, 0.8F);
-        this.getNavigator().setAvoidsWater(false);
+        this.getNavigator().setAvoidsWater(true);
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new EntityAIPanic(this, 2.0D));
         this.tasks.addTask(2, new EntityAIMate(this, 1.0D));
@@ -51,8 +53,8 @@ public class EntityPenguin extends EntityAnimal
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(5.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.20000000298023224D);
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(10.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.05000000298023224D);
     }
 
     /**
@@ -60,7 +62,7 @@ public class EntityPenguin extends EntityAnimal
      */
     protected String getLivingSound()
     {
-    return Refrence.SoundPrefix + "mob.Penguin.say";
+    return null;
     }
 
     /**
@@ -68,7 +70,7 @@ public class EntityPenguin extends EntityAnimal
    //  */
     protected String getHurtSound()
     {
-        return Refrence.SoundPrefix + "mob.Penguin.hurt";
+        return Refrence.SoundPrefix + "mob.Penguin.death";
     }
 
     /**
@@ -127,8 +129,8 @@ public class EntityPenguin extends EntityAnimal
     }
 
 
-    public EntityPenguin createChild(EntityAgeable par1EntityAgeable)
+    public EntityTurtle createChild(EntityAgeable par1EntityAgeable)
     {
-        return new EntityPenguin(this.worldObj);
+        return new EntityTurtle(this.worldObj);
     }
 }
