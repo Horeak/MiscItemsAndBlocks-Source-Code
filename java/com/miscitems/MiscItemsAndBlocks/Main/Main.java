@@ -93,52 +93,52 @@ import cpw.mods.fml.relauncher.SideOnly;
     
         public static NetworkManager NETWORK_MANAGER;
 
-    
-        public static CreativeTabs MiscTab = new CreativeTabs("tabMiscMisc") 
-        {
-
-
-        	@Override
-        	@SideOnly(Side.CLIENT)
-        	public Item getTabIconItem() 
-        	{
-        		if(Main.config.get("Items", "Enable " + "Guide Book" + "?", true).getBoolean(true))
-        		{
-        			Main.config.save();
-        			return ModItems.GuideBook;
-        		}else
-             
-        		{
-        			Main.config.save();
-        			return ItemBlock.getItemFromBlock(Blocks.bedrock);
-        		}
-        	}
-		
-        };
-
-
-        public static CreativeTabs ElectricTab = new CreativeTabs("tabMiscElectric")
-        {
-
-
-        	@Override
-        	@SideOnly(Side.CLIENT)
-        	public Item getTabIconItem() 
-        	{
-        		if(Main.config.get("Blocks", "Enable " + "Charger" + "?", true).getBoolean(true)){
-        			Main.config.save();
-        			return ItemBlock.getItemFromBlock(ModBlocks.Charger);
-        			}else
-        			{
-        				Main.config.save();
-        				return ItemBlock.getItemFromBlock(Blocks.bedrock);
-        			}
-        	}
-
-        };
 
         public static Configuration config;
-      
+
+        public static net.minecraft.creativetab.CreativeTabs MiscTab = new net.minecraft.creativetab.CreativeTabs("tabMiscMisc")
+        {
+
+
+            @Override
+            @SideOnly(Side.CLIENT)
+            public Item getTabIconItem()
+            {
+                if(Main.config.get("Items", "Enable " + "Guide Book" + "?", true).getBoolean(true))
+                {
+                    Main.config.save();
+                    return ModItems.GuideBook;
+                }else
+
+                {
+                    Main.config.save();
+                    return ItemBlock.getItemFromBlock(Blocks.bedrock);
+                }
+            }
+
+        };
+
+
+        public static net.minecraft.creativetab.CreativeTabs ElectricTab = new net.minecraft.creativetab.CreativeTabs("tabMiscElectric")
+        {
+
+
+            @Override
+            @SideOnly(Side.CLIENT)
+            public Item getTabIconItem()
+            {
+                if(Main.config.get("Blocks", "Enable " + "Charger" + "?", true).getBoolean(true)){
+                    Main.config.save();
+                    return ItemBlock.getItemFromBlock(ModBlocks.Charger);
+                }else
+                {
+                    Main.config.save();
+                    return ItemBlock.getItemFromBlock(Blocks.bedrock);
+                }
+            }
+
+        };
+
         private Object entityRenderMap;
 	
         @EventHandler
