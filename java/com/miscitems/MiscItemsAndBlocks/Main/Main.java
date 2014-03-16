@@ -221,16 +221,15 @@ import cpw.mods.fml.relauncher.SideOnly;
 
         	proxy.registerRenderers();
         	registerEntity(EntityPenguin.class, "Penguin", 0x070A0A, 0xFFF8F7, 64);
-            RegisterEntitySpawning(EntityPenguin.class, 100, 4, 8, EnumCreatureType.creature, new BiomeGenBase[]{BiomeGenBase.desert, BiomeGenBase.plains,
-                    BiomeGenBase.forest, BiomeGenBase.frozenOcean,
+            RegisterEntitySpawning(EntityPenguin.class, 30, 1, 3, EnumCreatureType.creature, new BiomeGenBase[]{
+                    BiomeGenBase.frozenOcean,
                     BiomeGenBase.frozenRiver, BiomeGenBase.coldBeach,
                     BiomeGenBase.coldTaiga, BiomeGenBase.extremeHillsPlus});
             
-            registerEntity(EntityTurtle.class, "Turtle", 0x070A0A, 0xFFF8F7, 64);
-            RegisterEntitySpawning(EntityTurtle.class, 100, 4, 8, EnumCreatureType.creature, new BiomeGenBase[]{BiomeGenBase.desert, BiomeGenBase.plains,
-                    BiomeGenBase.forest, BiomeGenBase.frozenOcean,
-                    BiomeGenBase.frozenRiver, BiomeGenBase.coldBeach,
-                    BiomeGenBase.coldTaiga, BiomeGenBase.extremeHillsPlus});
+            registerEntity(EntityTurtle.class, "Turtle", 0x64E329, 0x2A6110, 64);
+            RegisterEntitySpawning(EntityTurtle.class, 40, 1, 4, EnumCreatureType.creature, new BiomeGenBase[]{
+                    BiomeGenBase.beach, BiomeGenBase.ocean,
+                    BiomeGenBase.deepOcean, BiomeGenBase.river});
      	
      	
 

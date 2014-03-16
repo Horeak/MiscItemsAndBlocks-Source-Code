@@ -1,5 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Economy.Gui;
 
+import com.miscitems.MiscItemsAndBlocks.Economy.Lib.MoneyStorage;
 import com.miscitems.MiscItemsAndBlocks.Economy.Lib.MoneyUtils;
 import com.miscitems.MiscItemsAndBlocks.Economy.Main.Economy;
 import com.miscitems.MiscItemsAndBlocks.Economy.Proxies.ServerProxy;
@@ -16,6 +17,7 @@ import net.minecraft.client.gui.GuiIngame;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
@@ -36,9 +38,9 @@ public class MoneyOverlay extends GuiIngame {
     @SubscribeEvent
     public void onRenderGameOverlay(RenderGameOverlayEvent event) {
         if (event.type == RenderGameOverlayEvent.ElementType.TEXT) {
-            if (!Minecraft.getMinecraft().playerController.isInCreativeMode()) {
+
                 Instance.renderOverlay();
-            }
+
         }
     }
 
@@ -57,8 +59,36 @@ public class MoneyOverlay extends GuiIngame {
 
         EntityClientPlayerMP player = this.mc.thePlayer;
 
-        int Money = Economy.proxy.tickHandlerClient.Money;
+        MoneyStorage money = MoneyStorage.get(player);
 
+        int Money;
+
+        if(money != null)
+        Money = money.GetMoney();
+        else
+        Money = 0;
+
+
+        int x = 0;
+        int y = 0;
+
+        if(MoneyUtils.TextArea == 1){
+            x = width - 40;
+            y = 15;
+        }else if (MoneyUtils.TextArea == 2){
+            x = 40;
+            y = 15;
+        }else if (MoneyUtils.TextArea == 3){
+            x = width - 40;
+            y = height - 15;
+        }else if (MoneyUtils.TextArea == 4){
+            x = 40;
+            y = height - 15;
+
+        }else{
+            x = width - 40;
+            y = 15;
+        }
 
         String Pre = MoneyUtils.MoneyMark;
 
@@ -66,21 +96,21 @@ public class MoneyOverlay extends GuiIngame {
             if(Money < 1000){
                 if(Money < 100){
                     if(Money < 10){
-                        this.drawCenteredString(this.mc.fontRenderer, Pre +"0000" + Money, width - 30, 15, 0xffffff);
+                        this.drawCenteredString(this.mc.fontRenderer, Pre +"0000" + Money, x, y, 0xffffff);
 
                     }else{
-                        this.drawCenteredString(this.mc.fontRenderer, Pre +"000" + Money, width - 30, 15, 0xffffff);
+                        this.drawCenteredString(this.mc.fontRenderer, Pre +"000" + Money, x, y, 0xffffff);
                     }
 
                 }else{
-                    this.drawCenteredString(this.mc.fontRenderer, Pre + "00" + Money, width - 30, 15, 0xffffff);
+                    this.drawCenteredString(this.mc.fontRenderer, Pre + "00" + Money, x, y, 0xffffff);
                 }
             }else{
-                this.drawCenteredString(this.mc.fontRenderer, Pre + "0" + Money, width - 30, 15, 0xffffff);
+                this.drawCenteredString(this.mc.fontRenderer, Pre + "0" + Money, x, y, 0xffffff);
             }
 
         }else{
-            this.drawCenteredString(this.mc.fontRenderer, Pre + Money, width - 30, 15, 0xffffff);
+            this.drawCenteredString(this.mc.fontRenderer, Pre + Money, x, y, 0xffffff);
         }
 
 

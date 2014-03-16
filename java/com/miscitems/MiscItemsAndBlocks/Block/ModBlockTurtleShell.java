@@ -1,18 +1,12 @@
 package com.miscitems.MiscItemsAndBlocks.Block;
 
-import com.miscitems.MiscItemsAndBlocks.Gui.GuiHandler;
 import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
-import com.miscitems.MiscItemsAndBlocks.Main.Main;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityComputer;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityTurtleShell;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityTv;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
@@ -25,7 +19,7 @@ public class ModBlockTurtleShell extends BlockContainer{
 	protected ModBlockTurtleShell() {
 		super(Material.rock);
 		this.setHardness(1);
-		this.setBlockBounds(3, 0, 3, 0.7F, 0.5F, 0.7F);
+		this.setBlockBounds(0.3F, 0, 0.3F, 0.67F, 0.3F, 0.67F);
 
 	}
 	

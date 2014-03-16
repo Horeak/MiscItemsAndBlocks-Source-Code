@@ -5,6 +5,8 @@ import com.miscitems.MiscItemsAndBlocks.ItemBlock.ModItemBlockTurtleShell;
 import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
 import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -26,7 +28,6 @@ import net.minecraft.world.World;
 
 public class EntityTurtle extends EntityAnimal
 {
-    private static final String __OBFID = "CL_00001640";
 
     public EntityTurtle(World par1World)
     {
@@ -41,6 +42,7 @@ public class EntityTurtle extends EntityAnimal
         this.tasks.addTask(5, new EntityAIWander(this, 1.0D));
         this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(7, new EntityAILookIdle(this));
+
     }
       
     /**
@@ -49,6 +51,12 @@ public class EntityTurtle extends EntityAnimal
     public boolean isAIEnabled()
     {
         return true;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public float getShadowSize()
+    {
+        return 0;
     }
 
     protected void applyEntityAttributes()
@@ -97,7 +105,7 @@ public class EntityTurtle extends EntityAnimal
 
     protected Item getDropItem()
     {
-        return Items.feather;
+        return ItemBlock.getItemFromBlock(ModBlocks.TurtleShell);
     }
 
     /**
@@ -106,17 +114,7 @@ public class EntityTurtle extends EntityAnimal
      */
     protected void dropFewItems(boolean par1, int par2)
     {
-        int j = this.rand.nextInt(3) + this.rand.nextInt(1 + par2);
-        int k;
-
-        for (k = 0; k < j; ++k)
-        {
             this.dropItem(ItemBlock.getItemFromBlock(ModBlocks.TurtleShell), 1);
-        }
-
-        j = this.rand.nextInt(3) + 1 + this.rand.nextInt(1 + par2);
-
-
     }
 
 

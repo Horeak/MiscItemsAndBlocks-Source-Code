@@ -45,7 +45,7 @@ public class TurtleShellItemRender implements IItemRenderer
         TurtleShellModel model = new TurtleShellModel();
 
         GL11.glPushMatrix();
-        GL11.glTranslatef((float) 0.5F, (float) 1.7F, (float) 0.5F);
+        GL11.glTranslatef((float) 0.5F, (float) 1.9F, (float) 0.5F);
 
 
         Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("miscitems" , "textures/mobs/Turtle.png"));

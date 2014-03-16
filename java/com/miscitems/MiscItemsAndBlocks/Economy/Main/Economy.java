@@ -1,12 +1,14 @@
 package com.miscitems.MiscItemsAndBlocks.Economy.Main;
 
 
-import com.miscitems.MiscItemsAndBlocks.Economy.Events.FirstJoinEvent;
+import com.miscitems.MiscItemsAndBlocks.Economy.Event.EntityConstructingEvent;
+import com.miscitems.MiscItemsAndBlocks.Economy.Event.JoinWorld;
+import com.miscitems.MiscItemsAndBlocks.Economy.Event.OnPlayerRespawn;
 import com.miscitems.MiscItemsAndBlocks.Economy.Gui.MoneyOverlay;
 import com.miscitems.MiscItemsAndBlocks.Economy.Lib.ModInfo;
 import com.miscitems.MiscItemsAndBlocks.Economy.Lib.MoneyUtils;
+import com.miscitems.MiscItemsAndBlocks.Economy.Network.PacketPipeline;
 import com.miscitems.MiscItemsAndBlocks.Economy.Proxies.ServerProxy;
-import com.miscitems.MiscItemsAndBlocks.Economy.Network.NetworkManager;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod;
@@ -14,6 +16,7 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
@@ -32,8 +35,12 @@ public class Economy {
     public static ServerProxy proxy;
 
 
+
+
+
     public static Configuration config;
-    public static NetworkManager NETWORK_MANAGER;
+
+    public static final PacketPipeline packetPipeline = new PacketPipeline();
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
@@ -43,27 +50,23 @@ public class Economy {
 
 
         MoneyUtils.MoneyMark = config.get("Client Settings", "What sign should be used for money?", "$").getString();
+        MoneyUtils.TextArea = config.get("Client Settings", "Where on the screen should the money be showed?  top_right = 1  top_left = 2  bottom_right = 3  bottom_left = 4  Mode", 1).getInt();
 
         MoneyUtils.Multiplier = config.get("Server Settings", "What should be the multiplier for money? (used for changing currency)", 0).getInt();
+        MoneyUtils.StarterMoney = config.get("Server Settings", "What amount of money should new players start with?", 1000).getInt();
+
 
 
         config.save();
+
 
         proxy.RegisterClientTick();
         proxy.RegisterServerTick();
 
 
-
-
-    }
-
-
-
-
-    @EventHandler
-    public void Init(FMLInitializationEvent event){
-
-
+        MinecraftForge.EVENT_BUS.register(new EntityConstructingEvent());
+        MinecraftForge.EVENT_BUS.register(new JoinWorld());
+        MinecraftForge.EVENT_BUS.register(new OnPlayerRespawn());
 
         if(event.getSide() == Side.SERVER)
             RegisterServerEvents();
@@ -77,10 +80,24 @@ public class Economy {
 
 
 
+
+    @EventHandler
+    public void Init(FMLInitializationEvent event){
+
+        packetPipeline.initialise();
+
+
+
+
+    }
+
+
+
     @EventHandler
     public void PostInit(FMLPostInitializationEvent event)
     {
 
+        packetPipeline.postInitialise();
 
 
     }
@@ -88,9 +105,10 @@ public class Economy {
 
     public void RegisterServerEvents(){
 
-        MinecraftForge.EVENT_BUS.register(new FirstJoinEvent());
 
         FMLCommonHandler.instance().bus().register(proxy.tickHandlerServer);
+
+
 
 
     }

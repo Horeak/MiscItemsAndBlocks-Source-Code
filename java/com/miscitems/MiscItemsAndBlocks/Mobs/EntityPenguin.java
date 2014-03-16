@@ -23,7 +23,6 @@ import net.minecraft.world.World;
 
 public class EntityPenguin extends EntityAnimal
 {
-    private static final String __OBFID = "CL_00001640";
 
     public EntityPenguin(World par1World)
     {
