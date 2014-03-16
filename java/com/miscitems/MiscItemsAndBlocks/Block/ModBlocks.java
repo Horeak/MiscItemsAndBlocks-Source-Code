@@ -61,6 +61,7 @@ public class ModBlocks {
 	public static Block LaserReciver;
 	public static Block GhostBlock;
 	public static Block Tv;
+	public static Block TurtleShell;
 	
 	public static ModBlockStair StoneStair;
 	public static IPlantable OrangeSapling;
@@ -207,6 +208,9 @@ public class ModBlocks {
         
         Tv = new ModBlockTv().setCreativeTab(Main.MiscTab);
         Register(Tv, "Tv");
+        
+        TurtleShell = new ModBlockTurtleShell().setCreativeTab(Main.MiscTab);
+        Register(TurtleShell, "Turtle Shell");
 
 
 
@@ -248,6 +252,7 @@ public class ModBlocks {
         GameRegistry.registerTileEntity(TileEntityLaserReciver.class, "TileEntityensLaserReciver");
         GameRegistry.registerTileEntity(TileEntityGhostBlock.class, "TileEntityGhostBlock");
         GameRegistry.registerTileEntity(TileEntityTv.class, "Tv");
+        GameRegistry.registerTileEntity(TileEntityTurtleShell.class, "TurtleShell");
         
         
         Main.config.save();

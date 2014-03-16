@@ -13,8 +13,11 @@ import com.miscitems.MiscItemsAndBlocks.Lib.Colours;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Misc.ItemHelper;
 import com.miscitems.MiscItemsAndBlocks.Mobs.EntityPenguin;
+import com.miscitems.MiscItemsAndBlocks.Mobs.EntityTurtle;
 import com.miscitems.MiscItemsAndBlocks.Mobs.ModelPenguin;
+import com.miscitems.MiscItemsAndBlocks.Mobs.ModelTurtle;
 import com.miscitems.MiscItemsAndBlocks.Mobs.RenderPenguin;
+import com.miscitems.MiscItemsAndBlocks.Mobs.RenderTurtle;
 import com.miscitems.MiscItemsAndBlocks.Network.PacketRequestEvent;
 import com.miscitems.MiscItemsAndBlocks.Render.PowerArrowRender;
 import com.miscitems.MiscItemsAndBlocks.Render.SilverArrowRender;
@@ -77,6 +80,7 @@ public class ClientProxy extends ServerProxy {
     	
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBin.class, new TileEntityBinRender());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTv.class, new TileEntityTvRender());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTurtleShell.class, new TileEntityTurtleShellRender());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityDisarmTrap.class, new TileEntityDisarmTrapRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPowerCable.class, new TileEntityPowerCableRender());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityItemPedestal.class, new TileEntityItemPedestalRender());
@@ -131,6 +135,7 @@ public class ClientProxy extends ServerProxy {
     @Override
     public void registerRenderers() {
     RenderingRegistry.registerEntityRenderingHandler(EntityPenguin.class, new RenderPenguin(new ModelPenguin(), 0.5F));
+    RenderingRegistry.registerEntityRenderingHandler(EntityTurtle.class, new RenderTurtle(new ModelTurtle(), 0.5F));
     
     }
     

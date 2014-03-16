@@ -6,6 +6,7 @@ import java.util.Set;
 import java.util.logging.Logger;
 
 import com.google.common.collect.Sets;
+
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EnumCreatureType;
@@ -40,6 +41,7 @@ import com.miscitems.MiscItemsAndBlocks.Lib.ModConfig;
 import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
 import com.miscitems.MiscItemsAndBlocks.Misc.BoneMealEvent;
 import com.miscitems.MiscItemsAndBlocks.Mobs.EntityPenguin;
+import com.miscitems.MiscItemsAndBlocks.Mobs.EntityTurtle;
 import com.miscitems.MiscItemsAndBlocks.Network.NetworkManager;
 import com.miscitems.MiscItemsAndBlocks.Proxies.ServerProxy;
 import com.miscitems.MiscItemsAndBlocks.VersionChecker.VersionChecker;
@@ -225,6 +227,13 @@ import cpw.mods.fml.relauncher.SideOnly;
                     BiomeGenBase.forest, BiomeGenBase.frozenOcean,
                     BiomeGenBase.frozenRiver, BiomeGenBase.coldBeach,
                     BiomeGenBase.coldTaiga, BiomeGenBase.extremeHillsPlus});
+            
+            registerEntity(EntityTurtle.class, "Turtle", 0x070A0A, 0xFFF8F7, 64);
+            RegisterEntitySpawning(EntityTurtle.class, 100, 4, 8, EnumCreatureType.creature, new BiomeGenBase[]{BiomeGenBase.desert, BiomeGenBase.plains,
+                    BiomeGenBase.forest, BiomeGenBase.frozenOcean,
+                    BiomeGenBase.frozenRiver, BiomeGenBase.coldBeach,
+                    BiomeGenBase.coldTaiga, BiomeGenBase.extremeHillsPlus});
+     	
      	
 
         

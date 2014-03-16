@@ -219,10 +219,10 @@ public class ModItems {
 		Lens = new ModItemLens().setUnlocalizedName("Lens").setCreativeTab(Main.ElectricTab);
 		Register(Lens, "Lens");
 		
-		CookedPenguin = new CookedPenguinMeat(6002, 4, true).setUnlocalizedName("CookedPenguin").setCreativeTab(CreativeTabs.tabFood);
+		CookedPenguin = new ModItemCookedPenguin(6002, 4, true).setUnlocalizedName("CookedPenguin").setCreativeTab(CreativeTabs.tabFood);
 		Register(CookedPenguin, "CookedPenguin");
 		
-		RawPenguinMeat = new RawPenguinMeat(6001, 1, true).setUnlocalizedName("RawPenguinMeat").setCreativeTab(CreativeTabs.tabFood);
+		RawPenguinMeat = new ModItemRawPenguin(6001, 1, true).setUnlocalizedName("RawPenguinMeat").setCreativeTab(CreativeTabs.tabFood);
 		Register(RawPenguinMeat, "RawPenguinMeat");
 		
 		

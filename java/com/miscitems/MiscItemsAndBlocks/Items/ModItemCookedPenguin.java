@@ -6,22 +6,18 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemFood;
-import net.minecraft.potion.Potion;
 
-public class RawPenguinMeat extends ItemFood{
+public class ModItemCookedPenguin extends ItemFood{
 
-	public RawPenguinMeat(int i, int j, boolean b) {
-		super(j, 10, b);
-	
-	
-	this.setPotionEffect(Potion.hunger.id, 15, 0, 0.3F);
+	public ModItemCookedPenguin(int i, int j, boolean b) {
+		super(4, true);
 	}
-
+	
 	@SideOnly(Side.CLIENT)
 	   public void registerIcons(IIconRegister par1IconRegister)
 	   {
-		   this.itemIcon = par1IconRegister.registerIcon(Refrence.Mod_Id + ":RawPenguinMeat");
-		   
-	   }
+		   this.itemIcon = par1IconRegister.registerIcon(Refrence.Mod_Id + ":CookedPenguinMeat");
+
+}
 
 }
