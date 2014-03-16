@@ -60,6 +60,7 @@ public class ModBlocks {
 	public static Block Laser;
 	public static Block LaserReciver;
 	public static Block GhostBlock;
+	public static Block Tv;
 	
 	public static ModBlockStair StoneStair;
 	public static IPlantable OrangeSapling;
@@ -203,6 +204,9 @@ public class ModBlocks {
 
         GhostBlock = new ModBlockGhostBlock().setCreativeTab(Main.MiscTab);
         Register(GhostBlock, "Ghost Block");
+        
+        Tv = new ModBlockTv().setCreativeTab(Main.MiscTab);
+        Register(Tv, "Tv");
 
 
 
@@ -243,6 +247,7 @@ public class ModBlocks {
         GameRegistry.registerTileEntity(TileEntityLaser.class, "TileEntityensLaser");
         GameRegistry.registerTileEntity(TileEntityLaserReciver.class, "TileEntityensLaserReciver");
         GameRegistry.registerTileEntity(TileEntityGhostBlock.class, "TileEntityGhostBlock");
+        GameRegistry.registerTileEntity(TileEntityTv.class, "Tv");
         
         
         Main.config.save();

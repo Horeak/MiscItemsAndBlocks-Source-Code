@@ -56,6 +56,7 @@ public class Crafting {
 		    GameRegistry.addRecipe(new ShapedOreRecipe(ModBlocks.Dice, new Object[]{"PPP", "PDP", "PPP", Character.valueOf('P'), "plankWood", 'D', Items.dye}));
 		    GameRegistry.addRecipe(new ShapedOreRecipe(ModBlocks.Table, new Object[]{"CCC", "HHH", "P P", 'C', new ItemStack(Blocks.carpet, 1, 14), Character.valueOf('P'), "plankWood", Character.valueOf('H'), "slabWood"}));	
 		    GameRegistry.addRecipe(new ShapedOreRecipe(ModItems.Turbine, new Object[]{"S S", " P ", "S S", 'S', Items.stick, Character.valueOf('P'), "plankWood"}));
+		    
 		
 		    MantleClientRegistry.registerManualLargeRecipe("worktable_res", new ItemStack(ModBlocks.CraftingInv), new ItemStack[]{new ItemStack(Blocks.wool),new ItemStack(Blocks.wool), new ItemStack(Blocks.wool), new ItemStack(Blocks.planks), new ItemStack(Blocks.chest), new ItemStack(Blocks.planks), new ItemStack(Blocks.planks), new ItemStack(Blocks.crafting_table), new ItemStack(Blocks.planks)});
 		    MantleClientRegistry.registerManualLargeRecipe("dice_res", new ItemStack(ModBlocks.Dice), new ItemStack[]{new ItemStack(Blocks.planks), new ItemStack(Blocks.planks), new ItemStack(Blocks.planks), new ItemStack(Blocks.planks), new ItemStack(Items.dye), new ItemStack(Blocks.planks), new ItemStack(Blocks.planks), new ItemStack(Blocks.planks), new ItemStack(Blocks.planks)});
@@ -128,7 +129,7 @@ public class Crafting {
 	        AddRecipe(new ItemStack(ModBlocks.Pillar, 4), new Object[]{"QQQ", " Q ", "QQQ", 'Q', Blocks.quartz_block});
 	        AddRecipe(new ItemStack(ModBlocks.ElectricFurnace), new Object[]{"PMP", "PFP", "PCP", 'P', new ItemStack(ModItems.IronPlate, 1, 2), 'M', ModBlocks.MachinePart, 'F', Blocks.furnace, 'C', new ItemStack(ModItems.Circuit, 1, 1)});
 	        AddRecipe(new ItemStack(ModBlocks.GamePart, 4), new Object[]{"III", " I ", "III", 'I', Items.iron_ingot});
-	        
+	        AddRecipe(new ItemStack(ModBlocks.Tv), new Object[]{"PPP", "PGP", "PPP", 'P', Blocks.planks, 'G', Blocks.glass});
 
 	        
 			if(ModConfig.AllowFlightChest)
@@ -138,6 +139,7 @@ public class Crafting {
 			GameRegistry.addSmelting(ModBlocks.SilverOre, new ItemStack(ModItems.SilverIngot), 2.0F);
 			GameRegistry.addSmelting(ModBlocks.OrangeLog, new ItemStack(Items.coal, 1, 1), 1.2F);
 			GameRegistry.addSmelting(ModItems.Flour, new ItemStack(Items.bread), 1F);
+			GameRegistry.addSmelting(ModItems.RawPenguinMeat, new ItemStack(ModItems.CookedPenguin), 20F);
 			
 			MantleClientRegistry.registerManualFurnaceRecipe("silver_ore_use", new ItemStack(ModItems.SilverIngot), new ItemStack(ModBlocks.SilverOre));
 			MantleClientRegistry.registerManualFurnaceRecipe("flour_use", new ItemStack(Items.bread), new ItemStack(ModItems.Flour));
