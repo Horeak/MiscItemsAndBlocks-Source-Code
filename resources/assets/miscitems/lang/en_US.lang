@@ -43,6 +43,7 @@ tile.lens_bench.name=Lens bench
 tile.laser.name=Laser
 tile.laser_reciver.name=Laser receiver
 tile.ghost_block.name=Ghost block
+tile.tv.name=TV
 
 item.xpextractor.name=Xp extractor
 item.silveringot.name=Silver ingot
@@ -105,8 +106,8 @@ item.lens.name=Lens
 item.creative_battery.name=Creative Battery
 item.guidebook.Guide.name=Guide Book
 item.turbine.name=Turbine
-item.rawpenguinmeat.name=Raw Penguin
-item.cookedpenguin=Cooked Penguin
+item.rawpenguinmeat.name=Raw Penguin Meat
+item.cookedpenguin.name=Cooked Penguin Meat
 
 
 

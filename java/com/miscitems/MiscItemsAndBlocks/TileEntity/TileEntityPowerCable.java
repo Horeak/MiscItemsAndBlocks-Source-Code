@@ -206,7 +206,7 @@ public class TileEntityPowerCable extends TileEntity implements IPowerCable {
 
 	 
 	
- }
+ }    		//TODO Power cables are not "sending" their power only copying
 
    public void Cable(World world, int x, int y, int z){
 	   if(world.getTileEntity(x, y, z) instanceof IPowerCable){

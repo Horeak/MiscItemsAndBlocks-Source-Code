@@ -12,6 +12,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
 import java.util.ArrayList;
@@ -129,7 +130,7 @@ public class Crafting {
 	        AddRecipe(new ItemStack(ModBlocks.Pillar, 4), new Object[]{"QQQ", " Q ", "QQQ", 'Q', Blocks.quartz_block});
 	        AddRecipe(new ItemStack(ModBlocks.ElectricFurnace), new Object[]{"PMP", "PFP", "PCP", 'P', new ItemStack(ModItems.IronPlate, 1, 2), 'M', ModBlocks.MachinePart, 'F', Blocks.furnace, 'C', new ItemStack(ModItems.Circuit, 1, 1)});
 	        AddRecipe(new ItemStack(ModBlocks.GamePart, 4), new Object[]{"III", " I ", "III", 'I', Items.iron_ingot});
-	        AddRecipe(new ItemStack(ModBlocks.Tv), new Object[]{"PPP", "PGP", "PPP", 'P', Blocks.planks, 'G', Blocks.glass});
+	        AddRecipe(new ItemStack(ModBlocks.Tv), new Object[]{"PIP", "IRI", "PGP", 'P', Blocks.planks, 'G', Blocks.glass, 'R', Items.redstone, 'I', Items.iron_ingot});
 
 	        
 			if(ModConfig.AllowFlightChest)
@@ -140,8 +141,13 @@ public class Crafting {
 			GameRegistry.addSmelting(ModBlocks.OrangeLog, new ItemStack(Items.coal, 1, 1), 1.2F);
 			GameRegistry.addSmelting(ModItems.Flour, new ItemStack(Items.bread), 1F);
 			GameRegistry.addSmelting(ModItems.RawPenguinMeat, new ItemStack(ModItems.CookedPenguin), 20F);
-			
-			MantleClientRegistry.registerManualFurnaceRecipe("silver_ore_use", new ItemStack(ModItems.SilverIngot), new ItemStack(ModBlocks.SilverOre));
+
+        FurnaceRecipes.smelting().func_151394_a(new ItemStack(ModItems.PizzaRaw, 1, 0), new ItemStack(ModItems.Pizza, 1 , 0), 20F);
+        FurnaceRecipes.smelting().func_151394_a(new ItemStack(ModItems.PizzaRaw, 1, 1), new ItemStack(ModItems.Pizza, 1 , 1), 20F);
+        FurnaceRecipes.smelting().func_151394_a(new ItemStack(ModItems.PizzaRaw, 1, 2), new ItemStack(ModItems.Pizza, 1 , 2), 20F);
+        FurnaceRecipes.smelting().func_151394_a(new ItemStack(ModItems.PizzaRaw, 1, 3), new ItemStack(ModItems.Pizza, 1 , 3), 20F);
+
+        MantleClientRegistry.registerManualFurnaceRecipe("silver_ore_use", new ItemStack(ModItems.SilverIngot), new ItemStack(ModBlocks.SilverOre));
 			MantleClientRegistry.registerManualFurnaceRecipe("flour_use", new ItemStack(Items.bread), new ItemStack(ModItems.Flour));
 	}
 	

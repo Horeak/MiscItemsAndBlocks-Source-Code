@@ -12,6 +12,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
@@ -24,7 +25,7 @@ public class ModBlockTv extends BlockContainer{
 	protected ModBlockTv() {
 		super(Material.iron);
 		this.setHardness(1);
-		this.setBlockBounds(0, 0, 0, 1, 0.84F, 1);
+		this.setBlockBounds(0.1F, 0, 0.1F, 0.9F, 0.84F, 0.9F);
 
 	}
 	
@@ -40,8 +41,8 @@ public class ModBlockTv extends BlockContainer{
 	    public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4)
 	    {
 
-	    	return par1World.isSideSolid(par2, par3 - 1, par4, ForgeDirection.UP);
-	    }
+	    	return par1World.getBlock(par2, par3 - 1, par4) != Blocks.air;
+        }
 	   
 	    public void registerBlockIcons(IIconRegister icon) {
 	        this.blockIcon = icon.registerIcon(Refrence.Mod_Id + ":TvIcon");

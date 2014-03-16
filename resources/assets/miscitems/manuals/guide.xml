@@ -164,7 +164,6 @@
 </recipe>
 </page>
 
-
 <page type="text">
 <title>Pillar</title>
 <text>The pillar is a block very similar to the game pieces by looks but the pillar can not be pushed like the game pieces. The pillar can also unlike the game pieces connect sideways and the pillar is meant as a decorative block.
@@ -174,6 +173,19 @@
 <text>Recipe</text>
 <recipe>
 <name>pillar_res</name>
+<size>three</size>
+</recipe>
+</page>
+
+<page type="text">
+<title>TV</title>
+<text>The TV is a decorative block and does not have any actual functions.
+</text>
+</page>
+<page type="crafting">
+<text>Recipe</text>
+<recipe>
+<name>tv_res</name>
 <size>three</size>
 </recipe>
 </page>

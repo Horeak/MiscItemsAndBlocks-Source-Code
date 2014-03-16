@@ -183,9 +183,9 @@ public class TileEntityOvenCore extends TileEntityInvBase implements ISidedInven
     	
     	if(Heat > 0){
     		if(this.getStackInSlot(1) != null){
-    			
+
+
     			if(Output() != null && !this.worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord)){
-    				
     				
     				if(WorkTime >= FinishTime){
     					WorkTime = 0;
@@ -305,8 +305,9 @@ public class TileEntityOvenCore extends TileEntityInvBase implements ISidedInven
 
                 }
 
-            }else{
-                if(item == ModItems.Flour)return new ItemStack(Items.bread);
+            }else if (FurnaceRecipes.smelting().getSmeltingResult(itemU) != null && FurnaceRecipes.smelting().getSmeltingResult(itemU).getItem() instanceof ItemFood){
+
+                return FurnaceRecipes.smelting().getSmeltingResult(itemU);
             }
     	
     	}

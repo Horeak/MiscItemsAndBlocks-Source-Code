@@ -63,9 +63,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 	@Mod(modid = Refrence.Mod_Id, name = Refrence.Mod_Name, version = Refrence.Version)
 	public class Main 
 	{
-	
 
-		public static final Logger Log = Logger.getLogger("MiscItems");
 	
 		@Instance(Refrence.Mod_Id)
 		public static Main instance = new Main();
@@ -142,8 +140,8 @@ import cpw.mods.fml.relauncher.SideOnly;
         private Object entityRenderMap;
 	
         @EventHandler
-        public void preInit(FMLPreInitializationEvent event) 
-        {    	
+        public void preInit(FMLPreInitializationEvent event)
+        {
 	
         	//TODO Add some type of ore doubling
 	

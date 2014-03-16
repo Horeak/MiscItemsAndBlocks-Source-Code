@@ -20,8 +20,7 @@ public class TileEntityGhostBlock extends TileEntity{
     public boolean Locked;
     public String Placer = "";
 	
-	
-	//TODO //FIXME Try to find a way to encode block id in meta data
+
 
 	 public void readFromNBT(NBTTagCompound NBT)
 	    {

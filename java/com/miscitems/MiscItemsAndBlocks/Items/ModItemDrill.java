@@ -43,7 +43,7 @@ public class ModItemDrill extends ModItemPowerTool{
 		super(0, par2, Mineable);
 		this.setMaxStackSize(1);
 		this.setMaxDamage(MaxCharge);
-		this.efficiencyOnProperMaterial = 8;
+		this.efficiencyOnProperMaterial = 10;
 	}
 	
 	

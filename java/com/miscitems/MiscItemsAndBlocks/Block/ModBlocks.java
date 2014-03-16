@@ -206,7 +206,7 @@ public class ModBlocks {
         Register(GhostBlock, "Ghost Block");
         
         Tv = new ModBlockTv().setCreativeTab(Main.MiscTab);
-        Register(Tv, "Tv");
+        Register(Tv, ModItemBlockTv.class , "Tv");
 
 
 
