@@ -20,6 +20,7 @@ import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
@@ -70,7 +71,7 @@ public class EntityTurtle extends EntityAnimal
    //  */
     protected String getHurtSound()
     {
-        return Refrence.SoundPrefix + "mob.Penguin.death";
+        return Refrence.SoundPrefix + "mob.Turtle.death";
     }
 
     /**
@@ -78,7 +79,7 @@ public class EntityTurtle extends EntityAnimal
      */
     protected String getDeathSound()
     {
-        return Refrence.SoundPrefix + ":mob.Penguin.death";
+        return Refrence.SoundPrefix + ":mob.Turtle.death";
     }
 
     protected void func_145780_a(int p_145780_1_, int p_145780_2_, int p_145780_3_, Block p_145780_4_)
@@ -110,22 +111,12 @@ public class EntityTurtle extends EntityAnimal
 
         for (k = 0; k < j; ++k)
         {
-            this.dropItem(Items.feather, 1);
+            this.dropItem(ItemBlock.getItemFromBlock(ModBlocks.TurtleShell), 1);
         }
 
         j = this.rand.nextInt(3) + 1 + this.rand.nextInt(1 + par2);
 
-        for (k = 0; k < j; ++k)
-        {
-            if (this.isBurning())
-            {
-                this.dropItem(ModItems.CookedPenguin, 1);
-            }
-            else
-            {
-                this.dropItem(ModItems.RawPenguinMeat , 1);
-            }
-        }
+
     }
 
 

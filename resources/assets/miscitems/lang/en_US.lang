@@ -43,7 +43,8 @@ tile.lens_bench.name=Lens bench
 tile.laser.name=Laser
 tile.laser_reciver.name=Laser receiver
 tile.ghost_block.name=Ghost block
-tile.tv.name=TV
+tile.tv.name=Tv
+tile.turtleshell.name=Turtle shell
 
 item.xpextractor.name=Xp extractor
 item.silveringot.name=Silver ingot
@@ -268,6 +269,7 @@ items.desc.xpextractor.3=You require at least 1 glass bottle
 entity.powerarrow.name=Power Arrow
 entity.silverarrow.name=Silver Arrow
 entity.Penguin.name=Penguin
+entity.Turtle.name=Turtle
 
 death.attack.powerarrow.shotby=%1$s was shot by %2$s with a electric bow.
 death.attack.silverarrow.shotby=%1$s was shot by %2$s with a silver bow.

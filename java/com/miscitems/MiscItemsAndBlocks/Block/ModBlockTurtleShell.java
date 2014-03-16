@@ -25,7 +25,7 @@ public class ModBlockTurtleShell extends BlockContainer{
 	protected ModBlockTurtleShell() {
 		super(Material.rock);
 		this.setHardness(1);
-		this.setBlockBounds(0, 0, 0, 1, 0.84F, 1);
+		this.setBlockBounds(3, 0, 3, 0.7F, 0.5F, 0.7F);
 
 	}
 	
