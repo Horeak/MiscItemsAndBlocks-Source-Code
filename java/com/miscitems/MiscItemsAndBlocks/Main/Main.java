@@ -139,7 +139,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 
         };
 
-        private Object entityRenderMap;
 	
         @EventHandler
         public void preInit(FMLPreInitializationEvent event)
