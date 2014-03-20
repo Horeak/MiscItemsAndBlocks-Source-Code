@@ -20,6 +20,11 @@
 </link>
 
 <link>
+<text>Electrical blocks and items</text>
+<icon>charger</icon>
+</link>
+
+<link>
 <text>Items</text>
 <icon>guide_book</icon>
 </link>
@@ -28,6 +33,14 @@
 <text>Other changes and additions</text>
 <icon>writable_book</icon>
 </link>
+</page>
+
+<page type="text">
+<title>Blocks</title>
+<text>In this part of the guide all the normal blocks will be shown.
+</text>
+</page>
+<page type="blank">
 </page>
 
 <page type="text">
@@ -308,6 +321,251 @@
 </page>
 
 
+<page type="text">
+<title>Dice Stand</title>
+<text>The dice stand is a block version of the dice. The dice stand changes number when right clicked or when receiving a redstone signal. 
+</text>
+</page>
+<page type="crafting">
+<text>Recipe</text>
+<recipe>
+<name>dice_stand_res</name>
+<size>two</size>
+</recipe>
+</page>
+
+
+
+<page type="text">
+<title>Wireless Redstone</title>
+<text>The wireless redstone block does what it sounds like it can be linked up with another wireless redstone block using data chips then when the sending part is receiving redstone it will transmit it to the receiving.
+</text>
+</page>
+<page type="crafting">
+<text>Recipe</text>
+<recipe>
+<name>wireless_redstone_res</name>
+<size>three</size>
+</recipe>
+</page>
+
+
+<page type="text">
+<title>Wireless Item transfer</title>
+<text>The wireless item transfer block can be linked up with another using data chips and will then send item from one end to the other storing it in the internal inventory in the receiving end.
+</text>
+</page>
+<page type="crafting">
+<text>Recipe</text>
+<recipe>
+<name>wireless_item_transfer_res</name>
+<size>three</size>
+</recipe>
+</page>
+
+
+<page type="text">
+<title>Ghost block</title>
+<text>The ghost block is a non-solid block which can be hidden as another block by right-clicking it with the block you want to hide it as. The ghost block can also be locked to the player that placed it by shift-right clicking it.  
+</text>
+</page>
+<page type="crafting">
+<text>Recipe</text>
+<recipe>
+<name>ghost_block_res</name>
+<size>three</size>
+</recipe>
+</page>
+
+
+<page type="text">
+<title>Electrical blocks and items</title>
+<text>In this part of the guide all the blocks and items related to the power system added to MiscItemsAndBlocks will be shown.
+</text>
+</page>
+<page type="blank">
+</page>
+
+
+<page type="text">
+<title>Machine Part</title>
+<text>The machine part is a block used for crafting other electrical machines but it can also be used as a decorative block.
+</text>
+</page>
+<page type="crafting">
+<text>Recipe</text>
+<recipe>
+<name>machine_part_res</name>
+<size>three</size>
+</recipe>
+</page>
+
+
+<page type="text">
+<title>Energy Storage Cube</title>
+<text>The Energy Storage Cube is a block which can store energy and output it. The energy storage cube will output from the orange side and input on all other sides. The energy storage cube can be rotated by clicking on it with a wrench and shift-right-clicking with a wrench to set it to the opposite side of the one clicked.
+</text>
+</page>
+<page type="crafting">
+<text>Recipe</text>
+<recipe>
+<name>energy_storage_cube_res</name>
+<size>three</size>
+</recipe>
+</page>
+
+
+<page type="text">
+<title>Solar Panel</title>
+<text>The solar panel will generate power to adjacent machines and cables that accept power. The solar panel will only generate power if it is daytime, it has clear sight to the sun and it is not raining.
+</text>
+</page>
+<page type="crafting">
+<text>Recipe</text>
+<recipe>
+<name>solar_panel_res</name>
+<size>three</size>
+</recipe>
+</page>
+
+
+<page type="text">
+<title>Wind Mill</title>
+<text>The wind mill will generate power if it is located above Y 80 and the heigher above that it is the more power it will generate.
+</text>
+</page>
+<page type="crafting">
+<text>Recipe</text>
+<recipe>
+<name>wind_mill_res</name>
+<size>three</size>
+</recipe>
+</page>
+
+
+<page type="text">
+<title>Coal Generator</title>
+<text>The coal generator will use coal as a fuel to generate power.
+</text>
+</page>
+<page type="crafting">
+<text>Recipe</text>
+<recipe>
+<name>coal_generator_res</name>
+<size>three</size>
+</recipe>
+</page>
+
+
+<page type="text">
+<title>Electric Furnace</title>
+<text>The electric furnace will use power from a adjacent charger point at it or connected power cables to smelt items/blocks like a normal furnace,
+</text>
+</page>
+<page type="crafting">
+<text>Recipe</text>
+<recipe>
+<name>electric_furnace_res</name>
+<size>three</size>
+</recipe>
+</page>
+
+
+<page type="text">
+<title>Power Cable</title>
+<text>The power cable can be used to transfer power from energy storage cubes and power generating blocks to machines and other blocks that accept power input.
+</text>
+</page>
+<page type="crafting">
+<text>Recipe</text>
+<recipe>
+<name>power_cable_res</name>
+<size>three</size>
+</recipe>
+</page>
+
+<page type="text">
+<title>Metal Press</title>
+<text>The metal press is a machine which allows you to create cheaper iron plates then the normal crafting recipes.
+</text>
+</page>
+<page type="crafting">
+<text>Recipe</text>
+<recipe>
+<name>metal_press_res</name>
+<size>three</size>
+</recipe>
+</page>
+
+<page type="text">
+<title>Lens Bench</title>
+<text>The lens bench allows you to customise lenses which can then used in laser blocks.
+</text>
+</page>
+<page type="crafting">
+<text>Recipe</text>
+<recipe>
+<name>lens_bench_res</name>
+<size>two</size>
+</recipe>
+</page>
+
+
+<page type="text">
+<title>Laser</title>
+<text>The laser can be used to transmit power, redstone or be a automated killing system by using custom lens where you can select length, power, colour and more.
+</text>
+</page>
+<page type="crafting">
+<text>Recipe</text>
+<recipe>
+<name>laser_res</name>
+<size>three</size>
+</recipe>
+</page>
+
+
+<page type="text">
+<title>Laser Receiver</title>
+<text>The laser receiver can be used to receive the power that is transferred through a laser by placing it on a block that accepts power or redstone.
+</text>
+</page>
+<page type="crafting">
+<text>Recipe</text>
+<recipe>
+<name>laser_receiver_res</name>
+<size>three</size>
+</recipe>
+</page>
+
+
+<page type="text">
+<title>Mining Station</title>
+<text>The mining station is a automated mining block that uses power and a pickaxe. The mining station can be set to sizes between 1x1 to 11x11 and it can be told how deep it should mine. The mining station will also be affected by some enchantments on the pickaxe like unbreaking, fortune and efficiency.
+</text>
+</page>
+<page type="crafting">
+<text>Recipe</text>
+<recipe>
+<name>mining_station_res</name>
+<size>three</size>
+</recipe>
+</page>
+
+
+<page type="text">
+<title>Teleporter</title>
+<text>The teleporter can be linked up to another teleporter using data chips. When linked up the teleporter can be used to teleport to another location by pressing sneak above it when it has atleast 100 power and has a valid data chip. The receiving teleporter can also be disabled by applying a redstone signal.
+</text>
+</page>
+<page type="crafting">
+<text>Recipe</text>
+<recipe>
+<name>teleporter_res</name>
+<size>three</size>
+</recipe>
+</page>
+
 
 
 <page type="text">
@@ -315,7 +573,5 @@
 <text>This guide book is still a work in progress so more info will be added soon. </text>
 
 </page>
-
-
 
 </book>

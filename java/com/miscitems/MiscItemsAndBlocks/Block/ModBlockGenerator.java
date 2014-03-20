@@ -30,13 +30,6 @@ public class ModBlockGenerator extends BlockContainer{
 		this.setHardness(2);
 	}
 	
-	public static final int META_ISACTIVE = 0x00000008;
-	public static final int MASK_DIR = 0x00000007;
-	public static final int META_DIR_NORTH = 0x00000001;
-	public static final int META_DIR_SOUTH = 0x00000002;
-	public static final int META_DIR_EAST = 0x00000003;
-	public static final int META_DIR_WEST = 0x00000000;
-	
 	IIcon IconTop;
 	IIcon IconSide;
 	IIcon IconFront;
@@ -48,28 +41,7 @@ public class ModBlockGenerator extends BlockContainer{
 	}
 
 
-	
-	private static int getSideFromFacing(int facing)
-	{
-		switch(facing)
-		{
-		case META_DIR_WEST:
-			return 4;
-			
-		case META_DIR_EAST:
-			return 5;
-			
-		case META_DIR_NORTH:
-			return 2;
-			
-		case META_DIR_SOUTH:
-			return 3;
-			
-		default:
-			return 4;
-		}
-	}
-	
+
 	   public void registerBlockIcons(IIconRegister par1IconRegister)
 	    {
 	    	
@@ -84,31 +56,11 @@ public class ModBlockGenerator extends BlockContainer{
 		@Override
 		public IIcon getIcon(int side, int metadata)
 		{
-			boolean isActive = ((metadata >> 3) == 1);
-			int facing = (metadata & MASK_DIR);
 			
-			return (side == getSideFromFacing(facing) ? (IconFront) : (side == 1 ? this.IconTop : side == 0 ? IconTop : this.IconSide));
+			return (side == 4 ? (IconFront) : (side == 1 ? this.IconTop : side == 0 ? IconTop : this.IconSide));
 		}
 	    
-		@Override
-		public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack itemStack)
-		{
-			int metadata = 0;
-			int facing = META_DIR_WEST;
-			
-			int dir = MathHelper.floor_double((double)(entity.rotationYaw * 4f / 360f) + 0.5) & 3;
-			if(dir == 0)
-				facing = META_DIR_NORTH;
-			if(dir == 1)
-				facing = META_DIR_EAST;
-			if(dir == 2)
-				facing = META_DIR_SOUTH;
-			if(dir == 3)
-				facing = META_DIR_WEST;
-			
-			metadata |= facing;
-			world.setBlockMetadataWithNotify(x, y, z, metadata, 2);
-		}
+
 		
 		
 		  @Override
@@ -174,7 +126,7 @@ public class ModBlockGenerator extends BlockContainer{
 					boolean Running = tile.GetTimeLeft() > 0;
 				
 				
-				return (side == getSideFromFacing(Meta) ? (Running ?  IconFrontLit : IconFront) : (side == 1 ? this.IconSide : side == 0 ? IconSide : this.IconSide));
+				return (side == Meta ? (Running ?  IconFrontLit : IconFront) : (side == 1 ? this.IconSide : side == 0 ? IconSide : this.IconSide));
 				}
 				return getIcon(side, Meta);
 			}
@@ -192,8 +144,7 @@ public class ModBlockGenerator extends BlockContainer{
 		    	if(tile.GetTimeLeft() > 0)
 		    	
 		        {
-		            int Meta = par1World.getBlockMetadata(par2, par3, par4);
-		            int l = getSideFromFacing(Meta);
+                    int l = par1World.getBlockMetadata(par2, par3, par4);
 		            float f = (float)par2 + 0.5F;
 		            float f1 = (float)par3 + 0.0F + par5Random.nextFloat() * 6.0F / 16.0F;
 		            float f2 = (float)par4 + 0.5F;
@@ -223,4 +174,74 @@ public class ModBlockGenerator extends BlockContainer{
 		        }
 		    }
 		    }
+
+
+    private void func_149930_e(World p_149930_1_, int p_149930_2_, int p_149930_3_, int p_149930_4_)
+    {
+        if (!p_149930_1_.isRemote)
+        {
+            Block block = p_149930_1_.getBlock(p_149930_2_, p_149930_3_, p_149930_4_ - 1);
+            Block block1 = p_149930_1_.getBlock(p_149930_2_, p_149930_3_, p_149930_4_ + 1);
+            Block block2 = p_149930_1_.getBlock(p_149930_2_ - 1, p_149930_3_, p_149930_4_);
+            Block block3 = p_149930_1_.getBlock(p_149930_2_ + 1, p_149930_3_, p_149930_4_);
+            byte b0 = 3;
+
+            if (block.func_149730_j() && !block1.func_149730_j())
+            {
+                b0 = 3;
+            }
+
+            if (block1.func_149730_j() && !block.func_149730_j())
+            {
+                b0 = 2;
+            }
+
+            if (block2.func_149730_j() && !block3.func_149730_j())
+            {
+                b0 = 5;
+            }
+
+            if (block3.func_149730_j() && !block2.func_149730_j())
+            {
+                b0 = 4;
+            }
+
+            p_149930_1_.setBlockMetadataWithNotify(p_149930_2_, p_149930_3_, p_149930_4_, b0, 2);
+        }
+    }
+
+    public void onBlockAdded(World par1World, int par2, int par3, int par4)
+    {
+        super.onBlockAdded(par1World, par2, par3, par4);
+        this.func_149930_e(par1World, par2, par3, par4);
+    }
+
+
+    public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack)
+    {
+        int l = MathHelper.floor_double((double)(par5EntityLivingBase.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+
+        if (l == 0)
+        {
+            par1World.setBlockMetadataWithNotify(par2, par3, par4, 2, 2);
+        }
+
+        if (l == 1)
+        {
+            par1World.setBlockMetadataWithNotify(par2, par3, par4, 5, 2);
+        }
+
+        if (l == 2)
+        {
+            par1World.setBlockMetadataWithNotify(par2, par3, par4, 3, 2);
+        }
+
+        if (l == 3)
+        {
+            par1World.setBlockMetadataWithNotify(par2, par3, par4, 4, 2);
+        }
+
+    }
+
+
 }

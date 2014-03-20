@@ -179,8 +179,10 @@ import cpw.mods.fml.relauncher.SideOnly;
         	ModItems.Init();
     	
         	Messages.Init();
-    	
+
         	Crafting.RegisterRecipes();
+
+
         	proxy.RegisterListeners();
     	
         	proxy.registerRenderThings();

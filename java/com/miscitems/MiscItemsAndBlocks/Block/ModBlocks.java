@@ -131,7 +131,7 @@ public class ModBlocks {
         OrangePlanks = new ModBlockOrangePlanks().setCreativeTab(Main.MiscTab);
         Register(OrangePlanks, "Orange Tree Planks");
         
-        MachinePart = new ModBlockMachinePart().setCreativeTab(Main.ElectricTab);
+        MachinePart = new ModBlockMachinePart().setCreativeTab(Main.ElectricTab).setHardness(1F);
         Register(MachinePart, "Machine Part");
         
         Charger = new ModBlockCharger().setCreativeTab(Main.ElectricTab);
@@ -209,9 +209,6 @@ public class ModBlocks {
         Tv = new ModBlockTv().setCreativeTab(Main.MiscTab);
         Register(Tv, ModItemBlockTv.class , "Tv");
 
-        TurtleShell = new ModBlockTurtleShell().setCreativeTab(Main.MiscTab);
-        Register(TurtleShell, ModItemBlockTurtleShell.class, "TurtleShell");
-
 
 
 		RegisterOreDictionary(new ItemStack(SilverOre), "oreSilver");
@@ -252,7 +249,6 @@ public class ModBlocks {
         GameRegistry.registerTileEntity(TileEntityLaserReciver.class, "TileEntityensLaserReciver");
         GameRegistry.registerTileEntity(TileEntityGhostBlock.class, "TileEntityGhostBlock");
         GameRegistry.registerTileEntity(TileEntityTv.class, "Tv");
-        GameRegistry.registerTileEntity(TileEntityTurtleShell.class, "TurtleShell");
         
         
         Main.config.save();

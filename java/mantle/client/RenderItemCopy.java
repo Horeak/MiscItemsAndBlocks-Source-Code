@@ -343,7 +343,13 @@ public class RenderItemCopy extends Render
     public void renderItemIntoGUI (SmallFontRenderer par1FontRenderer, TextureManager par2TextureManager, ItemStack par3ItemStack, int par4, int par5, boolean renderEffect)
     {
         Item k = par3ItemStack.getItem();
-        int l = par3ItemStack.getItemDamage();
+        int l;
+
+        if(k != null)
+         l = par3ItemStack.getItemDamage();
+        else
+        l = 0;
+
         Object object = par3ItemStack.getItem() == null ? null : par3ItemStack.getIconIndex();
         float f;
         int i1;
@@ -439,8 +445,9 @@ public class RenderItemCopy extends Render
         }
 
         GL11.glEnable(GL11.GL_CULL_FACE);
-    }
 
+
+    }
     private void renderEffect (TextureManager manager, int x, int y)
     {
         GL11.glDepthFunc(GL11.GL_GREATER);

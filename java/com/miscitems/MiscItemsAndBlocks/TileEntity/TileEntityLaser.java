@@ -404,7 +404,7 @@ double extraMaxZ = 0.0D;
     public Packet getDescriptionPacket() {
 
         if(this.getStackInSlot(0) != null)
-        if(Red > 0 || Green > 0 || Blue > 0 || Strength > 1 || Power > 0)
+        if(Red > 0 || Green > 0 || Blue > 0 || Strength > 1 || Power > 0 || Valid)
             return Main.NETWORK_MANAGER.populatePacket(new ClientLaserUpdatePacket(xCoord, yCoord, zCoord, Red, Green, Blue, Strength, Power));
 
         else

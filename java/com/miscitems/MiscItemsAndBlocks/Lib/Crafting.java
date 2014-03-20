@@ -123,7 +123,6 @@ public class Crafting {
 			AddRecipe(new ItemStack(ModBlocks.WindMill), new Object[]{"III", "SMS", "ICI", 'I', new ItemStack(ModItems.IronPlate, 1, 2), 'S', ModItems.Turbine, 'C', new ItemStack(ModItems.Circuit, 1, 0), 'M', ModBlocks.MachinePart});
 			AddRecipe(new ItemStack(ModBlocks.Generator), new Object[]{"III", "FMF", "ICI", 'I', new ItemStack(ModItems.IronPlate, 1, 2), 'C', new ItemStack(ModItems.Circuit, 1, 0), 'M', ModBlocks.MachinePart, 'F', Blocks.furnace});
 			AddRecipe(new ItemStack(ModBlocks.PowerCable, 32), new Object[]{"IGI", "RDR", "IGI", 'I', new ItemStack(ModItems.IronPlate, 1, 2), 'G', new ItemStack(ModItems.Circuit, 1, 1), 'R', ModItems.ModuleConnecter, 'D', new ItemStack(ModItems.BigBattery, 1, 32)});
-			AddRecipe(new ItemStack(ModBlocks.PowerCable, 48), new Object[]{"IGI", "RDR", "IGI", 'I', new ItemStack(ModItems.IronPlate, 1, 2), 'G', new ItemStack(ModItems.Circuit, 1, 1), 'R', ModItems.ModuleConnecter, 'D', new ItemStack(ModItems.BigBattery, 1, 0)});
 			AddRecipe(new ItemStack(ModItems.FloatBlockPlacer), new Object[]{"GDP", "DRC", "PCB", 'G', Blocks.glass, 'D', Items.diamond, 'P', new ItemStack(ModItems.IronPlate, 1, 2), 'R', Blocks.redstone_block, 'C', new ItemStack(ModItems.Circuit, 1, 1), 'B', new ItemStack(ModItems.AdvancedBattery, 1, 0)});
 			AddRecipe(new ItemStack(ModItems.AntiFallChestPlate), new Object[]{"PUP", "FCF", "PBP", 'P', new ItemStack(ModItems.IronPlate, 1, 2), 'U', new ItemStack(ModItems.Upgrades, 1, 0), 'F', ModItems.FloatBlockPlacer, 'C', Items.iron_chestplate, 'B', new ItemStack(ModItems.AdvancedBattery, 1, 0)});
 			AddRecipe(new ItemStack(ModItems.InfoScreenHelmet), new Object[]{"IIP", "GCB", "IIP", 'I', new ItemStack(ModItems.IronPlate, 1 ,0), 'P', new ItemStack(ModItems.IronPlate, 1, 2), 'G', Blocks.glass_pane, 'C', new ItemStack(ModItems.Circuit, 1, 1), 'B', new ItemStack(ModItems.Battery, 1, 0)});
@@ -438,7 +437,7 @@ public class Crafting {
                 }else{
                 if (!(object1 instanceof Block))
                 {
-                    throw new RuntimeException("Invalid shapeless recipy!");
+                    throw new NullPointerException("Invalid recipe registered for guide book!");
                 }
 
                 arraylist.add(new ItemStack((Block)object1));
@@ -448,27 +447,62 @@ public class Crafting {
             
             String name = Name.toLowerCase().replace(" ", "_") + "_res";
 
-            
-            
-            	if(arraylist.size() == 1){
-            		MantleClientRegistry.registerManualSmallRecipe(name, par1ItemStack, new ItemStack[]{(ItemStack) arraylist.get(0), null, null, null});
+
+
+            ItemStack[] stacks = new ItemStack[]{new ItemStack(Blocks.air)};
+
+
+            if(arraylist.size() == 1){
+                stacks = new ItemStack[]{GetItemStack(arraylist, 0)};
+            }else if (arraylist.size() == 2){
+                stacks = new ItemStack[]{GetItemStack(arraylist, 0), GetItemStack(arraylist, 1)};
+            }else if (arraylist.size() == 3){
+                stacks = new ItemStack[]{GetItemStack(arraylist, 0), GetItemStack(arraylist, 1), GetItemStack(arraylist, 2)};
+            }else if (arraylist.size() == 4){
+                stacks = new ItemStack[]{GetItemStack(arraylist, 0), GetItemStack(arraylist, 1), GetItemStack(arraylist, 2), GetItemStack(arraylist, 3)};
+            }else{
+                stacks = new ItemStack[]{GetItemStack(arraylist, 0)};
+            }
+            	if(stacks.length == 1){
+            		MantleClientRegistry.registerManualSmallRecipe(name, par1ItemStack, new ItemStack[]{stacks[0], null, null, null});
             		
-            	}else if (arraylist.size()  == 2){
-            		MantleClientRegistry.registerManualSmallRecipe(name, par1ItemStack, new ItemStack[]{(ItemStack)arraylist.get(0), (ItemStack)arraylist.get(1), null, null});
+            	}else if (stacks.length  == 2){
+            		MantleClientRegistry.registerManualSmallRecipe(name, par1ItemStack, new ItemStack[]{stacks[0], stacks[1], null, null});
             		
-            	}else if (arraylist.size()  == 3){
-            		MantleClientRegistry.registerManualSmallRecipe(name, par1ItemStack, new ItemStack[]{(ItemStack)arraylist.get(0), (ItemStack)arraylist.get(1), (ItemStack)arraylist.get(2), null});
+            	}else if (stacks.length  == 3){
+            		MantleClientRegistry.registerManualSmallRecipe(name, par1ItemStack, new ItemStack[]{stacks[0], stacks[1], stacks[2], null});
             		
-            	}else if (arraylist.size()  == 4){
-            		MantleClientRegistry.registerManualSmallRecipe(name, par1ItemStack, new ItemStack[]{(ItemStack)arraylist.get(0), (ItemStack)arraylist.get(1), (ItemStack)arraylist.get(2),(ItemStack)arraylist.get(3)});
-            		
-            	}else
-            		System.err.println("ERROR INVALID RECIPE");
+            	}else if (stacks.length  == 4){
+            		MantleClientRegistry.registerManualSmallRecipe(name, par1ItemStack, new ItemStack[]{stacks[0], stacks[1], stacks[2],stacks[3]});
+
+
+
+            	}else if(stacks.length < 1 || stacks.length > 4){
             MantleClientRegistry.registerManualSmallRecipe(name, new ItemStack(Blocks.air), new ItemStack[]{new ItemStack(Blocks.air), new ItemStack(Blocks.air), new ItemStack(Blocks.air), new ItemStack(Blocks.air)});
-            	
+
+            throw new NullPointerException("Invalid recipe registered for guide book! Max size is 4. Min size is 1. Size was: " + stacks.length);
+                }
             }
             
         }
 
+
+    public static ItemStack GetItemStack(ArrayList array, int i){
+
+        if(array.get(i) instanceof Block){
+            return new ItemStack((Block)array.get(i));
+        }
+
+        if(array.get(i) instanceof Item){
+            return new ItemStack((Item)array.get(i));
+        }
+
+        if(array.get(i) instanceof ItemStack){
+            return (ItemStack)array.get(i);
+        }
+
+
+        return new ItemStack(Blocks.air);
+    }
     
 }

@@ -73,7 +73,6 @@ public class ClientProxy extends ServerProxy {
     	
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBin.class, new TileEntityBinRender());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTv.class, new TileEntityTvRender());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTurtleShell.class, new TileEntityTurtleShellRender());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityDisarmTrap.class, new TileEntityDisarmTrapRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPowerCable.class, new TileEntityPowerCableRender());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityItemPedestal.class, new TileEntityItemPedestalRender());
@@ -121,7 +120,6 @@ public class ClientProxy extends ServerProxy {
         MinecraftForgeClient.registerItemRenderer(new ItemStack(ModBlocks.MetalPress).getItem(), new ItemRenderMetalPress());
         MinecraftForgeClient.registerItemRenderer(new ItemStack(ModBlocks.LaserReciver).getItem(), new LaserReciverItemRender());
         MinecraftForgeClient.registerItemRenderer(new ItemStack(ModBlocks.Tv).getItem(), new TvItemRender());
-        MinecraftForgeClient.registerItemRenderer(new ItemStack(ModBlocks.TurtleShell).getItem(), new TurtleShellItemRender());
         }
         Main.config.save();
 }
@@ -235,6 +233,7 @@ public class ClientProxy extends ServerProxy {
     	MantleClientRegistry.registerManualIcon("guide_book", new ItemStack(ModItems.GuideBook));
     	MantleClientRegistry.registerManualIcon("xp_storage", new ItemStack(ModBlocks.XpStorage));
     	MantleClientRegistry.registerManualIcon("writable_book", new ItemStack(Items.writable_book));
+        MantleClientRegistry.registerManualIcon("charger", new ItemStack(ModBlocks.Charger));
     	
     	
  }

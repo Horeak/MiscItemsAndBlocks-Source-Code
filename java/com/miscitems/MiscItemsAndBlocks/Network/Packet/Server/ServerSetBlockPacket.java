@@ -3,6 +3,7 @@ package com.miscitems.MiscItemsAndBlocks.Network.Packet.Server;
 import com.miscitems.MiscItemsAndBlocks.Network.IPacket;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -52,6 +53,11 @@ public class ServerSetBlockPacket extends IPacket{
 	@Override
 	public void execute(EntityPlayer player) {
 		if(player.worldObj.getWorldInfo().getVanillaDimension() == Dimension){
+            if(block == Blocks.air){
+                if (!player.worldObj.isRemote)
+                    player.worldObj.playAuxSFX(2001, x, y, z, Block.getIdFromBlock(player.worldObj.getBlock(x, y, z)) + (player.worldObj.getBlockMetadata(x, y, z) << 12));
+            }
+
 			player.worldObj.setBlock(x, y, z, block);
 			
 		}

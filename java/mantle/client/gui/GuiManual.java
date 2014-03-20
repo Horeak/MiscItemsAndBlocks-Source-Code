@@ -10,6 +10,7 @@ import mantle.client.pages.BookPage;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
@@ -152,6 +153,10 @@ public class GuiManual extends GuiScreen
 
     public void drawScreen (int par1, int par2, float par3)
     {
+
+        ScaledResolution scaledresolution = new ScaledResolution(this.mc.gameSettings, this.mc.displayWidth, this.mc.displayHeight);
+        int width = scaledresolution.getScaledWidth();
+        int height = scaledresolution.getScaledHeight();
     	
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         this.mc.getTextureManager().bindTexture(bookRight);
@@ -159,14 +164,19 @@ public class GuiManual extends GuiScreen
         byte localHeight = 8;
         this.drawTexturedModalRect(localWidth, localHeight, 0, 0, this.bookImageWidth, this.bookImageHeight);
 
+        this.drawCenteredString(mc.fontRenderer, "Page " + (currentPage + 2) + "/" + (maxPages + 1), localWidth + 100, 180, 0xeeeeee);
+
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         this.mc.getTextureManager().bindTexture(bookLeft);
         localWidth = localWidth - this.bookImageWidth;
         this.drawTexturedModalRect(localWidth, localHeight, 256 - this.bookImageWidth, 0, this.bookImageWidth, this.bookImageHeight);
 
+        this.drawCenteredString(mc.fontRenderer, "Page " + (currentPage + 1) + "/" + (maxPages + 1), localWidth + 100, 180, 0xeeeeee);
+
     	
         
         super.drawScreen(par1, par2, par3); //16, 12, 220, 12
+
 
         if (pageLeft != null)
             pageLeft.renderBackgroundLayer(localWidth + 16, localHeight + 12);
