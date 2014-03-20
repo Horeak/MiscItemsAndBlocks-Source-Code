@@ -106,7 +106,7 @@ public class ClientProxy extends ServerProxy {
         
         //Register Custom Item Models
         
-        if(!Main.config.get("Settings", "Disable custom item models. (If you are getting a OutOfMemoryException crash or lagging when looking a items with custom model)", false).getBoolean(false)){
+        if(!Main.config.get("Client Settings", "Disable custom item models. (If you are getting a OutOfMemoryException crash or lagging when looking a items with custom model)", false).getBoolean(false)){
         MinecraftForgeClient.registerItemRenderer(new ItemStack(ModBlocks.Bin).getItem(), new TrashBinItemRender());
         MinecraftForgeClient.registerItemRenderer(new ItemStack(ModBlocks.ItemPedestal).getItem(), new ItemPedestalItemRender());
         MinecraftForgeClient.registerItemRenderer(new ItemStack(ModBlocks.MiningChamber).getItem(), new MiningChamberItemRender());

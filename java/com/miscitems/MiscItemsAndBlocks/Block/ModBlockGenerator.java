@@ -73,10 +73,10 @@ public class ModBlockGenerator extends BlockContainer{
 	   public void registerBlockIcons(IIconRegister par1IconRegister)
 	    {
 	    	
-	        this.IconTop = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "ModuleBlank");
-	        this.IconSide = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "ModuleBlank");
-	        this.IconFront = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "GeneratorFront");
-	        this.IconFrontLit = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "GeneratorFrontLit");
+	        this.IconTop = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "ModuleBlank" + (Main.HDTextures ? "_16" : ""));
+	        this.IconSide = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "ModuleBlank" + (Main.HDTextures ? "_16" : ""));
+	        this.IconFront = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "GeneratorFront" + (Main.HDTextures ? "_16" : ""));
+	        this.IconFrontLit = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "GeneratorFrontLit" + (Main.HDTextures ? "_16" : ""));
 	        
 	    }
 	    

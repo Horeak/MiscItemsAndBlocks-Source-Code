@@ -15,7 +15,7 @@ public class TileEntityPowerCable extends TileEntity implements IPowerCable {
 
 	
        
-      private int Power = 0;
+    private int Power;
     private int MaxPower = 4;
 
        
@@ -26,6 +26,8 @@ public class TileEntityPowerCable extends TileEntity implements IPowerCable {
 	public void writeToNBT(NBTTagCompound compound){
 		super.writeToNBT(compound);
 		compound.setInteger("Power", this.Power);
+
+           compound.setInteger("MaxPower", this.MaxPower);
 	}
 	
 	@Override
@@ -34,6 +36,7 @@ public class TileEntityPowerCable extends TileEntity implements IPowerCable {
 	
 		
 		Power = compound.getInteger("Power");
+        MaxPower = compound.getInteger("MaxPower");
 
 		
 		
@@ -200,13 +203,13 @@ public class TileEntityPowerCable extends TileEntity implements IPowerCable {
 
         }
     }
-	 
+
+ }
 
 
 
 	 
-	
- }    		//TODO Power cables are not "sending" their power only copying
+
 
    public void Cable(World world, int x, int y, int z){
 	   if(world.getTileEntity(x, y, z) instanceof IPowerCable){
@@ -218,15 +221,14 @@ public class TileEntityPowerCable extends TileEntity implements IPowerCable {
                    tile.SetPower(tile.GetPower() + 1);
                    SetPower(GetPower() - 1);
                }
-           }else{
+           }else if(tile.GetPower() > tile.GetMaxPower()){
                tile.SetPower(tile.GetMaxPower());
            }
 
 
        }
 
-
-   }
+}
 }
 
 

@@ -28,7 +28,7 @@ public class ModBlockLensBench extends BlockContainer{
 
     public void registerBlockIcons(IIconRegister icon)
     {
-    	Top = icon.registerIcon(Refrence.Mod_Id + ":LensBenchTop");
+    	Top = icon.registerIcon(Refrence.Mod_Id + ":LensBenchTop" + (Main.HDTextures ? "_16" : ""));
     	Side = icon.registerIcon(Refrence.Mod_Id + ":LensBenchSide");
     	Bottom = icon.registerIcon(Refrence.Mod_Id + ":LensBenchBottom");
     	

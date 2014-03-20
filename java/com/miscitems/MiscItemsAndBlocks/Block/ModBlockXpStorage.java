@@ -32,7 +32,7 @@ public class ModBlockXpStorage extends BlockContainer{
 	   @SideOnly(Side.CLIENT)
 	   public void registerBlockIcons(IIconRegister par1IconRegister)
 	   {
-		   this.blockIcon = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "XpStorage");
+		   this.blockIcon = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "XpStorage" + (Main.HDTextures ? "_16" : ""));
 		   
 	   }
 

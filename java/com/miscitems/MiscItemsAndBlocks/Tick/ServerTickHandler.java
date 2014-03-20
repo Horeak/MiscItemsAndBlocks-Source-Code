@@ -45,6 +45,7 @@ public class ServerTickHandler{
     @SubscribeEvent
     public void tick(TickEvent.PlayerTickEvent event){
 
+        if(ModConfig.AllowPowerArmorEffects)
        if (event.type == TickEvent.Type.PLAYER){
             onPlayerTick(event.player);
         }
@@ -78,8 +79,7 @@ public class ServerTickHandler{
 			
 		
 		if(player.capabilities.isCreativeMode == false){
-			
-			if(ModConfig.AllowFlightChest)
+
 			Flight(player);
 			
 			Diving(player);

@@ -180,9 +180,9 @@ public class ModBlockElectricFurnace extends BlockContainer{
 	   public void registerBlockIcons(IIconRegister par1IconRegister)
 	    {
 	    	
-	        this.IconSide = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "ElFurnaceSide");
-	        this.IconFront = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "ElFurnaceFront");
-	        this.IconFrontLit = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "ElFurnaceFrontLit");
+	        this.IconSide = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "ElFurnaceSide" + (Main.HDTextures ? "_16" : ""));
+	        this.IconFront = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "ElFurnaceFront" + (Main.HDTextures ? "_16" : ""));
+	        this.IconFrontLit = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "ElFurnaceFrontLit" + (Main.HDTextures ? "_16" : ""));
 	        
 	    }
 	    

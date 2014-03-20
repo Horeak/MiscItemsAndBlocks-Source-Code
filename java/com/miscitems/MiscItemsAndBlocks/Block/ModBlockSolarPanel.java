@@ -35,8 +35,8 @@ public class ModBlockSolarPanel extends BlockContainer{
 	   @SideOnly(Side.CLIENT)
 	   public void registerBlockIcons(IIconRegister par1IconRegister)
 	   {
-		   this.TopIcon = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "SolarPanelTop");
-		   this.SideIcon = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "ModuleBlank");
+		   this.TopIcon = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "SolarPanelTop" + (Main.HDTextures ? "_16" : ""));
+		   this.SideIcon = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "ModuleBlank" + (Main.HDTextures ? "_16" : ""));
 		   
 	   }
 	   

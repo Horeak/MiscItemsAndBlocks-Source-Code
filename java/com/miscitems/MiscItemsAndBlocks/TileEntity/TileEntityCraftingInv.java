@@ -281,45 +281,55 @@ this.setResult(null);
 }
 
 
-@Override
-public void readFromNBT(NBTTagCompound tagCompound)
-{
-super.readFromNBT(tagCompound);
+    @Override
+    public void writeToNBT(NBTTagCompound compound){
+        super.writeToNBT(compound);
 
-NBTTagList nbttaglist = tagCompound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
-inv = new ItemStack[getSizeInventory()];
-for (int i = 0; i < nbttaglist.tagCount(); i++)
-{
-    NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
-    int j = nbttagcompound1.getByte("Slot") & 0xff;
-    if (j >= 0 && j < inv.length)
-    {
-    	inv[j] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
+        NBTTagList Items = new NBTTagList();
+
+        for (int i = 0; i < getSizeInventory(); i++){
+
+            ItemStack stack = getStackInSlot(i);
+            if(stack != null){
+
+                NBTTagCompound item = new NBTTagCompound();
+                item.setByte("Slot", (byte)i);
+                stack.writeToNBT(item);
+                Items.appendTag(item);
+            }
+        }
+
+
+        compound.setTag("Items", Items);
+
+
+
+
+
     }
-}
-if(worldObj == null)
-teInit = true;
-}
-@Override
-public void writeToNBT(NBTTagCompound tagCompound)
-{
-super.writeToNBT(tagCompound);
 
-NBTTagList itemList = new NBTTagList();	
+    @Override
+    public void readFromNBT(NBTTagCompound compound){
+        super.readFromNBT(compound);
 
-for(int i = 0; i < inv.length; i++)
-{
-ItemStack stack = inv[i];
-if(stack != null)
-{
-NBTTagCompound tag = new NBTTagCompound();	
-tag.setByte("Slot", (byte)i);
-stack.writeToNBT(tag);
-itemList.appendTag(tag);
-}
-}
-tagCompound.setTag("Inventory", itemList);
-}
+
+        NBTTagList nbttaglist = compound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
+        inv = new ItemStack[getSizeInventory()];
+        for (int i = 0; i < nbttaglist.tagCount(); i++)
+        {
+            NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
+            int j = nbttagcompound1.getByte("Slot") & 0xff;
+            if (j >= 0 && j < inv.length)
+            {
+                this.setInventorySlotContents(j, ItemStack.loadItemStackFromNBT(nbttagcompound1));
+            }
+        }
+
+        if(worldObj == null)
+            teInit = true;
+
+
+    }
 @Override
 public boolean hasCustomInventoryName() {
 return false;

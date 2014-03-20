@@ -93,6 +93,8 @@ import cpw.mods.fml.relauncher.SideOnly;
     
         public static NetworkManager NETWORK_MANAGER;
 
+        public static boolean HDTextures = false;
+
 
         public static Configuration config;
 
@@ -145,14 +147,19 @@ import cpw.mods.fml.relauncher.SideOnly;
         {
 	
         	//TODO Add some type of ore doubling
+            //TODO FINISH GUIDE!!!!!
 	
     	
         	config = new Configuration(new File(event.getModConfigurationDirectory() + "/tm1990's mods/MiscItemsAndBlocksConfig.cfg")); 
-        
+
+
+
         	try
         	{
         
         		ModConfig.Init(config);
+
+                HDTextures = !config.get("Client Settings", "Should HD textures be used for some blocks?", true).getBoolean(true);
     	
         	} 
         	

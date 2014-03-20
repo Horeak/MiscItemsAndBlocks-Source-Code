@@ -50,8 +50,8 @@ public class ModBlockCharger extends BlockContainer{
 	   @SideOnly(Side.CLIENT)
 	   public void registerBlockIcons(IIconRegister par1IconRegister)
 	   {
-		   this.InIcon = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "ChargerSideIn");
-		   this.OutIcon = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "ChargerSideOut");
+		   this.InIcon = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "ChargerSideIn" + (Main.HDTextures ? "_16" : ""));
+		   this.OutIcon = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "ChargerSideOut" + (Main.HDTextures ? "_16" : ""));
 		   
 	   }
 	   
