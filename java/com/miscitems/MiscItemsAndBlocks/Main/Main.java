@@ -40,8 +40,7 @@ import com.miscitems.MiscItemsAndBlocks.Lib.Messages;
 import com.miscitems.MiscItemsAndBlocks.Lib.ModConfig;
 import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
 import com.miscitems.MiscItemsAndBlocks.Misc.BoneMealEvent;
-import com.miscitems.MiscItemsAndBlocks.Mobs.EntityPenguin;
-import com.miscitems.MiscItemsAndBlocks.Mobs.EntityTurtle;
+
 import com.miscitems.MiscItemsAndBlocks.Network.NetworkManager;
 import com.miscitems.MiscItemsAndBlocks.Proxies.ServerProxy;
 import com.miscitems.MiscItemsAndBlocks.VersionChecker.VersionChecker;
@@ -226,18 +225,7 @@ import cpw.mods.fml.relauncher.SideOnly;
         public void Init(FMLInitializationEvent event){
 
         	proxy.registerRenderers();
-        	registerEntity(EntityPenguin.class, "Penguin", 0x070A0A, 0xFFF8F7, 64);
-            RegisterEntitySpawning(EntityPenguin.class, 30, 1, 3, EnumCreatureType.creature, new BiomeGenBase[]{
-                    BiomeGenBase.frozenOcean,
-                    BiomeGenBase.frozenRiver, BiomeGenBase.coldBeach,
-                    BiomeGenBase.coldTaiga, BiomeGenBase.extremeHillsPlus});
-            
-            registerEntity(EntityTurtle.class, "Turtle", 0x64E329, 0x2A6110, 64);
-            RegisterEntitySpawning(EntityTurtle.class, 40, 1, 4, EnumCreatureType.creature, new BiomeGenBase[]{
-                    BiomeGenBase.beach, BiomeGenBase.ocean,
-                    BiomeGenBase.deepOcean, BiomeGenBase.river});
-     	
-     	
+    	
 
         
         	NETWORK_MANAGER = new NetworkManager();
@@ -276,18 +264,5 @@ import cpw.mods.fml.relauncher.SideOnly;
 	
         }
 
-
-        public static void RegisterEntitySpawning(Class Entity, int SpawnChance, int MinSpawn, int MaxSpawn, EnumCreatureType Creature, BiomeGenBase[] biomes){
-            EntityRegistry.addSpawn(Entity, SpawnChance, MinSpawn, MaxSpawn, Creature, biomes);
-        }
-
-        public static void registerEntity(Class Entity, String name, int PrimColor, int SecColor, int Tracking)
-        {
-        	int entityID = EntityRegistry.findGlobalUniqueEntityId();
-
-        	EntityRegistry.registerGlobalEntityID(Entity, name, entityID);
-        	EntityRegistry.registerModEntity(Entity, name, entityID, instance, Tracking, 1, true);
-        	EntityList.entityEggs.put(entityID, new EntityList.EntityEggInfo(entityID, PrimColor, SecColor));
-        }
 	
 	}

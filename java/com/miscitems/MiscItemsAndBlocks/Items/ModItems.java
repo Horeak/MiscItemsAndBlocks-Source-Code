@@ -73,10 +73,7 @@ public class ModItems {
 	public static Item Lens;
 	
 	public static Item GuideBook;
-	
-	public static Item RawPenguinMeat;
-	
-	public static Item CookedPenguin;
+
 	
 	
 	
@@ -218,12 +215,6 @@ public class ModItems {
 		
 		Lens = new ModItemLens().setUnlocalizedName("Lens").setCreativeTab(Main.ElectricTab);
 		Register(Lens, "Lens");
-		
-		CookedPenguin = new ModItemCookedPenguin(6002, 4, true).setUnlocalizedName("CookedPenguin").setCreativeTab(CreativeTabs.tabFood);
-		Register(CookedPenguin, "CookedPenguin");
-		
-		RawPenguinMeat = new ModItemRawPenguin(6001, 1, true).setUnlocalizedName("RawPenguinMeat").setCreativeTab(CreativeTabs.tabFood);
-		Register(RawPenguinMeat, "RawPenguinMeat");
 		
 		
 		
