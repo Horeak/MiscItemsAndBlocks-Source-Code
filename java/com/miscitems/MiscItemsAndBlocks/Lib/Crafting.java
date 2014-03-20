@@ -136,11 +136,9 @@ public class Crafting {
 			if(ModConfig.AllowFlightChest)
 			GameRegistry.addRecipe(new ItemStack(ModItems.FlightChestPlate), new Object[] {"IFI", "ISI", "III", 'I', ModItems.SilverIngot, 'S', Items.nether_star, 'F', Items.feather});
 
-            GameRegistry.addSmelting(ModItems.RawPenguinMeat, new ItemStack(ModItems.CookedPenguin), 20F);
 			GameRegistry.addSmelting(ModBlocks.SilverOre, new ItemStack(ModItems.SilverIngot), 2.0F);
 			GameRegistry.addSmelting(ModBlocks.OrangeLog, new ItemStack(Items.coal, 1, 1), 1.2F);
 			GameRegistry.addSmelting(ModItems.Flour, new ItemStack(Items.bread), 1F);
-			GameRegistry.addSmelting(ModItems.RawPenguinMeat, new ItemStack(ModItems.CookedPenguin), 20F);
 
         FurnaceRecipes.smelting().func_151394_a(new ItemStack(ModItems.PizzaRaw, 1, 0), new ItemStack(ModItems.Pizza, 1 , 0), 20F);
         FurnaceRecipes.smelting().func_151394_a(new ItemStack(ModItems.PizzaRaw, 1, 1), new ItemStack(ModItems.Pizza, 1 , 1), 20F);
