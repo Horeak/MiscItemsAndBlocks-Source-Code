@@ -1,16 +1,10 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
-import com.miscitems.MiscItemsAndBlocks.Misc.ItemHelper;
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.Client.ClientGhostBlockPacket;
-import com.miscitems.MiscItemsAndBlocks.Network.PacketTileUpdate;
-import com.miscitems.MiscItemsAndBlocks.Network.PacketTileWithItemUpdate;
-import net.minecraft.block.Block;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.util.ForgeDirection;
 
 public class TileEntityGhostBlock extends TileEntity{
 

@@ -1,16 +1,12 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntityRenderer;
 
-import com.miscitems.MiscItemsAndBlocks.Models.ComputerModel;
 import com.miscitems.MiscItemsAndBlocks.Models.TvModel;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityComputer;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityTv;
-
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-
 import org.lwjgl.opengl.GL11;
 
 public class TileEntityTvRender extends TileEntitySpecialRenderer {

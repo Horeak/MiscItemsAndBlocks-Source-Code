@@ -1,6 +1,5 @@
 package com.miscitems.MiscItemsAndBlocks.Items;
 
-import com.google.common.collect.Sets;
 import com.miscitems.MiscItemsAndBlocks.Entity.EntityPowerArrow;
 import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
@@ -20,7 +19,6 @@ import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
 
 import java.util.List;
-import java.util.Set;
 
 public class ModItemElectricBow extends ModItemPowerTool{
 

@@ -2,15 +2,12 @@ package com.miscitems.MiscItemsAndBlocks.Lib;
 
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
-import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Recipes.MillRecipes;
-import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Recipes.SqueezerRecipes;
 import cpw.mods.fml.common.registry.GameRegistry;
 import mantle.client.MantleClientRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.oredict.ShapedOreRecipe;
@@ -23,15 +20,15 @@ public class Crafting {
 	
 	
 	public static void RegisterRecipes(){
-		
-		
-		
-		SqueezerRecipes.instance().AddRecipe(new ItemStack(Items.apple), new ItemStack(ModItems.Liquid, 1, 0));
-		SqueezerRecipes.instance().AddRecipe(new ItemStack(ModItems.Orange), new ItemStack(ModItems.Liquid, 1, 2));
-		SqueezerRecipes.instance().AddRecipe(new ItemStack(Items.carrot), new ItemStack(ModItems.Liquid, 1, 3));
-		
-		MillRecipes.instance().AddRecipe(new ItemStack(Items.wheat), new ItemStack(ModItems.Flour));
-		MillRecipes.instance().AddRecipe(new ItemStack(Items.rotten_flesh), new ItemStack(Items.leather));
+
+
+
+        MiscItemsApi.Recipes.SqueezerRecipes.instance().AddRecipe(new ItemStack(Items.apple), new ItemStack(ModItems.Liquid, 1, 0));
+		MiscItemsApi.Recipes.SqueezerRecipes.instance().AddRecipe(new ItemStack(ModItems.Orange), new ItemStack(ModItems.Liquid, 1, 2));
+        MiscItemsApi.Recipes.SqueezerRecipes.instance().AddRecipe(new ItemStack(Items.carrot), new ItemStack(ModItems.Liquid, 1, 3));
+
+        MiscItemsApi.Recipes.MillRecipes.instance().AddRecipe(new ItemStack(Items.wheat), new ItemStack(ModItems.Flour));
+        MiscItemsApi.Recipes.MillRecipes.instance().AddRecipe(new ItemStack(Items.rotten_flesh), new ItemStack(Items.leather));
 		
 		    AddShapelessRecipe(new ItemStack(ModItems.PaintBrush, 1, 1), new Object[]{new ItemStack(ModItems.PaintBrush, 1, 0), new ItemStack(Items.dye, 1, 1)});
 		    AddShapelessRecipe(new ItemStack(ModItems.PaintBrush, 1, 2), new Object[]{new ItemStack(ModItems.PaintBrush, 1, 0), new ItemStack(Items.dye, 1, 2)});
@@ -158,14 +155,14 @@ public class Crafting {
 
         if(CheckBigRecipe(output, Array)){
     	GameRegistry.addShapedRecipe(output, Array);
-    	RegisterGuideRes(output.getDisplayName(), output, Array);
+    	RegisterGuideRes(output.getUnlocalizedName().replace("tile.", "").replace(".name", "").replace(" ", "_").replace("item.", ""), output, Array);
         }
     }
     
     public static void AddShapelessRecipe(ItemStack output, Object... Array){
         if(CheckSmallRecipe(output, Array)){
     	GameRegistry.addShapelessRecipe(output, Array);
-    	RegisterShaplessGuideRes(output.getDisplayName(), output, Array);
+    	RegisterShaplessGuideRes(output.getUnlocalizedName().replace("tile.", "").replace(".name", "").replace(" ", "_").replace("item.", ""), output, Array);
         }
     }
 

@@ -1,4 +1,4 @@
-package com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Recipes;
+package MiscItemsApi.Recipes;
 
 import net.minecraft.item.ItemGlassBottle;
 import net.minecraft.item.ItemStack;
@@ -21,8 +21,7 @@ public class SqueezerRecipes
     /**
 * Registers a recipes for the squeezer (the main item will always be a glass bottle)
 *
-* @param Input_1 input item number 1
-* @param Input_2 input item number 2
+* @param Input input item
 * @param Output the recipes output
 */
     public void AddRecipe(ItemStack Input, ItemStack Output)
@@ -37,6 +36,7 @@ public class SqueezerRecipes
 
     /**
 * Gets the result for a recipe in the squeezer
+*        item_2 will always be a glass bottle
 *
 * @param item_1 input item number 1
 * @param item_2 input item number 2

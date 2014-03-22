@@ -172,7 +172,7 @@
 <page type="crafting">
 <text>Recipe</text>
 <recipe>
-<name>blank_game_piece_res</name>
+<name>GamePart.Number.0_res</name>
 <size>three</size>
 </recipe>
 </page>
@@ -409,7 +409,7 @@
 <page type="crafting">
 <text>Recipe</text>
 <recipe>
-<name>energy_storage_cube_res</name>
+<name>charger_res</name>
 <size>three</size>
 </recipe>
 </page>
@@ -533,7 +533,7 @@
 <page type="crafting">
 <text>Recipe</text>
 <recipe>
-<name>laser_receiver_res</name>
+<name>laser_reciver_res</name>
 <size>three</size>
 </recipe>
 </page>

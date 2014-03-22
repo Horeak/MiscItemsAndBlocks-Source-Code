@@ -1,7 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Block;
 
 import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
-import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityDisarmTrap;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;

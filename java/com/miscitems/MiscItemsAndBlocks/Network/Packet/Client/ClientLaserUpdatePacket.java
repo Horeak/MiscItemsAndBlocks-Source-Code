@@ -1,14 +1,9 @@
 package com.miscitems.MiscItemsAndBlocks.Network.Packet.Client;
 
 
-import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
 import com.miscitems.MiscItemsAndBlocks.Network.IPacket;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLaser;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import scala.tools.nsc.interpreter.Power;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;

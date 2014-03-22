@@ -4,7 +4,6 @@ import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Loader;
-import net.minecraftforge.common.MinecraftForge;
 
 import java.io.InputStream;
 import java.net.URL;

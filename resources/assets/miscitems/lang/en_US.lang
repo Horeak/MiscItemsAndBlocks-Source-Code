@@ -1,6 +1,5 @@
 itemGroup.tabMiscMisc=MiscItemsAndBlocks Misc
 itemGroup.tabMiscElectric=MiscItemsAndBlocks Electric
-itemGroup.tabMiscRandom=MiscItemsAndBlocsk Random
 
 tile.xp_storage_block.name= Xp storage block
 tile.trash_bin.name=Trash Bin

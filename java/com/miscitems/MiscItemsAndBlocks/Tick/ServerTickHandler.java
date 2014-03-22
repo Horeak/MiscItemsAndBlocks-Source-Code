@@ -10,7 +10,6 @@ import cpw.mods.fml.common.gameevent.TickEvent;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import sun.net.www.protocol.http.AuthCacheValue;
 
 import java.util.ArrayList;
 import java.util.HashMap;

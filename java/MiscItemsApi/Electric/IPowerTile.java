@@ -1,4 +1,4 @@
-package com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Electric;
+package MiscItemsApi.Electric;
 
 public interface IPowerTile {
 

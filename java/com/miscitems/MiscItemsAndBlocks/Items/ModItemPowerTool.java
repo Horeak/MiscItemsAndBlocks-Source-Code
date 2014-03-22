@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Items;
 
-import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Electric.IPowerItem;
+import MiscItemsApi.Electric.IPowerItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 

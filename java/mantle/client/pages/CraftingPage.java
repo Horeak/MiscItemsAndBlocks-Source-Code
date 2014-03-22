@@ -1,6 +1,7 @@
 package mantle.client.pages;
 
 import mantle.client.MantleClientRegistry;
+import mantle.client.gui.GuiManual;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -18,6 +19,8 @@ public class CraftingPage extends BookPage
     String text;
     String size;
     ItemStack[] icons;
+
+    int xS, yS;
 
     @Override
     public void readPageFromXML (Element element)
@@ -57,6 +60,8 @@ public class CraftingPage extends BookPage
         RenderHelper.enableGUIStandardItemLighting();
         manual.renderitem.zLevel = 100;
 
+        xS = localWidth;
+        yS = localHeight;
 
         if (recipeSize == 2)
         {
@@ -117,5 +122,7 @@ public class CraftingPage extends BookPage
         if (size == 3)
             manual.drawTexturedModalRect(localWidth - 8, localHeight + 28, 0, 0, 183, 114);
     }
+
+
 
 }

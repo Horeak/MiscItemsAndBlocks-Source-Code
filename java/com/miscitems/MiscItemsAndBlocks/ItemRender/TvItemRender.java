@@ -1,9 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.ItemRender;
 
 
-import com.miscitems.MiscItemsAndBlocks.Models.PillarModel;
 import com.miscitems.MiscItemsAndBlocks.Models.TvModel;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityPillar;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;

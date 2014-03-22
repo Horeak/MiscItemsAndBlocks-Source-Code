@@ -2,7 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
 import com.miscitems.MiscItemsAndBlocks.Laser.ILaserReciver;
 import com.miscitems.MiscItemsAndBlocks.Laser.LaserInGame;
-import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Electric.IPowerTile;
+import MiscItemsApi.Electric.IPowerTile;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 

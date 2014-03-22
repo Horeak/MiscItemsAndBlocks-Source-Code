@@ -1,4 +1,4 @@
-package com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Recipes;
+package MiscItemsApi.Recipes;
 
 import net.minecraft.item.ItemStack;
 

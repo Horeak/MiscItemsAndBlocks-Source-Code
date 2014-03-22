@@ -3,7 +3,6 @@ package com.miscitems.MiscItemsAndBlocks.VersionChecker;
 import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.ClientTickEvent;
 import net.minecraft.util.EnumChatFormatting;

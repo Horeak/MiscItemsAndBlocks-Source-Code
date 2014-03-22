@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.LibMisc;
 
-import com.miscitems.MiscItemsAndBlocks.MiscItemsApi.Electric.IPowerTile;
+import MiscItemsApi.Electric.IPowerTile;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryLargeChest;
 import net.minecraft.item.ItemStack;

@@ -5,7 +5,6 @@ import com.miscitems.MiscItemsAndBlocks.Tick.TickHandlerClient;
 import cpw.mods.fml.common.Loader;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.ArrayList;
