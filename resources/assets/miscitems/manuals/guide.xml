@@ -172,7 +172,7 @@
 <page type="crafting">
 <text>Recipe</text>
 <recipe>
-<name>GamePart.Number.0_res</name>
+<name>gamepart.number.0_res</name>
 <size>three</size>
 </recipe>
 </page>
@@ -566,6 +566,128 @@
 </recipe>
 </page>
 
+
+<page type="text">
+<title>Drill</title>
+<text>The drill is a electric mining item which can be recharged in the Energy Storage Cube. The drill also has 3 modes: Normal(1x1), Bigger (3x3) and Biggest(5x5)
+</text>
+</page>
+<page type="crafting">
+<text>Recipe</text>
+<recipe>
+<name>drill_res</name>
+<size>three</size>
+</recipe>
+</page>
+
+
+    <page type="text">
+        <title>Circuit Board</title>
+        <text>The circuit board is a item used for creating most items and blocks in the power system.
+        </text>
+    </page>
+    <page type="blank">
+
+    </page>
+
+    <page type="crafting">
+        <text>Recipe</text>
+        <recipe>
+            <name>circuit.basic_res</name>
+            <size>three</size>
+        </recipe>
+    </page>
+
+    <page type="crafting">
+        <text>Recipe</text>
+        <recipe>
+            <name>circuit.advanced_res</name>
+            <size>three</size>
+        </recipe>
+    </page>
+
+
+    <page type="text">
+        <title>Module Connecter Part</title>
+        <text>The Module Connecter Part is a crafting item used for making diffrent power releated transfer blocks.
+        </text>
+    </page>
+    <page type="crafting">
+        <text>Recipe</text>
+        <recipe>
+            <name>moduleconnecter_res</name>
+            <size>three</size>
+        </recipe>
+    </page>
+
+
+    <page type="text">
+        <title>Solar Cells</title>
+        <text>The solar cell item is a crafting item used to making the solar panel block.
+        </text>
+    </page>
+    <page type="crafting">
+        <text>Recipe</text>
+        <recipe>
+            <name>solarcells_res</name>
+            <size>three</size>
+        </recipe>
+    </page>
+
+
+    <page type="text">
+        <title>Turbine</title>
+        <text>The turbine is a crafting item used to making the wind mill block.
+        </text>
+    </page>
+    <page type="crafting">
+        <text>Recipe</text>
+        <recipe>
+            <name>turbine_res</name>
+            <size>three</size>
+        </recipe>
+    </page>
+
+
+    <page type="text">
+        <title>Batteries</title>
+        <text>The batteries are a electric item which can be used to transfer power from different machines and for crafting. It is three different batteries: Battery(Can store 16 power), Bigger battery (Can store 32 power), Advanced battery(Can store 64 power).
+        </text>
+    </page>
+    <page type="crafting">
+        <text>Recipe</text>
+        <recipe>
+            <name>battery_res</name>
+            <size>three</size>
+        </recipe>
+    </page>
+    <page type="crafting">
+        <text>Recipe</text>
+        <recipe>
+            <name>bigbattery_res</name>
+            <size>three</size>
+        </recipe>
+    </page>
+    <page type="crafting">
+        <text>Recipe</text>
+        <recipe>
+            <name>advancedbattery_res</name>
+            <size>three</size>
+        </recipe>
+    </page>
+
+    <page type="text">
+        <title>Electric Shears</title>
+        <text>The electric shear is a electric version of the shears which can be recharged in a Energy Storage Cube.
+        </text>
+    </page>
+    <page type="crafting">
+        <text>Recipe</text>
+        <recipe>
+            <name>electricshears_res</name>
+            <size>three</size>
+        </recipe>
+    </page>
 
 
 <page type="text">

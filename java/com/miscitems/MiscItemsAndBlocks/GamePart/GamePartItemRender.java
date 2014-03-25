@@ -46,10 +46,15 @@ public class GamePartItemRender implements IItemRenderer
 		
 		
 		 GL11.glPushMatrix();
-         GL11.glTranslatef(0.5F, 1.4F, 0.5F);
+        if(type == ItemRenderType.EQUIPPED_FIRST_PERSON){
+            GL11.glTranslatef((float) 0.5F, (float) 1.9F, (float) 0.5F);
+        }else{
+            GL11.glTranslatef((float) 0.5F, (float) 1.4F, (float) 0.5F);
+        }
 
-         
-         Minecraft.getMinecraft().renderEngine.bindTexture(Texutre);
+
+
+        Minecraft.getMinecraft().renderEngine.bindTexture(Texutre);
 		
         GamePartModel model = new GamePartModel();
         

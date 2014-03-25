@@ -46,14 +46,23 @@ public class ComputerItemRender implements IItemRenderer
 		ComputerModel model = new ComputerModel();
 	    
 	    GL11.glPushMatrix();
-        GL11.glTranslatef((float) 0.5F, (float) 1.5F, (float) 0.5F);
-        
-        
-       Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("miscitems" , "textures/models/ComputerBlockModel.png"));
+        if(type == ItemRenderType.EQUIPPED_FIRST_PERSON){
+            GL11.glTranslatef((float) 0.5F, (float) 1.9F, (float) 0.5F);
+        }else{
+            GL11.glTranslatef((float) 0.5F, (float) 1.4F, (float) 0.5F);
+        }
+
+
+
+        Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("miscitems" , "textures/models/ComputerBlockModel.png"));
         
         
      GL11.glPushMatrix();
         GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
+
+        if(type == ItemRenderType.EQUIPPED_FIRST_PERSON){
+            GL11.glRotatef((3 * 90F), 0.0F, 1.0F, 0.0F);
+        }else
         GL11.glRotatef((2 * 90F), 0.0F, 1.0F, 0.0F);
         model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
         

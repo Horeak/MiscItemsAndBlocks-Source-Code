@@ -45,7 +45,11 @@ public class ItemRenderMetalPress implements IItemRenderer
 		MetalPressModel model = new MetalPressModel();
 		
         GL11.glPushMatrix();
-        GL11.glTranslatef((float) 0.5F, (float) 1.5F, (float) 0.5F);
+        if(type == ItemRenderType.EQUIPPED_FIRST_PERSON){
+            GL11.glTranslatef((float) 0.5F, (float) 1.7F, (float) 0.5F);
+        }else{
+            GL11.glTranslatef((float) 0.5F, (float) 1.5F, (float) 0.5F);
+        }
         
         
         Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation("miscitems" , "textures/models/MetalPress.png"));
@@ -53,7 +57,11 @@ public class ItemRenderMetalPress implements IItemRenderer
         
      GL11.glPushMatrix();
         GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
-        
+
+
+        if(type == ItemRenderType.EQUIPPED_FIRST_PERSON){
+            GL11.glRotatef((3 * 90F), 0.0F, 1.0F, 0.0F);
+        }else
         GL11.glRotatef((2 * 90F), 0.0F, 1.0F, 0.0F);
         
         model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F, null);

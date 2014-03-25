@@ -7,8 +7,10 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.MouseHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
+import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 import org.w3c.dom.Element;
@@ -66,7 +68,10 @@ public class CraftingPage extends BookPage
         if (recipeSize == 2)
         {
 
+
+
             if(icons != null && icons[0] != null && icons.length > 1 && icons[0].getItem() != null && icons[0].getItem() != ItemBlock.getItemFromBlock(Blocks.air)){
+
             manual.renderitem.renderItemAndEffectIntoGUI(manual.fonts, manual.getMC().renderEngine, icons[0], (localWidth + 126) / 2, (localHeight + 68) / 2);
             if (icons[0].stackSize > 1)
                 manual.renderitem.renderItemOverlayIntoGUI(manual.fonts, manual.getMC().renderEngine, icons[0], (localWidth + 126) / 2, (localHeight + 68) / 2, String.valueOf(icons[0].stackSize));
@@ -83,7 +88,7 @@ public class CraftingPage extends BookPage
 
 
 
-            if(icons != null && icons[0] != null){
+            if(icons != null && icons[0] != null && Item.itemRegistry.containsId(Item.getIdFromItem(icons[0].getItem())) && icons[0].stackSize > 0){
             manual.renderitem.renderItemAndEffectIntoGUI(manual.fonts, manual.getMC().renderEngine, icons[0], (localWidth + 138) / 2, (localHeight + 70) / 2);
             if (icons[0].stackSize > 1)
                 manual.renderitem.renderItemOverlayIntoGUI(manual.fonts, manual.getMC().renderEngine, icons[0], (localWidth + 134) / 2, (localHeight + 68) / 2, String.valueOf(icons[0].stackSize));
@@ -94,6 +99,7 @@ public class CraftingPage extends BookPage
                     manual.renderitem.renderItemAndEffectIntoGUI(manual.fonts, manual.getMC().renderEngine, icons[i + 1], (localWidth - 2 + 36 * (i % 3)) / 2, (localHeight + 36 * (i / 3) + 34) / 2);
             }
             }
+
         }
 
         manual.renderitem.zLevel = 0;

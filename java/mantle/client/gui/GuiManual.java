@@ -13,6 +13,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -71,10 +72,21 @@ public class GuiManual extends GuiScreen
     {
         if (button.enabled)
         {
+            if(Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)){
+                if (button.id == 1)
+                    currentPage += 10;
+                if (button.id == 2)
+                    currentPage -= 10;
+
+            }else{
             if (button.id == 1)
                 currentPage += 2;
             if (button.id == 2)
                 currentPage -= 2;
+            }
+
+            if(currentPage > maxPages)
+                currentPage = maxPages;
 
             updateText();
         }
@@ -158,20 +170,27 @@ public class GuiManual extends GuiScreen
         int width = scaledresolution.getScaledWidth();
         int height = scaledresolution.getScaledHeight();
 
+
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         this.mc.getTextureManager().bindTexture(bookRight);
         int localWidth = (this.width / 2);
         byte localHeight = 8;
         this.drawTexturedModalRect(localWidth, localHeight, 0, 0, this.bookImageWidth, this.bookImageHeight);
 
-        this.drawCenteredString(mc.fontRenderer, "Page " + (currentPage + 2) + "/" + (maxPages + 1), localWidth + 100, 180, 0xeeeeee);
+        this.drawCenteredString(mc.fontRenderer, "Page " + (currentPage + 2) + "/" + (maxPages + 1), localWidth + 100, 180, 0x999999);
+
 
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         this.mc.getTextureManager().bindTexture(bookLeft);
         localWidth = localWidth - this.bookImageWidth;
         this.drawTexturedModalRect(localWidth, localHeight, 256 - this.bookImageWidth, 0, this.bookImageWidth, this.bookImageHeight);
 
-        this.drawCenteredString(mc.fontRenderer, "Page " + (currentPage + 1) + "/" + (maxPages + 1), localWidth + 100, 180, 0xeeeeee);
+
+        if(Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)){
+            this.drawCenteredString(mc.fontRenderer, "Holding Shift (Page + 10)", localWidth + 110, 180, 0x999999);
+        }else{
+            this.drawCenteredString(mc.fontRenderer, "Page " + (currentPage + 1) + "/" + (maxPages + 1), localWidth + 100, 180, 0x999999);
+        }
 
     	
         

@@ -2,7 +2,9 @@ package com.miscitems.MiscItemsAndBlocks.Event;
 
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.relauncher.ReflectionHelper;
 import net.minecraft.client.entity.AbstractClientPlayer;
+import net.minecraft.client.renderer.ThreadDownloadImageData;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 
 import javax.swing.*;
@@ -35,10 +37,11 @@ public class CapeRenderEvent
         buildCloakURLDatabase();
         instance = this;
     }
-	@SubscribeEvent
+
+    @SubscribeEvent
     public void onPreRenderSpecials (RenderPlayerEvent.Specials.Pre event)
     {
-        if (Loader.isModLoaded("shadersmod"))
+        if (Loader.isModLoaded("shadersmod") )
         {
             return;
         }
@@ -48,7 +51,7 @@ public class CapeRenderEvent
 
             if (!capePlayers.contains(abstractClientPlayer))
             {
-                String cloakURL = cloaks.get(event.entityPlayer.getCommandSenderName());
+                String cloakURL = cloaks.get(event.entityPlayer.getDisplayName());
 
                 if (cloakURL == null)
                 {
@@ -57,8 +60,9 @@ public class CapeRenderEvent
 
                 capePlayers.add(abstractClientPlayer);
 
-               // ReflectionHelper.setPrivateValue(AbstractClientPlayer.class, abstractClientPlayer, false, "downloadImageCape.textureUploaded");
-              //TODO  abstractClientPlayer.getTextureCape().textureUploaded = false;
+
+                ReflectionHelper.setPrivateValue(ThreadDownloadImageData.class, abstractClientPlayer.getTextureCape(), false, "textureUploaded");
+               // abstractClientPlayer.getTextureCape().textureUploaded = false;
                 new Thread(new CloakThread(abstractClientPlayer, cloakURL)).start();
                 event.renderCape = true;
             }
@@ -89,10 +93,6 @@ public class CapeRenderEvent
                         String link = str.substring(str.indexOf(":") + 1);
                         new Thread(new CloakPreload(link)).start();
                         cloaks.put(nick, link);
-                    }
-                    else
-                    {
-                        System.err.println("[MiscItemsAndBlocks] [skins.txt] [Url: " + serverLocation + "] Syntax error on line " + linetracker + ": " + str);
                     }
                 }
                 linetracker++;
@@ -130,8 +130,7 @@ public class CapeRenderEvent
                 Image cape = new ImageIcon(new URL(cloakURL)).getImage();
                 BufferedImage bo = new BufferedImage(cape.getWidth(null), cape.getHeight(null), BufferedImage.TYPE_INT_ARGB);
                 bo.getGraphics().drawImage(cape, 0, 0, null);
-               // ReflectionHelper.setPrivateValue(AbstractClientPlayer.class, abstractClientPlayer, bo, "downloadImageCape.bufferedImage");
-              //TODO abstractClientPlayer.getTextureCape().bufferedImage = bo;
+                abstractClientPlayer.getTextureCape().setBufferedImage(bo);
             }
             catch (MalformedURLException e)
             {
@@ -163,10 +162,12 @@ public class CapeRenderEvent
         }
     }
 
+
     public void refreshCapes ()
     {
         cloaks.clear();
         capePlayers.clear();
         buildCloakURLDatabase();
     }
+
 }

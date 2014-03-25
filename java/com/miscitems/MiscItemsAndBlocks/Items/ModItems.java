@@ -87,55 +87,55 @@ public class ModItems {
         Register(GuideBook, "GuideBook");
 		
 		XpExtractor = new ModItemXpExtractor().setCreativeTab(Main.MiscTab);
-		Register(XpExtractor, StatCollector.translateToLocal("xpextractor"));
+		Register(XpExtractor, ("xpextractor"));
 		
 		SilverIngot = new ModItemSilverIngot().setUnlocalizedName("SilverIngot").setCreativeTab(Main.MiscTab);
-		Register(SilverIngot, StatCollector.translateToLocal("silveringot"));
+		Register(SilverIngot, ("silveringot"));
 		
 		SilverNugget = new ModItemSilverNugget().setUnlocalizedName("SilverNugget").setCreativeTab(Main.MiscTab);
-		Register(SilverNugget, StatCollector.translateToLocal("silvernugget"));
+		Register(SilverNugget, ("silvernugget"));
 		
 		SilverSword = new ModItemSilverSword(SilverMaterial).setUnlocalizedName("SilverSword").setCreativeTab(Main.MiscTab);
-		Register(SilverSword, StatCollector.translateToLocal("silversword"));
+		Register(SilverSword, ("silversword"));
 		
 		SilverBow = new ModItemSilverBow().setUnlocalizedName("SilverBow").setCreativeTab(Main.MiscTab);
-		Register(SilverBow, StatCollector.translateToLocal("silverbow"));
+		Register(SilverBow, ("silverbow"));
 		
 		SilverArrow = new ModItemSilverArrow().setUnlocalizedName("SilverArrow").setCreativeTab(Main.MiscTab);
-		Register(SilverArrow, StatCollector.translateToLocal("silverarrow"));
+		Register(SilverArrow, ("silverarrow"));
 		
         DivingHelmet = (new ModItemPowerArmor(PowerArmor, Main.proxy.addArmor("Power"), 0, 1, "PowerarmorHelmet")).setUnlocalizedName("Powerarmor Helmet").setCreativeTab(Main.MiscTab);
-        Register(DivingHelmet, StatCollector.translateToLocal("powerarmor.helmet"));
+        Register(DivingHelmet, ("powerarmor.helmet"));
 		
         FlightChestPlate = (new ModItemPowerArmor(PowerArmor, Main.proxy.addArmor("Power"), 1, 2, "PowerarmorChestplate")).setUnlocalizedName("Powerarmor Chestplate").setCreativeTab(Main.MiscTab);
-        Register(FlightChestPlate, StatCollector.translateToLocal("powerarmor.chestplate"));
+        Register(FlightChestPlate, ("powerarmor.chestplate"));
         
         RunningLeggings = (new ModItemPowerArmor(PowerArmor, Main.proxy.addArmor("Power"), 2, 3, "PowerarmorLeggings")).setUnlocalizedName("Powerarmor Leggings").setCreativeTab(Main.MiscTab);
-        Register(RunningLeggings, StatCollector.translateToLocal("powerarmor.leggings"));
+        Register(RunningLeggings, ("powerarmor.leggings"));
         
         JumpingBoots = (new ModItemPowerArmor(PowerArmor, Main.proxy.addArmor("Power"), 3, 4, "PowerarmorBoots")).setUnlocalizedName("Powerarmor Boots").setCreativeTab(Main.MiscTab);
-        Register(JumpingBoots, StatCollector.translateToLocal("powerarmor.boots"));
+        Register(JumpingBoots, ("powerarmor.boots"));
         
         Cardboard = new ModItemCardboard().setUnlocalizedName("Cardboard").setCreativeTab(Main.MiscTab);
-        Register(Cardboard, StatCollector.translateToLocal("cardboard"));
+        Register(Cardboard, ("cardboard"));
         
         Tomato = new ModItemTomato(3, 1F, false).setUnlocalizedName("Tomato").setCreativeTab(Main.MiscTab);
-        Register(Tomato, StatCollector.translateToLocal("tomato"));
+        Register(Tomato, ("tomato"));
         
         Flour = new ModItemFlour().setUnlocalizedName("Flour").setCreativeTab(Main.MiscTab);
-        Register(Flour, StatCollector.translateToLocal("flour"));
+        Register(Flour, ("flour"));
         
         TomatoSeeds = new ModItemTomatoSeeds(ModBlocks.TomatoPlant, Blocks.farmland);
-        Register(TomatoSeeds, StatCollector.translateToLocal("tomatoseeds"));
+        Register(TomatoSeeds, ("tomatoseeds"));
         
         PizzaBottom = new ModItemPizzaBottom().setUnlocalizedName("PizzaBottom").setCreativeTab(Main.MiscTab);
-        Register(PizzaBottom, StatCollector.translateToLocal("pizzabase"));
+        Register(PizzaBottom, ("pizzabase"));
         
         Liquid = new ModItemLiquid().setUnlocalizedName("Liquid").setCreativeTab(Main.MiscTab);
         RegisterOutName(Liquid, "Liquid");
         
         Cheese = new ModItemCheese().setUnlocalizedName("Cheese").setCreativeTab(Main.MiscTab);
-        Register(Cheese, StatCollector.translateToLocal("cheese"));
+        Register(Cheese, ("cheese"));
         
         PizzaRaw = new ModItemPizzaRaw().setUnlocalizedName("PizzaRaw").setCreativeTab(Main.MiscTab);
         RegisterOutName(PizzaRaw, "Pizza Raw");
@@ -144,69 +144,69 @@ public class ModItems {
         RegisterOutName(Pizza, "Pizza");
         
         Orange = new ModItemOrange().setUnlocalizedName("Orange").setCreativeTab(Main.MiscTab);
-        Register(Orange, StatCollector.translateToLocal("orange"));
+        Register(Orange, ("orange"));
         
         DisarmStick = new ModItemDisarmStick().setUnlocalizedName("DisarmStick").setCreativeTab(Main.MiscTab);
-        Register(DisarmStick, StatCollector.translateToLocal("disarmstick"));
+        Register(DisarmStick, ("disarmstick"));
         
         Drill = new ModItemDrill(ToolMaterial.EMERALD).setUnlocalizedName("Drill").setCreativeTab(Main.ElectricTab);
-        Register(Drill, StatCollector.translateToLocal("drill"));
+        Register(Drill, ("drill"));
         
         Circuit = new ModItemCircuit().setUnlocalizedName("Circuit").setCreativeTab(Main.ElectricTab);
         RegisterOutName(Circuit, "Circuit Board");
         
         ModuleConnecter = new ModItemModuleConnecter().setUnlocalizedName("ModuleConnecter").setCreativeTab(Main.ElectricTab);
-        Register(ModuleConnecter, StatCollector.translateToLocal("moduleconnecter"));
+        Register(ModuleConnecter, ("moduleconnecter"));
         
         SolarCells = new ModItemSolarCells().setUnlocalizedName("SolarCells").setCreativeTab(Main.ElectricTab);
-        Register(SolarCells, StatCollector.translateToLocal("solarcells"));
+        Register(SolarCells, ("solarcells"));
         
         Turbine = new ModItemTurbine().setUnlocalizedName("Turbine").setCreativeTab(Main.ElectricTab);
-        Register(Turbine, StatCollector.translateToLocal("turbine"));
+        Register(Turbine, ("turbine"));
         
         Battery = new ModItemBattery().setUnlocalizedName("Battery").setCreativeTab(Main.ElectricTab);
-        Register(Battery, StatCollector.translateToLocal("battery"));
+        Register(Battery, ("battery"));
         
         BigBattery = new ModItemBigBattery().setUnlocalizedName("BigBattery").setCreativeTab(Main.ElectricTab);
-        Register(BigBattery, StatCollector.translateToLocal("bigbattery"));
+        Register(BigBattery, ("bigbattery"));
         
         AdvancedBattery = new ModItemAdvancedBattery().setUnlocalizedName("AdvancedBattery").setCreativeTab(Main.ElectricTab);
-        Register(AdvancedBattery, StatCollector.translateToLocal("advancedbattery"));
+        Register(AdvancedBattery, ("advancedbattery"));
         
 		CreativeBattery = new ModItemCreativeBattery().setUnlocalizedName("CreativeBattery").setCreativeTab(Main.ElectricTab);
 		Register(CreativeBattery, "Creative Battery");
         
         ElectricShears = new ModItemElectricShear().setUnlocalizedName("ELShears").setCreativeTab(Main.ElectricTab);
-        Register(ElectricShears, StatCollector.translateToLocal("electricshears"));
+        Register(ElectricShears, ("electricshears"));
         
         ElectricBow = new ModItemElectricBow().setUnlocalizedName("ElBow").setCreativeTab(Main.ElectricTab);
-        Register(ElectricBow, StatCollector.translateToLocal("electricbow"));
+        Register(ElectricBow, ("electricbow"));
         
         Upgrades = new ModItemUpgrades().setUnlocalizedName("Upgrades").setCreativeTab(Main.ElectricTab);
         RegisterOutName(Upgrades, "Upgrades");
         
         Wrench = new ModItemWrench().setUnlocalizedName("Wrench").setCreativeTab(Main.ElectricTab);
-        Register(Wrench, StatCollector.translateToLocal("wrench"));
+        Register(Wrench, ("wrench"));
         
         IronPlate = new ModItemIronPlate().setUnlocalizedName("IronPlate").setCreativeTab(Main.ElectricTab);
         Register(IronPlate, "Iron Plate");
         
         HeatDrill = new ModItemHeatDrill().setUnlocalizedName("HeatDrill").setCreativeTab(Main.ElectricTab);
-        Register(HeatDrill, StatCollector.translateToLocal("heatdrill"));
+        Register(HeatDrill, ("heatdrill"));
         
         PaintBrush = new ModItemPaintBrush().setUnlocalizedName("PaintBrush").setCreativeTab(Main.MiscTab);
         RegisterOutName(PaintBrush, "Paint Brush");
         
         FloatBlockPlacer = new ModItemFloatBlockPlacer().setUnlocalizedName("FloatPlacer").setTextureName(Refrence.Mod_Id + ":FloatBlockPlacer").setCreativeTab(Main.ElectricTab);
-        Register(FloatBlockPlacer, StatCollector.translateToLocal("floatblockplacer"));
+        Register(FloatBlockPlacer, ("floatblockplacer"));
         
         Main.proxy.addArmor("AntiFall");
         
         AntiFallChestPlate = (new ModItemAntiFallChest(1, 1)).setUnlocalizedName("AntiFallChestPlate").setTextureName(Refrence.Mod_Id + ":AntiFallChest").setCreativeTab(Main.ElectricTab);
-        Register(AntiFallChestPlate, StatCollector.translateToLocal("antifallchestplate"));
+        Register(AntiFallChestPlate, ("antifallchestplate"));
         
         InfoScreenHelmet = new ModItemInfoScreenHelmet(1, 0).setUnlocalizedName("InfoScreenHelmet").setTextureName(Refrence.Mod_Id + ":InfoScreenHelmet").setCreativeTab(Main.ElectricTab);
-        Register(InfoScreenHelmet, StatCollector.translateToLocal("infoscreen"));
+        Register(InfoScreenHelmet, ("infoscreen"));
         
         DataChip = new ModItemDataChip().setUnlocalizedName("DataChip").setCreativeTab(Main.ElectricTab);
         Register(DataChip, "Data Chip");

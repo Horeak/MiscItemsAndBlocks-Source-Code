@@ -45,9 +45,14 @@ public class DiceHolderItemRender implements IItemRenderer
 		DiceHolderModel model = new DiceHolderModel();
 		
         GL11.glPushMatrix();
-        GL11.glTranslatef((float) 0.5F, (float) 1.3F, (float) 0.5F);
-        
-        
+        if(type == ItemRenderType.EQUIPPED_FIRST_PERSON){
+            GL11.glTranslatef((float) 0.5F, (float) 1.8F, (float) 0.5F);
+        }else{
+            GL11.glTranslatef((float) 0.5F, (float) 1.3F, (float) 0.5F);
+        }
+
+
+
         Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation("miscitems" , "textures/models/DiceHolder.png"));
         
         

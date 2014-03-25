@@ -1,6 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Lib;
 
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
+import com.miscitems.MiscItemsAndBlocks.ItemBlock.ModItemBlockGamePiece;
 import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
 import cpw.mods.fml.common.registry.GameRegistry;
 import mantle.client.MantleClientRegistry;
@@ -8,6 +9,7 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.oredict.ShapedOreRecipe;
@@ -17,7 +19,9 @@ import java.util.HashMap;
 
 public class Crafting {
 
-	
+
+
+    public static ArrayList<String> Recipes = new ArrayList<String>();
 	
 	public static void RegisterRecipes(){
 
@@ -147,23 +151,92 @@ public class Crafting {
         MantleClientRegistry.registerManualFurnaceRecipe("silver_ore_use", new ItemStack(ModItems.SilverIngot), new ItemStack(ModBlocks.SilverOre));
 			MantleClientRegistry.registerManualFurnaceRecipe("flour_use", new ItemStack(Items.bread), new ItemStack(ModItems.Flour));
 	}
+
+    public static boolean RegisterRes(String name){
+
+
+        if(!Recipes.contains(name)){
+            Recipes.add(name);
+            return true;
+        }
+
+        return false;
+    }
 	
 
     
     public static void AddRecipe(ItemStack output, Object... Array){
 
+        String name = output.getUnlocalizedName().replace("tile.", "").replace(".name", "").replace(" ", "_").replace("item.", "");
 
-        if(CheckBigRecipe(output, Array)){
-    	GameRegistry.addShapedRecipe(output, Array);
-    	RegisterGuideRes(output.getUnlocalizedName().replace("tile.", "").replace(".name", "").replace(" ", "_").replace("item.", ""), output, Array);
+
+
+
+        if(RegisterRes(name)){
+            if(CheckBigRecipe(output, Array)){
+                GameRegistry.addShapedRecipe(output, Array);
+                RegisterGuideRes(name, output, Array);
+            }
+
+        }else{
+            if(!RegisterRes(name)){
+                for(int i = 0; i < 20; i++){
+
+                    if(RegisterRes(name + "_" + i)){
+
+                        name = output.getUnlocalizedName().replace("tile.", "").replace(".name", "").replace(" ", "_").replace("item.", "") + "_" + i;
+
+
+                        if(CheckBigRecipe(output, Array)){
+                            GameRegistry.addShapedRecipe(output, Array);
+                            RegisterGuideRes(name, output, Array);
+                            break;
+                        }
+                    }
+
+                }
+            }
+
+
         }
+
+
     }
     
     public static void AddShapelessRecipe(ItemStack output, Object... Array){
-        if(CheckSmallRecipe(output, Array)){
-    	GameRegistry.addShapelessRecipe(output, Array);
-    	RegisterShaplessGuideRes(output.getUnlocalizedName().replace("tile.", "").replace(".name", "").replace(" ", "_").replace("item.", ""), output, Array);
+
+        String name = output.getUnlocalizedName().replace("tile.", "").replace(".name", "").replace(" ", "_").replace("item.", "");
+
+
+
+        if(RegisterRes(name)){
+            if(CheckSmallRecipe(output, Array)){
+                GameRegistry.addShapelessRecipe(output, Array);
+                RegisterShaplessGuideRes(name, output, Array);
+            }
+
+        }else{
+            if(!RegisterRes(name)){
+                for(int i = 0; i < 20; i++){
+
+                    if(RegisterRes(name + "_" + i)){
+
+                        name = output.getUnlocalizedName().replace("tile.", "").replace(".name", "").replace(" ", "_").replace("item.", "") + "_" + i;
+
+
+                        if(CheckSmallRecipe(output, Array)){
+                            GameRegistry.addShapelessRecipe(output, Array);
+                            RegisterShaplessGuideRes(name, output, Array);
+                            break;
+                        }
+                    }
+
+                }
+            }
+
+
         }
+
     }
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
@@ -313,6 +386,7 @@ public class Crafting {
 
         String name = Name.toLowerCase().replace(" ", "_") + "_res";
 
+        System.out.println(name + " : " + stack);
 
         String s = "";
         int i = 0;
