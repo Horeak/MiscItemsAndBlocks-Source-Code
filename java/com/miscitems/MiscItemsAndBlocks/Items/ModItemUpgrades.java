@@ -58,17 +58,19 @@ public class ModItemUpgrades extends ModItemUpgradeItem{
 
 	}
 
-	public String getItemDisplayName(ItemStack stack)
-	{
-		int meta = stack.getItemDamage();
 
-		
-		if(meta == 0)return StatCollector.translateToLocal("items.name.upgrades.power");
-		
-		
-		
-		return null;
-	}
+    public String getUnlocalizedName(ItemStack stack)
+    {
+
+        int meta = stack.getItemDamage();
+
+
+        if(meta == 0)return "powerupgrade";
+
+
+
+        return null;
+    }
 
 	public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List list)
 	{

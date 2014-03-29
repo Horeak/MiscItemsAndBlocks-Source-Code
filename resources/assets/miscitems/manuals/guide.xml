@@ -665,14 +665,14 @@
         <text>Recipe</text>
         <recipe>
             <name>bigbattery_res</name>
-            <size>three</size>
+            <size>two</size>
         </recipe>
     </page>
     <page type="crafting">
         <text>Recipe</text>
         <recipe>
             <name>advancedbattery_res</name>
-            <size>three</size>
+            <size>two</size>
         </recipe>
     </page>
 
@@ -690,10 +690,398 @@
     </page>
 
 
-<page type="text">
-<title>Work In Progress</title>
-<text>This guide book is still a work in progress so more info will be added soon. </text>
+    <page type="text">
+        <title>Electric Bow</title>
+        <text>The Electric Bow is a bow which runs of power and can be recharged in Energy Storage Cube. The electric bow does not need arrows it uses power from the bow instead of arrows.
+        </text>
+    </page>
+    <page type="crafting">
+        <text>Recipe</text>
+        <recipe>
+            <name>electricbow_res</name>
+            <size>three</size>
+        </recipe>
+    </page>
 
+
+    <page type="text">
+        <title>Power Upgrade</title>
+        <text>The Power upgrade can be used in some energy storage blocks and machines to increase the max energy storage.
+        </text>
+    </page>
+    <page type="crafting">
+        <text>Recipe</text>
+        <recipe>
+            <name>powerupgrade_res</name>
+            <size>three</size>
+        </recipe>
+    </page>
+
+
+    <page type="text">
+        <title>Wrench</title>
+        <text>The wrench is used to change the mode of power cables and to rotate the Energy Storage Cube.
+        </text>
+    </page>
+    <page type="crafting">
+        <text>Recipe</text>
+        <recipe>
+            <name>wrench_res</name>
+            <size>three</size>
+        </recipe>
+    </page>
+
+
+    <page type="text">
+        <title>Iron Plate</title>
+        <text>The Iron Plate has 2 main forms the normal Iron Plate and the Hardened Iron Plate. The normal Iron Plate is used for making the most basic power related items and blocks. The Hardened Iron Plate is used to make the more advanced power related items and blocks.
+        </text>
+    </page>
+    <page type="crafting">
+        <text>Recipe</text>
+        <recipe>
+            <name>ironplate.1_res</name>
+            <size>three</size>
+        </recipe>
+    </page>
+
+    <page type="furnace">
+        <text>Recipe</text>
+        <recipe>plate_res</recipe>
+    </page>
+
+    <page type="crafting">
+        <text>Recipe</text>
+        <recipe>
+            <name>ironplate.2_res</name>
+            <size>three</size>
+        </recipe>
+    </page>
+
+
+    <page type="text">
+        <title>Heat Drill</title>
+        <text>The Heat Drill is a kind of upgraded version of the Drill. The heat drill will smelt any block mined and can also smelt blocks on right click. But the Heat Drill does not have a multi size mode as the drill has.
+        </text>
+    </page>
+    <page type="crafting">
+        <text>Recipe</text>
+        <recipe>
+            <name>heatdrill_res</name>
+            <size>three</size>
+        </recipe>
+    </page>
+
+
+    <page type="text">
+        <title>Floating Platform Placer</title>
+        <text>The Floating Platform Placer is a tool that will place temporarily blocks below the player and will also reset the players fall distance to prevent fall damage.
+        </text>
+    </page>
+    <page type="crafting">
+        <text>Recipe</text>
+        <recipe>
+            <name>floatblockplacer_res</name>
+            <size>three</size>
+        </recipe>
+    </page>
+
+
+    <page type="text">
+        <title>Antifall Chestplate</title>
+        <text>The Antifall Chestplate will slow the players fall down to remove fall damage. When holding shift you will fall quicker but will still not take fall damage.
+        </text>
+    </page>
+    <page type="crafting">
+        <text>Recipe</text>
+        <recipe>
+            <name>antifallchestplate_res</name>
+            <size>three</size>
+        </recipe>
+    </page>
+
+
+    <page type="text">
+        <title>Info Display Screen</title>
+        <text>The Info Display Screen is a wearable screen which can be worn as a helmet and will show the current power percentage of the current item being used, the current armor if it is power related and it will show the power of the info display screen.
+        </text>
+    </page>
+    <page type="crafting">
+        <text>Recipe</text>
+        <recipe>
+            <name>infoscreen_res</name>
+            <size>three</size>
+        </recipe>
+    </page>
+
+
+    <page type="text">
+        <title>Data Chip</title>
+        <text>The Data Chip is a item used to link diffrent wireless devices together. The Data Chip can store data from one machines and will show which machines data it is storing. The data of teh Data Chip can be remove by shift-right clicking.
+        </text>
+    </page>
+    <page type="crafting">
+        <text>Recipe</text>
+        <recipe>
+            <name>data_chip_res</name>
+            <size>three</size>
+        </recipe>
+    </page>
+
+
+    <page type="text">
+        <title>Lens</title>
+        <text>The Lens is used in the laser. The lens can be customised in the Lens Bench where you can set the color, power, strength and other options.
+        </text>
+    </page>
+    <page type="crafting">
+        <text>Recipe</text>
+        <recipe>
+            <name>lens_res</name>
+            <size>three</size>
+        </recipe>
+    </page>
+
+
+
+    <page type="text">
+        <title>Items</title>
+        <text>In this part of the guide book the rest of the items will be shown.
+        </text>
+    </page>
+    <page type="blank">
+    </page>
+
+
+    <page type="text">
+        <title>Xp Extractor</title>
+        <text>The Xp Extractir allows you to extract xp levels and store them in bottels as Bottle o´ Enchating. When using the Xp Extractor you have to have atleast 1 xp level and 1 glass bottle.
+        </text>
+    </page>
+    <page type="crafting">
+        <text>Recipe</text>
+        <recipe>
+            <name>xpextractor_res</name>
+            <size>three</size>
+        </recipe>
+    </page>
+
+
+    <page type="text">
+        <title>Silver Ingot</title>
+        <text>The Silver Ingot is a metal which can be found at Y 14 and below.
+        </text>
+    </page>
+    <page type="furnace">
+        <text>Recipe</text>
+        <recipe>silver_ore_use</recipe>
+    </page>
+
+    <page type="text">
+        <title>Silver Sword</title>
+        <text>The silver sword one-hit kills most normal mobs but it does not affect players or boss mbs. The silver sword also counts the amount of mobs you have hit and the last mob you hit.
+        </text>
+    </page>
+    <page type="crafting">
+        <text>Recipe</text>
+        <recipe>
+            <name>silver_sword_res</name>
+            <size>three</size>
+        </recipe>
+    </page>
+
+
+    <page type="text">
+        <title>Silver Bow</title>
+        <text>The Silver Bow is a bow that does alot of damage to any mob. The silver bow cant use normal arrows it can only use Silver Arrows.
+        </text>
+    </page>
+    <page type="crafting">
+        <text>Recipe</text>
+        <recipe>
+            <name>silverbow_res</name>
+            <size>three</size>
+        </recipe>
+    </page>
+
+
+    <page type="crafting">
+        <text>Recipe</text>
+        <recipe>
+            <name>silver_arrow_res</name>
+            <size>three</size>
+        </recipe>
+    </page>
+
+    <page type="blank">
+
+    </page>
+
+
+    <page type="text">
+        <title>Power Armor</title>
+        <text>The power armor is a very power full armor set which gives different effects from the different armor parts. Some of the effects are:
+    Helmet: Night vision and water breathing
+    Chestplate: Allows creative like flight.
+    Leggings: Speed boost
+    Boots: Jump boost
+also when wearing the full set of armor you will be immune to fire damage and you will also receive effects when damaged.
+        </text>
+    </page>
+    <page type="crafting">
+        <text>Recipe</text>
+        <recipe>
+            <name>powerarmor_helmet_res</name>
+            <size>three</size>
+        </recipe>
+    </page>
+    <page type="crafting">
+        <text>Recipe</text>
+        <recipe>
+            <name>powerarmor_chestplate_res</name>
+            <size>three</size>
+        </recipe>
+    </page>
+    <page type="crafting">
+        <text>Recipe</text>
+        <recipe>
+            <name>powerarmor_leggings_res</name>
+            <size>three</size>
+        </recipe>
+    </page>
+    <page type="crafting">
+        <text>Recipe</text>
+        <recipe>
+            <name>powerarmor_boots_res</name>
+            <size>three</size>
+        </recipe>
+    </page>
+    <page type="blank">
+
+    </page>
+
+
+    <page type="text">
+        <title>Cardboard</title>
+        <text>Cardboard is a item used when crafting circuits, cardboard boxes and other things.
+        </text>
+    </page>
+    <page type="crafting">
+        <text>Recipe</text>
+        <recipe>
+            <name>cardboard_res</name>
+            <size>two</size>
+        </recipe>
+    </page>
+
+
+    <page type="text">
+        <title>Tomato</title>
+        <text>Tomato plants are added by MiscItemsAndBlocks. Seeds for the tomato plant can be found when breaking tall grass. The tomato can be used to make tomato sauce for pizzas and the tomato can also be used as normal food.
+        </text>
+    </page>
+    <page type="crafting">
+        <text>Use</text>
+        <recipe>
+            <name>tomatoseeds_res</name>
+            <size>two</size>
+        </recipe>
+    </page>
+
+
+    <page type="text">
+        <title>Flour</title>
+        <text>Flour can be made by putting wheat into a mill. The flour can then be used to either craft pizza base for making pizzas or it can be smelted into bread.
+        </text>
+    </page>
+    <page type="crafting">
+        <text>Use</text>
+        <recipe>
+            <name>pizza_base_res</name>
+            <size>three</size>
+        </recipe>
+    </page>
+
+
+    <page type="text">
+        <title>Cheese</title>
+        <text>Cheese is used to make pizza and can also be used as food.
+        </text>
+    </page>
+    <page type="crafting">
+        <text>Recipe</text>
+        <recipe>
+            <name>cheese_res</name>
+            <size>two</size>
+        </recipe>
+    </page>
+
+
+    <page type="text">
+        <title>Pizza</title>
+        <text>The pizzas is a very good food type when cooked. The pizzas can be made with any type of vanilla meat.
+        </text>
+    </page>
+    <page type="crafting">
+        <text>Recipe</text>
+        <recipe>
+            <name>pizzaraw.3_res</name>
+            <size>two</size>
+        </recipe>
+    </page>
+
+
+    <page type="text">
+        <title>Paint Brushes</title>
+        <text>The Paint Brushes are used on the paint block and can be used to get the different colors which uses the RGB Color system which gives around 16.000.000 different combinations of colors. The different colored paint brushes will add that color to the block and the paint copy will copy the color and paste it on shift right click. The Paint editor will allow you to chose a color through a gui when shift-right clicking the paint brush.
+        </text>
+    </page>
+    <page type="crafting">
+    <text>Recipe</text>
+    <recipe>
+        <name>paintbrush_2_res</name>
+        <size>three</size>
+    </recipe>
 </page>
+
+    <page type="crafting">
+        <text>Recipe</text>
+        <recipe>
+            <name>paintbrush_res</name>
+            <size>two</size>
+        </recipe>
+    </page>
+    <page type="crafting">
+        <text>Recipe</text>
+        <recipe>
+            <name>paintbrush_0_res</name>
+            <size>two</size>
+        </recipe>
+    </page>
+    <page type="crafting">
+        <text>Recipe</text>
+        <recipe>
+            <name>paintbrush_1_res</name>
+            <size>two</size>
+        </recipe>
+    </page>
+
+    <page type="crafting">
+        <text>Recipe</text>
+        <recipe>
+            <name>paintbrush_3_res</name>
+            <size>three</size>
+        </recipe>
+    </page>
+
+    <page type="crafting">
+        <text>Recipe</text>
+        <recipe>
+            <name>paintbrush_4_res</name>
+            <size>three</size>
+        </recipe>
+    </page>
+
+
 
 </book>

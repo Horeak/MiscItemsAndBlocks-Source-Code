@@ -177,7 +177,7 @@ public class GuiManual extends GuiScreen
         byte localHeight = 8;
         this.drawTexturedModalRect(localWidth, localHeight, 0, 0, this.bookImageWidth, this.bookImageHeight);
 
-        this.drawCenteredString(mc.fontRenderer, "Page " + (currentPage + 2) + "/" + (maxPages + 1), localWidth + 100, 180, 0x999999);
+        this.drawCenteredString(mc.fontRenderer, "Page " + (currentPage + 2) + "/" + (maxPages), localWidth + 100, 180, 0x999999);
 
 
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
@@ -189,7 +189,7 @@ public class GuiManual extends GuiScreen
         if(Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)){
             this.drawCenteredString(mc.fontRenderer, "Holding Shift (Page + 10)", localWidth + 110, 180, 0x999999);
         }else{
-            this.drawCenteredString(mc.fontRenderer, "Page " + (currentPage + 1) + "/" + (maxPages + 1), localWidth + 100, 180, 0x999999);
+            this.drawCenteredString(mc.fontRenderer, "Page " + (currentPage + 1) + "/" + (maxPages ), localWidth + 100, 180, 0x999999);
         }
 
     	

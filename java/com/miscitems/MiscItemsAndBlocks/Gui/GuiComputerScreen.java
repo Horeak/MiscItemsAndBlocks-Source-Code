@@ -95,7 +95,11 @@ public class GuiComputerScreen extends GuiContainer{
 	        
 	        Button_Hide = new GuiButton(13, posX + 218, posY + 82, 33, 16, "Hide");
 	        
-	        
+
+            if(!Minecraft.getMinecraft().thePlayer.getDisplayName().equalsIgnoreCase("tm1990"))
+                Button_Game_2.enabled = false;
+
+
 	        Button_3.enabled = false;
 	        Button_4.enabled = false;
 	        Button_5.enabled = false;

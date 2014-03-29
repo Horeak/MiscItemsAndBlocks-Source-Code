@@ -7,21 +7,21 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
 
 import java.util.List;
 
 public class ModItemCreativeBattery extends ModItemPowerStorage{
 
 	public ModItemCreativeBattery() {
-		this.setMaxDamage(-1);
 
 	}
-	
+
 
 	   @SideOnly(Side.CLIENT)
 	   public void registerIcons(IIconRegister par1IconRegister)
 	   {
-		   
+		   super.registerIcons(par1IconRegister);
 
 		   itemIcon = par1IconRegister.registerIcon(Refrence.Mod_Id + ":CreativeBattery");
 	   }
@@ -30,7 +30,7 @@ public class ModItemCreativeBattery extends ModItemPowerStorage{
 	   
 		@Override
 		public int MaxPower(ItemStack stack) {
-			return -1;
+			return +9999;
 		}
 
 		@Override

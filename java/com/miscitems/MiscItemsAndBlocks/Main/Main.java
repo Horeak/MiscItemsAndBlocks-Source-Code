@@ -191,21 +191,24 @@ import java.util.Set;
         	MinecraftForge.EVENT_BUS.register(new GuiListener());	
         	MinecraftForge.EVENT_BUS.register(new CapeRenderEvent());
 
-        	FMLCommonHandler.instance().bus().register(Main.proxy.tickHandlerServer);
+
+            FMLCommonHandler.instance().bus().register(Main.proxy.tickHandlerClient);
         }
 
 
         public void RegisterServerEvents()
         {
 	
-	
+
+
 	
         	MinecraftForge.EVENT_BUS.register(new BoneMealEvent());
         	MinecraftForge.EVENT_BUS.register(new PlayerFirstJoinEvent());
         	MinecraftForge.EVENT_BUS.register(new DisarmStickEvent());
         	MinecraftForge.EVENT_BUS.register(new GhostBlockBreakEvent());
 
-        	FMLCommonHandler.instance().bus().register(Main.proxy.tickHandlerClient);
+            FMLCommonHandler.instance().bus().register(Main.proxy.tickHandlerServer);
+
         }
             
         @EventHandler
