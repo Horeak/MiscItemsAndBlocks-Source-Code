@@ -1,16 +1,13 @@
-package mantle.client.pages;
+package BookCode_mantle.client.pages;
 
-import mantle.client.MantleClientRegistry;
-import mantle.client.gui.GuiManual;
+import BookCode_mantle.client.MantleClientRegistry;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.MouseHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
-import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 import org.w3c.dom.Element;

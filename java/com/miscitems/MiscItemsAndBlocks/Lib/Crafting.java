@@ -1,15 +1,13 @@
 package com.miscitems.MiscItemsAndBlocks.Lib;
 
+import BookCode_mantle.client.MantleClientRegistry;
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
-import com.miscitems.MiscItemsAndBlocks.ItemBlock.ModItemBlockGamePiece;
 import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
 import cpw.mods.fml.common.registry.GameRegistry;
-import mantle.client.MantleClientRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.oredict.ShapedOreRecipe;
@@ -562,8 +560,6 @@ public class Crafting {
             
             String name = Name.toLowerCase().replace(" ", "_") + "_res";
 
-            if(par1ItemStack.getItem() == ModItems.PizzaRaw)
-                System.out.println(name);
 
 
             ItemStack[] stacks = new ItemStack[]{new ItemStack(Blocks.air)};

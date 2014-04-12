@@ -1,4 +1,4 @@
-package mantle.client;
+package BookCode_mantle.client;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

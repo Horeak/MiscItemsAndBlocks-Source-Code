@@ -1,11 +1,11 @@
-package mantle.client;
+package BookCode_mantle.client;
 
-import mantle.CoreRepo;
-import mantle.MProxyCommon;
-import mantle.books.BookData;
-import mantle.books.BookDataStore;
-import mantle.client.gui.GuiManual;
-import mantle.client.pages.*;
+import BookCode_mantle.CoreRepo;
+import BookCode_mantle.MProxyCommon;
+import BookCode_mantle.books.BookData;
+import BookCode_mantle.books.BookDataStore;
+import BookCode_mantle.client.gui.GuiManual;
+import BookCode_mantle.client.pages.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

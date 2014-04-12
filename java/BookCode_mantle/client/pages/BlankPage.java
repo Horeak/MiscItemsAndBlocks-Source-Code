@@ -1,4 +1,4 @@
-package mantle.client.pages;
+package BookCode_mantle.client.pages;
 
 import org.w3c.dom.Element;
 

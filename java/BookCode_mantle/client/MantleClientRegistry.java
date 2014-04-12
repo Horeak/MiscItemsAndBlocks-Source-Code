@@ -1,4 +1,4 @@
-package mantle.client;
+package BookCode_mantle.client;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;

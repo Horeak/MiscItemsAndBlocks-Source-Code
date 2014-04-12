@@ -1,4 +1,4 @@
-package mantle.items.abstracts;
+package BookCode_mantle.items.abstracts;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

@@ -1,4 +1,4 @@
-package mantle.books;
+package BookCode_mantle.books;
 
 import net.minecraft.util.ResourceLocation;
 import org.w3c.dom.Document;
@@ -12,8 +12,8 @@ public class BookData
     public ResourceLocation rightImage = new ResourceLocation("miscitems", "textures/gui/bookright.png");
     public ResourceLocation itemImage = new ResourceLocation("miscitems", "textures/items/book.png");
     public Document doc = ManualReader.readManual("/assets/miscitems/manuals/guide.xml");
-    //font can be left null if so, the default from mantle will be used
-    public mantle.client.SmallFontRenderer font;
+    //font can be left null if so, the default from BookCode_mantle will be used
+    public BookCode_mantle.client.SmallFontRenderer font;
     public Boolean isTranslatable = false;
 
     public Document getDoc ()

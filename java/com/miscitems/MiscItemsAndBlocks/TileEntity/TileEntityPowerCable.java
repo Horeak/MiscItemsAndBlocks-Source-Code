@@ -1,8 +1,9 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
-import com.miscitems.MiscItemsAndBlocks.Laser.LaserUtil;
 import MiscItemsApi.Electric.IPowerCable;
-import MiscItemsApi.Electric.*;
+import MiscItemsApi.Electric.IPowerGeneration;
+import MiscItemsApi.Electric.IPowerTile;
+import com.miscitems.MiscItemsAndBlocks.Laser.LaserUtil;
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;

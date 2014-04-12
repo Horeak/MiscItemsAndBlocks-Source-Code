@@ -1,4 +1,4 @@
-package mantle.client.pages;
+package BookCode_mantle.client.pages;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;

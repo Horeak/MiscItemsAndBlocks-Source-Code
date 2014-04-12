@@ -1,6 +1,6 @@
-package mantle.client.pages;
+package BookCode_mantle.client.pages;
 
-import mantle.client.MantleClientRegistry;
+import BookCode_mantle.client.MantleClientRegistry;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;

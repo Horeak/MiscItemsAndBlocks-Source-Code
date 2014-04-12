@@ -1,4 +1,4 @@
-package mantle.client;
+package BookCode_mantle.client;
 
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import cpw.mods.fml.relauncher.Side;

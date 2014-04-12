@@ -1,4 +1,4 @@
-package mantle;
+package BookCode_mantle;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,10 +13,10 @@ import org.apache.logging.log4j.Logger;
 public final class CoreRepo
 {
 
-    public static final String modId = "Mantle";
-    public static final String modName = "Mantle";
+    public static final String modId = "MiscItemsMantle";
+    public static final String modName = "MiscItemsMantle";
     public static final String modVersion = "${version}";
 
-    public static final Logger logger = LogManager.getLogger("Mantle");
+    public static final Logger logger = LogManager.getLogger("MiscItemsMantle");
 
 }

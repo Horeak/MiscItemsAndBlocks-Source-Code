@@ -1,4 +1,4 @@
-package mantle;
+package BookCode_mantle;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -8,8 +8,6 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
-import mantle.books.BookData;
-import mantle.books.BookDataStore;
 
 /**
  * Mantle
@@ -18,15 +16,24 @@ import mantle.books.BookDataStore;
  *
  * @author Sunstrike <sun@sunstrike.io>
  */
+
 @Mod(modid = CoreRepo.modId, name = CoreRepo.modName, version = CoreRepo.modVersion, dependencies = "required-after:Forge")
-//@[8.9,)")
+
 public class Mantle
 {
+    /**
+     *
+     * Temporary use of Mantle for adding the guide book until i have time to make my own.
+     * - tm1990
+     *
+     */
+
+
     /* Instance of this mod, used for grabbing prototype fields */
-    @Instance("Mantle")
+    @Instance("MiscItemsMantle")
     public static Mantle instance;
     /* Proxies for sides, used for graphics processing */
-    @SidedProxy(clientSide = "mantle.client.MProxyClient", serverSide = "mantle.MProxyCommon")
+    @SidedProxy(clientSide = "BookCode_mantle.client.MProxyClient", serverSide = "BookCode_mantle.MProxyCommon")
     public static MProxyCommon proxy;
 
 
@@ -42,13 +49,9 @@ public class Mantle
     @EventHandler
     public void preInit (FMLPreInitializationEvent evt)
     {
-    	CoreRepo.logger.info("Mantle (" + CoreRepo.modVersion + ") -- Preparing for launch.");
-    	CoreRepo.logger.info("Entering preinitialization phase.");
+
 
         NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);
-
-   //     mantleBook = (Manual) new Manual().setUnlocalizedName("mantle.manual");
-//        GameRegistry.registerItem(mantleBook, "mantleBook");
 
     }
 
@@ -79,12 +82,6 @@ public class Mantle
     {
     	CoreRepo.logger.info("Entering postinitialization phase.");
         proxy.readManuals();
-        BookData data = new BookData();
-        data.unlocalizedName = "item.mantle.manual.test";
-        data.toolTip = "Test Book";
-        data.modID = CoreRepo.modId;
-        BookDataStore.addBook(data);
-        //mantleBook.updateManual();
     }
 
 }

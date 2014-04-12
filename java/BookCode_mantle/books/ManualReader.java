@@ -1,7 +1,7 @@
-package mantle.books;
+package BookCode_mantle.books;
 
-import mantle.CoreRepo;
-import mantle.Mantle;
+import BookCode_mantle.CoreRepo;
+import BookCode_mantle.Mantle;
 import org.w3c.dom.Document;
 
 import javax.xml.parsers.DocumentBuilder;

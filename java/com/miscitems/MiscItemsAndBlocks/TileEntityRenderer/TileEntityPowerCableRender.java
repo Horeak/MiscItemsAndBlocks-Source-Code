@@ -1,7 +1,8 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntityRenderer;
 
+import MiscItemsApi.Electric.IPowerGeneration;
+import MiscItemsApi.Electric.IPowerTile;
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlockPowerCable;
-import MiscItemsApi.Electric.*;
 import com.miscitems.MiscItemsAndBlocks.Models.ModelPowerCable;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;

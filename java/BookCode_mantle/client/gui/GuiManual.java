@@ -1,12 +1,12 @@
-package mantle.client.gui;
+package BookCode_mantle.client.gui;
 
+import BookCode_mantle.books.BookData;
+import BookCode_mantle.client.MProxyClient;
+import BookCode_mantle.client.RenderItemCopy;
+import BookCode_mantle.client.SmallFontRenderer;
+import BookCode_mantle.client.pages.BookPage;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import mantle.books.BookData;
-import mantle.client.MProxyClient;
-import mantle.client.RenderItemCopy;
-import mantle.client.SmallFontRenderer;
-import mantle.client.pages.BookPage;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;

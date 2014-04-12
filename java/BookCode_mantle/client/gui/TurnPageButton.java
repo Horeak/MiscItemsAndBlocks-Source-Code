@@ -1,8 +1,8 @@
-package mantle.client.gui;
+package BookCode_mantle.client.gui;
 
+import BookCode_mantle.books.BookData;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import mantle.books.BookData;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.util.ResourceLocation;

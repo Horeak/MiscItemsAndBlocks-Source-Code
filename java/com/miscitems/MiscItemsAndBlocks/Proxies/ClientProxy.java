@@ -1,5 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Proxies;
 
+import BookCode_mantle.client.MantleClientRegistry;
+import BookCode_mantle.client.SmallFontRenderer;
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.Entity.EntityPowerArrow;
 import com.miscitems.MiscItemsAndBlocks.Entity.EntitySilverArrow;
@@ -23,8 +25,6 @@ import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import mantle.client.MantleClientRegistry;
-import mantle.client.SmallFontRenderer;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.init.Items;

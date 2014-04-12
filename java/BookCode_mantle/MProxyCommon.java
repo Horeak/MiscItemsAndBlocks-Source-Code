@@ -1,4 +1,4 @@
-package mantle;
+package BookCode_mantle;
 
 import cpw.mods.fml.common.network.IGuiHandler;
 import net.minecraft.entity.player.EntityPlayer;
