@@ -102,8 +102,8 @@ public class Crafting {
 			AddRecipe(new ItemStack(ModItems.PaintBrush, 1, 4), true, new Object[]{" R ", "GPB", " F ", 'R', new ItemStack(ModItems.PaintBrush, 1, 1 ), 'G', new ItemStack(ModItems.PaintBrush, 1, 2 ), 'B', new ItemStack(ModItems.PaintBrush, 1, 3 ), 'P', Items.paper, 'F', new ItemStack(ModItems.PaintBrush, 1, 0)});
 			AddRecipe(new ItemStack(ModItems.PaintBrush, 1, 5), true, new Object[]{" R ", "GPB", " F ", 'R', new ItemStack(ModItems.PaintBrush, 1, 1 ), 'G', new ItemStack(ModItems.PaintBrush, 1, 2 ), 'B', new ItemStack(ModItems.PaintBrush, 1, 3 ), 'P', Items.paper, 'F', new ItemStack(ModItems.PaintBrush, 1, 4)});
 			AddRecipe(new ItemStack(ModBlocks.MachinePart), true, new Object[]{"PPP", "P P", "PPP", 'P', new ItemStack(ModItems.IronPlate, 1, 0)});
-			AddRecipe(new ItemStack(ModItems.IronPlate, 2, 0), false, new Object[]{"II", "II", "", 'I', Items.iron_ingot});
-			AddRecipe(new ItemStack(ModItems.IronPlate, 1, 2), false, new Object[]{"II", "II", "", 'I', new ItemStack(ModItems.IronPlate, 1, 1)});
+			AddRecipe(new ItemStack(ModItems.IronPlate, 2, 0), false, new Object[]{"II", "II", 'I', Items.iron_ingot});
+			AddRecipe(new ItemStack(ModItems.IronPlate, 1, 2), false, new Object[]{"II", "II", 'I', new ItemStack(ModItems.IronPlate, 1, 1)});
 			AddRecipe(new ItemStack(ModItems.Wrench), true, new Object[]{"P P", " P ", " P ", 'P', new ItemStack(ModItems.IronPlate, 1, 0)});
 			AddRecipe(new ItemStack(ModItems.Upgrades, 1, 0), true, new Object[]{"PPP", "BBB", "PPP", 'P', new ItemStack(ModItems.IronPlate, 1, 2), 'B', ModItems.BigBattery});
             AddRecipe(new ItemStack(ModBlocks.ItemPedestal, 2), true, new Object[]{"I I", " S ", "SSS", 'I', Items.iron_ingot, 'S', Blocks.stone});
