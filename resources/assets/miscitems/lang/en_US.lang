@@ -108,8 +108,9 @@ item.guidebook.Guide.name=Guide Book
 item.turbine.name=Turbine
 item.rawpenguinmeat.name=Raw Penguin Meat
 item.cookedpenguin.name=Cooked Penguin Meat
-item.powerupgrade.name=Power Upgrade
+item.guidebook.name=Guide Book
 
+powerupgrade.name=Power Upgrade
 
 
 

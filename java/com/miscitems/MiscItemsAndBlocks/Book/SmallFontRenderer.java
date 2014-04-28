@@ -1,4 +1,4 @@
-package BookCode_mantle.client;
+package com.miscitems.MiscItemsAndBlocks.Book;
 
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import cpw.mods.fml.relauncher.Side;
@@ -26,11 +26,11 @@ import java.util.Random;
 @SideOnly(Side.CLIENT)
 public class SmallFontRenderer implements IResourceManagerReloadListener
 {
-	
-	/**
-	 * @author SlimeKnights <https://github.com/SlimeKnights/Mantle>
-	 */
-	
+
+    /**
+     * @author SlimeKnights <https://github.com/SlimeKnights/Mantle>
+     */
+
     private static final ResourceLocation[] unicodePageLocations = new ResourceLocation[256];
 
     /** Array of width of all the characters in default.png */
@@ -108,7 +108,7 @@ public class SmallFontRenderer implements IResourceManagerReloadListener
     public SmallFontRenderer(GameSettings par1GameSettings, ResourceLocation par2ResourceLocation, TextureManager par3TextureManager, boolean par4)
     {
         this.locationFontTexture = par2ResourceLocation;
-        //logger.error(this.locationFontTexture.toString() + "    " + this.locationFontTexture.getResourcePath());
+        //logger.error(this.locationFontTexture.toString() + " " + this.locationFontTexture.getResourcePath());
         this.renderEngine = par3TextureManager;
         this.unicodeFlag = true;
         if (this.renderEngine != null)
@@ -957,38 +957,38 @@ public class SmallFontRenderer implements IResourceManagerReloadListener
 
             switch (c0)
             {
-            case 10:
-                --l;
-                break;
-            case 167:
-                if (l < j - 1)
-                {
-                    ++l;
-                    char c1 = par1Str.charAt(l);
-
-                    if (c1 != 108 && c1 != 76)
+                case 10:
+                    --l;
+                    break;
+                case 167:
+                    if (l < j - 1)
                     {
-                        if (c1 == 114 || c1 == 82 || isFormatColor(c1))
+                        ++l;
+                        char c1 = par1Str.charAt(l);
+
+                        if (c1 != 108 && c1 != 76)
                         {
-                            flag = false;
+                            if (c1 == 114 || c1 == 82 || isFormatColor(c1))
+                            {
+                                flag = false;
+                            }
+                        }
+                        else
+                        {
+                            flag = true;
                         }
                     }
-                    else
+
+                    break;
+                case 32:
+                    i1 = l;
+                default:
+                    k += this.getCharWidth(c0);
+
+                    if (flag)
                     {
-                        flag = true;
+                        ++k;
                     }
-                }
-
-                break;
-            case 32:
-                i1 = l;
-            default:
-                k += this.getCharWidth(c0);
-
-                if (flag)
-                {
-                    ++k;
-                }
             }
 
             if (c0 == 10)

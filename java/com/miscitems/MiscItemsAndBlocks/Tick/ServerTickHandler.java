@@ -233,7 +233,7 @@ public class ServerTickHandler{
 			   
                GameInfo ti = activeGames.get(i);
 			   if(ti.terminate){
-				   //TODO Find a new way!
+				   //FIX Find a new way!
 				   ti.Player_1.openGui(Main.instance, 0, null, 0, 0, 0);
 				   ti.Player_2.openGui(Main.instance, 0, null, 0, 0, 0);
 //				   ti.Player_1.closeScreen();

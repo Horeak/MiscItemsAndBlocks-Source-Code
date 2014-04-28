@@ -2,6 +2,8 @@ package com.miscitems.MiscItemsAndBlocks.Main;
 
 import com.google.common.collect.Sets;
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
+import com.miscitems.MiscItemsAndBlocks.Book.BookUtils;
+import com.miscitems.MiscItemsAndBlocks.Book.SmallFontRenderer;
 import com.miscitems.MiscItemsAndBlocks.Entity.EntityPowerArrow;
 import com.miscitems.MiscItemsAndBlocks.Entity.EntitySilverArrow;
 import com.miscitems.MiscItemsAndBlocks.Event.*;
@@ -31,11 +33,13 @@ import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.Minecraft;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
@@ -131,7 +135,7 @@ import java.util.Set;
         {
 	
         	//TODO Add some type of ore doubling
-            //TODO FINISH GUIDE!!!!!
+            //TODO Redo guide book
 	
     	
         	config = new Configuration(new File(event.getModConfigurationDirectory() + "/tm1990's mods/MiscItemsAndBlocksConfig.cfg")); 
@@ -160,6 +164,8 @@ import java.util.Set;
         		VersionChecker.go();
 
 
+
+
         	ModBlocks.Init();
         	ModItems.Init();
     	
@@ -171,7 +177,6 @@ import java.util.Set;
         	proxy.RegisterListeners();
     	
         	proxy.registerRenderThings();
-        	proxy.readManuals();
         
         	proxy.RegisterClientTickhandler();
         	proxy.RegisterServerTickhandler();
@@ -182,6 +187,21 @@ import java.util.Set;
         
         	if(event.getSide() == Side.CLIENT)
         		RegisterClientEvents();
+
+
+           registerRenderer();
+
+
+            BookUtils.RegisterTab(1, "Main Page", new ItemStack(ModItems.GuideBook), 1);
+            BookUtils.RegisterTab(2, "Misc Blocks Page", new ItemStack(ModBlocks.XpStorage), 2);
+            BookUtils.RegisterTab(3, "Electrical Blocks and Items Page", new ItemStack(ModBlocks.Charger), 2);
+            BookUtils.RegisterTab(4, "Items Page", new ItemStack(ModItems.XpExtractor), 2);
+
+            BookUtils.RegisterTextForTab(1, "This a guide book for MiscItemsAndBlocks which explains all blocks and items in the mod and will also show any recipes added by the mod.");
+
+            BookUtils.RegisterItemsForTab(2, new ItemStack[]{new ItemStack(ModBlocks.XpStorage)});
+            BookUtils.RegisterItemsForTab(3, new ItemStack[]{new ItemStack(ModBlocks.Charger)});
+            BookUtils.RegisterItemsForTab(4, new ItemStack[]{new ItemStack(ModItems.XpExtractor)});
         }
 
         public void RegisterClientEvents()
@@ -254,5 +274,13 @@ import java.util.Set;
 	
         }
 
+
+        public static SmallFontRenderer font;
+
+        public void registerRenderer ()
+        {
+            Minecraft mc = Minecraft.getMinecraft();
+            font = new SmallFontRenderer(mc.gameSettings, new ResourceLocation("minecraft:textures/font/ascii.png"), mc.renderEngine, false);
+        }
 	
 	}

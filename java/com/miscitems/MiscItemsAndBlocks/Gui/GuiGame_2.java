@@ -161,7 +161,7 @@ public class GuiGame_2 extends GuiScreen{
 	        }
 	        
 	        
-	        //TODO Fix state rows adding rows multiple times
+	        //Fix state rows adding rows multiple times
 	        for(int y = 0; y < 7; y++){
 		        for(int x = 0; x < 4; x++){
 		        	
@@ -240,7 +240,7 @@ public class GuiGame_2 extends GuiScreen{
 	    		for(int i = 0; i < 4; i++){
 	    			if(CurrentRow[i].Type == ColorList.get(i)){
 	    				
-	    				//TODO Crash for setting invalid row number. Find a better way to get the first button on each row with the Row veriable
+	    				//FIX Crash for setting invalid row number. Find a better way to get the first button on each row with the Row veriable
 	    				StateRows[((Row - 1) * 4) + i].Type = 10;
 	    			}else if (ColorList.contains(CurrentRow[i].Type)){
 	    				

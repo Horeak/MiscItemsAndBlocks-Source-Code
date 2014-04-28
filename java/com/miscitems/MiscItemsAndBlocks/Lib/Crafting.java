@@ -1,6 +1,5 @@
 package com.miscitems.MiscItemsAndBlocks.Lib;
 
-import BookCode_mantle.client.MantleClientRegistry;
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -62,12 +61,7 @@ public class Crafting {
 		    GameRegistry.addRecipe(new ShapedOreRecipe(ModBlocks.Table, new Object[]{"CCC", "HHH", "P P", 'C', new ItemStack(Blocks.carpet, 1, 14), Character.valueOf('P'), "plankWood", Character.valueOf('H'), "slabWood"}));	
 		    GameRegistry.addRecipe(new ShapedOreRecipe(ModItems.Turbine, new Object[]{"S S", " P ", "S S", 'S', Items.stick, Character.valueOf('P'), "plankWood"}));
 		    
-		
-		    MantleClientRegistry.registerManualLargeRecipe("worktable_res", new ItemStack(ModBlocks.CraftingInv), new ItemStack[]{new ItemStack(Blocks.wool),new ItemStack(Blocks.wool), new ItemStack(Blocks.wool), new ItemStack(Blocks.planks), new ItemStack(Blocks.chest), new ItemStack(Blocks.planks), new ItemStack(Blocks.planks), new ItemStack(Blocks.crafting_table), new ItemStack(Blocks.planks)});
-		    MantleClientRegistry.registerManualLargeRecipe("dice_res", new ItemStack(ModBlocks.Dice), new ItemStack[]{new ItemStack(Blocks.planks), new ItemStack(Blocks.planks), new ItemStack(Blocks.planks), new ItemStack(Blocks.planks), new ItemStack(Items.dye), new ItemStack(Blocks.planks), new ItemStack(Blocks.planks), new ItemStack(Blocks.planks), new ItemStack(Blocks.planks)});
-		    MantleClientRegistry.registerManualLargeRecipe("table_res", new ItemStack(ModBlocks.Table), new ItemStack(Blocks.carpet, 1, 14), new ItemStack(Blocks.carpet, 1, 14), new ItemStack(Blocks.carpet, 1, 14), new ItemStack(Blocks.wooden_slab), new ItemStack(Blocks.wooden_slab), new ItemStack(Blocks.wooden_slab), new ItemStack(Blocks.planks), null, new ItemStack(Blocks.planks));
-		    MantleClientRegistry.registerManualLargeRecipe("turbine_res", new ItemStack(ModItems.Turbine), new ItemStack[]{new ItemStack(Items.stick), null, new ItemStack(Items.stick), null, new ItemStack(Blocks.planks), null, new ItemStack(Items.stick), null, new ItemStack(Items.stick)});
-		    
+
 		    AddRecipe(new ItemStack(ModItems.DataChip, 2),  true,new Object[]{"CCC", "CGC", "III", 'C', ModItems.Cardboard, 'G', new ItemStack(ModItems.Circuit, 1, 0), 'I', Items.iron_ingot});
 	     	AddRecipe(new ItemStack(ModBlocks.Teleporter), true, new Object[]{"HCH", "BEB", "HCH", 'H', new ItemStack(ModItems.IronPlate, 1, 2), 'C', new ItemStack(ModItems.Circuit, 1, 1), 'B', new ItemStack(ModItems.AdvancedBattery, 1, 0), 'E', Items.ender_pearl});
 		    AddRecipe(new ItemStack(ModBlocks.WireLessRedstone, 2), true, new Object[]{"IEI", "ERE", "ICI", 'I', new ItemStack(ModItems.IronPlate, 1, 0), 'E', Items.ender_pearl, 'R', Blocks.redstone_block, 'C', new ItemStack(ModItems.Circuit, 1, 1)});
@@ -148,20 +142,7 @@ public class Crafting {
 
         FurnaceRecipes.smelting().func_151394_a(new ItemStack(ModItems.IronPlate, 1, 0), new ItemStack(ModItems.IronPlate, 1, 1), 20F);
 
-        MantleClientRegistry.registerManualFurnaceRecipe("silver_ore_use", new ItemStack(ModItems.SilverIngot), new ItemStack(ModBlocks.SilverOre));
-		MantleClientRegistry.registerManualFurnaceRecipe("flour_use", new ItemStack(Items.bread), new ItemStack(ModItems.Flour));
-        MantleClientRegistry.registerManualFurnaceRecipe("plate_res", new ItemStack(ModItems.IronPlate, 1, 1), new ItemStack(ModItems.IronPlate, 1, 0));
 
-
-        MantleClientRegistry.registerManualLargeRecipe("ironplate.1_res", new ItemStack(ModItems.IronPlate, 2, 0), new ItemStack[]{new ItemStack(Items.iron_ingot), new ItemStack(Items.iron_ingot), null, new ItemStack(Items.iron_ingot), new ItemStack(Items.iron_ingot), null, null, null, null});
-        MantleClientRegistry.registerManualLargeRecipe("ironplate.2_res", new ItemStack(ModItems.IronPlate, 1, 2), new ItemStack[]{new ItemStack(ModItems.IronPlate, 1, 1), new ItemStack(ModItems.IronPlate, 1, 1), null, new ItemStack(ModItems.IronPlate, 1, 1),  new ItemStack(ModItems.IronPlate, 1, 1), null, null, null, null});
-        MantleClientRegistry.registerManualLargeRecipe("silver_sword_res", new ItemStack(ModItems.SilverSword), new ItemStack[]{new ItemStack(ModItems.SilverIngot), null, null, new ItemStack(ModItems.SilverIngot), null, null, new ItemStack(Items.stick), null, null});
-        MantleClientRegistry.registerManualLargeRecipe("silver_arrow_res", new ItemStack(ModItems.SilverArrow), new ItemStack[]{new ItemStack(ModItems.SilverNugget), null, null, new ItemStack(Items.stick), null, null, new ItemStack(Items.feather), null, null});
-        MantleClientRegistry.registerManualLargeRecipe("powerarmor_helmet_res", new ItemStack(ModItems.DivingHelmet), new ItemStack[]{new ItemStack(ModItems.SilverIngot), new ItemStack(Items.nether_star), new ItemStack(ModItems.SilverIngot), new ItemStack(ModItems.SilverIngot), new ItemStack(Blocks.glass), new ItemStack(ModItems.SilverIngot), null, null, null});
-        MantleClientRegistry.registerManualLargeRecipe("powerarmor_chestplate_res", new ItemStack(ModItems.FlightChestPlate), new ItemStack[]{new ItemStack(ModItems.SilverIngot), new ItemStack(Items.feather), new ItemStack(ModItems.SilverIngot), new ItemStack(ModItems.SilverIngot), new ItemStack(Items.nether_star), new ItemStack(ModItems.SilverIngot), new ItemStack(ModItems.SilverIngot), new ItemStack(ModItems.SilverIngot), new ItemStack(ModItems.SilverIngot)});
-        MantleClientRegistry.registerManualLargeRecipe("powerarmor_leggings_res", new ItemStack(ModItems.RunningLeggings), new ItemStack[]{new ItemStack(ModItems.SilverIngot), new ItemStack(Items.nether_star), new ItemStack(ModItems.SilverIngot), new ItemStack(ModItems.SilverIngot), null, new ItemStack(ModItems.SilverIngot), new ItemStack(ModItems.SilverIngot), null, new ItemStack(ModItems.SilverIngot)});
-        MantleClientRegistry.registerManualLargeRecipe("powerarmor_boots_res", new ItemStack(ModItems.JumpingBoots), new ItemStack[]{null, null, null, new ItemStack(Items.diamond), null, new ItemStack(Items.diamond), new ItemStack(ModItems.SilverIngot), null, new ItemStack(ModItems.SilverIngot)});
-        MantleClientRegistry.registerManualLargeRecipe("pizza_base_res", new ItemStack(ModItems.PizzaBottom), new ItemStack[]{new ItemStack(ModItems.Flour), new ItemStack(ModItems.Flour), new ItemStack(ModItems.Flour), null, null, null, null, null, null});
 
 
     }
@@ -189,8 +170,6 @@ public class Crafting {
         if(RegisterRes(name)){
             if(CheckBigRecipe(output, Array)){
                 GameRegistry.addShapedRecipe(output, Array);
-                if(RegisterGuide)
-                RegisterGuideRes(name, output, Array);
             }
 
         }else{
@@ -204,8 +183,6 @@ public class Crafting {
 
                         if(CheckBigRecipe(output, Array)){
                             GameRegistry.addShapedRecipe(output, Array);
-                            if(RegisterGuide)
-                            RegisterGuideRes(name, output, Array);
                             break;
                         }
                     }
@@ -228,7 +205,6 @@ public class Crafting {
         if(RegisterRes(name)){
             if(CheckSmallRecipe(output, Array)){
                 GameRegistry.addShapelessRecipe(output, Array);
-                RegisterShaplessGuideRes(name, output, Array);
             }
 
         }else{
@@ -242,7 +218,6 @@ public class Crafting {
 
                         if(CheckSmallRecipe(output, Array)){
                             GameRegistry.addShapelessRecipe(output, Array);
-                            RegisterShaplessGuideRes(name, output, Array);
                             break;
                         }
                     }
@@ -396,208 +371,6 @@ public class Crafting {
 
 
 
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-	public static void RegisterGuideRes(String Name, ItemStack stack, Object ... par2ArrayOfObj)
-    {
-
-        String name = Name.toLowerCase().replace(" ", "_") + "_res";
-
-
-        String s = "";
-        int i = 0;
-        int j = 0;
-        int k = 0;
-
-
-        if (par2ArrayOfObj[i] instanceof String[])
-        {
-            String[] astring = (String[])((String[])par2ArrayOfObj[i++]);
-
-            for (int l = 0; l < astring.length; ++l)
-            {
-                String s1 = astring[l];
-                ++k;
-                j = s1.length();
-                s = s + s1;
-            }
-        }
-        else
-        {
-            while (par2ArrayOfObj[i] instanceof String)
-            {
-                String s2 = (String)par2ArrayOfObj[i++];
-                ++k;
-                j = s2.length();
-                s = s + s2;
-            }
-        }
-
-        HashMap hashmap;
-
-        for (hashmap = new HashMap(); i < par2ArrayOfObj.length; i += 2)
-        {
-            Character character = (Character)par2ArrayOfObj[i];
-            ItemStack itemstack1 = null;
-
-            if (par2ArrayOfObj[i + 1] instanceof Item)
-            {
-                itemstack1 = new ItemStack((Item)par2ArrayOfObj[i + 1]);
-            }
-            else if (par2ArrayOfObj[i + 1] instanceof Block)
-            {
-                itemstack1 = new ItemStack((Block)par2ArrayOfObj[i + 1], 1, 32767);
-            }
-            else if (par2ArrayOfObj[i + 1] instanceof ItemStack)
-            {
-                itemstack1 = (ItemStack)par2ArrayOfObj[i + 1];
-            }
-
-            hashmap.put(character, itemstack1);
-        }
-
-        ItemStack[] aitemstack = new ItemStack[j * k];
-
-        for (int i1 = 0; i1 < j * k; ++i1)
-        {
-            char c0 = s.charAt(i1);
-
-            if (hashmap.containsKey(Character.valueOf(c0)))
-            {
-                aitemstack[i1] = ((ItemStack)hashmap.get(Character.valueOf(c0))).copy();
-            }
-            else
-            {
-                aitemstack[i1] = null;
-            }
-        }
-
-
-        if(aitemstack.length == 9){
-        MantleClientRegistry.registerManualLargeRecipe(name, stack, new ItemStack[]{aitemstack[0], aitemstack[1], aitemstack[2], aitemstack[3], aitemstack[4], aitemstack[5], aitemstack[6], aitemstack[7], aitemstack[8]});
-
-            }else if (aitemstack.length == 8){
-                MantleClientRegistry.registerManualLargeRecipe(name, stack, new ItemStack[]{aitemstack[0], aitemstack[1], aitemstack[2], aitemstack[3], aitemstack[4], aitemstack[5], aitemstack[6], aitemstack[7], new ItemStack(Blocks.air)});
-
-
-            }else if(aitemstack.length == 7){
-        		MantleClientRegistry.registerManualLargeRecipe(name, stack, new ItemStack[]{aitemstack[0], aitemstack[1], aitemstack[2], aitemstack[3], aitemstack[4], aitemstack[5], aitemstack[6], new ItemStack(Blocks.air), new ItemStack(Blocks.air)});
-        		
-        	}else if (aitemstack.length == 6){
-        		MantleClientRegistry.registerManualLargeRecipe(name, stack, new ItemStack[]{aitemstack[0], aitemstack[1], aitemstack[2], aitemstack[3], aitemstack[4], aitemstack[5], new ItemStack(Blocks.air), new ItemStack(Blocks.air), new ItemStack(Blocks.air)});
-        		
-        	}else if (aitemstack.length == 5){
-        		MantleClientRegistry.registerManualLargeRecipe(name, stack, new ItemStack[]{aitemstack[0], aitemstack[1], aitemstack[2], aitemstack[3], aitemstack[4], new ItemStack(Blocks.air), new ItemStack(Blocks.air), new ItemStack(Blocks.air), new ItemStack(Blocks.air)});
-
-            }else if (aitemstack.length == 4){
-                MantleClientRegistry.registerManualLargeRecipe(name, stack, new ItemStack[]{aitemstack[0], aitemstack[1], aitemstack[2], aitemstack[3], new ItemStack(Blocks.air), new ItemStack(Blocks.air), new ItemStack(Blocks.air), new ItemStack(Blocks.air), new ItemStack(Blocks.air)});
-
-
-            }else if (aitemstack.length == 3){
-               MantleClientRegistry.registerManualLargeRecipe(name, stack, new ItemStack[]{aitemstack[0], aitemstack[1], aitemstack[2], new ItemStack(Blocks.air), new ItemStack(Blocks.air), new ItemStack(Blocks.air), new ItemStack(Blocks.air), new ItemStack(Blocks.air), new ItemStack(Blocks.air)});
-
-
-            }else if (aitemstack.length == 2){
-               MantleClientRegistry.registerManualLargeRecipe(name, stack, new ItemStack[]{aitemstack[0], aitemstack[1], new ItemStack(Blocks.air), new ItemStack(Blocks.air), new ItemStack(Blocks.air), new ItemStack(Blocks.air), new ItemStack(Blocks.air), new ItemStack(Blocks.air), new ItemStack(Blocks.air)});
-
-
-            }else if (aitemstack.length == 1){
-              MantleClientRegistry.registerManualLargeRecipe(name, stack, new ItemStack[]{aitemstack[0], new ItemStack(Blocks.air), new ItemStack(Blocks.air), new ItemStack(Blocks.air), new ItemStack(Blocks.air), new ItemStack(Blocks.air), new ItemStack(Blocks.air), new ItemStack(Blocks.air), new ItemStack(Blocks.air)});
-
-
-        	}else{
-
-            String t = "";
-
-
-                for(int c = 0; c < aitemstack.length; c++) {
-                    t = t + " : " + aitemstack[c];
-                }
-
-        		throw new NullPointerException("Exception in registering recipe for: " + stack + " The crafting array was: " + t + " The crafting array length was: " + aitemstack.length);
-
-
-            }
-        }
-        
-        
-
-    
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-	public static void RegisterShaplessGuideRes(String Name, ItemStack par1ItemStack, Object ... par2ArrayOfObj)
-    {
-        ArrayList arraylist = new ArrayList();
-        Object[] aobject = par2ArrayOfObj;
-        int i = par2ArrayOfObj.length;
-
-
-
-        for (int j = 0; j < i; ++j)
-        {
-            Object object1 = aobject[j];
-
-            if (object1 instanceof ItemStack)
-            {
-                arraylist.add(((ItemStack)object1).copy());
-            }
-            else if (object1 instanceof Item)
-            {
-                arraylist.add(new ItemStack((Item)object1));
-            }
-            else
-            {
-                if(object1 == null){
-                    arraylist.add(new ItemStack(Blocks.bedrock));
-                }else{
-                if (!(object1 instanceof Block))
-                {
-                    throw new NullPointerException("Invalid recipe registered for guide book!");
-                }
-
-                arraylist.add(new ItemStack((Block)object1));
-                }
-            }
-            
-            
-            String name = Name.toLowerCase().replace(" ", "_") + "_res";
-
-
-
-            ItemStack[] stacks = new ItemStack[]{new ItemStack(Blocks.air)};
-
-
-            if(arraylist.size() == 1){
-                stacks = new ItemStack[]{GetItemStack(arraylist, 0)};
-            }else if (arraylist.size() == 2){
-                stacks = new ItemStack[]{GetItemStack(arraylist, 0), GetItemStack(arraylist, 1)};
-            }else if (arraylist.size() == 3){
-                stacks = new ItemStack[]{GetItemStack(arraylist, 0), GetItemStack(arraylist, 1), GetItemStack(arraylist, 2)};
-            }else if (arraylist.size() == 4){
-                stacks = new ItemStack[]{GetItemStack(arraylist, 0), GetItemStack(arraylist, 1), GetItemStack(arraylist, 2), GetItemStack(arraylist, 3)};
-            }else{
-                stacks = new ItemStack[]{GetItemStack(arraylist, 0)};
-            }
-            	if(stacks.length == 1){
-            		MantleClientRegistry.registerManualSmallRecipe(name, par1ItemStack, new ItemStack[]{stacks[0], null, null, null});
-            		
-            	}else if (stacks.length  == 2){
-            		MantleClientRegistry.registerManualSmallRecipe(name, par1ItemStack, new ItemStack[]{stacks[0], stacks[1], null, null});
-            		
-            	}else if (stacks.length  == 3){
-            		MantleClientRegistry.registerManualSmallRecipe(name, par1ItemStack, new ItemStack[]{stacks[0], stacks[1], stacks[2], null});
-            		
-            	}else if (stacks.length  == 4){
-            		MantleClientRegistry.registerManualSmallRecipe(name, par1ItemStack, new ItemStack[]{stacks[0], stacks[1], stacks[2],stacks[3]});
-
-
-
-            	}else if(stacks.length < 1 || stacks.length > 4){
-            MantleClientRegistry.registerManualSmallRecipe(name, new ItemStack(Blocks.air), new ItemStack[]{new ItemStack(Blocks.air), new ItemStack(Blocks.air), new ItemStack(Blocks.air), new ItemStack(Blocks.air)});
-
-            throw new NullPointerException("Invalid recipe registered for guide book! Max size is 4. Min size is 1. Size was: " + stacks.length);
-                }
-            }
-            
-        }
 
 
     public static ItemStack GetItemStack(ArrayList array, int i){

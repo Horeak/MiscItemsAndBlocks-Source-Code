@@ -1,7 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Proxies;
 
-import BookCode_mantle.client.MantleClientRegistry;
-import BookCode_mantle.client.SmallFontRenderer;
+
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.Entity.EntityPowerArrow;
 import com.miscitems.MiscItemsAndBlocks.Entity.EntitySilverArrow;
@@ -9,8 +8,6 @@ import com.miscitems.MiscItemsAndBlocks.Event.GuiListener;
 import com.miscitems.MiscItemsAndBlocks.GamePart.GamePartItemRender;
 import com.miscitems.MiscItemsAndBlocks.GamePart.TileEntityGamePart;
 import com.miscitems.MiscItemsAndBlocks.ItemRender.*;
-import com.miscitems.MiscItemsAndBlocks.Items.ManualInfo;
-import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
 import com.miscitems.MiscItemsAndBlocks.Lib.Colours;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Misc.ItemHelper;
@@ -26,21 +23,13 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
-import org.w3c.dom.Document;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import java.io.InputStream;
 
 
 public class ClientProxy extends ServerProxy {
@@ -56,17 +45,10 @@ public class ClientProxy extends ServerProxy {
     public void RegisterClientTickhandler(){
         tickHandlerClient = new TickHandlerClient();
     }
-	
-    public static SmallFontRenderer smallFontRenderer;
+
     public void registerRenderThings() {
 	
-	
-        Minecraft mc = Minecraft.getMinecraft();
-        if (mc.getTextureManager() == null)
-        	Main.logger.error("vanilla texture man is null");
-        if (mc.renderEngine == null)
-            Main.logger.error("vanilla render engine is null");
-        smallFontRenderer = new SmallFontRenderer(mc.gameSettings, new ResourceLocation("minecraft:textures/font/ascii.png"), mc.renderEngine, false);
+
     	
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBin.class, new TileEntityBinRender());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTv.class, new TileEntityTvRender());
@@ -191,49 +173,10 @@ public class ClientProxy extends ServerProxy {
     }
 
 
-    
-    public static Document Guide;
-    public static ManualInfo manualData;
-    
-    
-    @Override
-    public void readManuals()
-    {
-        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        Guide = readManual("/assets/miscitems/manuals/guide.xml", dbFactory);
 
-        RegisterGuideRecipes();
-        manualData = new ManualInfo();
-    }
 
-    Document readManual (String location, DocumentBuilderFactory dbFactory)
-    {
-        try
-        {
-            InputStream stream = Main.class.getResourceAsStream(location);
-            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.parse(stream);
-            doc.getDocumentElement().normalize();
-            return doc;
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-            return null;
-        }
-    }
 
-    public void RegisterGuideRecipes(){
-    	
-    	
-    	MantleClientRegistry.registerManualIcon("coal", new ItemStack(Items.coal, 1, 0));
-    	MantleClientRegistry.registerManualIcon("guide_book", new ItemStack(ModItems.GuideBook));
-    	MantleClientRegistry.registerManualIcon("xp_storage", new ItemStack(ModBlocks.XpStorage));
-    	MantleClientRegistry.registerManualIcon("writable_book", new ItemStack(Items.writable_book));
-        MantleClientRegistry.registerManualIcon("charger", new ItemStack(ModBlocks.Charger));
-    	
-    	
- }
+
     
     
     public ItemStack Stack(Item item){
