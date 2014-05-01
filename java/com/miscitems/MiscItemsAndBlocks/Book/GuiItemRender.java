@@ -380,10 +380,8 @@ public class GuiItemRender extends Render
                 }
 
                 GL11.glRotatef(-90.0F, 0.0F, 1.0F, 0.0F);
-                //TODO FIX THESE
-                //this.itemRenderBlocks.useInventoryTint = this.renderWithColor;
+               // this.itemRenderBlocks.useInventoryTint = this.renderWithColor;
                 this.itemRenderBlocks.renderBlockAsItem(block, l, 1.0F);
-                //TODO FIX THESE
                 //this.itemRenderBlocks.useInventoryTint = true;
                 GL11.glPopMatrix();
             }
@@ -479,25 +477,24 @@ public class GuiItemRender extends Render
                     this.renderItemIntoGUI(par1FontRenderer, par2TextureManager, par3ItemStack, par4, par5, true);
                 }
 
-            /* Modders must handle this themselves if they use custom renderers!
-if (par3ItemStack.hasEffect())
-{
-GL11.glDepthFunc(GL11.GL_GREATER);
-GL11.glDisable(GL11.GL_LIGHTING);
-GL11.glDepthMask(false);
-par2TextureManager.bindTexture(RES_ITEM_GLINT);
-this.zLevel -= 50.0F;
-GL11.glEnable(GL11.GL_BLEND);
-GL11.glBlendFunc(GL11.GL_DST_COLOR, GL11.GL_DST_COLOR);
-GL11.glColor4f(0.5F, 0.25F, 0.8F, 1.0F);
-this.renderGlint(par4 * 431278612 + par5 * 32178161, par4 - 2, par5 - 2, 20, 20);
-GL11.glDisable(GL11.GL_BLEND);
-GL11.glDepthMask(true);
-this.zLevel += 50.0F;
-GL11.glEnable(GL11.GL_LIGHTING);
-GL11.glDepthFunc(GL11.GL_LEQUAL);
-}
-*/
+//if (par3ItemStack.hasEffect())
+//{
+//GL11.glDepthFunc(GL11.GL_GREATER);
+//GL11.glDisable(GL11.GL_LIGHTING);
+//GL11.glDepthMask(false);
+//par2TextureManager.bindTexture(RES_ITEM_GLINT);
+//this.zLevel -= 50.0F;
+//GL11.glEnable(GL11.GL_BLEND);
+//GL11.glBlendFunc(GL11.GL_DST_COLOR, GL11.GL_DST_COLOR);
+//GL11.glColor4f(0.5F, 0.25F, 0.8F, 1.0F);
+//this.renderGlint(par4 * 431278612 + par5 * 32178161, par4 - 2, par5 - 2, 20, 20);
+//GL11.glDisable(GL11.GL_BLEND);
+//GL11.glDepthMask(true);
+//this.zLevel += 50.0F;
+//GL11.glEnable(GL11.GL_LIGHTING);
+//GL11.glDepthFunc(GL11.GL_LEQUAL);
+//}
+
             }
         }
 

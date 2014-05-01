@@ -1,8 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.GuiObjects;
 
 import com.miscitems.MiscItemsAndBlocks.Book.BookUtils;
-import com.miscitems.MiscItemsAndBlocks.Gui.BookPages.MainPage;
-import com.miscitems.MiscItemsAndBlocks.Main.Main;
+import com.miscitems.MiscItemsAndBlocks.Book.MainPage;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
@@ -15,7 +14,7 @@ public class BookItemSelectButton extends GuiButton{
     MainPage gui;
 
     public BookItemSelectButton(int par1, int par2, int par3, MainPage Gui) {
-        super(par1, par2, par3, 56, 184, "");
+        super(par1, par2, par3, 60, 10, "\u00a7n" + BookUtils.TabItems.get(Gui.CurrentTab)[par1 - BookUtils.MaxTabs].getDisplayName());
 
         this.Id = par1;
         this.gui = Gui;
@@ -35,12 +34,12 @@ public class BookItemSelectButton extends GuiButton{
 
         RenderHelper.enableGUIStandardItemLighting();
 
-            this.drawTexturedModalRect(this.xPosition, this.yPosition, 56, 184, 55, 20);
-
-        if(BookUtils.TabItems.get(gui.CurrentTab)[this.id - BookUtils.MaxTabs] != null && BookUtils.TabItems.get(gui.CurrentTab)[this.id - BookUtils.MaxTabs].getItem() != null){
 
 
-            BookUtils.renderitem.renderItemAndEffectIntoGUI(Main.font, par1Minecraft.renderEngine, BookUtils.TabItems.get(gui.CurrentTab)[this.id - BookUtils.MaxTabs], this.xPosition + 3, this.yPosition + 2);
+        if(BookUtils.GetTabType(gui.CurrentTab) == 2 && BookUtils.TabItems.get(gui.CurrentTab) != null)
+        if(BookUtils.TabItems.get(gui.CurrentTab) != null && BookUtils.TabItems.get(gui.CurrentTab)[this.id - BookUtils.MaxTabs] != null && (this.id - BookUtils.MaxTabs) < BookUtils.TabItems.get(gui.CurrentTab).length && BookUtils.TabItems.get(gui.CurrentTab)[this.id - BookUtils.MaxTabs].getItem() != null){
+
+            this.drawString(fontRendererObj, BookUtils.TabItems.get(gui.CurrentTab)[this.id - BookUtils.MaxTabs].getDisplayName(), xPosition + 2, yPosition, 0x737373);
 
         }
 

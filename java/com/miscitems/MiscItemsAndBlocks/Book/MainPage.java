@@ -1,4 +1,4 @@
-package com.miscitems.MiscItemsAndBlocks.Gui.BookPages;
+package com.miscitems.MiscItemsAndBlocks.Book;
 
 import com.miscitems.MiscItemsAndBlocks.Book.BookUtils;
 import com.miscitems.MiscItemsAndBlocks.GuiObjects.BookItemSelectButton;
@@ -28,25 +28,13 @@ public class MainPage extends GuiScreen {
     public int CurrentTab = 1;
 
 
-    public static final int xSizeOfTexture = 240;
+    public static final int xSizeOfTexture = 260;
     public static final int ySizeOfTexture = 180;
 
 
     public int posX, posY;
 
 
-    @Override
-    public void updateScreen()
-    {
-        posX = (this.width - xSizeOfTexture) / 2;
-        posY = (this.height - ySizeOfTexture) / 2;
-
-
-        if(BookUtils.GetTabType(CurrentTab) == 2){
-            ChangeItems();
-        }
-
-    }
 
     @Override
     public void drawScreen(int x, int y, float f) {
@@ -59,14 +47,14 @@ public class MainPage extends GuiScreen {
          posY = (this.height - ySizeOfTexture) / 2;
 
 
-        drawTexturedModalRect(posX, posY, 20, 1, 212, 180);
+        drawTexturedModalRect(posX, posY, 20, 1, 236, 180);
 
 
-        this.drawString(this.fontRendererObj, BookUtils.GetTabName(CurrentTab), posX + 10, posY + 8, 0x8A7F7F);
+        this.drawString(this.fontRendererObj, BookUtils.GetTabName(CurrentTab), posX + 10, posY + 8, 4210752);
 
 
         if(BookUtils.GetTabType(CurrentTab) == 1){
-            this.fontRendererObj.drawSplitString(BookUtils.GetTextForTab(CurrentTab), posX + 10, posY + 20, 200, 0x808080);
+            this.fontRendererObj.drawSplitString(BookUtils.GetTextForTab(CurrentTab), posX + 10, posY + 20, 200, 4210752);
         }
 
 
@@ -98,9 +86,13 @@ public class MainPage extends GuiScreen {
 
         buttonList.clear();
 
-        for(int i = 1; i < Tabs + 1; i++){
-            buttonList.add(new BookTabButton(i, posX - 26, posY + (12 + (((i-1) * 20) + 1)), this));
-        }
+            for (int i = 1; i < Tabs + 1; i++) {
+                buttonList.add(new BookTabButton(i, posX - 26, posY + (12 + (((i - 1) * 20) + 1)), this));
+            }
+
+        if(BookUtils.GetTabType(CurrentTab) == 2)
+            ChangeItems();
+
 
 
 
@@ -111,10 +103,24 @@ public class MainPage extends GuiScreen {
         if(BookUtils.GetTabType(CurrentTab) == 2){
 
 
-            for(int i = 0; i < 1; i++){
 
-                buttonList.add(new BookItemSelectButton(i + BookUtils.MaxTabs, posX + 20, posY + 20, this));
 
+
+
+            if(BookUtils.TabItems.get(CurrentTab)!= null && BookUtils.TabItems.get(CurrentTab).length > 1) {
+                for (int i = 0; i < BookUtils.TabItems.get(CurrentTab).length; i++) {
+                    int g = i >= 15 ? 1 : 0;
+                    int h = g == 1 ? i - 15 : 0;
+
+                    buttonList.add(new BookItemSelectButton(i + BookUtils.MaxTabs, posX + 15 + (100 * g), posY + (i >= 15 ? (21 + (h * 10)) : (21 + (i * 10))), this));
+                }
+            }else if (BookUtils.TabItems.get(CurrentTab)!= null && BookUtils.TabItems.get(CurrentTab).length == 1){
+                for (int i = 0; i < 1; i++) {
+                    int g = i >= 15 ? 1 : 0;
+                    int h = g == 1 ? i - 15 : 0;
+
+                    buttonList.add(new BookItemSelectButton(i + BookUtils.MaxTabs, posX + 15 + (100 * g), posY + (i >= 15 ? (21 + (h * 10)) : (21 + (i * 10))), this));
+                }
             }
 
 
@@ -135,10 +141,19 @@ public class MainPage extends GuiScreen {
         if(button.id <= BookUtils.MaxTabs){
             if(button.id <= Tabs && button.id > 0){
                 CurrentTab = button.id;
-                ChangeItems();
+
             }
 
+            if(BookUtils.GetTabType(CurrentTab) == 2)
+                ChangeItems();
 
+
+        }else{
+            if(button instanceof BookItemSelectButton) {
+
+                BookItemSelectButton btn = (BookItemSelectButton)button;
+                System.out.println(btn.id + " : " + btn.displayString);
+            }
         }
 
 
@@ -152,6 +167,7 @@ public class MainPage extends GuiScreen {
             GuiButton btn = (GuiButton) this.buttonList.get(i);
 
 
+
             if (btn instanceof BookTabButton) {
                 if (isHovering(par1, par2, btn.getButtonWidth(), 20, btn.xPosition, btn.yPosition)) {
 
@@ -162,18 +178,6 @@ public class MainPage extends GuiScreen {
 
 
                 }
-            }else if (btn instanceof BookItemSelectButton){
-
-                if (isHovering(par1, par2, btn.getButtonWidth(), 20, btn.xPosition, btn.yPosition)) {
-
-                    if(btn.id > BookUtils.MaxTabs){
-                        drawTooltip(Arrays.asList(new String[]{BookUtils.TabItems.get(CurrentTab)[btn.id - BookUtils.MaxTabs].getDisplayName()}), par1, par2);
-
-                    }
-
-
-                }
-
             }
 
         }

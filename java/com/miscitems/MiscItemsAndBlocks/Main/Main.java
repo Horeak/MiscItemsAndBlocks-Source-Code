@@ -2,6 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.Main;
 
 import com.google.common.collect.Sets;
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
+import com.miscitems.MiscItemsAndBlocks.Book.BookRegestration;
 import com.miscitems.MiscItemsAndBlocks.Book.BookUtils;
 import com.miscitems.MiscItemsAndBlocks.Book.SmallFontRenderer;
 import com.miscitems.MiscItemsAndBlocks.Entity.EntityPowerArrow;
@@ -192,16 +193,7 @@ import java.util.Set;
            registerRenderer();
 
 
-            BookUtils.RegisterTab(1, "Main Page", new ItemStack(ModItems.GuideBook), 1);
-            BookUtils.RegisterTab(2, "Misc Blocks Page", new ItemStack(ModBlocks.XpStorage), 2);
-            BookUtils.RegisterTab(3, "Electrical Blocks and Items Page", new ItemStack(ModBlocks.Charger), 2);
-            BookUtils.RegisterTab(4, "Items Page", new ItemStack(ModItems.XpExtractor), 2);
-
-            BookUtils.RegisterTextForTab(1, "This a guide book for MiscItemsAndBlocks which explains all blocks and items in the mod and will also show any recipes added by the mod.");
-
-            BookUtils.RegisterItemsForTab(2, new ItemStack[]{new ItemStack(ModBlocks.XpStorage)});
-            BookUtils.RegisterItemsForTab(3, new ItemStack[]{new ItemStack(ModBlocks.Charger)});
-            BookUtils.RegisterItemsForTab(4, new ItemStack[]{new ItemStack(ModItems.XpExtractor)});
+            BookRegestration.Register();
         }
 
         public void RegisterClientEvents()

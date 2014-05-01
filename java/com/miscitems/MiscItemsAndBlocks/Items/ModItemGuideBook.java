@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Items;
 
-import com.miscitems.MiscItemsAndBlocks.Gui.BookPages.MainPage;
+import com.miscitems.MiscItemsAndBlocks.Book.MainPage;
 import com.miscitems.MiscItemsAndBlocks.Gui.GuiHandler;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import cpw.mods.fml.client.FMLClientHandler;

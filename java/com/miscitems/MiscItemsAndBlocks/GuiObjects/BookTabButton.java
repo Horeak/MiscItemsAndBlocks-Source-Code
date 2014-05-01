@@ -1,15 +1,12 @@
 package com.miscitems.MiscItemsAndBlocks.GuiObjects;
 
 import com.miscitems.MiscItemsAndBlocks.Book.BookUtils;
-import com.miscitems.MiscItemsAndBlocks.Gui.BookPages.MainPage;
+import com.miscitems.MiscItemsAndBlocks.Book.MainPage;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.audio.PositionedSoundRecord;
-import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
