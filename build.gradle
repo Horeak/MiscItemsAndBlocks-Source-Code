@@ -28,14 +28,7 @@ version = config.mod_version
 group= "com.miscitems.MiscItemsAndBlocks" 
 archivesBaseName = "MiscItemsAndBlocks"
 
-sourceSets.main{
-    java{
-srcDirs 'java'//set the source folder as the /src subfolder
-}
-    resources{
-srcDirs 'resources'//set the resources folder as the /resources subfolder
-}
-}
+
 
 minecraft {
     version = config.minecraft_version + "-" + config.forge_version
