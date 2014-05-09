@@ -1,8 +1,10 @@
 package MiscItemsApi.Recipes;
 
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemGlassBottle;
 import net.minecraft.item.ItemStack;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -10,63 +12,46 @@ import java.util.List;
 public class SqueezerRecipes
 {
     private static final SqueezerRecipes instance = new SqueezerRecipes();
-
-    private HashMap<List<Integer>, ItemStack> Recipes = new HashMap<List<Integer>, ItemStack>();
+    private static HashMap<List<Integer>, ItemStack> Recipes = new HashMap<List<Integer>, ItemStack>();
     public static final SqueezerRecipes instance()
     {
         return instance;
     }
 
   
-    /**
-* Registers a recipes for the squeezer (the main item will always be a glass bottle)
+/**
+* Registers a recipes for the squeezer (
 *
-* @param Input input item
+* @param InputLeft left item input
+* @param InputRight right item input
 * @param Output the recipes output
 */
-    public void AddRecipe(ItemStack Input, ItemStack Output)
+    public void AddRecipe(ItemStack InputLeft, ItemStack InputRight, ItemStack Output)
     {
 
-     Recipes.put(Arrays.asList(Input.getItem().getIdFromItem(Input.getItem()), Input.getItemDamage()), Output);
-    
-    
+        Recipes.put(Arrays.asList(Item.getIdFromItem(InputLeft.getItem()), InputLeft.getItemDamage(), Item.getIdFromItem(InputRight.getItem()), InputRight.getItemDamage()), Output);
     }
 
 
 
-    /**
+/**
 * Gets the result for a recipe in the squeezer
-*        item_2 will always be a glass bottle
 *
-* @param item_1 input item number 1
-* @param item_2 input item number 2
+*
+* @param InputLeft left item input
+* @param InputRight right item input
 * @return the result (null if nothing)
 */
-    public ItemStack GetResult(ItemStack item_1, ItemStack item_2)
+    public ItemStack GetResult(ItemStack InputLeft, ItemStack InputRight)
     {
 
     
-     if(item_1 == null || item_2 == null)
-     {
+     if(InputLeft == null || InputRight == null)
      return null;
-     }
-    
-    
-    
-     if(item_1.getItem() instanceof ItemGlassBottle){
-     ItemStack result = (ItemStack)Recipes.get(Arrays.asList(item_2.getItem().getIdFromItem(item_2.getItem()), item_2.getItemDamage()));
-    
-     return result;
-    
-     }
-    
-    
-    
-    
-     return null;
+
+        ItemStack result = Recipes.get(Arrays.asList(Item.getIdFromItem(InputLeft.getItem()), InputLeft.getItemDamage(), Item.getIdFromItem(InputRight.getItem()), InputRight.getItemDamage()));
+        return result;
+
     }
-
-
-  
 
 }

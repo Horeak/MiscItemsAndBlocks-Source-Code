@@ -3,7 +3,6 @@ package com.miscitems.MiscItemsAndBlocks.Main;
 import com.google.common.collect.Sets;
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.Book.BookRegestration;
-import com.miscitems.MiscItemsAndBlocks.Book.BookUtils;
 import com.miscitems.MiscItemsAndBlocks.Book.SmallFontRenderer;
 import com.miscitems.MiscItemsAndBlocks.Entity.EntityPowerArrow;
 import com.miscitems.MiscItemsAndBlocks.Entity.EntitySilverArrow;
@@ -12,14 +11,13 @@ import com.miscitems.MiscItemsAndBlocks.Gui.GuiHandler;
 import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
 import com.miscitems.MiscItemsAndBlocks.Laser.DefaultLaser;
 import com.miscitems.MiscItemsAndBlocks.Laser.LaserRegistry;
-import com.miscitems.MiscItemsAndBlocks.Lib.Crafting;
-import com.miscitems.MiscItemsAndBlocks.Lib.Messages;
-import com.miscitems.MiscItemsAndBlocks.Lib.ModConfig;
-import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
-import com.miscitems.MiscItemsAndBlocks.Misc.BoneMealEvent;
+import com.miscitems.MiscItemsAndBlocks.Utils.Crafting;
+import com.miscitems.MiscItemsAndBlocks.Utils.Messages;
+import com.miscitems.MiscItemsAndBlocks.Utils.ModConfig;
+import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.BoneMealEvent;
 import com.miscitems.MiscItemsAndBlocks.Network.NetworkManager;
 import com.miscitems.MiscItemsAndBlocks.Proxies.ServerProxy;
-import com.miscitems.MiscItemsAndBlocks.VersionChecker.VersionChecker;
 import com.miscitems.MiscItemsAndBlocks.WorldGen.ModWorldGenerator;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
@@ -39,9 +37,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import org.apache.logging.log4j.Level;
@@ -64,20 +60,8 @@ import java.util.Set;
 
 
         public static Set EmptyToolSet = Sets.newHashSet();
-    
-		public static boolean Dev = true;
-    
-		public static boolean VERSION_CHECK = true;
-	
-		public static final String RELEASE_VERSION = Refrence.Version;
-        public static String LATEST_CHANGES = "[Error]";
-        public static String LATEST_VERSION = "[Error]";
-        public static String UPDATE_URL = "http://adf.ly/U25ua";
-        public static boolean UP_TO_DATE = false;
 
-        //FIX
-       // public static String UpdateMessage = StatCollector.translateToLocal("string.versioncheck.newversion").replace("%EnumRed", EnumChatFormatting.RED + "").replace("%EnumYellow", EnumChatFormatting.YELLOW + "").replace("%EnumBlue", EnumChatFormatting.BLUE + "").replace("%EnumGold", EnumChatFormatting.GOLD + "").replace("%ModName", Refrence.Mod_Name).replace("%NewVersion", Main.LATEST_VERSION).replace("%DowLink", Main.UPDATE_URL).replace("%Changes", Main.LATEST_CHANGES);
-    
+
     
         public static final org.apache.logging.log4j.Logger logger = LogManager.getLogger("MiscItems");
     
@@ -162,9 +146,6 @@ import java.util.Set;
         		config.save();
         	}
 
-            //FIX
-        	//if(VERSION_CHECK)
-        		//VersionChecker.go();
 
 
 

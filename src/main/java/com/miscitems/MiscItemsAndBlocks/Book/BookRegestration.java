@@ -1,5 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Book;
 
+import MiscItemsApi.Utils.BookUtils;
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
 import net.minecraft.item.ItemStack;

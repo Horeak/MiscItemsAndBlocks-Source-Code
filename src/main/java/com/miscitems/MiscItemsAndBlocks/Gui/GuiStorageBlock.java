@@ -1,6 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Gui;
 
 import com.miscitems.MiscItemsAndBlocks.Container.ContainerStorageBlock;
+import com.miscitems.MiscItemsAndBlocks.Container.ModGuiContainer;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityStorageBlock;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -12,7 +13,7 @@ import org.lwjgl.opengl.GL12;
 import java.util.Iterator;
 import java.util.List;
 
-public class GuiStorageBlock extends ModGuiContainer{
+public class GuiStorageBlock extends ModGuiContainer {
 
 
 	private final ResourceLocation Texture = new ResourceLocation("miscitems" , "textures/gui/StorageBlockGui.png");

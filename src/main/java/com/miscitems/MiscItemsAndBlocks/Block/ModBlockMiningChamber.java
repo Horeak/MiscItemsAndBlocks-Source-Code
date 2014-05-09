@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Block;
 
-import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMiningChamber;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

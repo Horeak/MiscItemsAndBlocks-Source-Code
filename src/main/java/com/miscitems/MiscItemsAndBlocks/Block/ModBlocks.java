@@ -1,10 +1,10 @@
 package com.miscitems.MiscItemsAndBlocks.Block;
 
-import MiscItemsApi.Access.InDirectAccess;
+import MiscItemsApi.Utils.ItemAccess;
 import com.miscitems.MiscItemsAndBlocks.GamePart.ModBlockGamePart;
 import com.miscitems.MiscItemsAndBlocks.GamePart.TileEntityGamePart;
 import com.miscitems.MiscItemsAndBlocks.ItemBlock.*;
-import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.*;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -262,7 +262,7 @@ public class ModBlocks {
 				
 	        block.setBlockName(Name.toLowerCase().replace(" ", "_"));
 		        GameRegistry.registerBlock(block, Name.toLowerCase().replace(" ", "_"));
-                InDirectAccess.Blocks.put(block.getUnlocalizedName().replace(" ", "_").toLowerCase(), new ItemStack(block));
+                ItemAccess.Blocks.put(block.getUnlocalizedName().replace(" ", "_").toLowerCase(), new ItemStack(block));
 
 
 
@@ -277,7 +277,7 @@ public static void Register(Block Block, Class<? extends ItemBlock> itemclass, S
 	
 	              Block.setBlockName(Name.toLowerCase().replace(" ", "_"));
 		        GameRegistry.registerBlock(Block, itemclass, Name.toLowerCase().replace(" ", "_"));
-                  InDirectAccess.Blocks.put(Block.getUnlocalizedName().replace(" ", "_").toLowerCase(), new ItemStack(Block));
+                  ItemAccess.Blocks.put(Block.getUnlocalizedName().replace(" ", "_").toLowerCase().replace("tile.", "").replace(".name", ""), new ItemStack(Block));
 
 	}
 

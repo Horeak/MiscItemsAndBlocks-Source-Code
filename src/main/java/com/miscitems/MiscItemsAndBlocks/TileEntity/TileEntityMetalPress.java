@@ -1,5 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
+import MiscItemsApi.Recipes.MetalPressRecipes;
 import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.Client.ClientMetalPressPacketUpdate;
@@ -14,14 +15,14 @@ public class TileEntityMetalPress extends TileEntityPowerInv implements ISidedIn
 	
 	
 	public TileEntityMetalPress() {
-		super(6, "Metal Press", 64);
+		super(6, "Metal Press", 16);
 	}
 
 	public int WorkTime = 1;
 	public int MaxWorkTime = 50;
 	
-	//1 = Normal plate
-	//2 = Hardened plate
+	//1 = Mode 1x1
+	//2 = Mode 4x4
 	public int Mode = 1;
 	
 	
@@ -66,42 +67,30 @@ public class TileEntityMetalPress extends TileEntityPowerInv implements ISidedIn
 			if(Mode == 1 ? GetPower() > 10 : GetPower() > 20){
 		if(WorkTime <= MaxWorkTime ){
 		if(Mode == 1){
-			if(this.getStackInSlot(1) != null && this.getStackInSlot(1).getItem() == Items.iron_ingot
-					&& this.getStackInSlot(0) == null){ 
-					
-				WorkTimeAdd();
-				
-			}else if (this.getStackInSlot(1) != null && this.getStackInSlot(1).getItem() == Items.iron_ingot &&
-					this.getStackInSlot(0) != null && this.getStackInSlot(0).getItem() == ModItems.IronPlate && this.getStackInSlot(0).getItemDamage() == 0 && this.getStackInSlot(0).stackSize < this.getInventoryStackLimit()){
-				
-				WorkTimeAdd();
-				
-			}else if (this.getStackInSlot(1) == null && Mode == 1){
+			ItemStack finishItem_1 = MetalPressRecipes.instance().GetResultMode_1(this.getStackInSlot(1));
+
+           if(finishItem_1 != null && this.getStackInSlot(0) == null || finishItem_1 != null && this.getStackInSlot(0) != null && this.getStackInSlot(0).getItem() == finishItem_1.getItem() && this.getStackInSlot(0).stackSize < this.getInventoryStackLimit()) {
+            WorkTimeAdd();
+
+			}else if (this.getStackInSlot(1) == null && Mode == 1 || finishItem_1 == null && Mode == 1){
 				SetWorkTimeUpdate(0);
 				
 			}
 
 			
 		}else if (Mode == 2){
-			if(this.getStackInSlot(2) != null && this.getStackInSlot(2).getItem() == Items.iron_ingot
-					&& this.getStackInSlot(3) != null && this.getStackInSlot(3).getItem() == Items.iron_ingot
-					&& this.getStackInSlot(4) != null && this.getStackInSlot(4).getItem() == Items.iron_ingot
-					&& this.getStackInSlot(5) != null && this.getStackInSlot(5).getItem() == Items.iron_ingot
-					&& this.getStackInSlot(0) == null
-					
-					||
-					this.getStackInSlot(2) != null && this.getStackInSlot(2).getItem() == Items.iron_ingot
-							&& this.getStackInSlot(3) != null && this.getStackInSlot(3).getItem() == Items.iron_ingot
-							&& this.getStackInSlot(4) != null && this.getStackInSlot(4).getItem() == Items.iron_ingot
-							&& this.getStackInSlot(5) != null && this.getStackInSlot(5).getItem() == Items.iron_ingot
-							&&
-					this.getStackInSlot(0) != null && this.getStackInSlot(0).getItem() == ModItems.IronPlate && this.getStackInSlot(0).getItemDamage() == 2 && this.getStackInSlot(0).stackSize < this.getInventoryStackLimit()){
-				WorkTimeAdd();
-			
-			}else{
 
-				SetWorkTimeUpdate(0);
-			}
+            ItemStack finishItem_1 = MetalPressRecipes.instance().GetResultMode_4(this.getStackInSlot(2), this.getStackInSlot(3), this.getStackInSlot(4), this.getStackInSlot(5));
+
+            if(finishItem_1 != null && this.getStackInSlot(0) == null || finishItem_1 != null && this.getStackInSlot(0).getItem() == finishItem_1.getItem() && this.getStackInSlot(0).stackSize < this.getInventoryStackLimit()) {
+                WorkTimeAdd();
+
+            }else if (this.getStackInSlot(2) == null || this.getStackInSlot(3) == null || this.getStackInSlot(4) == null || this.getStackInSlot(5) == null || finishItem_1 == null && Mode == 2){
+                SetWorkTimeUpdate(0);
+
+            }
+			
+
 			
 		}
 		
@@ -113,36 +102,43 @@ public class TileEntityMetalPress extends TileEntityPowerInv implements ISidedIn
 			
 			
 			if(Mode == 1){
+
+                ItemStack FinishItem = MetalPressRecipes.instance().GetResultMode_1(this.getStackInSlot(1));
+
 				this.decrStackSize(1, 1);
 				this.SetPower(this.GetPower() - 10);
 				
 				if(this.getStackInSlot(0) == null){
-					this.setInventorySlotContents(0, new ItemStack(ModItems.IronPlate, 1, 0));
+					this.setInventorySlotContents(0, FinishItem);
 					
-				}else if(this.getStackInSlot(0) != null && this.getStackInSlot(0).getItem() == ModItems.IronPlate && this.getStackInSlot(0).getItemDamage() == 0){
-				
+				}else if(this.getStackInSlot(0) != null && this.getStackInSlot(0).getItem() == FinishItem.getItem() && this.getStackInSlot(0).getItemDamage() == FinishItem.getItemDamage()){
+
+                    System.out.println("T");
+
 					if(this.getStackInSlot(0).stackSize < this.getInventoryStackLimit()){
-						this.setInventorySlotContents(0, new ItemStack(ModItems.IronPlate, this.getStackInSlot(0).stackSize + 1, 0));
+						this.setInventorySlotContents(0, new ItemStack(this.getStackInSlot(0).getItem(), this.getStackInSlot(0).stackSize + 1, this.getStackInSlot(0).getItemDamage()));
 					}
 					
 				}
 				
 			}else if (Mode == 2){
 				this.SetPower(this.GetPower() - 20);
-				
 
-				this.decrStackSize(2, 1);
+                ItemStack finishItem_4 = MetalPressRecipes.instance().GetResultMode_4(this.getStackInSlot(2), this.getStackInSlot(3), this.getStackInSlot(4), this.getStackInSlot(5));
+
+
+                this.decrStackSize(2, 1);
 				this.decrStackSize(3, 1);
 				this.decrStackSize(4, 1);
 				this.decrStackSize(5, 1);
 				
 				if(this.getStackInSlot(0) == null){
-					this.setInventorySlotContents(0, new ItemStack(ModItems.IronPlate, 1, 2));
+					this.setInventorySlotContents(0, finishItem_4);
 					
-				}else if(this.getStackInSlot(0) != null && this.getStackInSlot(0).getItem() == ModItems.IronPlate && this.getStackInSlot(0).getItemDamage() == 2){
+				}else if(this.getStackInSlot(0) != null && this.getStackInSlot(0).getItem() == finishItem_4.getItem() && this.getStackInSlot(0).getItemDamage() == finishItem_4.getItemDamage()){
 				
 					if(this.getStackInSlot(0).stackSize < this.getInventoryStackLimit()){
-						this.setInventorySlotContents(0, new ItemStack(ModItems.IronPlate, this.getStackInSlot(0).stackSize + 1, 2));
+						this.setInventorySlotContents(0, new ItemStack(finishItem_4.getItem(), this.getStackInSlot(0).stackSize + 1, finishItem_4.getItemDamage()));
 					}
 					
 				}

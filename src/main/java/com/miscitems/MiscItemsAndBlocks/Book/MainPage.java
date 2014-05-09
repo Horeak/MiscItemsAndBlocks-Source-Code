@@ -1,11 +1,8 @@
 package com.miscitems.MiscItemsAndBlocks.Book;
 
-import com.miscitems.MiscItemsAndBlocks.Book.BookUtils;
+import MiscItemsApi.Utils.BookUtils;
 import com.miscitems.MiscItemsAndBlocks.GuiObjects.BookItemSelectButton;
 import com.miscitems.MiscItemsAndBlocks.GuiObjects.BookTabButton;
-import com.miscitems.MiscItemsAndBlocks.Main.Main;
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerButtonPacket;
-import com.miscitems.MiscItemsAndBlocks.Proxies.ServerProxy;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -143,9 +140,7 @@ public class MainPage extends GuiScreen {
                 CurrentTab = button.id;
 
             }
-
-            if(BookUtils.GetTabType(CurrentTab) == 2)
-                ChangeItems();
+            initGui();
 
 
         }else{

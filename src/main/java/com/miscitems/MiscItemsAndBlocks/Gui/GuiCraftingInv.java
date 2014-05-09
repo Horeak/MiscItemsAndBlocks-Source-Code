@@ -1,7 +1,8 @@
 package com.miscitems.MiscItemsAndBlocks.Gui;
 
 import com.miscitems.MiscItemsAndBlocks.Container.ContainerCraftingInv;
-import com.miscitems.MiscItemsAndBlocks.Lib.Messages;
+import com.miscitems.MiscItemsAndBlocks.GuiObjects.GuiTipButton;
+import com.miscitems.MiscItemsAndBlocks.Utils.Messages;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityCraftingInv;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;

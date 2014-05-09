@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
-import com.miscitems.MiscItemsAndBlocks.Misc.ItemHelper;
+import com.miscitems.MiscItemsAndBlocks.Utils.ItemHelper;
 import com.miscitems.MiscItemsAndBlocks.Network.PacketTileWithItemUpdate;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;

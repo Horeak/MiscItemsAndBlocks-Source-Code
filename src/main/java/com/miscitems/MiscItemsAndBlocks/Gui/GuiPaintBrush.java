@@ -1,5 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Gui;
 
+import com.miscitems.MiscItemsAndBlocks.GuiObjects.ModGuiSlider;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerPaintBrushChangePacket;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityPaintBlock;

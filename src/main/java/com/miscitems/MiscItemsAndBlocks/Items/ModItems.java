@@ -1,8 +1,8 @@
 package com.miscitems.MiscItemsAndBlocks.Items;
 
-import MiscItemsApi.Access.InDirectAccess;
+import MiscItemsApi.Utils.ItemAccess;
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
-import com.miscitems.MiscItemsAndBlocks.Lib.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Blocks;
@@ -242,7 +242,7 @@ public class ModItems {
 			
         Item.setUnlocalizedName((Name.toLowerCase().replace(" ", "_")));
         GameRegistry.registerItem(Item, (Name.toLowerCase().replace(" ", "_")));
-            InDirectAccess.Items.put(Item.getUnlocalizedName().replace(" ", "_").toLowerCase(), new ItemStack(Item));
+            ItemAccess.Items.put(Item.getUnlocalizedName().replace(" ", "_").toLowerCase().replace("item.", "").replace(".name", ""), new ItemStack(Item));
 	}
 	}
 	
@@ -250,7 +250,7 @@ public class ModItems {
 		
 		
         GameRegistry.registerItem(Item, Name.toLowerCase().replace(" ", ""));
-        InDirectAccess.Items.put(Item.getUnlocalizedName().replace(" ", "_").toLowerCase(), new ItemStack(Item));
+        ItemAccess.Items.put(Item.getUnlocalizedName().replace(" ", "_").toLowerCase().replace("item.", "").replace(".name", ""), new ItemStack(Item));
 
 	}
 }

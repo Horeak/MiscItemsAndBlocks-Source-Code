@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Network.Packet.Server;
 
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
-import com.miscitems.MiscItemsAndBlocks.Misc.GameInvite;
+import com.miscitems.MiscItemsAndBlocks.Utils.GameInvite;
 import com.miscitems.MiscItemsAndBlocks.Network.IPacket;
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.Client.ClientGamePacketInviteRecived;
 import com.miscitems.MiscItemsAndBlocks.Proxies.ServerProxy;
