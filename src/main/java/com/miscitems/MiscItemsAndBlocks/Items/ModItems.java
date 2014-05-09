@@ -42,7 +42,7 @@ public class ModItems {
 	public static Item CreativeBattery;
 	
 	public static Item Circuit;
-	public static Item ModuleConnecter;
+	public static Item CableItem;
 	public static Item SolarCells;
 	public static Item Turbine;
 	
@@ -155,8 +155,8 @@ public class ModItems {
         Circuit = new ModItemCircuit().setUnlocalizedName("Circuit").setCreativeTab(Main.ElectricTab);
         RegisterOutName(Circuit, "Circuit Board");
         
-        ModuleConnecter = new ModItemModuleConnecter().setUnlocalizedName("ModuleConnecter").setCreativeTab(Main.ElectricTab);
-        Register(ModuleConnecter, ("moduleconnecter"));
+        CableItem = new ModItemCable().setUnlocalizedName("CableItem").setCreativeTab(Main.ElectricTab);
+        Register(CableItem, ("cable"));
         
         SolarCells = new ModItemSolarCells().setUnlocalizedName("SolarCells").setCreativeTab(Main.ElectricTab);
         Register(SolarCells, ("solarcells"));

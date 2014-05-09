@@ -1,5 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
+import MiscItemsApi.Recipes.OvenRecipes;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.ISidedInventory;
@@ -284,33 +285,30 @@ public class TileEntityOvenCore extends TileEntityInvBase implements ISidedInven
     
     
     public ItemStack Output(){
-    	if(this.getStackInSlot(1) != null){
-    	ItemStack itemU = this.getStackInSlot(1);
-    	Item item = itemU.getItem();
-    	
-    	
-//    	if(item == ModItems.PizzaRaw)return new ItemStack(ModItems.Pizza, 1, this.getStackInSlot(1).getItemDamage());
-//    	if(item == Item.itemRegistry.getObject("beef"))return new ItemStack((Item)Item.itemRegistry.getObject("cooked_beef"));
-//    	if(item == Item.itemRegistry.getObject("porkchop"))return new ItemStack((Item)Item.itemRegistry.getObject("cooked_porkchop"));
-//    	if(item == Item.itemRegistry.getObject("fish"))return new ItemStack((Item)Item.itemRegistry.getObject("cooked_fish"));
-//    	if(item == Item.itemRegistry.getObject("chicken"))return new ItemStack((Item)Item.itemRegistry.getObject("cooked_chicken"));
-//    	if(item == ModItems.Flour)return new ItemStack(Items.bread);
-//    	if(item == ModItems.RawPenguinMeat)return new ItemStack(ModItems.CookedPenguin);
+    	if(this.getStackInSlot(1) != null) {
+            ItemStack itemU = this.getStackInSlot(1);
+            Item item = itemU.getItem();
 
-            if(item instanceof ItemFood){
-                if(FurnaceRecipes.smelting().getSmeltingResult(itemU) != null){
+
+            if (OvenRecipes.instance().GetResult(itemU) != null) {
+                return OvenRecipes.instance().GetResult(itemU);
+            } else {
+
+                if (item instanceof ItemFood) {
+                    if (FurnaceRecipes.smelting().getSmeltingResult(itemU) != null) {
+
+                        return FurnaceRecipes.smelting().getSmeltingResult(itemU);
+
+                    }
+
+                } else if (FurnaceRecipes.smelting().getSmeltingResult(itemU) != null && FurnaceRecipes.smelting().getSmeltingResult(itemU).getItem() instanceof ItemFood) {
 
                     return FurnaceRecipes.smelting().getSmeltingResult(itemU);
-
                 }
 
-            }else if (FurnaceRecipes.smelting().getSmeltingResult(itemU) != null && FurnaceRecipes.smelting().getSmeltingResult(itemU).getItem() instanceof ItemFood){
-
-                return FurnaceRecipes.smelting().getSmeltingResult(itemU);
             }
-    	
-    	}
-    	
+
+        }
     	
     	return null;
     }

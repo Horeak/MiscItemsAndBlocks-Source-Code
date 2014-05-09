@@ -20,7 +20,7 @@ public class SqueezerRecipes
 
   
 /**
-* Registers a recipes for the squeezer (
+* Registers a recipes for the squeezer (used when registering items that do not extend ItemFood)
 *
 * @param InputLeft left item input
 * @param InputRight right item input

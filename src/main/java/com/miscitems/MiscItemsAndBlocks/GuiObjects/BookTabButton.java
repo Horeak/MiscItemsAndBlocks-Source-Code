@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.GuiObjects;
 
-import MiscItemsApi.Utils.BookUtils;
+import com.miscitems.MiscItemsAndBlocks.Book.BookUtils;
 import com.miscitems.MiscItemsAndBlocks.Book.MainPage;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import net.minecraft.client.Minecraft;

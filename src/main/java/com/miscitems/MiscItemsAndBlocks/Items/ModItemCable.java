@@ -6,16 +6,13 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
 
-public class ModItemModuleConnecter extends Item{
+public class ModItemCable extends Item{
 
-	public ModItemModuleConnecter() {
-		super();
-	}
-	
+
 	   @SideOnly(Side.CLIENT)
 	   public void registerIcons(IIconRegister par1IconRegister)
 	   {
-		   this.itemIcon = par1IconRegister.registerIcon(Refrence.Mod_Id + ":ModuleConnecter");
+		   this.itemIcon = par1IconRegister.registerIcon(Refrence.Mod_Id + ":CableItem");
 		   
 	   }
 	   

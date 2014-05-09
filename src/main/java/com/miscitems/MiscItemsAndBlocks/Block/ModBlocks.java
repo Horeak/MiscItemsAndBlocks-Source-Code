@@ -12,6 +12,7 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -213,45 +214,55 @@ public class ModBlocks {
 		RegisterOreDictionary(new ItemStack(OrangePlanks), "plankWood");
 
 		
-        GameRegistry.registerTileEntity(TileEntityXpStorage.class, "TileEntityXpStorage");
-        GameRegistry.registerTileEntity(TileEntityBin.class, "TileEntityBin");
-        GameRegistry.registerTileEntity(TileEntityDisarmTrap.class, "TileEntityTrap");
-        GameRegistry.registerTileEntity(TileEntityBox.class, "TileEntityBox");
-        GameRegistry.registerTileEntity(TileEntityCraftingInv.class, "TileEntityCraftingInv");
-        GameRegistry.registerTileEntity(TileEntityMill.class, "TileEntityMill");
-        GameRegistry.registerTileEntity(TileEntitySquezer.class, "TileEntitySquezer");
-        GameRegistry.registerTileEntity(TileEntityOvenCore.class, "TileEntityOvenCore");
-        GameRegistry.registerTileEntity(TileEntityItemPedestal.class, "TileEntityItemPedestal");
-        GameRegistry.registerTileEntity(TileEntityMiningChamber.class, "TileEntityMiningChamber");
-        GameRegistry.registerTileEntity(TileEntityCharger.class, "TileEntityCharger");
-        GameRegistry.registerTileEntity(TileEntitySolarPanel.class, "TileEntitySolarPanel");
-        GameRegistry.registerTileEntity(TileEntityWindMill.class, "TileEntityWindMill");
-        GameRegistry.registerTileEntity(TileEntityGenerator.class, "TileEntityGenerator");
-        GameRegistry.registerTileEntity(TileEntityPowerCable.class, "TileEntityPowerCable");
-        GameRegistry.registerTileEntity(TileEntityGamePart.class, "TileEntityGamePart");
-        GameRegistry.registerTileEntity(TileEntityPillar.class, "TileEntityPillar");
-        GameRegistry.registerTileEntity(TileEntityTimedBlock.class, "TileEntityTimedBLock");
-        GameRegistry.registerTileEntity(TileEntityElectricFurnace.class, "TileEntityElectricFurnace");
-        GameRegistry.registerTileEntity(TileEntityTable.class, "TileEntityTable");
-        GameRegistry.registerTileEntity(TileEntityPaintBlock.class, "TileEntityPaintBlock");
-        GameRegistry.registerTileEntity(TileEntityComputer.class, "TileEntityComputer");
-        GameRegistry.registerTileEntity(TileEntityStorageBlock.class, "TileEntityStorageBlock");
-        GameRegistry.registerTileEntity(TileEntityDiceHolder.class, "TileEntityDiceHolder");
-        GameRegistry.registerTileEntity(TileEntityTeleporter.class, "TileEntityTeleporter");
-        GameRegistry.registerTileEntity(TileEntityWirelessRedstone.class, "TileEntityWirelessRedstone");
-        GameRegistry.registerTileEntity(TileEntityWirelessItemTrans.class, "TileEntityWirelessItemTransfer");
-        GameRegistry.registerTileEntity(TileEntityMetalPress.class, "TileEntityMetalPress");
-        GameRegistry.registerTileEntity(TileEntityLensBench.class, "TileEntityensBench");
-        GameRegistry.registerTileEntity(TileEntityLaser.class, "TileEntityensLaser");
-        GameRegistry.registerTileEntity(TileEntityLaserReciver.class, "TileEntityensLaserReciver");
-        GameRegistry.registerTileEntity(TileEntityGhostBlock.class, "TileEntityGhostBlock");
-        
+        RegisterTileEntity(TileEntityXpStorage.class, "TileEntityXpStorage");
+        RegisterTileEntity(TileEntityBin.class, "TileEntityBin");
+        RegisterTileEntity(TileEntityDisarmTrap.class, "TileEntityTrap");
+        RegisterTileEntity(TileEntityBox.class, "TileEntityBox");
+        RegisterTileEntity(TileEntityCraftingInv.class, "TileEntityCraftingInv");
+        RegisterTileEntity(TileEntityMill.class, "TileEntityMill");
+        RegisterTileEntity(TileEntitySquezer.class, "TileEntitySquezer");
+        RegisterTileEntity(TileEntityOvenCore.class, "TileEntityOvenCore");
+        RegisterTileEntity(TileEntityItemPedestal.class, "TileEntityItemPedestal");
+        RegisterTileEntity(TileEntityMiningChamber.class, "TileEntityMiningChamber");
+        RegisterTileEntity(TileEntityCharger.class, "TileEntityCharger");
+        RegisterTileEntity(TileEntitySolarPanel.class, "TileEntitySolarPanel");
+        RegisterTileEntity(TileEntityWindMill.class, "TileEntityWindMill");
+        RegisterTileEntity(TileEntityGenerator.class, "TileEntityGenerator");
+        RegisterTileEntity(TileEntityPowerCable.class, "TileEntityPowerCable");
+        RegisterTileEntity(TileEntityGamePart.class, "TileEntityGamePart");
+        RegisterTileEntity(TileEntityPillar.class, "TileEntityPillar");
+        RegisterTileEntity(TileEntityTimedBlock.class, "TileEntityTimedBLock");
+        RegisterTileEntity(TileEntityElectricFurnace.class, "TileEntityElectricFurnace");
+        RegisterTileEntity(TileEntityTable.class, "TileEntityTable");
+        RegisterTileEntity(TileEntityPaintBlock.class, "TileEntityPaintBlock");
+        RegisterTileEntity(TileEntityComputer.class, "TileEntityComputer");
+        RegisterTileEntity(TileEntityStorageBlock.class, "TileEntityStorageBlock");
+        RegisterTileEntity(TileEntityDiceHolder.class, "TileEntityDiceHolder");
+        RegisterTileEntity(TileEntityTeleporter.class, "TileEntityTeleporter");
+        RegisterTileEntity(TileEntityWirelessRedstone.class, "TileEntityWirelessRedstone");
+        RegisterTileEntity(TileEntityWirelessItemTrans.class, "TileEntityWirelessItemTransfer");
+        RegisterTileEntity(TileEntityMetalPress.class, "TileEntityMetalPress");
+        RegisterTileEntity(TileEntityLensBench.class, "TileEntityensBench");
+        RegisterTileEntity(TileEntityLaser.class, "TileEntityensLaser");
+        RegisterTileEntity(TileEntityLaserReciver.class, "TileEntityensLaserReciver");
+        RegisterTileEntity(TileEntityGhostBlock.class, "TileEntityGhostBlock");
+
+        Main.config.addCustomCategoryComment("TileEntities", "Tile Entities is something required for most of the blocks so only disable if the block also is disabled");
         
         Main.config.save();
 		
 	}
 	
-	
+
+
+    public static void RegisterTileEntity(Class<? extends TileEntity> tile, String Name){
+        if(Main.config.get("TileEntities", "Enable " + Name.replace("TileEntity", "") + "?", true).getBoolean(true)){
+            GameRegistry.registerTileEntity(tile, Name);
+
+        }
+
+
+    }
 	
 	
 	    

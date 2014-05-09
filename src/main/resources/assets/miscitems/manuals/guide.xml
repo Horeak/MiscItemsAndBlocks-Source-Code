@@ -617,7 +617,7 @@
     <page type="crafting">
         <text>Recipe</text>
         <recipe>
-            <name>moduleconnecter_res</name>
+            <name>CableItem_res</name>
             <size>three</size>
         </recipe>
     </page>

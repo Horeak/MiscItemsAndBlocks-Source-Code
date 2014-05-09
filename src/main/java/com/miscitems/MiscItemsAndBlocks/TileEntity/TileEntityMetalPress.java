@@ -80,12 +80,12 @@ public class TileEntityMetalPress extends TileEntityPowerInv implements ISidedIn
 			
 		}else if (Mode == 2){
 
-            ItemStack finishItem_1 = MetalPressRecipes.instance().GetResultMode_4(this.getStackInSlot(2), this.getStackInSlot(3), this.getStackInSlot(4), this.getStackInSlot(5));
+            ItemStack finishItem_4 = MetalPressRecipes.instance().GetResultMode_4(this.getStackInSlot(2), this.getStackInSlot(3), this.getStackInSlot(4), this.getStackInSlot(5));
 
-            if(finishItem_1 != null && this.getStackInSlot(0) == null || finishItem_1 != null && this.getStackInSlot(0).getItem() == finishItem_1.getItem() && this.getStackInSlot(0).stackSize < this.getInventoryStackLimit()) {
+            if(finishItem_4 != null && this.getStackInSlot(0) == null || finishItem_4 != null && this.getStackInSlot(0) != null && this.getStackInSlot(0).getItem() == finishItem_4.getItem() && this.getStackInSlot(0).stackSize < this.getInventoryStackLimit()) {
                 WorkTimeAdd();
 
-            }else if (this.getStackInSlot(2) == null || this.getStackInSlot(3) == null || this.getStackInSlot(4) == null || this.getStackInSlot(5) == null || finishItem_1 == null && Mode == 2){
+            }else if (this.getStackInSlot(2) == null && Mode == 2 || this.getStackInSlot(3) == null && Mode == 2 || this.getStackInSlot(4) == null && Mode == 2 || this.getStackInSlot(5) == null && Mode == 2 || finishItem_4 == null && Mode == 2){
                 SetWorkTimeUpdate(0);
 
             }
@@ -113,8 +113,6 @@ public class TileEntityMetalPress extends TileEntityPowerInv implements ISidedIn
 					
 				}else if(this.getStackInSlot(0) != null && this.getStackInSlot(0).getItem() == FinishItem.getItem() && this.getStackInSlot(0).getItemDamage() == FinishItem.getItemDamage()){
 
-                    System.out.println("T");
-
 					if(this.getStackInSlot(0).stackSize < this.getInventoryStackLimit()){
 						this.setInventorySlotContents(0, new ItemStack(this.getStackInSlot(0).getItem(), this.getStackInSlot(0).stackSize + 1, this.getStackInSlot(0).getItemDamage()));
 					}
@@ -138,7 +136,7 @@ public class TileEntityMetalPress extends TileEntityPowerInv implements ISidedIn
 				}else if(this.getStackInSlot(0) != null && this.getStackInSlot(0).getItem() == finishItem_4.getItem() && this.getStackInSlot(0).getItemDamage() == finishItem_4.getItemDamage()){
 				
 					if(this.getStackInSlot(0).stackSize < this.getInventoryStackLimit()){
-						this.setInventorySlotContents(0, new ItemStack(finishItem_4.getItem(), this.getStackInSlot(0).stackSize + 1, finishItem_4.getItemDamage()));
+						this.setInventorySlotContents(0, new ItemStack(this.getStackInSlot(0).getItem(), this.getStackInSlot(0).stackSize + 1, this.getStackInSlot(0).getItemDamage()));
 					}
 					
 				}

@@ -1,6 +1,5 @@
 package com.miscitems.MiscItemsAndBlocks.Book;
 
-import MiscItemsApi.Utils.BookUtils;
 import com.miscitems.MiscItemsAndBlocks.GuiObjects.BookItemSelectButton;
 import com.miscitems.MiscItemsAndBlocks.GuiObjects.BookTabButton;
 import net.minecraft.client.Minecraft;
