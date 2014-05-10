@@ -1,10 +1,10 @@
 package com.miscitems.MiscItemsAndBlocks.Tick;
 
 import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
-import com.miscitems.MiscItemsAndBlocks.Utils.ModConfig;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Utils.GameInfo;
 import com.miscitems.MiscItemsAndBlocks.Utils.GameInvite;
+import com.miscitems.MiscItemsAndBlocks.Utils.ModConfig;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import net.minecraft.entity.player.EntityPlayer;

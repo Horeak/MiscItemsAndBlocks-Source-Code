@@ -1,8 +1,8 @@
 package com.miscitems.MiscItemsAndBlocks.Network.Packet.Server;
 
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
-import com.miscitems.MiscItemsAndBlocks.Utils.GameInfo;
 import com.miscitems.MiscItemsAndBlocks.Network.IPacket;
+import com.miscitems.MiscItemsAndBlocks.Utils.GameInfo;
 import net.minecraft.entity.player.EntityPlayer;
 
 import java.io.DataInputStream;

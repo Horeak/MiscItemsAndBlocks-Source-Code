@@ -1,5 +1,8 @@
 package com.miscitems.MiscItemsAndBlocks.Utils;
 
+import MiscItemsApi.Recipes.MetalPressRecipes;
+import MiscItemsApi.Recipes.MillRecipes;
+import MiscItemsApi.Recipes.SqueezerRecipes;
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -7,7 +10,6 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.oredict.ShapedOreRecipe;
@@ -26,17 +28,17 @@ public class Crafting {
 
 
 
-        MiscItemsApi.Recipes.SqueezerRecipes.instance().AddRecipe(new ItemStack(Items.glass_bottle), new ItemStack(Items.apple), new ItemStack(ModItems.Liquid, 1, 0));
-        MiscItemsApi.Recipes.SqueezerRecipes.instance().AddRecipe(new ItemStack(Items.bucket), new ItemStack(ModItems.Tomato), new ItemStack(ModItems.Liquid, 1, 1));
-        MiscItemsApi.Recipes.SqueezerRecipes.instance().AddRecipe(new ItemStack(Items.glass_bottle), new ItemStack(ModItems.Orange), new ItemStack(ModItems.Liquid, 1, 2));
-        MiscItemsApi.Recipes.SqueezerRecipes.instance().AddRecipe(new ItemStack(Items.glass_bottle), new ItemStack(Items.carrot), new ItemStack(ModItems.Liquid, 1, 3));
+        SqueezerRecipes.instance().AddRecipe(new ItemStack(Items.glass_bottle), new ItemStack(Items.apple), new ItemStack(ModItems.Liquid, 1, 0));
+        SqueezerRecipes.instance().AddRecipe(new ItemStack(Items.bucket), new ItemStack(ModItems.Tomato), new ItemStack(ModItems.Liquid, 1, 1));
+        SqueezerRecipes.instance().AddRecipe(new ItemStack(Items.glass_bottle), new ItemStack(ModItems.Orange), new ItemStack(ModItems.Liquid, 1, 2));
+        SqueezerRecipes.instance().AddRecipe(new ItemStack(Items.glass_bottle), new ItemStack(Items.carrot), new ItemStack(ModItems.Liquid, 1, 3));
 
-        MiscItemsApi.Recipes.MillRecipes.instance().AddRecipe(new ItemStack(Items.wheat), new ItemStack(ModItems.Flour));
-        MiscItemsApi.Recipes.MillRecipes.instance().AddRecipe(new ItemStack(Items.rotten_flesh), new ItemStack(Items.leather));
+        MillRecipes.instance().AddRecipe(new ItemStack(Items.wheat), new ItemStack(ModItems.Flour));
+        MillRecipes.instance().AddRecipe(new ItemStack(Items.rotten_flesh), new ItemStack(Items.leather));
 
-        MiscItemsApi.Recipes.MetalPressRecipes.instance().AddRecipeMode_1(new ItemStack(Items.iron_ingot), new ItemStack(ModItems.IronPlate, 1, 0));
+       MetalPressRecipes.instance().AddRecipeMode_1(new ItemStack(Items.iron_ingot), new ItemStack(ModItems.IronPlate, 1, 0));
 
-        MiscItemsApi.Recipes.MetalPressRecipes.instance().AddRecipeMode_4(new ItemStack(Items.iron_ingot),new ItemStack(Items.iron_ingot),new ItemStack(Items.iron_ingot),new ItemStack(Items.iron_ingot), new ItemStack(ModItems.IronPlate, 1, 2));
+        MetalPressRecipes.instance().AddRecipeMode_4(new ItemStack(Items.iron_ingot),new ItemStack(Items.iron_ingot),new ItemStack(Items.iron_ingot),new ItemStack(Items.iron_ingot), new ItemStack(ModItems.IronPlate, 1, 2));
 		
 		    AddShapelessRecipe(new ItemStack(ModItems.PaintBrush, 1, 1), new Object[]{new ItemStack(ModItems.PaintBrush, 1, 0), new ItemStack(Items.dye, 1, 1)});
 		    AddShapelessRecipe(new ItemStack(ModItems.PaintBrush, 1, 2), new Object[]{new ItemStack(ModItems.PaintBrush, 1, 0), new ItemStack(Items.dye, 1, 2)});

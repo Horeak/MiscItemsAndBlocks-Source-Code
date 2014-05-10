@@ -1,9 +1,9 @@
 package com.miscitems.MiscItemsAndBlocks.Block;
 
 import com.miscitems.MiscItemsAndBlocks.Items.ModItemWrench;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityPowerCable;
 import com.miscitems.MiscItemsAndBlocks.Utils.ChatMessageHandler;
 import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityPowerCable;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockContainer;

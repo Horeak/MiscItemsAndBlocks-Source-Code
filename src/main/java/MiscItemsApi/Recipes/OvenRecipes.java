@@ -19,7 +19,7 @@ public class OvenRecipes {
 
 
     /**
-     * Registers a recipes for the Oven
+     * Registers a recipes for the Oven (used when registering items that do not extend ItemFood)
      *
      * @param Input input item number 1
      * @param Output input item number 2

@@ -2,8 +2,8 @@ package com.miscitems.MiscItemsAndBlocks.Gui;
 
 import com.miscitems.MiscItemsAndBlocks.Container.ContainerBin;
 import com.miscitems.MiscItemsAndBlocks.GuiObjects.GuiTipButton;
-import com.miscitems.MiscItemsAndBlocks.Utils.Messages;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityBin;
+import com.miscitems.MiscItemsAndBlocks.Utils.Messages;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;

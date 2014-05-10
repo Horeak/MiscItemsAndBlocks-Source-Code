@@ -1,10 +1,8 @@
 package MiscItemsApi.Recipes;
 
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGlassBottle;
 import net.minecraft.item.ItemStack;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -20,7 +18,7 @@ public class SqueezerRecipes
 
   
 /**
-* Registers a recipes for the squeezer (used when registering items that do not extend ItemFood)
+* Registers a recipes for the squeezer
 *
 * @param InputLeft left item input
 * @param InputRight right item input

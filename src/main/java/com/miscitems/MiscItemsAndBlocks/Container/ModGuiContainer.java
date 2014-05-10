@@ -1,7 +1,5 @@
 package com.miscitems.MiscItemsAndBlocks.Container;
 
-import com.miscitems.MiscItemsAndBlocks.Container.ActiveContainer;
-import com.miscitems.MiscItemsAndBlocks.Container.ActiveSlot;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;

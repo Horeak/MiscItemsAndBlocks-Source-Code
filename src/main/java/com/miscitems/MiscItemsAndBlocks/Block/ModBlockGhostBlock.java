@@ -1,8 +1,8 @@
 package com.miscitems.MiscItemsAndBlocks.Block;
 
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityGhostBlock;
 import com.miscitems.MiscItemsAndBlocks.Utils.ChatMessageHandler;
 import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityGhostBlock;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;

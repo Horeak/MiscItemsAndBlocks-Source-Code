@@ -1,6 +1,5 @@
 package com.miscitems.MiscItemsAndBlocks.Book;
 
-import com.miscitems.MiscItemsAndBlocks.Book.GuiItemRender;
 import net.minecraft.item.ItemStack;
 
 import java.util.HashMap;

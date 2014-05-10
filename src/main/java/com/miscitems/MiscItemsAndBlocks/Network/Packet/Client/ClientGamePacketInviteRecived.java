@@ -1,8 +1,8 @@
 package com.miscitems.MiscItemsAndBlocks.Network.Packet.Client;
 
-import com.miscitems.MiscItemsAndBlocks.Utils.ChatMessageHandler;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Network.IPacket;
+import com.miscitems.MiscItemsAndBlocks.Utils.ChatMessageHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;

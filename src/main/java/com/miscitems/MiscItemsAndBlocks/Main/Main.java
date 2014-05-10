@@ -11,13 +11,9 @@ import com.miscitems.MiscItemsAndBlocks.Gui.GuiHandler;
 import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
 import com.miscitems.MiscItemsAndBlocks.Laser.DefaultLaser;
 import com.miscitems.MiscItemsAndBlocks.Laser.LaserRegistry;
-import com.miscitems.MiscItemsAndBlocks.Utils.Crafting;
-import com.miscitems.MiscItemsAndBlocks.Utils.Messages;
-import com.miscitems.MiscItemsAndBlocks.Utils.ModConfig;
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
-import com.miscitems.MiscItemsAndBlocks.Utils.BoneMealEvent;
 import com.miscitems.MiscItemsAndBlocks.Network.NetworkManager;
 import com.miscitems.MiscItemsAndBlocks.Proxies.ServerProxy;
+import com.miscitems.MiscItemsAndBlocks.Utils.*;
 import com.miscitems.MiscItemsAndBlocks.WorldGen.ModWorldGenerator;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
@@ -33,6 +29,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -72,7 +69,7 @@ import java.util.Set;
 
         public static Configuration config;
 
-        public static net.minecraft.creativetab.CreativeTabs MiscTab = new net.minecraft.creativetab.CreativeTabs("tabMiscMisc")
+        public static CreativeTabs MiscTab = new CreativeTabs("tabMiscMisc")
         {
 
 
@@ -95,7 +92,7 @@ import java.util.Set;
         };
 
 
-        public static net.minecraft.creativetab.CreativeTabs ElectricTab = new net.minecraft.creativetab.CreativeTabs("tabMiscElectric")
+        public static CreativeTabs ElectricTab = new CreativeTabs("tabMiscElectric")
         {
 
 

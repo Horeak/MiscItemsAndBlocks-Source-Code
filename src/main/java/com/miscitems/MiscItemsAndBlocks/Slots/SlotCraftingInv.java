@@ -1,6 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Slots;
 
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityCraftingInv;
+import cpw.mods.fml.common.gameevent.PlayerEvent;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.Container;
@@ -38,7 +39,7 @@ public void onPickupFromSlot(EntityPlayer player, ItemStack stack)
 	
 boolean found = false;
 boolean metaSens = false;
-//        GameRegistry.onItemCrafted(thePlayer, stack, craftMatrix);
+        MinecraftForge.EVENT_BUS.post(new PlayerEvent.ItemCraftedEvent(thePlayer, stack, craftMatrix));
         this.onCrafting(stack);
         
         for(int invIndex = 0; invIndex < 9; invIndex++)
