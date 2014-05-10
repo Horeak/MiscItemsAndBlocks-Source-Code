@@ -119,7 +119,7 @@ public abstract class TileEntityPowerInv  extends TileEntityInvBase implements I
 		}
 
 		@Override
-		public boolean ConnectesToCables() {
+		public boolean ConnectsToCables() {
 			return AcceptsPower();
 		}
 

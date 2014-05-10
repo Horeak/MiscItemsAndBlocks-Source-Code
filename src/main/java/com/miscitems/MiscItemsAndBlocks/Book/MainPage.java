@@ -1,10 +1,11 @@
 package com.miscitems.MiscItemsAndBlocks.Book;
 
-import com.miscitems.MiscItemsAndBlocks.GuiObjects.BookItemSelectButton;
-import com.miscitems.MiscItemsAndBlocks.GuiObjects.BookTabButton;
+import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
+import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
@@ -46,7 +47,7 @@ public class MainPage extends GuiScreen {
         drawTexturedModalRect(posX, posY, 20, 1, 236, 180);
 
 
-        this.drawString(this.fontRendererObj, BookUtils.GetTabName(CurrentTab), posX + 10, posY + 8, 4210752);
+        fontRendererObj.drawString(BookUtils.GetTabName(CurrentTab), posX + 10, posY + 8, 4210752);
 
 
         if(BookUtils.GetTabType(CurrentTab) == 1){
@@ -67,10 +68,6 @@ public class MainPage extends GuiScreen {
         drawForeground(x, y, f);
     }
 
-    @Override
-    public boolean doesGuiPauseGame() {
-        return false;
-    }
 
 
 
@@ -134,7 +131,9 @@ public class MainPage extends GuiScreen {
 
 
 
-        if(button.id <= BookUtils.MaxTabs){
+
+
+        if(button.id < BookUtils.MaxTabs){
             if(button.id <= Tabs && button.id > 0){
                 CurrentTab = button.id;
 
@@ -147,6 +146,8 @@ public class MainPage extends GuiScreen {
 
                 BookItemSelectButton btn = (BookItemSelectButton)button;
                 System.out.println(btn.id + " : " + btn.displayString);
+
+                FMLClientHandler.instance().displayGuiScreen(Minecraft.getMinecraft().thePlayer, new InfoPage(BookUtils.TabItems.get(CurrentTab)[btn.id - BookUtils.MaxTabs]));
             }
         }
 

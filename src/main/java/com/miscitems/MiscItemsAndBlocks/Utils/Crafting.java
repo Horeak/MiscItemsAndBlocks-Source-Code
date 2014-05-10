@@ -4,6 +4,7 @@ import MiscItemsApi.Recipes.MetalPressRecipes;
 import MiscItemsApi.Recipes.MillRecipes;
 import MiscItemsApi.Recipes.SqueezerRecipes;
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
+import com.miscitems.MiscItemsAndBlocks.Book.BookUtils;
 import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
@@ -12,6 +13,8 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraft.item.crafting.ShapedRecipes;
+import net.minecraft.item.crafting.ShapelessRecipes;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
 import java.util.ArrayList;
@@ -36,7 +39,7 @@ public class Crafting {
         MillRecipes.instance().AddRecipe(new ItemStack(Items.wheat), new ItemStack(ModItems.Flour));
         MillRecipes.instance().AddRecipe(new ItemStack(Items.rotten_flesh), new ItemStack(Items.leather));
 
-       MetalPressRecipes.instance().AddRecipeMode_1(new ItemStack(Items.iron_ingot), new ItemStack(ModItems.IronPlate, 1, 0));
+        MetalPressRecipes.instance().AddRecipeMode_1(new ItemStack(Items.iron_ingot), new ItemStack(ModItems.IronPlate, 1, 0));
 
         MetalPressRecipes.instance().AddRecipeMode_4(new ItemStack(Items.iron_ingot),new ItemStack(Items.iron_ingot),new ItemStack(Items.iron_ingot),new ItemStack(Items.iron_ingot), new ItemStack(ModItems.IronPlate, 1, 2));
 		
@@ -328,6 +331,8 @@ public class Crafting {
             }
         }
 
+
+
         if(Item.itemRegistry.containsId(Item.getIdFromItem(stack.getItem()))){
         for(int z = 0; z  < aitemstack.length; z++){
             if(aitemstack[z] != null){
@@ -341,6 +346,10 @@ public class Crafting {
     }else{
             return false;
         }
+
+        ShapedRecipes shapedrecipes = new ShapedRecipes(j, k, aitemstack, stack);
+
+        BookUtils.InfoPageShapedRecipes.put(stack.getUnlocalizedName().replace(".name", ""), shapedrecipes);
 
         return true;
     }
@@ -390,6 +399,8 @@ public class Crafting {
         }else
             return false;
 
+
+        BookUtils.InfoPageShapelessRecipes.put(par1ItemStack.getUnlocalizedName().replace(".name", ""), new ShapelessRecipes(par1ItemStack, arraylist));
 
       return true;
     }

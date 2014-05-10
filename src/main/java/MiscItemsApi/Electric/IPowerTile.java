@@ -12,7 +12,7 @@ public interface IPowerTile {
 	public void AddPower(int Amount);
 	
 	public boolean AcceptsPower();
-	public boolean ConnectesToCables();
+	public boolean ConnectsToCables();
 	
 	
 }

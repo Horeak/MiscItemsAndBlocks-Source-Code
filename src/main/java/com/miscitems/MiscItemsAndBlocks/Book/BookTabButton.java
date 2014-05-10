@@ -1,4 +1,4 @@
-package com.miscitems.MiscItemsAndBlocks.GuiObjects;
+package com.miscitems.MiscItemsAndBlocks.Book;
 
 import com.miscitems.MiscItemsAndBlocks.Book.BookUtils;
 import com.miscitems.MiscItemsAndBlocks.Book.MainPage;

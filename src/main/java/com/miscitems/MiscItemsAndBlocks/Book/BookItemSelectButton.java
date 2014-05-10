@@ -1,4 +1,4 @@
-package com.miscitems.MiscItemsAndBlocks.GuiObjects;
+package com.miscitems.MiscItemsAndBlocks.Book;
 
 import com.miscitems.MiscItemsAndBlocks.Book.BookUtils;
 import com.miscitems.MiscItemsAndBlocks.Book.MainPage;
@@ -13,8 +13,11 @@ public class BookItemSelectButton extends GuiButton{
     int Id;
     MainPage gui;
 
+    public static int XSize = 100;
+    public static int YSize = 10;
+
     public BookItemSelectButton(int par1, int par2, int par3, MainPage Gui) {
-        super(par1, par2, par3, 60, 10, "\u00a7n" + BookUtils.TabItems.get(Gui.CurrentTab)[par1 - BookUtils.MaxTabs].getDisplayName());
+        super(par1, par2, par3, XSize, YSize, "\u00a7n" + BookUtils.TabItems.get(Gui.CurrentTab)[par1 - BookUtils.MaxTabs].getDisplayName());
 
         this.Id = par1;
         this.gui = Gui;
@@ -39,7 +42,12 @@ public class BookItemSelectButton extends GuiButton{
         if(BookUtils.GetTabType(gui.CurrentTab) == 2 && BookUtils.TabItems.get(gui.CurrentTab) != null)
         if(BookUtils.TabItems.get(gui.CurrentTab) != null && BookUtils.TabItems.get(gui.CurrentTab)[this.id - BookUtils.MaxTabs] != null && (this.id - BookUtils.MaxTabs) < BookUtils.TabItems.get(gui.CurrentTab).length && BookUtils.TabItems.get(gui.CurrentTab)[this.id - BookUtils.MaxTabs].getItem() != null){
 
-            this.drawString(fontRendererObj, BookUtils.TabItems.get(gui.CurrentTab)[this.id - BookUtils.MaxTabs].getDisplayName(), xPosition + 2, yPosition, 0x737373);
+
+            if(x >= this.xPosition && x <= this.xPosition + XSize && y >= this.yPosition && y <= this.yPosition + YSize){
+                fontRendererObj.drawString(BookUtils.TabItems.get(gui.CurrentTab)[this.id - BookUtils.MaxTabs].getDisplayName(), xPosition + 2, yPosition, 0x1602CC);
+            }else {
+                fontRendererObj.drawString(BookUtils.TabItems.get(gui.CurrentTab)[this.id - BookUtils.MaxTabs].getDisplayName(), xPosition + 2, yPosition, 0x949292);
+            }
 
         }
 

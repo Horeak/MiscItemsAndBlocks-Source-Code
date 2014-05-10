@@ -112,6 +112,9 @@ item.guidebook.name=Guide Book
 
 powerupgrade.name=Power Upgrade
 
+book.gui.recipe=Recipe
+book.gui.smelting=Smelting
+
 
 
 item.GamePart.Number.0.name=Blank Game Piece
