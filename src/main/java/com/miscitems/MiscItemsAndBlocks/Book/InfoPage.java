@@ -16,6 +16,10 @@ import java.util.List;
 public class InfoPage extends GuiScreen{
 
 
+    public boolean doesGuiPauseGame()
+    {
+        return false;
+    }
 
     public final ResourceLocation TextureLeft = new ResourceLocation("miscitems" , "textures/gui/ResBook/bookLeft.png");
     public final ResourceLocation TextureRight = new ResourceLocation("miscitems" , "textures/gui/ResBook/bookRight.png");
@@ -31,8 +35,15 @@ public class InfoPage extends GuiScreen{
     public int UsePageRight;
     public int PageAmount = 1;
 
-    public InfoPage(ItemStack stack){
+    public int LastTab = 0;
+
+    public InfoPage(ItemStack stack, int Tab){
         this.stack = stack;
+
+        LastTab = Tab;
+
+        this.width = xSizeOfTexture;
+        this.height = ySizeOfTexture;
 
     }
 
@@ -69,88 +80,37 @@ public class InfoPage extends GuiScreen{
         if(Pages != null) {
             PageAmount = Pages.length - 1;
 
-            if((Pages.length-1) >= UsePageLeft)
+            if ((Pages.length - 1) >= UsePageLeft)
                 Pages[UsePageLeft].Render(this, fontRendererObj, posX, posY, 1);
 
-            if((Pages.length-1) >= UsePageRight)
+            if ((Pages.length - 1) >= UsePageRight)
                 Pages[UsePageRight].Render(this, fontRendererObj, posX + 200, posY, 2);
-//
-//
-//            }else if(BookUtils.InfoPageType.get(Pages[UsePageLeft]) == 3){
-//                fontRendererObj.drawString(EnumChatFormatting.UNDERLINE + StatCollector.translateToLocal("book.gui.recipe"), posX + 30, posY + 25, 0x949294, false);
-//                Minecraft.getMinecraft().renderEngine.bindTexture(TextureIcons);
-//                this.drawTexturedModalRect(posX + 50, posY + 55, 0, 40, 106, 52);
-//
-//
-//            }else if(BookUtils.InfoPageType.get(Pages[UsePageLeft]) == 4){
-//                fontRendererObj.drawString(EnumChatFormatting.UNDERLINE + StatCollector.translateToLocal("book.gui.smelting"), posX + 30, posY + 25, 0x949294, false);
-//                Minecraft.getMinecraft().renderEngine.bindTexture(TextureIcons);
-//                this.drawTexturedModalRect(posX + 50, posY + 55, 18, 96, 72, 60);
-//
 
-            }
+        }
 
 
-
-
-
-//            }else if(BookUtils.InfoPageType.get(Pages[UsePageRight]) == 3){
-//                fontRendererObj.drawString(EnumChatFormatting.UNDERLINE + StatCollector.translateToLocal("book.gui.recipe"), posX + 240, posY + 25, 0x949294, false);
-//                Minecraft.getMinecraft().renderEngine.bindTexture(TextureIcons);
-//                this.drawTexturedModalRect(posX + 250, posY + 55, 0, 40, 106, 52);
-//
-//
-//            }else if(BookUtils.InfoPageType.get(Pages[UsePageRight]) == 4){
-//                fontRendererObj.drawString(EnumChatFormatting.UNDERLINE + StatCollector.translateToLocal("book.gui.smelting"), posX + 240, posY + 25, 0x949294, false);
-//                Minecraft.getMinecraft().renderEngine.bindTexture(TextureIcons);
-//                this.drawTexturedModalRect(posX + 250, posY + 55, 18, 96, 72, 60);
-//
-
-//            }
-//
-//
-//        }
         if(Page == 1)
         fontRendererObj.drawString(stack.getDisplayName(), posX + 20, posY + 10, 0x949292);
 
-        fontRendererObj.drawString(UsePageLeft + "/" + PageAmount, posX + 100, posY + 180, 0x949292);
 
-        fontRendererObj.drawString(UsePageRight + "/" + PageAmount, posX + 300, posY + 180, 0x949292);
+        fontRendererObj.drawString((UsePageLeft + 1) + "/" + (PageAmount + 1), posX + 100, posY + 180, 0x949292);
+
+        if(UsePageRight <= PageAmount)
+        fontRendererObj.drawString((UsePageRight + 1) + "/" + (PageAmount + 1), posX + 300, posY + 180, 0x949292);
 
         super.drawScreen(x, y, f);
-        drawForeground(x, y, f);
     }
 
-
-    public void drawForeground(int par1, int par2, float par3)
-    {
-//        for(int i = 0; i < this.buttonList.size(); i++) {
-//            GuiButton btn = (GuiButton) this.buttonList.get(i);
-//
-//
-//
-//            if (btn instanceof BookTabButton) {
-//                if (isHovering(par1, par2, btn.getButtonWidth(), 20, btn.xPosition, btn.yPosition)) {
-//
-//
-//                    if (btn.id <= BookUtils.Tabs) {
-//                        drawTooltip(Arrays.asList(new String[]{BookUtils.GetTabName(btn.id)}), par1, par2);
-//                    }
-//
-//
-//                }
-//            }
-//
-//        }
-
-
-    }
 
     protected void keyTyped(char par1, int par2)
     {
         if (par2 == 1)
         {
-            FMLClientHandler.instance().displayGuiScreen(Minecraft.getMinecraft().thePlayer, new MainPage());
+
+            MainPage page = new MainPage();
+            page.CurrentTab = this.LastTab;
+
+            FMLClientHandler.instance().displayGuiScreen(Minecraft.getMinecraft().thePlayer, page);
         }
     }
 

@@ -26,9 +26,6 @@ public class RecipeSmallPage extends Page{
 
     @Override
     public void Render(InfoPage Page, FontRenderer render, int posX, int posY, int Side) {
-
-
-
             render.drawString(EnumChatFormatting.UNDERLINE + StatCollector.translateToLocal("book.gui.recipe"), posX + 70, posY + 25, 0x949294, false);
 
             GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
@@ -36,14 +33,16 @@ public class RecipeSmallPage extends Page{
             Page.drawTexturedModalRect(posX + 60, posY + 65, 3, 0, 81, 34);
 
 
+        GL11.glDisable(GL11.GL_LIGHTING);
 
             for(int i = 0; i < 4; i++){
                     if(RecipeItems.size() > i)
-                    BookUtils.renderitem.renderItemIntoGUI(Main.font, Minecraft.getMinecraft().renderEngine, (ItemStack)RecipeItems.get(i), posX + 60 + (i == 2 || i == 4 ? 18 : 0), posY + 65 + (i > 2 ? 18 : 0), false);
+                    RenderItem((ItemStack)RecipeItems.get(i), posX + 60 + (i == 1 || i == 3 ? 18 : 0), posY + 65 + (i > 2 ? 18 : 0));
             }
-                BookUtils.renderitem.renderItemIntoGUI(Main.font, Minecraft.getMinecraft().renderEngine, RecipeItem, posX + 60 + 64, posY + 65 + 10, false);
+                     RenderItem(RecipeItem, posX + 60 + 63, posY + 65 + 9);
 
-            GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+        GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+        GL11.glEnable(GL11.GL_LIGHTING);
 
    }
 }

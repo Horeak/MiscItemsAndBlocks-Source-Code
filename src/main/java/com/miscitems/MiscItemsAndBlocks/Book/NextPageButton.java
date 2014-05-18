@@ -27,6 +27,7 @@ public class NextPageButton extends GuiButton {
         Minecraft.getMinecraft().renderEngine.bindTexture(Texture);
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
+        GL11.glDisable(GL11.GL_LIGHTING);
 
         boolean IsMouseOver = x >= xPosition && x <= xPosition + xSize && y >= yPosition && y <= yPosition + ySize;
 
@@ -49,6 +50,8 @@ public class NextPageButton extends GuiButton {
         }
 
         this.mouseDragged(par1Minecraft, x, y);
+        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+        GL11.glEnable(GL11.GL_LIGHTING);
 
     }
 }
