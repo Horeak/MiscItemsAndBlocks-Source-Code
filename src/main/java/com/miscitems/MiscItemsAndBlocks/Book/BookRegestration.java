@@ -2,6 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.Book;
 
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.Book.Pages.Page;
+import com.miscitems.MiscItemsAndBlocks.Book.Pages.RecipeBigPage;
 import com.miscitems.MiscItemsAndBlocks.Book.Pages.RecipeSmallPage;
 import com.miscitems.MiscItemsAndBlocks.Book.Pages.TextPage;
 import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
@@ -37,6 +38,6 @@ public class BookRegestration {
 //
 //        BookUtils.RegisterTextForInfoPage("test_page_1", "This is a test page ");
 
-        BookUtils.RegisterPagesForItem(new ItemStack(ModBlocks.XpStorage), new Page[]{new TextPage("Test_Page_1"), new RecipeSmallPage(new ItemStack(ModItems.Cheese))});
+        BookUtils.RegisterPagesForItem(new ItemStack(ModBlocks.XpStorage), new Page[]{new TextPage("Test_Page_1"), new RecipeSmallPage(new ItemStack(ModItems.Cheese)), new RecipeBigPage(new ItemStack(ModBlocks.XpStorage))});
     }
 }
