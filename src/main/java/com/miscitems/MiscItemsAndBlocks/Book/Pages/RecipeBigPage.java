@@ -43,15 +43,29 @@ public class RecipeBigPage extends Page {
         GL11.glDisable(GL11.GL_LIGHTING);
 
         RenderItem(RecipeItems[0], posX + 60, posY + 65);
+
+        if(RecipeItems.length > 1)
         RenderItem(RecipeItems[1], posX + 60 + 18, posY + 65);
+
+        if(RecipeItems.length > 2)
         RenderItem(RecipeItems[2], posX + 60 + (2 * 18), posY + 65);
 
+        if(RecipeItems.length > 3)
         RenderItem(RecipeItems[3], posX + 60, posY + 65 + 18);
+
+        if(RecipeItems.length > 4)
         RenderItem(RecipeItems[4], posX + 60 + 18, posY + 65 + 18);
+
+        if(RecipeItems.length > 5)
         RenderItem(RecipeItems[5], posX + 60 + (2 * 18), posY + 65 + 18);
 
+        if(RecipeItems.length > 6)
         RenderItem(RecipeItems[6], posX + 60, posY + 65 + (2 * 18));
+
+        if(RecipeItems.length > 7)
         RenderItem(RecipeItems[7], posX + 60 + 18, posY + 65 + (2 * 18));
+
+        if(RecipeItems.length > 8)
         RenderItem(RecipeItems[8], posX + 60 + (2 * 18), posY + 65 + (2 * 18));
 
 

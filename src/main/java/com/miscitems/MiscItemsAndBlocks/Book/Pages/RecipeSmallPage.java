@@ -37,7 +37,7 @@ public class RecipeSmallPage extends Page{
 
             for(int i = 0; i < 4; i++){
                     if(RecipeItems.size() > i)
-                    RenderItem((ItemStack)RecipeItems.get(i), posX + 60 + (i == 1 || i == 3 ? 18 : 0), posY + 65 + (i > 2 ? 18 : 0));
+                    RenderItem((ItemStack)RecipeItems.get(i), posX + 60 + (i == 1 || i == 3 ? 18 : 0), posY + 65 + (i > 1 ? 18 : 0));
             }
                      RenderItem(RecipeItem, posX + 60 + 63, posY + 65 + 9);
 

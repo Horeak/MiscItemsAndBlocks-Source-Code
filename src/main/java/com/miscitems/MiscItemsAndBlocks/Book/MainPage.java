@@ -144,7 +144,6 @@ public class MainPage extends GuiScreen {
             if(button instanceof BookItemSelectButton) {
 
                 BookItemSelectButton btn = (BookItemSelectButton)button;
-                System.out.println(btn.id + " : " + btn.displayString);
 
                 FMLClientHandler.instance().displayGuiScreen(Minecraft.getMinecraft().thePlayer, new InfoPage(BookUtils.TabItems.get(CurrentTab)[btn.id - BookUtils.MaxTabs], CurrentTab));
             }
