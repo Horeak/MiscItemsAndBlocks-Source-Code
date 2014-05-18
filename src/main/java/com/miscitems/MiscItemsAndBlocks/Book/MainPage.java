@@ -32,7 +32,6 @@ public class MainPage extends GuiScreen {
     public int posX, posY;
 
 
-
     @Override
     public void drawScreen(int x, int y, float f) {
         drawDefaultBackground();
@@ -147,7 +146,7 @@ public class MainPage extends GuiScreen {
                 BookItemSelectButton btn = (BookItemSelectButton)button;
                 System.out.println(btn.id + " : " + btn.displayString);
 
-                FMLClientHandler.instance().displayGuiScreen(Minecraft.getMinecraft().thePlayer, new InfoPage(BookUtils.TabItems.get(CurrentTab)[btn.id - BookUtils.MaxTabs]));
+                FMLClientHandler.instance().displayGuiScreen(Minecraft.getMinecraft().thePlayer, new InfoPage(BookUtils.TabItems.get(CurrentTab)[btn.id - BookUtils.MaxTabs], CurrentTab));
             }
         }
 
@@ -155,6 +154,10 @@ public class MainPage extends GuiScreen {
     }
 
 
+    public boolean doesGuiPauseGame()
+    {
+        return false;
+    }
 
     public void drawForeground(int par1, int par2, float par3)
     {
