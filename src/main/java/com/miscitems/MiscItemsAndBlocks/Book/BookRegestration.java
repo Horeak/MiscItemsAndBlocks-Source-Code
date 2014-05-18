@@ -1,8 +1,10 @@
 package com.miscitems.MiscItemsAndBlocks.Book;
 
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
+import com.miscitems.MiscItemsAndBlocks.Book.Pages.Page;
+import com.miscitems.MiscItemsAndBlocks.Book.Pages.RecipeSmallPage;
+import com.miscitems.MiscItemsAndBlocks.Book.Pages.TextPage;
 import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class BookRegestration {
@@ -26,15 +28,15 @@ public class BookRegestration {
         BookUtils.RegisterItemsForTab(5, new ItemStack[]{new ItemStack(ModItems.XpExtractor), new ItemStack(ModItems.SilverIngot), new ItemStack(ModItems.SilverSword), new ItemStack(ModItems.SilverBow), new ItemStack(ModItems.DivingHelmet), new ItemStack(ModItems.FlightChestPlate), new ItemStack(ModItems.RunningLeggings), new ItemStack(ModItems.JumpingBoots), new ItemStack(ModItems.Cardboard), new ItemStack(ModItems.Tomato), new ItemStack(ModItems.Flour), new ItemStack(ModItems.PizzaBottom), new ItemStack(ModItems.Liquid), new ItemStack(ModItems.Cheese), new ItemStack(ModItems.Orange), new ItemStack(ModItems.DisarmStick), new ItemStack(ModItems.PaintBrush)});
 
 
-        BookUtils.RegisterInfoPage("test_page_1", 1);
-        BookUtils.RegisterInfoPage("test_page_2", 2);
-        BookUtils.RegisterInfoPage("test_page_3", 3);
-        BookUtils.RegisterInfoPage("test_page_4", 4);
+//        BookUtils.RegisterInfoPage("test_page_1", 1);
+//        BookUtils.RegisterInfoPage("test_page_2", 2);
+//        BookUtils.RegisterInfoPage("test_page_3", 3);
+//        BookUtils.RegisterInfoPage("test_page_4", 4);
+//
+//        BookUtils.RegisterRecipeForInfoPage("test_page_2", new ItemStack(ModItems.Cheese));
+//
+//        BookUtils.RegisterTextForInfoPage("test_page_1", "This is a test page ");
 
-        BookUtils.RegisterRecipeForInfoPage("test_page_2", new ItemStack(ModItems.Cheese));
-
-        BookUtils.RegisterTextForInfoPage("test_page_1", "This is a test page ");
-
-        BookUtils.RegisterPagesForItem(new ItemStack(ModBlocks.XpStorage), new String[]{"test_page_1", "test_page_2", "test_page_3", "test_page_4"});
+        BookUtils.RegisterPagesForItem(new ItemStack(ModBlocks.XpStorage), new Page[]{new TextPage("Test_Page_1"), new RecipeSmallPage(new ItemStack(ModItems.Cheese))});
     }
 }

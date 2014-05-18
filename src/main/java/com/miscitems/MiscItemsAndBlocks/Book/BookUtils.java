@@ -1,5 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Book;
 
+import com.miscitems.MiscItemsAndBlocks.Book.Pages.Page;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.item.crafting.ShapelessRecipes;
@@ -28,43 +29,23 @@ public class BookUtils {
     public static HashMap<Integer, ItemStack[]> TabItems = new HashMap<Integer, ItemStack[]>();
     public static HashMap<Integer, String> TextTabString = new HashMap<Integer, String>();
 
-    public static HashMap<String, Integer> InfoPageType = new HashMap<String, Integer>();
-    public static HashMap<String, String> InfoPageText = new HashMap<String, String>();
-    public static HashMap<String, String> InfoPageRecipeName = new HashMap<String, String>();
-    public static HashMap<String, String[]> InfoPageItemPages = new HashMap<String, String[]>();
+    public static HashMap<String, Page[]> InfoPages = new HashMap<String, Page[]>();
 
     public static HashMap<String, ShapedRecipes> InfoPageShapedRecipes = new HashMap<String, ShapedRecipes>();
     public static HashMap<String, ShapelessRecipes> InfoPageShapelessRecipes = new HashMap<String, ShapelessRecipes>();
 
-    public static HashMap<String, String> ItemRecipeStorage = new HashMap<String, String>();
 
 
 
-    //Type 1 = text, Type 2 = crafting 2x2, Type 3 = crafting 3x3, Type 4 = smelting
 
-    public static void RegisterInfoPage(String PageName, int Type){
-        InfoPageType.put(PageName, Type);
+
+
+    public static void RegisterPagesForItem(ItemStack item, Page[] Pages){
+        InfoPages.put(item.getUnlocalizedName(), Pages);
     }
 
-    public static void RegisterInfoPageRecipes(String PageName, String RecipeName){
-        InfoPageRecipeName.put(PageName, RecipeName);
-    }
-
-    public static void RegisterTextForInfoPage(String NameForPage, String Text){
-        InfoPageText.put(NameForPage, Text);
-    }
-
-    public static void RegisterRecipeForInfoPage(String PageName, ItemStack stack){
-        ItemRecipeStorage.put(PageName, stack.getUnlocalizedName().replace(".name", ""));
-    }
-
-
-    public static void RegisterPagesForItem(ItemStack item, String[] Pages){
-        InfoPageItemPages.put(item.getUnlocalizedName(), Pages);
-    }
-
-    public static String[] GetInfoPagesForItem(ItemStack stack){
-        return InfoPageItemPages.get(stack.getUnlocalizedName());
+    public static Page[] GetInfoPagesForItem(ItemStack stack){
+        return InfoPages.get(stack.getUnlocalizedName());
     }
 
     public static void RegisterTab(int Number, String Name, ItemStack stack, int Type){

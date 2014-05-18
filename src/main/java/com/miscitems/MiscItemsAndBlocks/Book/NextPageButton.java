@@ -31,7 +31,6 @@ public class NextPageButton extends GuiButton {
         boolean IsMouseOver = x >= xPosition && x <= xPosition + xSize && y >= yPosition && y <= yPosition + ySize;
 
 
-
         if(Type == 1){
             if(IsMouseOver){
                 this.drawTexturedModalRect(this.xPosition, this.yPosition, 27, 82, xSize, ySize);

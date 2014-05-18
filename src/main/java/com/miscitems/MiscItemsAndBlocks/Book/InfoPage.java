@@ -1,20 +1,15 @@
 package com.miscitems.MiscItemsAndBlocks.Book;
 
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
-import com.miscitems.MiscItemsAndBlocks.Main.Main;
+import com.miscitems.MiscItemsAndBlocks.Book.Pages.Page;
 import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -24,12 +19,11 @@ public class InfoPage extends GuiScreen{
 
     public final ResourceLocation TextureLeft = new ResourceLocation("miscitems" , "textures/gui/ResBook/bookLeft.png");
     public final ResourceLocation TextureRight = new ResourceLocation("miscitems" , "textures/gui/ResBook/bookRight.png");
-    public final ResourceLocation TextureIcons = new ResourceLocation("miscitems" , "textures/gui/ResBook/BookIcons.png");
 
     public static final int xSizeOfTexture = 400;
     public static final int ySizeOfTexture = 206;
 
-    public String[] Pages;
+    public Page[] Pages;
     public ItemStack stack;
 
     public int Page = 1;
@@ -40,6 +34,10 @@ public class InfoPage extends GuiScreen{
     public InfoPage(ItemStack stack){
         this.stack = stack;
 
+    }
+
+    public void updateScreen(){
+        initGui();
     }
 
 
@@ -68,85 +66,50 @@ public class InfoPage extends GuiScreen{
 
 
 
-        Minecraft.getMinecraft().renderEngine.bindTexture(TextureIcons);
         if(Pages != null) {
-            PageAmount = Pages.length;
+            PageAmount = Pages.length - 1;
 
             if((Pages.length-1) >= UsePageLeft)
-            if (BookUtils.InfoPageType.get(Pages[UsePageLeft]) == 1) {
-                fontRendererObj.drawSplitString(BookUtils.InfoPageText.get(Pages[UsePageLeft]), posX + 20, posY + 25, 180, 0x949294);
-
-
-            }else if(BookUtils.InfoPageType.get(Pages[UsePageLeft]) == 2){
-                fontRendererObj.drawString(EnumChatFormatting.UNDERLINE + StatCollector.translateToLocal("book.gui.recipe"), posX + 30, posY + 25, 0x949294, false);
-                Minecraft.getMinecraft().renderEngine.bindTexture(TextureIcons);
-                this.drawTexturedModalRect(posX + 50, posY + 55, 3, 0, 81, 34);
-
-                List items = BookUtils.InfoPageShapelessRecipes.get(BookUtils.ItemRecipeStorage.get(Pages[UsePageLeft])).recipeItems;
-
-                for(int i = 0; i < 4; i++){
-                    if(items.size() > i)
-                    BookUtils.renderitem.renderItemIntoGUI(Main.font, Minecraft.getMinecraft().renderEngine, (ItemStack)items.get(i), posX + 50 + (i == 2 || i == 4 ? 18 : 0), posY + 55 + (i > 2 ? 18 : 0), false);
-                }
-
-                BookUtils.renderitem.renderItemIntoGUI(Main.font, Minecraft.getMinecraft().renderEngine, BookUtils.InfoPageShapelessRecipes.get(BookUtils.ItemRecipeStorage.get(Pages[UsePageLeft])).getRecipeOutput(), posX + 50 + 64, posY + 55 + 10, false);
-
-
-            }else if(BookUtils.InfoPageType.get(Pages[UsePageLeft]) == 3){
-                fontRendererObj.drawString(EnumChatFormatting.UNDERLINE + StatCollector.translateToLocal("book.gui.recipe"), posX + 30, posY + 25, 0x949294, false);
-                Minecraft.getMinecraft().renderEngine.bindTexture(TextureIcons);
-                this.drawTexturedModalRect(posX + 50, posY + 55, 0, 40, 106, 52);
-
-
-            }else if(BookUtils.InfoPageType.get(Pages[UsePageLeft]) == 4){
-                fontRendererObj.drawString(EnumChatFormatting.UNDERLINE + StatCollector.translateToLocal("book.gui.smelting"), posX + 30, posY + 25, 0x949294, false);
-                Minecraft.getMinecraft().renderEngine.bindTexture(TextureIcons);
-                this.drawTexturedModalRect(posX + 50, posY + 55, 18, 96, 72, 60);
-
-
-            }
-
-
-
+                Pages[UsePageLeft].Render(this, fontRendererObj, posX, posY, 1);
 
             if((Pages.length-1) >= UsePageRight)
-            if (BookUtils.InfoPageType.get(Pages[UsePageRight]) == 1) {
-                fontRendererObj.drawSplitString(BookUtils.InfoPageText.get(Pages[UsePageRight]), posX + 220, posY + 25, 180, 0x949294);
-
-
-            }else if(BookUtils.InfoPageType.get(Pages[UsePageRight]) == 2){
-                fontRendererObj.drawString(EnumChatFormatting.UNDERLINE + StatCollector.translateToLocal("book.gui.recipe"), posX + 240, posY + 25, 0x949294, false);
-                Minecraft.getMinecraft().renderEngine.bindTexture(TextureIcons);
-                this.drawTexturedModalRect(posX + 250, posY + 55, 3, 0, 81, 34);
-
-                List items = BookUtils.InfoPageShapelessRecipes.get(BookUtils.ItemRecipeStorage.get(Pages[UsePageRight])).recipeItems;
-
-                for(int i = 0; i <= 4; i++){
-                    if(items.size() > i)
-                    BookUtils.renderitem.renderItemIntoGUI(Main.font, Minecraft.getMinecraft().renderEngine, (ItemStack)items.get(i), posX + 250 + (i == 2 || i == 4 ? 18 : 0), posY + 55 + (i > 2 ? 18 : 0), true);
-                }
-
-                BookUtils.renderitem.renderItemIntoGUI(Main.font, Minecraft.getMinecraft().renderEngine, BookUtils.InfoPageShapelessRecipes.get(BookUtils.ItemRecipeStorage.get(Pages[UsePageRight])).getRecipeOutput(), posX + 250 + 64, posY + 55 + 10, true);
-
-
-
-
-            }else if(BookUtils.InfoPageType.get(Pages[UsePageRight]) == 3){
-                fontRendererObj.drawString(EnumChatFormatting.UNDERLINE + StatCollector.translateToLocal("book.gui.recipe"), posX + 240, posY + 25, 0x949294, false);
-                Minecraft.getMinecraft().renderEngine.bindTexture(TextureIcons);
-                this.drawTexturedModalRect(posX + 250, posY + 55, 0, 40, 106, 52);
-
-
-            }else if(BookUtils.InfoPageType.get(Pages[UsePageRight]) == 4){
-                fontRendererObj.drawString(EnumChatFormatting.UNDERLINE + StatCollector.translateToLocal("book.gui.smelting"), posX + 240, posY + 25, 0x949294, false);
-                Minecraft.getMinecraft().renderEngine.bindTexture(TextureIcons);
-                this.drawTexturedModalRect(posX + 250, posY + 55, 18, 96, 72, 60);
-
+                Pages[UsePageRight].Render(this, fontRendererObj, posX + 200, posY, 2);
+//
+//
+//            }else if(BookUtils.InfoPageType.get(Pages[UsePageLeft]) == 3){
+//                fontRendererObj.drawString(EnumChatFormatting.UNDERLINE + StatCollector.translateToLocal("book.gui.recipe"), posX + 30, posY + 25, 0x949294, false);
+//                Minecraft.getMinecraft().renderEngine.bindTexture(TextureIcons);
+//                this.drawTexturedModalRect(posX + 50, posY + 55, 0, 40, 106, 52);
+//
+//
+//            }else if(BookUtils.InfoPageType.get(Pages[UsePageLeft]) == 4){
+//                fontRendererObj.drawString(EnumChatFormatting.UNDERLINE + StatCollector.translateToLocal("book.gui.smelting"), posX + 30, posY + 25, 0x949294, false);
+//                Minecraft.getMinecraft().renderEngine.bindTexture(TextureIcons);
+//                this.drawTexturedModalRect(posX + 50, posY + 55, 18, 96, 72, 60);
+//
 
             }
 
 
-        }
+
+
+
+//            }else if(BookUtils.InfoPageType.get(Pages[UsePageRight]) == 3){
+//                fontRendererObj.drawString(EnumChatFormatting.UNDERLINE + StatCollector.translateToLocal("book.gui.recipe"), posX + 240, posY + 25, 0x949294, false);
+//                Minecraft.getMinecraft().renderEngine.bindTexture(TextureIcons);
+//                this.drawTexturedModalRect(posX + 250, posY + 55, 0, 40, 106, 52);
+//
+//
+//            }else if(BookUtils.InfoPageType.get(Pages[UsePageRight]) == 4){
+//                fontRendererObj.drawString(EnumChatFormatting.UNDERLINE + StatCollector.translateToLocal("book.gui.smelting"), posX + 240, posY + 25, 0x949294, false);
+//                Minecraft.getMinecraft().renderEngine.bindTexture(TextureIcons);
+//                this.drawTexturedModalRect(posX + 250, posY + 55, 18, 96, 72, 60);
+//
+
+//            }
+//
+//
+//        }
         if(Page == 1)
         fontRendererObj.drawString(stack.getDisplayName(), posX + 20, posY + 10, 0x949292);
 
@@ -192,12 +155,13 @@ public class InfoPage extends GuiScreen{
     }
 
     public void initGui(){
-
+        super.initGui();
         posX = (this.width - xSizeOfTexture) / 2;
         posY = (this.height - ySizeOfTexture) / 2;
 
         buttonList.clear();
 
+        GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
         buttonList.add(new NextPageButton(1, posX + 20, posY + 170, 2));
         buttonList.add(new NextPageButton(2, posX + 375, posY + 170, 1));
     }
