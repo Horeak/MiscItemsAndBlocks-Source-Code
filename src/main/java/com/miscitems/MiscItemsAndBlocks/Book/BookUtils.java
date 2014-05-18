@@ -1,6 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Book;
 
 import com.miscitems.MiscItemsAndBlocks.Book.Pages.Page;
+import MiscItemsApi.Utils.DoubleStackUtil;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.item.crafting.ShapelessRecipes;
@@ -33,6 +34,7 @@ public class BookUtils {
 
     public static HashMap<String, ShapedRecipes> InfoPageShapedRecipes = new HashMap<String, ShapedRecipes>();
     public static HashMap<String, ShapelessRecipes> InfoPageShapelessRecipes = new HashMap<String, ShapelessRecipes>();
+    public static HashMap<String, DoubleStackUtil> InfoPageFurnaceRecipes = new HashMap<String, DoubleStackUtil>();
 
 
 

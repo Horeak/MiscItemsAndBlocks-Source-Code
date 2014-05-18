@@ -3,6 +3,7 @@ package com.miscitems.MiscItemsAndBlocks.Utils;
 import MiscItemsApi.Recipes.MetalPressRecipes;
 import MiscItemsApi.Recipes.MillRecipes;
 import MiscItemsApi.Recipes.SqueezerRecipes;
+import MiscItemsApi.Utils.DoubleStackUtil;
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.Book.BookUtils;
 import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
@@ -25,7 +26,7 @@ public class Crafting {
 
 
     public static ArrayList<String> Recipes = new ArrayList<String>();
-	
+
 	public static void RegisterRecipes(){
 
 
@@ -42,7 +43,7 @@ public class Crafting {
         MetalPressRecipes.instance().AddRecipeMode_1(new ItemStack(Items.iron_ingot), new ItemStack(ModItems.IronPlate, 1, 0));
 
         MetalPressRecipes.instance().AddRecipeMode_4(new ItemStack(Items.iron_ingot),new ItemStack(Items.iron_ingot),new ItemStack(Items.iron_ingot),new ItemStack(Items.iron_ingot), new ItemStack(ModItems.IronPlate, 1, 2));
-		
+
 		    AddShapelessRecipe(new ItemStack(ModItems.PaintBrush, 1, 1), new Object[]{new ItemStack(ModItems.PaintBrush, 1, 0), new ItemStack(Items.dye, 1, 1)});
 		    AddShapelessRecipe(new ItemStack(ModItems.PaintBrush, 1, 2), new Object[]{new ItemStack(ModItems.PaintBrush, 1, 0), new ItemStack(Items.dye, 1, 2)});
 		    AddShapelessRecipe(new ItemStack(ModItems.PaintBrush, 1, 3), new Object[]{new ItemStack(ModItems.PaintBrush, 1, 0), new ItemStack(Items.dye, 1, 4)});
@@ -69,9 +70,9 @@ public class Crafting {
 
             GameRegistry.addRecipe(new ShapedOreRecipe(ModBlocks.CraftingInv, new Object[] {"WWW", "PIP", "PCP", 'W', Blocks.wool, Character.valueOf('P'), "plankWood", 'C', Blocks.chest, 'I', Blocks.crafting_table}));
 		    GameRegistry.addRecipe(new ShapedOreRecipe(ModBlocks.Dice, new Object[]{"PPP", "PDP", "PPP", Character.valueOf('P'), "plankWood", 'D', Items.dye}));
-		    GameRegistry.addRecipe(new ShapedOreRecipe(ModBlocks.Table, new Object[]{"CCC", "HHH", "P P", 'C', new ItemStack(Blocks.carpet, 1, 14), Character.valueOf('P'), "plankWood", Character.valueOf('H'), "slabWood"}));	
+		    GameRegistry.addRecipe(new ShapedOreRecipe(ModBlocks.Table, new Object[]{"CCC", "HHH", "P P", 'C', new ItemStack(Blocks.carpet, 1, 14), Character.valueOf('P'), "plankWood", Character.valueOf('H'), "slabWood"}));
 		    GameRegistry.addRecipe(new ShapedOreRecipe(ModItems.Turbine, new Object[]{"S S", " P ", "S S", 'S', Items.stick, Character.valueOf('P'), "plankWood"}));
-		    
+
             AddRecipe(new ItemStack(ModItems.GuideBook), true, new Object[]{"BP", "SP", 'B', Items.book, 'P', Items.paper, 'S', Items.string});
 		    AddRecipe(new ItemStack(ModItems.DataChip, 2),  true,new Object[]{"CCC", "CGC", "III", 'C', ModItems.Cardboard, 'G', new ItemStack(ModItems.Circuit, 1, 0), 'I', Items.iron_ingot});
 	     	AddRecipe(new ItemStack(ModBlocks.Teleporter), true, new Object[]{"HCH", "BEB", "HCH", 'H', new ItemStack(ModItems.IronPlate, 1, 2), 'C', new ItemStack(ModItems.Circuit, 1, 1), 'B', new ItemStack(ModItems.AdvancedBattery, 1, 0), 'E', Items.ender_pearl});
@@ -173,18 +174,23 @@ public class Crafting {
         if(!Item.itemRegistry.containsId(Item.getIdFromItem(Input.getItem())) || !Item.itemRegistry.containsId(Item.getIdFromItem(Output.getItem())))
             return;
         FurnaceRecipes.smelting().func_151394_a(Input, Output, Xp);
+        BookUtils.InfoPageFurnaceRecipes.put(Output.getUnlocalizedName().replace(".name", ""), new DoubleStackUtil(Input, Output));
     }
 
     public static void RegisterSmelting(Item Input, ItemStack Output, float Xp){
         if(!Item.itemRegistry.containsId(Item.getIdFromItem(Input)) || !Item.itemRegistry.containsId(Item.getIdFromItem(Output.getItem())))
             return;
         GameRegistry.addSmelting(Input, Output, Xp);
+        BookUtils.InfoPageFurnaceRecipes.put(Output.getUnlocalizedName().replace(".name", ""), new DoubleStackUtil(new ItemStack(Input), Output));
     }
 
     public static void RegisterSmelting(Block Input, ItemStack Output, float Xp){
         if(!Block.blockRegistry.containsId(Block.getIdFromBlock(Input)) || !Item.itemRegistry.containsId(Item.getIdFromItem(Output.getItem())))
             return;
+
+
         GameRegistry.addSmelting(Input, Output, Xp);
+        BookUtils.InfoPageFurnaceRecipes.put(Output.getUnlocalizedName().replace(".name", ""), new DoubleStackUtil(new ItemStack(Input), Output));
     }
 
     
