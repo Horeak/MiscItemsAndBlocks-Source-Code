@@ -6,6 +6,7 @@ import com.miscitems.MiscItemsAndBlocks.Items.ModItemXpExtractor;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.util.EnumChatFormatting;
@@ -30,7 +31,7 @@ public class RecipeBigPage extends Page {
     }
 
     @Override
-    public void Render(InfoPage Page, FontRenderer render, int posX, int posY, int Side) {
+    public void Render(RenderItem ItemRender, InfoPage Page, FontRenderer render, int posX, int posY, int Side) {
         render.drawString(EnumChatFormatting.UNDERLINE + StatCollector.translateToLocal("book.gui.recipe"), posX + 70, posY + 25, 0x949294, false);
 
 
@@ -42,34 +43,34 @@ public class RecipeBigPage extends Page {
 
         GL11.glDisable(GL11.GL_LIGHTING);
 
-        RenderItem(RecipeItems[0], posX + 60, posY + 65);
+        RenderItem(ItemRender, render, RecipeItems[0], posX + 60, posY + 65);
 
         if(RecipeItems.length > 1)
-        RenderItem(RecipeItems[1], posX + 60 + 18, posY + 65);
+        RenderItem(ItemRender, render, RecipeItems[1], posX + 60 + 18, posY + 65);
 
         if(RecipeItems.length > 2)
-        RenderItem(RecipeItems[2], posX + 60 + (2 * 18), posY + 65);
+        RenderItem(ItemRender, render, RecipeItems[2], posX + 60 + (2 * 18), posY + 65);
 
         if(RecipeItems.length > 3)
-        RenderItem(RecipeItems[3], posX + 60, posY + 65 + 18);
+        RenderItem(ItemRender, render, RecipeItems[3], posX + 60, posY + 65 + 18);
 
         if(RecipeItems.length > 4)
-        RenderItem(RecipeItems[4], posX + 60 + 18, posY + 65 + 18);
+        RenderItem(ItemRender, render, RecipeItems[4], posX + 60 + 18, posY + 65 + 18);
 
         if(RecipeItems.length > 5)
-        RenderItem(RecipeItems[5], posX + 60 + (2 * 18), posY + 65 + 18);
+        RenderItem(ItemRender, render, RecipeItems[5], posX + 60 + (2 * 18), posY + 65 + 18);
 
         if(RecipeItems.length > 6)
-        RenderItem(RecipeItems[6], posX + 60, posY + 65 + (2 * 18));
+        RenderItem(ItemRender, render, RecipeItems[6], posX + 60, posY + 65 + (2 * 18));
 
         if(RecipeItems.length > 7)
-        RenderItem(RecipeItems[7], posX + 60 + 18, posY + 65 + (2 * 18));
+        RenderItem(ItemRender, render, RecipeItems[7], posX + 60 + 18, posY + 65 + (2 * 18));
 
         if(RecipeItems.length > 8)
-        RenderItem(RecipeItems[8], posX + 60 + (2 * 18), posY + 65 + (2 * 18));
+        RenderItem(ItemRender, render, RecipeItems[8], posX + 60 + (2 * 18), posY + 65 + (2 * 18));
 
 
-        RenderItem(RecipeItem, posX + 60 + 88, posY + 65 + 18);
+        RenderItem(ItemRender, render, RecipeItem, posX + 60 + 88, posY + 65 + 18);
 
         GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
         GL11.glEnable(GL11.GL_LIGHTING);

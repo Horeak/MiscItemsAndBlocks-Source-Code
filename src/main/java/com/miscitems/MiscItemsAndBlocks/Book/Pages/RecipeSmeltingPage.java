@@ -5,6 +5,7 @@ import com.miscitems.MiscItemsAndBlocks.Book.BookUtils;
 import com.miscitems.MiscItemsAndBlocks.Book.InfoPage;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
@@ -26,7 +27,7 @@ public class RecipeSmeltingPage extends Page  {
 
 
     @Override
-    public void Render(InfoPage Page, FontRenderer render, int posX, int posY, int Side) {
+    public void Render(RenderItem ItemRender, InfoPage Page, FontRenderer render, int posX, int posY, int Side) {
         render.drawString(EnumChatFormatting.UNDERLINE + StatCollector.translateToLocal("book.gui.smelting"), posX + 70, posY + 25, 0x949294, false);
 
 
@@ -37,14 +38,14 @@ public class RecipeSmeltingPage extends Page  {
 
         GL11.glDisable(GL11.GL_LIGHTING);
 
-        RenderItem(new ItemStack(Items.coal), posX + 64, posY + 104);
+        RenderItem(ItemRender, render, new ItemStack(Items.coal), posX + 64, posY + 104);
 
 
 
         if(FurnaceItems != null)
         if(FurnaceItems.GetStack_1() != null && FurnaceItems.GetStack_1().getItem() != null && FurnaceItems.GetStack_2() != null && FurnaceItems.GetStack_2().getItem() != null){
-            RenderItem(FurnaceItems.GetStack_1(), posX + 64, posY + 66);
-            RenderItem(FurnaceItems.GetStack_2(), posX + 63 + 54, posY + 84);
+            RenderItem(ItemRender, render, FurnaceItems.GetStack_1(), posX + 64, posY + 66);
+            RenderItem(ItemRender, render, FurnaceItems.GetStack_2(), posX + 63 + 54, posY + 84);
 
 
         }

@@ -81,10 +81,10 @@ public class InfoPage extends GuiScreen{
             PageAmount = Pages.length - 1;
 
             if ((Pages.length - 1) >= UsePageLeft)
-                Pages[UsePageLeft].Render(this, fontRendererObj, posX, posY, 1);
+                Pages[UsePageLeft].Render(this.itemRender, this, fontRendererObj, posX, posY, 1);
 
             if ((Pages.length - 1) >= UsePageRight)
-                Pages[UsePageRight].Render(this, fontRendererObj, posX + 200, posY, 2);
+                Pages[UsePageRight].Render(this.itemRender, this, fontRendererObj, posX + 200, posY, 2);
 
         }
 
