@@ -242,7 +242,7 @@ public class ModItems {
 			
         Item.setUnlocalizedName((Name.toLowerCase().replace(" ", "_")));
         GameRegistry.registerItem(Item, (Name.toLowerCase().replace(" ", "_")));
-            ItemAccess.Items.put(Item.getUnlocalizedName().replace(" ", "_").toLowerCase().replace("item.", "").replace(".name", ""), new ItemStack(Item));
+            ItemAccess.Items.put(Item.getUnlocalizedName(new ItemStack(Item)).replace(" ", "_").toLowerCase().replace("item.", "").replace(".name", ""), new ItemStack(Item));
 	}
 	}
 	
@@ -250,7 +250,7 @@ public class ModItems {
 		
 		
         GameRegistry.registerItem(Item, Name.toLowerCase().replace(" ", ""));
-        ItemAccess.Items.put(Item.getUnlocalizedName().replace(" ", "_").toLowerCase().replace("item.", "").replace(".name", ""), new ItemStack(Item));
+        ItemAccess.Items.put(Item.getUnlocalizedName(new ItemStack(Item)).replace(" ", "_").toLowerCase().replace("item.", "").replace(".name", ""), new ItemStack(Item));
 
 	}
 }

@@ -179,7 +179,7 @@ public class Crafting {
         if(!Item.itemRegistry.containsId(Item.getIdFromItem(Input.getItem())) || !Item.itemRegistry.containsId(Item.getIdFromItem(Output.getItem())))
             return;
         FurnaceRecipes.smelting().func_151394_a(Input, Output, Xp);
-        BookUtils.InfoPageFurnaceRecipes.put(Input.getUnlocalizedName().replace(".name", "").replace("item.", "").replace("tile.", ""), new DoubleStackUtil(Input, Output));
+        BookUtils.InfoPageFurnaceRecipes.put(Input.getItem().getUnlocalizedName(Input).replace(".name", "").replace("item.", "").replace("tile.", ""), new DoubleStackUtil(Input, Output));
     }
 
     public static void RegisterSmelting(Item Input, ItemStack Output, float Xp){
@@ -201,7 +201,7 @@ public class Crafting {
     
     public static void AddRecipe(ItemStack output, Object... Array){
 
-        String name = output.getUnlocalizedName().replace("tile.", "").replace(".name", "").replace(" ", "_").replace("item.", "");
+        String name = output.getItem().getUnlocalizedName(output).replace("tile.", "").replace(".name", "").replace(" ", "_").replace("item.", "");
 
 
 
@@ -217,7 +217,7 @@ public class Crafting {
 
                     if(RegisterRes(name + "_" + i)){
 
-                        name = output.getUnlocalizedName().replace("tile.", "").replace(".name", "").replace(" ", "_").replace("item.", "") + "_" + i;
+                        name = output.getItem().getUnlocalizedName(output).replace("tile.", "").replace(".name", "").replace(" ", "_").replace("item.", "") + "_" + i;
 
 
                         if(CheckBigRecipe(output, Array)){
@@ -237,7 +237,7 @@ public class Crafting {
     
     public static void AddShapelessRecipe(ItemStack output, Object... Array){
 
-        String name = output.getUnlocalizedName().replace("tile.", "").replace(".name", "").replace(" ", "_").replace("item.", "");
+        String name = output.getItem().getUnlocalizedName(output).replace("tile.", "").replace(".name", "").replace(" ", "_").replace("item.", "");
 
 
 
@@ -252,7 +252,7 @@ public class Crafting {
 
                     if(RegisterRes(name + "_" + i)){
 
-                        name = output.getUnlocalizedName().replace("tile.", "").replace(".name", "").replace(" ", "_").replace("item.", "") + "_" + i;
+                        name = output.getItem().getUnlocalizedName(output).replace("tile.", "").replace(".name", "").replace(" ", "_").replace("item.", "") + "_" + i;
 
 
                         if(CheckSmallRecipe(output, Array)){
@@ -360,7 +360,7 @@ public class Crafting {
 
         ShapedRecipes shapedrecipes = new ShapedRecipes(j, k, aitemstack, stack);
 
-        BookUtils.InfoPageShapedRecipes.put(stack.getUnlocalizedName().replace(".name", ""), shapedrecipes);
+        BookUtils.InfoPageShapedRecipes.put(stack.getItem().getUnlocalizedName(stack).replace(".name", ""), shapedrecipes);
 
         return true;
     }
@@ -411,7 +411,7 @@ public class Crafting {
             return false;
 
 
-        BookUtils.InfoPageShapelessRecipes.put(par1ItemStack.getUnlocalizedName().replace(".name", ""), new ShapelessRecipes(par1ItemStack, arraylist));
+        BookUtils.InfoPageShapelessRecipes.put(par1ItemStack.getItem().getUnlocalizedName(par1ItemStack).replace(".name", ""), new ShapelessRecipes(par1ItemStack, arraylist));
 
       return true;
     }

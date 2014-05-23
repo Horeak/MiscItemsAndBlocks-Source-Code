@@ -43,11 +43,12 @@ public class BookUtils {
 
 
     public static void RegisterPagesForItem(ItemStack item, Page[] Pages){
-        InfoPages.put(item.getUnlocalizedName(), Pages);
+        System.out.println("INFO TEST MESSAGE! : " + item.getItem().getUnlocalizedName(item));
+        InfoPages.put(item.getItem().getUnlocalizedName(item), Pages);
     }
 
     public static Page[] GetInfoPagesForItem(ItemStack stack){
-        return InfoPages.get(stack.getUnlocalizedName());
+        return InfoPages.get(stack.getItem().getUnlocalizedName(stack));
     }
 
     public static void RegisterTab(int Number, String Name, ItemStack stack, int Type){

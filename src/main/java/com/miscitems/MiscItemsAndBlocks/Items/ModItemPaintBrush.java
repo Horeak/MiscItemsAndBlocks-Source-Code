@@ -44,22 +44,22 @@ public class ModItemPaintBrush extends Item{
 		   this.icons[5] = reg.registerIcon(Refrence.Mod_Id + ":" + "PaintBrushEdit");
 		   
 	   }
-	   
-	    public String getUnlocalizedNameInefficiently(ItemStack stack)
-	    {
-	    	int meta = stack.getItemDamage();
 
-	    	if(meta == 0)return "item.paintbrush.1";
-	    	if(meta == 1)return "item.paintbrush.2";
-	    	if(meta == 2)return "item.paintbrush.3";
-	    	if(meta == 3)return "item.paintbrush.4";
-	    	if(meta == 4)return "item.paintbrush.5";
-	    	if(meta == 5)return "item.paintbrush.6";
-	    	
-	    	
-	    	
-	    	return null;
-	    }
+	    public String getUnlocalizedName(ItemStack stack)
+    {
+        int meta = stack.getItemDamage();
+
+        if(meta == 0)return "item.paintbrush.1";
+        if(meta == 1)return "item.paintbrush.2";
+        if(meta == 2)return "item.paintbrush.3";
+        if(meta == 3)return "item.paintbrush.4";
+        if(meta == 4)return "item.paintbrush.5";
+        if(meta == 5)return "item.paintbrush.6";
+
+
+
+        return null;
+    }
 	    
 	    public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List list)
 	    {

@@ -3,7 +3,7 @@
   "modid": "MiscItems",
   "name": "MiscItemsAndBlocks",
   "description": "This is a mod that adds some random and useful items and block to the game",
-  "version": "@VERSION@",
+  "version": "${version}",
   "url": "http://www.minecraftforum.net/topic/2172892-forge172093miscitemsandblocks/",
   "updateUrl": "http://adf.ly/U25ua",
   "authorList": [

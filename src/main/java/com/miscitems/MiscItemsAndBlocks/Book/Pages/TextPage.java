@@ -14,7 +14,11 @@ public class TextPage extends Page {
 
 
 
-    public void Render(RenderItem ItemRender, InfoPage Page, FontRenderer render, int posX, int posY, int Side) {
+    public void Render(RenderItem ItemRender, InfoPage Page, FontRenderer render, int posX, int posY, int Side, int MouseX, int MouseY) {
             render.drawSplitString(Text, posX + 20, posY + 25, 180, 0x949294);
+    }
+
+    public void OnClick(InfoPage page, int ClickedX, int ClickedY){
+
     }
 }
