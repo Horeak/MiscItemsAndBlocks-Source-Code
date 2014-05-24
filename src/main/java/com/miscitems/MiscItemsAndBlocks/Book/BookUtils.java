@@ -43,7 +43,6 @@ public class BookUtils {
 
 
     public static void RegisterPagesForItem(ItemStack item, Page[] Pages){
-        System.out.println("INFO TEST MESSAGE! : " + item.getItem().getUnlocalizedName(item));
         InfoPages.put(item.getItem().getUnlocalizedName(item), Pages);
     }
 
