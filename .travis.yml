@@ -1,2 +1,2 @@
 language: gradle
-script: ./script/ci/gradlew.bat build
+install: gradlew.bat build
