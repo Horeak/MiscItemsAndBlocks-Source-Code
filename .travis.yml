@@ -1,2 +1,7 @@
-language: gradle
+language: java
 install: gradlew.bat build
+jdk:
+  - oraclejdk7
+  - openjdk6
+  - openjdk7
+  - oraclejdk7
