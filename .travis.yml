@@ -1,4 +1,5 @@
 language: java
+script: ./gradlew.bat
 install: gradlew.bat build
 jdk:
   - oraclejdk7
