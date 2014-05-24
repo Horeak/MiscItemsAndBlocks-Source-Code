@@ -1,2 +1,2 @@
 language: gradle
-script: "./run-gradlew.bat build"
+script: ./script/ci/gradlew.bat build
