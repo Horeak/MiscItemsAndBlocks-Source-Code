@@ -1,3 +1,2 @@
 language: gradle
-script:
-  - sudo gradlew.bat build
+script: "./run-gradlew.bat build"
