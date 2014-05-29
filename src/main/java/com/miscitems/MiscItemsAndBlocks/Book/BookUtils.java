@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Book;
 
 import com.miscitems.MiscItemsAndBlocks.Book.Pages.Page;
-import MiscItemsApi.Utils.DoubleStackUtil;
+import com.miscitems.MiscItemsAndBlocks.Utils.DoubleStackUtil;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.item.crafting.ShapelessRecipes;

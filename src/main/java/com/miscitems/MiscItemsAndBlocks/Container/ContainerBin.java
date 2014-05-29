@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Container;
 
 import com.miscitems.MiscItemsAndBlocks.Slots.ModSlotArmor;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityBin;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityTrashBin;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -10,9 +10,9 @@ import net.minecraft.item.ItemStack;
 
 public class ContainerBin extends Container{
 
-    private TileEntityBin tile;
+    private TileEntityTrashBin tile;
     
-    public ContainerBin(InventoryPlayer InvPlayer, TileEntityBin tile)
+    public ContainerBin(InventoryPlayer InvPlayer, TileEntityTrashBin tile)
     {
     	this.tile = tile;
     	

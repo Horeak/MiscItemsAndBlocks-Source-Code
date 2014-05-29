@@ -50,11 +50,11 @@ public class ClientProxy extends ServerProxy {
 	
 
     	
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBin.class, new TileEntityBinRender());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTrashBin.class, new TileEntityBinRender());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityDisarmTrap.class, new TileEntityDisarmTrapRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPowerCable.class, new TileEntityPowerCableRender());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityItemPedestal.class, new TileEntityItemPedestalRender());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMiningChamber.class, new TileEntityMiningChamberRender());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMiningStation.class, new TileEntityMiningChamberRender());
         
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGamePart.class, new TileEntityGamePartRender());
         
@@ -142,14 +142,14 @@ public class ClientProxy extends ServerProxy {
                 ((TileEntityItemPedestal) tileEntity).setInventorySlotContents(0, itemStack);
             }
             
-            if (tileEntity instanceof TileEntityMiningChamber) {
+            if (tileEntity instanceof TileEntityMiningStation) {
 
                 ItemStack itemStack = new ItemStack(itemID, stackSize, metaData);
                 if (color != Integer.parseInt(Colours.PURE_WHITE, 16)) {
                     ItemHelper.setColor(itemStack, color);
                 }
 
-                ((TileEntityMiningChamber) tileEntity).setInventorySlotContents(0, itemStack);
+                ((TileEntityMiningStation) tileEntity).setInventorySlotContents(0, itemStack);
             }
             
           

@@ -56,7 +56,10 @@ public class ModBlockTable extends BlockContainer{
     	
     	if(player.inventory.getCurrentItem() != null){
     	if(player.inventory.getCurrentItem().getItem() == new ItemStack(Blocks.carpet).getItem()){
-    		
+
+
+            ((TileEntityTable)world.getTileEntity(x,y,z)).Color = 15 - player.inventory.getCurrentItem().getItemDamage();
+
     		if(world.getBlockMetadata(x, y, z) > 0){
     			return true;
     		}

@@ -3,14 +3,18 @@ package com.miscitems.MiscItemsAndBlocks.TileEntity;
 import MiscItemsApi.Electric.IPowerCable;
 import MiscItemsApi.Electric.IPowerGeneration;
 import MiscItemsApi.Electric.IPowerTile;
+import MiscItemsApi.Electric.IWrenchAble;
+import com.miscitems.MiscItemsAndBlocks.Block.ModBlockPowerCable;
 import com.miscitems.MiscItemsAndBlocks.Laser.LaserUtil;
+import com.miscitems.MiscItemsAndBlocks.Utils.ChatMessageHandler;
 import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class TileEntityPowerCable extends TileEntity implements IPowerCable {
+public class TileEntityPowerCable extends TileEntity implements IPowerCable, IWrenchAble {
 
 
 	
@@ -18,7 +22,31 @@ public class TileEntityPowerCable extends TileEntity implements IPowerCable {
     private int Power;
     private int MaxPower = 4;
 
-       
+
+    @Override
+    public void OnWrenched(EntityPlayer player, int x, int y, int z) {
+
+
+        World world = player.worldObj;
+            if (!world.isRemote) {
+
+
+                int Meta = world.getBlockMetadata(x, y, z);
+
+
+                if (player.isSneaking()) {
+                    if (Meta > 0) {
+                        world.setBlockMetadataWithNotify(x, y, z, Meta - 1, 2);
+                        Meta = world.getBlockMetadata(x, y, z);
+                    }
+
+                    ChatMessageHandler.sendChatToPlayer(player, ModBlockPowerCable.messages[Meta]);
+
+
+                }
+            }
+        }
+
        
        
        
@@ -137,7 +165,7 @@ public class TileEntityPowerCable extends TileEntity implements IPowerCable {
     	int Meta = this.worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
 
     	if(Meta != 1)
-    	if(tile instanceof IPowerTile)return true;
+    	if(tile instanceof IPowerTile && ((IPowerTile)tile).ConnectsToCables())return true;
     	if(Meta != 1)
     	if(tile instanceof IPowerGeneration)return true;
     	if(Meta != 2)
@@ -156,7 +184,7 @@ public class TileEntityPowerCable extends TileEntity implements IPowerCable {
     
     
     if(Meta != 1){
-    	if(world.getTileEntity(x, y, z) instanceof TileEntityCharger){
+    	if(world.getTileEntity(x, y, z) instanceof TileEntityEnergyStorageCube){
 		if(this.xCoord != x + ForgeDirection.getOrientation(LaserUtil.getOrientation(BMeta)).offsetX || this.yCoord != y + ForgeDirection.getOrientation(LaserUtil.getOrientation(BMeta)).offsetY || this.zCoord != z + ForgeDirection.getOrientation(LaserUtil.getOrientation(BMeta)).offsetZ){
 
             if(world.getTileEntity(x, y, z) instanceof IPowerTile){

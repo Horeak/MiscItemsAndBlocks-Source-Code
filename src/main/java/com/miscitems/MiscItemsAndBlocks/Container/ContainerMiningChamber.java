@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Container;
 
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMiningChamber;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMiningStation;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,7 +17,7 @@ public class ContainerMiningChamber  extends Container {
 		return tile.isUseableByPlayer(entityplayer);
 	}
 	
-    private TileEntityMiningChamber tile;
+    private TileEntityMiningStation tile;
     
     int LastPower;
     int LastBlocksMined;
@@ -28,7 +28,7 @@ public class ContainerMiningChamber  extends Container {
     int LastMaxPower;
 
 	
-    public ContainerMiningChamber(InventoryPlayer InvPlayer, TileEntityMiningChamber tile)
+    public ContainerMiningChamber(InventoryPlayer InvPlayer, TileEntityMiningStation tile)
     {
     	this.tile = tile;
     	
@@ -187,7 +187,7 @@ public class ContainerMiningChamber  extends Container {
 
     }
     
-	public TileEntityMiningChamber getTile() {
+	public TileEntityMiningStation getTile() {
 		return tile;
 	}
 }

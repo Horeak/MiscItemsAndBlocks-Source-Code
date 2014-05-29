@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Container;
 
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityBox;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityCardboardBox;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -10,11 +10,11 @@ import net.minecraft.item.ItemStack;
 
 public class ContainerBox extends Container{
 
-    private TileEntityBox tile;
+    private TileEntityCardboardBox tile;
     
     int numRows = 3;
 	
-    public ContainerBox(InventoryPlayer InvPlayer, TileEntityBox tile)
+    public ContainerBox(InventoryPlayer InvPlayer, TileEntityCardboardBox tile)
     {
     	this.tile = tile;
     	

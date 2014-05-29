@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Slots;
 
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityCraftingInv;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityWorktable;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -18,11 +18,11 @@ private final IInventory craftMatrix;
 private IInventory craftResultMatrix;
 private IInventory craftSupplyMatrix;
 
-TileEntityCraftingInv tile;
+TileEntityWorktable tile;
 
 public SlotCraftingInv(Container parent, EntityPlayer player, IInventory craftingMatrix,
 IInventory craftingResultMatrix, IInventory craftingSupplyMatrix,
-int slotID, int xDisplay, int yDisplay, TileEntityCraftingInv tile)
+int slotID, int xDisplay, int yDisplay, TileEntityWorktable tile)
 {
 super(player, craftingMatrix, craftingResultMatrix, slotID, xDisplay, yDisplay);
 this.tile = tile;

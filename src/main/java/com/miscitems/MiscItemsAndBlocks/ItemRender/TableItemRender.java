@@ -54,7 +54,7 @@ public class TableItemRender implements IItemRenderer
        GL11.glPushMatrix();
        GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
        
-       model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F, true, false, false, false, false, false, false, false, false);
+       model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F, true, false, false, false, false, false, false, false, false, 1);
        
        GL11.glPopMatrix();
        GL11.glPopMatrix();

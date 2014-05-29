@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Gui;
 
 import com.miscitems.MiscItemsAndBlocks.Container.ContainerCharger;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityCharger;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityEnergyStorageCube;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -11,10 +11,10 @@ import org.lwjgl.opengl.GL11;
 
 public class GuiCharger extends GuiContainer{
 
-	private TileEntityCharger tile;
+	private TileEntityEnergyStorageCube tile;
 	private final ResourceLocation Texture = new ResourceLocation("miscitems" , "textures/gui/ChargerBlockGui.png");
 	
-	public GuiCharger(InventoryPlayer InvPlayer, TileEntityCharger tile) {
+	public GuiCharger(InventoryPlayer InvPlayer, TileEntityEnergyStorageCube tile) {
 		super(new ContainerCharger(InvPlayer, tile));
 		
 		this.xSize = 176;

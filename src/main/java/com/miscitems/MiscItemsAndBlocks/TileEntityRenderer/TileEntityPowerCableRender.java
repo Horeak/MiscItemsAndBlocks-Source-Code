@@ -103,7 +103,7 @@ public class TileEntityPowerCableRender extends TileEntitySpecialRenderer {
     	
     	
     	if(Meta != 1)
-    	if(tile instanceof IPowerTile)return true;
+    	if(tile instanceof IPowerTile && ((IPowerTile)tile).ConnectsToCables())return true;
     	
     	else if(tile instanceof IPowerGeneration)return true;
 

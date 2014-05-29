@@ -3,7 +3,7 @@ package com.miscitems.MiscItemsAndBlocks.Container;
 import com.miscitems.MiscItemsAndBlocks.Slots.ModSlotArmor;
 import com.miscitems.MiscItemsAndBlocks.Slots.SlotPowerStorage;
 import com.miscitems.MiscItemsAndBlocks.Slots.SlotUpgrades;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityCharger;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityEnergyStorageCube;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,13 +20,13 @@ public class ContainerCharger  extends Container {
 		return tile.isUseableByPlayer(entityplayer);
 	}
 	
-    private TileEntityCharger tile;
+    private TileEntityEnergyStorageCube tile;
     
     int LastPower;
     int LastMaxPower;
 
 	
-    public ContainerCharger(InventoryPlayer InvPlayer, TileEntityCharger tile)
+    public ContainerCharger(InventoryPlayer InvPlayer, TileEntityEnergyStorageCube tile)
     {
     	this.tile = tile;
     	

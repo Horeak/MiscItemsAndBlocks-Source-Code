@@ -1,5 +1,9 @@
 ## gradle
 /build
+/.gradle
+/gradlew.bat
+/gradlew
+/gradle
 
 
 ## ForgeGradle

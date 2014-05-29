@@ -1,11 +1,9 @@
 package MiscItemsApi.Recipes;
 
-import MiscItemsApi.Utils.DoubleStackUtil;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 

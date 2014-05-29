@@ -5,7 +5,7 @@ import com.miscitems.MiscItemsAndBlocks.Container.ContainerMiningChamber;
 import com.miscitems.MiscItemsAndBlocks.Container.ContainerXpStorage;
 import com.miscitems.MiscItemsAndBlocks.Network.IPacket;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMetalPress;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMiningChamber;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMiningStation;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityXpStorage;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
@@ -45,7 +45,7 @@ public class ServerButtonPacket extends IPacket{
 			XpStorage.receiveButtonEvent(ID);
 			
 		}else if (container != null && container instanceof ContainerMiningChamber) {
-			TileEntityMiningChamber MiningChamber = ((ContainerMiningChamber)container).getTile();
+			TileEntityMiningStation MiningChamber = ((ContainerMiningChamber)container).getTile();
 			MiningChamber.receiveButtonEvent(ID);
 			
 

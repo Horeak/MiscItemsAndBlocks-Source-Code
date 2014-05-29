@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.ItemRender;
 
 import com.miscitems.MiscItemsAndBlocks.Models.TrashBinModel;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityBin;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityTrashBin;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
@@ -15,7 +15,7 @@ import org.lwjgl.opengl.GL11;
 public class TrashBinItemRender implements IItemRenderer
 {
 
-    private TileEntityBin tile = new TileEntityBin();
+    private TileEntityTrashBin tile = new TileEntityTrashBin();
 
 
 

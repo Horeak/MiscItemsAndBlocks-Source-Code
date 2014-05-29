@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Models;
 
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMiningChamber;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMiningStation;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -244,10 +244,10 @@ public class MiningChamberModel extends ModelBase
     super.render(entity, f, f1, f2, f3, f4, f5);
     setRotationAngles(f, f1, f2, f3, f4, f5, entity);
     
-    TileEntityMiningChamber tile_ent;
+    TileEntityMiningStation tile_ent;
     
     if(tile != null)
-    tile_ent = (TileEntityMiningChamber)tile;
+    tile_ent = (TileEntityMiningStation)tile;
     
     boolean Item = tile == null;
     

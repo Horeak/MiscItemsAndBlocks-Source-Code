@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.ItemBlock;
 
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityBox;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityCardboardBox;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.player.EntityPlayer;
@@ -29,7 +29,7 @@ public class ModItemBlockBox extends ItemBlock {
 		 if(stack.stackTagCompound != null){
 			 world.setBlock(x, y, z, ModBlocks.Box);
 			 if(world.getTileEntity(x, y, z) != null){
-				 TileEntityBox tile = (TileEntityBox)world.getTileEntity(x, y, z);
+				 TileEntityCardboardBox tile = (TileEntityCardboardBox)world.getTileEntity(x, y, z);
 				 
 				 NBTTagList nbttaglist = stack.stackTagCompound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
 			        for (int i = 0; i < nbttaglist.tagCount(); i++)

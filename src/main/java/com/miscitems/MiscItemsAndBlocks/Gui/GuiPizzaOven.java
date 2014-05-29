@@ -2,7 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.Gui;
 
 import com.miscitems.MiscItemsAndBlocks.Container.ContainerPizzaOven;
 import com.miscitems.MiscItemsAndBlocks.GuiObjects.GuiTipButton;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityOvenCore;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityOven;
 import com.miscitems.MiscItemsAndBlocks.Utils.Messages;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -13,11 +13,11 @@ import org.lwjgl.opengl.GL11;
 
 public class GuiPizzaOven extends GuiContainer{
 
-	private TileEntityOvenCore tile;
+	private TileEntityOven tile;
 	private final ResourceLocation Texture = new ResourceLocation("miscitems" , "textures/gui/PizzaOvenGui.png");
 	
 	
-	public GuiPizzaOven(InventoryPlayer InvPlayer, TileEntityOvenCore tile) {
+	public GuiPizzaOven(InventoryPlayer InvPlayer, TileEntityOven tile) {
 		super(new ContainerPizzaOven(InvPlayer, tile));
 		
 		this.xSize = 176;

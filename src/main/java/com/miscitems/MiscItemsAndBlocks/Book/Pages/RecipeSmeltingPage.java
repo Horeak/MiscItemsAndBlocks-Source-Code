@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Book.Pages;
 
-import MiscItemsApi.Utils.DoubleStackUtil;
+import com.miscitems.MiscItemsAndBlocks.Utils.DoubleStackUtil;
 import com.miscitems.MiscItemsAndBlocks.Book.BookUtils;
 import com.miscitems.MiscItemsAndBlocks.Book.InfoPage;
 import cpw.mods.fml.client.FMLClientHandler;

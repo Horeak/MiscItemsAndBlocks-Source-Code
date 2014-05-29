@@ -2,7 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.Container;
 
 import com.miscitems.MiscItemsAndBlocks.Slots.ModSlotArmor;
 import com.miscitems.MiscItemsAndBlocks.Slots.SlotCraftingInv;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityCraftingInv;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityWorktable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -12,14 +12,14 @@ import net.minecraft.item.ItemStack;
 
 public class ContainerCraftingInv extends Container
 {
-public TileEntityCraftingInv tileEntity;
+public TileEntityWorktable tileEntity;
 
 public IInventory craftSupplyMatrix;
 public int craftResultSlot = 0;
 private boolean containerChanged;
 private boolean netEditingContainer = false;
 
-public ContainerCraftingInv(InventoryPlayer invPlayer, TileEntityCraftingInv tpb)
+public ContainerCraftingInv(InventoryPlayer invPlayer, TileEntityWorktable tpb)
 {
 tileEntity = tpb;
 craftSupplyMatrix = tileEntity.craftSupplyMatrix;
@@ -30,7 +30,7 @@ bindPlayerInventory(invPlayer);
 containerChanged = true;
 detectAndSendChanges();
 }
-private void layoutContainer(InventoryPlayer invPlayer, TileEntityCraftingInv tpb)
+private void layoutContainer(InventoryPlayer invPlayer, TileEntityWorktable tpb)
 {
 int row;
 int col;

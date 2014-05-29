@@ -2,7 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.Gui;
 
 import com.miscitems.MiscItemsAndBlocks.Container.ContainerCraftingInv;
 import com.miscitems.MiscItemsAndBlocks.GuiObjects.GuiTipButton;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityCraftingInv;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityWorktable;
 import com.miscitems.MiscItemsAndBlocks.Utils.Messages;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -18,7 +18,7 @@ private final ResourceLocation Texture = new ResourceLocation("miscitems" , "tex
 
 private static boolean NEI_ACTIVE = false;
 
-public GuiCraftingInv(InventoryPlayer InvPlayer, TileEntityCraftingInv tile) {
+public GuiCraftingInv(InventoryPlayer InvPlayer, TileEntityWorktable tile) {
 super(new ContainerCraftingInv(InvPlayer, tile));
 
 this.xSize = 197;

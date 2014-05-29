@@ -8,6 +8,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.Slot;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
@@ -89,60 +90,24 @@ public class GuiMetalPress extends GuiContainer{
 	}
 
 
-//    public void func_146977_a(Slot slot)
-//    {
-//
-//
-//
-//
-//    	if(slot.inventory == tile && tile.GetMode() == 1 && slot.getSlotIndex() == 1){
-//    		super.func_146977_a(slot);
-//
-//    	}else if (slot.inventory == tile && tile.GetMode() == 2 && slot.getSlotIndex() == 1){
-//    	}
-//
-//
-//
-//    	if (slot.inventory == tile && tile.GetMode() == 2 && slot.getSlotIndex() == 2
-//    			|| slot.inventory == tile && tile.GetMode() == 2 && slot.getSlotIndex() == 3
-//    			|| slot.inventory == tile && tile.GetMode() == 2 && slot.getSlotIndex() == 4
-//    			|| slot.inventory == tile && tile.GetMode() == 2 && slot.getSlotIndex() == 5){
-//    		super.func_146977_a(slot);
-//
-//
-//
-//
-//    	}
-//
-//    	if(slot.inventory == tile && slot.getSlotIndex() == 0)
-//    		super.drawSlotInventory(slot);
-//
-//
-//    		if (slot.inventory == Minecraft.getMinecraft().thePlayer.inventory){
-//    		super.drawSlotInventory(slot);
-//    		}
-//
-//
-//
-//    	}
-//
-//    public boolean isMouseOverSlot(Slot par1Slot, int par2, int par3)
-//    {
-//    	if(par1Slot.inventory == tile && tile.GetMode() == 2 && par1Slot.getSlotIndex() == 1){
-//    		return false;
-//
-//    	}else if (par1Slot.inventory == tile && tile.GetMode() == 1 && par1Slot.getSlotIndex() == 2
-//    			|| par1Slot.inventory == tile && tile.GetMode() == 1 && par1Slot.getSlotIndex() == 3
-//    			||par1Slot.inventory == tile && tile.GetMode() == 1 && par1Slot.getSlotIndex() == 4
-//    			|| par1Slot.inventory == tile && tile.GetMode() == 1 && par1Slot.getSlotIndex() == 5
-//    			){
-//    		return false;
-//
-//
-//    	}else{
-//
-//        return this.func_146978_c(par1Slot.xDisplayPosition, par1Slot.yDisplayPosition, 16, 16, par2, par3);
-//    	}
-//    }
+
+    public boolean isMouseOverSlot(Slot par1Slot, int par2, int par3)
+    {
+    	if(par1Slot.inventory == tile && tile.GetMode() == 2 && par1Slot.getSlotIndex() == 1){
+    		return false;
+
+    	}else if (par1Slot.inventory == tile && tile.GetMode() == 1 && par1Slot.getSlotIndex() == 2
+    			|| par1Slot.inventory == tile && tile.GetMode() == 1 && par1Slot.getSlotIndex() == 3
+    			||par1Slot.inventory == tile && tile.GetMode() == 1 && par1Slot.getSlotIndex() == 4
+    			|| par1Slot.inventory == tile && tile.GetMode() == 1 && par1Slot.getSlotIndex() == 5
+    			){
+    		return false;
+
+
+    	}else{
+
+        return this.func_146978_c(par1Slot.xDisplayPosition, par1Slot.yDisplayPosition, 16, 16, par2, par3);
+    	}
+    }
    
 }

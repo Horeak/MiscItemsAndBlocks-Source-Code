@@ -61,9 +61,9 @@ public class GuiHandler implements IGuiHandler{
         }
         
         
-        if(tile_entity instanceof TileEntityOvenCore){
+        if(tile_entity instanceof TileEntityOven){
         	
-        	return new ContainerPizzaOven(player.inventory, (TileEntityOvenCore) tile_entity);
+        	return new ContainerPizzaOven(player.inventory, (TileEntityOven) tile_entity);
         }
         
         if(tile_entity instanceof TileEntityElectricFurnace){
@@ -71,14 +71,14 @@ public class GuiHandler implements IGuiHandler{
         	return new ContainerElectricFurnace(player.inventory, (TileEntityElectricFurnace) tile_entity);
         }
         
-        if(tile_entity instanceof TileEntityMiningChamber){
+        if(tile_entity instanceof TileEntityMiningStation){
         	
-        	return new ContainerMiningChamber(player.inventory, (TileEntityMiningChamber) tile_entity);
+        	return new ContainerMiningChamber(player.inventory, (TileEntityMiningStation) tile_entity);
         }
         
-        if(tile_entity instanceof TileEntityCharger){
+        if(tile_entity instanceof TileEntityEnergyStorageCube){
         	
-        	return new ContainerCharger(player.inventory, (TileEntityCharger) tile_entity);
+        	return new ContainerCharger(player.inventory, (TileEntityEnergyStorageCube) tile_entity);
         }
 
         
@@ -88,21 +88,21 @@ public class GuiHandler implements IGuiHandler{
 
         }
         
-        if(tile_entity instanceof TileEntityBin){
+        if(tile_entity instanceof TileEntityTrashBin){
 
-            return new ContainerBin(player.inventory, (TileEntityBin) tile_entity);
+            return new ContainerBin(player.inventory, (TileEntityTrashBin) tile_entity);
 
         }
 
         
-        if(tile_entity instanceof TileEntityBox){
+        if(tile_entity instanceof TileEntityCardboardBox){
         	
-        	return new ContainerBox(player.inventory, (TileEntityBox) tile_entity);
+        	return new ContainerBox(player.inventory, (TileEntityCardboardBox) tile_entity);
         }
         
-        if(tile_entity instanceof TileEntityCraftingInv){
+        if(tile_entity instanceof TileEntityWorktable){
         	
-        	return new ContainerCraftingInv(player.inventory, (TileEntityCraftingInv) tile_entity);
+        	return new ContainerCraftingInv(player.inventory, (TileEntityWorktable) tile_entity);
         }
         
         if(tile_entity instanceof TileEntityMill){
@@ -208,21 +208,21 @@ public class GuiHandler implements IGuiHandler{
         
 
         
-        if(tile_entity instanceof TileEntityBin){
+        if(tile_entity instanceof TileEntityTrashBin){
 
-            return new GuiTrashBin(player.inventory, (TileEntityBin) tile_entity);
+            return new GuiTrashBin(player.inventory, (TileEntityTrashBin) tile_entity);
 
         }
 
         
-        if(tile_entity instanceof TileEntityBox){
+        if(tile_entity instanceof TileEntityCardboardBox){
         	
-        	return new GuiBox(player.inventory, (TileEntityBox) tile_entity);
+        	return new GuiBox(player.inventory, (TileEntityCardboardBox) tile_entity);
         }
         
-        if(tile_entity instanceof TileEntityCraftingInv){
+        if(tile_entity instanceof TileEntityWorktable){
         	
-        	return new GuiCraftingInv(player.inventory, (TileEntityCraftingInv) tile_entity);
+        	return new GuiCraftingInv(player.inventory, (TileEntityWorktable) tile_entity);
         }
         
         if(tile_entity instanceof TileEntityMill){
@@ -237,14 +237,14 @@ public class GuiHandler implements IGuiHandler{
         
         
         
-        if(tile_entity instanceof TileEntityOvenCore){
+        if(tile_entity instanceof TileEntityOven){
         	
-        	return new GuiPizzaOven(player.inventory, (TileEntityOvenCore) tile_entity);
+        	return new GuiPizzaOven(player.inventory, (TileEntityOven) tile_entity);
         }
         
-        if(tile_entity instanceof TileEntityCharger){
+        if(tile_entity instanceof TileEntityEnergyStorageCube){
         	
-        	return new GuiCharger(player.inventory, (TileEntityCharger) tile_entity);
+        	return new GuiCharger(player.inventory, (TileEntityEnergyStorageCube) tile_entity);
         }
         
         if(tile_entity instanceof TileEntitySolarPanel){
@@ -259,9 +259,9 @@ public class GuiHandler implements IGuiHandler{
         
 
         
-        if(tile_entity instanceof TileEntityMiningChamber){
+        if(tile_entity instanceof TileEntityMiningStation){
         	
-        	return new GuiMiningChamber(player.inventory, (TileEntityMiningChamber) tile_entity);
+        	return new GuiMiningChamber(player.inventory, (TileEntityMiningStation) tile_entity);
         }
 
 

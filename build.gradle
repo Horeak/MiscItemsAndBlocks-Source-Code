@@ -33,8 +33,8 @@ archivesBaseName = "MiscItemsAndBlocks"
 minecraft {
     version = config.minecraft_version + "-" + config.forge_version
 	
-	 replaceIn "lib/Refrence.java"
-	 replace "@VERSION@", config.mod_version
+	 replaceIn "com/miscitems/MiscItemsAndBlocks/Utils/Refrence.java"
+	 replace "${version}", config.mod_version
 }
 processResources {
     // replace stuff in the files we want.

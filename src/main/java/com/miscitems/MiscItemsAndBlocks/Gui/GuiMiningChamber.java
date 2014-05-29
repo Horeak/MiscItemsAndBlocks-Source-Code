@@ -3,7 +3,7 @@ package com.miscitems.MiscItemsAndBlocks.Gui;
 import com.miscitems.MiscItemsAndBlocks.Container.ContainerMiningChamber;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerButtonPacket;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMiningChamber;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMiningStation;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -14,12 +14,12 @@ import org.lwjgl.opengl.GL11;
 
 public class GuiMiningChamber extends GuiContainer{
 
-	private TileEntityMiningChamber tile;
+	private TileEntityMiningStation tile;
 	private final ResourceLocation Texture = new ResourceLocation("miscitems" , "textures/gui/MiningChamberGui.png");
 	
 	GuiButton Start;
 	
-	public GuiMiningChamber(InventoryPlayer InvPlayer, TileEntityMiningChamber tile) {
+	public GuiMiningChamber(InventoryPlayer InvPlayer, TileEntityMiningStation tile) {
 		super(new ContainerMiningChamber(InvPlayer, tile));
 		
 		this.xSize = 176;

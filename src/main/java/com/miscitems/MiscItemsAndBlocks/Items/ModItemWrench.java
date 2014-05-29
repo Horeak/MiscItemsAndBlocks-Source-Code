@@ -1,5 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Items;
 
+import MiscItemsApi.Electric.IWrenchAble;
+import buildcraft.api.tools.IToolWrench;
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlockPowerCable;
 import com.miscitems.MiscItemsAndBlocks.Utils.ChatMessageHandler;
 import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
@@ -12,13 +14,25 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class ModItemWrench extends Item{
+public class ModItemWrench extends Item implements IToolWrench {
 
-	public ModItemWrench() {
-	}
 
+
+    public void wrenchUsed(EntityPlayer player, int x, int y, int z){
+
+        if(player.worldObj.getTileEntity(x,y,z) instanceof IWrenchAble)
+        ((IWrenchAble)player.worldObj.getTileEntity(x,y,z)).OnWrenched(player, x, y, z);
+    }
+
+    public boolean canWrench(EntityPlayer player, int x, int y, int z){
+
+        World world = player.worldObj;
+        return world.getTileEntity(x,y,z) instanceof IWrenchAble;
+
+    }
 	
 	   @SideOnly(Side.CLIENT)
+
 	   public void registerIcons(IIconRegister par1IconRegister)
 	   {
 		   this.itemIcon = par1IconRegister.registerIcon(Refrence.Mod_Id + ":Wrench");
@@ -32,31 +46,15 @@ public class ModItemWrench extends Item{
 	    }
 	    public boolean onItemUse(ItemStack item, EntityPlayer player, World world, int x, int y, int z, int par7, float par8, float par9, float par10)
 	    {
-	    	
-	    	Block block = world.getBlock(x, y, z);
-	    	
-	    	if(block instanceof ModBlockPowerCable){
-	    	if(!world.isRemote){
-	    		
-	    		
-		    	int Meta = world.getBlockMetadata(x, y, z);
+
+            if(world.getTileEntity(x,y,z) instanceof IWrenchAble) {
+                ((IWrenchAble)world.getTileEntity(x,y,z)).OnWrenched(player, x, y, z);
+
+                return true;
+            }else{
+                return false;
+            }
 
 
-		    	
-		    		if(player.isSneaking()){
-		    			if(Meta > 0){
-		    	    		world.setBlockMetadataWithNotify(x, y, z, Meta - 1, 2);
-		    		    	Meta = world.getBlockMetadata(x, y, z);
-		    	    	}
-		    	    	
-		    			ChatMessageHandler.sendChatToPlayer(player, ModBlockPowerCable.messages[Meta]);
-
-		    			
-		    		}
-		    	}
-	    	}
-
-	    	
-	    	return true;
 	    }
 }

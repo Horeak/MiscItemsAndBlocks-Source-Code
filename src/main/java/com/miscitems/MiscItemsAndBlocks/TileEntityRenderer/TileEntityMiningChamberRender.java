@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntityRenderer;
 
 import com.miscitems.MiscItemsAndBlocks.Models.MiningChamberModel;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMiningChamber;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMiningStation;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.entity.RenderItem;
@@ -45,8 +45,8 @@ public class TileEntityMiningChamberRender extends TileEntitySpecialRenderer {
    
     @Override
     public void renderTileEntityAt(TileEntity te, double x, double y, double z, float scale) {
-    	if(te instanceof TileEntityMiningChamber){
-    	TileEntityMiningChamber tile = (TileEntityMiningChamber)te;
+    	if(te instanceof TileEntityMiningStation){
+    	TileEntityMiningStation tile = (TileEntityMiningStation)te;
     		
     		
     		

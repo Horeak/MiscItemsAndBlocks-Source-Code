@@ -17,6 +17,7 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -128,8 +129,7 @@ public abstract class Page {
             for (int k2 = 0; k2 < par1List.size(); ++k2)
             {
                 String s1 = (String)par1List.get(k2);
-                GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-                render.drawString(s1, i1, j1, 0x949294);
+                render.drawString(s1, i1, j1, 0xffffff);
 
                 if (k2 == 0)
                 {

@@ -1,6 +1,5 @@
 package com.miscitems.MiscItemsAndBlocks.Items;
 
-import MiscItemsApi.Utils.ItemAccess;
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
@@ -140,7 +139,7 @@ public class ModItems {
         PizzaRaw = new ModItemPizzaRaw().setUnlocalizedName("PizzaRaw").setCreativeTab(Main.MiscTab);
         RegisterOutName(PizzaRaw, "Pizza Raw");
         
-        Pizza = new ModItemPizza().setUnlocalizedName("Pizza");
+        Pizza = new ModItemPizza().setUnlocalizedName("Pizza").setCreativeTab(Main.MiscTab);
         RegisterOutName(Pizza, "Pizza");
         
         Orange = new ModItemOrange().setUnlocalizedName("Orange").setCreativeTab(Main.MiscTab);
@@ -213,11 +212,11 @@ public class ModItems {
 		
 		Lens = new ModItemLens().setUnlocalizedName("Lens").setCreativeTab(Main.ElectricTab);
 		Register(Lens, "Lens");
-		
-		
-		
-	RegisterOreDictionary(new ItemStack(SilverIngot), "ingotSilver");
-	RegisterOreDictionary(new ItemStack(SilverNugget), "nuggetSilver");
+
+
+
+        OreDictionary.registerOre("ingotSilver", new ItemStack(SilverIngot));
+        OreDictionary.registerOre("nuggetSilver", new ItemStack(SilverNugget));
 		
 	
 	
@@ -227,30 +226,17 @@ public class ModItems {
 		
 		
 	}
-	
-	
-	public static void RegisterOreDictionary(ItemStack Item, String dictonaryName){
-		
-		OreDictionary.registerOre(dictonaryName, Item);
-		
-	}
+
 	
 	public static void Register(Item Item, String Name){
-		
-		
 		if(Main.config.get("Items", "Enable " + Name + "?", true).getBoolean(true)){
-			
         Item.setUnlocalizedName((Name.toLowerCase().replace(" ", "_")));
         GameRegistry.registerItem(Item, (Name.toLowerCase().replace(" ", "_")));
-            ItemAccess.Items.put(Item.getUnlocalizedName(new ItemStack(Item)).replace(" ", "_").toLowerCase().replace("item.", "").replace(".name", ""), new ItemStack(Item));
+
 	}
 	}
 	
 	public static void RegisterOutName(Item Item, String Name){
-		
-		
         GameRegistry.registerItem(Item, Name.toLowerCase().replace(" ", ""));
-        ItemAccess.Items.put(Item.getUnlocalizedName(new ItemStack(Item)).replace(" ", "_").toLowerCase().replace("item.", "").replace(".name", ""), new ItemStack(Item));
-
 	}
 }

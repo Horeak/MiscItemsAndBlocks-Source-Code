@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Container;
 
 import com.miscitems.MiscItemsAndBlocks.Slots.SlotOutput;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityOvenCore;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityOven;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,12 +18,12 @@ public class ContainerPizzaOven  extends Container {
 		return tile.isUseableByPlayer(entityplayer);
 	}
 	
-    private TileEntityOvenCore tile;
+    private TileEntityOven tile;
     
     int lastWorkTime = 0;
     int lastHeat = 0;
 	
-    public ContainerPizzaOven(InventoryPlayer InvPlayer, TileEntityOvenCore tile)
+    public ContainerPizzaOven(InventoryPlayer InvPlayer, TileEntityOven tile)
     {
     	this.tile = tile;
     	

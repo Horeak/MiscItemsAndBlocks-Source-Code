@@ -45,7 +45,7 @@ public class ModWorldGenerator extends WorldGenerator implements IWorldGenerator
     	
     	for(int x = 0; x < 2; x++){
 
-            (new ModSilverWorldGen()).generate(world, random, ChunkX, 0, ChunkZ);
+            (new WorldGenSilverOre()).generate(world, random, ChunkX, 0, ChunkZ);
         
     	}
     			

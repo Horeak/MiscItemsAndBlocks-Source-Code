@@ -1,8 +1,13 @@
 package com.miscitems.MiscItemsAndBlocks.Models;
 
+import com.miscitems.MiscItemsAndBlocks.Main.Main;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemDye;
+import net.minecraft.util.ResourceLocation;
 
 public class TableModel extends ModelBase
 {
@@ -49,9 +54,33 @@ public class TableModel extends ModelBase
     ModelRenderer BackRightCorner2;
     ModelRenderer BackRightCorner3;
     ModelRenderer FrontRight5;
-  
+
+    ModelRenderer WoolFull;
+
+    ResourceLocation[] Textures = new ResourceLocation[]{
+            new ResourceLocation("textures/blocks/wool_colored_" + ItemDye.field_150923_a[0] + ".png"),
+            new ResourceLocation("textures/blocks/wool_colored_" + ItemDye.field_150923_a[1] + ".png"),
+            new ResourceLocation("textures/blocks/wool_colored_" + ItemDye.field_150923_a[2] + ".png"),
+            new ResourceLocation("textures/blocks/wool_colored_" + ItemDye.field_150923_a[3] + ".png"),
+            new ResourceLocation("textures/blocks/wool_colored_" + ItemDye.field_150923_a[4] + ".png"),
+            new ResourceLocation("textures/blocks/wool_colored_" + ItemDye.field_150923_a[5] + ".png"),
+            new ResourceLocation("textures/blocks/wool_colored_" + ItemDye.field_150923_a[6] + ".png"),
+            new ResourceLocation("textures/blocks/wool_colored_" + ItemDye.field_150923_a[7] + ".png"),
+            new ResourceLocation("textures/blocks/wool_colored_" + ItemDye.field_150923_a[8] + ".png"),
+            new ResourceLocation("textures/blocks/wool_colored_" + ItemDye.field_150923_a[9] + ".png"),
+            new ResourceLocation("textures/blocks/wool_colored_" + ItemDye.field_150923_a[10] + ".png"),
+            new ResourceLocation("textures/blocks/wool_colored_" + ItemDye.field_150923_a[11] + ".png"),
+            new ResourceLocation("textures/blocks/wool_colored_" + ItemDye.field_150923_a[12] + ".png"),
+            new ResourceLocation("textures/blocks/wool_colored_" + ItemDye.field_150923_a[13] + ".png"),
+            new ResourceLocation("textures/blocks/wool_colored_" + ItemDye.field_150923_a[14] + ".png"),
+            new ResourceLocation("textures/blocks/wool_colored_" + ItemDye.field_150923_a[15] + ".png")
+    };
+
+
   public TableModel()
   {
+
+
 	    textureWidth = 64;
 	    textureHeight = 31;
     
@@ -85,6 +114,14 @@ public class TableModel extends ModelBase
       FrontLeft1.setTextureSize(64, 64);
       FrontLeft1.mirror = true;
       setRotation(FrontLeft1, 0F, 0F, 0F);
+
+      WoolFull = new ModelRenderer(this, 0, 20);
+      WoolFull.addBox(0F, 0F, 0F, 16, 1, 16);
+      WoolFull.setRotationPoint(-8F, 8F, -8F);
+      WoolFull.setTextureSize(64, 64);
+      WoolFull.mirror = true;
+      setRotation(WoolFull, 0F, 0F, 0F);
+
       Wool1 = new ModelRenderer(this, 0, 20);
       Wool1.addBox(0F, 0F, 0F, 10, 1, 10);
       Wool1.setRotationPoint(-5F, 8F, -5F);
@@ -308,13 +345,26 @@ public class TableModel extends ModelBase
       FrontRight5.mirror = true;
       setRotation(FrontRight5, 0F, 0F, 0F);
   }
-  
-  public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5, boolean Wool, boolean Right, boolean Left, boolean Front, boolean Back, boolean TableFront, boolean TableBack, boolean TableRight, boolean TableLeft)
+
+
+    int Mode = -1;
+
+  public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5, boolean Wool, boolean Right, boolean Left, boolean Front, boolean Back, boolean TableFront, boolean TableBack, boolean TableRight, boolean TableLeft, int Color)
   {
     super.render(entity, f, f1, f2, f3, f4, f5);
     setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-    
-    
+
+
+
+
+      if(Mode == -1){
+          Mode = Main.config.get("client settings", "What mode should the tables use? 1=new dyable texture, 2=old with dyeable texture, 3=old without dyeable texture", 1).getInt();
+          Main.config.save();
+      }
+
+
+
+
     
     if(!TableFront && !TableRight){
     BackLeft1.render(f5);
@@ -350,81 +400,80 @@ public class TableModel extends ModelBase
         FrontLeft4.render(f5);
         FrontLeft5.render(f5);
     }
-    
-    
 
-    
-    
-    
-    
-    
+
     
     
     TableTop.render(f5);
-    
-    if(Wool){
-    Wool1.render(f5);
-    Wool2.render(f5);
-    Wool3.render(f5);
-    Wool4.render(f5);
-    Wool5.render(f5);
-    Wool6.render(f5);
-    Wool7.render(f5);
-    Wool8.render(f5);
-    Wool9.render(f5);
-    }
-    
-    
-    
 
-    
-    
-    
-    
-    if(Wool){
-    	
-    	
-   if(Left){
-    FrontLeftCorner1.render(f5);
-    FrontLeftCorner2.render(f5);
-    FrontLeftCorner3.render(f5);
-    
-    BackLeftCorner1.render(f5);
-    BackLeftCorner2.render(f5);
-    BackLeftCorner3.render(f5);
-    }
-   
-   if(Right){
-   BackRightCorner1.render(f5);
-   BackRightCorner2.render(f5);
-   BackRightCorner3.render(f5);
-   
-   FrontRightCorner1.render(f5);
-   FrontRightCorner2.render(f5);
-   FrontRightCorner3.render(f5);
-   }
-    
-    if(Front){
-    BackLeftCorner1.render(f5);
-    BackLeftCorner2.render(f5);
-    BackLeftCorner3.render(f5);
-    
-    BackRightCorner1.render(f5);
-    BackRightCorner2.render(f5);
-    BackRightCorner3.render(f5);
-    }
-    
-    if(Back){
-    FrontRightCorner1.render(f5);
-    FrontRightCorner2.render(f5);
-    FrontRightCorner3.render(f5);
-    
-    FrontLeftCorner1.render(f5);
-    FrontLeftCorner2.render(f5);
-    FrontLeftCorner3.render(f5);
-    }
-    
-    }
+
+
+      if(Mode == 1 || Mode == 2)
+      Minecraft.getMinecraft().renderEngine.bindTexture(Textures[Color]);
+
+
+      if(Mode == 1)
+      if(Wool)
+          WoolFull.render(f5);
+
+      if(Mode == 2 || Mode == 3) {
+          if (Wool) {
+              Wool1.render(f5);
+              Wool2.render(f5);
+              Wool3.render(f5);
+              Wool4.render(f5);
+              Wool5.render(f5);
+              Wool6.render(f5);
+              Wool7.render(f5);
+              Wool8.render(f5);
+              Wool9.render(f5);
+          }
+
+          if (Wool) {
+
+
+              if (Left) {
+                  FrontLeftCorner1.render(f5);
+                  FrontLeftCorner2.render(f5);
+                  FrontLeftCorner3.render(f5);
+
+                  BackLeftCorner1.render(f5);
+                  BackLeftCorner2.render(f5);
+                  BackLeftCorner3.render(f5);
+              }
+
+              if (Right) {
+                  BackRightCorner1.render(f5);
+                  BackRightCorner2.render(f5);
+                  BackRightCorner3.render(f5);
+
+                  FrontRightCorner1.render(f5);
+                  FrontRightCorner2.render(f5);
+                  FrontRightCorner3.render(f5);
+              }
+
+              if (Front) {
+                  BackLeftCorner1.render(f5);
+                  BackLeftCorner2.render(f5);
+                  BackLeftCorner3.render(f5);
+
+                  BackRightCorner1.render(f5);
+                  BackRightCorner2.render(f5);
+                  BackRightCorner3.render(f5);
+              }
+
+              if (Back) {
+                  FrontRightCorner1.render(f5);
+                  FrontRightCorner2.render(f5);
+                  FrontRightCorner3.render(f5);
+
+                  FrontLeftCorner1.render(f5);
+                  FrontLeftCorner2.render(f5);
+                  FrontLeftCorner3.render(f5);
+              }
+
+          }
+      }
   }
   
   private void setRotation(ModelRenderer model, float x, float y, float z)

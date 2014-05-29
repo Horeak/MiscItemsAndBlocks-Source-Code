@@ -2,7 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.Gui;
 
 import com.miscitems.MiscItemsAndBlocks.Container.ContainerBin;
 import com.miscitems.MiscItemsAndBlocks.GuiObjects.GuiTipButton;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityBin;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityTrashBin;
 import com.miscitems.MiscItemsAndBlocks.Utils.Messages;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -13,11 +13,11 @@ import org.lwjgl.opengl.GL11;
 
 public class GuiTrashBin extends GuiContainer{
 
-	 TileEntityBin tile = new TileEntityBin();
+	 TileEntityTrashBin tile = new TileEntityTrashBin();
 	private final ResourceLocation Texture = new ResourceLocation("miscitems" , "textures/gui/BinGui.png");
 	
 	
-	public GuiTrashBin(InventoryPlayer InvPlayer, TileEntityBin tile) {
+	public GuiTrashBin(InventoryPlayer InvPlayer, TileEntityTrashBin tile) {
 		super(new ContainerBin(InvPlayer, tile));
 		xSize = 197;
 		ySize = 166;

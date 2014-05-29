@@ -2,7 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.Gui;
 
 import com.miscitems.MiscItemsAndBlocks.Container.ContainerBox;
 import com.miscitems.MiscItemsAndBlocks.GuiObjects.GuiTipButton;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityBox;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityCardboardBox;
 import com.miscitems.MiscItemsAndBlocks.Utils.Messages;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -16,7 +16,7 @@ public class GuiBox extends GuiContainer{
 	private final ResourceLocation Texture = new ResourceLocation("miscitems" , "textures/gui/BoxGui.png");
 	
 	
-	public GuiBox(InventoryPlayer InvPlayer, TileEntityBox tile) {
+	public GuiBox(InventoryPlayer InvPlayer, TileEntityCardboardBox tile) {
 		super(new ContainerBox(InvPlayer, tile));
 	}
 	

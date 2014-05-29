@@ -8,7 +8,7 @@ public interface IPowerItem {
 	/**
 	 * Set the max power of a item
 	 * 
-	 * @param stack
+	 * @param stack the stack
 	 * @return Max itemstack power
 	 */
  
@@ -17,17 +17,17 @@ public interface IPowerItem {
 	/**
 	 * Set the amount of power recharged at a time
 	 * 
-	 * @param stack
-	 * @return
+	 * @param stack the stack
+	 * @return the amount of power added when charging
 	 */
 	int ChargeAmount(ItemStack stack);
 	
 	/**
 	 * 
-	 * Allow Power items to recharg from a electric backpack
+	 * Allow Power items to recharge from a electric backpack
 	 * 
-	 * @param stack
-	 * @return
+	 * @param stack the stack
+	 * @return can be charged from a backpack
 	 */
 	boolean CanBackpackRecharge(ItemStack stack);
 	

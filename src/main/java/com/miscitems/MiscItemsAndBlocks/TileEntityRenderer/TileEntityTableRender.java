@@ -2,6 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.TileEntityRenderer;
 
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlockTable;
 import com.miscitems.MiscItemsAndBlocks.Models.TableModel;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityTable;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
@@ -64,9 +65,9 @@ public class TileEntityTableRender extends TileEntitySpecialRenderer {
                    Tableleft = IsTable(world, X + 1, Y, Z);
             	
 
-                this.model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F, te.getWorldObj().getBlockMetadata(te.xCoord, te.yCoord, te.zCoord) == 1, right, left, front, back, Tablefront, Tableback, Tableright, Tableleft);
+                this.model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F, te.getWorldObj().getBlockMetadata(te.xCoord, te.yCoord, te.zCoord) == 1, right, left, front, back, Tablefront, Tableback, Tableright, Tableleft, ((TileEntityTable)te).Color);
             }else{
-                this.model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F, true, false, false, false, false, false, false, false, false);
+                this.model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F, true, false, false, false, false, false, false, false, false, 1);
             }
             
 
@@ -77,10 +78,8 @@ public class TileEntityTableRender extends TileEntitySpecialRenderer {
 
    public boolean IsTableWWool(World world, int x, int y, int z){
     	
-    	Block BlockID = world.getBlock(x, y, z);
+    	Block block = world.getBlock(x, y, z);
     	int MetaData = world.getBlockMetadata(x, y, z);
-    	
-    	Block block = BlockID;
     	
     	if(block instanceof ModBlockTable && MetaData > 0)return true;
 
@@ -89,11 +88,7 @@ public class TileEntityTableRender extends TileEntitySpecialRenderer {
     }
    
    public boolean IsTable(World world, int x, int y, int z){
-   	
-   	Block BlockID = world.getBlock(x, y, z);
-   	
-   	Block block = BlockID;
-   	
+   	Block block = world.getBlock(x, y, z);
    	if(block instanceof ModBlockTable)return true;
 
    	
