@@ -2,6 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.Gui;
 
 import com.miscitems.MiscItemsAndBlocks.GuiObjects.ModGuiSlider;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
+import com.miscitems.MiscItemsAndBlocks.Network.Packet.PacketHandler;
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerPaintBrushChangePacket;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityPaintBlock;
 import net.minecraft.client.Minecraft;
@@ -134,7 +135,7 @@ public class GuiPaintBrush extends GuiScreen
 		    	}
 	        	
 		    	
-		    	Main.NETWORK_MANAGER.sendPacketToServer(new ServerPaintBrushChangePacket((int) ((SliderRed.sliderValue * 100) * Max / 100), (int) ((SliderGreen.sliderValue * 100) * Max / 100), (int) ((SliderBlue.sliderValue * 100) * Max / 100)));
+		    	PacketHandler.INSTANCE.sendToServer(new ServerPaintBrushChangePacket((int) ((SliderRed.sliderValue * 100) * Max / 100), (int) ((SliderGreen.sliderValue * 100) * Max / 100), (int) ((SliderBlue.sliderValue * 100) * Max / 100)));
 	        	break;
 	        }
 

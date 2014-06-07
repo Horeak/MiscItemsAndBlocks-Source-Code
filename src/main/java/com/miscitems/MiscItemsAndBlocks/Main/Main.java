@@ -11,7 +11,7 @@ import com.miscitems.MiscItemsAndBlocks.Gui.GuiHandler;
 import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
 import com.miscitems.MiscItemsAndBlocks.Laser.DefaultLaser;
 import com.miscitems.MiscItemsAndBlocks.Laser.LaserRegistry;
-import com.miscitems.MiscItemsAndBlocks.Network.NetworkManager;
+import com.miscitems.MiscItemsAndBlocks.Network.Packet.PacketHandler;
 import com.miscitems.MiscItemsAndBlocks.Proxies.ServerProxy;
 import com.miscitems.MiscItemsAndBlocks.Utils.*;
 import com.miscitems.MiscItemsAndBlocks.WorldGen.ModWorldGenerator;
@@ -30,6 +30,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -61,8 +62,7 @@ import java.util.Set;
 
     
         public static final org.apache.logging.log4j.Logger logger = LogManager.getLogger("MiscItems");
-    
-        public static NetworkManager NETWORK_MANAGER;
+
 
         public static boolean HDTextures = false;
 
@@ -116,12 +116,14 @@ import java.util.Set;
         @EventHandler
         public void preInit(FMLPreInitializationEvent event)
         {
+
 	
         	//TODO Add some type of ore doubling
             //TODO Redo guide book
 	
     	
         	config = new Configuration(new File(event.getModConfigurationDirectory() + "/tm1990's mods/MiscItemsAndBlocksConfig.cfg")); 
+
 
 
 
@@ -144,8 +146,7 @@ import java.util.Set;
         	}
 
 
-
-
+            PacketHandler.RegisterPackets();
 
         	ModBlocks.Init();
         	ModItems.Init();
@@ -161,6 +162,8 @@ import java.util.Set;
         
         	proxy.RegisterClientTickhandler();
         	proxy.RegisterServerTickhandler();
+
+            MinecraftForge.EVENT_BUS.register(new InvisibilityEvents());
         
         	//Register Events
         	if(event.getSide() == Side.SERVER)
@@ -195,7 +198,6 @@ import java.util.Set;
 
 	
         	MinecraftForge.EVENT_BUS.register(new BoneMealEvent());
-        	MinecraftForge.EVENT_BUS.register(new PlayerFirstJoinEvent());
         	MinecraftForge.EVENT_BUS.register(new DisarmStickEvent());
         	MinecraftForge.EVENT_BUS.register(new GhostBlockBreakEvent());
 
@@ -209,8 +211,7 @@ import java.util.Set;
         	proxy.registerRenderers();
     	
 
-        
-        	NETWORK_MANAGER = new NetworkManager();
+
 
     
         	EntityRegistry.registerGlobalEntityID(EntitySilverArrow.class, "SilverArrow", EntityRegistry.findGlobalUniqueEntityId());

@@ -2,6 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.Client.ClientGhostBlockPacket;
+import com.miscitems.MiscItemsAndBlocks.Network.Packet.PacketHandler;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
@@ -48,7 +49,7 @@ public class TileEntityGhostBlock extends TileEntity{
 
 
         if (Id > 0 || Placer != null)
-            return Main.NETWORK_MANAGER.populatePacket(new ClientGhostBlockPacket(xCoord, yCoord, zCoord, Id, Meta, Placer));
+            return PacketHandler.INSTANCE.getPacketFrom(new ClientGhostBlockPacket(xCoord, yCoord, zCoord, Id, Meta, Placer));
         else
             return super.getDescriptionPacket();
     }

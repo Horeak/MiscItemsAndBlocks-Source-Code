@@ -1,6 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Laser;
 
 import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
+import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
@@ -118,7 +119,7 @@ data.writeInt(this.blue);
 
 data.writeInt(this.laserCount());
 for(ILaser laser : this.laserType)
-data.writeUTF(LaserRegistry.getIdFromLaser(laser));
+    data.writeUTF(LaserRegistry.getIdFromLaser(laser));
 }
 
 public LaserInGame readFromPacket(DataInputStream data) throws IOException {

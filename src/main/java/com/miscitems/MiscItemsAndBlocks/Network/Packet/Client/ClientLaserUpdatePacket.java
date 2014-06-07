@@ -1,15 +1,19 @@
 package com.miscitems.MiscItemsAndBlocks.Network.Packet.Client;
 
 
-import com.miscitems.MiscItemsAndBlocks.Network.IPacket;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLaser;
+import cpw.mods.fml.common.network.simpleimpl.IMessage;
+import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
+import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import io.netty.buffer.ByteBuf;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-public class ClientLaserUpdatePacket extends IPacket {
+public class ClientLaserUpdatePacket implements IMessage, IMessageHandler<ClientLaserUpdatePacket, IMessage> {
 
 
     int x, y ,z;
@@ -32,53 +36,54 @@ public class ClientLaserUpdatePacket extends IPacket {
     }
 
     @Override
-    public void read(DataInputStream data) throws IOException {
-        x = data.readInt();
-        y = data.readInt();
-        z = data.readInt();
+    public void fromBytes(ByteBuf buf) {
+        x = buf.readInt();
+        y = buf.readInt();
+        z = buf.readInt();
 
-        red = data.readInt();
-        green = data.readInt();
-        blue = data.readInt();
+        red = buf.readInt();
+        green = buf.readInt();
+        blue = buf.readInt();
 
-        strength = data.readInt();
-        power = data.readInt();
-
-    }
-
-    @Override
-    public void write(DataOutputStream data) throws IOException {
-
-        data.writeInt(x);
-        data.writeInt(y);
-        data.writeInt(z);
-
-        data.writeInt(red);
-        data.writeInt(green);
-        data.writeInt(blue);
-
-        data.writeInt(strength);
-        data.writeInt(power);
+        strength = buf.readInt();
+        power = buf.readInt();
 
     }
 
     @Override
-    public void execute(EntityPlayer player) {
+    public void toBytes(ByteBuf buf) {
 
-        if(player.worldObj.getTileEntity(x, y, z) instanceof TileEntityLaser){
-            TileEntityLaser tile = (TileEntityLaser)player.worldObj.getTileEntity(x, y, z);
+            buf.writeInt(x);
+            buf.writeInt(y);
+            buf.writeInt(z);
 
-            tile.Red = red;
-            tile.Green = green;
-            tile.Blue = blue;
+            buf.writeInt(red);
+            buf.writeInt(green);
+            buf.writeInt(blue);
 
-            tile.Strength = strength;
-            tile.Power = power;
+            buf.writeInt(strength);
+            buf.writeInt(power);
+
+    }
+
+    @Override
+      public IMessage onMessage(ClientLaserUpdatePacket message, MessageContext ctx) {
+
+        if(Minecraft.getMinecraft().thePlayer.worldObj.getTileEntity(message.x,message. y, message.z) instanceof TileEntityLaser){
+            TileEntityLaser tile = (TileEntityLaser)Minecraft.getMinecraft().thePlayer.worldObj.getTileEntity(message.x, message.y, message.z);
+
+            tile.Red = message.red;
+            tile.Green = message.green;
+            tile.Blue = message.blue;
+
+            tile.Strength = message.strength;
+            tile.Power = message.power;
 
 
             tile.Valid = true;
 
 
              }
+        return null;
     }
 }

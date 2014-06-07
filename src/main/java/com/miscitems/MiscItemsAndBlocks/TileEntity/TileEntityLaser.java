@@ -6,6 +6,7 @@ import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
 import com.miscitems.MiscItemsAndBlocks.Laser.*;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.Client.ClientLaserUpdatePacket;
+import com.miscitems.MiscItemsAndBlocks.Network.Packet.PacketHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.Entity;
@@ -402,7 +403,7 @@ double extraMaxZ = 0.0D;
 
         if(this.getStackInSlot(0) != null)
         if(Red > 0 || Green > 0 || Blue > 0 || Strength > 1 || Power > 0 || Valid)
-            return Main.NETWORK_MANAGER.populatePacket(new ClientLaserUpdatePacket(xCoord, yCoord, zCoord, Red, Green, Blue, Strength, Power));
+            return PacketHandler.INSTANCE.getPacketFrom(new ClientLaserUpdatePacket(xCoord, yCoord, zCoord, Red, Green, Blue, Strength, Power));
 
         else
             return super.getDescriptionPacket();

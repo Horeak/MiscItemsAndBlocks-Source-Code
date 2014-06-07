@@ -1,10 +1,14 @@
 package com.miscitems.MiscItemsAndBlocks.Network.Packet.Server;
 
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
-import com.miscitems.MiscItemsAndBlocks.Network.IPacket;
 import com.miscitems.MiscItemsAndBlocks.Utils.ChatMessageHandler;
 import com.miscitems.MiscItemsAndBlocks.Utils.GameInvite;
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.network.ByteBufUtils;
+import cpw.mods.fml.common.network.simpleimpl.IMessage;
+import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
+import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 
@@ -12,7 +16,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-public class ServerGamePacketAccept extends IPacket {
+public class ServerGamePacketAccept implements IMessage, IMessageHandler<ServerGamePacketAccept, IMessage> {
 
 	
 	String Player;
@@ -23,21 +27,23 @@ public class ServerGamePacketAccept extends IPacket {
 	}
 	
 	@Override
-	public void read(DataInputStream data) throws IOException {
+public void fromBytes(ByteBuf buf) {
 
-		Player = data.readUTF();
+		Player = ByteBufUtils.readUTF8String(buf);
 	}
 
 	@Override
-	public void write(DataOutputStream data) throws IOException {
+	public void toBytes(ByteBuf buf) {
 
-		data.writeUTF(Player);
+		ByteBufUtils.writeUTF8String(buf,Player);
 	}
 
 	@Override
-	public void execute(EntityPlayer player) {
+	  public IMessage onMessage(ServerGamePacketAccept message, MessageContext ctx) {
 		 //Accept request
-        
+
+        EntityPlayer player = ctx.getServerHandler().playerEntity;
+
         GameInvite tr = Main.proxy.tickHandlerServer.playerGameRequests.get(player.getCommandSenderName());
         if(tr == null)
         {
@@ -45,7 +51,7 @@ public class ServerGamePacketAccept extends IPacket {
         }
         
         
-        EntityPlayerMP plyr = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().getPlayerForUsername(Player);
+        EntityPlayerMP plyr = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().getPlayerForUsername(message.Player);
         
         if(plyr != null && plyr.isEntityAlive() )
         {
@@ -60,7 +66,8 @@ public class ServerGamePacketAccept extends IPacket {
         	ChatMessageHandler.sendChatToPlayer(player, "Cannot Acceppt Game Invite");
 
         }
-        
+
+        return null;
 	}
 
 }

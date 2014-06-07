@@ -3,6 +3,8 @@ package com.miscitems.MiscItemsAndBlocks.TileEntity;
 import MiscItemsApi.Recipes.MetalPressRecipes;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.Client.ClientMetalPressPacketUpdate;
+import com.miscitems.MiscItemsAndBlocks.Network.Packet.PacketHandler;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -211,20 +213,20 @@ public class TileEntityMetalPress extends TileEntityPowerInv implements ISidedIn
 			
 			public void WorkTimeAdd(){
 				WorkTime++;
-				
 
-				Main.NETWORK_MANAGER.sendPacketToAllAround(new ClientMetalPressPacketUpdate(this.xCoord, this.yCoord, this.zCoord, WorkTime, false), this.worldObj.getWorldInfo().getVanillaDimension(), xCoord, yCoord, zCoord, 100);
+
+                PacketHandler.INSTANCE.sendToAllAround(new ClientMetalPressPacketUpdate(this.xCoord, this.yCoord, this.zCoord, WorkTime, false), new NetworkRegistry.TargetPoint(this.worldObj.getWorldInfo().getVanillaDimension(), xCoord, yCoord, zCoord, 100));
 	    	}
 			
 			
 			
 			public void WorkTimeReset(){
 				WorkTime = 0;
-				
-				
 
 
-				Main.NETWORK_MANAGER.sendPacketToAllAround(new ClientMetalPressPacketUpdate(this.xCoord, this.yCoord, this.zCoord, WorkTime, true), this.worldObj.getWorldInfo().getVanillaDimension(), xCoord, yCoord, zCoord, 100);
+
+
+                PacketHandler.INSTANCE.sendToAllAround(new ClientMetalPressPacketUpdate(this.xCoord, this.yCoord, this.zCoord, WorkTime, true), new NetworkRegistry.TargetPoint(this.worldObj.getWorldInfo().getVanillaDimension(), xCoord, yCoord, zCoord, 100));
 	    	
 	    	}
 
@@ -237,9 +239,9 @@ public class TileEntityMetalPress extends TileEntityPowerInv implements ISidedIn
 			public void SetWorkTimeUpdate(int i){
 			
 				WorkTime = i;
-				
 
-				Main.NETWORK_MANAGER.sendPacketToAllAround(new ClientMetalPressPacketUpdate(this.xCoord, this.yCoord, this.zCoord, WorkTime, false), this.worldObj.getWorldInfo().getVanillaDimension(), xCoord, yCoord, zCoord, 100);
+
+                PacketHandler.INSTANCE.sendToAllAround(new ClientMetalPressPacketUpdate(this.xCoord, this.yCoord, this.zCoord, WorkTime, false), new NetworkRegistry.TargetPoint(this.worldObj.getWorldInfo().getVanillaDimension(), xCoord, yCoord, zCoord, 100));
 	    	
 			}
 

@@ -9,7 +9,6 @@ import com.miscitems.MiscItemsAndBlocks.GamePart.GamePartItemRender;
 import com.miscitems.MiscItemsAndBlocks.GamePart.TileEntityGamePart;
 import com.miscitems.MiscItemsAndBlocks.ItemRender.*;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
-import com.miscitems.MiscItemsAndBlocks.Network.PacketRequestEvent;
 import com.miscitems.MiscItemsAndBlocks.Render.PowerArrowRender;
 import com.miscitems.MiscItemsAndBlocks.Render.SilverArrowRender;
 import com.miscitems.MiscItemsAndBlocks.Tick.TickHandlerClient;
@@ -118,8 +117,7 @@ public class ClientProxy extends ServerProxy {
     @Override
     public void sendRequestEventPacket(byte eventType, int originX, int originY, int originZ, byte sideHit, byte rangeX, byte rangeY, byte rangeZ, String data) {
 
-  
-    Main.NETWORK_MANAGER.sendPacketToServer(new PacketRequestEvent(eventType, originX, originY, originZ, sideHit, rangeX, rangeY, rangeZ, data));
+
     }
 
 

@@ -2,9 +2,13 @@ package com.miscitems.MiscItemsAndBlocks.Network.Packet.Client;
 
 import com.miscitems.MiscItemsAndBlocks.Gui.GuiGame_1;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
-import com.miscitems.MiscItemsAndBlocks.Network.IPacket;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.network.ByteBufUtils;
+import cpw.mods.fml.common.network.simpleimpl.IMessage;
+import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
+import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 
@@ -12,7 +16,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-public class ClientGamePacketBegin extends IPacket{
+public class ClientGamePacketBegin implements IMessage, IMessageHandler<ClientGamePacketBegin, IMessage> {
 
 	
 	String Player1;
@@ -25,24 +29,26 @@ public class ClientGamePacketBegin extends IPacket{
 	}
 	
 	@Override
-	public void read(DataInputStream data) throws IOException {
-		Player1 = data.readUTF();
-		Player2 = data.readUTF();
+public void fromBytes(ByteBuf buf) {
+		Player1 = ByteBufUtils.readUTF8String(buf);
+		Player2 = ByteBufUtils.readUTF8String(buf);
 	}
 
 	@Override
-	public void write(DataOutputStream data) throws IOException {
-		data.writeUTF(Player1);
-		data.writeUTF(Player2);
+	public void toBytes(ByteBuf buf) {
+		ByteBufUtils.writeUTF8String(buf,Player1);
+        ByteBufUtils.writeUTF8String(buf,Player2);
 	}
 
 	@Override
-	public void execute(EntityPlayer player) {
+	  public IMessage onMessage(ClientGamePacketBegin message, MessageContext ctx) {
 		
 	     if (FMLCommonHandler.instance().getEffectiveSide().isClient()){
-        FMLClientHandler.instance().displayGuiScreen(Minecraft.getMinecraft().thePlayer, new GuiGame_1(Player1, Player2));
+        FMLClientHandler.instance().displayGuiScreen(Minecraft.getMinecraft().thePlayer, new GuiGame_1(message.Player1, message.Player2));
         Main.proxy.tickHandlerClient.tradeReq = null;
 	     }
+
+        return null;
 	}
 
 }

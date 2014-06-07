@@ -1,8 +1,12 @@
 package com.miscitems.MiscItemsAndBlocks.Network.Packet.Client;
 
-import com.miscitems.MiscItemsAndBlocks.Network.IPacket;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMetalPress;
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.network.simpleimpl.IMessage;
+import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
+import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import io.netty.buffer.ByteBuf;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -11,7 +15,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-public class ClientMetalPressPacketUpdate extends IPacket{
+public class ClientMetalPressPacketUpdate implements IMessage, IMessageHandler<ClientMetalPressPacketUpdate, IMessage> {
 
 	
 	int x;
@@ -33,47 +37,48 @@ public class ClientMetalPressPacketUpdate extends IPacket{
 	}
 	
 	@Override
-	public void read(DataInputStream data) throws IOException {
+public void fromBytes(ByteBuf buf) {
 		
-		x = data.readInt();
-		y = data.readInt();
-		z = data.readInt();
+		x = buf.readInt();
+		y = buf.readInt();
+		z = buf.readInt();
 		
-		WorkTime = data.readInt();
-		PlaySound = data.readBoolean();
+		WorkTime = buf.readInt();
+		PlaySound = buf.readBoolean();
 	}
 
 	@Override
-	public void write(DataOutputStream data) throws IOException {
-		
-		data.writeInt(x);
-		data.writeInt(y);
-		data.writeInt(z);
-		
-		data.writeInt(WorkTime);
-		data.writeBoolean(PlaySound);
+	public void toBytes(ByteBuf buf) {
+
+        buf.writeInt(x);
+        buf.writeInt(y);
+        buf.writeInt(z);
+
+        buf.writeInt(WorkTime);
+        buf.writeBoolean(PlaySound);
 	}
 
 	@Override
-	public void execute(EntityPlayer player) {
+	  public IMessage onMessage(ClientMetalPressPacketUpdate message, MessageContext ctx) {
 	     if (FMLCommonHandler.instance().getEffectiveSide().isClient()){
-		World world = player.worldObj;
+		World world = Minecraft.getMinecraft().thePlayer.worldObj;
     	
-        TileEntity tile_e = world.getTileEntity(x, y, z);
+        TileEntity tile_e = world.getTileEntity(message.x, message.y, message.z);
         
         if(tile_e != null){
         	
         	if(tile_e instanceof TileEntityMetalPress){
         		TileEntityMetalPress tile = (TileEntityMetalPress)tile_e;
         		
-        		tile.SetWorkTime(WorkTime);
+        		tile.SetWorkTime(message.WorkTime);
 
-        		if(PlaySound)
-        			world.playSound(x, y, z, "random.anvil_land", 0.3F, 1.5F, false);
+        		if(message.PlaySound)
+        			world.playSound(message.x, message.y, message.z, "random.anvil_land", 0.3F, 1.5F, false);
         		
         	}
         }
 	}
+        return null;
 	}
 
 }

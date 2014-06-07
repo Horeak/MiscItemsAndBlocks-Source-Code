@@ -2,6 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.Gui;
 
 
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
+import com.miscitems.MiscItemsAndBlocks.Network.Packet.PacketHandler;
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerGamePacketInvite;
 import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.Minecraft;
@@ -132,7 +133,7 @@ public class GuiGame_1_Invite extends GuiScreen{
 	        	
 	    	if(button.id <= players.size()){
 
-	    		Main.NETWORK_MANAGER.sendPacketToServer(new ServerGamePacketInvite(players.get(button.id)));
+	    		PacketHandler.INSTANCE.sendToServer(new ServerGamePacketInvite(players.get(button.id)));
 	    	}
 	    	
 	    	if(button.id == players.size() + 1){

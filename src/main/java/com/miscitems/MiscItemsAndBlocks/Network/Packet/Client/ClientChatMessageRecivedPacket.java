@@ -1,16 +1,20 @@
 package com.miscitems.MiscItemsAndBlocks.Network.Packet.Client;
 
 import com.miscitems.MiscItemsAndBlocks.Gui.GuiChat;
-import com.miscitems.MiscItemsAndBlocks.Network.IPacket;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.network.ByteBufUtils;
+import cpw.mods.fml.common.network.simpleimpl.IMessage;
+import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
+import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-public class ClientChatMessageRecivedPacket extends IPacket{
+public class ClientChatMessageRecivedPacket  implements IMessage, IMessageHandler<ClientChatMessageRecivedPacket, IMessage> {
 
 	
 	String Line;
@@ -24,23 +28,23 @@ public class ClientChatMessageRecivedPacket extends IPacket{
 	}
 	
 	@Override
-	public void read(DataInputStream data) throws IOException {
+public void fromBytes(ByteBuf buf) {
 		
-		Line = data.readUTF();
+		Line = ByteBufUtils.readUTF8String(buf);
 	}
 
 	@Override
-	public void write(DataOutputStream data) throws IOException {
+	public void toBytes(ByteBuf buf) {
 
-		data.writeUTF(Line);
+        ByteBufUtils.writeUTF8String(buf,Line);
 		
 	}
 
 	@Override
-	public void execute(EntityPlayer player) {
+	  public IMessage onMessage(ClientChatMessageRecivedPacket message, MessageContext ctx) {
 		
 	     if (FMLCommonHandler.instance().getEffectiveSide().isClient()){
-		String fullLine1 = Line;
+		String fullLine1 = message.Line;
 		
 		
 		
@@ -50,6 +54,6 @@ public class ClientChatMessageRecivedPacket extends IPacket{
 			gui.ReciveChatMessage(fullLine1);
 		}
 	}
-
+        return null;
 	}
 }

@@ -2,6 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.Gui;
 
 import com.miscitems.MiscItemsAndBlocks.Container.ContainerChatBlock;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
+import com.miscitems.MiscItemsAndBlocks.Network.Packet.PacketHandler;
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerChatMessagePacket;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityComputer;
 import net.minecraft.client.Minecraft;
@@ -255,7 +256,7 @@ public class GuiChat extends GuiContainer{
 
 
 
-        	Main.NETWORK_MANAGER.sendPacketToServer(new ServerChatMessagePacket(mc.thePlayer.getCommandSenderName() + "-" + chatBar.getText() + "-" + Channel));
+        	PacketHandler.INSTANCE.sendToServer(new ServerChatMessagePacket(mc.thePlayer.getCommandSenderName() + "-" + chatBar.getText() + "-" + Channel));
 
                 
                 
@@ -356,7 +357,7 @@ public class GuiChat extends GuiContainer{
 		
 		
 	public void SendMessage(String Message){
-    	Main.NETWORK_MANAGER.sendPacketToServer(new ServerChatMessagePacket(mc.thePlayer.getCommandSenderName() + "-" + Message + "-" + Channel));
+    	PacketHandler.INSTANCE.sendToServer(new ServerChatMessagePacket(mc.thePlayer.getCommandSenderName() + "-" + Message + "-" + Channel));
 
         
          

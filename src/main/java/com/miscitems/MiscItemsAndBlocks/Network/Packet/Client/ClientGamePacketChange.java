@@ -1,9 +1,13 @@
 package com.miscitems.MiscItemsAndBlocks.Network.Packet.Client;
 
 import com.miscitems.MiscItemsAndBlocks.Gui.GuiGame_1;
-import com.miscitems.MiscItemsAndBlocks.Network.IPacket;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.network.ByteBufUtils;
+import cpw.mods.fml.common.network.simpleimpl.IMessage;
+import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
+import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 
@@ -11,7 +15,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-public class ClientGamePacketChange extends IPacket{
+public class ClientGamePacketChange  implements IMessage, IMessageHandler<ClientGamePacketChange, IMessage> {
 
 	int Number;
 	int Player;
@@ -28,30 +32,30 @@ public class ClientGamePacketChange extends IPacket{
 	}
 	
 	@Override
-	public void read(DataInputStream data) throws IOException {
+public void fromBytes(ByteBuf buf) {
 		
-		Number = data.readInt();
-		Player = data.readInt();
+		Number = buf.readInt();
+		Player = buf.readInt();
 		
-		Player_1 = data.readUTF();
-		Player_2 = data.readUTF();
+		Player_1 = ByteBufUtils.readUTF8String(buf);
+		Player_2 = ByteBufUtils.readUTF8String(buf);
 	}
 	
 	@Override
-	public void write(DataOutputStream data) throws IOException {
-		
-		
-		data.writeInt(Number);
-		data.writeInt(Player);
-		data.writeUTF(Player_1);
-		data.writeUTF(Player_2);
+	public void toBytes(ByteBuf buf) {
+
+
+        buf.writeInt(Number);
+        buf.writeInt(Player);
+        ByteBufUtils.writeUTF8String(buf,Player_1);
+        ByteBufUtils.writeUTF8String(buf, Player_2);
 	}
 
 	@Override
-	public void execute(EntityPlayer player) {
+	  public IMessage onMessage(ClientGamePacketChange message, MessageContext ctx) {
 		
 	     if (FMLCommonHandler.instance().getEffectiveSide().isClient())
-		if((Player == 1 && Minecraft.getMinecraft().thePlayer.getCommandSenderName().equalsIgnoreCase(Player_2)) || (Player == 2 && Minecraft.getMinecraft().thePlayer.getCommandSenderName().equalsIgnoreCase(Player_1)) ){
+		if((message.Player == 1 && Minecraft.getMinecraft().thePlayer.getCommandSenderName().equalsIgnoreCase(message.Player_2)) || (message.Player == 2 && Minecraft.getMinecraft().thePlayer.getCommandSenderName().equalsIgnoreCase(message.Player_1)) ){
       		
     		
     		if(FMLClientHandler.instance().getClient().currentScreen instanceof GuiGame_1){
@@ -60,15 +64,15 @@ public class ClientGamePacketChange extends IPacket{
 
     			
     			if(!gui.CheckWinBlue() && !gui.CheckWinRed()){
-    				if(Player == 1){
-    					gui.Buttons[Number].displayString = gui.Mark_X;
-    					gui.Buttons[Number].enabled = false;
+    				if(message.Player == 1){
+    					gui.Buttons[message.Number].displayString = gui.Mark_X;
+    					gui.Buttons[message.Number].enabled = false;
     					gui.CurrentTurn = 2;
     					gui.CurrentPlayer = gui.player_2;
     					
-    				}else if (Player == 2){
-    					gui.Buttons[Number].displayString = gui.Mark_O;
-    					gui.Buttons[Number].enabled = false;
+    				}else if (message.Player == 2){
+    					gui.Buttons[message.Number].displayString = gui.Mark_O;
+    					gui.Buttons[message.Number].enabled = false;
     					gui.CurrentTurn = 1;
     					gui.CurrentPlayer = gui.player_1;
     				}
@@ -104,7 +108,7 @@ public class ClientGamePacketChange extends IPacket{
     				for(int i = 0; i < gui.Buttons.length; i++){
     		    		
     		    		if(gui.Buttons[i].enabled){
-    		    			return;
+    		    			return null;
     		    		}
     		    	}
     		    	
@@ -118,7 +122,8 @@ public class ClientGamePacketChange extends IPacket{
         	
           		}
         	
-        
+
+        return null;
 	}
 
 

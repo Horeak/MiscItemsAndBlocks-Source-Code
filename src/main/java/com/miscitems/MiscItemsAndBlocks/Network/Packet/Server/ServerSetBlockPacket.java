@@ -1,6 +1,9 @@
 package com.miscitems.MiscItemsAndBlocks.Network.Packet.Server;
 
-import com.miscitems.MiscItemsAndBlocks.Network.IPacket;
+import cpw.mods.fml.common.network.simpleimpl.IMessage;
+import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
+import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import io.netty.buffer.ByteBuf;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -9,7 +12,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-public class ServerSetBlockPacket extends IPacket{
+public class ServerSetBlockPacket implements IMessage, IMessageHandler<ServerSetBlockPacket, IMessage> {
 	
 	
 	int Dimension,  x,  y,  z;
@@ -27,42 +30,44 @@ public class ServerSetBlockPacket extends IPacket{
 	}
 
 	@Override
-	public void read(DataInputStream data) throws IOException {
+public void fromBytes(ByteBuf buf) {
 		
 		
-		this.Dimension = data.readInt();
-		this.x = data.readInt();
-		this.y = data.readInt();
-		this.z = data.readInt();
+		this.Dimension = buf.readInt();
+		this.x = buf.readInt();
+		this.y = buf.readInt();
+		this.z = buf.readInt();
 		
-		block = Block.getBlockById(data.readInt());
+		block = Block.getBlockById(buf.readInt());
 			
 	}
 
 	@Override
-	public void write(DataOutputStream data) throws IOException {
-		
-		data.writeInt(Dimension);
-		data.writeInt(x);
-		data.writeInt(y);
-		data.writeInt(z);
-		
-		data.writeInt(block.getIdFromBlock(block));
+	public void toBytes(ByteBuf buf) {
+
+        buf.writeInt(Dimension);
+        buf.writeInt(x);
+        buf.writeInt(y);
+        buf.writeInt(z);
+
+        buf.writeInt(block.getIdFromBlock(block));
 	}
 
 	@Override
-	public void execute(EntityPlayer player) {
+	  public IMessage onMessage(ServerSetBlockPacket message, MessageContext ctx) {
+        EntityPlayer player = ctx.getServerHandler().playerEntity;
+
 		if(player.worldObj.getWorldInfo().getVanillaDimension() == Dimension){
-            if(block == Blocks.air){
+            if(message.block == Blocks.air){
                 if (!player.worldObj.isRemote)
-                    player.worldObj.playAuxSFX(2001, x, y, z, Block.getIdFromBlock(player.worldObj.getBlock(x, y, z)) + (player.worldObj.getBlockMetadata(x, y, z) << 12));
+                    player.worldObj.playAuxSFX(2001, message.x, message.y, message.z, Block.getIdFromBlock(player.worldObj.getBlock(message.x, message.y, message.z)) + (player.worldObj.getBlockMetadata(message.x, message.y, message.z) << 12));
             }
 
-			player.worldObj.setBlock(x, y, z, block);
+			player.worldObj.setBlock(message.x, message.y, message.z, message.block);
 			
 		}
 		
-		
+		return null;
 	}
 
 }

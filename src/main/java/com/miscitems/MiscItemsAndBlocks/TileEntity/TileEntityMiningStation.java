@@ -1,7 +1,8 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
-import com.miscitems.MiscItemsAndBlocks.Network.PacketTileWithItemUpdate;
+import com.miscitems.MiscItemsAndBlocks.Network.Packet.PacketHandler;
+import com.miscitems.MiscItemsAndBlocks.Network.Packet.PacketTileWithItemUpdate;
 import com.miscitems.MiscItemsAndBlocks.Utils.Block.BlockUtil;
 import com.miscitems.MiscItemsAndBlocks.Utils.Inventory.Utils;
 import com.miscitems.MiscItemsAndBlocks.Utils.ItemHelper;
@@ -440,7 +441,7 @@ public class TileEntityMiningStation extends TileEntityPowerInv{
         ItemStack itemStack = getStackInSlot(0);
 
         if (itemStack != null && itemStack.stackSize > 0)
-            return Main.NETWORK_MANAGER.populatePacket(new PacketTileWithItemUpdate(xCoord, yCoord, zCoord, orientation, state, customName, itemStack.getItem().getIdFromItem(itemStack.getItem()), itemStack.getItemDamage(), itemStack.stackSize, ItemHelper.getColor(itemStack)));
+            return PacketHandler.INSTANCE.getPacketFrom(new PacketTileWithItemUpdate(xCoord, yCoord, zCoord, orientation, state, customName, itemStack.getItem().getIdFromItem(itemStack.getItem()), itemStack.getItemDamage(), itemStack.stackSize, ItemHelper.getColor(itemStack)));
         else
             return super.getDescriptionPacket();
     }

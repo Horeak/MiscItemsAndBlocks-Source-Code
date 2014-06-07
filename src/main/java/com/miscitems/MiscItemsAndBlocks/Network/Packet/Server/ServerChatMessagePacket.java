@@ -1,15 +1,20 @@
 package com.miscitems.MiscItemsAndBlocks.Network.Packet.Server;
 
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
-import com.miscitems.MiscItemsAndBlocks.Network.IPacket;
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.Client.ClientChatMessageRecivedPacket;
+import com.miscitems.MiscItemsAndBlocks.Network.Packet.PacketHandler;
+import cpw.mods.fml.common.network.ByteBufUtils;
+import cpw.mods.fml.common.network.simpleimpl.IMessage;
+import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
+import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-public class ServerChatMessagePacket extends IPacket{
+public class ServerChatMessagePacket implements IMessage, IMessageHandler<ServerChatMessagePacket, IMessage> {
 
 	
 	String Line;
@@ -23,29 +28,30 @@ public class ServerChatMessagePacket extends IPacket{
 	
 	
 	@Override
-	public void read(DataInputStream data) throws IOException {
-		Line = data.readUTF();
+public void fromBytes(ByteBuf buf) {
+		Line = ByteBufUtils.readUTF8String(buf);
 	}
 
 	@Override
-	public void write(DataOutputStream data) throws IOException {
-		data.writeUTF(Line);
+	public void toBytes(ByteBuf buf) {
+		ByteBufUtils.writeUTF8String(buf, Line);
 	}
 
 	@Override
-	public void execute(EntityPlayer player) {
-		String[] text = Line.split("-");
+	  public IMessage onMessage(ServerChatMessagePacket message, MessageContext ctx) {
+		String[] text = message.Line.split("-");
 		if(text.length > 1){
 		
 		String Player = text[0];
 		String Message = text[1];
 		String Channel = text[2];
 
-		
-		Main.NETWORK_MANAGER.sendPacketToPlayer(new ClientChatMessageRecivedPacket(Player + "-" + Message + "-" + Channel), player);
+
+            PacketHandler.INSTANCE.sendTo(new ClientChatMessageRecivedPacket(Player + "-" + Message + "-" + Channel), ctx.getServerHandler().playerEntity);
 
 		}
 
+        return null;
 	}
 
 }

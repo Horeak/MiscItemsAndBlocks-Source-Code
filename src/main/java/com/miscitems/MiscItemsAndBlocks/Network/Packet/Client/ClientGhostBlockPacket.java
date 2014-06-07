@@ -1,8 +1,12 @@
 package com.miscitems.MiscItemsAndBlocks.Network.Packet.Client;
 
 
-import com.miscitems.MiscItemsAndBlocks.Network.IPacket;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityGhostBlock;
+import cpw.mods.fml.common.network.ByteBufUtils;
+import cpw.mods.fml.common.network.simpleimpl.IMessage;
+import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
+import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
@@ -10,7 +14,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-public class ClientGhostBlockPacket extends IPacket {
+public class ClientGhostBlockPacket implements IMessage, IMessageHandler<ClientGhostBlockPacket, IMessage> {
     int x, y, z, ID, Meta;
     String Player;
 
@@ -27,46 +31,47 @@ public class ClientGhostBlockPacket extends IPacket {
     }
 
     @Override
-    public void read(DataInputStream data) throws IOException {
-        x = data.readInt();
-        y =  data.readInt();
-        z =  data.readInt();
+    public void fromBytes(ByteBuf buf) {
+        x = buf.readInt();
+        y =  buf.readInt();
+        z =  buf.readInt();
 
-        ID =  data.readInt();
-        Meta = data.readInt();
+        ID =  buf.readInt();
+        Meta = buf.readInt();
 
-        Player = data.readUTF();
+        Player = ByteBufUtils.readUTF8String(buf);
     }
 
     @Override
-    public void write(DataOutputStream data) throws IOException {
+    public void toBytes(ByteBuf buf) {
 
-        data.writeInt(x);
-        data.writeInt(y);
-        data.writeInt(z);
+        buf.writeInt(x);
+        buf.writeInt(y);
+        buf.writeInt(z);
 
-        data.writeInt(ID);
-        data.writeInt(Meta);
+        buf.writeInt(ID);
+        buf.writeInt(Meta);
 
-        data.writeUTF(Player);
+        ByteBufUtils.writeUTF8String(buf,Player);
     }
 
     @Override
-    public void execute(EntityPlayer player) {
+      public IMessage onMessage(ClientGhostBlockPacket message, MessageContext ctx) {
 
 
-        World world = player.getEntityWorld();
+        World world = ctx.getServerHandler().playerEntity.getEntityWorld();
 
-        if(world.getTileEntity(x, y, z) instanceof TileEntityGhostBlock){
+        if(world.getTileEntity(message.x, message.y, message.z) instanceof TileEntityGhostBlock){
 
-            TileEntityGhostBlock tile = (TileEntityGhostBlock)world.getTileEntity(x, y, z);
-            tile.Id = ID;
-            tile.Meta = Meta;
-            tile.Placer = Player;
+            TileEntityGhostBlock tile = (TileEntityGhostBlock)world.getTileEntity(message.x, message.y, message.z);
+            tile.Id = message.ID;
+            tile.Meta = message.Meta;
+            tile.Placer = message.Player;
 
 
         }
 
 
+        return null;
     }
 }

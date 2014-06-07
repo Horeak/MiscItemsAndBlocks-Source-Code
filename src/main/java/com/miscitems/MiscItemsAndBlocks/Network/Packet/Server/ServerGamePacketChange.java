@@ -1,9 +1,14 @@
 package com.miscitems.MiscItemsAndBlocks.Network.Packet.Server;
 
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
-import com.miscitems.MiscItemsAndBlocks.Network.IPacket;
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.Client.ClientGamePacketChange;
+import com.miscitems.MiscItemsAndBlocks.Network.Packet.PacketHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.network.ByteBufUtils;
+import cpw.mods.fml.common.network.simpleimpl.IMessage;
+import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
+import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 
@@ -11,7 +16,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-public class ServerGamePacketChange extends IPacket{
+public class ServerGamePacketChange implements IMessage, IMessageHandler<ServerGamePacketChange, IMessage> {
 
 	
 
@@ -30,36 +35,37 @@ public class ServerGamePacketChange extends IPacket{
 	}
 	
 	@Override
-	public void read(DataInputStream data) throws IOException {
+public void fromBytes(ByteBuf buf) {
 		
-		Number = data.readInt();
-		Player = data.readInt();
+		Number = buf.readInt();
+		Player = buf.readInt();
 		
-		Player_1 = data.readUTF();
-		Player_2 = data.readUTF();
+		Player_1 = ByteBufUtils.readUTF8String(buf);
+		Player_2 = ByteBufUtils.readUTF8String(buf);
 	}
 
 	@Override
-	public void write(DataOutputStream data) throws IOException {
-		
-		
-		data.writeInt(Number);
-		data.writeInt(Player);
-		data.writeUTF(Player_1);
-		data.writeUTF(Player_2);
+	public void toBytes(ByteBuf buf) {
+
+
+        buf.writeInt(Number);
+        buf.writeInt(Player);
+		ByteBufUtils.writeUTF8String(buf, Player_1);
+		ByteBufUtils.writeUTF8String(buf, Player_2);
 	}
 
 	@Override
-	public void execute(EntityPlayer player) {
+	  public IMessage onMessage(ServerGamePacketChange message, MessageContext ctx) {
 		
 		 EntityPlayerMP plyr;
 		 
-		 if(Player == 1)
-			 plyr = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().getPlayerForUsername(Player_2);
+		 if(message.Player == 1)
+			 plyr = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().getPlayerForUsername(message.Player_2);
 		 else
-			 plyr = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().getPlayerForUsername(Player_1);
+			 plyr = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().getPlayerForUsername(message.Player_1);
 		 
-		Main.NETWORK_MANAGER.sendPacketToPlayer(new ClientGamePacketChange(Number, Player, Player_1, Player_2), plyr);
+		PacketHandler.INSTANCE.sendTo(new ClientGamePacketChange(message.Number, message.Player, message.Player_1, message.Player_2), plyr);
+        return null;
 	}
 
 }

@@ -2,7 +2,9 @@ package com.miscitems.MiscItemsAndBlocks.Utils;
 
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.Client.ClientGamePacketBegin;
+import com.miscitems.MiscItemsAndBlocks.Network.Packet.PacketHandler;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 
 public class GameInfo
 {
@@ -23,8 +25,8 @@ public class GameInfo
         {
 
 
-        	Main.NETWORK_MANAGER.sendPacketToPlayer(new ClientGamePacketBegin(Player_1.getCommandSenderName(), Player_2.getCommandSenderName()), Player_1);
-        	Main.NETWORK_MANAGER.sendPacketToPlayer(new ClientGamePacketBegin(Player_1.getCommandSenderName(), Player_2.getCommandSenderName()), Player_2);
+        	PacketHandler.INSTANCE.sendTo(new ClientGamePacketBegin(Player_1.getCommandSenderName(), Player_2.getCommandSenderName()), (EntityPlayerMP)Player_1);
+        	PacketHandler.INSTANCE.sendTo(new ClientGamePacketBegin(Player_1.getCommandSenderName(), Player_2.getCommandSenderName()), (EntityPlayerMP)Player_2);
         
         return this;
         }

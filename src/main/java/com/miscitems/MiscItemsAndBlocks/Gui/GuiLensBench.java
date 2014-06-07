@@ -3,6 +3,7 @@ package com.miscitems.MiscItemsAndBlocks.Gui;
 import com.miscitems.MiscItemsAndBlocks.Container.ContainerLensBench;
 import com.miscitems.MiscItemsAndBlocks.GuiObjects.GuiLensBenchButton;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
+import com.miscitems.MiscItemsAndBlocks.Network.Packet.PacketHandler;
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerLensBenchPacketDone;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLensBench;
 import net.minecraft.client.Minecraft;
@@ -132,7 +133,7 @@ public class GuiLensBench extends GuiContainer{
     	
     	if(tile.getStackInSlot(0) != null){
 
-    		Main.NETWORK_MANAGER.sendPacketToServer(new ServerLensBenchPacketDone(Color, Red, Green, Blue, Power, Strength, TransferPower, Damage, Redstone, tile.xCoord, tile.yCoord, tile.zCoord));
+    		PacketHandler.INSTANCE.sendToServer(new ServerLensBenchPacketDone(Color, Red, Green, Blue, Power, Strength, TransferPower, Damage, Redstone, tile.xCoord, tile.yCoord, tile.zCoord));
     	}
     	
 		if(button.id == 0){
@@ -255,7 +256,7 @@ public class GuiLensBench extends GuiContainer{
 			
 	    	if(tile.getStackInSlot(0) != null){
 
-	    		Main.NETWORK_MANAGER.sendPacketToServer(new ServerLensBenchPacketDone(Color, Red, Green, Blue, Power, Strength, TransferPower, Damage, Redstone, tile.xCoord, tile.yCoord, tile.zCoord));
+	    		PacketHandler.INSTANCE.sendToServer(new ServerLensBenchPacketDone(Color, Red, Green, Blue, Power, Strength, TransferPower, Damage, Redstone, tile.xCoord, tile.yCoord, tile.zCoord));
 	    	}
 		}
 			
@@ -306,7 +307,7 @@ public class GuiLensBench extends GuiContainer{
 
     	if(tile.getStackInSlot(0) != null){
 
-    		Main.NETWORK_MANAGER.sendPacketToServer(new ServerLensBenchPacketDone(Color, Red, Green, Blue, Power, Strength, TransferPower, Damage, Redstone, tile.xCoord, tile.yCoord, tile.zCoord));
+    		PacketHandler.INSTANCE.sendToServer(new ServerLensBenchPacketDone(Color, Red, Green, Blue, Power, Strength, TransferPower, Damage, Redstone, tile.xCoord, tile.yCoord, tile.zCoord));
     	}
     }
     

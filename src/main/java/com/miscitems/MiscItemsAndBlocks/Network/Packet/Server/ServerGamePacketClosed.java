@@ -1,15 +1,19 @@
 package com.miscitems.MiscItemsAndBlocks.Network.Packet.Server;
 
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
-import com.miscitems.MiscItemsAndBlocks.Network.IPacket;
 import com.miscitems.MiscItemsAndBlocks.Utils.GameInfo;
+import cpw.mods.fml.common.network.ByteBufUtils;
+import cpw.mods.fml.common.network.simpleimpl.IMessage;
+import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
+import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-public class ServerGamePacketClosed extends IPacket{
+public class ServerGamePacketClosed implements IMessage, IMessageHandler<ServerGamePacketClosed, IMessage> {
 
 	String Player1;
 	String Player2;
@@ -22,27 +26,28 @@ public class ServerGamePacketClosed extends IPacket{
 	}
 	
 	@Override
-	public void read(DataInputStream data) throws IOException {
+public void fromBytes(ByteBuf buf) {
 		
 		
-		Player1 = data.readUTF();
-		Player2 = data.readUTF();
+		Player1 = ByteBufUtils.readUTF8String(buf);
+		Player2 = ByteBufUtils.readUTF8String(buf);
 	}
 
 	@Override
-	public void write(DataOutputStream data) throws IOException {
+	public void toBytes(ByteBuf buf) {
 		
 		
-		data.writeUTF(Player1);
-		data.writeUTF(Player2);
+		ByteBufUtils.writeUTF8String(buf, Player1);
+		ByteBufUtils.writeUTF8String(buf, Player2);
 	}
 
 	@Override
-	public void execute(EntityPlayer player) {
-		
+	  public IMessage onMessage(ServerGamePacketClosed message, MessageContext ctx) {
 		
 
-		if(player.getCommandSenderName().equalsIgnoreCase(Player1) || player.getCommandSenderName().equalsIgnoreCase(Player2)){
+        EntityPlayer player = ctx.getServerHandler().playerEntity;
+
+		if(player.getCommandSenderName().equalsIgnoreCase(message.Player1) || player.getCommandSenderName().equalsIgnoreCase(message.Player2)){
   	  for(GameInfo ti : Main.proxy.tickHandlerServer.activeGames)
         {
                 if(ti.isPlayerInGame(player))
@@ -55,7 +60,7 @@ public class ServerGamePacketClosed extends IPacket{
 		}
   	  
   	  
-  	  
+  	  return null;
 	}
 
 }

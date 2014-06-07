@@ -1,6 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Gui;
 
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
+import com.miscitems.MiscItemsAndBlocks.Network.Packet.PacketHandler;
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerGamePacketAccept;
 import com.miscitems.MiscItemsAndBlocks.Proxies.ServerProxy;
 import cpw.mods.fml.client.FMLClientHandler;
@@ -112,7 +113,7 @@ public class GuiGame1Select extends GuiScreen{
 	    		
 
 	                   
-	    		Main.NETWORK_MANAGER.sendPacketToServer(new ServerGamePacketAccept(Minecraft.getMinecraft().thePlayer.getCommandSenderName()));
+	    		PacketHandler.INSTANCE.sendToServer(new ServerGamePacketAccept(Minecraft.getMinecraft().thePlayer.getCommandSenderName()));
 
 	    	}
 	        	

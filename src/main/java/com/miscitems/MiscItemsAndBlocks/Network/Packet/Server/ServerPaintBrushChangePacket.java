@@ -1,14 +1,17 @@
 package com.miscitems.MiscItemsAndBlocks.Network.Packet.Server;
 
 import com.miscitems.MiscItemsAndBlocks.Items.ModItemPaintBrush;
-import com.miscitems.MiscItemsAndBlocks.Network.IPacket;
+import cpw.mods.fml.common.network.simpleimpl.IMessage;
+import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
+import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-public class ServerPaintBrushChangePacket extends IPacket{
+public class ServerPaintBrushChangePacket implements IMessage, IMessageHandler<ServerPaintBrushChangePacket, IMessage> {
 
 	int Red;
 	int Green;
@@ -23,30 +26,33 @@ public class ServerPaintBrushChangePacket extends IPacket{
 		this.Blue = Blue;
 	}
 	@Override
-	public void read(DataInputStream data) throws IOException {
-		Red = data.readInt();
-		Green = data.readInt();
-		Blue = data.readInt();
+public void fromBytes(ByteBuf buf) {
+		Red = buf.readInt();
+		Green = buf.readInt();
+		Blue = buf.readInt();
 	}
 
 	@Override
-	public void write(DataOutputStream data) throws IOException {
+	public void toBytes(ByteBuf buf) {
 
-		data.writeInt(Red);
-		data.writeInt(Green);
-		data.writeInt(Blue);
+        buf.writeInt(Red);
+        buf.writeInt(Green);
+        buf.writeInt(Blue);
 		
 	}
 
 	@Override
-	public void execute(EntityPlayer player) {
+	  public IMessage onMessage(ServerPaintBrushChangePacket message, MessageContext ctx) {
+        EntityPlayer player = ctx.getServerHandler().playerEntity;
+
 		if(player.inventory.getCurrentItem() != null && player.inventory.getCurrentItem().getItem() instanceof ModItemPaintBrush){
 			ModItemPaintBrush item = (ModItemPaintBrush)player.inventory.getCurrentItem().getItem();
 			
-			item.ReciveColors(Red, Green, Blue, player.inventory.getCurrentItem());
+			item.ReciveColors(message.Red, message.Green, message.Blue, player.inventory.getCurrentItem());
 		}
 		
-		
+
+        return null;
 	}
 
 }

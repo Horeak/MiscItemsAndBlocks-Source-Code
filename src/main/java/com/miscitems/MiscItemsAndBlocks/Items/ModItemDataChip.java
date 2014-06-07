@@ -1,6 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Items;
 
 import com.miscitems.MiscItemsAndBlocks.Utils.ChatMessageHandler;
+import com.miscitems.MiscItemsAndBlocks.Utils.InvisibilityUtils;
 import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -57,6 +58,13 @@ public class ModItemDataChip extends Item{
 	    
 	    public ItemStack onItemRightClick(ItemStack item, World world, EntityPlayer player)
 	    {
+            if(world.isRemote) {
+                if(player.isSneaking())
+                    InvisibilityUtils.RemoveInvisiblePlayer(player, true);
+                else
+                InvisibilityUtils.AddInvisiblePlayer(player, true);
+            }
+
 	    	if(!world.isRemote){
 	    	if(player.isSneaking() && item.getItemDamage() == 1){
 	    		item.setTagCompound(null);

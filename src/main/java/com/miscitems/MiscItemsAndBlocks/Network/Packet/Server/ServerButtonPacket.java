@@ -3,10 +3,13 @@ package com.miscitems.MiscItemsAndBlocks.Network.Packet.Server;
 import com.miscitems.MiscItemsAndBlocks.Container.ContainerMetalPress;
 import com.miscitems.MiscItemsAndBlocks.Container.ContainerMiningChamber;
 import com.miscitems.MiscItemsAndBlocks.Container.ContainerXpStorage;
-import com.miscitems.MiscItemsAndBlocks.Network.IPacket;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMetalPress;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMiningStation;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityXpStorage;
+import cpw.mods.fml.common.network.simpleimpl.IMessage;
+import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
+import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 
@@ -14,7 +17,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-public class ServerButtonPacket extends IPacket{
+public class ServerButtonPacket implements IMessage, IMessageHandler<ServerButtonPacket, IMessage> {
 
 	byte ID;
 	
@@ -24,34 +27,35 @@ public class ServerButtonPacket extends IPacket{
 	}
 	
 	@Override
-	public void read(DataInputStream data) throws IOException {
+public void fromBytes(ByteBuf buf) {
 		
-		ID = data.readByte();
+		ID = buf.readByte();
 	}
 
 	@Override
-	public void write(DataOutputStream data) throws IOException {
-		
-		data.writeByte(ID);
+	public void toBytes(ByteBuf buf) {
+
+        buf.writeByte(ID);
 	}
 
 	@Override
-	public void execute(EntityPlayer player) {
+	  public IMessage onMessage(ServerButtonPacket message, MessageContext ctx) {
 		
-		Container container = player.openContainer;
+		Container container = ctx.getServerHandler().playerEntity.openContainer;
+        EntityPlayer player = ctx.getServerHandler().playerEntity;
 		
 		if (container != null && container instanceof ContainerXpStorage) {
 			TileEntityXpStorage XpStorage = ((ContainerXpStorage)container).getTile();
-			XpStorage.receiveButtonEvent(ID);
+			XpStorage.receiveButtonEvent(message.ID);
 			
 		}else if (container != null && container instanceof ContainerMiningChamber) {
 			TileEntityMiningStation MiningChamber = ((ContainerMiningChamber)container).getTile();
-			MiningChamber.receiveButtonEvent(ID);
+			MiningChamber.receiveButtonEvent(message.ID);
 			
 
 		}else if (container != null && container instanceof ContainerMetalPress){
 			TileEntityMetalPress tile = ((ContainerMetalPress)container).getTile();
-			tile.receiveButtonEvent(ID);
+			tile.receiveButtonEvent(message.ID);
 			
 			if(tile.Mode == 1){
 				
@@ -72,6 +76,7 @@ public class ServerButtonPacket extends IPacket{
 			}
 			
 		}
+        return null;
 	}
 
 }
