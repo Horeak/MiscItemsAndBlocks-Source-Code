@@ -7,6 +7,7 @@ import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
@@ -52,14 +53,12 @@ public class ClientGhostBlockPacket implements IMessage, IMessageHandler<ClientG
         buf.writeInt(ID);
         buf.writeInt(Meta);
 
-        ByteBufUtils.writeUTF8String(buf,Player);
+        ByteBufUtils.writeUTF8String(buf, Player);
     }
 
     @Override
       public IMessage onMessage(ClientGhostBlockPacket message, MessageContext ctx) {
-
-
-        World world = ctx.getServerHandler().playerEntity.getEntityWorld();
+        World world = Minecraft.getMinecraft().thePlayer.worldObj;
 
         if(world.getTileEntity(message.x, message.y, message.z) instanceof TileEntityGhostBlock){
 

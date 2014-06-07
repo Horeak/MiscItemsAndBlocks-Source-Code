@@ -71,11 +71,16 @@ public class ModItems {
 	
 	public static Item GuideBook;
 
+    public static Item InvisHelmet, InvisChestPlate, InvisLeggings, InvisBoots;
+    public static Item Crystal, ChargedCrystal, InvisibilityCore;
+    public static Item CrystalSilk;
+
 	
 	
 	
     public static ToolMaterial SilverMaterial = EnumHelper.addToolMaterial("Silver", 5, 257, 13.0F, 0.0F, 45);
     public static ArmorMaterial PowerArmor = EnumHelper.addArmorMaterial("PowerArmor", 37, new int[] {2, 4, 3, 2} , 30);
+    public static ArmorMaterial InvisArmor = EnumHelper.addArmorMaterial("InvisArmor", 2, new int[]{0, 0, 0, 0}, 0);
 	
 	public static void Init(){
 
@@ -114,6 +119,18 @@ public class ModItems {
         
         JumpingBoots = (new ModItemPowerArmor(PowerArmor, Main.proxy.addArmor("Power"), 3, 4, "PowerarmorBoots")).setUnlocalizedName("Powerarmor Boots").setCreativeTab(Main.MiscTab);
         Register(JumpingBoots, ("powerarmor.boots"));
+
+        InvisHelmet =  (new ModItemInvisArmor(InvisArmor, Main.proxy.addArmor("Invis"), 0, 1)).setUnlocalizedName("InvisHelmet").setCreativeTab(Main.MiscTab).setTextureName("MiscItems:InvisHelmet");
+        Register(InvisHelmet, "InvisHelmet");
+
+        InvisChestPlate =  (new ModItemInvisArmor(InvisArmor, Main.proxy.addArmor("Invis"), 1, 2)).setUnlocalizedName("InvisChestPlate").setCreativeTab(Main.MiscTab).setTextureName("MiscItems:InvisChestPlate");
+        Register(InvisChestPlate, "InvisChestPlate");
+
+        InvisLeggings =  (new ModItemInvisArmor(InvisArmor, Main.proxy.addArmor("Invis"), 2, 3)).setUnlocalizedName("InvisLeggings").setCreativeTab(Main.MiscTab).setTextureName("MiscItems:InvisLeggings");
+        Register(InvisLeggings, "InvisLeggings");
+
+        InvisBoots =  (new ModItemInvisArmor(InvisArmor, Main.proxy.addArmor("Invis"), 3, 4)).setUnlocalizedName("InvisBoots").setCreativeTab(Main.MiscTab).setTextureName("MiscItems:InvisBoots");
+        Register(InvisBoots, "InvisBoots");
         
         Cardboard = new ModItemCardboard().setUnlocalizedName("Cardboard").setCreativeTab(Main.MiscTab);
         Register(Cardboard, ("cardboard"));
@@ -212,6 +229,18 @@ public class ModItems {
 		
 		Lens = new ModItemLens().setUnlocalizedName("Lens").setCreativeTab(Main.ElectricTab);
 		Register(Lens, "Lens");
+
+        Crystal = new Item().setUnlocalizedName("Crystal").setCreativeTab(Main.MiscTab).setTextureName("MiscItems:Crystal");
+        Register(Crystal, "Crystal");
+
+        ChargedCrystal = new ModItemChargedCrystal().setUnlocalizedName("ChargedCrystal").setCreativeTab(Main.MiscTab);
+        Register(ChargedCrystal, "ChargedCrystal");
+
+        InvisibilityCore = new ModItemInvisibilityCore().setUnlocalizedName("InvisibilityCore").setCreativeTab(Main.MiscTab);
+        Register(InvisibilityCore, "InvisibilityCore");
+
+        CrystalSilk = new Item().setCreativeTab(Main.MiscTab).setUnlocalizedName("CrystalSilk").setTextureName("MiscItems:CrystalSilk");
+        Register(CrystalSilk, "CrystalSilk");
 
 
 

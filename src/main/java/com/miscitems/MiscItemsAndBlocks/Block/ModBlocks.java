@@ -64,6 +64,8 @@ public class ModBlocks {
 	
 	public static ModBlockStair StoneStair;
 	public static IPlantable OrangeSapling;
+
+    public static Block CrystalOre;
 	
 	
 	public static void Init(){
@@ -203,6 +205,10 @@ public class ModBlocks {
 
         GhostBlock = new ModBlockGhostBlock().setCreativeTab(Main.MiscTab);
         Register(GhostBlock, "Ghost Block", TileEntityGhostBlock.class);
+
+        CrystalOre = new ModBlockCrystalOre().setCreativeTab(Main.MiscTab);
+        Register(CrystalOre, "CrystalOre");
+
 
 
 

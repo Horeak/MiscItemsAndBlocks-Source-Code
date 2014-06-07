@@ -34,16 +34,12 @@ import net.minecraftforge.common.util.ForgeDirection;
 public class ClientProxy extends ServerProxy {
 
 
-    public static final int ComputerID = 3;
-    public static final int ChatID = 2;
-    public static final int PlayerFindID = 4;
-    public static final int TicTacToeID = 5;
-    public static final int MasterMindID = 6;
-    public static int manualGuiID = -1;
 
     public void RegisterClientTickhandler(){
         tickHandlerClient = new TickHandlerClient();
     }
+
+    public static boolean HasValidInvisibilityArmor = false;
 
     public void registerRenderThings() {
 	
@@ -182,5 +178,7 @@ public class ClientProxy extends ServerProxy {
     public ItemStack Stack(Block block){
     	return new ItemStack(block, 1 ,0);
     }
+
+
 
 }

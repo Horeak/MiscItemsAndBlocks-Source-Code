@@ -58,12 +58,6 @@ public class ModItemDataChip extends Item{
 	    
 	    public ItemStack onItemRightClick(ItemStack item, World world, EntityPlayer player)
 	    {
-            if(world.isRemote) {
-                if(player.isSneaking())
-                    InvisibilityUtils.RemoveInvisiblePlayer(player, true);
-                else
-                InvisibilityUtils.AddInvisiblePlayer(player, true);
-            }
 
 	    	if(!world.isRemote){
 	    	if(player.isSneaking() && item.getItemDamage() == 1){

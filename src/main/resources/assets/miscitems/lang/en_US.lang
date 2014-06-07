@@ -44,6 +44,7 @@ tile.laser_reciver.name=Laser receiver
 tile.ghost_block.name=Ghost block
 tile.tv.name=Tv
 tile.turtleshell.name=Turtle shell
+tile.crystalore.name=Crystal Ore
 
 item.xpextractor.name=Xp extractor
 item.silveringot.name=Silver ingot
@@ -109,6 +110,14 @@ item.turbine.name=Turbine
 item.rawpenguinmeat.name=Raw Penguin Meat
 item.cookedpenguin.name=Cooked Penguin Meat
 item.guidebook.name=Guide Book
+item.invishelmet.name=Invisibility Hood
+item.invischestplate.name=Invisibility Robes
+item.invisleggings.name=Invisibility Helmet Leggings
+item.invisboots.name=Invisibility Helmet Boots
+item.crystal.name=Crystal
+item.chargedcrystal.name=Charged Crystal
+item.invisibilitycore.name=Invisibility Core
+item.crystalsilk.name=Crystal Silk
 
 powerupgrade.name=Power Upgrade
 
@@ -124,6 +133,7 @@ item.GamePart.Number.1.name=Red Game Piece
 item.GamePart.Number.2.name=Blue Game Piece
 item.GamePart.Number.3.name=Green Game Piece
 item.GamePart.Number.4.name=Yellow Game Piece
+
 
 
 
@@ -183,6 +193,7 @@ words.green=Green
 words.blue=Blue
 
 
+items.desc.invisCharged=Charge:
 
 items.desc.string.powerleft=Power left
 items.desc.string.outofpowerrecharge=Out of power recharge

@@ -164,6 +164,7 @@ import java.util.Set;
         	proxy.RegisterServerTickhandler();
 
             MinecraftForge.EVENT_BUS.register(new InvisibilityEvents());
+            FMLCommonHandler.instance().bus().register(new InvisibilityEvents());
         
         	//Register Events
         	if(event.getSide() == Side.SERVER)
@@ -255,5 +256,6 @@ import java.util.Set;
             Minecraft mc = Minecraft.getMinecraft();
             font = new SmallFontRenderer(mc.gameSettings, new ResourceLocation("minecraft:textures/font/ascii.png"), mc.renderEngine, false);
         }
-	
+
+
 	}

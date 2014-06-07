@@ -43,6 +43,7 @@ public class Crafting {
 
         MetalPressRecipes.instance().AddRecipeMode_4(new ItemStack(Items.iron_ingot),new ItemStack(Items.iron_ingot),new ItemStack(Items.iron_ingot),new ItemStack(Items.iron_ingot), new ItemStack(ModItems.IronPlate, 1, 2));
 
+
 		    AddShapelessRecipe(new ItemStack(ModItems.PaintBrush, 1, 1), new Object[]{new ItemStack(ModItems.PaintBrush, 1, 0), new ItemStack(Items.dye, 1, 1)});
 		    AddShapelessRecipe(new ItemStack(ModItems.PaintBrush, 1, 2), new Object[]{new ItemStack(ModItems.PaintBrush, 1, 0), new ItemStack(Items.dye, 1, 2)});
 		    AddShapelessRecipe(new ItemStack(ModItems.PaintBrush, 1, 3), new Object[]{new ItemStack(ModItems.PaintBrush, 1, 0), new ItemStack(Items.dye, 1, 4)});
@@ -76,6 +77,20 @@ public class Crafting {
             AddRecipe(new ItemStack(ModBlocks.Dice), new Object[]{"PPP", "PDP", "PPP", 'P', Blocks.planks, 'D', Items.dye});
             AddRecipe(new ItemStack(ModBlocks.Table), new Object[]{"CCC", "HHH", "P P", 'C', new ItemStack(Blocks.carpet, 1, 14), 'P', Blocks.planks, 'H', Blocks.wooden_slab});
             AddRecipe(new ItemStack(ModItems.Turbine), new Object[]{"S S", " P ", "S S", 'S', Items.stick, 'P', Blocks.planks});
+
+            AddRecipe(new ItemStack(ModItems.ChargedCrystal, 1, 50), new Object[]{"GRG", "RCR", "GRG", 'R', Items.redstone, 'G', Items.glowstone_dust, 'C', ModItems.Crystal});
+            AddRecipe(new ItemStack(ModItems.ChargedCrystal, 1, 50), new Object[]{"RGR", "GCG", "RGR", 'R', Items.redstone, 'G', Items.glowstone_dust, 'C', ModItems.Crystal});
+            AddRecipe(new ItemStack(ModItems.InvisibilityCore,  1, 100), new Object[]{"EDC", "DHD", "CDE", 'E', Items.emerald, 'D', Items.diamond, 'C', ModItems.Crystal, 'H', new ItemStack(ModItems.ChargedCrystal,1,0)});
+            AddRecipe(new ItemStack(ModItems.CrystalSilk, 4), new Object[]{"SLS", "LCL", "SLS", 'S', Items.string, 'L', Items.leather, 'C', ModItems.Crystal});
+
+            AddRecipe(new ItemStack(ModItems.InvisHelmet), new Object[]{"CCC", "C C", 'C', ModItems.CrystalSilk});
+            AddRecipe(new ItemStack(ModItems.InvisChestPlate), new Object[]{"C C", "CCC", "CCC", 'C', ModItems.CrystalSilk});
+            AddRecipe(new ItemStack(ModItems.InvisLeggings), new Object[]{"CCC", "C C", "C C", 'C', ModItems.CrystalSilk});
+            AddRecipe(new ItemStack(ModItems.InvisBoots), new Object[]{"C C", "C C",'C', ModItems.CrystalSilk});
+
+            GameRegistry.addRecipe(new ItemRepairRecipe(50, 0, new ItemStack(ModItems.InvisibilityCore), new ItemStack(ModItems.ChargedCrystal, 1, 0)));
+            GameRegistry.addRecipe(new ItemRepairRecipe(2, 0, new ItemStack(ModItems.ChargedCrystal), new ItemStack(Items.redstone, 1)));
+            GameRegistry.addRecipe(new ItemRepairRecipe(5, 0, new ItemStack(ModItems.ChargedCrystal), new ItemStack(Items.glowstone_dust, 1)));
 
             AddRecipe(new ItemStack(ModItems.GuideBook), new Object[]{"BP", "SP", 'B', Items.book, 'P', Items.paper, 'S', Items.string});
 		    AddRecipe(new ItemStack(ModItems.DataChip, 2),new Object[]{"CCC", "CGC", "III", 'C', ModItems.Cardboard, 'G', new ItemStack(ModItems.Circuit, 1, 0), 'I', Items.iron_ingot});
