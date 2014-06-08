@@ -42,12 +42,15 @@ public class ModWorldGenerator extends WorldGenerator implements IWorldGenerator
     		(new WorldGenOrangeTree(false, 6, 0, 0, false)).generate(world, random, Xcoord1, Ycoord1, Zcoord1);
     	}
     	}
+
     	
     	for(int x = 0; x < 2; x++){
-
             (new WorldGenSilverOre()).generate(world, random, ChunkX, 0, ChunkZ);
-        
     	}
+
+        for(int x = 0; x < 8; x++){
+            (new WorldGenCrystalOre()).generate(world, random, ChunkX, 0, ChunkZ);
+        }
     			
     		}
     

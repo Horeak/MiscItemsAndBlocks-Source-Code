@@ -115,12 +115,6 @@ public class TableModel extends ModelBase
       FrontLeft1.mirror = true;
       setRotation(FrontLeft1, 0F, 0F, 0F);
 
-      WoolFull = new ModelRenderer(this, 0, 20);
-      WoolFull.addBox(0F, 0F, 0F, 16, 1, 16);
-      WoolFull.setRotationPoint(-8F, 8F, -8F);
-      WoolFull.setTextureSize(64, 64);
-      WoolFull.mirror = true;
-      setRotation(WoolFull, 0F, 0F, 0F);
 
       Wool1 = new ModelRenderer(this, 0, 20);
       Wool1.addBox(0F, 0F, 0F, 10, 1, 10);
@@ -357,11 +351,6 @@ public class TableModel extends ModelBase
 
 
 
-      if(Mode == -1){
-          Mode = Main.config.get("client settings", "What mode should the tables use? 1=new dyable texture, 2=old with dyeable texture, 3=old without dyeable texture", 1).getInt();
-          Main.config.save();
-      }
-
 
 
 
@@ -408,15 +397,7 @@ public class TableModel extends ModelBase
 
 
 
-      if(Mode == 1 || Mode == 2)
-      Minecraft.getMinecraft().renderEngine.bindTexture(Textures[Color]);
 
-
-      if(Mode == 1)
-      if(Wool)
-          WoolFull.render(f5);
-
-      if(Mode == 2 || Mode == 3) {
           if (Wool) {
               Wool1.render(f5);
               Wool2.render(f5);
@@ -473,7 +454,7 @@ public class TableModel extends ModelBase
               }
 
           }
-      }
+
   }
   
   private void setRotation(ModelRenderer model, float x, float y, float z)

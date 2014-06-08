@@ -73,7 +73,7 @@ public class ModItems {
 
     public static Item InvisHelmet, InvisChestPlate, InvisLeggings, InvisBoots;
     public static Item Crystal, ChargedCrystal, InvisibilityCore;
-    public static Item CrystalSilk;
+    public static Item CrystalSilk, CrystalBlade;
 
 	
 	
@@ -120,16 +120,16 @@ public class ModItems {
         JumpingBoots = (new ModItemPowerArmor(PowerArmor, Main.proxy.addArmor("Power"), 3, 4, "PowerarmorBoots")).setUnlocalizedName("Powerarmor Boots").setCreativeTab(Main.MiscTab);
         Register(JumpingBoots, ("powerarmor.boots"));
 
-        InvisHelmet =  (new ModItemInvisArmor(InvisArmor, Main.proxy.addArmor("Invis"), 0, 1)).setUnlocalizedName("InvisHelmet").setCreativeTab(Main.MiscTab).setTextureName("MiscItems:InvisHelmet");
+        InvisHelmet =  (new ModItemInvisArmor(InvisArmor, Main.proxy.addArmor("Invis"), 0, 1)).setUnlocalizedName("InvisHelmet").setCreativeTab(Main.MagicTab).setTextureName("MiscItems:InvisHelmet");
         Register(InvisHelmet, "InvisHelmet");
 
-        InvisChestPlate =  (new ModItemInvisArmor(InvisArmor, Main.proxy.addArmor("Invis"), 1, 2)).setUnlocalizedName("InvisChestPlate").setCreativeTab(Main.MiscTab).setTextureName("MiscItems:InvisChestPlate");
+        InvisChestPlate =  (new ModItemInvisArmor(InvisArmor, Main.proxy.addArmor("Invis"), 1, 2)).setUnlocalizedName("InvisChestPlate").setCreativeTab(Main.MagicTab).setTextureName("MiscItems:InvisChestPlate");
         Register(InvisChestPlate, "InvisChestPlate");
 
-        InvisLeggings =  (new ModItemInvisArmor(InvisArmor, Main.proxy.addArmor("Invis"), 2, 3)).setUnlocalizedName("InvisLeggings").setCreativeTab(Main.MiscTab).setTextureName("MiscItems:InvisLeggings");
+        InvisLeggings =  (new ModItemInvisArmor(InvisArmor, Main.proxy.addArmor("Invis"), 2, 3)).setUnlocalizedName("InvisLeggings").setCreativeTab(Main.MagicTab).setTextureName("MiscItems:InvisLeggings");
         Register(InvisLeggings, "InvisLeggings");
 
-        InvisBoots =  (new ModItemInvisArmor(InvisArmor, Main.proxy.addArmor("Invis"), 3, 4)).setUnlocalizedName("InvisBoots").setCreativeTab(Main.MiscTab).setTextureName("MiscItems:InvisBoots");
+        InvisBoots =  (new ModItemInvisArmor(InvisArmor, Main.proxy.addArmor("Invis"), 3, 4)).setUnlocalizedName("InvisBoots").setCreativeTab(Main.MagicTab).setTextureName("MiscItems:InvisBoots");
         Register(InvisBoots, "InvisBoots");
         
         Cardboard = new ModItemCardboard().setUnlocalizedName("Cardboard").setCreativeTab(Main.MiscTab);
@@ -230,17 +230,20 @@ public class ModItems {
 		Lens = new ModItemLens().setUnlocalizedName("Lens").setCreativeTab(Main.ElectricTab);
 		Register(Lens, "Lens");
 
-        Crystal = new Item().setUnlocalizedName("Crystal").setCreativeTab(Main.MiscTab).setTextureName("MiscItems:Crystal");
+        Crystal = new Item().setUnlocalizedName("Crystal").setCreativeTab(Main.MagicTab).setTextureName("MiscItems:Crystal");
         Register(Crystal, "Crystal");
 
-        ChargedCrystal = new ModItemChargedCrystal().setUnlocalizedName("ChargedCrystal").setCreativeTab(Main.MiscTab);
+        ChargedCrystal = new ModItemChargedCrystal().setUnlocalizedName("ChargedCrystal").setCreativeTab(Main.MagicTab);
         Register(ChargedCrystal, "ChargedCrystal");
 
-        InvisibilityCore = new ModItemInvisibilityCore().setUnlocalizedName("InvisibilityCore").setCreativeTab(Main.MiscTab);
+        InvisibilityCore = new ModItemInvisibilityCore().setUnlocalizedName("InvisibilityCore").setCreativeTab(Main.MagicTab);
         Register(InvisibilityCore, "InvisibilityCore");
 
-        CrystalSilk = new Item().setCreativeTab(Main.MiscTab).setUnlocalizedName("CrystalSilk").setTextureName("MiscItems:CrystalSilk");
+        CrystalSilk = new Item().setCreativeTab(Main.MagicTab).setUnlocalizedName("CrystalSilk").setTextureName("MiscItems:CrystalSilk");
         Register(CrystalSilk, "CrystalSilk");
+
+        CrystalBlade = new ModItemCrystalBlade().setCreativeTab(Main.MagicTab).setUnlocalizedName("CrystalBlade").setTextureName("MiscItems:CrystalBlade");
+        Register(CrystalBlade, "CrystalBlade");
 
 
 

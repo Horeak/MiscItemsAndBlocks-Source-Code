@@ -4,10 +4,12 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.Entity;
@@ -462,14 +464,19 @@ public class GuiItemRender extends Render
     /**
      * Render the item's icon or block into the GUI, including the glint effect.
      */
-    public void renderItemAndEffectIntoGUI (SmallFontRenderer par1FontRenderer, TextureManager par2TextureManager, ItemStack par3ItemStack, int par4, int par5)
+    protected void RenderItem(RenderItem ItemRender, FontRenderer render, ItemStack stack, int x, int y)
     {
-        if (par3ItemStack != null)
-        {
-            if (!ForgeHooksClient.renderInventoryItem(new RenderBlocks(), par2TextureManager, par3ItemStack, renderWithColor, zLevel, (float) par4, (float) par5))
-            {
-                this.renderItemIntoGUI(par1FontRenderer, par2TextureManager, par3ItemStack, par4, par5, true);
-            }
+        GL11.glDisable(GL11.GL_LIGHTING);
+        Minecraft mc = Minecraft.getMinecraft();
+        GL11.glTranslatef(0.0F, 0.0F, 32.0F);
+        ItemRender.zLevel = 200.0F;
+        FontRenderer font = null;
+        if (font == null) font = render;
+        ItemRender.renderItemAndEffectIntoGUI(font, mc.getTextureManager(), stack, x, y);
+        ItemRender.zLevel = 0.0F;
+        GL11.glEnable(GL11.GL_LIGHTING);
+        GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+    }
 
             /* Modders must handle this themselves if they use custom renderers!
 if (par3ItemStack.hasEffect())
@@ -490,8 +497,8 @@ GL11.glEnable(GL11.GL_LIGHTING);
 GL11.glDepthFunc(GL11.GL_LEQUAL);
 }
 */
-        }
-    }
+
+
 
     private void renderGlint (int par1, int par2, int par3, int par4, int par5)
     {

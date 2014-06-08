@@ -2,6 +2,8 @@ package com.miscitems.MiscItemsAndBlocks.Items;
 
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Sets;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,7 +18,11 @@ import java.util.Set;
 
 public class ModItemWithDamage extends ItemTool{
 
-
+    @SideOnly(Side.CLIENT)
+    public boolean isFull3D()
+    {
+        return false;
+    }
     int MaxDamage;
 
     protected ModItemWithDamage(int ItemMaxDamage) {
@@ -26,6 +32,11 @@ public class ModItemWithDamage extends ItemTool{
         MaxDamage = ItemMaxDamage;
     }
 
+
+    public boolean hitEntity(ItemStack stack, EntityLivingBase EntityHit, EntityLivingBase EntityAttacker)
+    {
+        return false;
+    }
     public boolean onBlockDestroyed(ItemStack p_150894_1_, World p_150894_2_, Block p_150894_3_, int p_150894_4_, int p_150894_5_, int p_150894_6_, EntityLivingBase p_150894_7_){
 
         return false;

@@ -1,5 +1,6 @@
 itemGroup.tabMiscMisc=MiscItemsAndBlocks Misc
 itemGroup.tabMiscElectric=MiscItemsAndBlocks Electric
+itemGroup.tabMiscMagic=MiscItemsAndBlocks Magic
 
 tile.xp_storage_block.name= Xp storage block
 tile.trash_bin.name=Trash Bin
@@ -118,6 +119,7 @@ item.crystal.name=Crystal
 item.chargedcrystal.name=Charged Crystal
 item.invisibilitycore.name=Invisibility Core
 item.crystalsilk.name=Crystal Silk
+item.crystalblade.name=Crystal Blade
 
 powerupgrade.name=Power Upgrade
 

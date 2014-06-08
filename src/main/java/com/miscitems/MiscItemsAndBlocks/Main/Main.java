@@ -8,9 +8,11 @@ import com.miscitems.MiscItemsAndBlocks.Entity.EntityPowerArrow;
 import com.miscitems.MiscItemsAndBlocks.Entity.EntitySilverArrow;
 import com.miscitems.MiscItemsAndBlocks.Event.*;
 import com.miscitems.MiscItemsAndBlocks.Gui.GuiHandler;
+import com.miscitems.MiscItemsAndBlocks.Items.ModItemCrystalBlade;
 import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
 import com.miscitems.MiscItemsAndBlocks.Laser.DefaultLaser;
 import com.miscitems.MiscItemsAndBlocks.Laser.LaserRegistry;
+import com.miscitems.MiscItemsAndBlocks.Models.TableModel;
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.PacketHandler;
 import com.miscitems.MiscItemsAndBlocks.Proxies.ServerProxy;
 import com.miscitems.MiscItemsAndBlocks.Utils.*;
@@ -112,17 +114,36 @@ import java.util.Set;
 
         };
 
+
+        public static CreativeTabs MagicTab = new CreativeTabs("tabMiscMagic")
+        {
+
+
+            @Override
+            @SideOnly(Side.CLIENT)
+            public Item getTabIconItem()
+            {
+                if(Main.config.get("Items", "Enable " + ModItems.InvisibilityCore.getUnlocalizedName() + "?", true).getBoolean(true)){
+                    Main.config.save();
+                    return ModItems.InvisibilityCore;
+                }else
+                {
+                    Main.config.save();
+                    return ItemBlock.getItemFromBlock(Blocks.bedrock);
+                }
+            }
+
+        };
+
+
 	
         @EventHandler
         public void preInit(FMLPreInitializationEvent event)
         {
-
-	
-        	//TODO Add some type of ore doubling
-            //TODO Redo guide book
 	
     	
-        	config = new Configuration(new File(event.getModConfigurationDirectory() + "/tm1990's mods/MiscItemsAndBlocksConfig.cfg")); 
+        	config = new Configuration(new File(event.getModConfigurationDirectory() + "/tm1990's mods/MiscItemsAndBlocksConfig.cfg"));
+
 
 
 

@@ -206,7 +206,7 @@ public class ModBlocks {
         GhostBlock = new ModBlockGhostBlock().setCreativeTab(Main.MiscTab);
         Register(GhostBlock, "Ghost Block", TileEntityGhostBlock.class);
 
-        CrystalOre = new ModBlockCrystalOre().setCreativeTab(Main.MiscTab);
+        CrystalOre = new ModBlockCrystalOre().setCreativeTab(Main.MagicTab);
         Register(CrystalOre, "CrystalOre");
 
 

@@ -15,6 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.item.crafting.ShapelessRecipes;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
 import java.util.ArrayList;
@@ -22,14 +23,18 @@ import java.util.HashMap;
 
 public class Crafting {
 
-
-
+    public static ItemStack Blade_1 = new ItemStack(ModItems.CrystalBlade);
+    public static ItemStack Blade_2 = new ItemStack(ModItems.CrystalBlade);
+    public static ItemStack Blade_3 = new ItemStack(ModItems.CrystalBlade);
     public static ArrayList<String> Recipes = new ArrayList<String>();
 
 	public static void RegisterRecipes(){
 
 
 
+ Blade_1.setTagCompound(new NBTTagCompound());  Blade_1.getTagCompound().setBoolean("ExtraDamage", true);
+ Blade_2.setTagCompound(new NBTTagCompound());  Blade_2.getTagCompound().setBoolean("FireDamage", true);
+ Blade_3.setTagCompound(new NBTTagCompound());  Blade_3.getTagCompound().setBoolean("Looting", true);
 
         SqueezerRecipes.instance().AddRecipe(new ItemStack(Items.glass_bottle), new ItemStack(Items.apple), new ItemStack(ModItems.Liquid, 1, 0));
         SqueezerRecipes.instance().AddRecipe(new ItemStack(Items.bucket), new ItemStack(ModItems.Tomato), new ItemStack(ModItems.Liquid, 1, 1));
@@ -87,6 +92,11 @@ public class Crafting {
             AddRecipe(new ItemStack(ModItems.InvisChestPlate), new Object[]{"C C", "CCC", "CCC", 'C', ModItems.CrystalSilk});
             AddRecipe(new ItemStack(ModItems.InvisLeggings), new Object[]{"CCC", "C C", "C C", 'C', ModItems.CrystalSilk});
             AddRecipe(new ItemStack(ModItems.InvisBoots), new Object[]{"C C", "C C",'C', ModItems.CrystalSilk});
+
+            AddRecipe(Blade_1, new Object[]{" D ", "CSC", " C ", 'D', Items.diamond, 'C', new ItemStack(ModItems.ChargedCrystal,1,0), 'S', ModItems.CrystalBlade});
+            AddRecipe(Blade_2, new Object[]{" B ", "CSC", " C ", 'B', Items.blaze_rod, 'C', new ItemStack(ModItems.ChargedCrystal,1,0), 'S', ModItems.CrystalBlade});
+            AddRecipe(Blade_3, new Object[]{" E ", "CSC", " C ", 'E', Items.ender_pearl, 'C', new ItemStack(ModItems.ChargedCrystal,1,0), 'S', ModItems.CrystalBlade});
+            AddRecipe(new ItemStack(ModItems.CrystalBlade), new Object[]{" CC", "CHC", "DC ", 'C', ModItems.Crystal, 'H', new ItemStack(ModItems.ChargedCrystal,1, 0), 'D', Items.diamond_sword});
 
             GameRegistry.addRecipe(new ItemRepairRecipe(50, 0, new ItemStack(ModItems.InvisibilityCore), new ItemStack(ModItems.ChargedCrystal, 1, 0)));
             GameRegistry.addRecipe(new ItemRepairRecipe(2, 0, new ItemStack(ModItems.ChargedCrystal), new ItemStack(Items.redstone, 1)));

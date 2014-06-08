@@ -25,8 +25,9 @@ public class ModItemChargedCrystal extends ModItemWithDamage {
         super(50);
     }
 
-    public boolean hasEffect(ItemStack par1ItemStack) {
-        return true;
+    public boolean hasEffect(ItemStack stack)
+    {
+        return stack.getItemDamage() <= 25;
     }
 
     @SideOnly(Side.CLIENT)

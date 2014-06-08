@@ -8,13 +8,17 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.relauncher.ReflectionHelper;
+import cpw.mods.fml.relauncher.Side;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
+
+import java.util.Random;
 
 public class InvisibilityEvents {
 
@@ -92,6 +96,22 @@ public class InvisibilityEvents {
     public void UsePower(TickEvent.PlayerTickEvent event){
         if(InvisibilityUtils.GetList().contains(event.player)){
 
+            for(int i = 0; i < event.player.inventory.getSizeInventory(); i++){
+                if(event.player.inventory.getStackInSlot(i) != null && event.player.inventory.getStackInSlot(i).getItem() == ModItems.InvisibilityCore && event.player.inventory.getStackInSlot(i).getItemDamage() < event.player.inventory.getStackInSlot(i).getMaxDamage()){
+                    ItemStack stack = event.player.inventory.getStackInSlot(i);
+
+                    Random rand = new Random();
+                    if(rand.nextInt(50) == 36){
+                        stack.setItemDamage(stack.getItemDamage() + 1);
+                    }
+                    return;
+
+                }else{
+                    continue;
+                }
+            }
+
+            InvisibilityUtils.RemoveInvisiblePlayer(event.player, true);
 
         }
     }

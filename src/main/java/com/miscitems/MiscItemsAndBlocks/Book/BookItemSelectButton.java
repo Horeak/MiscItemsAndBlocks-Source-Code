@@ -16,8 +16,8 @@ public class BookItemSelectButton extends GuiButton{
     public static int XSize = 100;
     public static int YSize = 10;
 
-    public BookItemSelectButton(int par1, int par2, int par3, MainPage Gui) {
-        super(par1, par2, par3, XSize, YSize, "\u00a7n" + BookUtils.TabItems.get(Gui.CurrentTab)[par1 - BookUtils.MaxTabs].getDisplayName());
+    public BookItemSelectButton(int id, int par1, int par2, int par3, MainPage Gui) {
+        super(id, par2, par3, XSize, YSize, "\u00a7n" + BookUtils.TabItems.get(Gui.CurrentTab)[par1].getDisplayName());
 
         this.Id = par1;
         this.gui = Gui;
@@ -40,13 +40,13 @@ public class BookItemSelectButton extends GuiButton{
 
 
         if(BookUtils.GetTabType(gui.CurrentTab) == 2 && BookUtils.TabItems.get(gui.CurrentTab) != null)
-        if(BookUtils.TabItems.get(gui.CurrentTab) != null && BookUtils.TabItems.get(gui.CurrentTab)[this.id - BookUtils.MaxTabs] != null && (this.id - BookUtils.MaxTabs) < BookUtils.TabItems.get(gui.CurrentTab).length && BookUtils.TabItems.get(gui.CurrentTab)[this.id - BookUtils.MaxTabs].getItem() != null){
+        if(BookUtils.TabItems.get(gui.CurrentTab) != null && BookUtils.TabItems.get(gui.CurrentTab)[Id] != null && (Id) < BookUtils.TabItems.get(gui.CurrentTab).length && BookUtils.TabItems.get(gui.CurrentTab)[Id].getItem() != null){
 
 
             if(x >= this.xPosition && x <= this.xPosition + XSize && y >= this.yPosition && y <= this.yPosition + YSize){
-                fontRendererObj.drawString(BookUtils.TabItems.get(gui.CurrentTab)[this.id - BookUtils.MaxTabs].getDisplayName(), xPosition + 2, yPosition, 0x1602CC);
+                fontRendererObj.drawString(BookUtils.TabItems.get(gui.CurrentTab)[Id].getDisplayName(), xPosition + 2, yPosition, 0x1602CC);
             }else {
-                fontRendererObj.drawString(BookUtils.TabItems.get(gui.CurrentTab)[this.id - BookUtils.MaxTabs].getDisplayName(), xPosition + 2, yPosition, 0x949292);
+                fontRendererObj.drawString(BookUtils.TabItems.get(gui.CurrentTab)[Id].getDisplayName(), xPosition + 2, yPosition, 0x949292);
             }
 
         }

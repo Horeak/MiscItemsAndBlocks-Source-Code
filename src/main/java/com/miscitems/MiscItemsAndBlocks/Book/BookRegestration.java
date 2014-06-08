@@ -3,6 +3,7 @@ package com.miscitems.MiscItemsAndBlocks.Book;
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.Book.Pages.*;
 import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
+import com.miscitems.MiscItemsAndBlocks.Utils.Crafting;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 
@@ -17,7 +18,7 @@ public class BookRegestration {
         BookUtils.RegisterTab(3, "Electrical Blocks Page", new ItemStack(ModBlocks.Charger), 2);
         BookUtils.RegisterTab(4, "Electrical Items Page", new ItemStack(ModItems.Battery), 2);
         BookUtils.RegisterTab(5, "Items Page", new ItemStack(ModItems.XpExtractor), 2);
-        BookUtils.RegisterTab(6, "Other Changes Page", new ItemStack(ModItems.Wrench), 2);
+        BookUtils.RegisterTab(6, "Magic Page", new ItemStack(ModItems.InvisibilityCore), 2);
 
         BookUtils.RegisterTextForTab(1, "This a guide book for MiscItemsAndBlocks which explains all blocks and items in the mod and will also show any recipes added by the mod.");
 
@@ -25,7 +26,7 @@ public class BookRegestration {
         BookUtils.RegisterItemsForTab(3, new ItemStack[]{new ItemStack(ModBlocks.MachinePart), new ItemStack(ModBlocks.Charger), new ItemStack(ModBlocks.SolarPanel), new ItemStack(ModBlocks.WindMill), new ItemStack(ModBlocks.Generator), new ItemStack(ModBlocks.ElectricFurnace), new ItemStack(ModBlocks.PowerCable), new ItemStack(ModBlocks.MetalPress), new ItemStack(ModBlocks.LensBench), new ItemStack(ModBlocks.Laser), new ItemStack(ModBlocks.LaserReciver), new ItemStack(ModBlocks.MiningChamber), new ItemStack(ModBlocks.Teleporter)});
         BookUtils.RegisterItemsForTab(4, new ItemStack[]{new ItemStack(ModItems.Drill), new ItemStack(ModItems.Circuit, 1, 0), new ItemStack(ModItems.CableItem), new ItemStack(ModItems.SolarCells), new ItemStack(ModItems.Turbine), new ItemStack(ModItems.Battery), new ItemStack(ModItems.BigBattery), new ItemStack(ModItems.AdvancedBattery), new ItemStack(ModItems.ElectricShears), new ItemStack(ModItems.ElectricBow), new ItemStack(ModItems.Upgrades, 1, 0), new ItemStack(ModItems.Wrench), new ItemStack(ModItems.IronPlate), new ItemStack(ModItems.HeatDrill), new ItemStack(ModItems.FloatBlockPlacer), new ItemStack(ModItems.AntiFallChestPlate), new ItemStack(ModItems.InfoScreenHelmet), new ItemStack(ModItems.DataChip), new ItemStack(ModItems.Lens)});
         BookUtils.RegisterItemsForTab(5, new ItemStack[]{new ItemStack(ModItems.XpExtractor), new ItemStack(ModItems.SilverIngot), new ItemStack(ModItems.SilverSword), new ItemStack(ModItems.SilverBow), new ItemStack(ModItems.DivingHelmet), new ItemStack(ModItems.FlightChestPlate), new ItemStack(ModItems.RunningLeggings), new ItemStack(ModItems.JumpingBoots), new ItemStack(ModItems.Cardboard), new ItemStack(ModItems.Tomato), new ItemStack(ModItems.Flour), new ItemStack(ModItems.PizzaBottom), new ItemStack(ModItems.Liquid), new ItemStack(ModItems.Cheese), new ItemStack(ModItems.Orange), new ItemStack(ModItems.DisarmStick), new ItemStack(ModItems.PaintBrush)});
-
+        BookUtils.RegisterItemsForTab(6, new ItemStack[]{new ItemStack(ModBlocks.CrystalOre), new ItemStack(ModItems.Crystal), new ItemStack(ModItems.ChargedCrystal), new ItemStack(ModItems.InvisibilityCore), new ItemStack(ModItems.CrystalSilk), new ItemStack(ModItems.InvisChestPlate), new ItemStack(ModItems.CrystalBlade)});
 
 
         BookUtils.RegisterPagesForItem(new ItemStack(ModBlocks.XpStorage), new Page[]{new TextPage("The Xp Storage Block allows a player to save the xp levels in a safe location. The Xp Storage block does not have any upper limits of how many levels it can store. The xp storage block is blast proof and also when it is broken by a player it saves the levels in the block so they are not lost. \n"), new RecipeBigPage(new ItemStack(ModBlocks.XpStorage))});
@@ -109,6 +110,14 @@ public class BookRegestration {
         BookUtils.RegisterPagesForItem(new ItemStack(ModItems.Orange), new Page[]{new TextPage("The orange is a fruit which is obtained from orange leaves. When eaten it gives a small regeneration effect")});
         BookUtils.RegisterPagesForItem(new ItemStack(ModItems.DisarmStick), new Page[]{new TextPage("The disarm stick is a creative only item so it can not be crafted. The disarm stick can also not be picked up unless the player is in creative. If the player is in creative when using the disarm stick it can be used to disarm players of all their items and to instant kill any mobs")});
         BookUtils.RegisterPagesForItem(new ItemStack(ModItems.PaintBrush), new Page[]{new TextPage("The Paint Brushes are used on the paint block and can be used to get the different colors which uses the RGB Color system which gives around 16.000.000 different combinations of colors. The different colored paint brushes will add that color to the block and the paint copy will copy the color and paste it on shift right click. The Paint editor will allow you to chose a color through a gui when shift-right clicking the paint brush.\n"), new RecipeBigPage(new ItemStack(ModItems.PaintBrush, 1, 0)), new RecipeSmallPage(new ItemStack(ModItems.PaintBrush, 1, 1)), new RecipeSmallPage(new ItemStack(ModItems.PaintBrush, 1, 2)), new RecipeSmallPage(new ItemStack(ModItems.PaintBrush, 1, 3)), new RecipeBigPage(new ItemStack(ModItems.PaintBrush, 1, 4)), new RecipeBigPage(new ItemStack(ModItems.PaintBrush, 1, 5))});
+
+        BookUtils.RegisterPagesForItem(new ItemStack(ModBlocks.CrystalOre), new Page[]{new TextPage("The Crystal Ore is a ore which spawns at y 48 and below. It can be mined with a iron pickaxe and will drop between 1 and 6 crytals.")});
+        BookUtils.RegisterPagesForItem(new ItemStack(ModItems.Crystal), new Page[]{new TextPage("The crystal is a drop from the crystal ore and is used to different crafting recipes")});
+        BookUtils.RegisterPagesForItem(new ItemStack(ModItems.ChargedCrystal), new Page[]{new TextPage("The charged crystal is a item which stores energy which can be used by different other items. The charged crystal is charged by crafting it together with either redstone(gives 2 points) or glowstone(gives 5 points)"), new RecipeBigPage(new ItemStack(ModItems.ChargedCrystal))});
+        BookUtils.RegisterPagesForItem(new ItemStack(ModItems.InvisibilityCore), new Page[]{new TextPage("Invisibility Core the invisibility core will allow the player total invisibility for as long as the item has power. While invisible mobs will not detect the player. To be able to use the invisibility core the player must be wearing the full set of invisibility armor and the have a invisibility core with power in it. The power in the invisibility core will drain while being used but can be recharged by using charged crystals."), new RecipeBigPage(new ItemStack((ModItems.InvisibilityCore)))});
+        BookUtils.RegisterPagesForItem(new ItemStack(ModItems.InvisChestPlate), new Page[]{new TextPage("The Invisibility armor set is a very weak set of armor which can not be enchanted but it is required when using the invisibility core"), new RecipeBigPage(new ItemStack(ModItems.InvisHelmet)), new RecipeBigPage(new ItemStack(ModItems.InvisChestPlate)), new RecipeBigPage(new ItemStack(ModItems.InvisLeggings)), new RecipeBigPage(new ItemStack(ModItems.InvisBoots))});
+        BookUtils.RegisterPagesForItem(new ItemStack(ModItems.CrystalSilk), new Page[]{new TextPage("Crystal silk is a type of silk combined with crystals to make a stronger material which can be used in the creation of different types of magical items"), new RecipeBigPage(new ItemStack((ModItems.CrystalSilk)))});
+        BookUtils.RegisterPagesForItem(new ItemStack(ModItems.CrystalBlade), new Page[]{new TextPage("The crystal blade is a powerful blade which can not be destroyed. By default the blade has the same damage as a regulare diamond sword but if the player has charged crystals in their inventory the blade will consume 10 energy every hit but it will increase the damage of the hit. The blade can also be upgraded by using it in different crafting recipes"), new RecipeBigPage(new ItemStack(ModItems.CrystalBlade))});
 
 
     }

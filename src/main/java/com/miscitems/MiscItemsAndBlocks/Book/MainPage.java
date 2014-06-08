@@ -31,6 +31,8 @@ public class MainPage extends GuiScreen {
 
     public int posX, posY;
 
+    public int CurrentPage = 1;
+
 
     @Override
     public void drawScreen(int x, int y, float f) {
@@ -58,6 +60,15 @@ public class MainPage extends GuiScreen {
             CurrentTab = 1;
 
 
+        if(BookUtils.GetTabType(CurrentTab) == 2) {
+            if(BookUtils.TabItems.get(CurrentTab)!= null && BookUtils.TabItems.get(CurrentTab).length > 1) {
+                int Pages =  1 + BookUtils.TabItems.get(CurrentTab).length / 30;
+
+                fontRendererObj.drawString("Page " + CurrentPage + "/" + Pages, posX + 170, posY + 8, 4210752);
+            }
+        }
+
+
 
 
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
@@ -79,7 +90,7 @@ public class MainPage extends GuiScreen {
         buttonList.clear();
 
             for (int i = 1; i < Tabs + 1; i++) {
-                buttonList.add(new BookTabButton(i, posX - 26, posY + (12 + (((i - 1) * 20) + 1)), this));
+                buttonList.add(new BookTabButton(i, posX - 26, posY + (12 + (((i - 1) * 20) + 1)), this, this.itemRender));
             }
 
         if(BookUtils.GetTabType(CurrentTab) == 2)
@@ -94,25 +105,40 @@ public class MainPage extends GuiScreen {
     public void ChangeItems(){
         if(BookUtils.GetTabType(CurrentTab) == 2){
 
-
-
-
-
-
             if(BookUtils.TabItems.get(CurrentTab)!= null && BookUtils.TabItems.get(CurrentTab).length > 1) {
-                for (int i = 0; i < BookUtils.TabItems.get(CurrentTab).length; i++) {
-                    int g = i >= 15 ? 1 : 0;
-                    int h = g == 1 ? i - 15 : 0;
+                int Pages = 1 + BookUtils.TabItems.get(CurrentTab).length / 30;
 
-                    buttonList.add(new BookItemSelectButton(i + BookUtils.MaxTabs, posX + 15 + (100 * g), posY + (i >= 15 ? (21 + (h * 10)) : (21 + (i * 10))), this));
+                if(Pages > 1){
+                    buttonList.add(new GuiButton(1 + BookUtils.MaxTabs, posX + 150, posY + 180, 55, 20, "Next Page"));
+                    buttonList.add(new GuiButton(2 + BookUtils.MaxTabs, posX + 95, posY + 180, 55, 20, "Prev Page"));
+
                 }
+
+                    for (int i = 0; i < BookUtils.TabItems.get(CurrentTab).length; i++) {
+                        int t = i - ((CurrentPage-1) * 30);
+
+                        if(i < (BookUtils.TabItems.get(CurrentTab).length)) {
+
+                            if(CurrentPage == 1 && i < 30) {
+                                buttonList.add(new BookItemSelectButton(i + BookUtils.MaxTabs + 4, i, posX + 15 + (t >= 15 ? 100 : 0), posY + (t >= 15 ? (t - 13) * 10 : (t * 10) + 21), this));
+
+
+                            }
+                            else if(CurrentPage > 1 && i > (CurrentPage - 1) * 30 && i < ((CurrentPage) * 30) + 1) {
+                                buttonList.add(new BookItemSelectButton(i + BookUtils.MaxTabs + 4, i, posX + 15 + (t >= 16 ? 100 : 0), posY + (t >= 16 ? (t - 14) * 10 : (t * 10) + 8), this));
+                            }
+                        }
+
+
+
+                }
+
             }else if (BookUtils.TabItems.get(CurrentTab)!= null && BookUtils.TabItems.get(CurrentTab).length == 1){
-                for (int i = 0; i < 1; i++) {
-                    int g = i >= 15 ? 1 : 0;
-                    int h = g == 1 ? i - 15 : 0;
+                    int g = 1 >= 15 ? 1 : 0;
+                    int h = g == 1 ? 1 - 15 : 0;
 
-                    buttonList.add(new BookItemSelectButton(i + BookUtils.MaxTabs, posX + 15 + (100 * g), posY + (i >= 15 ? (21 + (h * 10)) : (21 + (i * 10))), this));
-                }
+                    buttonList.add(new BookItemSelectButton(1 + BookUtils.MaxTabs, 1, posX + 15 + (100 * g), posY + (1 >= 15 ? (21 + (h * 10)) : (21 + (1 * 10))), this));
+
             }
 
 
@@ -127,25 +153,45 @@ public class MainPage extends GuiScreen {
 
     @Override
     protected void actionPerformed(GuiButton button){
+        if(button.id < BookUtils.MaxTabs) {
 
-
-
-
-
-        if(button.id < BookUtils.MaxTabs){
-            if(button.id <= Tabs && button.id > 0){
+            CurrentPage = 1;
+            if (button.id <= Tabs && button.id > 0) {
                 CurrentTab = button.id;
+
 
             }
             initGui();
 
+        }else if(button.id == 1 + BookUtils.MaxTabs){
+            if(BookUtils.GetTabType(CurrentTab) == 2) {
+
+                if (BookUtils.TabItems.get(CurrentTab) != null && BookUtils.TabItems.get(CurrentTab).length > 1) {
+                    int Pages = 1 + BookUtils.TabItems.get(CurrentTab).length / 30;
+                    if(Pages > CurrentPage)
+                        CurrentPage++;
+                    initGui();
+
+                }
+            }
+
+        }else if(button.id == 2 + BookUtils.MaxTabs){
+
+            if(BookUtils.GetTabType(CurrentTab) == 2) {
+
+                if (BookUtils.TabItems.get(CurrentTab) != null && BookUtils.TabItems.get(CurrentTab).length > 1) {
+                    if(CurrentPage > 1)
+                        CurrentPage--;
+                    initGui();
+
+                }
+            }
 
         }else{
             if(button instanceof BookItemSelectButton) {
 
                 BookItemSelectButton btn = (BookItemSelectButton)button;
-
-                FMLClientHandler.instance().displayGuiScreen(Minecraft.getMinecraft().thePlayer, new InfoPage(BookUtils.TabItems.get(CurrentTab)[btn.id - BookUtils.MaxTabs], CurrentTab));
+                FMLClientHandler.instance().displayGuiScreen(Minecraft.getMinecraft().thePlayer, new InfoPage(BookUtils.TabItems.get(CurrentTab)[btn.Id], CurrentTab));
             }
         }
 
