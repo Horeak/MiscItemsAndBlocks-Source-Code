@@ -1,11 +1,9 @@
 package com.miscitems.MiscItemsAndBlocks.Book;
 
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
 import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;

@@ -1,6 +1,5 @@
 package com.miscitems.MiscItemsAndBlocks.Network.Packet.Server;
 
-import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.Client.ClientGamePacketChange;
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.PacketHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -9,12 +8,7 @@ import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
 
 public class ServerGamePacketChange implements IMessage, IMessageHandler<ServerGamePacketChange, IMessage> {
 

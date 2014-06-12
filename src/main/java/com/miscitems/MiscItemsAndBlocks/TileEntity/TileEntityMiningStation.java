@@ -1,6 +1,5 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
-import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.PacketHandler;
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.PacketTileWithItemUpdate;
 import com.miscitems.MiscItemsAndBlocks.Utils.Block.BlockUtil;

@@ -3,7 +3,6 @@ package com.miscitems.MiscItemsAndBlocks.Gui;
 
 import com.miscitems.MiscItemsAndBlocks.Container.ContainerXpStorage;
 import com.miscitems.MiscItemsAndBlocks.GuiObjects.GuiTipButton;
-import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.PacketHandler;
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerButtonPacket;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityXpStorage;

@@ -138,7 +138,7 @@ public class ModBlocks {
         Register(Charger, "Charger", TileEntityEnergyStorageCube.class);
         
         SolarPanel = new ModBlockSolarPanel().setCreativeTab(Main.ElectricTab);
-        Register(SolarPanel, "Solar Panel", TileEntitySolarPanel.class);
+        Register(SolarPanel, "Solar PanelBlock", TileEntitySolarPanel.class);
         
         WindMill = new ModBlockWindMill().setCreativeTab(Main.ElectricTab);
         Register(WindMill, "Wind Mill", TileEntityWindMill.class);

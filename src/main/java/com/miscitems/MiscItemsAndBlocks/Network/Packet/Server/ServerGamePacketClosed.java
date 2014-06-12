@@ -9,10 +9,6 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-
 public class ServerGamePacketClosed implements IMessage, IMessageHandler<ServerGamePacketClosed, IMessage> {
 
 	String Player1;

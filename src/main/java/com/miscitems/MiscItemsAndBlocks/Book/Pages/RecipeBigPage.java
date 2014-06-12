@@ -2,8 +2,6 @@ package com.miscitems.MiscItemsAndBlocks.Book.Pages;
 
 import com.miscitems.MiscItemsAndBlocks.Book.BookUtils;
 import com.miscitems.MiscItemsAndBlocks.Book.InfoPage;
-import com.miscitems.MiscItemsAndBlocks.Items.ModItemXpExtractor;
-import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -15,7 +13,6 @@ import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
 import java.util.Arrays;
-import java.util.List;
 
 public class RecipeBigPage extends Page {
 

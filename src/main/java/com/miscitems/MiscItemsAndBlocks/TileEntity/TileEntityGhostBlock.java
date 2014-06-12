@@ -1,6 +1,5 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
-import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.Client.ClientGhostBlockPacket;
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.PacketHandler;
 import net.minecraft.nbt.NBTTagCompound;

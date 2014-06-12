@@ -1,7 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Items;
 
 import com.miscitems.MiscItemsAndBlocks.Utils.ChatMessageHandler;
-import com.miscitems.MiscItemsAndBlocks.Utils.InvisibilityUtils;
 import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

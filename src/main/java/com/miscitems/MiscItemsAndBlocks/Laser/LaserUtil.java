@@ -1,6 +1,5 @@
 package com.miscitems.MiscItemsAndBlocks.Laser;
 
-import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.PacketHandler;
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerSetBlockPacket;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLaserReciver;

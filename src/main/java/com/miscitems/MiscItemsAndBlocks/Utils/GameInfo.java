@@ -1,6 +1,5 @@
 package com.miscitems.MiscItemsAndBlocks.Utils;
 
-import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.Client.ClientGamePacketBegin;
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.PacketHandler;
 import net.minecraft.entity.player.EntityPlayer;

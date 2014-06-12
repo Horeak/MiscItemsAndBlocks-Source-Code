@@ -1,7 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Gui;
 
 
-import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.PacketHandler;
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerGamePacketInvite;
 import cpw.mods.fml.client.FMLClientHandler;

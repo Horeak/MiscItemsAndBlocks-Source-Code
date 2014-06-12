@@ -1,8 +1,10 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
 
-import MiscItemsApi.Electric.*;
-import com.miscitems.MiscItemsAndBlocks.Items.ModItemWrench;
+import MiscItemsApi.Electric.IPowerCable;
+import MiscItemsApi.Electric.IPowerItem;
+import MiscItemsApi.Electric.IPowerTile;
+import MiscItemsApi.Electric.IWrenchAble;
 import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
 import com.miscitems.MiscItemsAndBlocks.Laser.LaserUtil;
 import net.minecraft.entity.player.EntityPlayer;

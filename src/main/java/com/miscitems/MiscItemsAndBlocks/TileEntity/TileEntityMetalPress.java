@@ -1,7 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
 import MiscItemsApi.Recipes.MetalPressRecipes;
-import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.Client.ClientMetalPressPacketUpdate;
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.PacketHandler;
 import cpw.mods.fml.common.network.NetworkRegistry;

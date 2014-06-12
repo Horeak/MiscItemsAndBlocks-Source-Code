@@ -1,11 +1,8 @@
 package com.miscitems.MiscItemsAndBlocks.Models;
 
-import com.miscitems.MiscItemsAndBlocks.Main.Main;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemDye;
 import net.minecraft.util.ResourceLocation;
 

@@ -3,7 +3,6 @@ package com.miscitems.MiscItemsAndBlocks.Items;
 import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;

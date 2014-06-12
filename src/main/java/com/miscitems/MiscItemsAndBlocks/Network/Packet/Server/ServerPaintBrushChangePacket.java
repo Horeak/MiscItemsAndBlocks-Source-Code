@@ -7,10 +7,6 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-
 public class ServerPaintBrushChangePacket implements IMessage, IMessageHandler<ServerPaintBrushChangePacket, IMessage> {
 
 	int Red;

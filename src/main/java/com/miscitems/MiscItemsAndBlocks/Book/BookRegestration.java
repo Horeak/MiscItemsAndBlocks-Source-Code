@@ -3,8 +3,6 @@ package com.miscitems.MiscItemsAndBlocks.Book;
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.Book.Pages.*;
 import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
-import com.miscitems.MiscItemsAndBlocks.Utils.Crafting;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 
 public class BookRegestration {

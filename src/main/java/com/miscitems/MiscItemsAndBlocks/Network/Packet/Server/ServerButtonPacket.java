@@ -13,10 +13,6 @@ import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-
 public class ServerButtonPacket implements IMessage, IMessageHandler<ServerButtonPacket, IMessage> {
 
 	byte ID;

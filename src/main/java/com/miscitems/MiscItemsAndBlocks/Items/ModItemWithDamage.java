@@ -1,6 +1,5 @@
 package com.miscitems.MiscItemsAndBlocks.Items;
 
-import com.google.common.collect.Multimap;
 import com.google.common.collect.Sets;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -9,12 +8,9 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
-import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeHooks;
 
 import java.util.List;
-import java.util.Set;
 
 public class ModItemWithDamage extends ItemTool{
 

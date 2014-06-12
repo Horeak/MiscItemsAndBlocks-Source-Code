@@ -4,6 +4,7 @@ import com.miscitems.MiscItemsAndBlocks.Network.Packet.Client.*;
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.*;
 import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.network.simpleimpl.SimpleChannelHandlerWrapper;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.relauncher.Side;
 
@@ -39,7 +40,6 @@ public class PacketHandler {
         Register(PacketRequestEvent.class, Side.SERVER);
         Register(PacketTileUpdate.class, Side.SERVER);
         Register(PacketTileWithItemUpdate.class, Side.SERVER);
-
 
 
 

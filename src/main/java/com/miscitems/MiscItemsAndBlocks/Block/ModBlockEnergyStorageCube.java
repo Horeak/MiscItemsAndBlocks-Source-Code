@@ -1,7 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Block;
 
 import buildcraft.api.tools.IToolWrench;
-import com.miscitems.MiscItemsAndBlocks.Items.ModItemWrench;
 import com.miscitems.MiscItemsAndBlocks.Laser.LaserUtil;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityEnergyStorageCube;

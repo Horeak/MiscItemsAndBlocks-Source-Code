@@ -1,7 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Network.Packet.Client;
 
 import com.miscitems.MiscItemsAndBlocks.Utils.InvisibilityUtils;
-import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;

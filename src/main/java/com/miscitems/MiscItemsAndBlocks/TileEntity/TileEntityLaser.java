@@ -4,7 +4,6 @@ import com.miscitems.MiscItemsAndBlocks.Items.ModItemCreativeBattery;
 import com.miscitems.MiscItemsAndBlocks.Items.ModItemPowerStorage;
 import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
 import com.miscitems.MiscItemsAndBlocks.Laser.*;
-import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.Client.ClientLaserUpdatePacket;
 import com.miscitems.MiscItemsAndBlocks.Network.Packet.PacketHandler;
 import cpw.mods.fml.relauncher.Side;
