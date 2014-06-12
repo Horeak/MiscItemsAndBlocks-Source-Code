@@ -17,35 +17,37 @@ buildscript {
 
 apply plugin: 'forge'
 
-
-
-version = "0.9.5.6"
-minecraft_version="1.7.2"
-forge_version="10.12.1.1110"
+mod_version  = "0.9.5.6"
+minecraft_version = "1.7.2"
+forge_version = "10.12.1.1110"
 
 group= "com.miscitems.MiscItemsAndBlocks" 
 archivesBaseName = "MiscItemsAndBlocks"
 
 
-
 minecraft {
-    version = minecraft_version + "-" + forge_version
-	
-	 replaceIn "com/miscitems/MiscItemsAndBlocks/Utils/Refrence.java"
-	 replace "${version}", version
+version = minecraft_version + "-" + forge_version
+
+    replaceIn "Utils/Refrence.java"
+    replace "@VERSION@", mod_version
 }
+    version = "${minecraft_version}-${mod_version}"
+
+
 processResources {
     // replace stuff in the files we want.
     from(sourceSets.main.resources.srcDirs) {
-        include 'mcmod.info'
+        include '*.info'
 
         // replaces
         expand 'version': version, 'buildnumber': "${System.getenv().BUILD_NUMBER}", 'minecraft_version': minecraft_version
     }
 
-    // copy everything else, thats we didnt do before
     from(sourceSets.main.resources.srcDirs) {
-        exclude 'mcmod.info'
-        exclude 'version.properties'
+        exclude '**/*.info'
     }
+	
+	
+	
+	
 }
