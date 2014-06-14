@@ -1,25 +1,36 @@
 package com.miscitems.MiscItemsAndBlocks.Items;
 
 import com.miscitems.MiscItemsAndBlocks.Utils.Crafting;
+import cpw.mods.fml.relauncher.ReflectionHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import sun.reflect.Reflection;
 
 import java.util.List;
 import java.util.Random;
 
+
+
 public class ModItemCrystalBlade extends ItemSword {
+
+
     public ModItemCrystalBlade() {
         super(ToolMaterial.EMERALD);
         this.setMaxDamage(20);
+
     }
 
     public boolean UseEnergy(EntityPlayer player, int Amount, ItemStack stack){
@@ -57,20 +68,16 @@ public class ModItemCrystalBlade extends ItemSword {
         }
 
         if(stack.getTagCompound() != null) {
-            if (stack.getTagCompound().getBoolean("ExtraDamage")) {
+            if (stack.getTagCompound().getBoolean("ExtraDamage"))
                 EntityHit.attackEntityFrom(DamageSource.causeMobDamage(EntityAttacker), 20);
 
-            }else if(stack.getTagCompound().getBoolean("FireDamage")) {
+
+             if(stack.getTagCompound().getBoolean("FireDamage"))
                 EntityHit.setFire(50);
 
-            }else if(stack.getTagCompound().getBoolean("Looting")) {
-                EntityHit.onDeath(DamageSource.causeMobDamage(EntityAttacker));
-                if(EntityHit.capturedDrops.size()  > 0) {
-                    int i = (new Random().nextInt(5));
-                    for (int x = 0; x < i; x++)
-                        EntityHit.worldObj.spawnEntityInWorld(EntityHit.capturedDrops.get(0));
-                }
-            }
+
+
+
         }
 
         return true;
@@ -110,24 +117,22 @@ public class ModItemCrystalBlade extends ItemSword {
     public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean par4)
     {
 
-        if(itemstack.getTagCompound() != null)
-        if(itemstack.getTagCompound().getBoolean("ExtraDamage"))
-        list.add("Upgraded: Extra Damage");
+        if(itemstack.getTagCompound() != null) {
 
-        else  if(itemstack.getTagCompound().getBoolean("FireDamage"))
-        list.add("Upgraded: Fire Damage");
+            if (itemstack.getTagCompound().getBoolean("ExtraDamage"))
+                list.add("Upgraded: Extra Damage");
 
-            else  if(itemstack.getTagCompound().getBoolean("Looting"))
-        list.add("Upgraded: Looting");
+            if (itemstack.getTagCompound().getBoolean("FireDamage"))
+                list.add("Upgraded: Fire Damage");
+
+            if (itemstack.getTagCompound().getBoolean("Looting"))
+                list.add("Upgraded: Looting");
+
+
+
+        }
     }
 
-    @SideOnly(Side.CLIENT)
-    public void getSubItems(Item item, CreativeTabs tab, List list)
-    {
-        super.getSubItems(item,tab,list);
-        list.add(Crafting.Blade_1);
-        list.add(Crafting.Blade_2);
-        list.add(Crafting.Blade_3);
-    }
+
 }
 

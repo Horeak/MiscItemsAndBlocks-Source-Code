@@ -3,6 +3,7 @@ package com.miscitems.MiscItemsAndBlocks.Block;
 import com.miscitems.MiscItemsAndBlocks.GamePart.ModBlockGamePart;
 import com.miscitems.MiscItemsAndBlocks.GamePart.TileEntityGamePart;
 import com.miscitems.MiscItemsAndBlocks.ItemBlock.*;
+import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.*;
 import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
@@ -65,7 +66,7 @@ public class ModBlocks {
 	public static ModBlockStair StoneStair;
 	public static IPlantable OrangeSapling;
 
-    public static Block CrystalOre;
+    public static Block BlueCrystalOre, GreenCrystalOre, RedCrystalOre;
 	
 	
 	public static void Init(){
@@ -206,8 +207,14 @@ public class ModBlocks {
         GhostBlock = new ModBlockGhostBlock().setCreativeTab(Main.MiscTab);
         Register(GhostBlock, "Ghost Block", TileEntityGhostBlock.class);
 
-        CrystalOre = new ModBlockCrystalOre().setCreativeTab(Main.MagicTab);
-        Register(CrystalOre, "CrystalOre");
+        BlueCrystalOre = new ModBlockCrystalOre(ModItems.BlueCrystal).setCreativeTab(Main.MagicTab).setBlockTextureName(Refrence.Mod_Id + ":BlueCrystalOre");
+        Register(BlueCrystalOre, "BlueCrystalOre");
+
+        GreenCrystalOre = new ModBlockCrystalOre(ModItems.GreenCrystal).setCreativeTab(Main.MagicTab).setBlockTextureName(Refrence.Mod_Id + ":GreenCrystalOre");
+        Register(GreenCrystalOre, "GreenCrystalOre");
+
+        RedCrystalOre = new ModBlockCrystalOre(ModItems.RedCrystal).setCreativeTab(Main.MagicTab).setBlockTextureName(Refrence.Mod_Id + ":RedCrystalOre");
+        Register(RedCrystalOre, "RedCrystalOre");
 
 
 

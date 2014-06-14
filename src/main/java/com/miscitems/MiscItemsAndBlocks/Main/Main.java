@@ -219,6 +219,7 @@ import java.util.Set;
         	MinecraftForge.EVENT_BUS.register(new BoneMealEvent());
         	MinecraftForge.EVENT_BUS.register(new DisarmStickEvent());
         	MinecraftForge.EVENT_BUS.register(new GhostBlockBreakEvent());
+            FMLCommonHandler.instance().bus().register(new OnEntityDeathCrystalBlade());
 
             FMLCommonHandler.instance().bus().register(ServerProxy.tickHandlerServer);
 

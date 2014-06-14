@@ -1,18 +1,18 @@
-package com.miscitems.MiscItemsAndBlocks.Utils;
+package com.miscitems.MiscItemsAndBlocks.Utils.RecipeUtils;
 
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.world.World;
 
-public class ItemRepairRecipe implements IRecipe
+public class ItemRechargeRecipe implements IRecipe
 {
     ItemStack repairingItem;
     ItemStack useItem;
 
     int Amount, Max;
 
-    public ItemRepairRecipe(int RepairAmount, int MinDamage, ItemStack repairingItem, ItemStack useItem)
+    public ItemRechargeRecipe(int RepairAmount, int MinDamage, ItemStack repairingItem, ItemStack useItem)
     {
         this.repairingItem = repairingItem.copy();
         this.repairingItem.setItemDamage(this.repairingItem.getMaxDamage());
@@ -53,8 +53,6 @@ public class ItemRepairRecipe implements IRecipe
             }
             if (countuseItem > 0 && foundrepairingItem)
             {
-
-
                 return true;
             }
         }
@@ -99,7 +97,6 @@ public class ItemRepairRecipe implements IRecipe
     @Override
     public int getRecipeSize ()
     {
-        // TODO Auto-generated method stub
         return 9;
     }
 
