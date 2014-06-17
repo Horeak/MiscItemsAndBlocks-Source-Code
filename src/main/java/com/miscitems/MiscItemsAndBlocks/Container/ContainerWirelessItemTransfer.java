@@ -1,8 +1,8 @@
 package com.miscitems.MiscItemsAndBlocks.Container;
 
-import com.miscitems.MiscItemsAndBlocks.Slots.ModSlotChipSlot;
-import com.miscitems.MiscItemsAndBlocks.Slots.ModSlotChipSlotOut;
-import com.miscitems.MiscItemsAndBlocks.Slots.ModSlotOutput;
+import com.miscitems.MiscItemsAndBlocks.GuiObjects.Slots.ModSlotChipSlot;
+import com.miscitems.MiscItemsAndBlocks.GuiObjects.Slots.ModSlotChipSlotOut;
+import com.miscitems.MiscItemsAndBlocks.GuiObjects.Slots.ModSlotOutput;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityWirelessItemTrans;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

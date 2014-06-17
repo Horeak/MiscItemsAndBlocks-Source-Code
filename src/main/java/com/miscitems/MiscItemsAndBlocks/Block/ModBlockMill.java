@@ -2,7 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.Block;
 
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMill;
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 
 public class ModBlockMill extends BlockContainer{
 
-	protected ModBlockMill() {
+    public ModBlockMill() {
 		super(Material.rock);
 		this.setHardness(3);
 	}
@@ -31,9 +31,9 @@ public class ModBlockMill extends BlockContainer{
     public void registerBlockIcons(IIconRegister par1IconRegister)
     {
     	
-        this.blockIcon = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "MillTop");
-        this.IconTop = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "MillTop");
-        this.IconSide = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "MillSide");
+        this.blockIcon = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "MillTop");
+        this.IconTop = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "MillTop");
+        this.IconSide = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "MillSide");
         this.IconBottom = par1IconRegister.registerIcon("furnace_top");
         
     }

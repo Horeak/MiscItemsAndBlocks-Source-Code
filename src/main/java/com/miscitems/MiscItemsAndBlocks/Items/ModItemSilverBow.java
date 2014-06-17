@@ -2,7 +2,8 @@ package com.miscitems.MiscItemsAndBlocks.Items;
 
 import com.miscitems.MiscItemsAndBlocks.Entity.EntitySilverArrow;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Main.ModItems;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -13,13 +14,10 @@ import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 import net.minecraft.util.IIcon;
-import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
-
-import java.util.List;
 
 public class ModItemSilverBow extends ItemTool
 {
@@ -152,10 +150,10 @@ private IIcon _icon4;
     public void registerIcons(IIconRegister par1IconRegister)
     {
     	
-    	_icon1 = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "SilverBow" + "_normal");
-    	_icon2 = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "SilverBow" + "_1");
-    	_icon3 = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "SilverBow" + "_2");
-    	_icon4 = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "SilverBow" + "_3");
+    	_icon1 = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "SilverBow" + "_normal");
+    	_icon2 = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "SilverBow" + "_1");
+    	_icon3 = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "SilverBow" + "_2");
+    	_icon4 = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "SilverBow" + "_3");
     	
     	itemIcon = _icon1;
     }
@@ -196,12 +194,5 @@ public ItemStack onEaten(ItemStack stack, World world, EntityPlayer player)
 		
 		
 }
-	
-	
-    @Override
-    public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean par4)
-    {
-            list.add("");
-            list.add(StatCollector.translateToLocal("items.desc.silverbow"));
-    }
+
 }

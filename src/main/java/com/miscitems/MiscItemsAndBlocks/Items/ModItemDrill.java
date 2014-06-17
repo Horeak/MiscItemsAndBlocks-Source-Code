@@ -1,8 +1,8 @@
 package com.miscitems.MiscItemsAndBlocks.Items;
 
 import com.google.common.collect.Sets;
-import com.miscitems.MiscItemsAndBlocks.Utils.ChatMessageHandler;
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.Handlers.ChatMessageHandler;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -39,7 +39,7 @@ public class ModItemDrill extends ModItemPowerTool{
     
 	
 	
-	protected ModItemDrill(ToolMaterial par2) {
+	public ModItemDrill(ToolMaterial par2) {
 		super(0, par2, Mineable);
 		this.setMaxStackSize(1);
 		this.setMaxDamage(MaxCharge);
@@ -102,11 +102,11 @@ public class ModItemDrill extends ModItemPowerTool{
 	   @SideOnly(Side.CLIENT)
 	   public void registerIcons(IIconRegister par1IconRegister)
 	   {
-		   this.Drill = par1IconRegister.registerIcon(Refrence.Mod_Id + ":Drill");
-		   this.DrillGreen = par1IconRegister.registerIcon(Refrence.Mod_Id + ":DrillGreen");
-		   this.DrillYellow = par1IconRegister.registerIcon(Refrence.Mod_Id + ":DrillYellow");
-		   this.DrillOrange = par1IconRegister.registerIcon(Refrence.Mod_Id + ":DrillOrange");
-		   this.DrillRed = par1IconRegister.registerIcon(Refrence.Mod_Id + ":DrillRed");
+		   this.Drill = par1IconRegister.registerIcon(Reference.Mod_Id + ":Drill");
+		   this.DrillGreen = par1IconRegister.registerIcon(Reference.Mod_Id + ":DrillGreen");
+		   this.DrillYellow = par1IconRegister.registerIcon(Reference.Mod_Id + ":DrillYellow");
+		   this.DrillOrange = par1IconRegister.registerIcon(Reference.Mod_Id + ":DrillOrange");
+		   this.DrillRed = par1IconRegister.registerIcon(Reference.Mod_Id + ":DrillRed");
 		   
 	   }
 	   

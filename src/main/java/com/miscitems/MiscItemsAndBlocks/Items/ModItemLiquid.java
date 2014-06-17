@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Items;
 
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -37,10 +37,10 @@ public class ModItemLiquid extends Item{
     public void registerIcons(IIconRegister par1IconRegister)
     {
     	
-        this.Textures[0] = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "AppleJuice");
-        this.Textures[2] = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "OrangeJuice");
-        this.Textures[1] = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "TomatoSauce");
-        this.Textures[3] = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "CarrotJuice");
+        this.Textures[0] = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "AppleJuice");
+        this.Textures[2] = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "OrangeJuice");
+        this.Textures[1] = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "TomatoSauce");
+        this.Textures[3] = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "CarrotJuice");
     }
     
     public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
@@ -143,7 +143,6 @@ public class ModItemLiquid extends Item{
             int meta = itemstack.getItemDamage();
             
             if(meta == 0){list.add(StatCollector.translateToLocal("items.desc.liquid.defaultdesc")); list.add(StatCollector.translateToLocal("items.desc.liquid.1_effect"));}
-            if(meta == 1)list.add(StatCollector.translateToLocal("items.desc.liquid.2"));
             if(meta == 2){list.add(StatCollector.translateToLocal("items.desc.liquid.defaultdesc")); list.add(StatCollector.translateToLocal("items.desc.liquid.3_effect"));}
             if(meta == 3){list.add(StatCollector.translateToLocal("items.desc.liquid.defaultdesc")); list.add(StatCollector.translateToLocal("items.desc.liquid.4_effect"));}
     }

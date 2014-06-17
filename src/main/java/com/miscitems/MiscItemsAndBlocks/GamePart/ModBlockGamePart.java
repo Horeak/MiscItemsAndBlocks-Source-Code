@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.GamePart;
 
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
+import com.miscitems.MiscItemsAndBlocks.Main.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;

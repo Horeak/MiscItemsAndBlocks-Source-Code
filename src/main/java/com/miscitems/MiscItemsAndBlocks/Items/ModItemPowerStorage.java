@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Items;
 
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -28,8 +28,6 @@ public abstract class ModItemPowerStorage extends ModItemPowerTool{
     @Override
     public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean par4)
     {
-    	list.add(StatCollector.translateToLocal("items.desc.powerstorage.1"));
-    	list.add(StatCollector.translateToLocal("items.desc.powerstorage.2"));
     	int Damage = itemstack.getMaxDamage() - itemstack.getItemDamage();
     	int MaxDamage = itemstack.getMaxDamage();
     	
@@ -118,10 +116,10 @@ public abstract class ModItemPowerStorage extends ModItemPowerTool{
     public void registerIcons(IIconRegister par1IconRegister)
     {
 
-        Charge_1 = par1IconRegister.registerIcon(Refrence.Mod_Id + ":B_1");
-        Charge_2 = par1IconRegister.registerIcon(Refrence.Mod_Id + ":B_2");
-        Charge_3 = par1IconRegister.registerIcon(Refrence.Mod_Id + ":B_3");
-        Charge_4 = par1IconRegister.registerIcon(Refrence.Mod_Id + ":B_4");
+        Charge_1 = par1IconRegister.registerIcon(Reference.Mod_Id + ":B_1");
+        Charge_2 = par1IconRegister.registerIcon(Reference.Mod_Id + ":B_2");
+        Charge_3 = par1IconRegister.registerIcon(Reference.Mod_Id + ":B_3");
+        Charge_4 = par1IconRegister.registerIcon(Reference.Mod_Id + ":B_4");
 
 
     }

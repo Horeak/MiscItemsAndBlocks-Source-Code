@@ -8,13 +8,12 @@
  */
 package buildcraft.api.blueprints;
 
-import java.util.LinkedList;
-
+import buildcraft.api.core.IInvSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-import buildcraft.api.core.IInvSlot;
+import java.util.LinkedList;
 
 /**
  * A schematic is a piece of a blueprint. It allows to stock blocks or entities

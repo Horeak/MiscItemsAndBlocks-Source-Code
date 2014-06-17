@@ -1,6 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Block;
 
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Main.ModBlocks;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -17,7 +18,7 @@ import java.util.Random;
 
 public class ModBlockOrangeLog extends BlockRotatedPillar {
 
-	protected ModBlockOrangeLog() {
+    public ModBlockOrangeLog() {
 		super(Material.wood);
 		this.setStepSound(soundTypeWood);
 		this.setHardness(0.4F);
@@ -94,9 +95,9 @@ public class ModBlockOrangeLog extends BlockRotatedPillar {
     public void registerBlockIcons(IIconRegister par1IconRegister)
     {
 
-    		tree_top = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "OrangeLog_top");
+    		tree_top = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "OrangeLog_top");
 
-    		tree_side = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "OrangeLog");
+    		tree_side = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "OrangeLog");
     	
     		tree_sides[0] = tree_side;
     		tree_sides[1] = tree_side;

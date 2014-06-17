@@ -1,19 +1,19 @@
 package com.miscitems.MiscItemsAndBlocks.Main;
 
 import com.google.common.collect.Sets;
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.Book.BookRegestration;
 import com.miscitems.MiscItemsAndBlocks.Book.SmallFontRenderer;
 import com.miscitems.MiscItemsAndBlocks.Entity.EntityPowerArrow;
 import com.miscitems.MiscItemsAndBlocks.Entity.EntitySilverArrow;
 import com.miscitems.MiscItemsAndBlocks.Event.*;
 import com.miscitems.MiscItemsAndBlocks.Gui.GuiHandler;
-import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
 import com.miscitems.MiscItemsAndBlocks.Laser.DefaultLaser;
 import com.miscitems.MiscItemsAndBlocks.Laser.LaserRegistry;
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.PacketHandler;
+import com.miscitems.MiscItemsAndBlocks.Network.PacketHandler;
 import com.miscitems.MiscItemsAndBlocks.Proxies.ServerProxy;
-import com.miscitems.MiscItemsAndBlocks.Utils.*;
+import com.miscitems.MiscItemsAndBlocks.Utils.Crafting;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Messages;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import com.miscitems.MiscItemsAndBlocks.WorldGen.ModWorldGenerator;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
@@ -44,12 +44,12 @@ import java.io.File;
 import java.util.Set;
 
 
-	@Mod(modid = Refrence.Mod_Id, name = Refrence.Mod_Name, version = Refrence.Version)
+	@Mod(modid = Reference.Mod_Id, name = Reference.Mod_Name, version = Reference.Version)
 	public class Main 
 	{
 
 	
-		@Instance(Refrence.Mod_Id)
+		@Instance(Reference.Mod_Id)
 		public static Main instance = new Main();
     
 		@SidedProxy(clientSide = "com.miscitems.MiscItemsAndBlocks.Proxies.ClientProxy", serverSide = "com.miscitems.MiscItemsAndBlocks.Proxies.ServerProxy")
@@ -59,6 +59,9 @@ import java.util.Set;
         public static Set EmptyToolSet = Sets.newHashSet();
 
 
+
+        public static boolean SpawnParticles;
+        public static boolean AllowPowerArmorEffects;
     
         public static final org.apache.logging.log4j.Logger logger = LogManager.getLogger("MiscItems");
 
@@ -147,16 +150,19 @@ import java.util.Set;
 
         	try
         	{
-        
-        		ModConfig.Init(config);
+
+                config.load();
 
                 HDTextures = !config.get("Client Settings", "Should HD textures be used for some blocks?", true).getBoolean(true);
+
+                SpawnParticles = config.get("Client Settings", "Spawn particles?", true).getBoolean(true);
+                AllowPowerArmorEffects = config.get("Server Settings", "Enable Powerarmor effects?", true).getBoolean(true);
     	
         	} 
         	
         	catch(Exception ex)
         	{
-        		logger.log(Level.ERROR, ex.getMessage(), Refrence.Mod_Id + ": Error encountered while loading config file.");
+        		logger.log(Level.ERROR, ex.getMessage(), Reference.Mod_Id + ": Error encountered while loading config file.");
         	} 
         	finally
         	{
@@ -219,7 +225,6 @@ import java.util.Set;
         	MinecraftForge.EVENT_BUS.register(new BoneMealEvent());
         	MinecraftForge.EVENT_BUS.register(new DisarmStickEvent());
         	MinecraftForge.EVENT_BUS.register(new GhostBlockBreakEvent());
-            FMLCommonHandler.instance().bus().register(new OnEntityDeathCrystalBlade());
 
             FMLCommonHandler.instance().bus().register(ServerProxy.tickHandlerServer);
 

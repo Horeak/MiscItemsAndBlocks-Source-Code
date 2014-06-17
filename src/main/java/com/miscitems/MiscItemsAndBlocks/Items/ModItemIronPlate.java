@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Items;
 
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -25,9 +25,9 @@ public class ModItemIronPlate extends Item{
     public void registerIcons(IIconRegister par1IconRegister)
     {
     	
-        this.Textures[0] = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "IronPlate");
-        this.Textures[1] = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "RawIronPlate");
-        this.Textures[2] = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "HardIronPlate");
+        this.Textures[0] = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "IronPlate");
+        this.Textures[1] = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "RawIronPlate");
+        this.Textures[2] = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "HardIronPlate");
 
     }
     

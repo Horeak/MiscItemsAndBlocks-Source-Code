@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.ItemBlock;
 
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -62,10 +62,10 @@ public class ModItemBlockGamePiece extends ItemBlock{
     public void registerIcons(IIconRegister par1IconRegister)
     {
 
-    	Blank = par1IconRegister.registerIcon(Refrence.Mod_Id + ":BlankPillar");
-    	Red = par1IconRegister.registerIcon(Refrence.Mod_Id + ":RedPillar");
-    	Blue = par1IconRegister.registerIcon(Refrence.Mod_Id + ":BluePillar");
-    	Green = par1IconRegister.registerIcon(Refrence.Mod_Id + ":GreenPillar");
-    	Yellow = par1IconRegister.registerIcon(Refrence.Mod_Id + ":YellowPillar");
+    	Blank = par1IconRegister.registerIcon(Reference.Mod_Id + ":BlankPillar");
+    	Red = par1IconRegister.registerIcon(Reference.Mod_Id + ":RedPillar");
+    	Blue = par1IconRegister.registerIcon(Reference.Mod_Id + ":BluePillar");
+    	Green = par1IconRegister.registerIcon(Reference.Mod_Id + ":GreenPillar");
+    	Yellow = par1IconRegister.registerIcon(Reference.Mod_Id + ":YellowPillar");
     }
 }

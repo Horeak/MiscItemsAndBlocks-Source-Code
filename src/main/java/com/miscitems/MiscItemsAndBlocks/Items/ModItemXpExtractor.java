@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Items;
 
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -10,10 +10,7 @@ import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-
-import java.util.List;
 
 public class ModItemXpExtractor extends Item{
 
@@ -57,9 +54,9 @@ private IIcon _icon3;
     public void registerIcons(IIconRegister par1IconRegister)
     {
     	
-    	_icon1 = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "XpExtractor" + ".1");
-    	_icon2 = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "XpExtractor" + ".2");
-    	_icon3 = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "XpExtractor" + ".3");
+    	_icon1 = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "XpExtractor" + ".1");
+    	_icon2 = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "XpExtractor" + ".2");
+    	_icon3 = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "XpExtractor" + ".3");
     	
     	itemIcon = _icon1;
     }
@@ -121,15 +118,7 @@ public int getMaxItemUseDuration(ItemStack stack)
 {
 return 32;
 }
-	
-    @SuppressWarnings("unchecked")
-	@Override
-    public void addInformation(ItemStack itemstack, EntityPlayer player, @SuppressWarnings("rawtypes") List list, boolean par4)
-    {
-            list.add(StatCollector.translateToLocal("items.desc.xpextractor.1") + ": ");
-            list.add("1." +  StatCollector.translateToLocal("items.desc.xpextractor.2"));
-            list.add("2." + StatCollector.translateToLocal("items.desc.xpextractor.3"));
-    }
+
     
     
     

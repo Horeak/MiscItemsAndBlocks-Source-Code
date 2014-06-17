@@ -2,10 +2,10 @@ package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
 import com.miscitems.MiscItemsAndBlocks.Items.ModItemCreativeBattery;
 import com.miscitems.MiscItemsAndBlocks.Items.ModItemPowerStorage;
-import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
 import com.miscitems.MiscItemsAndBlocks.Laser.*;
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.Client.ClientLaserUpdatePacket;
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.PacketHandler;
+import com.miscitems.MiscItemsAndBlocks.Main.ModItems;
+import com.miscitems.MiscItemsAndBlocks.Network.Client.ClientLaserUpdatePacket;
+import com.miscitems.MiscItemsAndBlocks.Network.PacketHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.Entity;

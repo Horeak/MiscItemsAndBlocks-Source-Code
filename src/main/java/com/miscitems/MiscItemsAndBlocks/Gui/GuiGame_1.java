@@ -1,9 +1,9 @@
 package com.miscitems.MiscItemsAndBlocks.Gui;
 
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.Client.ClientGamePacketRestart;
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.PacketHandler;
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerGamePacketChange;
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerGamePacketClosed;
+import com.miscitems.MiscItemsAndBlocks.Network.Client.ClientGamePacketRestart;
+import com.miscitems.MiscItemsAndBlocks.Network.PacketHandler;
+import com.miscitems.MiscItemsAndBlocks.Network.Server.ServerGamePacketChange;
+import com.miscitems.MiscItemsAndBlocks.Network.Server.ServerGamePacketClosed;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;

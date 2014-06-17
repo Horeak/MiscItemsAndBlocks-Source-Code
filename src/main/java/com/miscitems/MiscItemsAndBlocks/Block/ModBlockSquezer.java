@@ -2,7 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.Block;
 
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntitySquezer;
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -36,9 +36,9 @@ public class ModBlockSquezer extends BlockContainer{
     public void registerBlockIcons(IIconRegister par1IconRegister)
     {
     	
-        this.IconTop = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "SquezerTop");
+        this.IconTop = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "SquezerTop");
         this.IconSide = par1IconRegister.registerIcon("furnace_side");
-        this.IconFront = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "SquezerFront");
+        this.IconFront = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "SquezerFront");
         this.IconBottom = par1IconRegister.registerIcon("furnace_top");
 
         

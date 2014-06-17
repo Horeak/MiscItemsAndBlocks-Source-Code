@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.GuiObjects;
 
-import com.miscitems.MiscItemsAndBlocks.Utils.ChatMessageHandler;
+import com.miscitems.MiscItemsAndBlocks.Utils.Handlers.ChatMessageHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.util.StatCollector;

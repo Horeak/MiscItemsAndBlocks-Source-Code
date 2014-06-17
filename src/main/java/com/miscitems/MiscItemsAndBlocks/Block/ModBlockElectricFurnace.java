@@ -2,7 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.Block;
 
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityElectricFurnace;
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -25,7 +25,7 @@ import java.util.Random;
 
 public class ModBlockElectricFurnace extends BlockContainer{
 
-	protected ModBlockElectricFurnace() {
+    public ModBlockElectricFurnace() {
 		super(Material.iron);
 	}
 	
@@ -180,9 +180,9 @@ public class ModBlockElectricFurnace extends BlockContainer{
 	   public void registerBlockIcons(IIconRegister par1IconRegister)
 	    {
 	    	
-	        this.IconSide = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "ElFurnaceSide" + (Main.HDTextures ? "_16" : ""));
-	        this.IconFront = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "ElFurnaceFront" + (Main.HDTextures ? "_16" : ""));
-	        this.IconFrontLit = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "ElFurnaceFrontLit" + (Main.HDTextures ? "_16" : ""));
+	        this.IconSide = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "ElFurnaceSide" + (Main.HDTextures ? "_16" : ""));
+	        this.IconFront = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "ElFurnaceFront" + (Main.HDTextures ? "_16" : ""));
+	        this.IconFrontLit = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "ElFurnaceFrontLit" + (Main.HDTextures ? "_16" : ""));
 	        
 	    }
 	    

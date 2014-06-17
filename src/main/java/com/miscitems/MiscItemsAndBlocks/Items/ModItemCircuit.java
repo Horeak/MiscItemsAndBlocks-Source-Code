@@ -1,15 +1,13 @@
 package com.miscitems.MiscItemsAndBlocks.Items;
 
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-import net.minecraft.util.StatCollector;
 
 import java.util.List;
 
@@ -26,23 +24,11 @@ public class ModItemCircuit extends Item{
 	   @SideOnly(Side.CLIENT)
 	   public void registerIcons(IIconRegister par1IconRegister)
 	   {
-		   this.Icon1 = par1IconRegister.registerIcon(Refrence.Mod_Id + ":Circuit");
-		   this.Icon2 = par1IconRegister.registerIcon(Refrence.Mod_Id + ":AdvancedCircuit");
+		   this.Icon1 = par1IconRegister.registerIcon(Reference.Mod_Id + ":Circuit");
+		   this.Icon2 = par1IconRegister.registerIcon(Reference.Mod_Id + ":AdvancedCircuit");
 		   
 	   }
-	   
-	    @SuppressWarnings({ "unchecked", "rawtypes" })
-		@Override
-	    public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean par4)
-	    {
-	    	
-	    	int meta = itemstack.getItemDamage();
-	    	if(meta == 0)
-	            list.add(StatCollector.translateToLocal("items.desc.circuit.basic"));
-	    	
-	    	if(meta == 1)
-	    		list.add(StatCollector.translateToLocal("items.desc.circuit.advanced"));
-	    }
+
 	    
 	    
 	    

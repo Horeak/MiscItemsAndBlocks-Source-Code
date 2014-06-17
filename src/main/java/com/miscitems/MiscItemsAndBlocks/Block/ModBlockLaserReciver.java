@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 
 public class ModBlockLaserReciver extends BlockContainer{
 
-	protected ModBlockLaserReciver() {
+    public ModBlockLaserReciver() {
 		super(Material.iron);
 		this.setHardness(1F);
 	}

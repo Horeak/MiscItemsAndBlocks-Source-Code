@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Items;
 
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -18,7 +18,7 @@ public class ModItemBattery extends ModItemPowerStorage{
 	   {
            super.registerIcons(par1IconRegister);
 		   
-		   itemIcon = par1IconRegister.registerIcon(Refrence.Mod_Id + ":Battery");
+		   itemIcon = par1IconRegister.registerIcon(Reference.Mod_Id + ":Battery");
 
 		   
 	   }

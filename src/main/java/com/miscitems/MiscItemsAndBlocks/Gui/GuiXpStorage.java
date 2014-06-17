@@ -3,10 +3,10 @@ package com.miscitems.MiscItemsAndBlocks.Gui;
 
 import com.miscitems.MiscItemsAndBlocks.Container.ContainerXpStorage;
 import com.miscitems.MiscItemsAndBlocks.GuiObjects.GuiTipButton;
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.PacketHandler;
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerButtonPacket;
+import com.miscitems.MiscItemsAndBlocks.Network.PacketHandler;
+import com.miscitems.MiscItemsAndBlocks.Network.Server.ServerButtonPacket;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityXpStorage;
-import com.miscitems.MiscItemsAndBlocks.Utils.Messages;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Messages;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiTextField;

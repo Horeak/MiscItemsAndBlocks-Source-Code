@@ -1,8 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Items;
 
 import MiscItemsApi.Electric.IWrenchAble;
-import buildcraft.api.tools.IToolWrench;
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -19,7 +18,7 @@ public class ModItemWrench extends Item {
 
 	   public void registerIcons(IIconRegister par1IconRegister)
 	   {
-		   this.itemIcon = par1IconRegister.registerIcon(Refrence.Mod_Id + ":Wrench");
+		   this.itemIcon = par1IconRegister.registerIcon(Reference.Mod_Id + ":Wrench");
 		   
 	   }
 	   

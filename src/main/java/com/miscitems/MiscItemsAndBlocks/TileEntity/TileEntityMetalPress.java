@@ -1,8 +1,8 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
 import MiscItemsApi.Recipes.MetalPressRecipes;
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.Client.ClientMetalPressPacketUpdate;
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.PacketHandler;
+import com.miscitems.MiscItemsAndBlocks.Network.Client.ClientMetalPressPacketUpdate;
+import com.miscitems.MiscItemsAndBlocks.Network.PacketHandler;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;

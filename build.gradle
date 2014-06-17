@@ -28,7 +28,7 @@ archivesBaseName = "MiscItemsAndBlocks"
 minecraft {
 version = minecraft_version + "-" + forge_version
 
-    replaceIn "Utils/Refrence.java"
+    replaceIn "Utils/Reference.java"
     replace "@VERSION@", mod_version
 }
     version = "${minecraft_version}-${mod_version}"

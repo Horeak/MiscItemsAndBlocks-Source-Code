@@ -3,7 +3,7 @@ package com.miscitems.MiscItemsAndBlocks.Block;
 import com.miscitems.MiscItemsAndBlocks.Gui.GuiHandler;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityComputer;
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -19,7 +19,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 public class ModBlockComputer extends BlockContainer{
 
-	protected ModBlockComputer() {
+    public ModBlockComputer() {
 		super(Material.iron);
 		this.setHardness(1);
 		this.setBlockBounds(0, 0, 0, 1, 0.84F, 1);
@@ -49,7 +49,7 @@ public class ModBlockComputer extends BlockContainer{
 	    }
 	   
 	    public void registerBlockIcons(IIconRegister icon) {
-	        this.blockIcon = icon.registerIcon(Refrence.Mod_Id + ":Computer");
+	        this.blockIcon = icon.registerIcon(Reference.Mod_Id + ":Computer");
 	}
 	   
 		public boolean shouldSideBeRendered(IBlockAccess iblockaccess, int i, int j, int k, int l)

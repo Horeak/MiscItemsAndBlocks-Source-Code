@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Container;
 
-import com.miscitems.MiscItemsAndBlocks.Slots.ModSlotArmor;
-import com.miscitems.MiscItemsAndBlocks.Slots.SlotCraftingInv;
+import com.miscitems.MiscItemsAndBlocks.GuiObjects.Slots.ModSlotArmor;
+import com.miscitems.MiscItemsAndBlocks.GuiObjects.Slots.SlotCraftingInv;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityWorktable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;

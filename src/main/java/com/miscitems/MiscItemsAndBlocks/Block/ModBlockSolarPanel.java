@@ -2,7 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.Block;
 
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntitySolarPanel;
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -18,8 +18,8 @@ public class ModBlockSolarPanel extends BlockContainer{
 
 	public IIcon TopIcon;
 	public IIcon SideIcon;
-	
-	protected ModBlockSolarPanel() {
+
+    public ModBlockSolarPanel() {
 		super(Material.iron);
 		this.setHardness(2);
 	}
@@ -35,8 +35,8 @@ public class ModBlockSolarPanel extends BlockContainer{
 	   @SideOnly(Side.CLIENT)
 	   public void registerBlockIcons(IIconRegister par1IconRegister)
 	   {
-		   this.TopIcon = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "SolarPanelTop" + (Main.HDTextures ? "_16" : ""));
-		   this.SideIcon = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "ModuleBlank" + (Main.HDTextures ? "_16" : ""));
+		   this.TopIcon = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "SolarPanelTop" + (Main.HDTextures ? "_16" : ""));
+		   this.SideIcon = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "ModuleBlank" + (Main.HDTextures ? "_16" : ""));
 		   
 	   }
 	   

@@ -3,7 +3,7 @@ package com.miscitems.MiscItemsAndBlocks.Block;
 import com.miscitems.MiscItemsAndBlocks.Laser.LaserUtil;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLaser;
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -43,11 +43,11 @@ return new TileEntityLaser();
 @Override
 @SideOnly(Side.CLIENT)
 public void registerBlockIcons(IIconRegister iconRegister) {
-this.frontIconoff = iconRegister.registerIcon(Refrence.Mod_Id + ":LaserFront_off");
-this.sideIconoff = iconRegister.registerIcon(Refrence.Mod_Id + ":LaserSide_off");
+this.frontIconoff = iconRegister.registerIcon(Reference.Mod_Id + ":LaserFront_off");
+this.sideIconoff = iconRegister.registerIcon(Reference.Mod_Id + ":LaserSide_off");
 
-this.frontIconon = iconRegister.registerIcon(Refrence.Mod_Id + ":LaserFront_on");
-this.sideIconon = iconRegister.registerIcon(Refrence.Mod_Id + ":LaserSide_on");
+this.frontIconon = iconRegister.registerIcon(Reference.Mod_Id + ":LaserFront_on");
+this.sideIconon = iconRegister.registerIcon(Reference.Mod_Id + ":LaserSide_on");
 }
 
 @Override

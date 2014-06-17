@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Block;
 
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -18,7 +18,7 @@ public class ModBlockSilverOre extends Block{
 	   @SideOnly(Side.CLIENT)
 	   public void registerBlockIcons(IIconRegister par1IconRegister)
 	   {
-		   this.blockIcon = par1IconRegister.registerIcon(Refrence.Mod_Id + ":SilverOre");
+		   this.blockIcon = par1IconRegister.registerIcon(Reference.Mod_Id + ":SilverOre");
 		   
 	   }
 	   

@@ -2,7 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.Items;
 
 import com.miscitems.MiscItemsAndBlocks.Entity.EntityPowerArrow;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -144,10 +144,10 @@ private IIcon _icon4;
 	    public void registerIcons(IIconRegister par1IconRegister)
 	    {
 	    	
-	    	_icon1 = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "ElBow" + "_normal");
-	    	_icon2 = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "ElBow" + "_1");
-	    	_icon3 = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "ElBow" + "_2");
-	    	_icon4 = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "ElBow" + "_3");
+	    	_icon1 = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "ElBow" + "_normal");
+	    	_icon2 = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "ElBow" + "_1");
+	    	_icon3 = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "ElBow" + "_2");
+	    	_icon4 = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "ElBow" + "_3");
 	    	
 	    	itemIcon = _icon1;
 	    }
@@ -194,7 +194,6 @@ private IIcon _icon4;
 		@Override
 	    public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean par4)
 	    {
-	    	list.add(StatCollector.translateToLocal("items.desc.electricbow"));
 	    	int Damage = itemstack.getMaxDamage() - itemstack.getItemDamage();
 	    	
 	    	list.add(StatCollector.translateToLocal("words.power") + ": " + Damage);

@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Items;
 
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.Entity;
@@ -26,7 +26,7 @@ public class ModItemInfoScreenHelmet extends ModItemElArmor{
 	    public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	    {
 	    	
-	    		return Refrence.Mod_Id + ":" + "textures/models/armor/InfoScreenHelmet_layer_1.png";
+	    		return Reference.Mod_Id + ":" + "textures/models/armor/InfoScreenHelmet_layer_1.png";
 
 	    		
 
@@ -38,10 +38,6 @@ public class ModItemInfoScreenHelmet extends ModItemElArmor{
 	    @Override
 	    public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean par4)
 	    {
-			list.add(StatCollector.translateToLocal("items.desc.infoscreen.1"));
-			list.add(StatCollector.translateToLocal("items.desc.infoscreen.2"));
-			list.add(StatCollector.translateToLocal("items.desc.infoscreen.3"));
-			list.add(StatCollector.translateToLocal("items.desc.infoscreen.4"));
 	    	int i = itemstack.getMaxDamage() - itemstack.getItemDamage();
 	    	
 

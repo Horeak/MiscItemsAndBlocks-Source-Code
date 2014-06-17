@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Block;
 
-import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Main.ModItems;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -64,11 +64,11 @@ public class ModBlockTomatoPlant extends BlockCrops {
 	   public void registerBlockIcons(IIconRegister par1IconRegister)
 	   {
 		   
-		   IconArray[0] = par1IconRegister.registerIcon(Refrence.Mod_Id + ":TomatoPlant0");
-		   IconArray[1] = par1IconRegister.registerIcon(Refrence.Mod_Id + ":TomatoPlant1");
-		   IconArray[2] = par1IconRegister.registerIcon(Refrence.Mod_Id + ":TomatoPlant2");
-		   IconArray[3] = par1IconRegister.registerIcon(Refrence.Mod_Id + ":TomatoPlant3");
-		   IconArray[4] = par1IconRegister.registerIcon(Refrence.Mod_Id + ":TomatoPlant4");
+		   IconArray[0] = par1IconRegister.registerIcon(Reference.Mod_Id + ":TomatoPlant0");
+		   IconArray[1] = par1IconRegister.registerIcon(Reference.Mod_Id + ":TomatoPlant1");
+		   IconArray[2] = par1IconRegister.registerIcon(Reference.Mod_Id + ":TomatoPlant2");
+		   IconArray[3] = par1IconRegister.registerIcon(Reference.Mod_Id + ":TomatoPlant3");
+		   IconArray[4] = par1IconRegister.registerIcon(Reference.Mod_Id + ":TomatoPlant4");
 		   
 		   
 		   

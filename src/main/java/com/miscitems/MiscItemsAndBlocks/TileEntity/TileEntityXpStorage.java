@@ -11,6 +11,7 @@ public class TileEntityXpStorage extends TileEntity implements IInventory{
 	
 	public int XpAmount;
 	public EntityPlayer player;
+    public boolean GuiOpen = false;
 	
 	
 	

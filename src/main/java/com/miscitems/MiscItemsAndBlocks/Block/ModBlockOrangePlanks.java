@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Block;
 
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -16,7 +16,7 @@ public class ModBlockOrangePlanks extends Block{
     public void registerBlockIcons(IIconRegister par1IconRegister)
     {
 
-    	this.blockIcon = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "OrangePlanks");
+    	this.blockIcon = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "OrangePlanks");
 
         
     }

@@ -1,8 +1,8 @@
 package com.miscitems.MiscItemsAndBlocks.Gui;
 
 import com.miscitems.MiscItemsAndBlocks.Container.ContainerChatBlock;
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.PacketHandler;
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerChatMessagePacket;
+import com.miscitems.MiscItemsAndBlocks.Network.PacketHandler;
+import com.miscitems.MiscItemsAndBlocks.Network.Server.ServerChatMessagePacket;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityComputer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiTextField;

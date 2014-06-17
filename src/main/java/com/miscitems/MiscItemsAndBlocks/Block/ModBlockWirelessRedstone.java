@@ -2,7 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.Block;
 
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityWirelessRedstone;
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -22,8 +22,8 @@ public class ModBlockWirelessRedstone extends BlockContainer{
 	IIcon IconSide;
 	IIcon IconOn;
 	IIcon IconOff;
-	
-	protected ModBlockWirelessRedstone() {
+
+    public ModBlockWirelessRedstone() {
 		super(Material.iron);
 		this.setHardness(1.5F);
 	}
@@ -36,9 +36,9 @@ public class ModBlockWirelessRedstone extends BlockContainer{
 	
     public void registerBlockIcons(IIconRegister register)
     {
-    	IconSide = register.registerIcon(Refrence.Mod_Id + ":" + "WireLessRedstoneSide");
-    	IconOn = register.registerIcon(Refrence.Mod_Id + ":" + "WireLessRedstoneOn");
-    	IconOff = register.registerIcon(Refrence.Mod_Id + ":" + "WireLessRedstoneOff");
+    	IconSide = register.registerIcon(Reference.Mod_Id + ":" + "WireLessRedstoneSide");
+    	IconOn = register.registerIcon(Reference.Mod_Id + ":" + "WireLessRedstoneOn");
+    	IconOff = register.registerIcon(Reference.Mod_Id + ":" + "WireLessRedstoneOff");
     	
     	
     }

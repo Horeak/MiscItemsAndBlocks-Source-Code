@@ -43,7 +43,7 @@ public class TileEntityElectricFurnace extends TileEntityPowerInv implements ISi
     		
     		
     		if(this.getStackInSlot(0) != null && FurnaceRecipes.smelting().getSmeltingResult(this.getStackInSlot(0)) != null){
-    			if(this.getStackInSlot(2) != null && this.getStackInSlot(2).stackSize < 64 || this.getStackInSlot(2) == null){
+    			if(this.getStackInSlot(2) != null && this.getStackInSlot(2).stackSize < this.getInventoryStackLimit() || this.getStackInSlot(2) == null){
     				
     			
     			
@@ -66,11 +66,11 @@ public class TileEntityElectricFurnace extends TileEntityPowerInv implements ISi
     						this.SetPower(this.GetPower() - 2);
     						this.setInventorySlotContents(2, resultItem);
     						
-    					}else if (this.getStackInSlot(2).getItem() == resultItem.getItem() && this.getStackInSlot(2).stackSize < 64){
+    					}else if (this.getStackInSlot(2).getItem() == resultItem.getItem() && this.getStackInSlot(2).stackSize < this.getInventoryStackLimit()){
 
     						this.decrStackSize(0, 1);
     						this.SetPower(this.GetPower() - 2);
-    						this.getStackInSlot(2).stackSize = this.getStackInSlot(2).stackSize + 1;
+    						this.getStackInSlot(2).stackSize += 1;
     						
     						
     					}
@@ -108,55 +108,17 @@ public class TileEntityElectricFurnace extends TileEntityPowerInv implements ISi
     @Override
 	public void writeToNBT(NBTTagCompound compound){
 		super.writeToNBT(compound);
-		this.nbt = compound;
-		
-		NBTTagList Items = new NBTTagList();
-		
-		for (int i = 0; i < getSizeInventory(); i++){
-			
-			ItemStack stack = getStackInSlot(i);
-			if(stack != null){
-				
-				NBTTagCompound item = new NBTTagCompound();
-				item.setByte("Slot", (byte)i);
-				stack.writeToNBT(item);
-				Items.appendTag(item);
-			}
-		}
-
-		
-		compound.setTag("Items", Items);
 		
 		compound.setInteger("Work", WorkTime);
-		
-		
-		
-		
+
 	}
 	
 	@Override
 	public void readFromNBT(NBTTagCompound compound){
 		super.readFromNBT(compound);
-		this.nbt = compound;
-		
 
-		NBTTagList nbttaglist = compound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
-		Inv = new ItemStack[getSizeInventory()];
-        for (int i = 0; i < nbttaglist.tagCount(); i++)
-        {
-            NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
-            int j = nbttagcompound1.getByte("Slot") & 0xff;
-            if (j >= 0 && j < Inv.length)
-            {
-                this.setInventorySlotContents(j, ItemStack.loadItemStackFromNBT(nbttagcompound1));
-            }
-        }
-		
-		
 		WorkTime = compound.getInteger("Work");
-		
-		
-		
+
 	}
 	
 	public int GetWorkTime(){

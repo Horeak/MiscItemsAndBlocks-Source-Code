@@ -8,11 +8,11 @@
  */
 package buildcraft.api.mj;
 
-import java.lang.reflect.Field;
-import java.util.logging.Level;
-
 import buildcraft.api.core.BCLog;
 import buildcraft.api.core.JavaTools;
+
+import java.lang.reflect.Field;
+import java.util.logging.Level;
 
 /**
  * A battery object is a wrapper around a battery field in an object. This

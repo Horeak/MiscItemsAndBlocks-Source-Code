@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Container;
 
-import com.miscitems.MiscItemsAndBlocks.Slots.SlotOutput;
+import com.miscitems.MiscItemsAndBlocks.GuiObjects.Slots.SlotOutput;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMill;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

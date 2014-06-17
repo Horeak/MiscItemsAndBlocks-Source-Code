@@ -2,7 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.Block;
 
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLensBench;
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -21,16 +21,16 @@ public class ModBlockLensBench extends BlockContainer{
 	IIcon Top;
     IIcon Side;
     IIcon Bottom;
-	
-	protected ModBlockLensBench() {
+
+    public ModBlockLensBench() {
 		super(Material.rock);
 	}
 
     public void registerBlockIcons(IIconRegister icon)
     {
-    	Top = icon.registerIcon(Refrence.Mod_Id + ":LensBenchTop" + (Main.HDTextures ? "_16" : ""));
-    	Side = icon.registerIcon(Refrence.Mod_Id + ":LensBenchSide");
-    	Bottom = icon.registerIcon(Refrence.Mod_Id + ":LensBenchBottom");
+    	Top = icon.registerIcon(Reference.Mod_Id + ":LensBenchTop" + (Main.HDTextures ? "_16" : ""));
+    	Side = icon.registerIcon(Reference.Mod_Id + ":LensBenchSide");
+    	Bottom = icon.registerIcon(Reference.Mod_Id + ":LensBenchBottom");
     	
     }
     

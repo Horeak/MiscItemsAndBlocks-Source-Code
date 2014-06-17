@@ -2,7 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.Block;
 
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityTeleporter;
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -21,7 +21,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 public class ModBlockTeleporter extends BlockContainer{
 
-	protected ModBlockTeleporter() {
+    public ModBlockTeleporter() {
 		super(Material.iron);
 		this.setBlockBounds(0.2F, 0.0F, 0.2F, 0.8F, 0.4F, 0.8F);
 		this.setHardness(2F);
@@ -55,7 +55,7 @@ public class ModBlockTeleporter extends BlockContainer{
 }
     
     public void registerBlockIcons(IIconRegister icon) {
-        this.blockIcon = icon.registerIcon(Refrence.Mod_Id + ":Teleporter");
+        this.blockIcon = icon.registerIcon(Reference.Mod_Id + ":Teleporter");
 }
     
     

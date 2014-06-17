@@ -1,8 +1,8 @@
 package com.miscitems.MiscItemsAndBlocks.Gui;
 
 
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.PacketHandler;
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerGamePacketInvite;
+import com.miscitems.MiscItemsAndBlocks.Network.PacketHandler;
+import com.miscitems.MiscItemsAndBlocks.Network.Server.ServerGamePacketInvite;
 import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;

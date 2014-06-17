@@ -1,8 +1,8 @@
 package com.miscitems.MiscItemsAndBlocks.Gui;
 
 import com.miscitems.MiscItemsAndBlocks.GuiObjects.ModGuiSlider;
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.PacketHandler;
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerPaintBrushChangePacket;
+import com.miscitems.MiscItemsAndBlocks.Network.PacketHandler;
+import com.miscitems.MiscItemsAndBlocks.Network.Server.ServerPaintBrushChangePacket;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityPaintBlock;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;

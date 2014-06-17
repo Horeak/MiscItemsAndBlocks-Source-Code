@@ -1,8 +1,9 @@
 package com.miscitems.MiscItemsAndBlocks.Block;
 
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
+import com.miscitems.MiscItemsAndBlocks.Main.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityCardboardBox;
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -41,9 +42,9 @@ public class ModBlockCardboardBox extends BlockContainer{
 	   @SideOnly(Side.CLIENT)
 	   public void registerBlockIcons(IIconRegister par1IconRegister)
 	   {
-		   this.blockIcon = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "Box");
-		   this.TopIcon = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "BoxTop");
-		   this.SideIcon = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "BoxSide");
+		   this.blockIcon = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "Box");
+		   this.TopIcon = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "BoxTop");
+		   this.SideIcon = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "BoxSide");
 		   
 	   }
 	   

@@ -2,8 +2,8 @@ package com.miscitems.MiscItemsAndBlocks.Block;
 
 import com.miscitems.MiscItemsAndBlocks.Items.ModItemWrench;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityPowerCable;
-import com.miscitems.MiscItemsAndBlocks.Utils.ChatMessageHandler;
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.Handlers.ChatMessageHandler;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockContainer;
@@ -16,7 +16,7 @@ import net.minecraft.world.World;
 
 public class ModBlockPowerCable extends BlockContainer{
 
-	protected ModBlockPowerCable() {
+    public ModBlockPowerCable() {
 		super(Material.iron);
 		this.setHardness(2);
 		 this.setBlockBounds(0.23F, 0.23F, 0.23F, 0.75F, 0.75F, 0.75F);
@@ -60,7 +60,7 @@ public class ModBlockPowerCable extends BlockContainer{
 	  @SideOnly(Side.CLIENT)
 	   public void registerBlockIcons(IIconRegister par1IconRegister)
 	   {
-		   this.blockIcon = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "PowerCable");
+		   this.blockIcon = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "PowerCable");
 		   
 	   }
 	  

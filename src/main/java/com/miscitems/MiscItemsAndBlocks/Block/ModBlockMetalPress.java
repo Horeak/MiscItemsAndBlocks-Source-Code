@@ -2,7 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.Block;
 
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMetalPress;
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -20,7 +20,7 @@ import net.minecraft.world.World;
 
 public class ModBlockMetalPress extends BlockContainer{
 
-	protected ModBlockMetalPress() {
+    public ModBlockMetalPress() {
 		super(Material.iron);
 		this.setHardness(2.8F);
 	}
@@ -47,7 +47,7 @@ public class ModBlockMetalPress extends BlockContainer{
 }
     
     public void registerBlockIcons(IIconRegister icon) {
-        this.blockIcon = icon.registerIcon(Refrence.Mod_Id + ":MetalPress");
+        this.blockIcon = icon.registerIcon(Reference.Mod_Id + ":MetalPress");
 }
 
     

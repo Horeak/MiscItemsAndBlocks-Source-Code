@@ -1,10 +1,11 @@
 package com.miscitems.MiscItemsAndBlocks.Tick;
 
-import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
-import com.miscitems.MiscItemsAndBlocks.Utils.GameInfo;
-import com.miscitems.MiscItemsAndBlocks.Utils.GameInvite;
-import com.miscitems.MiscItemsAndBlocks.Utils.ModConfig;
+import com.miscitems.MiscItemsAndBlocks.Main.ModItems;
+import com.miscitems.MiscItemsAndBlocks.Utils.Game.GameInfo;
+import com.miscitems.MiscItemsAndBlocks.Utils.Game.GameInvite;
+
+import com.miscitems.MiscItemsAndBlocks.Utils.Handlers.ParticleHelper;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import net.minecraft.entity.player.EntityPlayer;
@@ -31,6 +32,8 @@ public class ServerTickHandler{
     public ArrayList<GameInfo> activeGames = new ArrayList<GameInfo>();
 
 
+    ParticleHelper particleHelper;
+
     @SubscribeEvent
     public void tick(TickEvent event){
 
@@ -39,16 +42,21 @@ public class ServerTickHandler{
 
 
 
+
     }
 
     @SubscribeEvent
     public void tick(TickEvent.PlayerTickEvent event){
 
-        if(ModConfig.AllowPowerArmorEffects)
+        if(Main.AllowPowerArmorEffects)
        if (event.type == TickEvent.Type.PLAYER){
             onPlayerTick(event.player);
         }
 
+
+        if(particleHelper == null){
+            particleHelper = new ParticleHelper(event.player.worldObj);
+        }
 
     }
 
@@ -144,12 +152,10 @@ public class ServerTickHandler{
 			player.capabilities.allowFlying = true;
 			
 			if(player.onGround == false && player.isInWater() == false && player.capabilities.allowFlying && player.isAirBorne){
-				Random rand = new Random();
 				if(TickCountParticle == 5){
-					
-					if(ModConfig.SpawnParticles){
-			player.worldObj.spawnParticle("cloud", player.posX, player.posY + 0.6, player.posZ, rand.nextFloat() - 0.5, rand.nextFloat() - 0.2, rand.nextFloat() - 0.5);
-					}
+
+			              particleHelper.SpawnParticle("cloud", player.posX, player.posY + 0.6, player.posZ, new Random().nextFloat() - 0.5, new Random().nextFloat() - 0.2, new Random().nextFloat() - 0.5);
+
 					
 			TickCountParticle = 0;
 				}else{

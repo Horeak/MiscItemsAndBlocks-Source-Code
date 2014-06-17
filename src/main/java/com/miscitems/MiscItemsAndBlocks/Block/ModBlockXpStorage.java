@@ -1,8 +1,10 @@
 package com.miscitems.MiscItemsAndBlocks.Block;
 
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
+import com.miscitems.MiscItemsAndBlocks.Main.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityXpStorage;
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.Handlers.ChatMessageHandler;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -32,7 +34,7 @@ public class ModBlockXpStorage extends BlockContainer{
 	   @SideOnly(Side.CLIENT)
 	   public void registerBlockIcons(IIconRegister par1IconRegister)
 	   {
-		   this.blockIcon = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "XpStorage" + (Main.HDTextures ? "_16" : ""));
+		   this.blockIcon = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "XpStorage" + (Main.HDTextures ? "_16" : ""));
 		   
 	   }
 
@@ -46,8 +48,13 @@ public class ModBlockXpStorage extends BlockContainer{
         }
         else
         {
-        	
+
+            TileEntityXpStorage tile = (TileEntityXpStorage)par1World.getTileEntity(par2, par3, par4);
+
+            if(!tile.GuiOpen)
         	FMLNetworkHandler.openGui(par5EntityPlayer, Main.instance, 0, par1World, par2, par3, par4);
+            else
+                ChatMessageHandler.sendChatToPlayer(par5EntityPlayer, "This xp storage block is already open by someone else!");
             return true;
         }
     }

@@ -2,7 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.Items;
 
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityPaintBlock;
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -36,12 +36,12 @@ public class ModItemPaintBrush extends Item{
 	   @SideOnly(Side.CLIENT)
 	   public void registerIcons(IIconRegister reg)
 	   {
-		   this.icons[0] = reg.registerIcon(Refrence.Mod_Id + ":" + "PaintBrush");
-		   this.icons[1] = reg.registerIcon(Refrence.Mod_Id + ":" + "PaintBrushRed");
-		   this.icons[2] = reg.registerIcon(Refrence.Mod_Id + ":" + "PaintBrushGreen");
-		   this.icons[3] = reg.registerIcon(Refrence.Mod_Id + ":" + "PaintBrushBlue");
-		   this.icons[4] = reg.registerIcon(Refrence.Mod_Id + ":" + "PaintBrushCopy");
-		   this.icons[5] = reg.registerIcon(Refrence.Mod_Id + ":" + "PaintBrushEdit");
+		   this.icons[0] = reg.registerIcon(Reference.Mod_Id + ":" + "PaintBrush");
+		   this.icons[1] = reg.registerIcon(Reference.Mod_Id + ":" + "PaintBrushRed");
+		   this.icons[2] = reg.registerIcon(Reference.Mod_Id + ":" + "PaintBrushGreen");
+		   this.icons[3] = reg.registerIcon(Reference.Mod_Id + ":" + "PaintBrushBlue");
+		   this.icons[4] = reg.registerIcon(Reference.Mod_Id + ":" + "PaintBrushCopy");
+		   this.icons[5] = reg.registerIcon(Reference.Mod_Id + ":" + "PaintBrushEdit");
 		   
 	   }
 

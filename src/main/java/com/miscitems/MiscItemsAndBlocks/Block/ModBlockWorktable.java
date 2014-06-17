@@ -2,7 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.Block;
 
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityWorktable;
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -28,8 +28,8 @@ public class ModBlockWorktable extends BlockContainer{
     private IIcon CraftingTableSide2;
     @SideOnly(Side.CLIENT)
     private IIcon CraftingTableBottom;
-	
-	protected ModBlockWorktable() {
+
+    public ModBlockWorktable() {
 		super(Material.wood);
 		setStepSound(soundTypeWood);
 		this.setHardness(1.5F);
@@ -49,9 +49,9 @@ public class ModBlockWorktable extends BlockContainer{
     
     public void registerBlockIcons(IIconRegister par1IconRegister)
     {
-        this.blockIcon = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "CraftingTableTop");
-        this.CraftingTableSide1 = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "CraftingTableSide1");
-        this.CraftingTableSide2 = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "CraftingTableSide2");
+        this.blockIcon = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "CraftingTableTop");
+        this.CraftingTableSide1 = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "CraftingTableSide1");
+        this.CraftingTableSide2 = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "CraftingTableSide2");
         this.CraftingTableBottom = par1IconRegister.registerIcon("planks_spruce");
         this.CraftingTableTop = this.blockIcon;
     }

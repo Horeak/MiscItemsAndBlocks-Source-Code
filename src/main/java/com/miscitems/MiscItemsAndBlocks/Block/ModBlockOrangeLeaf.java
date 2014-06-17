@@ -1,7 +1,8 @@
 package com.miscitems.MiscItemsAndBlocks.Block;
 
-import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Main.ModBlocks;
+import com.miscitems.MiscItemsAndBlocks.Main.ModItems;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -27,7 +28,7 @@ public class ModBlockOrangeLeaf extends BlockLeaves implements IShearable
     int[] adjacentTreeBlocks;
     private int iconType;
 
-    protected ModBlockOrangeLeaf()
+    public ModBlockOrangeLeaf()
     {
         this.setTickRandomly(true);
         this.setStepSound(soundTypeGrass);
@@ -259,7 +260,7 @@ public class ModBlockOrangeLeaf extends BlockLeaves implements IShearable
 
     public Item getItemDropped(int par1, Random par2Random, int par3)
     {
-        return new ItemStack((Block)ModBlocks.OrangeSapling).getItem();
+        return new ItemStack((Block) ModBlocks.OrangeSapling).getItem();
     }
 
 
@@ -356,7 +357,7 @@ public class ModBlockOrangeLeaf extends BlockLeaves implements IShearable
     public void registerBlockIcons(IIconRegister par1IconRegister)
     {
 
-    	this.blockIcon = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "OrangeLeaf");
+    	this.blockIcon = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "OrangeLeaf");
 
         
     }

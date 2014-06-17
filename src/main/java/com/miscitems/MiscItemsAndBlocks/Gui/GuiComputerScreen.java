@@ -3,6 +3,7 @@ package com.miscitems.MiscItemsAndBlocks.Gui;
 import com.miscitems.MiscItemsAndBlocks.Container.ContainerComputer;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityComputer;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -18,8 +19,6 @@ public class GuiComputerScreen extends GuiContainer{
 	
 	boolean Menu = false;
 	boolean Hide = false;
-	
-	double Version = 0.01;
 
 	
 	
@@ -75,10 +74,21 @@ public class GuiComputerScreen extends GuiContainer{
 			
 	        int posX = (this.width - xSizeOfTexture) / 2;
 	        int posY = (this.height - ySizeOfTexture) / 2;
-	        
-	        
+
+
+            String[] Programs = new String[]{"Chat", "Player Finder", "Tic Tac Toe"};
+            boolean[] enabledPrograms = new boolean[Programs.length];
+
+            for(int i = 0; i < Programs.length; i++){
+                enabledPrograms[i] = Main.config.get("Computer Programs", "Enable " + Programs[i] + "?", true).getBoolean(true);
+            }
+
+            Main.config.save();
+
 	        Button_Chat = new GuiButton(1, posX + 8, posY + 4, ButtonSizeX, ButtonSizeY, StatCollector.translateToLocal("gui.string.chat"));
+
 	        Button_PlayerFinder = new GuiButton(2, posX + 90, posY + 4, ButtonSizeX, ButtonSizeY, StatCollector.translateToLocal("gui.string.playerfinder"));
+
 	        Button_Game_1 = new GuiButton(3, posX + 170, posY + 4, ButtonSizeX, ButtonSizeY, "Tic Tac Toe");
 	        
 	        Button_2 = new GuiButton(4, posX + 8, posY + 4 + (ButtonSizeY * 2) - 16, ButtonSizeX, ButtonSizeY, "");
@@ -95,6 +105,15 @@ public class GuiComputerScreen extends GuiContainer{
 	        
 	        Button_Hide = new GuiButton(13, posX + 218, posY + 82, 33, 16, "Hide");
 
+
+            if(!enabledPrograms[0])
+                Button_Chat.enabled = false;
+
+            if(!enabledPrograms[1])
+                Button_PlayerFinder.enabled = false;
+
+            if(!enabledPrograms[2])
+                Button_Game_1.enabled = false;
 
             Button_2.enabled = false;
 	        Button_3.enabled = false;
@@ -218,7 +237,7 @@ public class GuiComputerScreen extends GuiContainer{
 			        
 			        GL11.glScalef(0.5F, 0.5F, 0.5F);
 			        fontRendererObj.drawString(StatCollector.translateToLocal("gui.computer"), (posX + 152) * 2, (posY + 84) * 2, 1);
-			        fontRendererObj.drawString(StatCollector.translateToLocal("gui.string.computerversion") + Version, (posX + 152) * 2, (posY + 90) * 2, 1);
+			        fontRendererObj.drawString(StatCollector.translateToLocal("gui.string.computerversion") + " " + Reference.Version, (posX + 152) * 2, (posY + 90) * 2, 1);
 			        fontRendererObj.drawString(StatCollector.translateToLocal("gui.string.loggedinas") + ": " + Minecraft.getMinecraft().thePlayer.getCommandSenderName(), (posX + 152) * 2, (posY + 96) * 2, 1);
 			        
 			        fontRendererObj.drawString("Cords: ", (posX + 152) * 2, (posY + 146) * 2, 1);

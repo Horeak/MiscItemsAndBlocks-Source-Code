@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Items;
 
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -13,7 +13,7 @@ import java.util.List;
 public class ModItemChargedCrystal extends ModItemWithDamage {
 
 
-    protected ModItemChargedCrystal() {
+    public ModItemChargedCrystal() {
         super(50);
     }
 
@@ -26,7 +26,7 @@ public class ModItemChargedCrystal extends ModItemWithDamage {
     public void registerIcons(IIconRegister par1IconRegister)
     {
 
-        this.itemIcon = par1IconRegister.registerIcon(Refrence.Mod_Id + ":ChargedCrystal");
+        this.itemIcon = par1IconRegister.registerIcon(Reference.Mod_Id + ":ChargedCrystal");
     }
 
     @Override

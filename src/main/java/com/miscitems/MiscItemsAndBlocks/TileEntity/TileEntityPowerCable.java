@@ -6,7 +6,7 @@ import MiscItemsApi.Electric.IPowerTile;
 import MiscItemsApi.Electric.IWrenchAble;
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlockPowerCable;
 import com.miscitems.MiscItemsAndBlocks.Laser.LaserUtil;
-import com.miscitems.MiscItemsAndBlocks.Utils.ChatMessageHandler;
+import com.miscitems.MiscItemsAndBlocks.Utils.Handlers.ChatMessageHandler;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;

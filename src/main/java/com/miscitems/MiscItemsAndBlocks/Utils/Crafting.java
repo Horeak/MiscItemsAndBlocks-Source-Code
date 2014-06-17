@@ -3,10 +3,10 @@ package com.miscitems.MiscItemsAndBlocks.Utils;
 import MiscItemsApi.Recipes.MetalPressRecipes;
 import MiscItemsApi.Recipes.MillRecipes;
 import MiscItemsApi.Recipes.SqueezerRecipes;
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.Book.BookUtils;
-import com.miscitems.MiscItemsAndBlocks.Items.ModItems;
-import com.miscitems.MiscItemsAndBlocks.Utils.RecipeUtils.CrystalBladeUpgradeRecipe;
+import com.miscitems.MiscItemsAndBlocks.Main.ModBlocks;
+import com.miscitems.MiscItemsAndBlocks.Main.ModItems;
+import com.miscitems.MiscItemsAndBlocks.Utils.RecipeUtils.CrystalToolUpgradeRecipe;
 import com.miscitems.MiscItemsAndBlocks.Utils.RecipeUtils.ItemRechargeRecipe;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
@@ -17,7 +17,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.item.crafting.ShapelessRecipes;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
 import java.util.ArrayList;
@@ -89,10 +88,11 @@ public class Crafting {
             AddRecipe(new ItemStack(ModItems.InvisLeggings), new Object[]{"CCC", "C C", "C C", 'C', ModItems.CrystalSilk});
             AddRecipe(new ItemStack(ModItems.InvisBoots), new Object[]{"C C", "C C",'C', ModItems.CrystalSilk});
 
-            GameRegistry.addRecipe(new CrystalBladeUpgradeRecipe(new ItemStack(ModItems.CrystalBlade), new ItemStack(Items.diamond), "ExtraDamage"));
-            GameRegistry.addRecipe(new CrystalBladeUpgradeRecipe(new ItemStack(ModItems.CrystalBlade), new ItemStack(Items.blaze_rod), "FireDamage"));
-            GameRegistry.addRecipe(new CrystalBladeUpgradeRecipe(new ItemStack(ModItems.CrystalBlade), new ItemStack(Items.ender_pearl), "Looting"));
+            GameRegistry.addRecipe(new CrystalToolUpgradeRecipe(new ItemStack(ModItems.CrystalBlade), new ItemStack(Items.diamond), "ExtraDamage"));
+            GameRegistry.addRecipe(new CrystalToolUpgradeRecipe(new ItemStack(ModItems.CrystalBlade), new ItemStack(Items.blaze_rod), "FireDamage"));
+            GameRegistry.addRecipe(new CrystalToolUpgradeRecipe(new ItemStack(ModItems.CrystalBlade), new ItemStack(Items.ender_pearl), "Looting"));
             AddRecipe(new ItemStack(ModItems.CrystalBlade), new Object[]{"GBR", "BCB", "DBG", 'B', ModItems.BlueCrystal, 'C', new ItemStack(ModItems.ChargedCrystal, 1, 0), 'D', Items.diamond_sword, 'G', ModItems.GreenCrystal, 'R', ModItems.RedCrystal});
+            AddRecipe(new ItemStack(ModItems.CrystalPickaxe), new Object[]{"GBR", "BCB", "DBG", 'B', ModItems.BlueCrystal, 'C', new ItemStack(ModItems.ChargedCrystal, 1, 0), 'D', Items.diamond_pickaxe, 'G', ModItems.GreenCrystal, 'R', ModItems.RedCrystal});
 
             GameRegistry.addRecipe(new ItemRechargeRecipe(50, 0, new ItemStack(ModItems.InvisibilityCore), new ItemStack(ModItems.ChargedCrystal, 1, 0)));
             GameRegistry.addRecipe(new ItemRechargeRecipe(2, 0, new ItemStack(ModItems.ChargedCrystal), new ItemStack(Items.redstone, 1)));

@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Items;
 
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -35,18 +35,18 @@ public class ModItemUpgrades extends ModItemUpgradeItem{
 	{
 		
 	    
-	    this.icons[0] = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "PowerUpgrade");
+	    this.icons[0] = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "PowerUpgrade");
 	    
 	    
-	    this.EmptySlot = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "EmptyUpgradeSlot");
+	    this.EmptySlot = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "EmptyUpgradeSlot");
 	    
-   	 LiquidSlot = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "LiquidSlot");
-   	 FruitSlot = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "FruitSlot");
-   	 ChipSlot = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "ChipSlot");
+   	 LiquidSlot = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "LiquidSlot");
+   	 FruitSlot = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "FruitSlot");
+   	 ChipSlot = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "ChipSlot");
    	 
-   	BatterySlot = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "BatterySlot");
-   	RedstoneSlot = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "RedstoneSlot");
-   	LapisSlot = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "LapisSlot");
+   	BatterySlot = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "BatterySlot");
+   	RedstoneSlot = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "RedstoneSlot");
+   	LapisSlot = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "LapisSlot");
 
 
 	}

@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Block;
 
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityPillar;
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -11,7 +11,7 @@ import net.minecraft.world.World;
 
 public class ModBlockPillar extends BlockContainer {
 
-	protected ModBlockPillar() {
+    public ModBlockPillar() {
 		super(Material.rock);
 		this.setHardness(1F);
 	}
@@ -54,7 +54,7 @@ public class ModBlockPillar extends BlockContainer {
     public void registerBlockIcons(IIconRegister par1IconRegister)
     {
     	
-        this.blockIcon = par1IconRegister.registerIcon(Refrence.Mod_Id + ":BlankPillar");
+        this.blockIcon = par1IconRegister.registerIcon(Reference.Mod_Id + ":BlankPillar");
         
     }
  

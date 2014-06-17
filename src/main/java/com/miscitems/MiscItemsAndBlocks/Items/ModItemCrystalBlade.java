@@ -1,26 +1,15 @@
 package com.miscitems.MiscItemsAndBlocks.Items;
 
-import com.miscitems.MiscItemsAndBlocks.Utils.Crafting;
-import cpw.mods.fml.relauncher.ReflectionHelper;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import com.miscitems.MiscItemsAndBlocks.Main.ModItems;
 import net.minecraft.block.Block;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
-import sun.reflect.Reflection;
 
 import java.util.List;
-import java.util.Random;
 
 
 
@@ -29,7 +18,7 @@ public class ModItemCrystalBlade extends ItemSword {
 
     public ModItemCrystalBlade() {
         super(ToolMaterial.EMERALD);
-        this.setMaxDamage(20);
+        this.setMaxDamage(-1);
 
     }
 
@@ -98,13 +87,7 @@ public class ModItemCrystalBlade extends ItemSword {
 
     public boolean hasEffect(ItemStack stack)
     {
-
-
-        if(stack.getTagCompound() != null){
-            return stack.getTagCompound().getBoolean("ExtraDamage")||stack.getTagCompound().getBoolean("FireDamage")||stack.getTagCompound().getBoolean("Looting");
-        }
-
-        return false;
+        return stack.getTagCompound() != null;
     }
 
     public int getItemEnchantability()

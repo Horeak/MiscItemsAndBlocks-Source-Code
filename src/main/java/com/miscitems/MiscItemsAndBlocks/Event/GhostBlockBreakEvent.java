@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Event;
 
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
+import com.miscitems.MiscItemsAndBlocks.Main.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityGhostBlock;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.event.world.BlockEvent;

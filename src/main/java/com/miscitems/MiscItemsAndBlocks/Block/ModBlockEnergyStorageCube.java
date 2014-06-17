@@ -4,7 +4,7 @@ import buildcraft.api.tools.IToolWrench;
 import com.miscitems.MiscItemsAndBlocks.Laser.LaserUtil;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityEnergyStorageCube;
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -50,8 +50,8 @@ public class ModBlockEnergyStorageCube extends BlockContainer{
 	   @SideOnly(Side.CLIENT)
 	   public void registerBlockIcons(IIconRegister par1IconRegister)
 	   {
-		   this.InIcon = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "ChargerSideIn" + (Main.HDTextures ? "_16" : ""));
-		   this.OutIcon = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "ChargerSideOut" + (Main.HDTextures ? "_16" : ""));
+		   this.InIcon = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "ChargerSideIn" + (Main.HDTextures ? "_16" : ""));
+		   this.OutIcon = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "ChargerSideOut" + (Main.HDTextures ? "_16" : ""));
 		   
 	   }
 	   

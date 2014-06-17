@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.PacketHandler;
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.PacketTileWithItemUpdate;
+import com.miscitems.MiscItemsAndBlocks.Network.PacketHandler;
+import com.miscitems.MiscItemsAndBlocks.Network.PacketTileWithItemUpdate;
 import com.miscitems.MiscItemsAndBlocks.Utils.Block.BlockUtil;
 import com.miscitems.MiscItemsAndBlocks.Utils.Inventory.Utils;
 import com.miscitems.MiscItemsAndBlocks.Utils.ItemHelper;
@@ -103,24 +103,7 @@ public class TileEntityMiningStation extends TileEntityPowerInv{
     @Override
 	public void writeToNBT(NBTTagCompound compound){
 		super.writeToNBT(compound);
-		this.nbt = compound;
-		
-		NBTTagList Items = new NBTTagList();
-		
-		for (int i = 0; i < getSizeInventory(); i++){
-			
-			ItemStack stack = getStackInSlot(i);
-			if(stack != null){
-				
-				NBTTagCompound item = new NBTTagCompound();
-				item.setByte("Slot", (byte)i);
-				stack.writeToNBT(item);
-				Items.appendTag(item);
-			}
-		}
 
-		
-		compound.setTag("Items", Items);
 		compound.setInteger("Power", Power);
 		
 		compound.setInteger("Y", MinedY);
@@ -148,24 +131,7 @@ public class TileEntityMiningStation extends TileEntityPowerInv{
 	@Override
 	public void readFromNBT(NBTTagCompound compound){
 		super.readFromNBT(compound);
-		this.nbt = compound;
-		
 
-		NBTTagList items = compound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
-		
-		for(int i = 0; i < items.tagCount(); i++){
-			
-			NBTTagCompound item = (NBTTagCompound)items.getCompoundTagAt(i);
-			int slot = item.getByte("Slot");
-			
-			if(slot >= 0 && slot < getSizeInventory()){
-				setInventorySlotContents(slot, ItemStack.loadItemStackFromNBT(item));
-				
-			}
-			
-
-		}
-		
 		Power = compound.getInteger("Power");
 		
 		MinedY = compound.getInteger("Y");
@@ -346,7 +312,9 @@ public class TileEntityMiningStation extends TileEntityPowerInv{
         
     	}
                 this.SetPower(this.GetPower() - 1);
-                this.getStackInSlot(ToolSlot).attemptDamageItem(1, this.worldObj.rand);
+
+            if(this.getStackInSlot(ToolSlot).getMaxDamage() != -1)
+               this.getStackInSlot(ToolSlot).attemptDamageItem(1, this.worldObj.rand);
                 
                 if (!worldObj.isRemote)
                     worldObj.playAuxSFX(2001, x, y, z, Block.getIdFromBlock(worldObj.getBlock(x, y, z)) + (worldObj.getBlockMetadata(x, y, z) << 12));

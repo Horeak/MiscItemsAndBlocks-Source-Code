@@ -1,7 +1,8 @@
 package com.miscitems.MiscItemsAndBlocks.Block;
 
+import com.miscitems.MiscItemsAndBlocks.Main.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityDisarmTrap;
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -21,8 +22,8 @@ import java.util.Random;
 public class ModBlockDisarmTrap extends BlockContainer{
 
 	private Block BlockBelow;
-	
-	protected ModBlockDisarmTrap() {
+
+    public ModBlockDisarmTrap() {
 		super(Material.iron);
 		setHardness(8);
 		this.setBlockBounds(0F, 0F, 0F, 1F, 0.1F, 1F);
@@ -79,7 +80,7 @@ public class ModBlockDisarmTrap extends BlockContainer{
     
     
     public void registerBlockIcons(IIconRegister icon) {
-        this.blockIcon = icon.registerIcon(Refrence.Mod_Id + ":DisarmTrap");
+        this.blockIcon = icon.registerIcon(Reference.Mod_Id + ":DisarmTrap");
 }
     
     

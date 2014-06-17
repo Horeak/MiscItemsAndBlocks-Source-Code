@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Utils;
 
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.PacketHandler;
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerSyncInvisPlayers;
+import com.miscitems.MiscItemsAndBlocks.Network.PacketHandler;
+import com.miscitems.MiscItemsAndBlocks.Network.Server.ServerSyncInvisPlayers;
 import net.minecraft.entity.player.EntityPlayer;
 
 import java.util.ArrayList;

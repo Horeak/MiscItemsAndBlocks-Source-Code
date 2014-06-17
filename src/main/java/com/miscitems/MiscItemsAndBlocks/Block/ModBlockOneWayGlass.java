@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 
 public class ModBlockOneWayGlass extends BlockRotatedPillar {
 
-	protected ModBlockOneWayGlass() {
+    public ModBlockOneWayGlass() {
 		super(Material.glass);
 		this.setHardness(2);
 	}

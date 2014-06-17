@@ -8,14 +8,13 @@
  */
 package buildcraft.api.mj;
 
+import buildcraft.api.core.BCLog;
+import net.minecraftforge.common.util.ForgeDirection;
+
 import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import net.minecraftforge.common.util.ForgeDirection;
-
-import buildcraft.api.core.BCLog;
 
 /**
  * Reconfiguration helper.

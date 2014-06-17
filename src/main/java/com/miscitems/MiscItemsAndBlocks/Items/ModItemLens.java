@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Items;
 
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -28,8 +28,8 @@ public class ModItemLens extends Item{
 	   @SideOnly(Side.CLIENT)
 	   public void registerIcons(IIconRegister icon)
 	   {
-		   Item = icon.registerIcon(Refrence.Mod_Id + ":Lens");
-		   Item_Lens = icon.registerIcon(Refrence.Mod_Id + ":Lens_Part");
+		   Item = icon.registerIcon(Reference.Mod_Id + ":Lens");
+		   Item_Lens = icon.registerIcon(Reference.Mod_Id + ":Lens_Part");
 		   
 	   }
 	   

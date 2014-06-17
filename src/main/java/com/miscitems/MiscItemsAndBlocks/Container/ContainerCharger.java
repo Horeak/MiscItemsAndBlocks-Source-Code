@@ -1,8 +1,8 @@
 package com.miscitems.MiscItemsAndBlocks.Container;
 
-import com.miscitems.MiscItemsAndBlocks.Slots.ModSlotArmor;
-import com.miscitems.MiscItemsAndBlocks.Slots.SlotPowerStorage;
-import com.miscitems.MiscItemsAndBlocks.Slots.SlotUpgrades;
+import com.miscitems.MiscItemsAndBlocks.GuiObjects.Slots.ModSlotArmor;
+import com.miscitems.MiscItemsAndBlocks.GuiObjects.Slots.SlotPowerStorage;
+import com.miscitems.MiscItemsAndBlocks.GuiObjects.Slots.SlotUpgrades;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityEnergyStorageCube;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

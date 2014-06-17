@@ -1,8 +1,9 @@
 package com.miscitems.MiscItemsAndBlocks.Block;
 
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
+import com.miscitems.MiscItemsAndBlocks.Main.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityStorageBlock;
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -24,7 +25,7 @@ import java.util.Random;
 
 public class ModBlockStorageBlock extends BlockContainer{
 
-	protected ModBlockStorageBlock() {
+    public ModBlockStorageBlock() {
 		super(Material.iron);
 		this.setHardness(1.7F);
 
@@ -63,8 +64,8 @@ public class ModBlockStorageBlock extends BlockContainer{
 	
     public void registerBlockIcons(IIconRegister par1IconRegister)
     {
-        Side = par1IconRegister.registerIcon(Refrence.Mod_Id + ":StorageBlockSide");
-        Front = par1IconRegister.registerIcon(Refrence.Mod_Id + ":StorageBlockFront");
+        Side = par1IconRegister.registerIcon(Reference.Mod_Id + ":StorageBlockSide");
+        Front = par1IconRegister.registerIcon(Reference.Mod_Id + ":StorageBlockFront");
     }
     
     public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)

@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Block;
 
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -32,12 +32,12 @@ public class ModBlockDice extends Block{
     public void registerBlockIcons(IIconRegister par1IconRegister)
     {
     	
-    	this.Dice1 = par1IconRegister.registerIcon(Refrence.Mod_Id + ":Dice1");
-    	this.Dice2 = par1IconRegister.registerIcon(Refrence.Mod_Id + ":Dice2");
-    	this.Dice3 = par1IconRegister.registerIcon(Refrence.Mod_Id + ":Dice3");
-    	this.Dice4 = par1IconRegister.registerIcon(Refrence.Mod_Id + ":Dice4");
-    	this.Dice5 = par1IconRegister.registerIcon(Refrence.Mod_Id + ":Dice5");
-    	this.Dice6 = par1IconRegister.registerIcon(Refrence.Mod_Id + ":Dice6");
+    	this.Dice1 = par1IconRegister.registerIcon(Reference.Mod_Id + ":Dice1");
+    	this.Dice2 = par1IconRegister.registerIcon(Reference.Mod_Id + ":Dice2");
+    	this.Dice3 = par1IconRegister.registerIcon(Reference.Mod_Id + ":Dice3");
+    	this.Dice4 = par1IconRegister.registerIcon(Reference.Mod_Id + ":Dice4");
+    	this.Dice5 = par1IconRegister.registerIcon(Reference.Mod_Id + ":Dice5");
+    	this.Dice6 = par1IconRegister.registerIcon(Reference.Mod_Id + ":Dice6");
     	
     	
     	this.blockIcon = Dice1;

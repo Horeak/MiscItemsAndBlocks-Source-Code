@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Block;
 
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityTimedBlock;
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
@@ -12,7 +12,7 @@ public class ModBlockTimedBlock extends BlockContainer{
 	public ModBlockTimedBlock() {
 		super(Material.glass);
 		this.setHardness(-1);
-		this.setBlockTextureName(Refrence.Mod_Id + ":TimedBlock");
+		this.setBlockTextureName(Reference.Mod_Id + ":TimedBlock");
 	}
 	
     public boolean isOpaqueCube()

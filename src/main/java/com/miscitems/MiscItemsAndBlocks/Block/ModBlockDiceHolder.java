@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Block;
 
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityDiceHolder;
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -16,7 +16,7 @@ import java.util.Random;
 
 public class ModBlockDiceHolder extends BlockContainer{
 
-	protected ModBlockDiceHolder() {
+    public ModBlockDiceHolder() {
 		super(Material.rock);
 		this.setHardness(1);
 	}
@@ -60,7 +60,7 @@ public class ModBlockDiceHolder extends BlockContainer{
 	}
 	    
 	    public void registerBlockIcons(IIconRegister icon) {
-	        this.blockIcon = icon.registerIcon(Refrence.Mod_Id + ":DiceStand");
+	        this.blockIcon = icon.registerIcon(Reference.Mod_Id + ":DiceStand");
 	}
 	    
 	    public boolean canConnectRedstone(IBlockAccess world, int x, int y, int z, int side)

@@ -2,7 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.Block;
 
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityGenerator;
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -25,7 +25,7 @@ import java.util.Random;
 
 public class ModBlockGenerator extends BlockContainer{
 
-	protected ModBlockGenerator() {
+    public ModBlockGenerator() {
 		super(Material.iron);
 		this.setHardness(2);
 	}
@@ -45,10 +45,10 @@ public class ModBlockGenerator extends BlockContainer{
 	   public void registerBlockIcons(IIconRegister par1IconRegister)
 	    {
 	    	
-	        this.IconTop = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "ModuleBlank" + (Main.HDTextures ? "_16" : ""));
-	        this.IconSide = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "ModuleBlank" + (Main.HDTextures ? "_16" : ""));
-	        this.IconFront = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "GeneratorFront" + (Main.HDTextures ? "_16" : ""));
-	        this.IconFrontLit = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "GeneratorFrontLit" + (Main.HDTextures ? "_16" : ""));
+	        this.IconTop = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "ModuleBlank" + (Main.HDTextures ? "_16" : ""));
+	        this.IconSide = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "ModuleBlank" + (Main.HDTextures ? "_16" : ""));
+	        this.IconFront = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "GeneratorFront" + (Main.HDTextures ? "_16" : ""));
+	        this.IconFrontLit = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "GeneratorFrontLit" + (Main.HDTextures ? "_16" : ""));
 	        
 	    }
 	    

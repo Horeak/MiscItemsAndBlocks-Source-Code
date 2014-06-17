@@ -1,6 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Items;
 
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Main.ModItems;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.Entity;
@@ -26,12 +27,12 @@ public class ModItemInvisArmor extends ItemArmor {
     public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type) {
 
         if (stack.getItem() == ModItems.InvisChestPlate || stack.getItem() == ModItems.InvisHelmet || stack.getItem() == ModItems.InvisBoots) {
-            return Refrence.Mod_Id + ":" + "textures/models/armor/InvisArmor_layer_1.png";
+            return Reference.Mod_Id + ":" + "textures/models/armor/InvisArmor_layer_1.png";
 
         }
         if (stack.getItem() == ModItems.InvisLeggings) {
 
-            return Refrence.Mod_Id + ":" + "textures/models/armor/InvisArmor_layer_2.png";
+            return Reference.Mod_Id + ":" + "textures/models/armor/InvisArmor_layer_2.png";
 
         } else {
 

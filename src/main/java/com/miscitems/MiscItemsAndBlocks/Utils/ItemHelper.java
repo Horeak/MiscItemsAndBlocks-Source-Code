@@ -1,5 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Utils;
 
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Colours;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Strings;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Gui;
 
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.PacketHandler;
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerGamePacketAccept;
+import com.miscitems.MiscItemsAndBlocks.Network.PacketHandler;
+import com.miscitems.MiscItemsAndBlocks.Network.Server.ServerGamePacketAccept;
 import com.miscitems.MiscItemsAndBlocks.Proxies.ServerProxy;
 import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.Minecraft;

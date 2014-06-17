@@ -3,7 +3,7 @@ package com.miscitems.MiscItemsAndBlocks.Gui;
 import com.miscitems.MiscItemsAndBlocks.Container.ContainerMill;
 import com.miscitems.MiscItemsAndBlocks.GuiObjects.GuiTipButton;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMill;
-import com.miscitems.MiscItemsAndBlocks.Utils.Messages;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Messages;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;

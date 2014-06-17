@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.ItemBlock;
 
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlocks;
+import com.miscitems.MiscItemsAndBlocks.Main.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityCardboardBox;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;

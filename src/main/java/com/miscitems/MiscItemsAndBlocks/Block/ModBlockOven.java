@@ -2,7 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.Block;
 
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityOven;
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -49,7 +49,7 @@ public class ModBlockOven extends BlockContainer{
     	
         this.IconTop = par1IconRegister.registerIcon("furnace_top");
         this.IconSide = par1IconRegister.registerIcon("furnace_side");
-        this.IconFront = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "PizzaOvenFront");
+        this.IconFront = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "PizzaOvenFront");
 
         
         this.blockIcon = IconTop;

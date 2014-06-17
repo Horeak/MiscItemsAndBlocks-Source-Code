@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Container;
 
-import com.miscitems.MiscItemsAndBlocks.Slots.ModSlotLensSlot;
+import com.miscitems.MiscItemsAndBlocks.GuiObjects.Slots.ModSlotLensSlot;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLensBench;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;

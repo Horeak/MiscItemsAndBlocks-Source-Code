@@ -33,34 +33,17 @@ public class TileEntityOven extends TileEntityInvBase implements ISidedInventory
 	int counter = 0;
 
 	public boolean Working = false;
-	
+
 	Random rand = new Random();
 	
 	
 	   @Override
    	public void writeToNBT(NBTTagCompound compound){
    		super.writeToNBT(compound);
-   		this.nbt = compound;
-   		
-   		NBTTagList Items = new NBTTagList();
-   		
-   		for (int i = 0; i < getSizeInventory(); i++){
-   			
-   			ItemStack stack = getStackInSlot(i);
-   			if(stack != null){
-   				
-   				NBTTagCompound item = new NBTTagCompound();
-   				item.setByte("Slot", (byte)i);
-   				stack.writeToNBT(item);
-   				Items.appendTag(item);
-   			}
-   		}
-
    		
    		
    		compound.setInteger("WorkTime", this.WorkTime);
    		compound.setInteger("Heat", this.Heat);
-   		compound.setTag("Items", Items);
    		compound.setInteger("Fuel", this.Fuel);
    		
    		
@@ -71,22 +54,6 @@ public class TileEntityOven extends TileEntityInvBase implements ISidedInventory
    	@Override
    	public void readFromNBT(NBTTagCompound compound){
    		super.readFromNBT(compound);
-   		this.nbt = compound;
-   		
-
-   		NBTTagList items = compound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
-   		
-   		for(int i = 0; i < items.tagCount(); i++){
-   			
-   			NBTTagCompound item = (NBTTagCompound)items.getCompoundTagAt(i);
-   			int slot = item.getByte("Slot");
-   			
-   			if(slot >= 0 && slot < getSizeInventory()){
-   				setInventorySlotContents(slot, ItemStack.loadItemStackFromNBT(item));
-   				
-   			}
-   			
-   		}
    		
    		WorkTime = compound.getInteger("WorkTime");
    		Heat = compound.getInteger("Heat");

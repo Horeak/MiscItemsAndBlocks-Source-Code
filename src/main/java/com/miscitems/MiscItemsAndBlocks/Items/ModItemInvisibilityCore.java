@@ -2,7 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.Items;
 
 import com.miscitems.MiscItemsAndBlocks.Proxies.ClientProxy;
 import com.miscitems.MiscItemsAndBlocks.Utils.InvisibilityUtils;
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -17,7 +17,7 @@ import java.util.List;
 public class ModItemInvisibilityCore extends ModItemWithDamage {
 
 
-    protected ModItemInvisibilityCore() {
+    public ModItemInvisibilityCore() {
         super(100);
     }
 
@@ -50,8 +50,8 @@ public class ModItemInvisibilityCore extends ModItemWithDamage {
     public void registerIcons(IIconRegister par1IconRegister)
     {
 
-        Active = par1IconRegister.registerIcon(Refrence.Mod_Id + ":InvisibilityCoreActive");
-        InActive = par1IconRegister.registerIcon(Refrence.Mod_Id + ":InvisibilityCoreInActive");
+        Active = par1IconRegister.registerIcon(Reference.Mod_Id + ":InvisibilityCoreActive");
+        InActive = par1IconRegister.registerIcon(Reference.Mod_Id + ":InvisibilityCoreInActive");
 
         itemIcon = InActive;
     }

@@ -5,7 +5,7 @@ import net.minecraft.block.material.Material;
 
 public class ModBlockEmptyBlock extends Block{
 
-	protected ModBlockEmptyBlock() {
+    public ModBlockEmptyBlock() {
 		super(Material.iron);
 	}
 	

@@ -1,6 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Items;
 
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Main.ModItems;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -8,10 +9,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-
-import java.util.List;
 
 public class ModItemPowerArmor extends ItemArmor {
 
@@ -31,7 +29,7 @@ public class ModItemPowerArmor extends ItemArmor {
         @SideOnly(Side.CLIENT)
         public void registerIcons(IIconRegister par1IconRegister)
         {
-            this.itemIcon = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + iconName);
+            this.itemIcon = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + iconName);
             
         }
         
@@ -46,12 +44,12 @@ public class ModItemPowerArmor extends ItemArmor {
     {
     	
     	if(stack.getItem() == ModItems.FlightChestPlate || stack.getItem() == ModItems.DivingHelmet || stack.getItem() == ModItems.JumpingBoots){
-    		return Refrence.Mod_Id + ":" + "textures/models/armor/PowerArmor_layer_1.png";
+    		return Reference.Mod_Id + ":" + "textures/models/armor/PowerArmor_layer_1.png";
 
     	}
     	if(stack.getItem() == ModItems.RunningLeggings){
     		
-    		return Refrence.Mod_Id + ":" + "textures/models/armor/PowerArmor_layer_2.png";
+    		return Reference.Mod_Id + ":" + "textures/models/armor/PowerArmor_layer_2.png";
     		
     	}else{
     		
@@ -66,38 +64,35 @@ public class ModItemPowerArmor extends ItemArmor {
     }
     
     
-    @Override
-    public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean par4)
-    {
-		list.add("");
-		
-    	if(itemstack.getItem() == ModItems.DivingHelmet){
-
-    		list.add(StatCollector.translateToLocal("items.desc.powerarmor.helmet.1"));
-    		list.add(StatCollector.translateToLocal("items.desc.powerarmor.helmet.2"));
-    		list.add(StatCollector.translateToLocal("items.desc.powerarmor.helmet.3"));
-    		
-    	}else if(itemstack.getItem() == ModItems.FlightChestPlate){
-    		
-    		list.add(StatCollector.translateToLocal("items.desc.powerarmor.chestplate.1"));
-    		list.add(StatCollector.translateToLocal("items.desc.powerarmor.chestplate.2"));
-    		
-    	}else if(itemstack.getItem() == ModItems.RunningLeggings){
-    		
-    		list.add(StatCollector.translateToLocal("items.desc.powerarmor.leggings.1"));
-    		list.add(StatCollector.translateToLocal("items.desc.powerarmor.leggings.2"));
-    		
-    	}else if(itemstack.getItem() == ModItems.JumpingBoots){
-    		
-    		list.add(StatCollector.translateToLocal("items.desc.powerarmor.boots.1"));
-    		list.add(StatCollector.translateToLocal("items.desc.powerarmor.boots.2"));
-    		
-    	}
-    	
-    	
-    	
-    	
-    }
+//    @Override
+//    public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean par4)
+//    {
+//		list.add("");
+//
+//    	if(itemstack.getItem() == ModItems.DivingHelmet){
+//
+//    		list.add(StatCollector.translateToLocal("items.desc.powerarmor.helmet.1"));
+//    		list.add(StatCollector.translateToLocal("items.desc.powerarmor.helmet.2"));
+//    		list.add(StatCollector.translateToLocal("items.desc.powerarmor.helmet.3"));
+//
+//    	}else if(itemstack.getItem() == ModItems.FlightChestPlate){
+//
+//    		list.add(StatCollector.translateToLocal("items.desc.powerarmor.chestplate.1"));
+//    		list.add(StatCollector.translateToLocal("items.desc.powerarmor.chestplate.2"));
+//
+//    	}else if(itemstack.getItem() == ModItems.RunningLeggings){
+//
+//    		list.add(StatCollector.translateToLocal("items.desc.powerarmor.leggings.1"));
+//    		list.add(StatCollector.translateToLocal("items.desc.powerarmor.leggings.2"));
+//
+//    	}else if(itemstack.getItem() == ModItems.JumpingBoots){
+//
+//    		list.add(StatCollector.translateToLocal("items.desc.powerarmor.boots.1"));
+//    		list.add(StatCollector.translateToLocal("items.desc.powerarmor.boots.2"));
+//
+//    	}
+//
+//    }
     
     public void onArmorTickUpdate(World world, EntityPlayer player, ItemStack itemStack){
     	

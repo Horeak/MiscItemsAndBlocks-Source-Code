@@ -1,8 +1,8 @@
 package com.miscitems.MiscItemsAndBlocks.Block;
 
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityGhostBlock;
-import com.miscitems.MiscItemsAndBlocks.Utils.ChatMessageHandler;
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.Handlers.ChatMessageHandler;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -23,7 +23,7 @@ import net.minecraft.world.World;
 
 public class ModBlockGhostBlock extends BlockContainer{
 
-	protected ModBlockGhostBlock() {
+    public ModBlockGhostBlock() {
 		super(Material.glass);
 		this.setStepSound(soundTypeCloth);
 	
@@ -178,7 +178,7 @@ public class ModBlockGhostBlock extends BlockContainer{
     
     public void registerBlockIcons(IIconRegister par1IconRegister)
     {
-    	defaultTexture = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "GhostBlock");
+    	defaultTexture = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "GhostBlock");
     	
     }
     

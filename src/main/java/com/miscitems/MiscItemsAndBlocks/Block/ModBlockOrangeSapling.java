@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Block;
 
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import com.miscitems.MiscItemsAndBlocks.WorldGen.WorldGenOrangeTree;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -23,7 +23,7 @@ import java.util.Random;
 public class ModBlockOrangeSapling extends BlockBush implements IGrowable
 {
 
-    protected ModBlockOrangeSapling()
+    public ModBlockOrangeSapling()
     {
         float f = 0.4F;
         this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, f * 2.0F, 0.5F + f);
@@ -178,7 +178,7 @@ public class ModBlockOrangeSapling extends BlockBush implements IGrowable
     public void registerBlockIcons(IIconRegister par1IconRegister)
     {
 
-            this.blockIcon = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "OrangeSapling");
+            this.blockIcon = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "OrangeSapling");
 
     }
     

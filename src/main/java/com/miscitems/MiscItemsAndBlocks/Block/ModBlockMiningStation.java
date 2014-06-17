@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Block;
 
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMiningStation;
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -13,7 +13,7 @@ import net.minecraft.world.World;
 
 public class ModBlockMiningStation extends ModBlockPowerMachine{
 
-	protected ModBlockMiningStation() {
+    public ModBlockMiningStation() {
 		super(Material.rock);
 		this.setHardness(2F);
 	}
@@ -26,7 +26,7 @@ public class ModBlockMiningStation extends ModBlockPowerMachine{
 	
     public void registerBlockIcons(IIconRegister par1IconRegister)
     {
-        this.blockIcon = par1IconRegister.registerIcon(Refrence.Mod_Id+ ":MiningStation");
+        this.blockIcon = par1IconRegister.registerIcon(Reference.Mod_Id+ ":MiningStation");
         
     }
     

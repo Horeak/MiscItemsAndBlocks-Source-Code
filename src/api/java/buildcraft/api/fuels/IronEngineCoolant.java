@@ -8,17 +8,15 @@
  */
 package buildcraft.api.fuels;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import buildcraft.api.core.StackKey;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 
-import buildcraft.api.core.StackKey;
+import java.util.HashMap;
+import java.util.Map;
 
 public final class IronEngineCoolant {
 

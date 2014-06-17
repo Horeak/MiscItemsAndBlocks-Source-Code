@@ -8,10 +8,10 @@
  */
 package buildcraft.api.blueprints;
 
-import java.io.File;
-
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import java.io.File;
 
 /**
  * This class is provided as a utility class for third-party mods that would

@@ -35,10 +35,19 @@ public class ContainerXpStorage extends Container
     		
     		
     	}
+
+        tile.GuiOpen = true;
     	
 
 
 }
+
+    public void onContainerClosed(EntityPlayer player)
+    {
+        super.onContainerClosed(player);
+
+        tile.GuiOpen = false;
+    }
 
 	@Override
 	public boolean canInteractWith(EntityPlayer entityplayer) {

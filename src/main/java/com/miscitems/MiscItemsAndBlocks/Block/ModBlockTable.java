@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Block;
 
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityTable;
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 
 public class ModBlockTable extends BlockContainer{
 
-	protected ModBlockTable() {
+    public ModBlockTable() {
 		super(Material.wood);
 		this.setHardness(1F);
 	}
@@ -48,7 +48,7 @@ public class ModBlockTable extends BlockContainer{
 }
     
     public void registerBlockIcons(IIconRegister icon) {
-        this.blockIcon = icon.registerIcon(Refrence.Mod_Id + ":Table");
+        this.blockIcon = icon.registerIcon(Reference.Mod_Id + ":Table");
 }
     
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)

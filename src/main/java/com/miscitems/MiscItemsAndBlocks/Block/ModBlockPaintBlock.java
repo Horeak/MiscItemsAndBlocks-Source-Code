@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Block;
 
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityPaintBlock;
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockContainer;
@@ -13,8 +13,8 @@ import net.minecraft.world.World;
 
 public class ModBlockPaintBlock extends BlockContainer{
 
-	
-	protected ModBlockPaintBlock() {
+
+    public ModBlockPaintBlock() {
 		super(Material.cloth);
 		this.setStepSound(soundTypeCloth);
 		this.setHardness(1);
@@ -28,7 +28,7 @@ public class ModBlockPaintBlock extends BlockContainer{
 	   @SideOnly(Side.CLIENT)
 	   public void registerBlockIcons(IIconRegister par1IconRegister)
 	   {
-		   this.blockIcon = par1IconRegister.registerIcon(Refrence.Mod_Id + ":PaintBlock");
+		   this.blockIcon = par1IconRegister.registerIcon(Reference.Mod_Id + ":PaintBlock");
 		   
 	   }
 	   

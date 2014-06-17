@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Items;
 
-import com.miscitems.MiscItemsAndBlocks.Utils.Refrence;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -31,7 +31,7 @@ public class ModItemSilverSword extends ItemSword {
         @SideOnly(Side.CLIENT)
         public void registerIcons(IIconRegister par1IconRegister)
         {
-            this.itemIcon = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "SilverSword");
+            this.itemIcon = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "SilverSword");
         }
     
     
@@ -105,8 +105,7 @@ public class ModItemSilverSword extends ItemSword {
     public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean par4)
     {
     	
-    	
-            list.add(StatCollector.translateToLocal("items.desc.silversword.1"));
+
             
             if(itemstack.stackTagCompound != null){
             	

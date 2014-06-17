@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Laser;
 
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.PacketHandler;
-import com.miscitems.MiscItemsAndBlocks.Network.Packet.Server.ServerSetBlockPacket;
+import com.miscitems.MiscItemsAndBlocks.Network.PacketHandler;
+import com.miscitems.MiscItemsAndBlocks.Network.Server.ServerSetBlockPacket;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLaserReciver;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
