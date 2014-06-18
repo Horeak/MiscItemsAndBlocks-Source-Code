@@ -85,7 +85,7 @@ public class GuiMetalPress extends GuiContainer{
 	
 	@Override
 	protected void actionPerformed(GuiButton button){
-		PacketHandler.INSTANCE.sendToServer(new ServerButtonPacket((byte) button.id));
+		PacketHandler.sendToServer(new ServerButtonPacket((byte) button.id));
 		
 	}
 

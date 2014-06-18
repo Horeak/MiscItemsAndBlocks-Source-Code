@@ -137,7 +137,7 @@ if(laserProvider.GetLensPower() >= block.getBlockHardness(laserProvider.getWorld
 
 		
 
-		PacketHandler.INSTANCE.sendToServer(new ServerSetBlockPacket(laserProvider.getWorld().getWorldInfo().getVanillaDimension(), xTemp, yTemp, zTemp, Blocks.air));
+		PacketHandler.sendToServer(new ServerSetBlockPacket(laserProvider.getWorld().getWorldInfo().getVanillaDimension(), xTemp, yTemp, zTemp, Blocks.air));
 		
 		
 	}

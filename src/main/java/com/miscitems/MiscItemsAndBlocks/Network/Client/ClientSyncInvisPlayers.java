@@ -1,15 +1,18 @@
 package com.miscitems.MiscItemsAndBlocks.Network.Client;
 
+import com.miscitems.MiscItemsAndBlocks.Network.AbstractPacket;
 import com.miscitems.MiscItemsAndBlocks.Utils.InvisibilityUtils;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 
-public class ClientSyncInvisPlayers implements IMessage, IMessageHandler<ClientSyncInvisPlayers, IMessage> {
+public class ClientSyncInvisPlayers extends AbstractPacket {
 
     int Mode;
     String player;
@@ -24,13 +27,13 @@ public class ClientSyncInvisPlayers implements IMessage, IMessageHandler<ClientS
 
 
     @Override
-    public void fromBytes(ByteBuf buf) {
+    public void fromBytes(ByteBuf buf, Side side) {
         Mode = buf.readInt();
         player = ByteBufUtils.readUTF8String(buf);
     }
 
     @Override
-    public void toBytes(ByteBuf buf) {
+    public void toBytes(ByteBuf buf, Side side) {
 
         buf.writeInt(Mode);
         if(player != null)
@@ -38,20 +41,19 @@ public class ClientSyncInvisPlayers implements IMessage, IMessageHandler<ClientS
     }
 
     @Override
-    public IMessage onMessage(ClientSyncInvisPlayers message, MessageContext ctx) {
-        if(message.player != null) {
-            EntityPlayer player = Minecraft.getMinecraft().theWorld.getPlayerEntityByName(message.player);
+    public void onMessage(Side side, EntityPlayer pl) {
+        if(player != null) {
+            EntityPlayer player = Minecraft.getMinecraft().theWorld.getPlayerEntityByName(this.player);
 
             if (player != null) {
-                if (message.Mode == 1) {
+                if (Mode == 1) {
                     InvisibilityUtils.AddInvisiblePlayer(player, false);
-                } else if (message.Mode == 2) {
+                } else if (Mode == 2) {
                     InvisibilityUtils.RemoveInvisiblePlayer(player, false);
                 }
 
             }
 
         }
-        return null;
     }
 }

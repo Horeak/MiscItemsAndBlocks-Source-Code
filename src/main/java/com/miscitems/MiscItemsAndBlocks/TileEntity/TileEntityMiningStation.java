@@ -408,7 +408,7 @@ public class TileEntityMiningStation extends TileEntityPowerInv{
         ItemStack itemStack = getStackInSlot(0);
 
         if (itemStack != null && itemStack.stackSize > 0)
-            return PacketHandler.INSTANCE.getPacketFrom(new PacketTileWithItemUpdate(xCoord, yCoord, zCoord, orientation, state, customName, itemStack.getItem().getIdFromItem(itemStack.getItem()), itemStack.getItemDamage(), itemStack.stackSize, ItemHelper.getColor(itemStack)));
+            return PacketHandler.GetPacket(new PacketTileWithItemUpdate(xCoord, yCoord, zCoord, orientation, state, customName, itemStack.getItem().getIdFromItem(itemStack.getItem()), itemStack.getItemDamage(), itemStack.stackSize, ItemHelper.getColor(itemStack)));
         else
             return super.getDescriptionPacket();
     }

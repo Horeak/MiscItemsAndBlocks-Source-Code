@@ -1,16 +1,22 @@
 package com.miscitems.MiscItemsAndBlocks.Network.Client;
 
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
+import com.miscitems.MiscItemsAndBlocks.Network.AbstractPacket;
 import com.miscitems.MiscItemsAndBlocks.Utils.Handlers.ChatMessageHandler;
+import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumChatFormatting;
 
-public class ClientGamePacketInviteRecived  implements IMessage, IMessageHandler<ClientGamePacketInviteRecived, IMessage> {
+public class ClientGamePacketInviteRecived  extends AbstractPacket {
 
 	String Player;
 	
@@ -20,26 +26,26 @@ public class ClientGamePacketInviteRecived  implements IMessage, IMessageHandler
 	}
 	
 	@Override
-public void fromBytes(ByteBuf buf) {
+
+    public void fromBytes(ByteBuf buf, Side side) {
 		Player = ByteBufUtils.readUTF8String(buf);
 	}
 
 	@Override
-	public void toBytes(ByteBuf buf) {
+	public void toBytes(ByteBuf buf, Side side) {
 		ByteBufUtils.writeUTF8String(buf,Player);
 	}
 
 	@Override
-	  public IMessage onMessage(ClientGamePacketInviteRecived message, MessageContext ctx) {
+    public void onMessage(Side side, EntityPlayer player) {
 
-		Main.proxy.tickHandlerClient.tradeReq = message.Player;
-		
-        Minecraft.getMinecraft().theWorld.playSoundEffect((float)Minecraft.getMinecraft().thePlayer.posX, (float)Minecraft.getMinecraft().thePlayer.posY, (float)Minecraft.getMinecraft().thePlayer.posZ, "random.successful_hit", 1.0F, 1.0F);
+        if (FMLCommonHandler.instance().getEffectiveSide().isClient()) {
+            Main.proxy.tickHandlerClient.tradeReq = Player;
+             FMLClientHandler.instance().getClient().theWorld.playSoundEffect((float) FMLClientHandler.instance().getClient().thePlayer.posX, (float) FMLClientHandler.instance().getClient().thePlayer.posY, (float) FMLClientHandler.instance().getClient().thePlayer.posZ, "random.successful_hit", 1.0F, 1.0F);
+            ChatMessageHandler.sendChatToPlayer(FMLClientHandler.instance().getClient().thePlayer, EnumChatFormatting.GOLD + "You have recived a game invite to play tic tac toe!");
 
-        ChatMessageHandler.sendChatToPlayer(Minecraft.getMinecraft().thePlayer, EnumChatFormatting.GOLD + "You have recived a game invite to play tic tac toe!");
-        
+        }
 
-        return null;
 	}
 
 }

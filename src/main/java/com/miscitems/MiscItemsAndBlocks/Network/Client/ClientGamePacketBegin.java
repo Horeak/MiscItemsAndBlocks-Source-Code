@@ -1,20 +1,23 @@
 package com.miscitems.MiscItemsAndBlocks.Network.Client;
 
+
 import com.miscitems.MiscItemsAndBlocks.Gui.GuiGame_1;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
+import com.miscitems.MiscItemsAndBlocks.Network.AbstractPacket;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import cpw.mods.fml.relauncher.Side;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.EntityPlayer;
 
-public class ClientGamePacketBegin implements IMessage, IMessageHandler<ClientGamePacketBegin, IMessage> {
+public class ClientGamePacketBegin extends AbstractPacket {
 
 	
-	String Player1;
-	String Player2;
+	public String Player1;
+    public String Player2;
 	
 	public ClientGamePacketBegin(){}
 	public ClientGamePacketBegin(String pl1, String pl2){
@@ -23,25 +26,28 @@ public class ClientGamePacketBegin implements IMessage, IMessageHandler<ClientGa
 	}
 	
 	@Override
-public void fromBytes(ByteBuf buf) {
+
+    public void fromBytes(ByteBuf buf, Side side) {
 		Player1 = ByteBufUtils.readUTF8String(buf);
 		Player2 = ByteBufUtils.readUTF8String(buf);
 	}
 
 	@Override
-	public void toBytes(ByteBuf buf) {
+	public void toBytes(ByteBuf buf, Side side) {
 		ByteBufUtils.writeUTF8String(buf,Player1);
         ByteBufUtils.writeUTF8String(buf,Player2);
 	}
 
 	@Override
-	  public IMessage onMessage(ClientGamePacketBegin message, MessageContext ctx) {
+    public void onMessage(Side side, EntityPlayer player) {
+        if (side == Side.CLIENT) {
+            if(FMLClientHandler.instance().getClient().currentScreen != null)
+            FMLClientHandler.instance().getClient().displayGuiScreen(new GuiGame_1(Player1, Player2));
+            Main.proxy.tickHandlerClient.tradeReq = null;
+        }
 
-        FMLClientHandler.instance().displayGuiScreen(Minecraft.getMinecraft().thePlayer, new GuiGame_1(message.Player1, message.Player2));
-        Main.proxy.tickHandlerClient.tradeReq = null;
 
-
-        return null;
 	}
+
 
 }

@@ -1,16 +1,20 @@
 package com.miscitems.MiscItemsAndBlocks.Network.Client;
 
 
+import com.miscitems.MiscItemsAndBlocks.Network.AbstractPacket;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityGhostBlock;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
-public class ClientGhostBlockPacket implements IMessage, IMessageHandler<ClientGhostBlockPacket, IMessage> {
+public class ClientGhostBlockPacket extends AbstractPacket {
     int x, y, z, ID, Meta;
     String Player;
 
@@ -27,7 +31,7 @@ public class ClientGhostBlockPacket implements IMessage, IMessageHandler<ClientG
     }
 
     @Override
-    public void fromBytes(ByteBuf buf) {
+    public void fromBytes(ByteBuf buf, Side side) {
         x = buf.readInt();
         y =  buf.readInt();
         z =  buf.readInt();
@@ -39,7 +43,7 @@ public class ClientGhostBlockPacket implements IMessage, IMessageHandler<ClientG
     }
 
     @Override
-    public void toBytes(ByteBuf buf) {
+    public void toBytes(ByteBuf buf, Side side) {
 
         buf.writeInt(x);
         buf.writeInt(y);
@@ -52,20 +56,18 @@ public class ClientGhostBlockPacket implements IMessage, IMessageHandler<ClientG
     }
 
     @Override
-      public IMessage onMessage(ClientGhostBlockPacket message, MessageContext ctx) {
+    public void onMessage(Side side, EntityPlayer player) {
         World world = Minecraft.getMinecraft().thePlayer.worldObj;
 
-        if(world.getTileEntity(message.x, message.y, message.z) instanceof TileEntityGhostBlock){
+        if(world.getTileEntity(x, y, z) instanceof TileEntityGhostBlock){
 
-            TileEntityGhostBlock tile = (TileEntityGhostBlock)world.getTileEntity(message.x, message.y, message.z);
-            tile.Id = message.ID;
-            tile.Meta = message.Meta;
-            tile.Placer = message.Player;
+            TileEntityGhostBlock tile = (TileEntityGhostBlock)world.getTileEntity(x, y, z);
+            tile.Id = ID;
+            tile.Meta = Meta;
+            tile.Placer = Player;
 
 
         }
 
-
-        return null;
     }
 }

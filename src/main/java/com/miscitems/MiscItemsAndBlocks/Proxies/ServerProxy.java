@@ -20,6 +20,8 @@ public static ServerTickHandler tickHandlerServer;
     public void registerRenderThings(){
         
     }
+
+    public EntityPlayer getPlayer(){return null;}
     
     
     public int addArmor(String armor){

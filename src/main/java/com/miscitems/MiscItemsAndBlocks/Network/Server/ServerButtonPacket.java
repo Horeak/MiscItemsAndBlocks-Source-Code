@@ -3,17 +3,19 @@ package com.miscitems.MiscItemsAndBlocks.Network.Server;
 import com.miscitems.MiscItemsAndBlocks.Container.ContainerMetalPress;
 import com.miscitems.MiscItemsAndBlocks.Container.ContainerMiningChamber;
 import com.miscitems.MiscItemsAndBlocks.Container.ContainerXpStorage;
+import com.miscitems.MiscItemsAndBlocks.Network.AbstractPacket;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMetalPress;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMiningStation;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityXpStorage;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import cpw.mods.fml.relauncher.Side;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 
-public class ServerButtonPacket implements IMessage, IMessageHandler<ServerButtonPacket, IMessage> {
+public class ServerButtonPacket extends AbstractPacket {
 
 	byte ID;
 	
@@ -23,35 +25,35 @@ public class ServerButtonPacket implements IMessage, IMessageHandler<ServerButto
 	}
 	
 	@Override
-public void fromBytes(ByteBuf buf) {
+public void fromBytes(ByteBuf buf, Side side) {
 		
 		ID = buf.readByte();
 	}
 
 	@Override
-	public void toBytes(ByteBuf buf) {
+	public void toBytes(ByteBuf buf, Side side) {
 
         buf.writeByte(ID);
 	}
 
 	@Override
-	  public IMessage onMessage(ServerButtonPacket message, MessageContext ctx) {
+    public void onMessage(Side side, EntityPlayer pl) {
 		
-		Container container = ctx.getServerHandler().playerEntity.openContainer;
-        EntityPlayer player = ctx.getServerHandler().playerEntity;
+		Container container = pl.openContainer;
+        EntityPlayer player = pl;
 		
 		if (container != null && container instanceof ContainerXpStorage) {
 			TileEntityXpStorage XpStorage = ((ContainerXpStorage)container).getTile();
-			XpStorage.receiveButtonEvent(message.ID);
+			XpStorage.receiveButtonEvent(ID);
 			
 		}else if (container != null && container instanceof ContainerMiningChamber) {
 			TileEntityMiningStation MiningChamber = ((ContainerMiningChamber)container).getTile();
-			MiningChamber.receiveButtonEvent(message.ID);
+			MiningChamber.receiveButtonEvent(ID);
 			
 
 		}else if (container != null && container instanceof ContainerMetalPress){
 			TileEntityMetalPress tile = ((ContainerMetalPress)container).getTile();
-			tile.receiveButtonEvent(message.ID);
+			tile.receiveButtonEvent(ID);
 			
 			if(tile.Mode == 1){
 				
@@ -72,7 +74,6 @@ public void fromBytes(ByteBuf buf) {
 			}
 			
 		}
-        return null;
 	}
 
 }

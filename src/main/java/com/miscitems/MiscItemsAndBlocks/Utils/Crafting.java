@@ -8,7 +8,10 @@ import com.miscitems.MiscItemsAndBlocks.Main.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.Main.ModItems;
 import com.miscitems.MiscItemsAndBlocks.Utils.RecipeUtils.CrystalToolUpgradeRecipe;
 import com.miscitems.MiscItemsAndBlocks.Utils.RecipeUtils.ItemRechargeRecipe;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -199,6 +202,8 @@ public class Crafting {
         if(!Item.itemRegistry.containsId(Item.getIdFromItem(Input.getItem())) || !Item.itemRegistry.containsId(Item.getIdFromItem(Output.getItem())))
             return;
         FurnaceRecipes.smelting().func_151394_a(Input, Output, Xp);
+
+        if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
         BookUtils.InfoPageFurnaceRecipes.put(Input.getItem().getUnlocalizedName(Input).replace(".name", "").replace("item.", "").replace("tile.", ""), new DoubleStackUtil(Input, Output));
     }
 
@@ -206,6 +211,8 @@ public class Crafting {
         if(!Item.itemRegistry.containsId(Item.getIdFromItem(Input)) || !Item.itemRegistry.containsId(Item.getIdFromItem(Output.getItem())))
             return;
         GameRegistry.addSmelting(Input, Output, Xp);
+
+        if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
         BookUtils.InfoPageFurnaceRecipes.put(Input.getUnlocalizedName().replace(".name", "").replace("item.", "").replace("tile.", ""), new DoubleStackUtil(new ItemStack(Input), Output));
     }
 
@@ -215,6 +222,8 @@ public class Crafting {
 
 
         GameRegistry.addSmelting(Input, Output, Xp);
+
+        if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
         BookUtils.InfoPageFurnaceRecipes.put(Input.getUnlocalizedName().replace(".name", "").replace("item.", "").replace("tile.", ""), new DoubleStackUtil(new ItemStack(Input), Output));
     }
 
@@ -380,6 +389,8 @@ public class Crafting {
 
         ShapedRecipes shapedrecipes = new ShapedRecipes(j, k, aitemstack, stack);
 
+
+        if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
         BookUtils.InfoPageShapedRecipes.put(stack.getItem().getUnlocalizedName(stack).replace(".name", ""), shapedrecipes);
 
         return true;
@@ -431,6 +442,7 @@ public class Crafting {
             return false;
 
 
+        if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
         BookUtils.InfoPageShapelessRecipes.put(par1ItemStack.getItem().getUnlocalizedName(par1ItemStack).replace(".name", ""), new ShapelessRecipes(par1ItemStack, arraylist));
 
       return true;

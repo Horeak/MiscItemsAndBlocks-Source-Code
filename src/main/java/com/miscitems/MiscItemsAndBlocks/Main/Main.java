@@ -9,7 +9,10 @@ import com.miscitems.MiscItemsAndBlocks.Event.*;
 import com.miscitems.MiscItemsAndBlocks.Gui.GuiHandler;
 import com.miscitems.MiscItemsAndBlocks.Laser.DefaultLaser;
 import com.miscitems.MiscItemsAndBlocks.Laser.LaserRegistry;
+import com.miscitems.MiscItemsAndBlocks.Network.AbstractPacket;
+import com.miscitems.MiscItemsAndBlocks.Network.ChannelHandler;
 import com.miscitems.MiscItemsAndBlocks.Network.PacketHandler;
+import com.miscitems.MiscItemsAndBlocks.Network.PacketTileUpdate;
 import com.miscitems.MiscItemsAndBlocks.Proxies.ServerProxy;
 import com.miscitems.MiscItemsAndBlocks.Utils.Crafting;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Messages;
@@ -23,17 +26,20 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.FMLEmbeddedChannel;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
+import net.minecraft.crash.CrashReport;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ReportedException;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
@@ -41,6 +47,8 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 
 import java.io.File;
+import java.util.EnumMap;
+import java.util.Map;
 import java.util.Set;
 
 
@@ -136,6 +144,10 @@ import java.util.Set;
         };
 
 
+        public static EnumMap<Side, FMLEmbeddedChannel> channels;
+
+        public static ChannelHandler handler = new ChannelHandler(Reference.Channel);
+
 	
         @EventHandler
         public void preInit(FMLPreInitializationEvent event)
@@ -171,6 +183,7 @@ import java.util.Set;
 
 
             PacketHandler.RegisterPackets();
+            channels = getNewChannelHandler(handler.channel);
 
         	ModBlocks.Init();
         	ModItems.Init();
@@ -197,11 +210,10 @@ import java.util.Set;
         	if(event.getSide() == Side.CLIENT)
         		RegisterClientEvents();
 
-
-           registerRenderer();
-
-
-            BookRegestration.Register();
+            if(event.getSide() == Side.CLIENT) {
+                registerRenderer();
+                BookRegestration.Register();
+            }
         }
 
         public void RegisterClientEvents()
@@ -273,13 +285,31 @@ import java.util.Set;
         }
 
 
+        @SideOnly(Side.CLIENT)
         public static SmallFontRenderer font;
 
+        @SideOnly(Side.CLIENT)
         public void registerRenderer ()
         {
             Minecraft mc = Minecraft.getMinecraft();
             font = new SmallFontRenderer(mc.gameSettings, new ResourceLocation("minecraft:textures/font/ascii.png"), mc.renderEngine, false);
         }
 
+        public static EnumMap<Side, FMLEmbeddedChannel> getNewChannelHandler(String modId)
+        {
+
+            EnumMap<Side, FMLEmbeddedChannel> handlers = NetworkRegistry.INSTANCE.newChannel(modId, handler);
+
+            ChannelHandler.PacketExecuter executer = new ChannelHandler.PacketExecuter();
+
+            for(Map.Entry<Side, FMLEmbeddedChannel> e : handlers.entrySet())
+            {
+                FMLEmbeddedChannel channel = e.getValue();
+                String codec = channel.findChannelHandlerNameForType(ChannelHandler.class);
+                channel.pipeline().addAfter(codec, "PacketExecuter", executer);
+            }
+
+            return handlers;
+        }
 
 	}

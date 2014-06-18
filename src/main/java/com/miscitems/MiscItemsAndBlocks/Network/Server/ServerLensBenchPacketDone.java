@@ -2,15 +2,17 @@ package com.miscitems.MiscItemsAndBlocks.Network.Server;
 
 import com.miscitems.MiscItemsAndBlocks.Container.ContainerLensBench;
 import com.miscitems.MiscItemsAndBlocks.Main.ModItems;
+import com.miscitems.MiscItemsAndBlocks.Network.AbstractPacket;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLensBench;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import cpw.mods.fml.relauncher.Side;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 
-public class ServerLensBenchPacketDone implements IMessage, IMessageHandler<ServerLensBenchPacketDone, IMessage> {
+public class ServerLensBenchPacketDone extends AbstractPacket {
 
 	boolean Color;
 	int Red, Green, Blue, Power, Strength, x, y, z;
@@ -41,7 +43,8 @@ public class ServerLensBenchPacketDone implements IMessage, IMessageHandler<Serv
 	}
 	
 	@Override
-public void fromBytes(ByteBuf buf) {
+
+    public void fromBytes(ByteBuf buf, Side side) {
 		
 		Color = buf.readBoolean();
 		if(Color){
@@ -63,7 +66,7 @@ public void fromBytes(ByteBuf buf) {
 	}
 
 	@Override
-	public void toBytes(ByteBuf buf) {
+	public void toBytes(ByteBuf buf, Side side) {
         buf.writeBoolean(Color);
 		if(Color){
             buf.writeInt(Red);
@@ -87,10 +90,8 @@ public void fromBytes(ByteBuf buf) {
 	}
 
 	@Override
-	  public IMessage onMessage(ServerLensBenchPacketDone message, MessageContext ctx) {
+    public void onMessage(Side side, EntityPlayer player) {
 
-
-        EntityPlayer player = ctx.getServerHandler().playerEntity;
 		
 		if(player.openContainer instanceof ContainerLensBench){
 			ContainerLensBench container = (ContainerLensBench)player.openContainer;
@@ -103,26 +104,26 @@ public void fromBytes(ByteBuf buf) {
 			if(tile.getStackInSlot(0).stackTagCompound == null)
     			tile.getStackInSlot(0).setTagCompound(new NBTTagCompound());
 			
-			tile.getStackInSlot(0).stackTagCompound.setBoolean("Color", message.Color);
+			tile.getStackInSlot(0).stackTagCompound.setBoolean("Color", Color);
     		
     		if(Color){
     			tile.getStackInSlot(0).stackTagCompound.setBoolean("Color", true);
-    		tile.getStackInSlot(0).stackTagCompound.setInteger("Red", message.Red);
-    		tile.getStackInSlot(0).stackTagCompound.setInteger("Green", message.Green);
-    		tile.getStackInSlot(0).stackTagCompound.setInteger("Blue", message.Blue);
+    		tile.getStackInSlot(0).stackTagCompound.setInteger("Red", Red);
+    		tile.getStackInSlot(0).stackTagCompound.setInteger("Green", Green);
+    		tile.getStackInSlot(0).stackTagCompound.setInteger("Blue", Blue);
     		}
     		
-    		tile.getStackInSlot(0).stackTagCompound.setInteger("Power", message.Power);
-    		tile.getStackInSlot(0).stackTagCompound.setInteger("Strength", message.Strength);
+    		tile.getStackInSlot(0).stackTagCompound.setInteger("Power", Power);
+    		tile.getStackInSlot(0).stackTagCompound.setInteger("Strength", Strength);
     		
-    		tile.getStackInSlot(0).stackTagCompound.setInteger("PowerUse", (((message.Power) * 3) + ((message.Strength / 4))) + (message.Damage ? 5 : 0) + (message.TransferPower ? 2 : 0) + (message.Redstone ? 1 : 0));
+    		tile.getStackInSlot(0).stackTagCompound.setInteger("PowerUse", (((Power) * 3) + ((Strength / 4))) + (Damage ? 5 : 0) + (TransferPower ? 2 : 0) + (Redstone ? 1 : 0));
     		
     		if(tile.getStackInSlot(0).stackTagCompound.getInteger("PowerUse") < 0){
         		tile.getStackInSlot(0).stackTagCompound.setInteger("PowerUse", 0);
     		}
 
     		
-    		if(message.TransferPower){
+    		if(TransferPower){
     			tile.getStackInSlot(0).stackTagCompound.setBoolean("TransferPower", true);
     		}else{
     			tile.getStackInSlot(0).stackTagCompound.setBoolean("TransferPower", false);
@@ -131,14 +132,14 @@ public void fromBytes(ByteBuf buf) {
     		
     		
     		
-    		if(message.Redstone){
+    		if(Redstone){
     			tile.getStackInSlot(0).stackTagCompound.setBoolean("Redstone", true);
     		}else{
     			tile.getStackInSlot(0).stackTagCompound.setBoolean("Redstone", false);
     		}
     		
     		
-    		if(!message.Damage){
+    		if(!Damage){
     			tile.getStackInSlot(0).stackTagCompound.setBoolean("Safe", true);
     		}else{
     			tile.getStackInSlot(0).stackTagCompound.setBoolean("Safe", false);
@@ -153,7 +154,6 @@ public void fromBytes(ByteBuf buf) {
 			
 		}
 
-        return null;
 	}
 		
 	}

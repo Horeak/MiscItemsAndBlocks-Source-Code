@@ -1,6 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Network.Server;
 
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
+import com.miscitems.MiscItemsAndBlocks.Network.AbstractPacket;
 import com.miscitems.MiscItemsAndBlocks.Utils.Game.GameInvite;
 import com.miscitems.MiscItemsAndBlocks.Utils.Handlers.ChatMessageHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -8,11 +9,12 @@ import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import cpw.mods.fml.relauncher.Side;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 
-public class ServerGamePacketAccept implements IMessage, IMessageHandler<ServerGamePacketAccept, IMessage> {
+public class ServerGamePacketAccept extends AbstractPacket {
 
 	
 	String Player;
@@ -23,22 +25,22 @@ public class ServerGamePacketAccept implements IMessage, IMessageHandler<ServerG
 	}
 	
 	@Override
-public void fromBytes(ByteBuf buf) {
+
+    public void fromBytes(ByteBuf buf, Side side) {
 
 		Player = ByteBufUtils.readUTF8String(buf);
 	}
 
 	@Override
-	public void toBytes(ByteBuf buf) {
+	public void toBytes(ByteBuf buf, Side side) {
 
 		ByteBufUtils.writeUTF8String(buf,Player);
 	}
 
 	@Override
-	  public IMessage onMessage(ServerGamePacketAccept message, MessageContext ctx) {
+    public void onMessage(Side side, EntityPlayer player) {
 		 //Accept request
 
-        EntityPlayer player = ctx.getServerHandler().playerEntity;
 
         GameInvite tr = Main.proxy.tickHandlerServer.playerGameRequests.get(player.getCommandSenderName());
         if(tr == null)
@@ -47,7 +49,7 @@ public void fromBytes(ByteBuf buf) {
         }
         
         
-        EntityPlayerMP plyr = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().getPlayerForUsername(message.Player);
+        EntityPlayerMP plyr = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().getPlayerForUsername(Player);
         
         if(plyr != null && plyr.isEntityAlive() )
         {
@@ -63,7 +65,6 @@ public void fromBytes(ByteBuf buf) {
 
         }
 
-        return null;
 	}
 
 }

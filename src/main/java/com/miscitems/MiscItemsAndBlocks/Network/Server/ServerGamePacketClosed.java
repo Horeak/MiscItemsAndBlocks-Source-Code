@@ -1,15 +1,17 @@
 package com.miscitems.MiscItemsAndBlocks.Network.Server;
 
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
+import com.miscitems.MiscItemsAndBlocks.Network.AbstractPacket;
 import com.miscitems.MiscItemsAndBlocks.Utils.Game.GameInfo;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import cpw.mods.fml.relauncher.Side;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 
-public class ServerGamePacketClosed implements IMessage, IMessageHandler<ServerGamePacketClosed, IMessage> {
+public class ServerGamePacketClosed extends AbstractPacket {
 
 	String Player1;
 	String Player2;
@@ -22,7 +24,7 @@ public class ServerGamePacketClosed implements IMessage, IMessageHandler<ServerG
 	}
 	
 	@Override
-public void fromBytes(ByteBuf buf) {
+public void fromBytes(ByteBuf buf, Side side) {
 		
 		
 		Player1 = ByteBufUtils.readUTF8String(buf);
@@ -30,7 +32,7 @@ public void fromBytes(ByteBuf buf) {
 	}
 
 	@Override
-	public void toBytes(ByteBuf buf) {
+	public void toBytes(ByteBuf buf, Side side) {
 		
 		
 		ByteBufUtils.writeUTF8String(buf, Player1);
@@ -38,12 +40,11 @@ public void fromBytes(ByteBuf buf) {
 	}
 
 	@Override
-	  public IMessage onMessage(ServerGamePacketClosed message, MessageContext ctx) {
+    public void onMessage(Side side, EntityPlayer player) {
 		
 
-        EntityPlayer player = ctx.getServerHandler().playerEntity;
 
-		if(player.getCommandSenderName().equalsIgnoreCase(message.Player1) || player.getCommandSenderName().equalsIgnoreCase(message.Player2)){
+		if(player.getCommandSenderName().equalsIgnoreCase(Player1) || player.getCommandSenderName().equalsIgnoreCase(Player2)){
   	  for(GameInfo ti : Main.proxy.tickHandlerServer.activeGames)
         {
                 if(ti.isPlayerInGame(player))
@@ -55,8 +56,7 @@ public void fromBytes(ByteBuf buf) {
   	  
 		}
   	  
-  	  
-  	  return null;
+
 	}
 
 }

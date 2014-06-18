@@ -132,7 +132,7 @@ public class GuiLensBench extends GuiContainer{
     	
     	if(tile.getStackInSlot(0) != null){
 
-    		PacketHandler.INSTANCE.sendToServer(new ServerLensBenchPacketDone(Color, Red, Green, Blue, Power, Strength, TransferPower, Damage, Redstone, tile.xCoord, tile.yCoord, tile.zCoord));
+    		PacketHandler.sendToServer(new ServerLensBenchPacketDone(Color, Red, Green, Blue, Power, Strength, TransferPower, Damage, Redstone, tile.xCoord, tile.yCoord, tile.zCoord));
     	}
     	
 		if(button.id == 0){
@@ -255,7 +255,7 @@ public class GuiLensBench extends GuiContainer{
 			
 	    	if(tile.getStackInSlot(0) != null){
 
-	    		PacketHandler.INSTANCE.sendToServer(new ServerLensBenchPacketDone(Color, Red, Green, Blue, Power, Strength, TransferPower, Damage, Redstone, tile.xCoord, tile.yCoord, tile.zCoord));
+	    		PacketHandler.sendToServer(new ServerLensBenchPacketDone(Color, Red, Green, Blue, Power, Strength, TransferPower, Damage, Redstone, tile.xCoord, tile.yCoord, tile.zCoord));
 	    	}
 		}
 			
@@ -306,7 +306,7 @@ public class GuiLensBench extends GuiContainer{
 
     	if(tile.getStackInSlot(0) != null){
 
-    		PacketHandler.INSTANCE.sendToServer(new ServerLensBenchPacketDone(Color, Red, Green, Blue, Power, Strength, TransferPower, Damage, Redstone, tile.xCoord, tile.yCoord, tile.zCoord));
+    		PacketHandler.sendToServer(new ServerLensBenchPacketDone(Color, Red, Green, Blue, Power, Strength, TransferPower, Damage, Redstone, tile.xCoord, tile.yCoord, tile.zCoord));
     	}
     }
     

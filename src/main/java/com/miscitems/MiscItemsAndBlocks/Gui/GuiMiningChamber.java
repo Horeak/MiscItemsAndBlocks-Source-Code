@@ -102,7 +102,7 @@ public class GuiMiningChamber extends GuiContainer{
 	
 	@Override
 	protected void actionPerformed(GuiButton button){
-		PacketHandler.INSTANCE.sendToServer(new ServerButtonPacket((byte) button.id));
+		PacketHandler.sendToServer(new ServerButtonPacket((byte) button.id));
 		
 //		if(button.id == 3){
 //			if(Start.displayString == StatCollector.translateToLocal("words.start")){

@@ -5,11 +5,13 @@ import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import cpw.mods.fml.relauncher.Side;
 import io.netty.buffer.ByteBuf;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class PacketTileWithItemUpdate implements IMessage, IMessageHandler<PacketTileWithItemUpdate, IMessage> {
+public class PacketTileWithItemUpdate extends AbstractPacket {
 
     public int x, y, z;
     public byte orientation;
@@ -34,14 +36,15 @@ public class PacketTileWithItemUpdate implements IMessage, IMessageHandler<Packe
     }
 
     @Override
-    public void toBytes(ByteBuf buf) {
+    public void toBytes(ByteBuf buf, Side side) {
 
         buf.writeInt(x);
         buf.writeInt(y);
         buf.writeInt(z);
         buf.writeByte(orientation);
         buf.writeByte(state);
-        ByteBufUtils.writeUTF8String(buf, customName);
+//        buf.writeBoolean(customName != null);
+//        ByteBufUtils.writeUTF8String(buf, customName);
         buf.writeInt(itemID);
         buf.writeInt(metaData);
         buf.writeInt(stackSize);
@@ -49,14 +52,15 @@ public class PacketTileWithItemUpdate implements IMessage, IMessageHandler<Packe
     }
 
     @Override
-    public void fromBytes(ByteBuf buf) {
+    public void fromBytes(ByteBuf buf, Side side) {
 
         x = buf.readInt();
         y = buf.readInt();
         z = buf.readInt();
         orientation = buf.readByte();
         state = buf.readByte();
-        customName = ByteBufUtils.readUTF8String(buf);
+//        if(buf.readBoolean())
+//        customName = ByteBufUtils.readUTF8String(buf);
         itemID = buf.readInt();
         metaData = buf.readInt();
         stackSize = buf.readInt();
@@ -64,10 +68,9 @@ public class PacketTileWithItemUpdate implements IMessage, IMessageHandler<Packe
     }
 
     @Override
-    public IMessage onMessage(PacketTileWithItemUpdate message, MessageContext ctx) {
+    public void onMessage(Side side, EntityPlayer player) {
 
-        Main.proxy.handleTileWithItemPacket(message.x, message.y, message.z, ForgeDirection.getOrientation(message.orientation), message.state, message.customName, Item.getItemById(message.itemID), message.metaData, message.stackSize, message.color);
-        return null;
+        Main.proxy.handleTileWithItemPacket(x, y, z, ForgeDirection.getOrientation(orientation), state, customName, Item.getItemById(itemID), metaData, stackSize, color);
     }
 
 

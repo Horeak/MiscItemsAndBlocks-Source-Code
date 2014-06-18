@@ -1,5 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Network.Server;
 
+import com.miscitems.MiscItemsAndBlocks.Network.AbstractPacket;
 import com.miscitems.MiscItemsAndBlocks.Network.Client.ClientGamePacketInviteRecived;
 import com.miscitems.MiscItemsAndBlocks.Network.PacketHandler;
 import com.miscitems.MiscItemsAndBlocks.Proxies.ServerProxy;
@@ -9,11 +10,12 @@ import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import cpw.mods.fml.relauncher.Side;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 
-public class ServerGamePacketInvite implements IMessage, IMessageHandler<ServerGamePacketInvite, IMessage> {
+public class ServerGamePacketInvite extends AbstractPacket {
 
 	public String Player;
 	
@@ -23,14 +25,15 @@ public class ServerGamePacketInvite implements IMessage, IMessageHandler<ServerG
 	}
 	
 	@Override
-public void fromBytes(ByteBuf buf) {
+
+    public void fromBytes(ByteBuf buf, Side side) {
 
 
 		Player = ByteBufUtils.readUTF8String(buf);
 	}
 
 	@Override
-	public void toBytes(ByteBuf buf) {
+	public void toBytes(ByteBuf buf, Side side) {
 
 		
 		ByteBufUtils.writeUTF8String(buf, Player);
@@ -39,12 +42,10 @@ public void fromBytes(ByteBuf buf) {
 	
 	//Server Network
 	@Override
-	  public IMessage onMessage(ServerGamePacketInvite message, MessageContext ctx) {
-
-        EntityPlayer player = ctx.getServerHandler().playerEntity;
+    public void onMessage(Side side, EntityPlayer player) {
 		
 		
-		  EntityPlayerMP plyr = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().getPlayerForUsername(message.Player);
+		  EntityPlayerMP plyr = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().getPlayerForUsername(Player);
           
 		  if(plyr != null){
           GameInvite tr = ServerProxy.tickHandlerServer.playerGameRequests.get(plyr.getCommandSenderName());
@@ -52,12 +53,10 @@ public void fromBytes(ByteBuf buf) {
           {
         	  
           	ServerProxy.tickHandlerServer.playerGameRequests.put(plyr.getCommandSenderName(), new GameInvite(player.getCommandSenderName()));
-          	PacketHandler.INSTANCE.sendTo(new ClientGamePacketInviteRecived(player.getCommandSenderName()), plyr);
+          	PacketHandler.sendToPlayer(new ClientGamePacketInviteRecived(player.getCommandSenderName()), plyr);
           }
 		  }
-          	
-          	
-         return null;
+
 	}
 
 }

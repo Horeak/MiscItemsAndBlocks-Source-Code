@@ -1,14 +1,16 @@
 package com.miscitems.MiscItemsAndBlocks.Network.Server;
 
+import com.miscitems.MiscItemsAndBlocks.Network.AbstractPacket;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import cpw.mods.fml.relauncher.Side;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 
-public class ServerSetBlockPacket implements IMessage, IMessageHandler<ServerSetBlockPacket, IMessage> {
+public class ServerSetBlockPacket extends AbstractPacket {
 	
 	
 	int Dimension,  x,  y,  z;
@@ -26,7 +28,7 @@ public class ServerSetBlockPacket implements IMessage, IMessageHandler<ServerSet
 	}
 
 	@Override
-public void fromBytes(ByteBuf buf) {
+public void fromBytes(ByteBuf buf, Side side) {
 		
 		
 		this.Dimension = buf.readInt();
@@ -39,7 +41,7 @@ public void fromBytes(ByteBuf buf) {
 	}
 
 	@Override
-	public void toBytes(ByteBuf buf) {
+	public void toBytes(ByteBuf buf, Side side) {
 
         buf.writeInt(Dimension);
         buf.writeInt(x);
@@ -50,20 +52,18 @@ public void fromBytes(ByteBuf buf) {
 	}
 
 	@Override
-	  public IMessage onMessage(ServerSetBlockPacket message, MessageContext ctx) {
-        EntityPlayer player = ctx.getServerHandler().playerEntity;
+    public void onMessage(Side side, EntityPlayer player) {
 
 		if(player.worldObj.getWorldInfo().getVanillaDimension() == Dimension){
-            if(message.block == Blocks.air){
+            if(block == Blocks.air){
                 if (!player.worldObj.isRemote)
-                    player.worldObj.playAuxSFX(2001, message.x, message.y, message.z, Block.getIdFromBlock(player.worldObj.getBlock(message.x, message.y, message.z)) + (player.worldObj.getBlockMetadata(message.x, message.y, message.z) << 12));
+                    player.worldObj.playAuxSFX(2001, x, y, z, Block.getIdFromBlock(player.worldObj.getBlock(x, y, z)) + (player.worldObj.getBlockMetadata(x, y, z) << 12));
             }
 
-			player.worldObj.setBlock(message.x, message.y, message.z, message.block);
+			player.worldObj.setBlock(x, y, z, block);
 			
 		}
-		
-		return null;
+
 	}
 
 }

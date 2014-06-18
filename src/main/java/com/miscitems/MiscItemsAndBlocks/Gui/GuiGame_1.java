@@ -203,10 +203,10 @@ public class GuiGame_1 extends GuiScreen
                         if(player_1 != player_2){
                         	
                         	if(player_1.getCommandSenderName().equalsIgnoreCase(Minecraft.getMinecraft().thePlayer.getCommandSenderName())){
-                        		PacketHandler.INSTANCE.sendTo(new ClientGamePacketRestart(), (EntityPlayerMP)player_2);
+                        		PacketHandler.sendToPlayer(new ClientGamePacketRestart(), (EntityPlayerMP)player_2);
                         		
                         	}else if (player_2.getCommandSenderName().equalsIgnoreCase(Minecraft.getMinecraft().thePlayer.getCommandSenderName())){
-                        		PacketHandler.INSTANCE.sendTo(new ClientGamePacketRestart(), (EntityPlayerMP)player_1);
+                        		PacketHandler.sendToPlayer(new ClientGamePacketRestart(), (EntityPlayerMP)player_1);
                         	}
                         	
                         }
@@ -234,7 +234,7 @@ public class GuiGame_1 extends GuiScreen
 
 			                        if(player_1 != player_2)
 
-			                        	PacketHandler.INSTANCE.sendToServer(new ServerGamePacketChange(button.id - 1, CurrentTurn, player_1.getCommandSenderName(), player_2.getCommandSenderName()));
+			                        	PacketHandler.sendToServer(new ServerGamePacketChange(button.id - 1, CurrentTurn, player_1.getCommandSenderName(), player_2.getCommandSenderName()));
 	                     
 	    	
 	    	if(Buttons[button.id - 1].enabled){
@@ -352,7 +352,7 @@ public class GuiGame_1 extends GuiScreen
 
 		                        if(player_1 != player_2)
 
-		                        	PacketHandler.INSTANCE.sendToServer(new ServerGamePacketClosed(player_1.getCommandSenderName(), player_2.getCommandSenderName()));
+		                        	PacketHandler.sendToServer(new ServerGamePacketClosed(player_1.getCommandSenderName(), player_2.getCommandSenderName()));
 		                        	
 		                        	
 	    	

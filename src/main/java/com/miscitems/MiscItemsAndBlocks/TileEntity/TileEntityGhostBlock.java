@@ -48,7 +48,7 @@ public class TileEntityGhostBlock extends TileEntity{
 
 
         if (Id > 0 || Placer != null)
-            return PacketHandler.INSTANCE.getPacketFrom(new ClientGhostBlockPacket(xCoord, yCoord, zCoord, Id, Meta, Placer));
+            return PacketHandler.GetPacket(new ClientGhostBlockPacket(xCoord, yCoord, zCoord, Id, Meta, Placer));
         else
             return super.getDescriptionPacket();
     }

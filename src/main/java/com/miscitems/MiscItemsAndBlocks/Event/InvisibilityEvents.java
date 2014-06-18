@@ -6,6 +6,8 @@ import com.miscitems.MiscItemsAndBlocks.Proxies.ClientProxy;
 import com.miscitems.MiscItemsAndBlocks.Utils.InvisibilityUtils;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,6 +22,7 @@ public class InvisibilityEvents {
 
 
 
+    @SideOnly(Side.CLIENT)
     @SubscribeEvent
          public void CancelRenderEvent(RenderPlayerEvent.Pre event){
         if(InvisibilityUtils.GetList().contains(event.entityPlayer)){
@@ -27,6 +30,7 @@ public class InvisibilityEvents {
         }
     }
 
+    @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void CancelRenderEvent(RenderPlayerEvent.Post event){
         if(InvisibilityUtils.GetList().contains(event.entityPlayer)){
@@ -56,6 +60,7 @@ public class InvisibilityEvents {
         }
         }
 
+    @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void CheckArmorEvent(TickEvent.ClientTickEvent event){
         if(Minecraft.getMinecraft().thePlayer != null && Minecraft.getMinecraft().thePlayer.inventory.armorInventory != null) {

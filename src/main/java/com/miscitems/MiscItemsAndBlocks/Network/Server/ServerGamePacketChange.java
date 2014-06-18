@@ -1,5 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Network.Server;
 
+import com.miscitems.MiscItemsAndBlocks.Network.AbstractPacket;
 import com.miscitems.MiscItemsAndBlocks.Network.Client.ClientGamePacketChange;
 import com.miscitems.MiscItemsAndBlocks.Network.PacketHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -7,10 +8,12 @@ import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import cpw.mods.fml.relauncher.Side;
 import io.netty.buffer.ByteBuf;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 
-public class ServerGamePacketChange implements IMessage, IMessageHandler<ServerGamePacketChange, IMessage> {
+public class ServerGamePacketChange extends AbstractPacket {
 
 	
 
@@ -29,7 +32,7 @@ public class ServerGamePacketChange implements IMessage, IMessageHandler<ServerG
 	}
 	
 	@Override
-public void fromBytes(ByteBuf buf) {
+public void fromBytes(ByteBuf buf, Side side) {
 		
 		Number = buf.readInt();
 		Player = buf.readInt();
@@ -39,7 +42,7 @@ public void fromBytes(ByteBuf buf) {
 	}
 
 	@Override
-	public void toBytes(ByteBuf buf) {
+	public void toBytes(ByteBuf buf, Side side) {
 
 
         buf.writeInt(Number);
@@ -49,17 +52,16 @@ public void fromBytes(ByteBuf buf) {
 	}
 
 	@Override
-	  public IMessage onMessage(ServerGamePacketChange message, MessageContext ctx) {
+    public void onMessage(Side side, EntityPlayer player) {
 		
 		 EntityPlayerMP plyr;
 		 
-		 if(message.Player == 1)
-			 plyr = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().getPlayerForUsername(message.Player_2);
+		 if(Player == 1)
+			 plyr = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().getPlayerForUsername(Player_2);
 		 else
-			 plyr = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().getPlayerForUsername(message.Player_1);
+			 plyr = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().getPlayerForUsername(Player_1);
 		 
-		PacketHandler.INSTANCE.sendTo(new ClientGamePacketChange(message.Number, message.Player, message.Player_1, message.Player_2), plyr);
-        return null;
+		PacketHandler.sendToPlayer(new ClientGamePacketChange(Number, Player, Player_1, Player_2), plyr);
 	}
 
 }

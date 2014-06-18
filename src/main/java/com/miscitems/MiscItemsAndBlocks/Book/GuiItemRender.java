@@ -25,7 +25,6 @@ import org.lwjgl.opengl.GL12;
 
 import java.util.Random;
 
-@SideOnly(Side.CLIENT)
 public class GuiItemRender extends Render
 {
     private static final ResourceLocation RES_ITEM_GLINT = new ResourceLocation("textures/misc/enchanted_item_glint.png");

@@ -1,15 +1,21 @@
 package com.miscitems.MiscItemsAndBlocks.Network.Client;
 
 import com.miscitems.MiscItemsAndBlocks.Gui.GuiGame_1;
+import com.miscitems.MiscItemsAndBlocks.Network.AbstractPacket;
 import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.EntityPlayer;
 
-public class ClientGamePacketChange  implements IMessage, IMessageHandler<ClientGamePacketChange, IMessage> {
+
+public class ClientGamePacketChange  extends AbstractPacket {
 
 	int Number;
 	int Player;
@@ -26,8 +32,8 @@ public class ClientGamePacketChange  implements IMessage, IMessageHandler<Client
 	}
 	
 	@Override
-public void fromBytes(ByteBuf buf) {
-		
+
+    public void fromBytes(ByteBuf buf, Side side){
 		Number = buf.readInt();
 		Player = buf.readInt();
 		
@@ -36,7 +42,7 @@ public void fromBytes(ByteBuf buf) {
 	}
 	
 	@Override
-	public void toBytes(ByteBuf buf) {
+	public void toBytes(ByteBuf buf, Side side) {
 
 
         buf.writeInt(Number);
@@ -46,9 +52,10 @@ public void fromBytes(ByteBuf buf) {
 	}
 
 	@Override
-	  public IMessage onMessage(ClientGamePacketChange message, MessageContext ctx) {
+	  public void onMessage(Side side, EntityPlayer player) {
 
-		if((message.Player == 1 && Minecraft.getMinecraft().thePlayer.getCommandSenderName().equalsIgnoreCase(message.Player_2)) || (message.Player == 2 && Minecraft.getMinecraft().thePlayer.getCommandSenderName().equalsIgnoreCase(message.Player_1)) ){
+        if (FMLCommonHandler.instance().getEffectiveSide().isClient())
+		if((Player == 1 && Minecraft.getMinecraft().thePlayer.getCommandSenderName().equalsIgnoreCase(Player_2)) || (Player == 2 && Minecraft.getMinecraft().thePlayer.getCommandSenderName().equalsIgnoreCase(Player_1)) ){
       		
     		
     		if(FMLClientHandler.instance().getClient().currentScreen instanceof GuiGame_1){
@@ -57,15 +64,15 @@ public void fromBytes(ByteBuf buf) {
 
     			
     			if(!gui.CheckWinBlue() && !gui.CheckWinRed()){
-    				if(message.Player == 1){
-    					gui.Buttons[message.Number].displayString = gui.Mark_X;
-    					gui.Buttons[message.Number].enabled = false;
+    				if(Player == 1){
+    					gui.Buttons[Number].displayString = gui.Mark_X;
+    					gui.Buttons[Number].enabled = false;
     					gui.CurrentTurn = 2;
     					gui.CurrentPlayer = gui.player_2;
     					
-    				}else if (message.Player == 2){
-    					gui.Buttons[message.Number].displayString = gui.Mark_O;
-    					gui.Buttons[message.Number].enabled = false;
+    				}else if (Player == 2){
+    					gui.Buttons[Number].displayString = gui.Mark_O;
+    					gui.Buttons[Number].enabled = false;
     					gui.CurrentTurn = 1;
     					gui.CurrentPlayer = gui.player_1;
     				}
@@ -101,7 +108,7 @@ public void fromBytes(ByteBuf buf) {
     				for(int i = 0; i < gui.Buttons.length; i++){
     		    		
     		    		if(gui.Buttons[i].enabled){
-    		    			return null;
+    		    			return;
     		    		}
     		    	}
     		    	
@@ -115,8 +122,6 @@ public void fromBytes(ByteBuf buf) {
         	
           		}
         	
-
-        return null;
 	}
 
 

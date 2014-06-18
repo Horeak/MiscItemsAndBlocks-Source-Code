@@ -25,8 +25,8 @@ public class GameInfo
         {
 
 
-        	PacketHandler.INSTANCE.sendTo(new ClientGamePacketBegin(Player_1.getCommandSenderName(), Player_2.getCommandSenderName()), (EntityPlayerMP)Player_1);
-        	PacketHandler.INSTANCE.sendTo(new ClientGamePacketBegin(Player_1.getCommandSenderName(), Player_2.getCommandSenderName()), (EntityPlayerMP)Player_2);
+        	PacketHandler.sendToPlayer(new ClientGamePacketBegin(Player_1.getCommandSenderName(), Player_2.getCommandSenderName()), Player_1);
+        	PacketHandler.sendToPlayer(new ClientGamePacketBegin(Player_1.getCommandSenderName(), Player_2.getCommandSenderName()), Player_2);
         
         return this;
         }
@@ -34,8 +34,8 @@ public class GameInfo
         public void terminate(EntityPlayer terminator)
         {
         	terminate = true;
-        	ChatMessageHandler.sendChatToPlayer(Player_1, "Game was closed.");
-        	ChatMessageHandler.sendChatToPlayer(Player_2, "Game was closed.");
+        	ChatMessageHandler.sendChatToPlayer(Player_1, "Game was closed by " + terminator.getCommandSenderName());
+        	ChatMessageHandler.sendChatToPlayer(Player_2, "Game was closed by " + terminator.getCommandSenderName());
         	
         }
     

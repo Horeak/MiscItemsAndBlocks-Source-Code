@@ -1,14 +1,19 @@
 package com.miscitems.MiscItemsAndBlocks.Network.Client;
 
 import com.miscitems.MiscItemsAndBlocks.Gui.GuiChat;
+import com.miscitems.MiscItemsAndBlocks.Network.AbstractPacket;
 import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import io.netty.buffer.ByteBuf;
+import net.minecraft.entity.player.EntityPlayer;
 
-public class ClientChatMessageRecivedPacket  implements IMessage, IMessageHandler<ClientChatMessageRecivedPacket, IMessage> {
+public class ClientChatMessageRecivedPacket  extends AbstractPacket {
 
 	
 	String Line;
@@ -22,31 +27,32 @@ public class ClientChatMessageRecivedPacket  implements IMessage, IMessageHandle
 	}
 	
 	@Override
-public void fromBytes(ByteBuf buf) {
+
+    public void fromBytes(ByteBuf buf, Side side) {
 		
 		Line = ByteBufUtils.readUTF8String(buf);
 	}
 
 	@Override
-	public void toBytes(ByteBuf buf) {
+	public void toBytes(ByteBuf buf, Side side) {
 
         ByteBufUtils.writeUTF8String(buf,Line);
 		
 	}
 
 	@Override
-	  public IMessage onMessage(ClientChatMessageRecivedPacket message, MessageContext ctx) {
+    public void onMessage(Side side, EntityPlayer player) {
 
-		String fullLine1 = message.Line;
-		
-		
-		
-		
-		if(FMLClientHandler.instance().getClient().currentScreen != null && FMLClientHandler.instance().getClient().currentScreen instanceof GuiChat){
-			GuiChat gui = (GuiChat)FMLClientHandler.instance().getClient().currentScreen;
-			gui.ReciveChatMessage(fullLine1);
-		}
+		String fullLine1 = Line;
 
-        return null;
+        if (FMLCommonHandler.instance().getEffectiveSide().isClient()) {
+            if (FMLClientHandler.instance().getClient().currentScreen != null && FMLClientHandler.instance().getClient().currentScreen instanceof GuiChat) {
+                GuiChat gui = (GuiChat) FMLClientHandler.instance().getClient().currentScreen;
+                gui.ReciveChatMessage(fullLine1);
+            }
+        }
+
 	}
+
+
 }

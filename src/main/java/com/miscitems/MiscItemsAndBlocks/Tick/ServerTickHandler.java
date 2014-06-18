@@ -9,6 +9,7 @@ import com.miscitems.MiscItemsAndBlocks.Utils.Handlers.ParticleHelper;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 
@@ -239,11 +240,9 @@ public class ServerTickHandler{
 			   
                GameInfo ti = activeGames.get(i);
 			   if(ti.terminate){
-				   //FIX Find a new way!
-				   ti.Player_1.openGui(Main.instance, 0, null, 0, 0, 0);
-				   ti.Player_2.openGui(Main.instance, 0, null, 0, 0, 0);
-//				   ti.Player_1.closeScreen();
-//				   ti.Player_2.closeScreen();
+
+                   ti.Player_1.closeScreen();
+                   ti.Player_2.closeScreen();
 				   activeGames.remove(i);
 			   }
 			   

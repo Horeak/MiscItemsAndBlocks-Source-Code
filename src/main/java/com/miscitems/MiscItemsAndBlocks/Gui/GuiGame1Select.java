@@ -112,7 +112,7 @@ public class GuiGame1Select extends GuiScreen{
 	    		
 
 	                   
-	    		PacketHandler.INSTANCE.sendToServer(new ServerGamePacketAccept(Minecraft.getMinecraft().thePlayer.getCommandSenderName()));
+	    		PacketHandler.sendToServer(new ServerGamePacketAccept(Minecraft.getMinecraft().thePlayer.getCommandSenderName()));
 
 	    	}
 	        	

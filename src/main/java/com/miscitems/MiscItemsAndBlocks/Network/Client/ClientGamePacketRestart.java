@@ -1,30 +1,35 @@
 package com.miscitems.MiscItemsAndBlocks.Network.Client;
 
 import com.miscitems.MiscItemsAndBlocks.Gui.GuiGame_1;
+import com.miscitems.MiscItemsAndBlocks.Network.AbstractPacket;
 import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.EntityPlayer;
 
-public class ClientGamePacketRestart implements IMessage, IMessageHandler<ClientGamePacketRestart, IMessage> {
+public class ClientGamePacketRestart extends AbstractPacket{
 
 	public ClientGamePacketRestart(){}
 	
 	@Override
-public void fromBytes(ByteBuf buf) {
+public void fromBytes(ByteBuf buf, Side side) {
 
 	}
 
 	@Override
-	public void toBytes(ByteBuf buf) {
+	public void toBytes(ByteBuf buf, Side side) {
 
 	}
 
 	@Override
-	  public IMessage onMessage(ClientGamePacketRestart message, MessageContext ctx) {
-
+    public void onMessage(Side side, EntityPlayer player) {
+if(side == Side.CLIENT)
     if(FMLClientHandler.instance().getClient().currentScreen instanceof GuiGame_1){
 		GuiGame_1 gui = (GuiGame_1)Minecraft.getMinecraft().currentScreen;
 		
@@ -39,12 +44,9 @@ public void fromBytes(ByteBuf buf) {
 		gui.BlueWin = false;
 		
 		gui.Button_Restart.enabled = false;
-		
-    
-    	
+
     	
     }
-        return null;
 	}
 
 }

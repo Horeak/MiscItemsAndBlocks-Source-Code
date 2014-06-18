@@ -19,7 +19,7 @@ public class InvisibilityUtils {
         InvisPlayers.add(player);
 
         if(Sync)
-        PacketHandler.INSTANCE.sendToServer(new ServerSyncInvisPlayers(1,player));
+        PacketHandler.sendToServer(new ServerSyncInvisPlayers(1,player));
 
 
     }
@@ -29,7 +29,7 @@ public class InvisibilityUtils {
             InvisPlayers.remove(player);
 
         if(Sync)
-        PacketHandler.INSTANCE.sendToServer(new ServerSyncInvisPlayers(2,player));
+        PacketHandler.sendToServer(new ServerSyncInvisPlayers(2,player));
 
 
     }

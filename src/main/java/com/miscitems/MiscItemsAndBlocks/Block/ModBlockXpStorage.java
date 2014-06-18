@@ -54,7 +54,7 @@ public class ModBlockXpStorage extends BlockContainer{
             if(!tile.GuiOpen)
         	FMLNetworkHandler.openGui(par5EntityPlayer, Main.instance, 0, par1World, par2, par3, par4);
             else
-                ChatMessageHandler.sendChatToPlayer(par5EntityPlayer, "This xp storage block is already open by someone else!");
+                ChatMessageHandler.sendChatToPlayer(par5EntityPlayer, "This xp storage block is already being used by someone else!");
             return true;
         }
     }
