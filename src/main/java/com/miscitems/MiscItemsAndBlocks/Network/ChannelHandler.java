@@ -46,7 +46,7 @@ public class ChannelHandler extends FMLIndexedMessageToMessageCodec<AbstractPack
     public void encodeInto(ChannelHandlerContext ctx, AbstractPacket msg, ByteBuf target) throws Exception
     {
         LogHandler.Debug("Writing packet!!!", 2);
-                ((AbstractPacket) msg).toBytes(target, ctx.channel().attr(NetworkRegistry.CHANNEL_SOURCE).get());
+                 msg.toBytes(target, ctx.channel().attr(NetworkRegistry.CHANNEL_SOURCE).get());
     }
 
     @Override
@@ -54,7 +54,7 @@ public class ChannelHandler extends FMLIndexedMessageToMessageCodec<AbstractPack
     {
 
         LogHandler.Debug("Reading packet!!!", 2);
-                ((AbstractPacket) msg).fromBytes(source, ctx.channel().attr(NetworkRegistry.CHANNEL_SOURCE).get());
+                msg.fromBytes(source, ctx.channel().attr(NetworkRegistry.CHANNEL_SOURCE).get());
     }
 
 

@@ -451,23 +451,5 @@ public class Crafting {
 
 
 
-
-    public static ItemStack GetItemStack(ArrayList array, int i){
-
-        if(array.get(i) instanceof Block){
-            return new ItemStack((Block)array.get(i));
-        }
-
-        if(array.get(i) instanceof Item){
-            return new ItemStack((Item)array.get(i));
-        }
-
-        if(array.get(i) instanceof ItemStack){
-            return (ItemStack)array.get(i);
-        }
-
-
-        return new ItemStack(Blocks.air);
-    }
     
 }

@@ -1,11 +1,10 @@
 package com.miscitems.MiscItemsAndBlocks.GuiObjects.Slots;
 
-import com.miscitems.MiscItemsAndBlocks.Items.ModItemUpgradeItem;
-import com.miscitems.MiscItemsAndBlocks.Items.ModItemUpgrades;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Slot;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
+import com.miscitems.MiscItemsAndBlocks.Items.*;
+import com.miscitems.MiscItemsAndBlocks.Utils.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
 
 public class SlotUpgrades extends Slot{
 
@@ -22,7 +21,7 @@ public class SlotUpgrades extends Slot{
     
     public IIcon getBackgroundIconIndex()
     {
-        return ModItemUpgrades.EmptySlot;
+        return IconRegisteringItemClass.EmptySlot;
     }
 
 	

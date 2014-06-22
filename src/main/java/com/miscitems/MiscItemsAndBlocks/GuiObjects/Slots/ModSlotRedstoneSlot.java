@@ -1,11 +1,9 @@
 package com.miscitems.MiscItemsAndBlocks.GuiObjects.Slots;
 
-import com.miscitems.MiscItemsAndBlocks.Items.ModItemUpgrades;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Slot;
-import net.minecraft.item.ItemRedstone;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
+import com.miscitems.MiscItemsAndBlocks.Utils.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
 
 public class ModSlotRedstoneSlot extends Slot{
 
@@ -20,7 +18,7 @@ public class ModSlotRedstoneSlot extends Slot{
     
     public IIcon getBackgroundIconIndex()
     {
-        return ModItemUpgrades.RedstoneSlot;
+        return IconRegisteringItemClass.RedstoneSlot;
     }
     
 }

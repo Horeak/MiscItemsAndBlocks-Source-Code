@@ -99,7 +99,7 @@ public class CrystalToolUpgradeRecipe implements IRecipe {
 
             if(newItem.getItem() == ModItems.CrystalBlade)
                 if(UpgradeString == "Looting")
-                    newItem.addEnchantment(Enchantment.looting, 10);
+                    newItem.addEnchantment(Enchantment.looting, 1);
 
 
 

@@ -50,7 +50,7 @@ public class GuiComputerScreen extends GuiContainer{
 	
 	
     public static final int xSizeOfTexture = 256;
-    public static final int ySizeOfTexture = 177;
+    public static final int ySizeOfTexture = 178;
     
     int ButtonSizeX = 75;
     int ButtonSizeY = 20;

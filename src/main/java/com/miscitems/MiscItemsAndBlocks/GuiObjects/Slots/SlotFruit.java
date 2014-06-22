@@ -1,9 +1,8 @@
 package com.miscitems.MiscItemsAndBlocks.GuiObjects.Slots;
 
-import com.miscitems.MiscItemsAndBlocks.Items.ModItemUpgrades;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Slot;
-import net.minecraft.util.IIcon;
+import com.miscitems.MiscItemsAndBlocks.Utils.*;
+import net.minecraft.inventory.*;
+import net.minecraft.util.*;
 
 public class SlotFruit extends Slot{
 
@@ -14,6 +13,6 @@ public class SlotFruit extends Slot{
 	
     public IIcon getBackgroundIconIndex()
     {
-        return ModItemUpgrades.FruitSlot;
+        return IconRegisteringItemClass.FruitSlot;
     }
 }

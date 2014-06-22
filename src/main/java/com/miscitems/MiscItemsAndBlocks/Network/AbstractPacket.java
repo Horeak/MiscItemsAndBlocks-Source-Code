@@ -13,7 +13,7 @@ import net.minecraft.network.PacketBuffer;
 
 import java.io.IOException;
 
-public abstract class AbstractPacket extends Packet
+public abstract class AbstractPacket
 {
 
     public abstract void toBytes(ByteBuf buffer, Side side);
@@ -24,29 +24,5 @@ public abstract class AbstractPacket extends Packet
 
     public abstract void onMessage(Side side, EntityPlayer player);
 
-    @Override
-    public void readPacketData(PacketBuffer var1) throws IOException {
-        fromBytes(var1, FMLCommonHandler.instance().getSide());
-    }
 
-    @Override
-    public void writePacketData(PacketBuffer var1) throws IOException {
-        toBytes(var1, FMLCommonHandler.instance().getSide());
-    }
-
-    @Override
-    public void processPacket(INetHandler var1) {
-
-        if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT){
-            onMessage(Side.CLIENT, FMLClientHandler.instance().getClient().thePlayer);
-        }else if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER){
-            if(var1 instanceof NetHandlerPlayServer) {
-                NetHandlerPlayServer nt = (NetHandlerPlayServer)var1;
-                onMessage(Side.SERVER, nt.playerEntity);
-
-            }else{
-                System.out.println("Server but not playHandler");
-            }
-        }
-    }
 }

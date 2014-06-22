@@ -1,6 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Main;
 
 import com.miscitems.MiscItemsAndBlocks.Items.*;
+import com.miscitems.MiscItemsAndBlocks.Utils.*;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Blocks;
@@ -73,6 +74,8 @@ public class ModItems {
     public static Item InvisHelmet, InvisChestPlate, InvisLeggings, InvisBoots;
     public static Item BlueCrystal, GreenCrystal, RedCrystal, ChargedCrystal, InvisibilityCore;
     public static Item CrystalSilk, CrystalBlade, CrystalPickaxe;
+
+    private static Item IconItem;
 
 
 
@@ -255,6 +258,9 @@ public class ModItems {
         CrystalPickaxe = new ModItemCrystalPickaxe().setTextureName(Reference.Mod_Id + ":CrystalPickaxe").setCreativeTab(Main.MagicTab);
         Register(CrystalPickaxe, "CrystalPickaxe");
 
+        IconItem = new IconRegisteringItemClass();
+        SilentRegister(IconItem);
+
 
 
         OreDictionary.registerOre("ingotSilver", new ItemStack(SilverIngot));
@@ -268,6 +274,11 @@ public class ModItems {
 		
 		
 	}
+
+    public static void SilentRegister(Item Item){
+        GameRegistry.registerItem(Item, "");
+    }
+
 
 	
 	public static void Register(Item Item, String Name){
