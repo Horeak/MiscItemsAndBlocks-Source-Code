@@ -323,7 +323,7 @@ public class ModItemDrill extends ModItemPowerTool{
 	    public boolean HasInfo(ItemStack stack) {
 	        return stack.hasTagCompound() && stack.getTagCompound().hasKey("Data");
 	    }
-	    
+
 	    
 	    public static MovingObjectPosition raytraceFromEntity (World world, Entity player, boolean par3, double range)
 	    {
@@ -333,7 +333,7 @@ public class ModItemDrill extends ModItemPowerTool{
 	        double d0 = player.prevPosX + (player.posX - player.prevPosX) * (double) f;
 	        double d1 = player.prevPosY + (player.posY - player.prevPosY) * (double) f + 1.62D - (double) player.yOffset;
 	        double d2 = player.prevPosZ + (player.posZ - player.prevPosZ) * (double) f;
-	        Vec3 vec3 = world.getWorldVec3Pool().getVecFromPool(d0, d1, d2);
+	        Vec3 vec3 = Vec3.createVectorHelper(d0, d1, d2);
 	        float f3 = MathHelper.cos(-f2 * 0.017453292F - (float) Math.PI);
 	        float f4 = MathHelper.sin(-f2 * 0.017453292F - (float) Math.PI);
 	        float f5 = -MathHelper.cos(-f1 * 0.017453292F);
@@ -372,7 +372,10 @@ public class ModItemDrill extends ModItemPowerTool{
 		public boolean CanBackpackRecharge(ItemStack stack) {
 			return true;
 		}
-	  
-	    
 
+
+    @Override
+    public int getTier(ItemStack itemStack) {
+        return 2;
+    }
 }

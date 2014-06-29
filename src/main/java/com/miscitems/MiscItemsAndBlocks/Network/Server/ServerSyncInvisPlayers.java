@@ -41,7 +41,7 @@ public class ServerSyncInvisPlayers extends AbstractPacket {
 
     @Override
     public void onMessage(Side side, EntityPlayer pl) {
-        EntityPlayer player = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().getPlayerForUsername(this.player);
+        EntityPlayer player = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().func_152612_a(this.player);
 
 
         if (player != null) {

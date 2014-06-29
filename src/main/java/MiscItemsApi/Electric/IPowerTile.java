@@ -3,6 +3,7 @@ package MiscItemsApi.Electric;
 public interface IPowerTile {
 
 
+
     /** Gets the current amount of power stored
      *
      * @return the amount of power

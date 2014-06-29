@@ -125,7 +125,7 @@ public class TileEntityTeleporter extends TileEntityPowerInv{
 		}
 		
 		
-        AxisAlignedBB aabb = AxisAlignedBB.getAABBPool().getAABB(xCoord + 0.2, yCoord, zCoord + 0.2, xCoord + 0.9, yCoord + 0.8, zCoord + 0.9);
+        AxisAlignedBB aabb = AxisAlignedBB.getBoundingBox(xCoord + 0.2, yCoord, zCoord + 0.2, xCoord + 0.9, yCoord + 0.8, zCoord + 0.9);
         List list = worldObj.getEntitiesWithinAABB(Entity.class, aabb);
 		
         

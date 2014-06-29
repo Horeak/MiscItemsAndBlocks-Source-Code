@@ -13,10 +13,15 @@ public abstract class ModItemElArmor extends ItemArmor implements IPowerItem{
 		this.canRepair = false;
 
 	}
-	
+
+    private int CurrentPower = MaxPower(new ItemStack(this));
+
+    public boolean IsCreative;
+
     public void onArmorTickUpdate(World world, EntityPlayer player, ItemStack itemStack){
-    	
-    	
+
     }
+
+    public int CurrentPower(ItemStack stack){return CurrentPower;}
 
 }

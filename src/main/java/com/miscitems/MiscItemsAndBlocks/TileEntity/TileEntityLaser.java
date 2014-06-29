@@ -1,22 +1,19 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
-import com.miscitems.MiscItemsAndBlocks.Items.ModItemCreativeBattery;
-import com.miscitems.MiscItemsAndBlocks.Items.ModItemPowerStorage;
+import com.miscitems.MiscItemsAndBlocks.Items.*;
 import com.miscitems.MiscItemsAndBlocks.Laser.*;
-import com.miscitems.MiscItemsAndBlocks.Main.ModItems;
-import com.miscitems.MiscItemsAndBlocks.Network.Client.ClientLaserUpdatePacket;
-import com.miscitems.MiscItemsAndBlocks.Network.PacketHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.entity.Entity;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.Packet;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.Facing;
-import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
+import com.miscitems.MiscItemsAndBlocks.Main.*;
+import com.miscitems.MiscItemsAndBlocks.Network.Client.*;
+import com.miscitems.MiscItemsAndBlocks.Network.*;
+import cpw.mods.fml.relauncher.*;
+import net.minecraft.entity.*;
+import net.minecraft.nbt.*;
+import net.minecraft.network.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
+import net.minecraftforge.common.util.*;
 
-import java.util.List;
+import java.util.*;
 
 public class TileEntityLaser extends TileEntityLaserBase implements ILaserProvider{
 
@@ -50,12 +47,14 @@ public void updateEntity() {
 	if(this.getStackInSlot(1) != null){
         if(this.getStackInSlot(1).getItem() instanceof ModItemPowerStorage){
 
+            ModItemPowerStorage item = (ModItemPowerStorage)this.getStackInSlot(1).getItem();
+
             int Damage = this.getStackInSlot(1).getItemDamage();
 
-            if(this.getStackInSlot(1).getItem() instanceof ModItemCreativeBattery){
+            if(item.IsCreative){
                 SetPower(GetMaxPower());
             }else{
-                if(Damage > 0){
+                if(Damage > 0 && item.CurrentPower(this.getStackInSlot(1)) > 0){
                     if(GetPower() < GetMaxPower()){
                         SetPower(GetPower() + 1);
                         this.getStackInSlot(1).attemptDamageItem(1, worldObj.rand);
@@ -150,11 +149,12 @@ if(this.worldObj.isRemote) return;
 
 if(this.GetPower() < this.GetMaxPower())
 if(this.getStackInSlot(1) != null && this.getStackInSlot(1).getItem() instanceof ModItemPowerStorage){
-	if(this.getStackInSlot(1).getItem() == ModItems.CreativeBattery)
+	if(((ModItemPowerStorage)this.getStackInSlot(1).getItem()).IsCreative)
 		this.SetPower(GetMaxPower());
-	else if (this.getStackInSlot(1).getItemDamage() < this.getStackInSlot(1).getMaxDamage()){
-		this.getStackInSlot(1).damageItem(1, worldObj.getClosestPlayer(xCoord, yCoord, zCoord, -1));
+	else if (((ModItemPowerStorage)this.getStackInSlot(1).getItem()).CurrentPower(this.getStackInSlot(1)) > 0){
+		this.getStackInSlot(1).attemptDamageItem(1, worldObj.rand);
 		this.SetPower(this.GetPower() + 1);
+        System.out.println(((ModItemPowerStorage)this.getStackInSlot(1).getItem()).CurrentPower(this.getStackInSlot(1)) > 0);
 	}
 	
 	

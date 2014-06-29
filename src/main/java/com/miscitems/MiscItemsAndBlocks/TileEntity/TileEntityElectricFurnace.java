@@ -1,11 +1,10 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
-import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.FurnaceRecipes;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraftforge.common.util.Constants;
+import com.miscitems.MiscItemsAndBlocks.Items.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.item.crafting.*;
+import net.minecraft.nbt.*;
 
 public class TileEntityElectricFurnace extends TileEntityPowerInv implements ISidedInventory{
 
@@ -28,9 +27,15 @@ public class TileEntityElectricFurnace extends TileEntityPowerInv implements ISi
     	
     	if(this.GetPower() < this.GetMaxPower()){
     	if(this.getStackInSlot(1) != null){
-    		if(this.getStackInSlot(1).getItemDamage() < this.getStackInSlot(1).getMaxDamage()){
-    			this.getStackInSlot(1).attemptDamageItem(1, this.worldObj.rand);
-    			this.SetPower(this.GetPower() + 1);
+            if(this.getStackInSlot(1).getItem() instanceof ModItemPowerTool){
+                ModItemPowerTool item = (ModItemPowerTool)this.getStackInSlot(1).getItem();
+                if(item.IsCreative) {
+                    this.SetPower(this.GetMaxPower());
+
+                }else if(item.CurrentPower(this.getStackInSlot(1)) > 0) {
+                this.getStackInSlot(1).attemptDamageItem(1, this.worldObj.rand);
+                this.SetPower(this.GetPower() + 1);
+            }
     		}
     	}
     	}
@@ -52,15 +57,25 @@ public class TileEntityElectricFurnace extends TileEntityPowerInv implements ISi
         			worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
     			
     			Working = true;
-    			
+
+
+                    ItemStack resultItem = FurnaceRecipes.smelting().getSmeltingResult(smeltingItem);
+
+                    if(resultItem != null && this.getStackInSlot(2) != null)
+                        if (this.getStackInSlot(2).getItem() != resultItem.getItem()){
+                            WorkTime = 0;
+                            Working = false;
+                            return;
+                        }
+
     			if(WorkTime >= MaxWorkTime){
     				WorkTime = 0;
     				
-    				if(FurnaceRecipes.smelting().getSmeltingResult(smeltingItem) != null){
-    					
-    					ItemStack resultItem = FurnaceRecipes.smelting().getSmeltingResult(smeltingItem);
-    					
-    					
+    				if(resultItem != null){
+
+
+
+
     					if(this.getStackInSlot(2) == null){
     						this.decrStackSize(0, 1);
     						this.SetPower(this.GetPower() - 2);

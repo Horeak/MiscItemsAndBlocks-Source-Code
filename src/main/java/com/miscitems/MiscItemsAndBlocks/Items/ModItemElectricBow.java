@@ -3,6 +3,7 @@ package com.miscitems.MiscItemsAndBlocks.Items;
 import com.miscitems.MiscItemsAndBlocks.Entity.EntityPowerArrow;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
+import cpw.mods.fml.common.Optional.Method;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -215,9 +216,15 @@ private IIcon _icon4;
 		public boolean CanBackpackRecharge(ItemStack stack) {
 			return true;
 		}
-	    
-	    
-	}
+
+
+    @Method(modid = "IC2")
+    @Override
+    public int getTier(ItemStack itemStack) {
+        return 2;
+    }
+
+}
 
 
 

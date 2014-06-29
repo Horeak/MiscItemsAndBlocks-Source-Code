@@ -1,18 +1,19 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
 
-import MiscItemsApi.Electric.IPowerCable;
-import MiscItemsApi.Electric.IPowerItem;
-import MiscItemsApi.Electric.IPowerTile;
-import MiscItemsApi.Electric.IWrenchAble;
-import com.miscitems.MiscItemsAndBlocks.Laser.LaserUtil;
-import com.miscitems.MiscItemsAndBlocks.Main.ModItems;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.common.util.ForgeDirection;
+import MiscItemsApi.Electric.*;
+import com.miscitems.MiscItemsAndBlocks.Items.*;
+import com.miscitems.MiscItemsAndBlocks.Laser.*;
+import ic2.api.energy.tile.IEnergySource;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.util.*;
 
-public class TileEntityEnergyStorageCube extends TileEntityPowerInv implements  IPowerTile, IWrenchAble{
+//TODO Finish work on api integretion
+
+public class TileEntityEnergyStorageCube extends TileEntityPowerInv implements  IPowerTile, IWrenchAble, IEnergySource{
 
 	public TileEntityEnergyStorageCube() {
 		super(6, "Charger", 64);
@@ -126,10 +127,10 @@ public class TileEntityEnergyStorageCube extends TileEntityPowerInv implements  
 
     		
     		if(emptyStack.getItem() instanceof IPowerItem){
-    			if (emptyStack.getItem() == ModItems.CreativeBattery)
+    			if ((((ModItemPowerTool)emptyStack.getItem()).IsCreative))
     				this.SetPower(this.GetMaxPower());
     			else{
-    			int i = emptyStack.getMaxDamage() - emptyStack.getItemDamage();
+    			int i = ((ModItemPowerTool)emptyStack.getItem()).CurrentPower(emptyStack);
     			if(i > 0){
     				emptyStack.setItemDamage(emptyStack.getItemDamage() + 1);
     				AddPower(1);
@@ -214,5 +215,21 @@ public class TileEntityEnergyStorageCube extends TileEntityPowerInv implements  
     public void OnWrenched(EntityPlayer player, int x, int y, int z) {
 
 
+    }
+
+    @Override
+    public double getOfferedEnergy() {
+        return this.GetPower();
+    }
+
+    @Override
+    public void drawEnergy(double amount) {
+        this.SetPower(this.GetPower() - (int)amount);
+
+    }
+
+    @Override
+    public boolean emitsEnergyTo(TileEntity receiver, ForgeDirection direction) {
+        return false;
     }
 }

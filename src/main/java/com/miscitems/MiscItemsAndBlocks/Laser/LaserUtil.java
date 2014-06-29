@@ -91,7 +91,7 @@ Block block = laserProvider.getWorld().getBlock(xTemp, yTemp, zTemp);
 int blockMeta = laserProvider.getWorld().getBlockMetadata(xTemp, yTemp, zTemp);
 TileEntity tile = laserProvider.getWorld().getTileEntity(xTemp, yTemp, zTemp);
 
-AxisAlignedBB aabb = AxisAlignedBB.getAABBPool().getAABB(xTemp, yTemp, zTemp, xTemp + offsetMax, yTemp + offsetMax, zTemp + offsetMax);
+AxisAlignedBB aabb = AxisAlignedBB.getBoundingBox(xTemp, yTemp, zTemp, xTemp + offsetMax, yTemp + offsetMax, zTemp + offsetMax);
 
 List ents = laserProvider.getWorld().getEntitiesWithinAABB(Entity.class, aabb);
 if(ents.size() > 0){

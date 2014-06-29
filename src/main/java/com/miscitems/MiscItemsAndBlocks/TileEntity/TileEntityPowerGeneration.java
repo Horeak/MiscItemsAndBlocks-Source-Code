@@ -9,6 +9,11 @@ import net.minecraft.world.World;
 
 public abstract  class TileEntityPowerGeneration extends TileEntityInvBase implements IPowerGeneration{
 
+
+    //TODO Rewrite/Fix power gen system (Stopping to send power on world reload, Some times sending power to a machine with already full power, not send power from the sending direction....) (Interact in a network)
+    //TODO Change power system from interacting with it self and neighbours only and make power interact in a network
+    //TODO Change power gen method. Spread over time instead of multiple energy units at the time
+
 	public TileEntityPowerGeneration(int Slots, String Name, int Size) {
 		super(Slots, Name, Size);
 	}

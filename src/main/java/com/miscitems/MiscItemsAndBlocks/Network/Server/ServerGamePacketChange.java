@@ -5,9 +5,6 @@ import com.miscitems.MiscItemsAndBlocks.Network.Client.ClientGamePacketChange;
 import com.miscitems.MiscItemsAndBlocks.Network.PacketHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.ByteBufUtils;
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
-import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import cpw.mods.fml.relauncher.Side;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
@@ -57,9 +54,9 @@ public void fromBytes(ByteBuf buf, Side side) {
 		 EntityPlayerMP plyr;
 		 
 		 if(Player == 1)
-			 plyr = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().getPlayerForUsername(Player_2);
+			 plyr = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().func_152612_a(Player_2);
 		 else
-			 plyr = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().getPlayerForUsername(Player_1);
+			 plyr = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().func_152612_a(Player_1);
 		 
 		PacketHandler.sendToPlayer(new ClientGamePacketChange(Number, Player, Player_1, Player_2), plyr);
 	}

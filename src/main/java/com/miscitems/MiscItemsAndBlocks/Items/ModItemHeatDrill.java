@@ -2,6 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.Items;
 
 import com.google.common.collect.Sets;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
+import cpw.mods.fml.common.Optional.Method;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -228,4 +229,9 @@ public class ModItemHeatDrill extends ModItemPowerTool{
 			return true;
 		}
 
+    @Method(modid = "IC2")
+    @Override
+    public int getTier(ItemStack itemStack) {
+        return 2;
+    }
 }

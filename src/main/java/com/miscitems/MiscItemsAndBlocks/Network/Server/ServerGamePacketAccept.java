@@ -49,7 +49,7 @@ public class ServerGamePacketAccept extends AbstractPacket {
         }
         
         
-        EntityPlayerMP plyr = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().getPlayerForUsername(Player);
+        EntityPlayerMP plyr = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().func_152612_a(Player);
         
         if(plyr != null && plyr.isEntityAlive() )
         {

@@ -38,4 +38,5 @@ public class ModItemBattery extends ModItemPowerStorage{
 		public boolean CanBackpackRecharge(ItemStack stack) {
 			return false;
 		}
+
 }

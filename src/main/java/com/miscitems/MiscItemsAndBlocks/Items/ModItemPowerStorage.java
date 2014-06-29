@@ -17,6 +17,9 @@ import java.util.List;
 
 public abstract class ModItemPowerStorage extends ModItemPowerTool{
 
+
+
+
 	public ModItemPowerStorage() {
 		super(0, ToolMaterial.IRON, null);
 		this.setMaxStackSize(1);
@@ -124,4 +127,15 @@ public abstract class ModItemPowerStorage extends ModItemPowerTool{
 
     }
 
+
+
+    @Override
+    public int getTier(ItemStack itemStack) {
+        return 1;
+    }
+
+    @Override
+    public int getTransferLimit(ItemStack itemStack) {
+        return 10;
+    }
 }

@@ -20,7 +20,7 @@ public class ModGuiSlider extends GuiButton {
     }
     
 
-    protected int getHoverState(boolean par1) {
+    public int getHoverState(boolean par1) {
             return 0;
     }
 

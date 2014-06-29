@@ -8,7 +8,8 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.util.Constants;
 
 public class TileEntityInvBase  extends ModTileEntity implements IInventory{
-	
+
+
 
 	public String Name;
 	public ItemStack[] Inv;
@@ -126,7 +127,6 @@ public class TileEntityInvBase  extends ModTileEntity implements IInventory{
         @Override
     	public void writeToNBT(NBTTagCompound compound){
     		super.writeToNBT(compound);
-    		this.nbt = compound;
     		
     		NBTTagList Items = new NBTTagList();
     		
@@ -142,7 +142,6 @@ public class TileEntityInvBase  extends ModTileEntity implements IInventory{
     			}
     		}
 
-    		
     		compound.setTag("Items", Items);
     		
     		
@@ -153,8 +152,6 @@ public class TileEntityInvBase  extends ModTileEntity implements IInventory{
     	@Override
     	public void readFromNBT(NBTTagCompound compound){
     		super.readFromNBT(compound);
-    		this.nbt = compound;
-    		
 
     		NBTTagList nbttaglist = compound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
     		Inv = new ItemStack[getSizeInventory()];

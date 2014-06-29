@@ -14,6 +14,7 @@ public class ModItemCreativeBattery extends ModItemPowerStorage{
 
 	public ModItemCreativeBattery() {
 
+        this.IsCreative = true;
 	}
 
 

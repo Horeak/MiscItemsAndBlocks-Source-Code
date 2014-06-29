@@ -7,9 +7,6 @@ import com.miscitems.MiscItemsAndBlocks.Proxies.ServerProxy;
 import com.miscitems.MiscItemsAndBlocks.Utils.Game.GameInvite;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.ByteBufUtils;
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
-import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import cpw.mods.fml.relauncher.Side;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
@@ -45,7 +42,7 @@ public class ServerGamePacketInvite extends AbstractPacket {
     public void onMessage(Side side, EntityPlayer player) {
 		
 		
-		  EntityPlayerMP plyr = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().getPlayerForUsername(Player);
+		  EntityPlayerMP plyr = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().func_152612_a(Player);
           
 		  if(plyr != null){
           GameInvite tr = ServerProxy.tickHandlerServer.playerGameRequests.get(plyr.getCommandSenderName());

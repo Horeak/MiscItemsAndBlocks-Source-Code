@@ -1,10 +1,15 @@
 package com.miscitems.MiscItemsAndBlocks.Items;
 
-import net.minecraft.creativetab.*;
-import net.minecraft.item.*;
-import net.minecraft.util.*;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
 
-import java.util.*;
+import java.util.List;
 
 public class ModItemUpgrades extends ModItemUpgradeItem{
 
@@ -16,6 +21,17 @@ public class ModItemUpgrades extends ModItemUpgradeItem{
 
 	}
 
+
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IIconRegister par1IconRegister)
+	{
+
+
+	    this.icons[0] = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "PowerUpgrade");
+
+
+
+	}
 
 	public IIcon getIconFromDamage(int meta)
 	{

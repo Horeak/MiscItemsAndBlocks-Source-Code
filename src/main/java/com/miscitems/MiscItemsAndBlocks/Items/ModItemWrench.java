@@ -1,7 +1,10 @@
 package com.miscitems.MiscItemsAndBlocks.Items;
 
 import MiscItemsApi.Electric.IWrenchAble;
+import buildcraft.api.tools.IToolWrench;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
+import cpw.mods.fml.common.Optional.Interface;
+import cpw.mods.fml.common.Optional.Method;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -10,7 +13,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class ModItemWrench extends Item {
+@Interface(iface = "IToolWrench", modid =  "BuilCraft|Core")
+public class ModItemWrench extends Item implements IToolWrench {
 
 
 	
@@ -40,4 +44,14 @@ public class ModItemWrench extends Item {
 
 
 	    }
+    @Method(modid = "BuilCraft|Core")
+    public boolean canWrench(EntityPlayer player, int x, int y, int z) {
+        return player.worldObj.getTileEntity(x,y,z) instanceof IWrenchAble;
+    }
+
+    @Method(modid = "BuilCraft|Core")
+    public void wrenchUsed(EntityPlayer player, int x, int y, int z) {
+
+        ((IWrenchAble)player.worldObj.getTileEntity(x,y,z)).OnWrenched(player,x,y,z);
+    }
 }

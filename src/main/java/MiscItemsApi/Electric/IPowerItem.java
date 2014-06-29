@@ -13,6 +13,16 @@ public interface IPowerItem {
 	 */
  
 	int MaxPower(ItemStack stack);
+
+
+    /**
+     * Get the current amount of power
+     *
+     * @param stack the stack
+     * @return the amount of power the item currently has
+     */
+
+    int CurrentPower(ItemStack stack);
 	
 	/**
 	 * Set the amount of power recharged at a time
