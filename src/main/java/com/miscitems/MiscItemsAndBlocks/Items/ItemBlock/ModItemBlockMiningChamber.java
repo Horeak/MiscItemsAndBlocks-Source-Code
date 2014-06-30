@@ -1,4 +1,4 @@
-package com.miscitems.MiscItemsAndBlocks.ItemBlock;
+package com.miscitems.MiscItemsAndBlocks.Items.ItemBlock;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;

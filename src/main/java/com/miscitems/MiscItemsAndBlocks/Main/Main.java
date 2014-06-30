@@ -9,11 +9,10 @@ import com.miscitems.MiscItemsAndBlocks.Event.*;
 import com.miscitems.MiscItemsAndBlocks.Gui.GuiHandler;
 import com.miscitems.MiscItemsAndBlocks.Laser.DefaultLaser;
 import com.miscitems.MiscItemsAndBlocks.Laser.LaserRegistry;
-import com.miscitems.MiscItemsAndBlocks.Network.AbstractPacket;
 import com.miscitems.MiscItemsAndBlocks.Network.ChannelHandler;
 import com.miscitems.MiscItemsAndBlocks.Network.PacketHandler;
-import com.miscitems.MiscItemsAndBlocks.Network.PacketTileUpdate;
 import com.miscitems.MiscItemsAndBlocks.Proxies.ServerProxy;
+import com.miscitems.MiscItemsAndBlocks.Utils.Config.ConfigChanged;
 import com.miscitems.MiscItemsAndBlocks.Utils.Crafting;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Messages;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
@@ -33,13 +32,11 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
-import net.minecraft.crash.CrashReport;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ReportedException;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
@@ -52,7 +49,7 @@ import java.util.Map;
 import java.util.Set;
 
 
-	@Mod(modid = Reference.Mod_Id, name = Reference.Mod_Name, version = Reference.Version)
+	@Mod(modid = Reference.Mod_Id, name = Reference.Mod_Name, version = Reference.Version, guiFactory = "com.miscitems.MiscItemsAndBlocks.Utils.Config.GuiConfigFactory")
 	public class Main 
 	{
 
@@ -182,6 +179,9 @@ import java.util.Set;
         	}
 
 
+            Main.config.addCustomCategoryComment("Client Settings", "Client side only settings. Settings that does not affect gameplay");
+            Main.config.addCustomCategoryComment("Server Settings", "Server side settings which can affect gameplay");
+
             PacketHandler.RegisterPackets();
             channels = getNewChannelHandler(handler.channel);
 
@@ -202,6 +202,7 @@ import java.util.Set;
 
             MinecraftForge.EVENT_BUS.register(new InvisibilityEvents());
             FMLCommonHandler.instance().bus().register(new InvisibilityEvents());
+            FMLCommonHandler.instance().bus().register(new ConfigChanged());
         
         	//Register Events
         	if(event.getSide() == Side.SERVER)

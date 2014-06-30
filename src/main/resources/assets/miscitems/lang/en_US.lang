@@ -196,6 +196,12 @@ words.red=Red
 words.green=Green
 words.blue=Blue
 
+//Config
+config.el.Client=Client Settings
+config.el.Server=Server Settings
+config.el.Blocks=Blocks
+config.el.Items=Items
+
 //Different descriptions used on item tooltips
 items.desc.invisCharged=Charge:
 items.desc.string.powerleft=Power left

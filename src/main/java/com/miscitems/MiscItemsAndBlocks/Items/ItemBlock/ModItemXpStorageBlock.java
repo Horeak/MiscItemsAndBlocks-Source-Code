@@ -1,4 +1,4 @@
-package com.miscitems.MiscItemsAndBlocks.ItemBlock;
+package com.miscitems.MiscItemsAndBlocks.Items.ItemBlock;
 
 import com.miscitems.MiscItemsAndBlocks.Main.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityXpStorage;
