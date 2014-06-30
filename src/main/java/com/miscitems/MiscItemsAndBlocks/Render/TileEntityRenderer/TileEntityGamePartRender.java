@@ -1,7 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Render.TileEntityRenderer;
 
 import com.miscitems.MiscItemsAndBlocks.Models.GamePartModel;
-import net.minecraft.block.Block;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
@@ -38,31 +37,25 @@ public class TileEntityGamePartRender extends TileEntitySpecialRenderer {
 
             
             bindTexture(Texutre);
-            
-            	int Meta = te.getWorldObj().getBlockMetadata(te.xCoord, te.yCoord, te.zCoord);
-            	Block Id = te.getWorldObj().getBlock(te.xCoord, te.yCoord, te.zCoord);
+
             	
             	World world = te.getWorldObj();
             	int x = te.xCoord;
             	int y = te.yCoord;
             	int z = te.zCoord;
+
+            int Meta = world.getBlockMetadata(x, y, z);
             	
-            	boolean Top = world.getBlock(x, y + 1, z) != Id && world.getBlockMetadata(x, y + 1, z) != Meta;
-            	
-            	if(Meta == 0)
-            		Top = world.getBlock(x, y + 1, z) != Id && world.getBlockMetadata(x, y + 1, z) == Meta;
-            	
-            	
-            	boolean Bottom = world.getBlock(x, y - 1, z) != Id && world.getBlockMetadata(x, y - 1, z) != Meta;
-            	
-            	if(Meta == 0)
-            		Bottom = world.getBlock(x, y - 1, z) != Id && world.getBlockMetadata(x, y - 1, z) == Meta;
+            	boolean Top = world.getBlock(x,y+1,z) == world.getBlock(x,y,z) && world.getBlockMetadata(x,y+1,z) == Meta;
+
+            	boolean Bottom = world.getBlock(x,y-1,z) == world.getBlock(x,y,z) && world.getBlockMetadata(x,y-1,z) == Meta;
+
             
             
          GL11.glPushMatrix();
          GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
 
-         this.model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F, Top, Bottom, Meta);
+         this.model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F, !Top, !Bottom, Meta);
 
          
          

@@ -4,7 +4,6 @@ import com.miscitems.MiscItemsAndBlocks.Network.Client.ClientGamePacketBegin;
 import com.miscitems.MiscItemsAndBlocks.Network.PacketHandler;
 import com.miscitems.MiscItemsAndBlocks.Utils.Handlers.ChatMessageHandler;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 
 public class GameInfo
 {

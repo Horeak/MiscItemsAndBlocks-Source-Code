@@ -1,4 +1,4 @@
-package com.miscitems.MiscItemsAndBlocks.GamePart;
+package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
 import net.minecraft.tileentity.TileEntity;
 

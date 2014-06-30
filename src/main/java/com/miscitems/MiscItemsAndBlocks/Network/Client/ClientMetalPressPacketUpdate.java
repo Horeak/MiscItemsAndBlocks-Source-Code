@@ -2,20 +2,12 @@ package com.miscitems.MiscItemsAndBlocks.Network.Client;
 
 import com.miscitems.MiscItemsAndBlocks.Network.AbstractPacket;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMetalPress;
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
-import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.network.INetHandler;
-import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-
-import java.io.IOException;
 
 public class ClientMetalPressPacketUpdate extends AbstractPacket {
 

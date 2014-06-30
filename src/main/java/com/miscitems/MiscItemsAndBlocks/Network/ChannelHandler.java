@@ -1,10 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Network;
 
-import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Utils.Handlers.LogHandler;
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.network.FMLEmbeddedChannel;
 import cpw.mods.fml.common.network.FMLIndexedMessageToMessageCodec;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.relauncher.Side;
@@ -13,18 +9,9 @@ import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.network.NetHandlerPlayClient;
-import net.minecraft.crash.CrashReport;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.INetHandler;
 import net.minecraft.network.NetHandlerPlayServer;
-import net.minecraft.network.Packet;
-import net.minecraft.util.ReportedException;
-import org.apache.logging.log4j.Level;
-
-import java.util.ArrayList;
-import java.util.EnumMap;
-import java.util.Map;
 
 public class ChannelHandler extends FMLIndexedMessageToMessageCodec<AbstractPacket>
 {

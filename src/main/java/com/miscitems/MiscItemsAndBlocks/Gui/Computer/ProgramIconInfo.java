@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Gui.Computer;
 
-import net.minecraft.util.*;
+import net.minecraft.util.ResourceLocation;
 
 public class ProgramIconInfo {
 

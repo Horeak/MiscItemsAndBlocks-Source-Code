@@ -17,8 +17,6 @@ public class ModConfigGui extends GuiConfig {
                 Reference.Mod_Id, false, false, GuiConfig.getAbridgedConfigPath(Main.config.toString()));
     }
 
-    //TODO Try to make it change models/blocks and other things (if possible) without restarting the game
-
     private static List<IConfigElement> getConfigElements()
     {
         List<IConfigElement> list = new ArrayList<IConfigElement>();

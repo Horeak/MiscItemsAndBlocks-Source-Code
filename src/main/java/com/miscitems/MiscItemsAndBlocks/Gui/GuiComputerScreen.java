@@ -7,6 +7,7 @@ import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
@@ -177,20 +178,23 @@ public class GuiComputerScreen extends GuiContainer{
 		@Override
 		protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
 			  drawDefaultBackground();
-			  
+
+
+            int posX = (this.width - xSizeOfTexture) / 2;
+            int posY = (this.height - ySizeOfTexture) / 2;
+
+            this.drawCenteredString(fontRendererObj, EnumChatFormatting.RED + "Computer is currently work in progress", posX + 50, this.height - 15, 0xffffff);
+
 		        GL11.glEnable(GL11.GL_BLEND);
 
 
 		        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		        Minecraft.getMinecraft().renderEngine.bindTexture(Texture);
 
-		        int posX = (this.width - xSizeOfTexture) / 2;
-		        int posY = (this.height - ySizeOfTexture) / 2;
-		        
+
 
 		        drawTexturedModalRect(posX, posY, 0, 0, xSizeOfTexture, ySizeOfTexture);
-		        
-		        
+
 		        
 		        if(Hide){
 		        	Button_Game_1.visible = false;

@@ -2,8 +2,6 @@ package com.miscitems.MiscItemsAndBlocks.Book;
 
 import com.miscitems.MiscItemsAndBlocks.Book.Pages.Page;
 import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;

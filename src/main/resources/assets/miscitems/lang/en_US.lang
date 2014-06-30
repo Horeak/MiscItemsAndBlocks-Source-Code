@@ -134,7 +134,11 @@ item.GamePart.Number.1.name=Red Game Piece
 item.GamePart.Number.2.name=Blue Game Piece
 item.GamePart.Number.3.name=Green Game Piece
 item.GamePart.Number.4.name=Yellow Game Piece
-item.coloredbrick.name=Coloured Metal Block
+item.coloredbrick.red.name=Red Coloured Metal Block
+item.coloredbrick.white.name=White Coloured Metal Block
+item.coloredbrick.green.name=Green Coloured Metal Block
+item.coloredbrick.blue.name=Blue Coloured Metal Block
+item.coloredbrick.yellow.name=Yellow Coloured Metal Block
 
 
 

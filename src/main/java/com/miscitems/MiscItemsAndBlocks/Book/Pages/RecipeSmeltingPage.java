@@ -4,8 +4,6 @@ import com.miscitems.MiscItemsAndBlocks.Book.BookUtils;
 import com.miscitems.MiscItemsAndBlocks.Book.InfoPage;
 import com.miscitems.MiscItemsAndBlocks.Utils.DoubleStackUtil;
 import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.entity.RenderItem;

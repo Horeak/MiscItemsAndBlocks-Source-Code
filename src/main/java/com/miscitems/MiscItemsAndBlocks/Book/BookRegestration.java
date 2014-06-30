@@ -3,8 +3,6 @@ package com.miscitems.MiscItemsAndBlocks.Book;
 import com.miscitems.MiscItemsAndBlocks.Book.Pages.*;
 import com.miscitems.MiscItemsAndBlocks.Main.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.Main.ModItems;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.item.ItemStack;
 
 public class BookRegestration {

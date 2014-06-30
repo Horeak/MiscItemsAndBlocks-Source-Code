@@ -1,6 +1,7 @@
-package com.miscitems.MiscItemsAndBlocks.GamePart;
+package com.miscitems.MiscItemsAndBlocks.Render.ItemRender;
 
 import com.miscitems.MiscItemsAndBlocks.Models.GamePartModel;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityGamePart;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;

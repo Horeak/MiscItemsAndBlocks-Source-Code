@@ -1,19 +1,21 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
-import com.miscitems.MiscItemsAndBlocks.Items.*;
+import com.miscitems.MiscItemsAndBlocks.Items.ModItemPowerStorage;
 import com.miscitems.MiscItemsAndBlocks.Laser.*;
-import com.miscitems.MiscItemsAndBlocks.Main.*;
-import com.miscitems.MiscItemsAndBlocks.Network.Client.*;
-import com.miscitems.MiscItemsAndBlocks.Network.*;
-import cpw.mods.fml.relauncher.*;
-import net.minecraft.entity.*;
-import net.minecraft.nbt.*;
-import net.minecraft.network.*;
-import net.minecraft.util.*;
-import net.minecraft.world.*;
-import net.minecraftforge.common.util.*;
+import com.miscitems.MiscItemsAndBlocks.Main.ModItems;
+import com.miscitems.MiscItemsAndBlocks.Network.Client.ClientLaserUpdatePacket;
+import com.miscitems.MiscItemsAndBlocks.Network.PacketHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.entity.Entity;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.Packet;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.Facing;
+import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 
-import java.util.*;
+import java.util.List;
 
 public class TileEntityLaser extends TileEntityLaserBase implements ILaserProvider{
 

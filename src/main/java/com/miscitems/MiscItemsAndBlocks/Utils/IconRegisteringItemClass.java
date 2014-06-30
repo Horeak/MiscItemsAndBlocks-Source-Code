@@ -1,10 +1,11 @@
 package com.miscitems.MiscItemsAndBlocks.Utils;
 
-import com.miscitems.MiscItemsAndBlocks.Utils.References.*;
-import cpw.mods.fml.relauncher.*;
-import net.minecraft.client.renderer.texture.*;
-import net.minecraft.item.*;
-import net.minecraft.util.*;
+import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.item.Item;
+import net.minecraft.util.IIcon;
 
 public class IconRegisteringItemClass extends Item {
 

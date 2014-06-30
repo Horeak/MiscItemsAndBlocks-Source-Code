@@ -1,8 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Main;
 
 import com.miscitems.MiscItemsAndBlocks.Block.*;
-import com.miscitems.MiscItemsAndBlocks.GamePart.ModBlockGamePart;
-import com.miscitems.MiscItemsAndBlocks.GamePart.TileEntityGamePart;
 import com.miscitems.MiscItemsAndBlocks.Items.ItemBlock.*;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.*;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;

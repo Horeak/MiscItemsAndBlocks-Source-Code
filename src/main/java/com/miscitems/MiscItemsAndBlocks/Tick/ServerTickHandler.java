@@ -4,12 +4,10 @@ import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Main.ModItems;
 import com.miscitems.MiscItemsAndBlocks.Utils.Game.GameInfo;
 import com.miscitems.MiscItemsAndBlocks.Utils.Game.GameInvite;
-
 import com.miscitems.MiscItemsAndBlocks.Utils.Handlers.ParticleHelper;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 

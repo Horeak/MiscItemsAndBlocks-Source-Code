@@ -18,8 +18,8 @@ buildscript {
 apply plugin: 'forge'
 
 mod_version  = "0.9.5.6"
-minecraft_version = "1.7.2"
-forge_version = "10.12.1.1110"
+minecraft_version = "1.7.10_pre4"
+forge_version = "10.12.2.1149-prerelease"
 
 group= "com.miscitems.MiscItemsAndBlocks" 
 archivesBaseName = "MiscItemsAndBlocks"

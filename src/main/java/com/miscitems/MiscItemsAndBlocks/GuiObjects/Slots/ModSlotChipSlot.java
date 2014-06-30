@@ -1,10 +1,11 @@
 package com.miscitems.MiscItemsAndBlocks.GuiObjects.Slots;
 
-import com.miscitems.MiscItemsAndBlocks.Items.*;
-import com.miscitems.MiscItemsAndBlocks.Utils.*;
-import net.minecraft.inventory.*;
-import net.minecraft.item.*;
-import net.minecraft.util.*;
+import com.miscitems.MiscItemsAndBlocks.Items.ModItemDataChip;
+import com.miscitems.MiscItemsAndBlocks.Utils.IconRegisteringItemClass;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
 
 public class ModSlotChipSlot extends Slot{
 

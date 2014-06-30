@@ -1,10 +1,10 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
-import com.miscitems.MiscItemsAndBlocks.Items.*;
-import net.minecraft.inventory.*;
-import net.minecraft.item.*;
-import net.minecraft.item.crafting.*;
-import net.minecraft.nbt.*;
+import com.miscitems.MiscItemsAndBlocks.Items.ModItemPowerTool;
+import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraft.nbt.NBTTagCompound;
 
 public class TileEntityElectricFurnace extends TileEntityPowerInv implements ISidedInventory{
 

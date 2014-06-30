@@ -1,26 +1,27 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
 
-import MiscItemsApi.Electric.*;
-import com.miscitems.MiscItemsAndBlocks.Items.*;
-import com.miscitems.MiscItemsAndBlocks.Laser.*;
-import ic2.api.energy.tile.IEnergySource;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.nbt.*;
+import MiscItemsApi.Electric.IPowerCable;
+import MiscItemsApi.Electric.IPowerItem;
+import MiscItemsApi.Electric.IPowerTile;
+import MiscItemsApi.Electric.IWrenchAble;
+import com.miscitems.MiscItemsAndBlocks.Items.ModItemPowerTool;
+import com.miscitems.MiscItemsAndBlocks.Laser.LaserUtil;
+import cpw.mods.fml.common.Optional.Method;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.util.*;
+import net.minecraftforge.common.util.ForgeDirection;
 
-//TODO Finish work on api integretion
 
-public class TileEntityEnergyStorageCube extends TileEntityPowerInv implements  IPowerTile, IWrenchAble, IEnergySource{
+public class TileEntityEnergyStorageCube extends TileEntityPowerInv implements IWrenchAble{
 
 	public TileEntityEnergyStorageCube() {
 		super(6, "Charger", 64);
 	}
 
 	int Ticks = 3;
-	int GenerateTime = 0;
 	int CurrentTick = 0;
 	public int PrimePower = 5000;
 	public int MaxPower = PrimePower;
@@ -217,19 +218,34 @@ public class TileEntityEnergyStorageCube extends TileEntityPowerInv implements  
 
     }
 
+
+
+    @Method(modid = "IC2")
     @Override
-    public double getOfferedEnergy() {
-        return this.GetPower();
+    public double demandedEnergyUnits() {
+        return 1;
     }
 
+    @Method(modid = "IC2")
     @Override
-    public void drawEnergy(double amount) {
-        this.SetPower(this.GetPower() - (int)amount);
+    public double injectEnergyUnits(ForgeDirection directionFrom, double amount) {
+        if(GetPower() + (int)amount < MaxPower)
+            AddPower((int)amount);
+        else
+        SetPower(GetMaxPower());
 
+        return GetPower();
     }
 
+    @Method(modid = "IC2")
     @Override
-    public boolean emitsEnergyTo(TileEntity receiver, ForgeDirection direction) {
-        return false;
+    public int getMaxSafeInput() {
+        return this.GetMaxPower();
+    }
+
+    @Method(modid = "IC2")
+    @Override
+    public boolean acceptsEnergyFrom(TileEntity emitter, ForgeDirection direction) {
+        return this.worldObj.getBlockMetadata(xCoord,yCoord,zCoord) != direction.ordinal();
     }
 }

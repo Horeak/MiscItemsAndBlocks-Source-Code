@@ -10,8 +10,6 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.*;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraftforge.common.util.Constants;
 
 import java.util.Random;
 

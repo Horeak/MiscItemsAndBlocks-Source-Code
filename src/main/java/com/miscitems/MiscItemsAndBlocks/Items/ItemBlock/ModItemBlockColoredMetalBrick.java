@@ -7,7 +7,6 @@ import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-import net.minecraft.util.StatCollector;
 
 public class ModItemBlockColoredMetalBrick extends ItemBlock{
     public ModItemBlockColoredMetalBrick(Block p_i45328_1_) {
@@ -22,7 +21,7 @@ public class ModItemBlockColoredMetalBrick extends ItemBlock{
 
     public String getUnlocalizedName(ItemStack stack)
     {
-        return "item.coloredbrick";
+        return "item.coloredbrick." + ModBlockColoredMetalBrick.Colors[stack.getItemDamage()].toLowerCase();
     }
 
     @SideOnly(Side.CLIENT)
@@ -31,8 +30,4 @@ public class ModItemBlockColoredMetalBrick extends ItemBlock{
         return ModBlockColoredMetalBrick.Icons[meta];
     }
 
-    public String getItemStackDisplayName(ItemStack stack)
-    {
-        return ModBlockColoredMetalBrick.Colors[stack.getItemDamage()] + " " + StatCollector.translateToLocal("item.coloredbrick.name");
-    }
 }

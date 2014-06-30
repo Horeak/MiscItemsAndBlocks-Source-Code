@@ -1,6 +1,5 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
-import MiscItemsApi.Electric.IPowerTile;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -8,26 +7,106 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.util.Constants;
 
-public abstract class TileEntityPowerInv  extends TileEntityInvBase implements IInventory, IPowerTile{
-	
+public abstract class TileEntityPowerInv  extends TileEntityPowerTile implements IInventory{
 
-	public TileEntityPowerInv(int Slots, String Name, int Size) {
-		super(Slots, Name, Size);
 
-	}
+    public String Name;
+    public ItemStack[] Inv;
+    public int SlotSize;
 
-	private int Power;
-    private int PowerMax;
-	
-	
-	
-	public void SetPower(int i){
-		Power = i;
-	}
-	
-	public int GetPower(){
-		return Power;
-	}
+	public TileEntityPowerInv(int Slots, String Name, int Size){
+        Inv = new ItemStack[Slots];
+        this.Name = Name;
+        this.SlotSize = Size;
+
+    }
+
+
+    @Override
+    public String getInventoryName() {
+        return Name;
+    }
+
+
+
+    @Override
+    public boolean hasCustomInventoryName() {
+        return false;
+    }
+
+
+
+    @Override
+    public void openInventory() {
+
+    }
+
+
+
+    @Override
+    public void closeInventory() {
+
+    }
+
+
+    @Override
+    public int getSizeInventory() {
+        return Inv.length;
+    }
+
+    @Override
+    public ItemStack getStackInSlot(int i) {
+        return Inv[i];
+    }
+
+    @Override
+    public ItemStack decrStackSize(int i, int j) {
+        ItemStack itemstack = getStackInSlot(i);
+
+        if(itemstack != null){
+
+            if(itemstack.stackSize <= j){
+
+                setInventorySlotContents(i, null);
+            }else{
+
+                itemstack = itemstack.splitStack(j);
+
+            }
+
+        }
+        return itemstack;
+    }
+
+    @Override
+    public ItemStack getStackInSlotOnClosing(int i) {
+        ItemStack item = getStackInSlot(i);
+
+        setInventorySlotContents(i, null);
+        return item;
+    }
+
+    @Override
+    public void setInventorySlotContents(int i, ItemStack itemstack) {
+
+        Inv[i] = itemstack;
+
+        if(itemstack != null && itemstack.stackSize > getInventoryStackLimit()){
+            itemstack.stackSize = getInventoryStackLimit();
+
+        }
+
+
+    }
+
+
+    @Override
+    public int getInventoryStackLimit() {
+        return SlotSize;
+    }
+
+
+
 
 
 	@Override
@@ -51,7 +130,6 @@ public abstract class TileEntityPowerInv  extends TileEntityInvBase implements I
         @Override
     	public void writeToNBT(NBTTagCompound compound){
     		super.writeToNBT(compound);
-    		this.nbt = compound;
     		
     		NBTTagList Items = new NBTTagList();
     		
@@ -69,19 +147,12 @@ public abstract class TileEntityPowerInv  extends TileEntityInvBase implements I
 
     		
     		compound.setTag("Items", Items);
-    		compound.setInteger("Power", Power);
-    		compound.setInteger("MaxPower", PowerMax);
-    		
-    		
-    		
-    		
-    		
+
     	}
     	
     	@Override
     	public void readFromNBT(NBTTagCompound compound){
     		super.readFromNBT(compound);
-    		this.nbt = compound;
     		
 
     		NBTTagList nbttaglist = compound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
@@ -97,36 +168,9 @@ public abstract class TileEntityPowerInv  extends TileEntityInvBase implements I
             }
     		
     		
-    		Power = compound.getInteger("Power");
-    		PowerMax = compound.getInteger("MaxPower");
-    		
-    		
     		
     	}
 
 
-		@Override
-		public void AddPower(int Amount) {
-			if(GetPower() + Amount < GetMaxPower())
-				SetPower(GetPower() + Amount);
-			else
-				SetPower(GetMaxPower());
-		}
 
-		@Override
-		public boolean AcceptsPower() {
-			return CanAcceptPower();
-		}
-
-		@Override
-		public boolean ConnectsToCables() {
-			return AcceptsPower();
-		}
-
-
-		@Override
-		public void SetMaxPower(int i) {
-			if(i > 0)
-				PowerMax = i;
-		}
 }

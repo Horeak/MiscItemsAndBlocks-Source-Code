@@ -1,8 +1,9 @@
 package com.miscitems.MiscItemsAndBlocks.GuiObjects.Slots;
 
-import com.miscitems.MiscItemsAndBlocks.Utils.*;
-import net.minecraft.inventory.*;
-import net.minecraft.util.*;
+import com.miscitems.MiscItemsAndBlocks.Utils.IconRegisteringItemClass;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.Slot;
+import net.minecraft.util.IIcon;
 
 public class SlotFruit extends Slot{
 

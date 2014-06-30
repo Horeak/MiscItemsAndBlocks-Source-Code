@@ -3,7 +3,6 @@ package com.miscitems.MiscItemsAndBlocks.TileEntity;
 import com.miscitems.MiscItemsAndBlocks.Network.PacketHandler;
 import com.miscitems.MiscItemsAndBlocks.Network.PacketTileWithItemUpdate;
 import com.miscitems.MiscItemsAndBlocks.Utils.ItemHelper;
-import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.Packet;

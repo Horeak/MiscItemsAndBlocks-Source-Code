@@ -2,8 +2,6 @@ package com.miscitems.MiscItemsAndBlocks.Book;
 
 import com.miscitems.MiscItemsAndBlocks.Book.Pages.Page;
 import com.miscitems.MiscItemsAndBlocks.Utils.DoubleStackUtil;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.item.crafting.ShapelessRecipes;

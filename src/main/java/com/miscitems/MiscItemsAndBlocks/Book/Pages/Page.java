@@ -2,8 +2,6 @@ package com.miscitems.MiscItemsAndBlocks.Book.Pages;
 
 import com.miscitems.MiscItemsAndBlocks.Book.BookUtils;
 import com.miscitems.MiscItemsAndBlocks.Book.InfoPage;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.OpenGlHelper;

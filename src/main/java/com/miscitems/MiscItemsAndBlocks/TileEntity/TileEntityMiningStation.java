@@ -12,9 +12,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.Packet;
-import net.minecraftforge.common.util.Constants;
 
 import java.util.List;
 
@@ -458,5 +456,4 @@ public class TileEntityMiningStation extends TileEntityPowerInv{
 	}
 
 
-   
 }

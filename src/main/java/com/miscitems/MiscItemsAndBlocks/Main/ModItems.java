@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Main;
 
 import com.miscitems.MiscItemsAndBlocks.Items.*;
-import com.miscitems.MiscItemsAndBlocks.Utils.*;
+import com.miscitems.MiscItemsAndBlocks.Utils.IconRegisteringItemClass;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Blocks;
