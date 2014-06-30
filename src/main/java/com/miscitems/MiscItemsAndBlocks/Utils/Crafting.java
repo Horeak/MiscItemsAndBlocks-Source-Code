@@ -11,7 +11,6 @@ import com.miscitems.MiscItemsAndBlocks.Utils.RecipeUtils.ItemRechargeRecipe;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -90,6 +89,12 @@ public class Crafting {
             AddRecipe(new ItemStack(ModItems.InvisChestPlate), new Object[]{"C C", "CCC", "CCC", 'C', ModItems.CrystalSilk});
             AddRecipe(new ItemStack(ModItems.InvisLeggings), new Object[]{"CCC", "C C", "C C", 'C', ModItems.CrystalSilk});
             AddRecipe(new ItemStack(ModItems.InvisBoots), new Object[]{"C C", "C C",'C', ModItems.CrystalSilk});
+
+            AddRecipe(new ItemStack(ModBlocks.ColoredBrick, 8, 0), new Object[]{"ISI", "SDS", "ISI", 'I', Items.iron_ingot, 'S', Blocks.stonebrick, 'D', new ItemStack(Items.dye, 1, 15)});
+            AddRecipe(new ItemStack(ModBlocks.ColoredBrick, 8, 1), new Object[]{"ISI", "SDS", "ISI", 'I', Items.iron_ingot, 'S', Blocks.stonebrick, 'D', new ItemStack(Items.dye, 1, 4)});
+            AddRecipe(new ItemStack(ModBlocks.ColoredBrick, 8, 2), new Object[]{"ISI", "SDS", "ISI", 'I', Items.iron_ingot, 'S', Blocks.stonebrick, 'D', new ItemStack(Items.dye, 1, 2)});
+            AddRecipe(new ItemStack(ModBlocks.ColoredBrick, 8, 3), new Object[]{"ISI", "SDS", "ISI", 'I', Items.iron_ingot, 'S', Blocks.stonebrick, 'D', new ItemStack(Items.dye, 1, 1)});
+            AddRecipe(new ItemStack(ModBlocks.ColoredBrick, 8, 4), new Object[]{"ISI", "SDS", "ISI", 'I', Items.iron_ingot, 'S', Blocks.stonebrick, 'D', new ItemStack(Items.dye, 1, 11)});
 
             GameRegistry.addRecipe(new CrystalToolUpgradeRecipe(new ItemStack(ModItems.CrystalBlade), new ItemStack(Items.diamond), "ExtraDamage"));
             GameRegistry.addRecipe(new CrystalToolUpgradeRecipe(new ItemStack(ModItems.CrystalBlade), new ItemStack(Items.blaze_rod), "FireDamage"));

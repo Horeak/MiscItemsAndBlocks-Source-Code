@@ -63,8 +63,6 @@ public class ModBlocks {
 	public static Block GhostBlock;
 
     public static Block ColoredBrick;
-    //TODO
-    public static Block TestBlock;
 	
 	public static ModBlockStair StoneStair;
 	public static IPlantable OrangeSapling;
@@ -222,8 +220,6 @@ public class ModBlocks {
         ColoredBrick = new ModBlockColoredMetalBrick().setBlockTextureName(Reference.Mod_Id + ":BlueBrick").setCreativeTab(Main.MiscTab);
         Register(ColoredBrick, ModItemBlockColoredMetalBrick.class, "ColoredBrick");
 
-        TestBlock = new ModBlockEmptyBlock().setBlockTextureName(Reference.Mod_Id + ":RandomBlock").setCreativeTab(Main.MiscTab);
-        Register(TestBlock, "TestBlock");
 
 
 
