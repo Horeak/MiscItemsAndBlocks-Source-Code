@@ -16,9 +16,9 @@ public class ModItemBlockGamePiece extends ItemBlock{
         this.setMaxDamage(0);
         this.setHasSubtypes(true);
 	}
-	
 
-	
+
+
     public int getMetadata(int par1)
     {
         return par1;

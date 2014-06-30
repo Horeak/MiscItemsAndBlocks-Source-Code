@@ -61,6 +61,10 @@ public class ModBlocks {
 	public static Block Laser;
 	public static Block LaserReciver;
 	public static Block GhostBlock;
+
+    public static Block ColoredBrick;
+    //TODO
+    public static Block TestBlock;
 	
 	public static ModBlockStair StoneStair;
 	public static IPlantable OrangeSapling;
@@ -214,6 +218,12 @@ public class ModBlocks {
 
         RedCrystalOre = new ModBlockCrystalOre(ModItems.RedCrystal).setCreativeTab(Main.MagicTab).setBlockTextureName(Reference.Mod_Id + ":RedCrystalOre");
         Register(RedCrystalOre, "RedCrystalOre");
+
+        ColoredBrick = new ModBlockColoredMetalBrick().setBlockTextureName(Reference.Mod_Id + ":BlueBrick").setCreativeTab(Main.MiscTab);
+        Register(ColoredBrick, ModItemBlockColoredMetalBrick.class, "ColoredBrick");
+
+        TestBlock = new ModBlockEmptyBlock().setBlockTextureName(Reference.Mod_Id + ":RandomBlock").setCreativeTab(Main.MiscTab);
+        Register(TestBlock, "TestBlock");
 
 
 

@@ -65,7 +65,6 @@ public class ModBlockGamePart extends BlockContainer{
     public void registerBlockIcons(IIconRegister par1IconRegister)
     {
 
-
     	blockIcon = par1IconRegister.registerIcon("stone");
     }
     @Override
