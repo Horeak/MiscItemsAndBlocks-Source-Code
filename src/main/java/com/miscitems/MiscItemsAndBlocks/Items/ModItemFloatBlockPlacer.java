@@ -2,7 +2,6 @@ package com.miscitems.MiscItemsAndBlocks.Items;
 
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Main.ModBlocks;
-import cpw.mods.fml.common.Optional.Method;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -111,7 +110,6 @@ public class ModItemFloatBlockPlacer extends ModItemPowerTool{
 		return true;
 	}
 
-    @Method(modid = "IC2")
     @Override
     public int getTier(ItemStack itemStack) {
         return 2;

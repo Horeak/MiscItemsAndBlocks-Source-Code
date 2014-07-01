@@ -3,7 +3,6 @@ package com.miscitems.MiscItemsAndBlocks.TileEntity;
 import MiscItemsApi.Electric.IPowerTile;
 import cofh.api.energy.IEnergyStorage;
 import cpw.mods.fml.common.Optional;
-import cpw.mods.fml.common.Optional.Method;
 import ic2.api.energy.tile.IEnergySink;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -11,9 +10,9 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 
 @Optional.InterfaceList(    value =
-       {@Optional.Interface(iface = "IEnergyStorage", modid = "CoFHCore"),
-        @Optional.Interface(iface = "IEnergySink",    modid = "IC2")})
-public abstract class TileEntityPowerTile extends ModTileEntity implements IPowerTile, IEnergyStorage, IEnergySink {
+       {@Optional.Interface(iface = "cofh.api.energy.IEnergyStorage",     modid = "CoFHCore", striprefs = true),
+        @Optional.Interface(iface = "ic2.api.energy.tile.IEnergySink",    modid = "IC2", striprefs = true)})
+public abstract class TileEntityPowerBaseTile extends ModTileEntity implements IPowerTile, IEnergyStorage, IEnergySink {
 
     private int Power;
     private int PowerMax;
@@ -21,8 +20,6 @@ public abstract class TileEntityPowerTile extends ModTileEntity implements IPowe
 
 
     /* IEnergyStorage */
-    @Method(modid = "CoFHCore")
-    @Override
     public int receiveEnergy(int maxReceive, boolean simulate) {
 
         int energyReceived = Math.min(PowerMax - Power, Math.min(10, maxReceive));
@@ -33,8 +30,6 @@ public abstract class TileEntityPowerTile extends ModTileEntity implements IPowe
         return energyReceived;
     }
 
-    @Method(modid = "CoFHCore")
-    @Override
     public int extractEnergy(int maxExtract, boolean simulate) {
 
         int energyExtracted = Math.min(Power, Math.min(10, maxExtract));
@@ -125,14 +120,10 @@ public abstract class TileEntityPowerTile extends ModTileEntity implements IPowe
     }
 
 
-    @Method(modid = "IC2")
-    @Override
     public double demandedEnergyUnits() {
         return 1;
     }
 
-    @Method(modid = "IC2")
-    @Override
     public double injectEnergyUnits(ForgeDirection directionFrom, double amount) {
         if(GetPower() + (int)amount < GetMaxPower())
             AddPower((int)amount);
@@ -142,14 +133,10 @@ public abstract class TileEntityPowerTile extends ModTileEntity implements IPowe
         return GetPower();
     }
 
-    @Method(modid = "IC2")
-    @Override
     public int getMaxSafeInput() {
         return this.GetMaxPower();
     }
 
-    @Method(modid = "IC2")
-    @Override
     public boolean acceptsEnergyFrom(TileEntity emitter, ForgeDirection direction) {
         return true;
     }

@@ -7,7 +7,6 @@ import MiscItemsApi.Electric.IPowerTile;
 import MiscItemsApi.Electric.IWrenchAble;
 import com.miscitems.MiscItemsAndBlocks.Items.ModItemPowerTool;
 import com.miscitems.MiscItemsAndBlocks.Laser.LaserUtil;
-import cpw.mods.fml.common.Optional.Method;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -220,13 +219,11 @@ public class TileEntityEnergyStorageCube extends TileEntityPowerInv implements I
 
 
 
-    @Method(modid = "IC2")
     @Override
     public double demandedEnergyUnits() {
         return 1;
     }
 
-    @Method(modid = "IC2")
     @Override
     public double injectEnergyUnits(ForgeDirection directionFrom, double amount) {
         if(GetPower() + (int)amount < MaxPower)
@@ -237,13 +234,11 @@ public class TileEntityEnergyStorageCube extends TileEntityPowerInv implements I
         return GetPower();
     }
 
-    @Method(modid = "IC2")
     @Override
     public int getMaxSafeInput() {
         return this.GetMaxPower();
     }
 
-    @Method(modid = "IC2")
     @Override
     public boolean acceptsEnergyFrom(TileEntity emitter, ForgeDirection direction) {
         return this.worldObj.getBlockMetadata(xCoord,yCoord,zCoord) != direction.ordinal();

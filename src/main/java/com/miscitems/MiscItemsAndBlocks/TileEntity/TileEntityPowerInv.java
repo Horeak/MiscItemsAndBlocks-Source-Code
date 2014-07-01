@@ -7,7 +7,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.util.Constants;
 
-public abstract class TileEntityPowerInv  extends TileEntityPowerTile implements IInventory {
+public abstract class TileEntityPowerInv  extends TileEntityPowerBaseTile implements IInventory {
 
 
     public String Name;

@@ -1,8 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Items;
 
 import MiscItemsApi.Electric.IPowerItem;
-import cpw.mods.fml.common.Optional.Interface;
-import cpw.mods.fml.common.Optional.Method;
+import cpw.mods.fml.common.Optional;
 import ic2.api.item.IElectricItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -10,7 +9,7 @@ import net.minecraft.item.ItemTool;
 
 import java.util.Set;
 
-@Interface(iface = "IElectricItem", modid =  "IC2")
+@Optional.Interface(iface = "ic2.api.item.IElectricItem", modid =  "IC2", striprefs = true)
 public abstract class ModItemPowerTool extends ItemTool implements IPowerItem, IElectricItem{
 
 	public ModItemPowerTool(float damage, ToolMaterial material, Set blocks) {
@@ -47,34 +46,28 @@ public abstract class ModItemPowerTool extends ItemTool implements IPowerItem, I
     }
 
 
-    @Method(modid = "IC2")
-    @Override
+
     public boolean canProvideEnergy(ItemStack itemStack) {
         return true;
     }
 
-    @Method(modid = "IC2")
-    @Override
     public Item getChargedItem(ItemStack itemStack) {
         itemStack.setItemDamage(0);
         return itemStack.getItem();
     }
 
-    @Method(modid = "IC2")
-    @Override
+
     public Item getEmptyItem(ItemStack itemStack) {
         itemStack.setItemDamage(itemStack.getMaxDamage());
         return itemStack.getItem();
     }
 
-    @Method(modid = "IC2")
-    @Override
+
     public int getMaxCharge(ItemStack itemStack) {
         return this.MaxPower(itemStack);
     }
 
-    @Method(modid = "IC2")
-    @Override
+
     public int getTransferLimit(ItemStack itemStack) {
         return 10;
     }
