@@ -7,14 +7,14 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.util.Constants;
 
-public abstract class TileEntityPowerInv  extends TileEntityPowerTile implements IInventory{
+public abstract class TileEntityPowerInv  extends TileEntityPowerTile implements IInventory {
 
 
     public String Name;
     public ItemStack[] Inv;
     public int SlotSize;
 
-	public TileEntityPowerInv(int Slots, String Name, int Size){
+    public TileEntityPowerInv(int Slots, String Name, int Size){
         Inv = new ItemStack[Slots];
         this.Name = Name;
         this.SlotSize = Size;
@@ -109,67 +109,67 @@ public abstract class TileEntityPowerInv  extends TileEntityPowerTile implements
 
 
 
-	@Override
-	public boolean isUseableByPlayer(EntityPlayer entityplayer) {
-		return entityplayer.getDistanceSq(xCoord + 0.5, yCoord + 0.5, zCoord + 0.5) <= 64;
-	}
+    @Override
+    public boolean isUseableByPlayer(EntityPlayer entityplayer) {
+        return entityplayer.getDistanceSq(xCoord + 0.5, yCoord + 0.5, zCoord + 0.5) <= 64;
+    }
 
 
-	
-	public abstract boolean CanAcceptPower();
 
-	@Override
-	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
-		return true;
-		
-	}
-	
-	
+    public abstract boolean CanAcceptPower();
 
-        
-        @Override
-    	public void writeToNBT(NBTTagCompound compound){
-    		super.writeToNBT(compound);
-    		
-    		NBTTagList Items = new NBTTagList();
-    		
-    		for (int i = 0; i < getSizeInventory(); i++){
-    			
-    			ItemStack stack = getStackInSlot(i);
-    			if(stack != null){
-    				
-    				NBTTagCompound item = new NBTTagCompound();
-    				item.setByte("Slot", (byte)i);
-    				stack.writeToNBT(item);
-    				Items.appendTag(item);
-    			}
-    		}
+    @Override
+    public boolean isItemValidForSlot(int i, ItemStack itemstack) {
+        return true;
 
-    		
-    		compound.setTag("Items", Items);
+    }
 
-    	}
-    	
-    	@Override
-    	public void readFromNBT(NBTTagCompound compound){
-    		super.readFromNBT(compound);
-    		
 
-    		NBTTagList nbttaglist = compound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
-    		Inv = new ItemStack[getSizeInventory()];
-            for (int i = 0; i < nbttaglist.tagCount(); i++)
-            {
-                NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
-                int j = nbttagcompound1.getByte("Slot") & 0xff;
-                if (j >= 0 && j < Inv.length)
-                {
-                    this.setInventorySlotContents(j, ItemStack.loadItemStackFromNBT(nbttagcompound1));
-                }
+
+
+    @Override
+    public void writeToNBT(NBTTagCompound compound){
+        super.writeToNBT(compound);
+
+        NBTTagList Items = new NBTTagList();
+
+        for (int i = 0; i < getSizeInventory(); i++){
+
+            ItemStack stack = getStackInSlot(i);
+            if(stack != null){
+
+                NBTTagCompound item = new NBTTagCompound();
+                item.setByte("Slot", (byte)i);
+                stack.writeToNBT(item);
+                Items.appendTag(item);
             }
-    		
-    		
-    		
-    	}
+        }
+
+
+        compound.setTag("Items", Items);
+
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound compound){
+        super.readFromNBT(compound);
+
+
+        NBTTagList nbttaglist = compound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
+        Inv = new ItemStack[getSizeInventory()];
+        for (int i = 0; i < nbttaglist.tagCount(); i++)
+        {
+            NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
+            int j = nbttagcompound1.getByte("Slot") & 0xff;
+            if (j >= 0 && j < Inv.length)
+            {
+                this.setInventorySlotContents(j, ItemStack.loadItemStackFromNBT(nbttagcompound1));
+            }
+        }
+
+
+
+    }
 
 
 

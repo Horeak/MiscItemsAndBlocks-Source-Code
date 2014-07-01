@@ -1,5 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Main;
 
+
 import com.miscitems.MiscItemsAndBlocks.Block.*;
 import com.miscitems.MiscItemsAndBlocks.Items.ItemBlock.*;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.*;
@@ -133,7 +134,8 @@ public class ModBlocks {
         
         MachinePart = new ModBlockMachinePart().setCreativeTab(Main.ElectricTab).setHardness(1F);
         Register(MachinePart, "Machine Part");
-        
+
+        //TODO Fix EnergyStorageCube tile entity file not being found on load when code is compiled
         Charger = new ModBlockEnergyStorageCube().setCreativeTab(Main.ElectricTab);
         Register(Charger, "Charger", TileEntityEnergyStorageCube.class);
         
@@ -228,8 +230,7 @@ public class ModBlocks {
         OreDictionary.registerOre("plankWood", new ItemStack(OrangePlanks));
 
 
-        
-        Main.config.save();
+
 		
 	}
 	
@@ -241,35 +242,57 @@ public class ModBlocks {
 	    
 		public static void Register(Block block, String Name){
 			if(Main.config.get("Blocks", "Enable " + Name + "?", true).getBoolean(true)){
+                Main.config.save();
 	        block.setBlockName(Name.toLowerCase().replace(" ", "_"));
 		        GameRegistry.registerBlock(block, Name.toLowerCase().replace(" ", "_"));
-			}
+			}else
+                Main.config.save();
 		}
 
 
     public static void Register(Block block, String Name, Class<? extends TileEntity> tileClass){
         if(Main.config.get("Blocks", "Enable " + Name + "?", true).getBoolean(true)){
+            Main.config.save();
             block.setBlockName(Name.toLowerCase().replace(" ", "_"));
             GameRegistry.registerBlock(block, Name.toLowerCase().replace(" ", "_"));
-            GameRegistry.registerTileEntity(tileClass, "[MiscItems]" + Name);
-        }
+            if(tileClass != null) {
+                GameRegistry.registerTileEntity(tileClass, "[MiscItems]" + Name);
+            }else{
+                if(tileClass.getClass() != null){
+                    Class s = tileClass.getClass();
+                    GameRegistry.registerTileEntity(s, "[MiscItems]" + Name);
+                }
+            }
+        }else
+            Main.config.save();
     }
 
 
 public static void Register(Block Block, Class<? extends ItemBlock> itemclass, String Name){
 	if(Main.config.get("Blocks", "Enable " + Name.replace("tile.", "") + "?", true).getBoolean(true)){
+        Main.config.save();
 	              Block.setBlockName(Name.toLowerCase().replace(" ", "_"));
 		        GameRegistry.registerBlock(Block, itemclass, Name.toLowerCase().replace(" ", "_"));
-	}	}
+	}else
+        Main.config.save();	}
 
 
 
     public static void Register(Block Block, Class<? extends ItemBlock> itemclass, String Name, Class<? extends TileEntity> tileClass){
         if(Main.config.get("Blocks", "Enable " + Name.replace("tile.", "") + "?", true).getBoolean(true)){
+            Main.config.save();
             Block.setBlockName(Name.toLowerCase().replace(" ", "_"));
             GameRegistry.registerBlock(Block, itemclass, Name.toLowerCase().replace(" ", "_"));
-            GameRegistry.registerTileEntity(tileClass, "[MiscItems]" + Name);
-        }	}
+            if(tileClass != null) {
+                GameRegistry.registerTileEntity(tileClass, "[MiscItems]" + Name);
+            }else{
+                if(tileClass.getClass() != null){
+                    Class s = tileClass.getClass();
+                    GameRegistry.registerTileEntity(s, "[MiscItems]" + Name);
+                }
+            }
+        }else
+            Main.config.save();	}
 
 
 }
