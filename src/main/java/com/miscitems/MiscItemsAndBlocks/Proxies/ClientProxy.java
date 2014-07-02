@@ -98,7 +98,12 @@ public class ClientProxy extends ServerProxy {
         
         MinecraftForgeClient.registerItemRenderer(new ItemStack(ModBlocks.MetalPress).getItem(), new ItemRenderMetalPress());
         MinecraftForgeClient.registerItemRenderer(new ItemStack(ModBlocks.LaserReciver).getItem(), new LaserReciverItemRender());
+
         }
+
+        MinecraftForgeClient.registerItemRenderer(new ItemStack(ModBlocks.ColoredBrick).getItem(), new MetalBrickItemRender());
+        MinecraftForgeClient.registerItemRenderer(new ItemStack(ModBlocks.ColoredBrickGlowstone).getItem(), new MetalBrickItemRender());
+        MinecraftForgeClient.registerItemRenderer(new ItemStack(ModBlocks.PaintBlock).getItem(), new PaintBlockItemRender());
         Main.config.save();
 }
     

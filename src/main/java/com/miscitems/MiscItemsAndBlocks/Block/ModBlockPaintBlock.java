@@ -1,12 +1,17 @@
 package com.miscitems.MiscItemsAndBlocks.Block;
 
+import com.miscitems.MiscItemsAndBlocks.Main.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityPaintBlock;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -55,18 +60,52 @@ public class ModBlockPaintBlock extends BlockContainer{
 	    	return 0xFFFFFF;
 	    	
 	    }
-	    
-	    
 
 
 
 
 
+    @Override
+    public void breakBlock(World World, int x, int y, int z, Block id, int meta) {
+
+        TileEntity tile_e = World.getTileEntity(x, y, z);
+
+        if (tile_e != null && tile_e instanceof TileEntityPaintBlock) {
+            TileEntityPaintBlock tile = (TileEntityPaintBlock) tile_e;
+
+            ItemStack stack = new ItemStack(ModBlocks.PaintBlock);
+
+            stack.setTagCompound(new NBTTagCompound());
+
+                stack.stackTagCompound.setInteger("Red", tile.Red);
+                stack.stackTagCompound.setInteger("Green", tile.Green);
+                stack.stackTagCompound.setInteger("Blue", tile.Blue);
 
 
-	    
 
-	    
+            if (stack != null) {
+                float spawnX = x + World.rand.nextFloat();
+                float spawnY = y + World.rand.nextFloat();
+                float spawnZ = z + World.rand.nextFloat();
 
+
+                EntityItem droppedItem = new EntityItem(World, spawnX, spawnY, spawnZ, stack);
+
+                float mult = 0.05F;
+
+                droppedItem.motionX = (-0.5 + World.rand.nextFloat()) * mult;
+                droppedItem.motionY = (4 + World.rand.nextFloat()) * mult;
+                droppedItem.motionZ = (-0.5 + World.rand.nextFloat()) * mult;
+
+
+                World.spawnEntityInWorld(droppedItem);
+                super.breakBlock(World, x, y, z, id, meta);
+            }
+
+
+        }
+
+
+    }
 
 }

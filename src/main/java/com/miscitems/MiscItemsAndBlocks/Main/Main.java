@@ -103,6 +103,27 @@ import java.util.Set;
 
         };
 
+        public static CreativeTabs DecorativeTab = new CreativeTabs("tabMiscDeco")
+        {
+
+
+            @Override
+            @SideOnly(Side.CLIENT)
+            public Item getTabIconItem()
+            {
+
+                    return new ItemStack(ModBlocks.ColoredBrick, 1, 5).getItem();
+
+            }
+
+            @SideOnly(Side.CLIENT)
+            public ItemStack getIconItemStack()
+            {
+                return new ItemStack(ModBlocks.ColoredBrick, 1, 1);
+            }
+
+        };
+
 
         public static CreativeTabs ElectricTab = new CreativeTabs("tabMiscElectric")
         {

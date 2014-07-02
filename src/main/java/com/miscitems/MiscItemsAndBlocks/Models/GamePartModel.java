@@ -3,7 +3,10 @@ package com.miscitems.MiscItemsAndBlocks.Models;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.item.ItemDye;
 import org.lwjgl.opengl.GL11;
+
+import java.awt.*;
 
 public class GamePartModel extends ModelBase
 {
@@ -195,23 +198,10 @@ public class GamePartModel extends ModelBase
 	  {
 	    super.render(entity, f, f1, f2, f3, f4, f5);
 	    setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-	    
-	    if(Meta == 0){
-	    	GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-	    	
-	    }else if (Meta == 1){
-	    	GL11.glColor4f(1.0F, 0.0F, 0.0F, 1.0F);
-	    	
-	    }else if (Meta == 2){
-	    	GL11.glColor4f(0.0F, 0.0F, 1.0F, 1.0F);
-	    	
-	    }else if (Meta == 3){
-	    	GL11.glColor4f(0.0F, 1.0F, 0.0F, 1.0F);
-	    	
-	    }else if (Meta == 4){
-	    	
-	    	GL11.glColor4f(1.0F, 1.0F, 0.0F, 1.0F);
-	    }
+
+          Color c = new Color(ItemDye.field_150922_c[15 - Meta]);
+          float Red = (float)c.getRed() / (float)255, Green = (float)c.getGreen() / (float)255, Blue = (float)c.getBlue() / (float)255;
+          GL11.glColor4f(Red, Green, Blue, 1F);
 	    
 	    
 	    if(Bottom){
@@ -243,6 +233,8 @@ public class GamePartModel extends ModelBase
 	    Shape21.render(f5);
 	    Shape22.render(f5);
 	    Shape23.render(f5);
+
+          GL11.glColor4f(1F, 1F, 1F, 1F);
 	  }
 	  
 	  private void setRotation(ModelRenderer model, float x, float y, float z)

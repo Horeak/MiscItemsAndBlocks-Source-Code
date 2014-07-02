@@ -22,8 +22,8 @@ import java.util.List;
 import java.util.Set;
 
 public class ModItemDrill extends ModItemPowerTool{
+
 	int MaxCharge = 750;
-	int RechargAmount = 10;
 	
 	IIcon Drill;
 	IIcon DrillGreen;

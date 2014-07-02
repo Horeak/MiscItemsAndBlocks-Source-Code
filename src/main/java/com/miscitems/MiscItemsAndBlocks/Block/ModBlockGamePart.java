@@ -10,12 +10,14 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import java.awt.*;
 import java.util.List;
 
 public class ModBlockGamePart extends BlockContainer{
@@ -26,7 +28,11 @@ public class ModBlockGamePart extends BlockContainer{
 		super(Material.rock);
 		this.setHardness(1F);
 	}
-	
+
+    public String getUnlocalizedName()
+    {
+        return "tile.gamepart";
+    }
 	
 	@Override
 	public TileEntity createNewTileEntity(World world, int i) {
@@ -68,6 +74,7 @@ public class ModBlockGamePart extends BlockContainer{
 
     	blockIcon = par1IconRegister.registerIcon("stone");
     }
+
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
     {
@@ -225,14 +232,21 @@ public class ModBlockGamePart extends BlockContainer{
     
     public void getSubBlocks(Item id, CreativeTabs tabs, List list)
     {
-        list.add(new ItemStack(id, 1, 0));
-        list.add(new ItemStack(id, 1, 1));
-        list.add(new ItemStack(id, 1, 2));
-        list.add(new ItemStack(id, 1, 3));
-        list.add(new ItemStack(id, 1, 4));
+
+        for(int i = 0; i < 16; i++){
+            list.add(new ItemStack(id, 1, i));
+        }
         
     }
-    
+
+
+    public int colorMultiplier(IBlockAccess block, int x, int y, int z)
+    {
+        int Meta = block.getBlockMetadata(x,y,z);
+
+        return new Color(ItemDye.field_150922_c[15 - Meta]).getRGB();
+
+    }
 
 }
 

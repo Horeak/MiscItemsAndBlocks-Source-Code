@@ -58,6 +58,7 @@ import com.miscitems.MiscItemsAndBlocks.Items.ItemBlock.ModItemBlockItemPedestal
 import com.miscitems.MiscItemsAndBlocks.Items.ItemBlock.ModItemBlockLaserReciver;
 import com.miscitems.MiscItemsAndBlocks.Items.ItemBlock.ModItemBlockMetalPress;
 import com.miscitems.MiscItemsAndBlocks.Items.ItemBlock.ModItemBlockMiningChamber;
+import com.miscitems.MiscItemsAndBlocks.Items.ItemBlock.ModItemBlockPaintBlock;
 import com.miscitems.MiscItemsAndBlocks.Items.ItemBlock.ModItemBlockPillar;
 import com.miscitems.MiscItemsAndBlocks.Items.ItemBlock.ModItemBlockPowerCable;
 import com.miscitems.MiscItemsAndBlocks.Items.ItemBlock.ModItemBlockStorageBlock;
@@ -155,6 +156,7 @@ public class ModBlocks {
 	public static Block GhostBlock;
 
     public static Block ColoredBrick;
+    public static Block ColoredBrickGlowstone;
 	
 	public static ModBlockStair StoneStair;
 	public static IPlantable OrangeSapling;
@@ -193,11 +195,11 @@ public class ModBlocks {
         SpeedBlock = new ModBlockSpeedBlock().setCreativeTab(Main.MiscTab);
         Register(SpeedBlock, "Speed Block");
         
-        GamePart = new ModBlockGamePart().setCreativeTab(Main.MiscTab);
+        GamePart = new ModBlockGamePart().setCreativeTab(Main.DecorativeTab);
         Register(GamePart, ModItemBlockGamePiece.class, "Game Piece", TileEntityGamePart.class);
 
         
-        Pillar = new ModBlockPillar().setCreativeTab(Main.MiscTab);
+        Pillar = new ModBlockPillar().setCreativeTab(Main.DecorativeTab);
         Register(Pillar, ModItemBlockPillar.class,"Pillar", TileEntityPillar.class);
         
         TomatoPlant = new ModBlockTomatoPlant();
@@ -264,14 +266,14 @@ public class ModBlocks {
         Teleporter = new ModBlockTeleporter().setCreativeTab(Main.ElectricTab);
         Register(Teleporter, ModItemBlockTeleporter.class, "Teleporter", TileEntityTeleporter.class);
         
-        ItemPedestal = new ModBlockItemPedestal().setCreativeTab(Main.MiscTab);
+        ItemPedestal = new ModBlockItemPedestal().setCreativeTab(Main.DecorativeTab);
         Register(ItemPedestal, ModItemBlockItemPedestal.class, "Item Pedestal", TileEntityItemPedestal.class);
         
-        Table = new ModBlockTable().setCreativeTab(Main.MiscTab);
+        Table = new ModBlockTable().setCreativeTab(Main.DecorativeTab);
         Register(Table, ModItemBlockTable.class ,"Table", TileEntityTable.class);
         
-        PaintBlock = new ModBlockPaintBlock().setCreativeTab(Main.MiscTab);
-        Register(PaintBlock, "Paint Block", TileEntityPaintBlock.class);
+        PaintBlock = new ModBlockPaintBlock().setCreativeTab(Main.DecorativeTab);
+        Register(PaintBlock, ModItemBlockPaintBlock.class, "Paint Block", TileEntityPaintBlock.class);
         
         TimedBlock = new ModBlockTimedBlock();
         Register(TimedBlock, "Float Block", TileEntityTimedBlock.class);
@@ -309,8 +311,11 @@ public class ModBlocks {
         RedCrystalOre = new ModBlockCrystalOre(ModItems.RedCrystal).setCreativeTab(Main.MagicTab).setBlockTextureName(Reference.Mod_Id + ":RedCrystalOre");
         Register(RedCrystalOre, "RedCrystalOre");
 
-        ColoredBrick = new ModBlockColoredMetalBrick().setBlockTextureName(Reference.Mod_Id + ":BlueBrick").setCreativeTab(Main.MiscTab);
+        ColoredBrick = new ModBlockColoredMetalBrick().setBlockTextureName(Reference.Mod_Id + ":MetalBrick").setCreativeTab(Main.DecorativeTab);
         Register(ColoredBrick, ModItemBlockColoredMetalBrick.class, "ColoredBrick");
+
+        ColoredBrickGlowstone = new ModBlockColoredMetalBrick().setBlockTextureName(Reference.Mod_Id + ":MetalBrickGlowstone").setCreativeTab(Main.DecorativeTab).setLightLevel(1.0F);
+        Register(ColoredBrickGlowstone, ModItemBlockColoredMetalBrick.class, "ColoredBrickGlowstone");
 
 
 

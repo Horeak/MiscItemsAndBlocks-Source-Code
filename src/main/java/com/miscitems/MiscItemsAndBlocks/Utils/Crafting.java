@@ -56,10 +56,6 @@ public class Crafting {
             AddShapelessRecipe(new ItemStack(ModBlocks.OrangePlanks, 4), ModBlocks.OrangeLog);
             AddShapelessRecipe(new ItemStack(ModItems.Cardboard, 2), new Object[]{Items.paper, Items.paper, Items.paper});
 		    AddShapelessRecipe(new ItemStack(ModItems.SilverIngot, 9), new Object[]{ModBlocks.SilverBlock});
-            AddShapelessRecipe(new ItemStack(ModBlocks.GamePart, 1, 1), new Object[]{new ItemStack(Items.dye, 1, 1), ModBlocks.GamePart});
-            AddShapelessRecipe(new ItemStack(ModBlocks.GamePart, 1, 2), new Object[]{new ItemStack(Items.dye, 1, 4), ModBlocks.GamePart});
-            AddShapelessRecipe(new ItemStack(ModBlocks.GamePart, 1, 3), new Object[]{new ItemStack(Items.dye, 1, 2), ModBlocks.GamePart});
-            AddShapelessRecipe(new ItemStack(ModBlocks.GamePart, 1, 4), new Object[]{new ItemStack(Items.dye, 1, 11), ModBlocks.GamePart});
             AddShapelessRecipe(new ItemStack(ModItems.PizzaRaw), ModItems.Cheese, ModItems.PizzaBottom, new ItemStack(ModItems.Liquid, 1, 1), Items.cooked_fished);
             AddShapelessRecipe(new ItemStack(ModItems.PizzaRaw, 1, 1), ModItems.Cheese, ModItems.PizzaBottom, new ItemStack(ModItems.Liquid, 1, 1), Items.cooked_porkchop);
             AddShapelessRecipe(new ItemStack(ModItems.PizzaRaw, 1, 2), ModItems.Cheese, ModItems.PizzaBottom, new ItemStack(ModItems.Liquid, 1, 1), Items.cooked_beef);
@@ -90,11 +86,15 @@ public class Crafting {
             AddRecipe(new ItemStack(ModItems.InvisLeggings), new Object[]{"CCC", "C C", "C C", 'C', ModItems.CrystalSilk});
             AddRecipe(new ItemStack(ModItems.InvisBoots), new Object[]{"C C", "C C",'C', ModItems.CrystalSilk});
 
-            AddRecipe(new ItemStack(ModBlocks.ColoredBrick, 8, 0), new Object[]{"ISI", "SDS", "ISI", 'I', Items.iron_ingot, 'S', Blocks.stonebrick, 'D', new ItemStack(Items.dye, 1, 15)});
-            AddRecipe(new ItemStack(ModBlocks.ColoredBrick, 8, 1), new Object[]{"ISI", "SDS", "ISI", 'I', Items.iron_ingot, 'S', Blocks.stonebrick, 'D', new ItemStack(Items.dye, 1, 4)});
-            AddRecipe(new ItemStack(ModBlocks.ColoredBrick, 8, 2), new Object[]{"ISI", "SDS", "ISI", 'I', Items.iron_ingot, 'S', Blocks.stonebrick, 'D', new ItemStack(Items.dye, 1, 2)});
-            AddRecipe(new ItemStack(ModBlocks.ColoredBrick, 8, 3), new Object[]{"ISI", "SDS", "ISI", 'I', Items.iron_ingot, 'S', Blocks.stonebrick, 'D', new ItemStack(Items.dye, 1, 1)});
-            AddRecipe(new ItemStack(ModBlocks.ColoredBrick, 8, 4), new Object[]{"ISI", "SDS", "ISI", 'I', Items.iron_ingot, 'S', Blocks.stonebrick, 'D', new ItemStack(Items.dye, 1, 11)});
+        for(int i = 0; i < 16; i++)
+            AddRecipe(new ItemStack(ModBlocks.GamePart, 8, i), new Object[]{ "BBB", " B ", "BBB", 'B', new ItemStack(Blocks.stained_hardened_clay, 1, i)});
+
+        for(int i = 0; i < 16; i++)
+            AddRecipe(new ItemStack(ModBlocks.ColoredBrick, 8, i), new Object[]{"ISI", "SDS", "ISI", 'I', Items.iron_ingot, 'S', Blocks.stonebrick, 'D', new ItemStack(Items.dye, 1, 15 - i)});
+
+        for(int i = 0; i < 16; i++)
+            AddRecipe(new ItemStack(ModBlocks.ColoredBrickGlowstone, 8, i), new Object[]{"BBB", "BGB", "BBB", 'B', new ItemStack(ModBlocks.ColoredBrick, 1, i), 'G', Blocks.glowstone});
+
 
             GameRegistry.addRecipe(new CrystalToolUpgradeRecipe(new ItemStack(ModItems.CrystalBlade), new ItemStack(Items.diamond), "ExtraDamage"));
             GameRegistry.addRecipe(new CrystalToolUpgradeRecipe(new ItemStack(ModItems.CrystalBlade), new ItemStack(Items.blaze_rod), "FireDamage"));
@@ -167,7 +167,6 @@ public class Crafting {
 			AddRecipe(new ItemStack(Items.saddle), new Object[]{"LLL", "LSL", " I ", 'L', Items.leather, 'S', Items.string, 'I', Items.iron_ingot});
 	        AddRecipe(new ItemStack(ModBlocks.Pillar, 4), new Object[]{"QQQ", " Q ", "QQQ", 'Q', Blocks.quartz_block});
 	        AddRecipe(new ItemStack(ModBlocks.ElectricFurnace), new Object[]{"PMP", "PFP", "PCP", 'P', new ItemStack(ModItems.IronPlate, 1, 2), 'M', ModBlocks.MachinePart, 'F', Blocks.furnace, 'C', new ItemStack(ModItems.Circuit, 1, 1)});
-	        AddRecipe(new ItemStack(ModBlocks.GamePart, 4), new Object[]{"III", " I ", "III", 'I', Items.iron_ingot});
             AddRecipe(new ItemStack(ModItems.FlightChestPlate), new Object[] {"IFI", "ISI", "III", 'I', ModItems.SilverIngot, 'S', Items.nether_star, 'F', Items.feather});
             AddRecipe(new ItemStack(ModItems.Lens), new Object[]{"ISI", "SGS", "ISI", 'I', Items.iron_ingot, 'S', ModItems.SilverNugget, 'G', Blocks.glass_pane});
             AddRecipe(new ItemStack(ModBlocks.Laser), new Object[]{"HCH", "BML", "HCH", 'H', new ItemStack(ModItems.IronPlate, 1, 2), 'C', ModBlocks.PowerCable, 'B', new ItemStack(ModItems.Battery, 1, 0), 'M', ModBlocks.MachinePart, 'L', ModItems.Lens});

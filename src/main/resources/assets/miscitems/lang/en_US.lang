@@ -1,7 +1,8 @@
 //Creative tabs
-itemGroup.tabMiscMisc=MiscItemsAndBlocks Misc
-itemGroup.tabMiscElectric=MiscItemsAndBlocks Electric
-itemGroup.tabMiscMagic=MiscItemsAndBlocks Magic
+itemGroup.tabMiscMisc=MiscItemsAndBlocks
+itemGroup.tabMiscElectric=[MiscItems]Electric
+itemGroup.tabMiscMagic=[MiscItems]Magic
+itemGroup.tabMiscDeco=[MiscItems]Decorative Blocks
 
 //All blocks
 tile.xp_storage_block.name= Xp storage block
@@ -12,7 +13,7 @@ tile.stone_stair.name=Stone Stair
 tile.cardboard_box.name=Cardboard Box
 tile.worktable.name=Worktable
 tile.speed_block.name=Speed Block
-tile.pillar.name=Pillar
+tile.pillar.name=Quartz Pillar
 tile.mill.name=Mill
 tile.squeezer.name=Squeezer
 tile.orange_tree_leaves.name=Orange tree leaves
@@ -50,6 +51,10 @@ tile.turtleshell.name=Turtle shell
 tile.bluecrystalore.name=Blue Crystal Ore
 tile.greencrystalore.name=Green Crystal Ore
 tile.redcrystalore.name=Red Crystal Ore
+tile.coloredbrick.name=Coloured Metal Block
+tile.coloredbrickglowstone.name=Coloured Glowstone Metal Block
+tile.gamepart.name=Game Piece
+
 
 //All items
 item.xpextractor.name=Xp extractor
@@ -129,17 +134,6 @@ item.crystalsilk.name=Crystal Silk
 item.crystalblade.name=Crystal Blade
 item.crystalpickaxe.name=Crystal Pickaxe
 powerupgrade.name=Power Upgrade
-item.GamePart.Number.0.name=Blank Game Piece
-item.GamePart.Number.1.name=Red Game Piece
-item.GamePart.Number.2.name=Blue Game Piece
-item.GamePart.Number.3.name=Green Game Piece
-item.GamePart.Number.4.name=Yellow Game Piece
-item.coloredbrick.red.name=Red Coloured Metal Block
-item.coloredbrick.white.name=White Coloured Metal Block
-item.coloredbrick.green.name=Green Coloured Metal Block
-item.coloredbrick.blue.name=Blue Coloured Metal Block
-item.coloredbrick.yellow.name=Yellow Coloured Metal Block
-
 
 
 //Gui Names

@@ -1,12 +1,10 @@
 package com.miscitems.MiscItemsAndBlocks.Items.ItemBlock;
 
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlockColoredMetalBrick;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
+import net.minecraft.util.StatCollector;
 
 public class ModItemBlockColoredMetalBrick extends ItemBlock{
     public ModItemBlockColoredMetalBrick(Block p_i45328_1_) {
@@ -19,15 +17,10 @@ public class ModItemBlockColoredMetalBrick extends ItemBlock{
         return par1;
     }
 
-    public String getUnlocalizedName(ItemStack stack)
-    {
-        return "item.coloredbrick." + ModBlockColoredMetalBrick.Colors[stack.getItemDamage()].toLowerCase();
-    }
 
-    @SideOnly(Side.CLIENT)
-    public IIcon getIconFromDamage(int meta)
+    public String getItemStackDisplayName(ItemStack stack)
     {
-        return ModBlockColoredMetalBrick.Icons[meta];
+        return StatCollector.translateToLocal("item.fireworksCharge." + ItemDye.field_150923_a[15 - stack.getItemDamage()]) + " " + StatCollector.translateToLocal(stack.getItem().getUnlocalizedName() + ".name");
     }
 
 }
