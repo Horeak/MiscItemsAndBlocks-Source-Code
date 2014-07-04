@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Utils.Handlers;
 
-import com.miscitems.MiscItemsAndBlocks.Main.Main;
+import com.miscitems.MiscItemsAndBlocks.Utils.Config.ConfigUtils;
 import net.minecraft.world.World;
 
 public class ParticleHelper {
@@ -12,7 +12,7 @@ public class ParticleHelper {
     public ParticleHelper(World world){
 
         this.world = world;
-        SpawnParticle = Main.SpawnParticles;
+        SpawnParticle = ConfigUtils.SpawnParticles;
     }
 
     public void SpawnParticle(String particleName, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed){

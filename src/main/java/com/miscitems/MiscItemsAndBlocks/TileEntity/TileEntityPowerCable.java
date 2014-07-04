@@ -4,7 +4,7 @@ import MiscItemsApi.Electric.IPowerCable;
 import MiscItemsApi.Electric.IPowerGeneration;
 import MiscItemsApi.Electric.IPowerTile;
 import MiscItemsApi.Electric.IWrenchAble;
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlockPowerCable;
+import com.miscitems.MiscItemsAndBlocks.Block.Electric.ModBlockPowerCable;
 import com.miscitems.MiscItemsAndBlocks.Laser.LaserUtil;
 import com.miscitems.MiscItemsAndBlocks.Utils.Handlers.ChatMessageHandler;
 import net.minecraft.block.Block;
@@ -171,7 +171,7 @@ public class TileEntityPowerCable extends TileEntity implements IPowerCable, IWr
     	if(Meta != 2)
     	if(tile instanceof IPowerCable)return true;
     	
-    	// 1 No Machines
+    	// 1 No BlockContainers
     	// 2 No Cables
 
     	

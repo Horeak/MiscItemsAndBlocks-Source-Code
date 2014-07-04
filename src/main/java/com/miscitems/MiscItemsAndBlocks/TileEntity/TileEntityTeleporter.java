@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
-import com.miscitems.MiscItemsAndBlocks.Items.ModItemDataChip;
+import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemDataChip;
 import com.miscitems.MiscItemsAndBlocks.Main.ModItems;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;

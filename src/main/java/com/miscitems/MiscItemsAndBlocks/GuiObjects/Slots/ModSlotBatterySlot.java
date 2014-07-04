@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.GuiObjects.Slots;
 
-import com.miscitems.MiscItemsAndBlocks.Items.ModItemPowerStorage;
+import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemPowerStorage;
 import com.miscitems.MiscItemsAndBlocks.Utils.IconRegisteringItemClass;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;

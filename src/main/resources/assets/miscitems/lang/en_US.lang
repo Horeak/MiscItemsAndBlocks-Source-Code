@@ -46,14 +46,12 @@ tile.lens_bench.name=Lens bench
 tile.laser.name=Laser
 tile.laser_reciver.name=Laser receiver
 tile.ghost_block.name=Ghost block
-tile.tv.name=Tv
-tile.turtleshell.name=Turtle shell
-tile.bluecrystalore.name=Blue Crystal Ore
-tile.greencrystalore.name=Green Crystal Ore
-tile.redcrystalore.name=Red Crystal Ore
-tile.coloredbrick.name=Coloured Metal Block
-tile.coloredbrickglowstone.name=Coloured Glowstone Metal Block
-tile.gamepart.name=Game Piece
+tile.bluecrystalore.name=Blue Crystal ore
+tile.greencrystalore.name=Green Crystal ore
+tile.redcrystalore.name=Red Crystal ore
+tile.coloredbrick.name=Metal brick
+tile.coloredbrickglowstone.name=Glowstone Metal brick
+tile.gamepart.name=Game piece
 
 
 //All items
@@ -199,6 +197,10 @@ config.el.Client=Client Settings
 config.el.Server=Server Settings
 config.el.Blocks=Blocks
 config.el.Items=Items
+config.el.Client.tooltip=Client side settings.
+config.el.Server.tooltip=Server side settings.
+config.el.Blocks.tooltip=Enable/Disable blocks.
+config.el.Items.tooltip=Enable/Disable Items.
 
 //Different descriptions used on item tooltips
 items.desc.invisCharged=Charge:

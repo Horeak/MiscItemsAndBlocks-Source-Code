@@ -5,7 +5,7 @@ import MiscItemsApi.Electric.IPowerCable;
 import MiscItemsApi.Electric.IPowerItem;
 import MiscItemsApi.Electric.IPowerTile;
 import MiscItemsApi.Electric.IWrenchAble;
-import com.miscitems.MiscItemsAndBlocks.Items.ModItemPowerTool;
+import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemPowerTool;
 import com.miscitems.MiscItemsAndBlocks.Laser.LaserUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -43,7 +43,7 @@ public class TileEntityEnergyStorageCube extends TileEntityPowerInv implements I
 
 
 
-		compound.setInteger("Tick", CurrentTick);
+		compound.setInteger("Tickhandler", CurrentTick);
            compound.setInteger("MaxPower", MaxPower);
 
 	}
@@ -54,7 +54,7 @@ public class TileEntityEnergyStorageCube extends TileEntityPowerInv implements I
 
 
 		
-		CurrentTick = compound.getInteger("Tick");
+		CurrentTick = compound.getInteger("Tickhandler");
         MaxPower = compound.getInteger("MaxPower");
 		
 

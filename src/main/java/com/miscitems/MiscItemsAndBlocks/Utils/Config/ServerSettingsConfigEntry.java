@@ -1,6 +1,5 @@
 package com.miscitems.MiscItemsAndBlocks.Utils.Config;
 
-import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import cpw.mods.fml.client.config.GuiConfig;
 import cpw.mods.fml.client.config.GuiConfigEntries;
 import cpw.mods.fml.client.config.GuiConfigEntries.CategoryEntry;
@@ -24,12 +23,12 @@ public class ServerSettingsConfigEntry extends CategoryEntry
     {
         List<IConfigElement> list = new ArrayList<IConfigElement>();
 
-        list.addAll((new ConfigElement(Main.config.getCategory("server settings"))).getChildElements());
+        list.addAll((new ConfigElement(ConfigUtils.GetConfigFile().getCategory(ConfigUtils.CATEGORY_SERVER_SETTINGS))).getChildElements());
 
         return new GuiConfig(this.owningScreen, list, this.owningScreen.modID, "server settings",
                 this.configElement.requiresWorldRestart() || this.owningScreen.allRequireWorldRestart,
                 this.configElement.requiresMcRestart() || this.owningScreen.allRequireMcRestart,
-                GuiConfig.getAbridgedConfigPath(Main.config.toString()),
+                GuiConfig.getAbridgedConfigPath(ConfigUtils.GetConfigFile().toString()),
                 I18n.format("config.el.Server"));
     }
 }

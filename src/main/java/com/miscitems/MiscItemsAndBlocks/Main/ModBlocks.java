@@ -1,71 +1,71 @@
 package com.miscitems.MiscItemsAndBlocks.Main;
 
 
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlockCardboardBox;
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlockColoredMetalBrick;
+import com.miscitems.MiscItemsAndBlocks.Block.BlockContainers.ModBlockCardboardBox;
+import com.miscitems.MiscItemsAndBlocks.Block.Decorative.ModBlockColoredMetalBrick;
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlockComputer;
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlockCrystalOre;
+import com.miscitems.MiscItemsAndBlocks.Block.Magic.ModBlockCrystalOre;
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlockDice;
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlockDiceHolder;
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlockDisarmTrap;
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlockElectricFurnace;
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlockEmptyBlock;
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlockEnergyStorageCube;
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlockGamePart;
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlockGenerator;
+import com.miscitems.MiscItemsAndBlocks.Block.Electric.ModBlockElectricFurnace;
+import com.miscitems.MiscItemsAndBlocks.Block.Utils.ModBlockEmptyBlock;
+import com.miscitems.MiscItemsAndBlocks.Block.Electric.ModBlockEnergyStorageCube;
+import com.miscitems.MiscItemsAndBlocks.Block.Decorative.ModBlockGamePart;
+import com.miscitems.MiscItemsAndBlocks.Block.Electric.ModBlockGenerator;
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlockGhostBlock;
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlockItemPedestal;
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlockLaser;
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlockLaserReciver;
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlockLensBench;
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlockMachinePart;
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlockMetalPress;
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlockMill;
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlockMiningStation;
+import com.miscitems.MiscItemsAndBlocks.Block.Decorative.ModBlockItemPedestal;
+import com.miscitems.MiscItemsAndBlocks.Block.Electric.ModBlockLaser;
+import com.miscitems.MiscItemsAndBlocks.Block.Electric.ModBlockLaserReciver;
+import com.miscitems.MiscItemsAndBlocks.Block.Electric.ModBlockLensBench;
+import com.miscitems.MiscItemsAndBlocks.Block.Electric.ModBlockMachinePart;
+import com.miscitems.MiscItemsAndBlocks.Block.Electric.ModBlockMetalPress;
+import com.miscitems.MiscItemsAndBlocks.Block.BlockContainers.ModBlockMill;
+import com.miscitems.MiscItemsAndBlocks.Block.Electric.ModBlockMiningStation;
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlockOneWayGlass;
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlockOrangeLeaf;
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlockOrangeLog;
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlockOrangePlanks;
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlockOrangeSapling;
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlockOven;
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlockPaintBlock;
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlockPillar;
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlockPowerCable;
+import com.miscitems.MiscItemsAndBlocks.Block.Plants.ModBlockOrangeLeaf;
+import com.miscitems.MiscItemsAndBlocks.Block.Plants.ModBlockOrangeLog;
+import com.miscitems.MiscItemsAndBlocks.Block.Plants.ModBlockOrangePlanks;
+import com.miscitems.MiscItemsAndBlocks.Block.Plants.ModBlockOrangeSapling;
+import com.miscitems.MiscItemsAndBlocks.Block.BlockContainers.ModBlockOven;
+import com.miscitems.MiscItemsAndBlocks.Block.Decorative.ModBlockPaintBlock;
+import com.miscitems.MiscItemsAndBlocks.Block.Decorative.ModBlockPillar;
+import com.miscitems.MiscItemsAndBlocks.Block.Electric.ModBlockPowerCable;
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlockSilverOre;
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlockSolarPanel;
+import com.miscitems.MiscItemsAndBlocks.Block.Electric.ModBlockSolarPanel;
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlockSpeedBlock;
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlockSquezer;
+import com.miscitems.MiscItemsAndBlocks.Block.BlockContainers.ModBlockSquezer;
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlockStair;
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlockStorageBlock;
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlockTable;
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlockTeleporter;
+import com.miscitems.MiscItemsAndBlocks.Block.BlockContainers.ModBlockStorageBlock;
+import com.miscitems.MiscItemsAndBlocks.Block.Decorative.ModBlockTable;
+import com.miscitems.MiscItemsAndBlocks.Block.Electric.ModBlockTeleporter;
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlockTimedBlock;
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlockTomatoPlant;
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlockTrashBin;
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlockWindMill;
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlockWirelessItemTransfer;
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlockWirelessRedstone;
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlockWorktable;
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlockXpStorage;
-import com.miscitems.MiscItemsAndBlocks.Items.ItemBlock.ModItemBlockBox;
-import com.miscitems.MiscItemsAndBlocks.Items.ItemBlock.ModItemBlockColoredMetalBrick;
-import com.miscitems.MiscItemsAndBlocks.Items.ItemBlock.ModItemBlockComputer;
-import com.miscitems.MiscItemsAndBlocks.Items.ItemBlock.ModItemBlockDice;
-import com.miscitems.MiscItemsAndBlocks.Items.ItemBlock.ModItemBlockDiceHolder;
-import com.miscitems.MiscItemsAndBlocks.Items.ItemBlock.ModItemBlockDisarmTrap;
-import com.miscitems.MiscItemsAndBlocks.Items.ItemBlock.ModItemBlockGamePiece;
-import com.miscitems.MiscItemsAndBlocks.Items.ItemBlock.ModItemBlockItemPedestal;
-import com.miscitems.MiscItemsAndBlocks.Items.ItemBlock.ModItemBlockLaserReciver;
-import com.miscitems.MiscItemsAndBlocks.Items.ItemBlock.ModItemBlockMetalPress;
-import com.miscitems.MiscItemsAndBlocks.Items.ItemBlock.ModItemBlockMiningChamber;
-import com.miscitems.MiscItemsAndBlocks.Items.ItemBlock.ModItemBlockPaintBlock;
-import com.miscitems.MiscItemsAndBlocks.Items.ItemBlock.ModItemBlockPillar;
-import com.miscitems.MiscItemsAndBlocks.Items.ItemBlock.ModItemBlockPowerCable;
-import com.miscitems.MiscItemsAndBlocks.Items.ItemBlock.ModItemBlockStorageBlock;
-import com.miscitems.MiscItemsAndBlocks.Items.ItemBlock.ModItemBlockTable;
-import com.miscitems.MiscItemsAndBlocks.Items.ItemBlock.ModItemBlockTeleporter;
-import com.miscitems.MiscItemsAndBlocks.Items.ItemBlock.ModItemBlockTrashBin;
-import com.miscitems.MiscItemsAndBlocks.Items.ItemBlock.ModItemXpStorageBlock;
+import com.miscitems.MiscItemsAndBlocks.Block.Plants.ModBlockTomatoPlant;
+import com.miscitems.MiscItemsAndBlocks.Block.BlockContainers.ModBlockTrashBin;
+import com.miscitems.MiscItemsAndBlocks.Block.Electric.ModBlockWindMill;
+import com.miscitems.MiscItemsAndBlocks.Block.BlockContainers.ModBlockWirelessItemTransfer;
+import com.miscitems.MiscItemsAndBlocks.Block.BlockContainers.ModBlockWirelessRedstone;
+import com.miscitems.MiscItemsAndBlocks.Block.BlockContainers.ModBlockWorktable;
+import com.miscitems.MiscItemsAndBlocks.Block.BlockContainers.ModBlockXpStorage;
+import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockBox;
+import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockColoredMetalBrick;
+import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockComputer;
+import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockDice;
+import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockDiceHolder;
+import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockDisarmTrap;
+import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockGamePiece;
+import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockItemPedestal;
+import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockLaserReciver;
+import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockMetalPress;
+import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockMiningChamber;
+import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockPaintBlock;
+import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockPillar;
+import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockPowerCable;
+import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockStorageBlock;
+import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockTable;
+import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockTeleporter;
+import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockTrashBin;
+import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemXpStorageBlock;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityCardboardBox;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityComputer;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityDiceHolder;
@@ -98,6 +98,7 @@ import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityWirelessItemTrans;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityWirelessRedstone;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityWorktable;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityXpStorage;
+import com.miscitems.MiscItemsAndBlocks.Utils.Config.ConfigUtils;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
@@ -166,7 +167,6 @@ public class ModBlocks {
 	
 	public static void Init(){
 
-        Main.config.addCustomCategoryComment("Blocks", "Disabling blocks will require a world which has not used the mod before(a new one or a world you have not used the mod in yet)");
 
 		XpStorage = new ModBlockXpStorage().setCreativeTab(Main.MiscTab);
 		Register(XpStorage, ModItemXpStorageBlock.class, "Xp Storage Block", TileEntityXpStorage.class);
@@ -338,18 +338,21 @@ public class ModBlocks {
 	
 	    
 		public static void Register(Block block, String Name){
-			if(Main.config.get("Blocks", "Enable " + Name + "?", true).getBoolean(true)){
-                Main.config.save();
-	        block.setBlockName(Name.toLowerCase().replace(" ", "_"));
+            ConfigUtils.BlockConfigNames.put(block, Name);
+
+			if(ConfigUtils.IsBlockEnabled(block)){
+
+	            block.setBlockName(Name.toLowerCase().replace(" ", "_"));
 		        GameRegistry.registerBlock(block, Name.toLowerCase().replace(" ", "_"));
-			}else
-                Main.config.save();
+			}
 		}
 
 
     public static void Register(Block block, String Name, Class<? extends TileEntity> tileClass){
-        if(Main.config.get("Blocks", "Enable " + Name + "?", true).getBoolean(true)){
-            Main.config.save();
+        ConfigUtils.BlockConfigNames.put(block, Name);
+
+        if(ConfigUtils.IsBlockEnabled(block)){
+
             block.setBlockName(Name.toLowerCase().replace(" ", "_"));
             GameRegistry.registerBlock(block, Name.toLowerCase().replace(" ", "_"));
 
@@ -357,24 +360,27 @@ public class ModBlocks {
 
 
 
-        }else
-            Main.config.save();
+        }
     }
 
 
-public static void Register(Block Block, Class<? extends ItemBlock> itemclass, String Name){
-	if(Main.config.get("Blocks", "Enable " + Name.replace("tile.", "") + "?", true).getBoolean(true)){
-        Main.config.save();
-	              Block.setBlockName(Name.toLowerCase().replace(" ", "_"));
-		        GameRegistry.registerBlock(Block, itemclass, Name.toLowerCase().replace(" ", "_"));
-	}else
-        Main.config.save();	}
+
+     public static void Register(Block Block, Class<? extends ItemBlock> itemclass, String Name) {
+         ConfigUtils.BlockConfigNames.put(Block, Name);
+
+        if (ConfigUtils.IsBlockEnabled(Block)) {
+
+        Block.setBlockName(Name.toLowerCase().replace(" ", "_"));
+        GameRegistry.registerBlock(Block, itemclass, Name.toLowerCase().replace(" ", "_"));
+    }
+}
 
 
 
     public static void Register(Block Block, Class<? extends ItemBlock> itemclass, String Name, Class<? extends TileEntity> tileClass){
-        if(Main.config.get("Blocks", "Enable " + Name.replace("tile.", "") + "?", true).getBoolean(true)){
-            Main.config.save();
+        ConfigUtils.BlockConfigNames.put(Block, Name);
+
+        if(ConfigUtils.IsBlockEnabled(Block)){
             Block.setBlockName(Name.toLowerCase().replace(" ", "_"));
             GameRegistry.registerBlock(Block, itemclass, Name.toLowerCase().replace(" ", "_"));
 
@@ -382,8 +388,7 @@ public static void Register(Block Block, Class<? extends ItemBlock> itemclass, S
 
 
 
-        }else
-            Main.config.save();
+        }
     }
 
 

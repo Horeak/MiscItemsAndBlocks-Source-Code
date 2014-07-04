@@ -16,8 +16,8 @@ import com.miscitems.MiscItemsAndBlocks.Laser.DefaultLaser;
 import com.miscitems.MiscItemsAndBlocks.Laser.LaserRegistry;
 import com.miscitems.MiscItemsAndBlocks.Network.ChannelHandler;
 import com.miscitems.MiscItemsAndBlocks.Network.PacketHandler;
-import com.miscitems.MiscItemsAndBlocks.Proxies.ServerProxy;
-import com.miscitems.MiscItemsAndBlocks.Utils.Config.ConfigChanged;
+import com.miscitems.MiscItemsAndBlocks.Utils.Proxies.ServerProxy;
+import com.miscitems.MiscItemsAndBlocks.Utils.Config.ConfigUtils;
 import com.miscitems.MiscItemsAndBlocks.Utils.Crafting;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Messages;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
@@ -44,11 +44,8 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.config.Configuration;
-import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 
-import java.io.File;
 import java.util.EnumMap;
 import java.util.Map;
 import java.util.Set;
@@ -62,24 +59,14 @@ import java.util.Set;
 		@Instance(Reference.Mod_Id)
 		public static Main instance = new Main();
     
-		@SidedProxy(clientSide = "com.miscitems.MiscItemsAndBlocks.Proxies.ClientProxy", serverSide = "com.miscitems.MiscItemsAndBlocks.Proxies.ServerProxy")
+		@SidedProxy(clientSide = "com.miscitems.MiscItemsAndBlocks.Utils.Proxies.ClientProxy", serverSide = "com.miscitems.MiscItemsAndBlocks.Utils.Proxies.ServerProxy")
 		public static ServerProxy proxy;
 
 
         public static Set EmptyToolSet = Sets.newHashSet();
 
-
-
-        public static boolean SpawnParticles;
-        public static boolean AllowPowerArmorEffects;
-    
         public static final org.apache.logging.log4j.Logger logger = LogManager.getLogger("MiscItems");
 
-
-        public static boolean HDTextures = false;
-
-
-        public static Configuration config;
 
         public static CreativeTabs MiscTab = new CreativeTabs("tabMiscMisc")
         {
@@ -89,14 +76,14 @@ import java.util.Set;
             @SideOnly(Side.CLIENT)
             public Item getTabIconItem()
             {
-                if(Main.config.get("Items", "Enable " + "Guide Book" + "?", true).getBoolean(true))
+                if(ConfigUtils.GetConfigFile().get(ConfigUtils.CATEGORY_ITEMS, "Enable " + "Guide Book" + "?", true).getBoolean(true))
                 {
-                    Main.config.save();
+                    ConfigUtils.GetConfigFile().save();
                     return ModItems.GuideBook;
                 }else
 
                 {
-                    Main.config.save();
+                    ConfigUtils.GetConfigFile().save();
                     return ItemBlock.getItemFromBlock(Blocks.bedrock);
                 }
             }
@@ -112,14 +99,22 @@ import java.util.Set;
             public Item getTabIconItem()
             {
 
+                if(ConfigUtils.GetConfigFile().get(ConfigUtils.CATEGORY_ITEMS, "Enable " + ModBlocks.ColoredBrick.getUnlocalizedName() + "?", true).getBoolean(true)) {
+                    ConfigUtils.GetConfigFile().save();
                     return new ItemStack(ModBlocks.ColoredBrick, 1, 5).getItem();
+                }
+
+                return ItemBlock.getItemFromBlock(Blocks.bedrock);
 
             }
 
             @SideOnly(Side.CLIENT)
             public ItemStack getIconItemStack()
-            {
+            {                if(ConfigUtils.GetConfigFile().get(ConfigUtils.CATEGORY_ITEMS, "Enable " + ModBlocks.ColoredBrick.getUnlocalizedName() + "?", true).getBoolean(true)) {
+                ConfigUtils.GetConfigFile().save();
                 return new ItemStack(ModBlocks.ColoredBrick, 1, 1);
+            }
+                return new ItemStack(Blocks.bedrock);
             }
 
         };
@@ -133,12 +128,12 @@ import java.util.Set;
             @SideOnly(Side.CLIENT)
             public Item getTabIconItem()
             {
-                if(Main.config.get("Blocks", "Enable " + "Charger" + "?", true).getBoolean(true)){
-                    Main.config.save();
+                if(ConfigUtils.GetConfigFile().get("Blocks", "Enable " + "Charger" + "?", true).getBoolean(true)){
+                    ConfigUtils.GetConfigFile().save();
                     return ItemBlock.getItemFromBlock(ModBlocks.Charger);
                 }else
                 {
-                    Main.config.save();
+                    ConfigUtils.GetConfigFile().save();
                     return ItemBlock.getItemFromBlock(Blocks.bedrock);
                 }
             }
@@ -154,12 +149,12 @@ import java.util.Set;
             @SideOnly(Side.CLIENT)
             public Item getTabIconItem()
             {
-                if(Main.config.get("Items", "Enable " + ModItems.InvisibilityCore.getUnlocalizedName() + "?", true).getBoolean(true)){
-                    Main.config.save();
+                if(ConfigUtils.GetConfigFile().get(ConfigUtils.CATEGORY_ITEMS, "Enable " + ModItems.InvisibilityCore.getUnlocalizedName() + "?", true).getBoolean(true)){
+                    ConfigUtils.GetConfigFile().save();
                     return ModItems.InvisibilityCore;
                 }else
                 {
-                    Main.config.save();
+                    ConfigUtils.GetConfigFile().save();
                     return ItemBlock.getItemFromBlock(Blocks.bedrock);
                 }
             }
@@ -175,38 +170,9 @@ import java.util.Set;
         @EventHandler
         public void preInit(FMLPreInitializationEvent event)
         {
-	
     	
-        	config = new Configuration(new File(event.getModConfigurationDirectory() + "/tm1990's mods/MiscItemsAndBlocksConfig.cfg"));
+        	ConfigUtils.InitConfig(event.getModConfigurationDirectory() + "");
 
-
-
-
-
-        	try
-        	{
-
-                config.load();
-
-                HDTextures = !config.get("Client Settings", "Should HD textures be used for some blocks?", true).getBoolean(true);
-
-                SpawnParticles = config.get("Client Settings", "Spawn particles?", true).getBoolean(true);
-                AllowPowerArmorEffects = config.get("Server Settings", "Enable Powerarmor effects?", true).getBoolean(true);
-    	
-        	} 
-        	
-        	catch(Exception ex)
-        	{
-        		logger.log(Level.ERROR, ex.getMessage(), Reference.Mod_Id + ": Error encountered while loading config file.");
-        	} 
-        	finally
-        	{
-        		config.save();
-        	}
-
-
-            Main.config.addCustomCategoryComment("Client Settings", "Client side only settings. Settings that does not affect gameplay");
-            Main.config.addCustomCategoryComment("Server Settings", "Server side settings which can affect gameplay");
 
             PacketHandler.RegisterPackets();
             channels = getNewChannelHandler(handler.channel);
@@ -228,7 +194,7 @@ import java.util.Set;
 
             MinecraftForge.EVENT_BUS.register(new InvisibilityEvents());
             FMLCommonHandler.instance().bus().register(new InvisibilityEvents());
-            FMLCommonHandler.instance().bus().register(new ConfigChanged());
+            FMLCommonHandler.instance().bus().register(new ConfigUtils());
         
         	//Register Events
         	if(event.getSide() == Side.SERVER)

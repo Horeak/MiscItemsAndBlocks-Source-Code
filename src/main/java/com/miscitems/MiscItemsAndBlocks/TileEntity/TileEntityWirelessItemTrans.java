@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
-import com.miscitems.MiscItemsAndBlocks.Items.ModItemDataChip;
+import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemDataChip;
 import com.miscitems.MiscItemsAndBlocks.Main.ModItems;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
@@ -268,7 +268,7 @@ public class TileEntityWirelessItemTrans extends TileEntityInvBase implements IS
 
 		  Mode = NBT.getInteger("Mode");
 		  CardMode = NBT.getInteger("CardMode");
-		  SendingTick = NBT.getInteger("Tick");
+		  SendingTick = NBT.getInteger("Tickhandler");
 
 	    }
 
@@ -279,7 +279,7 @@ public class TileEntityWirelessItemTrans extends TileEntityInvBase implements IS
 
 	      NBT.setInteger("Mode", Mode);
 	      NBT.setInteger("CardMode", CardMode);
-	      NBT.setInteger("Tick", SendingTick);
+	      NBT.setInteger("Tickhandler", SendingTick);
 	      
 	    	
 	    }

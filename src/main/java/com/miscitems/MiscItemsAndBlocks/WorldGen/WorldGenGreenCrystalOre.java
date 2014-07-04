@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.WorldGen;
 
-import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Main.ModBlocks;
+import com.miscitems.MiscItemsAndBlocks.Utils.Config.ConfigUtils;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -19,7 +19,7 @@ public class WorldGenGreenCrystalOre extends WorldGenerator {
 
 
             for(int h = 0; h < 3; h++) {
-                if (Main.config.get("Blocks", "Enable " + ModBlocks.GreenCrystalOre.getUnlocalizedName() + "?", true).getBoolean(true)) {
+                if (ConfigUtils.IsBlockEnabled(ModBlocks.GreenCrystalOre)) {
                     int firstBlockXCoord = x + random.nextInt(16);
                     int firstBlockYCoord = random.nextInt(24);
                     int firstBlockZCoord = z + random.nextInt(16);

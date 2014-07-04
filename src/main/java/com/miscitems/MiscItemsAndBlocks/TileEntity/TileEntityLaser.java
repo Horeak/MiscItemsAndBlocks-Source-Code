@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
-import com.miscitems.MiscItemsAndBlocks.Items.ModItemPowerStorage;
+import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemPowerStorage;
 import com.miscitems.MiscItemsAndBlocks.Laser.*;
 import com.miscitems.MiscItemsAndBlocks.Main.ModItems;
 import com.miscitems.MiscItemsAndBlocks.Network.Client.ClientLaserUpdatePacket;

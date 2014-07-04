@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.WorldGen;
 
-import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Main.ModBlocks;
+import com.miscitems.MiscItemsAndBlocks.Utils.Config.ConfigUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
@@ -39,8 +39,7 @@ public class WorldGenOrangeTree extends WorldGenerator
     public boolean generate(World par1World, Random par2Random, int par3, int par4, int par5)
     {
 
-        if(Main.config.get("Blocks", "Enable " + ModBlocks.OrangeLog.getUnlocalizedName() + "?", true).getBoolean(true)
-                && Main.config.get("Blocks", "Enable " + ModBlocks.OrangeLeaf.getUnlocalizedName() + "?", true).getBoolean(true)) {
+        if(ConfigUtils.IsBlockEnabled(ModBlocks.OrangeLog)  && ConfigUtils.IsBlockEnabled(ModBlocks.OrangeLeaf)) {
 
             int l = par2Random.nextInt(3) + this.minTreeHeight;
             boolean flag = true;

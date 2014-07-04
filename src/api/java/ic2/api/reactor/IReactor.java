@@ -126,7 +126,7 @@ public interface IReactor {
 	/**
 	 * Get the reactor's tick rate (game ticks per reactor tick).
 	 * 
-	 * @return Tick rate
+	 * @return Tickhandler rate
 	 */
 	public int getTickRate();
 

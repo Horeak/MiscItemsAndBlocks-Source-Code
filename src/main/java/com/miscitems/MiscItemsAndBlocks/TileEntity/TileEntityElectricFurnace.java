@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
-import com.miscitems.MiscItemsAndBlocks.Items.ModItemPowerTool;
+import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemPowerTool;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;

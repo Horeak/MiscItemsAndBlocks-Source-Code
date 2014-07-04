@@ -3,7 +3,7 @@ package com.miscitems.MiscItemsAndBlocks.Network.Server;
 import com.miscitems.MiscItemsAndBlocks.Network.AbstractPacket;
 import com.miscitems.MiscItemsAndBlocks.Network.Client.ClientGamePacketInviteRecived;
 import com.miscitems.MiscItemsAndBlocks.Network.PacketHandler;
-import com.miscitems.MiscItemsAndBlocks.Proxies.ServerProxy;
+import com.miscitems.MiscItemsAndBlocks.Utils.Proxies.ServerProxy;
 import com.miscitems.MiscItemsAndBlocks.Utils.Game.GameInvite;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.ByteBufUtils;

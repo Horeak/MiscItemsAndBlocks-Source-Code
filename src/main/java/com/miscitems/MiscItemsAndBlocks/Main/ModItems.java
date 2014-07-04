@@ -1,6 +1,42 @@
 package com.miscitems.MiscItemsAndBlocks.Main;
 
-import com.miscitems.MiscItemsAndBlocks.Items.*;
+import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemAdvancedBattery;
+import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemAntiFallChest;
+import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemBattery;
+import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemBigBattery;
+import com.miscitems.MiscItemsAndBlocks.Item.Magic.ModItemChargedCrystal;
+import com.miscitems.MiscItemsAndBlocks.Item.ModItemCheese;
+import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemCircuit;
+import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemCreativeBattery;
+import com.miscitems.MiscItemsAndBlocks.Item.Magic.ModItemCrystalBlade;
+import com.miscitems.MiscItemsAndBlocks.Item.Magic.ModItemCrystalPickaxe;
+import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemDataChip;
+import com.miscitems.MiscItemsAndBlocks.Item.Tools.ModItemDisarmStick;
+import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemDrill;
+import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemElectricBow;
+import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemElectricShear;
+import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemFloatBlockPlacer;
+import com.miscitems.MiscItemsAndBlocks.Item.Tools.ModItemGuideBook;
+import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemHeatDrill;
+import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemInfoScreenHelmet;
+import com.miscitems.MiscItemsAndBlocks.Item.Magic.ModItemInvisArmor;
+import com.miscitems.MiscItemsAndBlocks.Item.Magic.ModItemInvisibilityCore;
+import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemIronPlate;
+import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemLens;
+import com.miscitems.MiscItemsAndBlocks.Item.ModItemLiquid;
+import com.miscitems.MiscItemsAndBlocks.Item.ModItemOrange;
+import com.miscitems.MiscItemsAndBlocks.Item.Tools.ModItemPaintBrush;
+import com.miscitems.MiscItemsAndBlocks.Item.ModItemPizza;
+import com.miscitems.MiscItemsAndBlocks.Item.ModItemPizzaRaw;
+import com.miscitems.MiscItemsAndBlocks.Item.Tools.ModItemPowerArmor;
+import com.miscitems.MiscItemsAndBlocks.Item.Tools.ModItemSilverBow;
+import com.miscitems.MiscItemsAndBlocks.Item.Tools.ModItemSilverSword;
+import com.miscitems.MiscItemsAndBlocks.Item.ModItemTomato;
+import com.miscitems.MiscItemsAndBlocks.Item.ModItemTomatoSeeds;
+import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemUpgrades;
+import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemWrench;
+import com.miscitems.MiscItemsAndBlocks.Item.Tools.ModItemXpExtractor;
+import com.miscitems.MiscItemsAndBlocks.Utils.Config.ConfigUtils;
 import com.miscitems.MiscItemsAndBlocks.Utils.IconRegisteringItemClass;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -86,7 +122,6 @@ public class ModItems {
 
 	public static void Init(){
 
-        Main.config.addCustomCategoryComment("Items", "Disabling items will require a world which has not used the mod before(a new one or a world you have not used the mod in yet)");
 
 
         GuideBook = new ModItemGuideBook().setUnlocalizedName("item.guidebook").setCreativeTab(Main.MiscTab).setTextureName(Reference.Mod_Id + ":" + "book");
@@ -268,7 +303,7 @@ public class ModItems {
 		
 	
 	
-    Main.config.save();
+    ConfigUtils.GetConfigFile().save();
 		
 		
 		
@@ -282,14 +317,25 @@ public class ModItems {
 
 	
 	public static void Register(Item Item, String Name){
-		if(Main.config.get("Items", "Enable " + Name + "?", true).getBoolean(true)){
+        ConfigUtils.ItemConfigNames.put(Item,Name);
+
+		if(ConfigUtils.IsItemEnabled(Item)){
+
         Item.setUnlocalizedName((Name.toLowerCase().replace(" ", "_")));
         GameRegistry.registerItem(Item, (Name.toLowerCase().replace(" ", "_")));
 
 	}
 	}
+
+
 	
 	public static void RegisterOutName(Item Item, String Name){
-        GameRegistry.registerItem(Item, Name);
+        ConfigUtils.ItemConfigNames.put(Item,Name);
+
+        if(ConfigUtils.IsItemEnabled(Item)){
+
+            GameRegistry.registerItem(Item, (Name.toLowerCase().replace(" ", "_")));
+
+        }
 	}
 }

@@ -1,8 +1,8 @@
 package com.miscitems.MiscItemsAndBlocks.Event;
 
-import com.miscitems.MiscItemsAndBlocks.Items.ModItemInvisArmor;
+import com.miscitems.MiscItemsAndBlocks.Item.Magic.ModItemInvisArmor;
 import com.miscitems.MiscItemsAndBlocks.Main.ModItems;
-import com.miscitems.MiscItemsAndBlocks.Proxies.ClientProxy;
+import com.miscitems.MiscItemsAndBlocks.Utils.Proxies.ClientProxy;
 import com.miscitems.MiscItemsAndBlocks.Utils.InvisibilityUtils;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
