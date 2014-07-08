@@ -16,8 +16,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -38,7 +36,6 @@ public class ModItemHeatDrill extends ModItemPowerTool{
 		super(0.1F, ToolMaterial.EMERALD, Mineable);
 		
 		this.efficiencyOnProperMaterial = 8;
-		this.setMaxDamage(930);
 	}
 	
 	 public boolean canHarvestBlock(Block par1Block)
@@ -50,7 +47,7 @@ public class ModItemHeatDrill extends ModItemPowerTool{
 	    @Override
 	    public float getDigSpeed(ItemStack par1ItemStack, Block par2Blocks, int metadata)
 	    {
-	    	if(par1ItemStack.getItemDamage() == par1ItemStack.getMaxDamage())
+	    	if(CurrentPower(par1ItemStack) <= 0)
 	    		return 0;
 	    	
 	        return par2Blocks != null && (par2Blocks.getMaterial() == Material.iron || par2Blocks.getMaterial() == Material.anvil || par2Blocks.getMaterial() == Material.rock || par2Blocks.getMaterial() == Material.wood || par2Blocks.getMaterial() == Material.plants || par2Blocks.getMaterial() == Material.vine) ? this.efficiencyOnProperMaterial : super.getDigSpeed(par1ItemStack, par2Blocks, metadata);
@@ -60,7 +57,7 @@ public class ModItemHeatDrill extends ModItemPowerTool{
 	    {
 	        if ((double)p_150894_3_.getBlockHardness(p_150894_2_, p_150894_4_, p_150894_5_, p_150894_6_) != 0.0D)
 	        {
-	        	p_150894_1_.damageItem(1, p_150894_7_);
+                RemovePower(p_150894_1_, 1);
 	        }
 
 	        return true;
@@ -106,20 +103,7 @@ public class ModItemHeatDrill extends ModItemPowerTool{
 		   this.itemIcon = par1IconRegister.registerIcon(Reference.Mod_Id + ":HeatDrill");
 		   
 	   }
-	   
-	   @SuppressWarnings({ "unchecked", "rawtypes" })
-	@Override
-	    public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean par4)
-	    {
-	    	int i = itemstack.getMaxDamage() - itemstack.getItemDamage();
-	    	
 
-	            list.add(StatCollector.translateToLocal("items.desc.string.powerleft") + ": " + i);
-	            if(itemstack.getItemDamage() == itemstack.getMaxDamage())
-	            	list.add(EnumChatFormatting.RED + StatCollector.translateToLocal("items.desc.string.outofpowerrecharge"));
-
-	            
-	    }
 	   
 	public void Smelt(ItemStack stack, int x, int y, int z, World world, EntityPlayer player){
 
@@ -177,7 +161,7 @@ public class ModItemHeatDrill extends ModItemPowerTool{
 
 		                    				
 		                    				world.setBlock(x, y, z, Block.getBlockById(Item.getIdFromItem(t)));
-		                    				player.inventory.getCurrentItem().damageItem(1, player);
+		                    				RemovePower(player.inventory.getCurrentItem(), 1);
 		                    				
 		                    			}
 		                        
@@ -189,7 +173,7 @@ public class ModItemHeatDrill extends ModItemPowerTool{
 	    		                        		ItemBlock t = (ItemBlock)result.getItem();
 			                    				
 			                    				world.setBlock(x, y, z, Block.getBlockById(Item.getIdFromItem(t)));
-			                    				player.inventory.getCurrentItem().damageItem(1, player);
+                                                RemovePower(player.inventory.getCurrentItem(), 1);
 			                    				
 			                    			}
 	                    				}
@@ -212,13 +196,13 @@ public class ModItemHeatDrill extends ModItemPowerTool{
 
 
 		@Override
-		public int MaxPower(ItemStack stack) {
+		public double MaxPower(ItemStack stack) {
 			return 930;
 		}
 
 
 		@Override
-		public int ChargeAmount(ItemStack stack) {
+		public double ChargeAmount(ItemStack stack) {
 			return 1;
 		}
 	    
@@ -230,6 +214,6 @@ public class ModItemHeatDrill extends ModItemPowerTool{
 
     @Override
     public int getTier(ItemStack itemStack) {
-        return 2;
+        return 1;
     }
 }

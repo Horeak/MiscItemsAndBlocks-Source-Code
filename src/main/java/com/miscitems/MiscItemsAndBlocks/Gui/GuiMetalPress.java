@@ -65,7 +65,7 @@ public class GuiMetalPress extends GuiContainer{
 	         this.drawTexturedModalRect(x + 87, y + 29, 179, 20, tile.GetWorkTime() / 2, 16);
 
 	         
-	         this.drawCenteredString(fontRendererObj, "Power: " + tile.GetPower() + "/" + tile.GetMaxPower(), x + 120, y + 10, 0x666666);
+	         this.drawCenteredString(fontRendererObj, "Power: " + tile.GetPower() + "/" + (int)tile.GetMaxPower(), x + 120, y + 10, 0x666666);
 	         
 	}
 	

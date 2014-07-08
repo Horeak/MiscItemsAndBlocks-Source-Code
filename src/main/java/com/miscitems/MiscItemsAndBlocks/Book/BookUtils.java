@@ -1,7 +1,11 @@
 package com.miscitems.MiscItemsAndBlocks.Book;
 
 import com.miscitems.MiscItemsAndBlocks.Book.Pages.Page;
+import com.miscitems.MiscItemsAndBlocks.Utils.Config.ConfigUtils;
 import com.miscitems.MiscItemsAndBlocks.Utils.DoubleStackUtil;
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.item.crafting.ShapelessRecipes;
@@ -42,8 +46,16 @@ public class BookUtils {
 
 
 
-    public static void RegisterPagesForItem(ItemStack item, Page[] Pages){
-        InfoPages.put(item.getItem().getUnlocalizedName(item), Pages);
+    public static void RegisterPagesForItem(ItemStack item, Page[] Pages) {
+        if (item != null)
+            if (item.getItem() instanceof ItemBlock) {
+                if (ConfigUtils.IsBlockEnabled(Block.getBlockById(Item.getIdFromItem(item.getItem()))))
+                    InfoPages.put(item.getItem().getUnlocalizedName(item), Pages);
+
+            } else if (item.getItem() instanceof Item) {
+                if (ConfigUtils.IsItemEnabled(item.getItem()))
+                    InfoPages.put(item.getItem().getUnlocalizedName(item), Pages);
+            }
     }
 
     public static Page[] GetInfoPagesForItem(ItemStack stack){

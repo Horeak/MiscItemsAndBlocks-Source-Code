@@ -234,61 +234,60 @@ public class Crafting {
     
     public static void AddRecipe(ItemStack output, Object... Array){
 
-        String name = output.getItem().getUnlocalizedName(output).replace("tile.", "").replace(".name", "").replace(" ", "_").replace("item.", "");
+        if(CheckBigRecipe(output, Array)) {
+            String name = output.getItem().getUnlocalizedName(output).replace("tile.", "").replace(".name", "").replace(" ", "_").replace("item.", "");
 
 
-
-
-        if(RegisterRes(name)){
-            if(CheckBigRecipe(output, Array)){
+            if (RegisterRes(name)) {
                 GameRegistry.addShapedRecipe(output, Array);
-            }
-
-        }else{
-            if(!RegisterRes(name)){
-                for(int i = 0; i < 20; i++){
-
-                    if(RegisterRes(name + "_" + i)){
-
-                        name = output.getItem().getUnlocalizedName(output).replace("tile.", "").replace(".name", "").replace(" ", "_").replace("item.", "") + "_" + i;
 
 
-                        if(CheckBigRecipe(output, Array)){
-                            GameRegistry.addShapedRecipe(output, Array);
-                            break;
+            } else {
+                if (!RegisterRes(name)) {
+                    for (int i = 0; i < 20; i++) {
+
+                        if (RegisterRes(name + "_" + i)) {
+
+                            name = output.getItem().getUnlocalizedName(output).replace("tile.", "").replace(".name", "").replace(" ", "_").replace("item.", "") + "_" + i;
+
+
+                            if (CheckBigRecipe(output, Array)) {
+                                GameRegistry.addShapedRecipe(output, Array);
+                                break;
+                            }
                         }
-                    }
 
+                    }
                 }
+
+
             }
 
 
         }
-
-
     }
     
-    public static void AddShapelessRecipe(ItemStack output, Object... Array){
+    public static void AddShapelessRecipe(ItemStack output, Object... Array) {
 
-        String name = output.getItem().getUnlocalizedName(output).replace("tile.", "").replace(".name", "").replace(" ", "_").replace("item.", "");
+        if (CheckSmallRecipe(output, Array)) {
+            String name = output.getItem().getUnlocalizedName(output).replace("tile.", "").replace(".name", "").replace(" ", "_").replace("item.", "");
 
 
-
-        if(RegisterRes(name)){
-            if(CheckSmallRecipe(output, Array)){
+            if (RegisterRes(name)) {
                 GameRegistry.addShapelessRecipe(output, Array);
-            }
 
-        }else{
-            if(!RegisterRes(name)){
-                for(int i = 0; i < 20; i++){
 
-                    if(RegisterRes(name + "_" + i)){
+
+        } else {
+            if (!RegisterRes(name)) {
+                for (int i = 0; i < 20; i++) {
+
+                    if (RegisterRes(name + "_" + i)) {
 
                         name = output.getItem().getUnlocalizedName(output).replace("tile.", "").replace(".name", "").replace(" ", "_").replace("item.", "") + "_" + i;
 
 
-                        if(CheckSmallRecipe(output, Array)){
+                        if (CheckSmallRecipe(output, Array)) {
                             GameRegistry.addShapelessRecipe(output, Array);
                             break;
                         }
@@ -299,6 +298,7 @@ public class Crafting {
 
 
         }
+    }
 
     }
 

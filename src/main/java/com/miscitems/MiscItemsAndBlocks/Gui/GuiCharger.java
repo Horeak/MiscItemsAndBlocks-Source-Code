@@ -43,8 +43,8 @@ public class GuiCharger extends GuiContainer{
 	         int y = (this.height - this.ySize) / 2;
 	         drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
 
-	         int Power = this.tile.GetPower();
-	         fontRendererObj.drawString(StatCollector.translateToLocal("words.power") + ": " + Power + "/" + tile.MaxPower, x + 45, y + 42, 4210752);
+	         int Power = (int)this.tile.GetPower();
+	         fontRendererObj.drawString(StatCollector.translateToLocal("words.power") + ": " + Power + "/" + (int)tile.MaxPower, x + 45, y + 42, 4210752);
 
 	         
 

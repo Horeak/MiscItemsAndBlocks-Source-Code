@@ -126,7 +126,7 @@ public interface IReactor {
 	/**
 	 * Get the reactor's tick rate (game ticks per reactor tick).
 	 * 
-	 * @return Tickhandler rate
+	 * @return Tick rate
 	 */
 	public int getTickRate();
 
@@ -135,4 +135,11 @@ public interface IReactor {
 	 * @return Whether the reactor is active
 	 */
 	public boolean produceEnergy();
+	
+	/**
+	 * Set Redstone Signal without direct contact
+	 * 
+	 */
+	
+	public void setRedstoneSignal(boolean redstone);
 }

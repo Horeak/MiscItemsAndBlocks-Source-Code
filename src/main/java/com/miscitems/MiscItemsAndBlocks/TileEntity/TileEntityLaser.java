@@ -1,13 +1,20 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
+import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemElArmor;
 import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemPowerStorage;
+import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemPowerTool;
 import com.miscitems.MiscItemsAndBlocks.Laser.*;
 import com.miscitems.MiscItemsAndBlocks.Main.ModItems;
 import com.miscitems.MiscItemsAndBlocks.Network.Client.ClientLaserUpdatePacket;
 import com.miscitems.MiscItemsAndBlocks.Network.PacketHandler;
+import com.miscitems.MiscItemsAndBlocks.Utils.PowerUtils;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import ic2.api.item.ElectricItem;
+import ic2.api.item.IElectricItem;
 import net.minecraft.entity.Entity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.util.AxisAlignedBB;
@@ -44,22 +51,36 @@ LaserInGame laser = new LaserInGame(LaserRegistry.getLaserFromId("default"));
 
 @Override
 public void updateEntity() {
-	
-	
-	if(this.getStackInSlot(1) != null){
-        if(this.getStackInSlot(1).getItem() instanceof ModItemPowerStorage){
 
-            ModItemPowerStorage item = (ModItemPowerStorage)this.getStackInSlot(1).getItem();
 
-            int Damage = this.getStackInSlot(1).getItemDamage();
+    ItemStack dischargeStack = this.getStackInSlot(1);
 
-            if(item.IsCreative){
-                SetPower(GetMaxPower());
-            }else{
-                if(Damage > 0 && item.CurrentPower(this.getStackInSlot(1)) > 0){
-                    if(GetPower() < GetMaxPower()){
-                        SetPower(GetPower() + 1);
-                        this.getStackInSlot(1).attemptDamageItem(1, worldObj.rand);
+    if(dischargeStack != null && GetPower() < GetMaxPower()){
+
+        if(dischargeStack.getItem() instanceof ModItemPowerTool ){
+            if(((ModItemPowerTool)dischargeStack.getItem()).CurrentPower(dischargeStack) > 0) {
+                ((ModItemPowerTool) dischargeStack.getItem()).RemovePower(dischargeStack, 1);
+                AddPower(1);
+            }
+
+
+        }else if (dischargeStack.getItem() instanceof ModItemElArmor){
+            if(((ModItemElArmor)dischargeStack.getItem()).CurrentPower(dischargeStack) > 0) {
+                ((ModItemElArmor) dischargeStack.getItem()).RemovePower(dischargeStack, 1);
+                AddPower(1);
+            }
+
+
+        }else {
+            if(Loader.isModLoaded("IC2")){
+                if(dischargeStack.getItem() instanceof IElectricItem){
+                    if(ElectricItem.manager.getCharge(dischargeStack) > 10) {
+                        ElectricItem.manager.discharge(dischargeStack, PowerUtils.IC2_For_MiscPower, ((IElectricItem)dischargeStack.getItem()).getTier(dischargeStack), false, false, false);
+                        AddPower(PowerUtils.MiscPower_For_IC2);
+
+                    }else if (ElectricItem.manager.getCharge(dischargeStack) > 0){
+                        ElectricItem.manager.discharge(dischargeStack, PowerUtils.IC2_For_MiscPower / 10, ((IElectricItem)dischargeStack.getItem()).getTier(dischargeStack), false, false, false);
+                        AddPower(PowerUtils.MiscPower_For_IC2 / 10);
                     }
 
 
@@ -395,7 +416,7 @@ double extraMaxZ = 0.0D;
 }
 
 	@Override
-	public int GetMaxPower() {
+	public double GetMaxPower() {
 		return 1000;
 	}
 

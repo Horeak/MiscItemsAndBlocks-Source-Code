@@ -49,8 +49,8 @@ public class GuiElectricFurnace extends GuiContainer{
 	             this.drawTexturedModalRect(x + 85, y + 35, 176, 0, WorkTime / 4, 17);
 	         
 	         
-	         int Power = this.tile.GetPower();
-	         fontRendererObj.drawString(StatCollector.translateToLocal("words.power") + ": " + Power + "/" + tile.GetMaxPower(), x + 5, y + 39, 4210752);
+	         int Power = (int)this.tile.GetPower();
+	         fontRendererObj.drawString(StatCollector.translateToLocal("words.power") + ": " + Power + "/" + (int)tile.GetMaxPower(), x + 5, y + 39, 4210752);
 	         
 	         
 

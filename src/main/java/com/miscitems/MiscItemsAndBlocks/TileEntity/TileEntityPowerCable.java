@@ -7,20 +7,24 @@ import MiscItemsApi.Electric.IWrenchAble;
 import com.miscitems.MiscItemsAndBlocks.Block.Electric.ModBlockPowerCable;
 import com.miscitems.MiscItemsAndBlocks.Laser.LaserUtil;
 import com.miscitems.MiscItemsAndBlocks.Utils.Handlers.ChatMessageHandler;
+import com.miscitems.MiscItemsAndBlocks.Utils.PowerUtils;
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.Optional;
+import ic2.api.energy.tile.IEnergyConductor;
+import ic2.api.energy.tile.IEnergySink;
+import ic2.api.energy.tile.IEnergyTile;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class TileEntityPowerCable extends TileEntity implements IPowerCable, IWrenchAble {
+@Optional.Interface(iface = "ic2.api.energy.tile.IEnergyConductor",    modid = "IC2", striprefs = true)
+public class TileEntityPowerCable extends TileEntityPowerBaseTile implements IPowerCable, IWrenchAble, IEnergyConductor {
 
 
 	
-       
-    private int Power;
-    private int MaxPower = 4;
+
 
 
     @Override
@@ -50,29 +54,7 @@ public class TileEntityPowerCable extends TileEntity implements IPowerCable, IWr
        
        
        
-	   @Override
-	public void writeToNBT(NBTTagCompound compound){
-		super.writeToNBT(compound);
-		compound.setInteger("Power", this.Power);
 
-           compound.setInteger("MaxPower", this.MaxPower);
-	}
-	
-	@Override
-	public void readFromNBT(NBTTagCompound compound){
-		super.readFromNBT(compound);
-	
-		
-		Power = compound.getInteger("Power");
-        MaxPower = compound.getInteger("MaxPower");
-
-		
-		
-		
-
-		
-	}
-	
 	
 	boolean Top, Bottom, Left, Right, Front, Back;
 	
@@ -80,8 +62,8 @@ public class TileEntityPowerCable extends TileEntity implements IPowerCable, IWr
     {
     	
     	
-    	if(Power > MaxPower)
-    		Power = MaxPower;
+    	if(GetPower() > GetMaxPower())
+    		SetPower(GetMaxPower());
     	
  	   World world = this.worldObj;
        int X = this.xCoord;
@@ -127,36 +109,22 @@ public class TileEntityPowerCable extends TileEntity implements IPowerCable, IWr
         
 
     
-    
-    public int GetPower(){
-    	return Power;
-    }
-    
-    public int GetMaxPower(){
-    	return MaxPower;
-    }
+
 
     @Override
-    public void SetMaxPower(int i) {
-        MaxPower = i;
+    public boolean CanAcceptPower() {
+        return true;
     }
 
-    public int GetPowerSpaceLeft(){
-    	return MaxPower - Power;
+    public double GetMaxPower(){
+    	return 4;
+    }
+
+
+    public double GetPowerSpaceLeft(){
+    	return GetMaxPower() - GetPower();
     }
     
-    public void SetPower(int i){
-    	Power = i;
-    }
-
-    @Override
-    public void AddPower(int Amount) {
-
-        if(Power + Amount <= MaxPower)
-            Power += Amount;
-        else
-            Power = MaxPower;
-    }
 
     public boolean IsPowerBlock(World world, int x, int y, int z){
     	
@@ -170,6 +138,9 @@ public class TileEntityPowerCable extends TileEntity implements IPowerCable, IWr
     	if(tile instanceof IPowerGeneration)return true;
     	if(Meta != 2)
     	if(tile instanceof IPowerCable)return true;
+
+        if(Loader.isModLoaded("IC2"))
+            return tile instanceof IEnergyTile;
     	
     	// 1 No BlockContainers
     	// 2 No Cables
@@ -178,7 +149,9 @@ public class TileEntityPowerCable extends TileEntity implements IPowerCable, IWr
     	return false;
     }
  public void SendPowerToPowerReciver(World world, int x, int y, int z){
-	 
+
+     TileEntity tile_e = world.getTileEntity(x,y,z);
+
  	int Meta = this.worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
     int BMeta = world.getBlockMetadata(x, y, z);
     
@@ -229,6 +202,18 @@ public class TileEntityPowerCable extends TileEntity implements IPowerCable, IWr
                 Cable(world, x, y, z);
         }
 
+        }else{
+            if(Loader.isModLoaded("IC2"))
+                if(tile_e instanceof IEnergyTile){
+                    if(GetPower() > 0)
+                    if(tile_e instanceof IEnergySink) {
+                        if(((IEnergySink)tile_e).getDemandedEnergy() > 0)
+                        ((IEnergySink) tile_e).injectEnergy(ForgeDirection.UP, 1 * PowerUtils.IC2_For_MiscPower / 3, 1);
+                        SetPower(GetPower() - 1);
+                    }
+                }
+
+
         }
     }
 
@@ -257,6 +242,53 @@ public class TileEntityPowerCable extends TileEntity implements IPowerCable, IWr
        }
 
 }
+
+    @Override
+    public double getConductionLoss() {
+        return 0;
+    }
+
+    @Override
+    public double getInsulationEnergyAbsorption() {
+        return 100;
+    }
+
+    @Override
+    public double getInsulationBreakdownEnergy() {
+        return 1000;
+    }
+
+    @Override
+    public double getConductorBreakdownEnergy() {
+        return 0;
+    }
+
+    @Override
+    public void removeInsulation() {
+
+    }
+
+    @Override
+    public void removeConductor() {
+
+    }
+
+    @Override
+    public boolean emitsEnergyTo(TileEntity receiver, ForgeDirection direction) {
+
+
+        if(receiver instanceof TileEntityEnergyStorageCube){
+            return direction.ordinal() != receiver.getWorldObj().getBlockMetadata(receiver.xCoord, receiver.yCoord, receiver.zCoord);
+        }
+
+        if(receiver instanceof  IPowerTile)
+        return true;
+
+        if(Loader.isModLoaded("IC2"))
+            return receiver instanceof IEnergyTile;
+
+        return false;
+    }
 }
 
 

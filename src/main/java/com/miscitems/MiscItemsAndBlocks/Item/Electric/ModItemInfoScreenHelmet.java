@@ -7,17 +7,12 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-
-import java.util.List;
 
 public class ModItemInfoScreenHelmet extends ModItemElArmor{
 
 	public ModItemInfoScreenHelmet(int RenderIndex, int ArmorType) {
 		super(RenderIndex, ArmorType);
-		this.setMaxDamage(152);
 	}
 
 	
@@ -36,20 +31,10 @@ public class ModItemInfoScreenHelmet extends ModItemElArmor{
 	   
 	   
 	    @Override
-	    public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean par4)
-	    {
-	    	int i = itemstack.getMaxDamage() - itemstack.getItemDamage();
-	    	
-
-            list.add(StatCollector.translateToLocal("items.desc.string.powerleft") + ": " + i);
-            if(itemstack.getItemDamage() == itemstack.getMaxDamage())
-            	list.add(EnumChatFormatting.RED + StatCollector.translateToLocal("items.desc.string.outofpowerrecharge"));
-	    }
-	    
-	    public void onArmorTickUpdate(World world, EntityPlayer player, ItemStack itemStack){
-	    	if(itemStack.getMaxDamage() - itemStack.getItemDamage() > 0 && !player.capabilities.isCreativeMode)
-    		if(player.worldObj.rand.nextInt(1000) == 1){
-			itemStack.attemptDamageItem(1, world.rand);
+	    public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack){
+	    	if(CurrentPower(itemStack) > 0 && !player.capabilities.isCreativeMode)
+    		if(player.worldObj.rand.nextInt(100) == 1){
+			RemovePower(itemStack, 1);
     		}
 	    }
 	    
@@ -71,13 +56,13 @@ public class ModItemInfoScreenHelmet extends ModItemElArmor{
 
 
 		@Override
-		public int MaxPower(ItemStack stack) {
-			return 152;
+		public double MaxPower(ItemStack stack) {
+			return 568;
 		}
 
 
 		@Override
-		public int ChargeAmount(ItemStack stack) {
+		public double ChargeAmount(ItemStack stack) {
 			return 1;
 		}
 	    
@@ -85,6 +70,10 @@ public class ModItemInfoScreenHelmet extends ModItemElArmor{
 		public boolean CanBackpackRecharge(ItemStack stack) {
 			return true;
 		}
-	 
+
+    @Override
+    public int getTier(ItemStack itemStack) {
+        return 1;
+    }
 }
 

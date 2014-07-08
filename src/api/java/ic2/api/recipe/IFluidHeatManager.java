@@ -5,15 +5,15 @@ import java.util.Map;
 import net.minecraftforge.fluids.Fluid;
 
 
-public interface ISemiFluidFuelManager extends ILiquidAcceptManager {
+public interface IFluidHeatManager extends ILiquidAcceptManager {
 	/**
-	 * Add a new fluid to the semi fluid generator.
+	 * Add a new fluid to the Fluid Heat Generator.
 	 * 
 	 * @param fluidName the fluid to burn
 	 * @param amount amount of fluid to consume per tick
-	 * @param power amount of energy generated per tick
+	 * @param heat amount of heat generated per tick
 	 */
-	void addFluid(String fluidName, int amount, double power);
+	void addFluid(String fluidName, int amount, int heat);
 
 	BurnProperty getBurnProperty(Fluid fluid);
 
@@ -21,12 +21,12 @@ public interface ISemiFluidFuelManager extends ILiquidAcceptManager {
 
 
 	public static class BurnProperty {
-		public BurnProperty(int amount1, double power1) {
+		public BurnProperty(int amount1, int heat1) {
 			this.amount = amount1;
-			this.power = power1;
+			this.heat = heat1;
 		}
 
 		public final int amount;
-		public final double power;
+		public final int heat;
 	}
 }

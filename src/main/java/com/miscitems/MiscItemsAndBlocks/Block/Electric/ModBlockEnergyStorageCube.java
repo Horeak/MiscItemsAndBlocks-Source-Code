@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Block.Electric;
 
-import buildcraft.api.tools.IToolWrench;
+import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemWrench;
 import com.miscitems.MiscItemsAndBlocks.Laser.LaserUtil;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityEnergyStorageCube;
@@ -103,7 +103,7 @@ public class ModBlockEnergyStorageCube extends BlockContainer{
 		
 	    public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int side, float par7, float par8, float par9)
 	    {
-	    	if(par5EntityPlayer.getHeldItem() != null && par5EntityPlayer.getHeldItem().getItem() instanceof IToolWrench){
+	    	if(par5EntityPlayer.getHeldItem() != null && par5EntityPlayer.getHeldItem().getItem() instanceof ModItemWrench){
 	    		if(par5EntityPlayer.isSneaking()){
 	    			par1World.setBlockMetadataWithNotify(par2, par3, par4, ForgeDirection.getOrientation(side).getOpposite().ordinal(), 2);
 	    		}else{

@@ -245,7 +245,7 @@ public class TileEntityMetalPress extends TileEntityPowerInv implements ISidedIn
 			}
 
 			@Override
-			public int GetMaxPower() {
+			public double GetMaxPower() {
 				return 1000;
 			}
 			

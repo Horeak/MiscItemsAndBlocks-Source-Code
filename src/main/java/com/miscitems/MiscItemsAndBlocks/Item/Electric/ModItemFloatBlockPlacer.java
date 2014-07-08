@@ -17,7 +17,6 @@ public class ModItemFloatBlockPlacer extends ModItemPowerTool{
 
     public ModItemFloatBlockPlacer() {
 		super(0, ToolMaterial.WOOD, Main.EmptyToolSet);
-		this.setMaxDamage(325);
 		
 		
 	}
@@ -58,7 +57,7 @@ public class ModItemFloatBlockPlacer extends ModItemPowerTool{
     	player.fallDistance = 0;
     	player.motionY = 0;
     	
-    	stack.attemptDamageItem(1, world.rand);
+    	RemovePower(stack, 1);
     		}
     	}
     	
@@ -90,17 +89,19 @@ public class ModItemFloatBlockPlacer extends ModItemPowerTool{
     {
             list.add(StatCollector.translateToLocal("items.desc.floatblockplacer.1"));
             list.add(EnumChatFormatting.RED + StatCollector.translateToLocal("items.desc.floatblockplacer.2"));
+
+        super.addInformation(itemstack,player,list,par4);
     }
 
 
 	@Override
-	public int MaxPower(ItemStack stack) {
+	public double MaxPower(ItemStack stack) {
 		return 325;
 	}
 
 
 	@Override
-	public int ChargeAmount(ItemStack stack) {
+	public double ChargeAmount(ItemStack stack) {
 		return 1;
 	}
 
@@ -112,6 +113,6 @@ public class ModItemFloatBlockPlacer extends ModItemPowerTool{
 
     @Override
     public int getTier(ItemStack itemStack) {
-        return 2;
+        return 1;
     }
 }

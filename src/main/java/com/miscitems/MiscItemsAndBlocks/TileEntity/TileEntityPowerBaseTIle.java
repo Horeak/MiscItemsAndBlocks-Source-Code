@@ -1,63 +1,51 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
 import MiscItemsApi.Electric.IPowerTile;
-import cofh.api.energy.IEnergyStorage;
+import com.miscitems.MiscItemsAndBlocks.Utils.PowerUtils;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Optional;
+import ic2.api.energy.event.EnergyTileLoadEvent;
+import ic2.api.energy.event.EnergyTileUnloadEvent;
+import ic2.api.energy.tile.IEnergyAcceptor;
 import ic2.api.energy.tile.IEnergySink;
+import ic2.api.energy.tile.IEnergyTile;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
 
 
 @Optional.InterfaceList(    value =
-       {@Optional.Interface(iface = "cofh.api.energy.IEnergyStorage",     modid = "CoFHCore", striprefs = true),
-        @Optional.Interface(iface = "ic2.api.energy.tile.IEnergySink",    modid = "IC2", striprefs = true)})
-public abstract class TileEntityPowerBaseTile extends ModTileEntity implements IPowerTile, IEnergyStorage, IEnergySink {
+       {@Optional.Interface(iface = "ic2.api.energy.tile.IEnergyAcceptor",    modid = "IC2", striprefs = true),
+        @Optional.Interface(iface = "ic2.api.energy.tile.IEnergySink",    modid = "IC2", striprefs = true)
+})
+public abstract class TileEntityPowerBaseTile extends ModTileEntity implements IPowerTile, IEnergySink, IEnergyAcceptor {
 
-    private int Power;
-    private int PowerMax;
+    private double Power;
+    private double PowerMax;
 
 
 
-    /* IEnergyStorage */
-    public int receiveEnergy(int maxReceive, boolean simulate) {
 
-        int energyReceived = Math.min(PowerMax - Power, Math.min(10, maxReceive));
-
-        if (!simulate) {
-            Power += energyReceived;
-        }
-        return energyReceived;
+    public void validate()
+    {
+      super.validate();
+        if(Loader.isModLoaded("IC2"))
+        MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
     }
 
-    public int extractEnergy(int maxExtract, boolean simulate) {
-
-        int energyExtracted = Math.min(Power, Math.min(10, maxExtract));
-
-        if (!simulate) {
-            Power -= energyExtracted;
-        }
-        return energyExtracted;
+    public void invalidate()
+    {
+        super.invalidate();
+        if(Loader.isModLoaded("IC2"))
+        MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent(this));
     }
 
-    @Override
-    public int getEnergyStored() {
-
-        return Power;
-    }
-
-    @Override
-    public int getMaxEnergyStored() {
-
-        return PowerMax;
-    }
-
-
-    public void SetPower(int i){
+    public void SetPower(double i){
         Power = i;
     }
 
-    public int GetPower(){
+    public double GetPower(){
         return Power;
     }
 
@@ -72,8 +60,8 @@ public abstract class TileEntityPowerBaseTile extends ModTileEntity implements I
     public void writeToNBT(NBTTagCompound compound){
         super.writeToNBT(compound);
 
-        compound.setInteger("Power", Power);
-        compound.setInteger("MaxPower", PowerMax);
+        compound.setDouble("Power", Power);
+        compound.setDouble("MaxPower", PowerMax);
 
 
 
@@ -86,8 +74,8 @@ public abstract class TileEntityPowerBaseTile extends ModTileEntity implements I
         super.readFromNBT(compound);
 
 
-        Power = compound.getInteger("Power");
-        PowerMax = compound.getInteger("MaxPower");
+        Power = compound.getDouble("Power");
+        PowerMax = compound.getDouble("MaxPower");
 
 
 
@@ -95,7 +83,7 @@ public abstract class TileEntityPowerBaseTile extends ModTileEntity implements I
 
 
     @Override
-    public void AddPower(int Amount) {
+    public void AddPower(double Amount) {
         if(GetPower() + Amount < GetMaxPower())
             SetPower(GetPower() + Amount);
         else
@@ -114,7 +102,7 @@ public abstract class TileEntityPowerBaseTile extends ModTileEntity implements I
 
 
     @Override
-    public void SetMaxPower(int i) {
+    public void SetMaxPower(double i) {
         if(i > 0)
             PowerMax = i;
     }
@@ -134,10 +122,41 @@ public abstract class TileEntityPowerBaseTile extends ModTileEntity implements I
     }
 
     public int getMaxSafeInput() {
-        return this.GetMaxPower();
+        return (int)this.GetMaxPower();
     }
 
-    public boolean acceptsEnergyFrom(TileEntity emitter, ForgeDirection direction) {
-        return true;
+    @Override
+    public double getDemandedEnergy() {
+        return GetMaxPower() - GetPower();
+    }
+
+    @Override
+    public int getSinkTier() {
+        return 1;
+    }
+
+    @Override
+    public double injectEnergy(ForgeDirection directionFrom, double amount, double voltage) {
+
+        amount /= (PowerUtils.IC2_For_MiscPower / 2);
+
+        if(GetPower() < GetMaxPower())
+        AddPower(amount);
+        else
+        SetPower(GetMaxPower());
+        return 0;
+
+    }
+
+
+    public boolean acceptsEnergyFrom(TileEntity emitter, ForgeDirection direction){
+
+        if(emitter instanceof  IPowerTile)
+            return true;
+
+        if(Loader.isModLoaded("IC2"))
+            return emitter instanceof IEnergyTile;
+
+        return false;
     }
 }

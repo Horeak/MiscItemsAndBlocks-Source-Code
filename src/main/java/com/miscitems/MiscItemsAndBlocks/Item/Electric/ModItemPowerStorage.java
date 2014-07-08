@@ -9,6 +9,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
@@ -23,7 +24,6 @@ public abstract class ModItemPowerStorage extends ModItemPowerTool{
 	public ModItemPowerStorage() {
 		super(0, ToolMaterial.IRON, null);
 		this.setMaxStackSize(1);
-        this.setMaxDamage(MaxPower(new ItemStack(this)));
 	}
 
 
@@ -31,12 +31,9 @@ public abstract class ModItemPowerStorage extends ModItemPowerTool{
     @Override
     public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean par4)
     {
-    	int Damage = itemstack.getMaxDamage() - itemstack.getItemDamage();
-    	int MaxDamage = itemstack.getMaxDamage();
     	
-    	list.add(StatCollector.translateToLocal("words.power") + ": " + Damage + "/" + MaxDamage);
-    	
-    	
+    	list.add(StatCollector.translateToLocal("words.power") + ": " +  CurrentPower(itemstack) + "/" + MaxPower(itemstack));
+
     }
     
     
@@ -46,9 +43,8 @@ public abstract class ModItemPowerStorage extends ModItemPowerTool{
     }
     
     public void onCreated(ItemStack item, World par2World, EntityPlayer par3EntityPlayer) {
-    	
-    	item.setItemDamage(item.getMaxDamage());
-    	
+
+        item.setTagCompound(new NBTTagCompound());
     }
 
     public boolean onBlockDestroyed(ItemStack par1ItemStack, World par2World, int par3, int par4, int par5, int par6, EntityLivingBase par7EntityLivingBase)
@@ -61,8 +57,12 @@ public abstract class ModItemPowerStorage extends ModItemPowerTool{
     {
         super.getSubItems(par1, par2CreativeTabs, list);
         
-        
-        list.add(new ItemStack(par1, 1, par1.getMaxDamage()));
+        ItemStack stack = new ItemStack(par1, 1);
+        stack.setTagCompound(new NBTTagCompound());
+        stack.getTagCompound().setDouble("Power", 0);
+
+
+        list.add(stack);
         
     }
 
@@ -70,8 +70,7 @@ public abstract class ModItemPowerStorage extends ModItemPowerTool{
 
     public IIcon getIcon(ItemStack stack, int pass)
     {
-
-        int left = stack.getMaxDamage() - stack.getItemDamage();
+        double left = CurrentPower(stack);
 
 
         if(pass == 1){
@@ -84,7 +83,7 @@ public abstract class ModItemPowerStorage extends ModItemPowerTool{
         else if(left > (((MaxPower(stack) / 4) * 2)) && left <= ((MaxPower(stack) / 4) * 3) || left > ((MaxPower(stack) / 4) * 3) && left < MaxPower(stack))
             return Charge_3;
 
-        else if(left == MaxPower(stack) || stack.getItemDamage() == 0)
+        else if(left == MaxPower(stack) || CurrentPower(stack) == MaxPower(stack))
             return Charge_4;
 
 
@@ -135,7 +134,7 @@ public abstract class ModItemPowerStorage extends ModItemPowerTool{
     }
 
     @Override
-    public int getTransferLimit(ItemStack itemStack) {
+    public double getTransferLimit(ItemStack itemStack) {
         return 10;
     }
 }

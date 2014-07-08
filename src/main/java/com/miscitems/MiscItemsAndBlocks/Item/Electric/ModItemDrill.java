@@ -42,28 +42,31 @@ public class ModItemDrill extends ModItemPowerTool{
 	public ModItemDrill(ToolMaterial par2) {
 		super(0, par2, Mineable);
 		this.setMaxStackSize(1);
-		this.setMaxDamage(MaxCharge);
 		this.efficiencyOnProperMaterial = 10;
 	}
 	
 	
 	@Override
-    public IIcon getIconFromDamage(int Damage)
+    public IIcon getIcon(ItemStack stack, int pass)
     {
 
-    	if(Damage < MaxCharge / 4){
+
+
+        double Charge = CurrentPower(stack);
+
+    	if(Charge >= MaxCharge / 4 * 3){
     		return DrillGreen;
     	}
     	
-    	if(Damage < MaxCharge / 4 * 2 && Damage > MaxCharge / 4){
+    	if(Charge >= MaxCharge / 4 * 2 && Charge < MaxCharge / 4 * 3){
     		return DrillYellow;
     	}
     	
-    	if(Damage < MaxCharge && Damage > MaxCharge / 4 * 2){
+    	if(Charge > 0 && Charge < MaxCharge / 4 * 2){
     		return DrillOrange;
     	}
     	
-    	if(Damage == MaxCharge){
+    	if(Charge <= 0){
     		return DrillRed;
     	}
     	
@@ -81,17 +84,19 @@ public class ModItemDrill extends ModItemPowerTool{
     @Override
     public float getDigSpeed(ItemStack par1ItemStack, Block par2Blocks, int metadata)
     {
-    	if(par1ItemStack.getItemDamage() == par1ItemStack.getMaxDamage())
-    		return 0;
+        if(CurrentPower(par1ItemStack) <= 0)
+            return 0;
     	
         return par2Blocks != null && (par2Blocks.getMaterial() == Material.iron || par2Blocks.getMaterial() == Material.anvil || par2Blocks.getMaterial() == Material.rock || par2Blocks.getMaterial() == Material.wood || par2Blocks.getMaterial() == Material.plants || par2Blocks.getMaterial() == Material.vine) ? this.efficiencyOnProperMaterial : super.getDigSpeed(par1ItemStack, par2Blocks, metadata);
     }
     
-    public boolean onBlockDestroyed(ItemStack p_150894_1_, World p_150894_2_, Block p_150894_3_, int p_150894_4_, int p_150894_5_, int p_150894_6_, EntityLivingBase p_150894_7_)
+    public boolean onBlockDestroyed(ItemStack stack, World p_150894_2_, Block p_150894_3_, int p_150894_4_, int p_150894_5_, int p_150894_6_, EntityLivingBase p_150894_7_)
     {
         if ((double)p_150894_3_.getBlockHardness(p_150894_2_, p_150894_4_, p_150894_5_, p_150894_6_) != 0.0D)
         {
-        	p_150894_1_.damageItem(1, p_150894_7_);
+
+            RemovePower(stack, 1);
+
         }
 
         return true;
@@ -107,6 +112,8 @@ public class ModItemDrill extends ModItemPowerTool{
 		   this.DrillYellow = par1IconRegister.registerIcon(Reference.Mod_Id + ":DrillYellow");
 		   this.DrillOrange = par1IconRegister.registerIcon(Reference.Mod_Id + ":DrillOrange");
 		   this.DrillRed = par1IconRegister.registerIcon(Reference.Mod_Id + ":DrillRed");
+
+           itemIcon = Drill;
 		   
 	   }
 	   
@@ -114,17 +121,12 @@ public class ModItemDrill extends ModItemPowerTool{
 		@Override
 	    public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean par4)
 	    {
-	    	int i = itemstack.getMaxDamage() - itemstack.getItemDamage();
 	    	
 	            list.add(StatCollector.translateToLocal("items.desc.drill.mode.1"));
 	            list.add(StatCollector.translateToLocal("items.desc.drill.mode.2"));
 	            list.add(StatCollector.translateToLocal("items.desc.drill.mode.3"));
 	            list.add(StatCollector.translateToLocal("items.desc.drill.1"));
-	            
-	            
-	            list.add(StatCollector.translateToLocal("items.desc.string.powerleft") + ": " + i);
-	            if(itemstack.getItemDamage() == itemstack.getMaxDamage())
-	            	list.add(EnumChatFormatting.RED + StatCollector.translateToLocal("items.desc.string.outofpowerrecharge"));
+
 	            
 	    			  
 	            if(HasInfo(itemstack)){
@@ -135,7 +137,9 @@ public class ModItemDrill extends ModItemPowerTool{
 	            	list.add(EnumChatFormatting.GOLD + StatCollector.translateToLocal("items.desc.drill.2_normal"));
 	            	
 	            }
-	            
+
+
+            super.addInformation(itemstack,player,list,par4);
 	            
 	    }
 	    
@@ -220,7 +224,7 @@ public class ModItemDrill extends ModItemPowerTool{
   			  
 
 	    			
-	    			if(itemstack.getItemDamage() >= itemstack.getMaxDamage() - 9){
+	    			if(CurrentPower(itemstack) < 9){
 	    			
 	    				return false;
 	    				
@@ -357,13 +361,13 @@ public class ModItemDrill extends ModItemPowerTool{
 
 
 		@Override
-		public int MaxPower(ItemStack stack) {
+		public double MaxPower(ItemStack stack) {
 			return MaxCharge;
 		}
 
 
 		@Override
-		public int ChargeAmount(ItemStack stack) {
+		public double ChargeAmount(ItemStack stack) {
 			return 1;
 		}
 
@@ -376,6 +380,6 @@ public class ModItemDrill extends ModItemPowerTool{
 
     @Override
     public int getTier(ItemStack itemStack) {
-        return 2;
+        return 1;
     }
 }

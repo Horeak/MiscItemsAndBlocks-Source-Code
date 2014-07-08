@@ -45,9 +45,7 @@ public class GuiGenerator extends GuiContainer{
 	         int x = (this.width - this.xSize) / 2;
 	         int y = (this.height - this.ySize) / 2;
 	         drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
-	         
-	         boolean CanWork = tile.GetFuel() > 0;
-	         int Fuel = tile.GetFuel();
+
 	         int TimeLeft = tile.GetTimeLeft();
 	         
 	         

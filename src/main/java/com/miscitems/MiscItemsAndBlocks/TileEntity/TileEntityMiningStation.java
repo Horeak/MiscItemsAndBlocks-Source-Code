@@ -21,8 +21,7 @@ public class TileEntityMiningStation extends TileEntityPowerInv{
 	public TileEntityMiningStation() {
 		super(1, "Mining Chamber", 64);
 	}
-	
-	int Power = this.GetPower();
+
 	int PowerTime = 0;
 	int Time = 0;
 	int MinedY = 0;
@@ -58,14 +57,8 @@ public class TileEntityMiningStation extends TileEntityPowerInv{
 		}
 		Size = i;
 	}
-	
-	public int GetPower(){
-		return Power;
-	}
-	
-	public void SetPower(int i){
-		Power = i;
-	}
+
+
 	
 	
 	public int GetMinedY(){
@@ -101,8 +94,6 @@ public class TileEntityMiningStation extends TileEntityPowerInv{
     @Override
 	public void writeToNBT(NBTTagCompound compound){
 		super.writeToNBT(compound);
-
-		compound.setInteger("Power", Power);
 		
 		compound.setInteger("Y", MinedY);
 		
@@ -129,8 +120,6 @@ public class TileEntityMiningStation extends TileEntityPowerInv{
 	@Override
 	public void readFromNBT(NBTTagCompound compound){
 		super.readFromNBT(compound);
-
-		Power = compound.getInteger("Power");
 		
 		MinedY = compound.getInteger("Y");
 		
@@ -180,7 +169,7 @@ public class TileEntityMiningStation extends TileEntityPowerInv{
     	
     	if(!this.worldObj.isRemote){
     	if(this.getStackInSlot(ToolSlot) != null ){
-    		if(Power > 0){
+    		if(GetPower() > 0){
     		if(this.getStackInSlot(ToolSlot).getItem() instanceof ItemPickaxe){
     			int DamageLeft = this.getStackInSlot(ToolSlot).getMaxDamage() - this.getStackInSlot(ToolSlot).getItemDamage();
     			if(DamageLeft > 1){
@@ -443,7 +432,7 @@ public class TileEntityMiningStation extends TileEntityPowerInv{
 	}
 
 	@Override
-	public int GetMaxPower() {
+	public double GetMaxPower() {
 		return 100;
 	}
     

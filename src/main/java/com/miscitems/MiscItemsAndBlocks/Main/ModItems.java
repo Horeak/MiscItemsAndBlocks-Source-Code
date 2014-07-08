@@ -7,7 +7,6 @@ import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemBigBattery;
 import com.miscitems.MiscItemsAndBlocks.Item.Magic.ModItemChargedCrystal;
 import com.miscitems.MiscItemsAndBlocks.Item.ModItemCheese;
 import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemCircuit;
-import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemCreativeBattery;
 import com.miscitems.MiscItemsAndBlocks.Item.Magic.ModItemCrystalBlade;
 import com.miscitems.MiscItemsAndBlocks.Item.Magic.ModItemCrystalPickaxe;
 import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemDataChip;
@@ -74,7 +73,6 @@ public class ModItems {
 	public static Item Battery;
 	public static Item BigBattery;
 	public static Item AdvancedBattery;
-	public static Item CreativeBattery;
 	
 	public static Item Circuit;
 	public static Item CableItem;
@@ -226,9 +224,6 @@ public class ModItems {
         AdvancedBattery = new ModItemAdvancedBattery().setUnlocalizedName("AdvancedBattery").setCreativeTab(Main.ElectricTab);
         Register(AdvancedBattery, ("advancedbattery"));
 
-		CreativeBattery = new ModItemCreativeBattery().setUnlocalizedName("CreativeBattery").setCreativeTab(Main.ElectricTab);
-		Register(CreativeBattery, "Creative Battery");
-
         ElectricShears = new ModItemElectricShear().setUnlocalizedName("ELShears").setCreativeTab(Main.ElectricTab);
         Register(ElectricShears, ("electricshears"));
 
@@ -302,16 +297,18 @@ public class ModItems {
         OreDictionary.registerOre("nuggetSilver", new ItemStack(SilverNugget));
 		
 	
-	
-    ConfigUtils.GetConfigFile().save();
+
 		
 		
 		
 		
 	}
 
+    public static int i = 0;
+
     public static void SilentRegister(Item Item){
-        GameRegistry.registerItem(Item, "");
+        Item.setUnlocalizedName("SilentItem_" + i++);
+        GameRegistry.registerItem(Item, "SilentItem_" + i);
     }
 
 
@@ -320,7 +317,6 @@ public class ModItems {
         ConfigUtils.ItemConfigNames.put(Item,Name);
 
 		if(ConfigUtils.IsItemEnabled(Item)){
-
         Item.setUnlocalizedName((Name.toLowerCase().replace(" ", "_")));
         GameRegistry.registerItem(Item, (Name.toLowerCase().replace(" ", "_")));
 
@@ -333,7 +329,7 @@ public class ModItems {
         ConfigUtils.ItemConfigNames.put(Item,Name);
 
         if(ConfigUtils.IsItemEnabled(Item)){
-
+            Item.setUnlocalizedName(Name);
             GameRegistry.registerItem(Item, (Name.toLowerCase().replace(" ", "_")));
 
         }

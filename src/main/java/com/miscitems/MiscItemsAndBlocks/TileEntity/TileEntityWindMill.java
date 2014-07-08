@@ -14,16 +14,12 @@ public class TileEntityWindMill extends TileEntityPowerGeneration{
 	}
 
 
-	@Override
-	public int WorkTime() {
-		return 8;
-	}
 
 
 	@Override
-	public int GeneratedPower() {
+	public double GeneratedPower() {
 		if(this.yCoord > 80){
-			return 5 + ((this.yCoord - 80) / 5);
+			return 1 + ((this.yCoord - 80) / 10);
 		}
 			
 		

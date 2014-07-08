@@ -61,10 +61,6 @@ public class TileEntitySolarPanel extends TileEntityPowerGeneration{
 
 
 
-	@Override
-	public int WorkTime() {
-		return 50;
-	}
 	
 	 public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
 	    {
@@ -85,7 +81,7 @@ public class TileEntitySolarPanel extends TileEntityPowerGeneration{
 
 
 	@Override
-	public int GeneratedPower() {
-		return 10;
+	public double GeneratedPower() {
+		return 3;
 	}
 }

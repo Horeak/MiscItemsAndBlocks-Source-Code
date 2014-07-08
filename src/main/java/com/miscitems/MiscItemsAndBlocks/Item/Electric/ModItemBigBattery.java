@@ -26,12 +26,12 @@ public class ModItemBigBattery extends ModItemPowerStorage{
 	   
 		
 		@Override
-		public int MaxPower(ItemStack stack) {
+		public double MaxPower(ItemStack stack) {
 			return 32;
 		}
 
 		@Override
-		public int ChargeAmount(ItemStack stack) {
+		public double ChargeAmount(ItemStack stack) {
 			return 1;
 		}
 

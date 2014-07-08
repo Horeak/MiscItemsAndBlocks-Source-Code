@@ -1,9 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Item.Electric;
 
 import MiscItemsApi.Electric.IWrenchAble;
-import buildcraft.api.tools.IToolWrench;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
-import cpw.mods.fml.common.Optional;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -12,8 +10,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-@Optional.Interface(iface = "buildcraft.api.tools.IToolWrench", modid =  "BuilCraft|Core", striprefs = true)
-public class ModItemWrench extends Item implements IToolWrench {
+public class ModItemWrench extends Item {
 
 
 	

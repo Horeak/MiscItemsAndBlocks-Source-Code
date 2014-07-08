@@ -19,8 +19,7 @@ public class ContainerGenerator  extends Container {
 	
     private TileEntityGenerator tile;
 
-	
-    int LastPower;
+
     int LastTime;
     
     public ContainerGenerator(InventoryPlayer InvPlayer, TileEntityGenerator tile)
@@ -56,7 +55,6 @@ public class ContainerGenerator  extends Container {
     public void addCraftingToCrafters(ICrafting par1ICrafting)
     {
         super.addCraftingToCrafters(par1ICrafting);
-        par1ICrafting.sendProgressBarUpdate(this, 0, this.tile.GetFuel());
         par1ICrafting.sendProgressBarUpdate(this, 1, this.tile.GetTimeLeft());
     }
 
@@ -68,10 +66,7 @@ public class ContainerGenerator  extends Container {
         {
             ICrafting icrafting = (ICrafting)this.crafters.get(i);
 
-            if (this.LastPower != this.tile.GetFuel())
-            {
-                icrafting.sendProgressBarUpdate(this, 0, this.tile.GetFuel());
-            }
+
             
             if (this.LastTime != this.tile.GetTimeLeft())
             {
@@ -80,17 +75,12 @@ public class ContainerGenerator  extends Container {
             
         }
 
-        this.LastPower = this.tile.GetFuel();
         this.LastTime = this.tile.GetTimeLeft();
     }
 
     @SideOnly(Side.CLIENT)
     public void updateProgressBar(int par1, int par2)
     {
-        if (par1 == 0)
-        {
-            this.tile.SetFuel(par2);
-        }
         
         if (par1 == 1)
         {

@@ -8,30 +8,30 @@ public interface IPowerCable{
      *
      * @return the amount of power stored
      */
-    public int GetPower();
+    public double GetPower();
 
     /** Gets the max amount of power the cable can store
      *
      * @return the max amount of power that can be stored
      */
-    public int GetMaxPower();
+    public double GetMaxPower();
 
     /** Sets the max amount of power that can be stored in the cable
      *
      * @param i max amount of power
      */
-    public void SetMaxPower(int i);
+    public void SetMaxPower(double i);
 
     /** Sets the current amount of power in the cable
      *
      * @param Amount the amount of power
      */
-    public void SetPower(int Amount);
+    public void SetPower(double Amount);
 
     /** Adds power to the cable
      *
      * @param Amount the amount of power to add
      */
-    public void AddPower(int Amount);
+    public void AddPower(double Amount);
 
 }

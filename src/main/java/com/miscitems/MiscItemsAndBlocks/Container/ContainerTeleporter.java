@@ -67,13 +67,13 @@ public class ContainerTeleporter extends Container{
 	    public void addCraftingToCrafters(ICrafting par1ICrafting)
 	    {
 	        super.addCraftingToCrafters(par1ICrafting);
-	        par1ICrafting.sendProgressBarUpdate(this, 0, this.tile.GetPower());
+	        par1ICrafting.sendProgressBarUpdate(this, 0, (int)this.tile.GetPower());
 	        par1ICrafting.sendProgressBarUpdate(this, 1, this.tile.GetCardMode());
 	        
 	        par1ICrafting.sendProgressBarUpdate(this, 2, this.tile.GetX());
 	        par1ICrafting.sendProgressBarUpdate(this, 3, this.tile.GetY());
 	        par1ICrafting.sendProgressBarUpdate(this, 4, this.tile.GetZ());
-	        par1ICrafting.sendProgressBarUpdate(this, 5, this.tile.GetMaxPower());
+	        par1ICrafting.sendProgressBarUpdate(this, 5, (int)this.tile.GetMaxPower());
 	    }
 
 	    public void detectAndSendChanges()
@@ -86,7 +86,7 @@ public class ContainerTeleporter extends Container{
 
 	            if (this.LastPower != this.tile.GetPower())
 	            {
-	                icrafting.sendProgressBarUpdate(this, 0, this.tile.GetPower());
+	                icrafting.sendProgressBarUpdate(this, 0, (int)this.tile.GetPower());
 	            }
 	            
 
@@ -111,19 +111,19 @@ public class ContainerTeleporter extends Container{
 	            }
 	            if (this.LastMaxPower != this.tile.GetMaxPower())
 	            {
-	                icrafting.sendProgressBarUpdate(this, 5, this.tile.GetMaxPower());
+	                icrafting.sendProgressBarUpdate(this, 5, (int)this.tile.GetMaxPower());
 	            }
 	            
 	            
 	        }
 
-	        this.LastPower = this.tile.GetPower();
+	        this.LastPower = (int)this.tile.GetPower();
 	        this.LastCardMode = this.tile.GetCardMode();
 	        
 	        this.LastX = this.tile.GetX();
 	        this.LastY = this.tile.GetY();
 	        this.LastZ = this.tile.GetZ();
-	        this.LastMaxPower = this.tile.GetMaxPower();
+	        this.LastMaxPower = (int)this.tile.GetMaxPower();
 	        
 	    }
 

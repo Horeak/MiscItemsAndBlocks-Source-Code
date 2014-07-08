@@ -14,12 +14,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
-import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class ModItemElectricShear extends ModItemPowerTool{
@@ -27,14 +25,13 @@ public class ModItemElectricShear extends ModItemPowerTool{
 	public ModItemElectricShear() {
 		super(0, ToolMaterial.IRON, Main.EmptyToolSet);
 
-		this.setMaxDamage(430);
 		this.setMaxStackSize(1);
 	}
 	
 	@Override
     public boolean itemInteractionForEntity(ItemStack itemstack, EntityPlayer player, EntityLivingBase entity)
     {
-    	if(itemstack.getItemDamage() != itemstack.getMaxDamage()){
+    	if(CurrentPower(itemstack) > 0){
 		
         if (entity.worldObj.isRemote)
         {
@@ -56,7 +53,7 @@ public class ModItemElectricShear extends ModItemPowerTool{
                     ent.motionX += (rand.nextFloat() - rand.nextFloat()) * 0.1F;
                     ent.motionZ += (rand.nextFloat() - rand.nextFloat()) * 0.1F;
                 }
-                itemstack.damageItem(1, entity);
+                RemovePower(itemstack, 1);
             }
             return true;
         }
@@ -67,7 +64,7 @@ public class ModItemElectricShear extends ModItemPowerTool{
     @Override
     public boolean onBlockStartBreak(ItemStack itemstack, int x, int y, int z, EntityPlayer player)
     {
-    	if(itemstack.getItemDamage() != itemstack.getMaxDamage()){
+    	if(CurrentPower(itemstack) > 0){
     	
         if (player.worldObj.isRemote)
         {
@@ -94,7 +91,7 @@ public class ModItemElectricShear extends ModItemPowerTool{
                     player.worldObj.spawnEntityInWorld(entityitem);
                 }
 
-                itemstack.damageItem(1, player);
+                RemovePower(itemstack, 1);
                 player.addStat(StatList.mineBlockStatArray[id.getIdFromBlock(id)], 1);
             }
         }
@@ -105,7 +102,7 @@ public class ModItemElectricShear extends ModItemPowerTool{
     @Override
     public float getDigSpeed(ItemStack par1ItemStack, Block par2Block, int metadata)
     {
-    	if(par1ItemStack.getItemDamage() != par1ItemStack.getMaxDamage()){
+    	if(CurrentPower(par1ItemStack) > 0){
     	
         return par2Block != Blocks.web && par2Block != Blocks.leaves ? (par2Block == Blocks.wool ? 5.0F : super.getDigSpeed(par1ItemStack, par2Block, metadata)) : 15.0F;
     	}else{
@@ -122,7 +119,7 @@ public class ModItemElectricShear extends ModItemPowerTool{
     
     public boolean onBlockDestroyed(ItemStack par1ItemStack, World par2World, Block par3, int par4, int par5, int par6, EntityLivingBase par7EntityLivingBase)
     {
-    	if(par1ItemStack.getItemDamage() != par1ItemStack.getMaxDamage()){
+    	if(CurrentPower(par1ItemStack) > 0){
     	
         if (par3 != Blocks.leaves && par3 != Blocks.web && par3 != Blocks.grass && par3 != Blocks.vine && par3 != Blocks.tripwire && !(par3 instanceof IShearable))
         {
@@ -144,16 +141,7 @@ public class ModItemElectricShear extends ModItemPowerTool{
 		  
 		   
 	   }
-	   
-	   
-	    @Override
-	    public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean par4)
-	    {
-	    	int i = itemstack.getMaxDamage() - itemstack.getItemDamage();
-	    	
-	    	list.add(StatCollector.translateToLocal("words.power") + ": " + i);
-	    	
-	    }
+
 	    
 	    public boolean hitEntity(ItemStack par1ItemStack, EntityLivingBase par2EntityLivingBase, EntityLivingBase par3EntityLivingBase)
 	    {
@@ -161,12 +149,12 @@ public class ModItemElectricShear extends ModItemPowerTool{
 	    }
 
 		@Override
-		public int MaxPower(ItemStack stack) {
+		public double MaxPower(ItemStack stack) {
 			return 430;
 		}
 
 		@Override
-		public int ChargeAmount(ItemStack stack) {
+		public double ChargeAmount(ItemStack stack) {
 			return 1;
 		}
 		
@@ -177,6 +165,6 @@ public class ModItemElectricShear extends ModItemPowerTool{
 
     @Override
     public int getTier(ItemStack itemStack) {
-        return 2;
+        return 1;
     }
 }

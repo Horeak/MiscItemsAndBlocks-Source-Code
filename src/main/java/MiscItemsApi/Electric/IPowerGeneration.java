@@ -8,12 +8,12 @@ public interface IPowerGeneration {
      *
      * @return the amount of power generated
      */
-	public int GeneratedPower();
+	public double GeneratedPower();
 
     /** Sets the amount of power that should be generated each tick
      *
      * @param i the amount of power
      */
-	public void SetGeneratedPower(int i);
+	public void SetGeneratedPower(double i);
 	
 }

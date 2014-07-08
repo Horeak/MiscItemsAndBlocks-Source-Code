@@ -75,10 +75,10 @@ public class ContainerMetalPress extends Container{
 	    public void addCraftingToCrafters(ICrafting par1ICrafting)
 	    {
 	        super.addCraftingToCrafters(par1ICrafting);
-	        par1ICrafting.sendProgressBarUpdate(this, 0, this.tile.GetPower());
+	        par1ICrafting.sendProgressBarUpdate(this, 0, (int)this.tile.GetPower());
 	        par1ICrafting.sendProgressBarUpdate(this, 1, this.tile.GetMode());
 	        par1ICrafting.sendProgressBarUpdate(this, 2, this.tile.GetWorkTime());
-	        par1ICrafting.sendProgressBarUpdate(this, 3, this.tile.GetMaxPower());
+	        par1ICrafting.sendProgressBarUpdate(this, 3, (int)this.tile.GetMaxPower());
 	        
 	    }
 
@@ -93,7 +93,7 @@ public class ContainerMetalPress extends Container{
 	            
 	            if (this.LastPower != this.tile.GetPower())
 	            {
-	                icrafting.sendProgressBarUpdate(this, 0, this.tile.GetPower());
+	                icrafting.sendProgressBarUpdate(this, 0, (int)this.tile.GetPower());
 	            }
 
 	            if (this.LastMode != this.tile.GetMode())
@@ -110,15 +110,15 @@ public class ContainerMetalPress extends Container{
 	            
 	            if (this.LastMaxPower != this.tile.GetMaxPower())
 	            {
-	                icrafting.sendProgressBarUpdate(this, 3, this.tile.GetMaxPower());
+	                icrafting.sendProgressBarUpdate(this, 3, (int)this.tile.GetMaxPower());
 	            }
 	            
 	        }
 
-	        this.LastPower = this.tile.GetPower();
+	        this.LastPower = (int)this.tile.GetPower();
 	        this.LastMode = this.tile.GetMode();
 	        this.LastWorkTime = this.tile.GetWorkTime();
-	        this.LastMaxPower = this.tile.GetMaxPower();
+	        this.LastMaxPower = (int)this.tile.GetMaxPower();
 			
 	        
 	    }

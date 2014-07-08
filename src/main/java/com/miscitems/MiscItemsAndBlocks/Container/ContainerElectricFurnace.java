@@ -60,9 +60,9 @@ public class ContainerElectricFurnace  extends Container {
     public void addCraftingToCrafters(ICrafting par1ICrafting)
     {
         super.addCraftingToCrafters(par1ICrafting);
-        par1ICrafting.sendProgressBarUpdate(this, 0, this.tile.GetPower());
+        par1ICrafting.sendProgressBarUpdate(this, 0, (int)this.tile.GetPower());
         par1ICrafting.sendProgressBarUpdate(this, 1, this.tile.GetWorkTime());
-        par1ICrafting.sendProgressBarUpdate(this, 2, this.tile.GetMaxPower());
+        par1ICrafting.sendProgressBarUpdate(this, 2, (int)this.tile.GetMaxPower());
     }
 
     public void detectAndSendChanges()
@@ -75,7 +75,7 @@ public class ContainerElectricFurnace  extends Container {
 
             if (this.LastPower != this.tile.GetPower())
             {
-                icrafting.sendProgressBarUpdate(this, 0, this.tile.GetPower());
+                icrafting.sendProgressBarUpdate(this, 0, (int)this.tile.GetPower());
             }
             
             if (this.LastWorkTime != this.tile.GetWorkTime())
@@ -85,16 +85,16 @@ public class ContainerElectricFurnace  extends Container {
             
             if (this.LastMaxPower != this.tile.GetMaxPower())
             {
-                icrafting.sendProgressBarUpdate(this, 2, this.tile.GetMaxPower());
+                icrafting.sendProgressBarUpdate(this, 2, (int)this.tile.GetMaxPower());
             }
             
             
             
         }
 
-        this.LastPower = this.tile.GetPower();
+        this.LastPower = (int)this.tile.GetPower();
         this.LastWorkTime = this.tile.GetWorkTime();
-        this.LastMaxPower = this.tile.GetMaxPower();
+        this.LastMaxPower = (int)this.tile.GetMaxPower();
         
     }
 

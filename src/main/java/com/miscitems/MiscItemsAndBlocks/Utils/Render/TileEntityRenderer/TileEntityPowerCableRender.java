@@ -4,6 +4,8 @@ import MiscItemsApi.Electric.IPowerGeneration;
 import MiscItemsApi.Electric.IPowerTile;
 import com.miscitems.MiscItemsAndBlocks.Block.Electric.ModBlockPowerCable;
 import com.miscitems.MiscItemsAndBlocks.Models.ModelPowerCable;
+import cpw.mods.fml.common.Loader;
+import ic2.api.energy.tile.IEnergyTile;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
@@ -108,7 +110,9 @@ public class TileEntityPowerCableRender extends TileEntitySpecialRenderer {
     	else if(tile instanceof IPowerGeneration)return true;
 
     	else
-    		return false;
+
+        if(Loader.isModLoaded("IC2"))
+            return tile instanceof IEnergyTile;
 
     	
     	return false;

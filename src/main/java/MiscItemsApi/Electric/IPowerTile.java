@@ -8,31 +8,31 @@ public interface IPowerTile {
      *
      * @return the amount of power
      */
-	public int GetPower();
+	public double GetPower();
 
     /** Gets the current max amount of power that can be stored
      *
      * @return the max amount of power
      */
-	public int GetMaxPower();
+	public double GetMaxPower();
 
     /** Sets the max amount of power that can be stored
      *
      * @param i the amount of power
      */
-	public void SetMaxPower(int i);
+	public void SetMaxPower(double i);
 
     /** Sets the current amount of power stored
      *
      * @param Amount the amount of power
      */
-	public void SetPower(int Amount);
+	public void SetPower(double Amount);
 
     /** Adds power to the current amount
      *
      * @param Amount the amount to add
      */
-	public void AddPower(int Amount);
+	public void AddPower(double Amount);
 
     /** Decides if the machine accepts power from other sources
      *

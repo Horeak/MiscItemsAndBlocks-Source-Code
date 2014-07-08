@@ -24,7 +24,7 @@ tile.orange_tree_planks.name=Orange tree planks
 tile.charger.name=Energy Storage Cube
 tile.solar_panelblock.name=Solar panel
 tile.wind_mill.name= Wind mill
-tile.coal_generator.name=Coal generator
+tile.coal_generator.name=Generator
 tile.power_cable.name=Power cable
 tile.item_pedestal.name=Item pedestal
 tile.mining_station.name=Mining station
@@ -139,7 +139,7 @@ gui.charger=Energy Storage Cube
 gui.cardboardbox=Cardboard Box
 gui.worktable=WorkTable
 gui.electricfurnace=Electric Furnace
-gui.generator=Coal Generator
+gui.generator=Generator
 gui.mill=Mill
 gui.miningchamber=Mining Station
 gui.painteditor=Paint Editor
@@ -152,7 +152,9 @@ gui.computer=Computer
 
 
 //Different strings used in guis
-gui.string.antifallpower=Anti-fall Power
+gui.string.chestplatepower=Chestplate Power
+gui.string.leggingspower=Leggings Power
+gui.string.bootspower=Boots Power
 gui.string.currentitempower=Current Item Power
 gui.string.screenpower=Screen Power
 gui.string.redvalue=Red Value

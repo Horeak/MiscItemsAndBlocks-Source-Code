@@ -1,7 +1,16 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
+import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemSword;
+import net.minecraft.item.ItemTool;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
@@ -12,17 +21,17 @@ public class TileEntityGenerator extends TileEntityPowerGeneration{
 	public TileEntityGenerator() {
 		super(1, "CoalGenerator", 64);
 	}
-	
-	
-	int Power = 0;
-	int TimeLeft = 0;
+
+
+    int TimeLeft = 0;
 	int MaxTime = 80;
-	
-	
-	   @Override
+    boolean CanSend = true;
+
+
+
+    @Override
 	public void writeToNBT(NBTTagCompound compound){
 		super.writeToNBT(compound);
-		this.nbt = compound;
 		
 		NBTTagList Items = new NBTTagList();
 		
@@ -38,8 +47,7 @@ public class TileEntityGenerator extends TileEntityPowerGeneration{
 			}
 		}
 
-		
-		compound.setInteger("Power", this.Power);
+
 		compound.setInteger("TimeLeft", this.TimeLeft);
 		isProvidingPower = compound.getBoolean("Providing");
 
@@ -48,7 +56,6 @@ public class TileEntityGenerator extends TileEntityPowerGeneration{
 	@Override
 	public void readFromNBT(NBTTagCompound compound){
 		super.readFromNBT(compound);
-		this.nbt = compound;
 		
 
 		NBTTagList nbttaglist = compound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
@@ -62,8 +69,7 @@ public class TileEntityGenerator extends TileEntityPowerGeneration{
                 this.setInventorySlotContents(j, ItemStack.loadItemStackFromNBT(nbttagcompound1));
             }
         }
-		
-		Power = compound.getInteger("Power");
+
 		TimeLeft = compound.getInteger("TimeLeft");
 		compound.setBoolean("Providing", isProvidingPower);
 
@@ -71,20 +77,18 @@ public class TileEntityGenerator extends TileEntityPowerGeneration{
 
 		
 	}
-	
+
+
     public void updateEntity()
     {
-    
-    	
-    	if(Power < 1)
+
     	if(this.getStackInSlot(0) != null){
     		worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-    		if(this.getStackInSlot(0).getItem() == Items.coal){
+    		if(IsFuel(this.getStackInSlot(0)) && CanSend){
     			if(TimeLeft == MaxTime){
     				TimeLeft = 0;
-    				this.decrStackSize(0, 1);
-    				Power++;
-    				
+                    CanSend = SendPower(getItemBurnTime(this.getStackInSlot(0)) / 380);
+                    this.decrStackSize(0, 1);
     				
     			}else{
     				TimeLeft++;
@@ -92,21 +96,21 @@ public class TileEntityGenerator extends TileEntityPowerGeneration{
     			}
     			
     			
-    		}
+    		}else if(!CanSend){
+                CanSend = SendPower(0);
+            }
     	}
     	
-    	else
-    		worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-    	
-    	super.updateEntity();
+    	else {
+            worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+            if(TimeLeft > 0)
+                TimeLeft = 0;
+        }
+
     	
     	
     }
-    
-    public int GetFuel(){
-    	return Power;
-    }
-    
+
     public int GetTimeLeft(){
     	return TimeLeft;
     }
@@ -115,11 +119,7 @@ public class TileEntityGenerator extends TileEntityPowerGeneration{
     	return MaxTime;
     }
     
-    
-    
-    public void SetFuel(int i){
-    	Power = i;
-    }
+
     
     public void SetTimeLeft(int i){
     	TimeLeft = i;
@@ -127,28 +127,65 @@ public class TileEntityGenerator extends TileEntityPowerGeneration{
 
 	@Override
 	public boolean CanWork(World world, int X, int Y, int Z) {
-
-
-		return Power > 0;
+        return false;
 	}
 
-
-	@Override
-	public int WorkTime() {
-		return MaxTime + 10;
-	}
 
     public void OnWork(World world, int x, int y, int z){
-    	Power--;
-    	
-    	
+
     }
 
 	@Override
-	public int GeneratedPower() {
-		return 4;
+	public double GeneratedPower() {
+		return 1;
 	}
-	
-   
+
+    public static int getItemBurnTime(ItemStack p_145952_0_)
+    {
+        if (p_145952_0_ == null)
+        {
+            return 0;
+        }
+        else
+        {
+            Item item = p_145952_0_.getItem();
+
+            if (item instanceof ItemBlock && Block.getBlockFromItem(item) != Blocks.air)
+            {
+                Block block = Block.getBlockFromItem(item);
+
+                if (block == Blocks.wooden_slab)
+                {
+                    return 150;
+                }
+
+                if (block.getMaterial() == Material.wood)
+                {
+                    return 300;
+                }
+
+                if (block == Blocks.coal_block)
+                {
+                    return 16000;
+                }
+            }
+
+            if (item instanceof ItemTool && ((ItemTool)item).getToolMaterialName().equals("WOOD")) return 200;
+            if (item instanceof ItemSword && ((ItemSword)item).getToolMaterialName().equals("WOOD")) return 200;
+            if (item instanceof ItemHoe && ((ItemHoe)item).getToolMaterialName().equals("WOOD")) return 200;
+            if (item == Items.stick) return 100;
+            if (item == Items.coal) return 1600;
+            if (item == Items.lava_bucket) return 20000;
+            if (item == Item.getItemFromBlock(Blocks.sapling)) return 100;
+            if (item == Items.blaze_rod) return 2400;
+            return GameRegistry.getFuelValue(p_145952_0_);
+        }
+    }
+
+
+
+    public boolean IsFuel(ItemStack item){
+        return getItemBurnTime(item) > 0;
+    }
 
 }

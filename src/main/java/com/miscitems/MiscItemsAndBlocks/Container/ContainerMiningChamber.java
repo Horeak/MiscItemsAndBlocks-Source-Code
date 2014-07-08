@@ -94,12 +94,12 @@ public class ContainerMiningChamber  extends Container {
     public void addCraftingToCrafters(ICrafting par1ICrafting)
     {
         super.addCraftingToCrafters(par1ICrafting);
-        par1ICrafting.sendProgressBarUpdate(this, 0, this.tile.GetPower());
+        par1ICrafting.sendProgressBarUpdate(this, 0, (int)this.tile.GetPower());
         par1ICrafting.sendProgressBarUpdate(this, 1, this.tile.GetMinedY());
         par1ICrafting.sendProgressBarUpdate(this, 2, this.tile.GetLastY());
         par1ICrafting.sendProgressBarUpdate(this, 3, this.tile.GetSize());
         par1ICrafting.sendProgressBarUpdate(this, 4, this.tile.GetValue());
-        par1ICrafting.sendProgressBarUpdate(this, 5, this.tile.GetMaxPower());
+        par1ICrafting.sendProgressBarUpdate(this, 5, (int)this.tile.GetMaxPower());
     }
 
     public void detectAndSendChanges()
@@ -112,7 +112,7 @@ public class ContainerMiningChamber  extends Container {
 
             if (this.LastPower != this.tile.GetPower())
             {
-                icrafting.sendProgressBarUpdate(this, 0, this.tile.GetPower());
+                icrafting.sendProgressBarUpdate(this, 0, (int)this.tile.GetPower());
             }
             
             
@@ -138,17 +138,17 @@ public class ContainerMiningChamber  extends Container {
             
             if (this.LastMaxPower != this.tile.GetMaxPower())
 {
-    icrafting.sendProgressBarUpdate(this, 5, this.tile.GetMaxPower());
+    icrafting.sendProgressBarUpdate(this, 5, (int)this.tile.GetMaxPower());
 }
             
         }
 
-        this.LastPower = this.tile.GetPower();
+        this.LastPower = (int)this.tile.GetPower();
         this.LastY = this.tile.GetMinedY();
         this.LastLastY = this.tile.GetLastY();
         this.LastHoleSize = this.tile.GetSize();
         this.LastState = this.tile.GetValue();
-        this.LastMaxPower = this.tile.GetMaxPower();
+        this.LastMaxPower = (int)this.tile.GetMaxPower();
     }
 
     @SideOnly(Side.CLIENT)

@@ -91,7 +91,7 @@ public class ConfigUtils {
 
 
     public static boolean IsBlockEnabled(Block block){
-        boolean bl = config.get(CATEGORY_BLOCKS, "Enable " + BlockConfigNames.get(block), true).getBoolean(true);
+        boolean bl = config.get(CATEGORY_BLOCKS, "Enable " + BlockConfigNames.get(block).replace("tile.", "").replace(".name", ""), true).getBoolean(true);
 
         if(config.hasChanged())
         config.save();
@@ -102,7 +102,7 @@ public class ConfigUtils {
 
 
     public static boolean IsItemEnabled(Item item){
-        boolean bl = config.get(CATEGORY_ITEMS, "Enable " + ItemConfigNames.get(item), true).getBoolean(true);
+        boolean bl = config.get(CATEGORY_ITEMS, "Enable " + ItemConfigNames.get(item).replace("item.", "").replace(".name", ""), true).getBoolean(true);
 
         if(config.hasChanged())
         config.save();

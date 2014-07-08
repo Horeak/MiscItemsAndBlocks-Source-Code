@@ -12,13 +12,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
-
-import java.util.List;
 
 public class ModItemElectricBow extends ModItemPowerTool{
 
@@ -32,14 +29,12 @@ private IIcon _icon4;
 	public ModItemElectricBow() {
 		super(1, ToolMaterial.IRON, Main.EmptyToolSet);
 		this.setMaxStackSize(1);
-		this.setMaxDamage(580);
 	}
 	
 	   public void onPlayerStoppedUsing(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer, int par4)
 	    {
-		   int i = par1ItemStack.getMaxDamage() - par1ItemStack.getItemDamage();
 		   
-		   if(i > 0){
+		   if(CurrentPower(par1ItemStack) > 0){
 		   
 	        int j = this.getMaxItemUseDuration(par1ItemStack) - par4;
 
@@ -90,7 +85,7 @@ private IIcon _icon4;
 	                entityarrow.setFire(100);
 	            }
 
-	            par1ItemStack.damageItem(1, par3EntityPlayer);
+               RemovePower(par1ItemStack, 1);
 	            par2World.playSoundAtEntity(par3EntityPlayer, "random.bow", 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
 
 
@@ -117,9 +112,9 @@ private IIcon _icon4;
 
 	    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	    {
-			   int i = par1ItemStack.getMaxDamage() - par1ItemStack.getItemDamage();
+
 			   
-			   if(i > 0){
+			   if(CurrentPower(par1ItemStack) > 0){
 	        ArrowNockEvent event = new ArrowNockEvent(par3EntityPlayer, par1ItemStack);
 	        MinecraftForge.EVENT_BUS.post(event);
 	        if (event.isCanceled())
@@ -189,25 +184,14 @@ private IIcon _icon4;
 			
 	}
 		
-		
-	    @SuppressWarnings({ "unchecked", "rawtypes" })
-		@Override
-	    public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean par4)
-	    {
-	    	int Damage = itemstack.getMaxDamage() - itemstack.getItemDamage();
-	    	
-	    	list.add(StatCollector.translateToLocal("words.power") + ": " + Damage);
-	    	
-	    	
-	    }
 
 		@Override
-		public int MaxPower(ItemStack stack) {
+		public double MaxPower(ItemStack stack) {
 			return 580;
 		}
 
 		@Override
-		public int ChargeAmount(ItemStack stack) {
+		public double ChargeAmount(ItemStack stack) {
 			return 1;
 		}
 
@@ -219,7 +203,7 @@ private IIcon _icon4;
 
     @Override
     public int getTier(ItemStack itemStack) {
-        return 2;
+        return 1;
     }
 
 }

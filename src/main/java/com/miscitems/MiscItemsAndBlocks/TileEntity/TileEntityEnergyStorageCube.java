@@ -2,11 +2,16 @@ package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
 
 import MiscItemsApi.Electric.IPowerCable;
-import MiscItemsApi.Electric.IPowerItem;
 import MiscItemsApi.Electric.IPowerTile;
 import MiscItemsApi.Electric.IWrenchAble;
+import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemElArmor;
 import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemPowerTool;
 import com.miscitems.MiscItemsAndBlocks.Laser.LaserUtil;
+import com.miscitems.MiscItemsAndBlocks.Utils.PowerUtils;
+import cpw.mods.fml.common.Loader;
+import ic2.api.energy.tile.IEnergySink;
+import ic2.api.item.ElectricItem;
+import ic2.api.item.IElectricItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -22,15 +27,15 @@ public class TileEntityEnergyStorageCube extends TileEntityPowerInv implements I
 
 	int Ticks = 3;
 	int CurrentTick = 0;
-	public int PrimePower = 5000;
-	public int MaxPower = PrimePower;
+	public double PrimePower = 5000;
+	public double MaxPower = PrimePower;
 	
-	public int UpgradeAmount = 100;
+	public double UpgradeAmount = 100;
 	
 
 
 	
-	public int GetMaxPower(){
+	public double GetMaxPower(){
 		return this.MaxPower;
 	}
 	
@@ -44,7 +49,7 @@ public class TileEntityEnergyStorageCube extends TileEntityPowerInv implements I
 
 
 		compound.setInteger("Tickhandler", CurrentTick);
-           compound.setInteger("MaxPower", MaxPower);
+           compound.setDouble("MaxPower", MaxPower);
 
 	}
 	
@@ -55,7 +60,7 @@ public class TileEntityEnergyStorageCube extends TileEntityPowerInv implements I
 
 		
 		CurrentTick = compound.getInteger("Tickhandler");
-        MaxPower = compound.getInteger("MaxPower");
+        MaxPower = compound.getDouble("MaxPower");
 		
 
 		
@@ -108,41 +113,86 @@ public class TileEntityEnergyStorageCube extends TileEntityPowerInv implements I
     	
     	
 
-    	ItemStack itemStack = this.getStackInSlot(0);
-    	
-    	if(itemStack != null){
-		
-		if(itemStack.getItem() instanceof IPowerItem ){
-			if(itemStack.getItemDamage() > 0 && GetPower() > 0){
-				SetPower(GetPower() - 1);
-				itemStack.setItemDamage(itemStack.getItemDamage() - 1);
-			}
-		}
-    	}
-    	
-    	if( GetPower() < GetMaxPower()){
-    	ItemStack emptyStack = this.getStackInSlot(1);
-    	
-    	if(emptyStack != null){
+    	ItemStack chargeStack = this.getStackInSlot(0);
+        ItemStack dischargeStack = this.getStackInSlot(1);
 
-    		
-    		if(emptyStack.getItem() instanceof IPowerItem){
-    			if ((((ModItemPowerTool)emptyStack.getItem()).IsCreative))
-    				this.SetPower(this.GetMaxPower());
-    			else{
-    			int i = ((ModItemPowerTool)emptyStack.getItem()).CurrentPower(emptyStack);
-    			if(i > 0){
-    				emptyStack.setItemDamage(emptyStack.getItemDamage() + 1);
-    				AddPower(1);
-    				
-    			}
-    			}
-    			
-    		}
-    		
-    		
-    	}
-    	
+
+    	if(chargeStack != null){
+		if(chargeStack.getItem() instanceof ModItemPowerTool ){
+                if(GetPower() >= 0.1 && ((ModItemPowerTool)chargeStack.getItem()).CurrentPower(chargeStack) < ((ModItemPowerTool)chargeStack.getItem()).MaxPower(chargeStack)) {
+                    ((ModItemPowerTool) chargeStack.getItem()).AddPower(chargeStack, 0.1);
+                    SetPower(GetPower() - 0.1);
+                }
+
+
+            }else if (chargeStack.getItem() instanceof ModItemElArmor){
+            if(GetPower() >= 0.1 && ((ModItemElArmor)chargeStack.getItem()).CurrentPower(chargeStack) < ((ModItemElArmor)chargeStack.getItem()).MaxPower(chargeStack)) {
+                ((ModItemElArmor) chargeStack.getItem()).AddPower(chargeStack, 0.1);
+                SetPower(GetPower() - 0.1);
+            }
+
+
+        }else {
+
+
+            if(Loader.isModLoaded("IC2")){
+                if(chargeStack.getItem() instanceof IElectricItem){
+                    if(GetPower() >= 1) {
+
+                        if (ElectricItem.manager.getCharge(chargeStack) < ((IElectricItem) chargeStack.getItem()).getMaxCharge(chargeStack)) {
+                            ElectricItem.manager.charge(chargeStack, PowerUtils.IC2_For_MiscPower, ((IElectricItem) chargeStack.getItem()).getTier(chargeStack), false, false);
+                            SetPower(GetPower() - PowerUtils.MiscPower_For_IC2);
+                        }
+
+                    }else if (GetPower() > 0.0){
+                        if (ElectricItem.manager.getCharge(chargeStack) < ((IElectricItem) chargeStack.getItem()).getMaxCharge(chargeStack)) {
+                            ElectricItem.manager.charge(chargeStack, PowerUtils.IC2_For_MiscPower / 10, ((IElectricItem) chargeStack.getItem()).getTier(chargeStack), false, false);
+                            SetPower(GetPower() - PowerUtils.MiscPower_For_IC2 / 10);
+                        }
+                    }
+
+
+                }
+            }
+        }
+
+		}
+
+        if(dischargeStack != null && GetPower() < GetMaxPower()){
+
+            if(dischargeStack.getItem() instanceof ModItemPowerTool ){
+                if(((ModItemPowerTool)dischargeStack.getItem()).CurrentPower(dischargeStack) > 0) {
+                    ((ModItemPowerTool) dischargeStack.getItem()).RemovePower(dischargeStack, 1);
+                    AddPower(1);
+                }
+
+
+            }else if (dischargeStack.getItem() instanceof ModItemElArmor){
+                if(((ModItemElArmor)dischargeStack.getItem()).CurrentPower(dischargeStack) > 0) {
+                    ((ModItemElArmor) dischargeStack.getItem()).RemovePower(dischargeStack, 1);
+                    AddPower(1);
+                }
+
+
+            }else {
+                if(Loader.isModLoaded("IC2")){
+                    if(dischargeStack.getItem() instanceof IElectricItem){
+                        if(ElectricItem.manager.getCharge(dischargeStack) > 10) {
+                            ElectricItem.manager.discharge(dischargeStack, PowerUtils.IC2_For_MiscPower, ((IElectricItem)dischargeStack.getItem()).getTier(dischargeStack), false, false, false);
+                            AddPower(PowerUtils.MiscPower_For_IC2);
+
+                        }else if (ElectricItem.manager.getCharge(dischargeStack) > 0){
+                            ElectricItem.manager.discharge(dischargeStack, PowerUtils.IC2_For_MiscPower / 10, ((IElectricItem)dischargeStack.getItem()).getTier(dischargeStack), false, false, false);
+                            AddPower(PowerUtils.MiscPower_For_IC2 / 10);
+                        }
+
+
+                    }
+                }
+            }
+        }
+
+
     	
 
     	
@@ -150,7 +200,7 @@ public class TileEntityEnergyStorageCube extends TileEntityPowerInv implements I
     		SetPower(GetMaxPower());
     	}
     	
-    	}
+
     	
     	
       	
@@ -182,12 +232,39 @@ public class TileEntityEnergyStorageCube extends TileEntityPowerInv implements I
     					tile.SetPower(tile.GetPower() + 1);
     				}
     			}
-    		}
-    		
-    		
-    		
-    		
+    		}else{
+                if(Loader.isModLoaded("IC2")){
+                     if(this.worldObj.getTileEntity(xCoord + ForgeDirection.getOrientation(LaserUtil.getOrientation(this.blockMetadata)).offsetX, yCoord + ForgeDirection.getOrientation(LaserUtil.getOrientation(this.blockMetadata)).offsetY, zCoord + ForgeDirection.getOrientation(LaserUtil.getOrientation(this.blockMetadata)).offsetZ) instanceof IEnergySink) {
+                         IEnergySink tile = (IEnergySink) this.worldObj.getTileEntity(xCoord + ForgeDirection.getOrientation(LaserUtil.getOrientation(this.blockMetadata)).offsetX, yCoord + ForgeDirection.getOrientation(LaserUtil.getOrientation(this.blockMetadata)).offsetY, zCoord + ForgeDirection.getOrientation(LaserUtil.getOrientation(this.blockMetadata)).offsetZ);
+                         if (GetPower() > 0) {
+
+                            int t = 1;
+
+                             if(GetPower() > 100)
+                                  t = 100;
+                             else if (GetPower() > 10)
+                                 t = 10;
+
+
+
+                             if(tile.getDemandedEnergy() > 0) {
+                                 tile.injectEnergy(ForgeDirection.getOrientation(LaserUtil.getOrientation(this.blockMetadata)), (t / 10) * PowerUtils.IC2_For_MiscPower, 10);
+                                 SetPower(GetPower() - t);
+                             }
+
+                         }
+                     }
+                    }
+
+
+
+                }
             }
+
+    		
+    		
+    		
+
 
     	
 
@@ -236,7 +313,7 @@ public class TileEntityEnergyStorageCube extends TileEntityPowerInv implements I
 
     @Override
     public int getMaxSafeInput() {
-        return this.GetMaxPower();
+        return (int)this.GetMaxPower();
     }
 
     @Override

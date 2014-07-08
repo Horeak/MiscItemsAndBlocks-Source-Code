@@ -3,8 +3,25 @@ package MiscItemsApi.Electric;
 import net.minecraft.item.ItemStack;
 
 public interface IPowerItem {
-	
-	
+
+
+    /**
+     * Adds power to the item
+     *
+     * @param stack
+     * @param Amount
+     */
+    void AddPower(ItemStack stack, double Amount);
+
+
+    /**
+     * Removes power from the item
+     *
+     * @param stack
+     * @param Amount
+     */
+    void RemovePower(ItemStack stack, double Amount);
+
 	/**
 	 * Set the max power of a item
 	 * 
@@ -12,7 +29,7 @@ public interface IPowerItem {
 	 * @return Max itemstack power
 	 */
  
-	int MaxPower(ItemStack stack);
+	double MaxPower(ItemStack stack);
 
 
     /**
@@ -22,7 +39,7 @@ public interface IPowerItem {
      * @return the amount of power the item currently has
      */
 
-    int CurrentPower(ItemStack stack);
+    double CurrentPower(ItemStack stack);
 	
 	/**
 	 * Set the amount of power recharged at a time
@@ -30,7 +47,7 @@ public interface IPowerItem {
 	 * @param stack the stack
 	 * @return the amount of power added when charging
 	 */
-	int ChargeAmount(ItemStack stack);
+    double ChargeAmount(ItemStack stack);
 	
 	/**
 	 * 

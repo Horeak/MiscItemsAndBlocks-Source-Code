@@ -6,7 +6,6 @@ import com.miscitems.MiscItemsAndBlocks.Book.SmallFontRenderer;
 import com.miscitems.MiscItemsAndBlocks.Entity.EntityPowerArrow;
 import com.miscitems.MiscItemsAndBlocks.Entity.EntitySilverArrow;
 import com.miscitems.MiscItemsAndBlocks.Event.BoneMealEvent;
-import com.miscitems.MiscItemsAndBlocks.Event.CapeRenderEvent;
 import com.miscitems.MiscItemsAndBlocks.Event.DisarmStickEvent;
 import com.miscitems.MiscItemsAndBlocks.Event.GhostBlockBreakEvent;
 import com.miscitems.MiscItemsAndBlocks.Event.GuiListener;
@@ -16,9 +15,9 @@ import com.miscitems.MiscItemsAndBlocks.Laser.DefaultLaser;
 import com.miscitems.MiscItemsAndBlocks.Laser.LaserRegistry;
 import com.miscitems.MiscItemsAndBlocks.Network.ChannelHandler;
 import com.miscitems.MiscItemsAndBlocks.Network.PacketHandler;
-import com.miscitems.MiscItemsAndBlocks.Utils.Proxies.ServerProxy;
 import com.miscitems.MiscItemsAndBlocks.Utils.Config.ConfigUtils;
 import com.miscitems.MiscItemsAndBlocks.Utils.Crafting;
+import com.miscitems.MiscItemsAndBlocks.Utils.Proxies.ServerProxy;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Messages;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import com.miscitems.MiscItemsAndBlocks.WorldGen.ModWorldGenerator;
@@ -76,14 +75,12 @@ import java.util.Set;
             @SideOnly(Side.CLIENT)
             public Item getTabIconItem()
             {
-                if(ConfigUtils.GetConfigFile().get(ConfigUtils.CATEGORY_ITEMS, "Enable " + "Guide Book" + "?", true).getBoolean(true))
+                if(ConfigUtils.IsItemEnabled(ModItems.GuideBook))
                 {
-                    ConfigUtils.GetConfigFile().save();
                     return ModItems.GuideBook;
                 }else
 
                 {
-                    ConfigUtils.GetConfigFile().save();
                     return ItemBlock.getItemFromBlock(Blocks.bedrock);
                 }
             }
@@ -99,23 +96,14 @@ import java.util.Set;
             public Item getTabIconItem()
             {
 
-                if(ConfigUtils.GetConfigFile().get(ConfigUtils.CATEGORY_ITEMS, "Enable " + ModBlocks.ColoredBrick.getUnlocalizedName() + "?", true).getBoolean(true)) {
-                    ConfigUtils.GetConfigFile().save();
-                    return new ItemStack(ModBlocks.ColoredBrick, 1, 5).getItem();
+                if(ConfigUtils.IsBlockEnabled(ModBlocks.GamePart)) {
+                    return new ItemStack(ModBlocks.GamePart).getItem();
                 }
 
                 return ItemBlock.getItemFromBlock(Blocks.bedrock);
 
             }
 
-            @SideOnly(Side.CLIENT)
-            public ItemStack getIconItemStack()
-            {                if(ConfigUtils.GetConfigFile().get(ConfigUtils.CATEGORY_ITEMS, "Enable " + ModBlocks.ColoredBrick.getUnlocalizedName() + "?", true).getBoolean(true)) {
-                ConfigUtils.GetConfigFile().save();
-                return new ItemStack(ModBlocks.ColoredBrick, 1, 1);
-            }
-                return new ItemStack(Blocks.bedrock);
-            }
 
         };
 
@@ -128,12 +116,10 @@ import java.util.Set;
             @SideOnly(Side.CLIENT)
             public Item getTabIconItem()
             {
-                if(ConfigUtils.GetConfigFile().get("Blocks", "Enable " + "Charger" + "?", true).getBoolean(true)){
-                    ConfigUtils.GetConfigFile().save();
+                if(ConfigUtils.IsBlockEnabled(ModBlocks.Charger)){
                     return ItemBlock.getItemFromBlock(ModBlocks.Charger);
                 }else
                 {
-                    ConfigUtils.GetConfigFile().save();
                     return ItemBlock.getItemFromBlock(Blocks.bedrock);
                 }
             }
@@ -149,12 +135,10 @@ import java.util.Set;
             @SideOnly(Side.CLIENT)
             public Item getTabIconItem()
             {
-                if(ConfigUtils.GetConfigFile().get(ConfigUtils.CATEGORY_ITEMS, "Enable " + ModItems.InvisibilityCore.getUnlocalizedName() + "?", true).getBoolean(true)){
-                    ConfigUtils.GetConfigFile().save();
+                if(ConfigUtils.IsItemEnabled(ModItems.InvisibilityCore)){
                     return ModItems.InvisibilityCore;
                 }else
                 {
-                    ConfigUtils.GetConfigFile().save();
                     return ItemBlock.getItemFromBlock(Blocks.bedrock);
                 }
             }
@@ -170,7 +154,7 @@ import java.util.Set;
         @EventHandler
         public void preInit(FMLPreInitializationEvent event)
         {
-    	
+
         	ConfigUtils.InitConfig(event.getModConfigurationDirectory() + "");
 
 
@@ -179,27 +163,27 @@ import java.util.Set;
 
         	ModBlocks.Init();
         	ModItems.Init();
-    	
+
         	Messages.Init();
 
         	Crafting.RegisterRecipes();
 
 
         	proxy.RegisterListeners();
-    	
+
         	proxy.registerRenderThings();
-        
+
         	proxy.RegisterClientTickhandler();
         	proxy.RegisterServerTickhandler();
 
             MinecraftForge.EVENT_BUS.register(new InvisibilityEvents());
             FMLCommonHandler.instance().bus().register(new InvisibilityEvents());
             FMLCommonHandler.instance().bus().register(new ConfigUtils());
-        
+
         	//Register Events
         	if(event.getSide() == Side.SERVER)
         		RegisterServerEvents();
-        
+
         	if(event.getSide() == Side.CLIENT)
         		RegisterClientEvents();
 
@@ -213,8 +197,7 @@ import java.util.Set;
         {
 	
 	
-        	MinecraftForge.EVENT_BUS.register(new GuiListener());	
-        	MinecraftForge.EVENT_BUS.register(new CapeRenderEvent());
+        	MinecraftForge.EVENT_BUS.register(new GuiListener());
 
 
             FMLCommonHandler.instance().bus().register(ServerProxy.tickHandlerClient);

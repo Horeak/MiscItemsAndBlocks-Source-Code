@@ -1,6 +1,11 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity;
 
+import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemElArmor;
 import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemPowerTool;
+import com.miscitems.MiscItemsAndBlocks.Utils.PowerUtils;
+import cpw.mods.fml.common.Loader;
+import ic2.api.item.ElectricItem;
+import ic2.api.item.IElectricItem;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
@@ -24,23 +29,45 @@ public class TileEntityElectricFurnace extends TileEntityPowerInv implements ISi
 	
     public void updateEntity()
     {
-    	
-    	if(this.GetPower() < this.GetMaxPower()){
-    	if(this.getStackInSlot(1) != null){
-            if(this.getStackInSlot(1).getItem() instanceof ModItemPowerTool){
-                ModItemPowerTool item = (ModItemPowerTool)this.getStackInSlot(1).getItem();
-                if(item.IsCreative) {
-                    this.SetPower(this.GetMaxPower());
 
-                }else if(item.CurrentPower(this.getStackInSlot(1)) > 0) {
-                this.getStackInSlot(1).attemptDamageItem(1, this.worldObj.rand);
-                this.SetPower(this.GetPower() + 1);
+        ItemStack dischargeStack = this.getStackInSlot(1);
+
+        if(dischargeStack != null && GetPower() < GetMaxPower()){
+
+            if(dischargeStack.getItem() instanceof ModItemPowerTool ){
+                if(((ModItemPowerTool)dischargeStack.getItem()).CurrentPower(dischargeStack) > 0) {
+                    ((ModItemPowerTool) dischargeStack.getItem()).RemovePower(dischargeStack, 1);
+                    AddPower(1);
+                }
+
+
+            }else if (dischargeStack.getItem() instanceof ModItemElArmor){
+                if(((ModItemElArmor)dischargeStack.getItem()).CurrentPower(dischargeStack) > 0) {
+                    ((ModItemElArmor) dischargeStack.getItem()).RemovePower(dischargeStack, 1);
+                    AddPower(1);
+                }
+
+
+            }else {
+                if(Loader.isModLoaded("IC2")){
+                    if(dischargeStack.getItem() instanceof IElectricItem){
+                        if(ElectricItem.manager.getCharge(dischargeStack) > 10) {
+                            ElectricItem.manager.discharge(dischargeStack, PowerUtils.IC2_For_MiscPower, ((IElectricItem)dischargeStack.getItem()).getTier(dischargeStack), false, false, false);
+                            AddPower(PowerUtils.MiscPower_For_IC2);
+
+                        }else if (ElectricItem.manager.getCharge(dischargeStack) > 0){
+                            ElectricItem.manager.discharge(dischargeStack, PowerUtils.IC2_For_MiscPower / 10, ((IElectricItem)dischargeStack.getItem()).getTier(dischargeStack), false, false, false);
+                            AddPower(PowerUtils.MiscPower_For_IC2 / 10);
+                        }
+
+
+                    }
+                }
             }
-    		}
-    	}
-    	}
-    	
-    	if(this.GetPower() > this.GetMaxPower()){
+        }
+
+
+        if(this.GetPower() > this.GetMaxPower()){
     		this.SetPower(this.GetMaxPower());
     	}
     	
@@ -178,12 +205,10 @@ public class TileEntityElectricFurnace extends TileEntityPowerInv implements ISi
 
 
 	@Override
-	public int GetMaxPower() {
+	public double GetMaxPower() {
 		return 250;
 	}
 
 
 
-	
-	
 }
