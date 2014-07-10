@@ -23,9 +23,9 @@ public class ClientSettingsConfigEntry extends CategoryEntry
     {
         List<IConfigElement> list = new ArrayList<IConfigElement>();
 
-        list.addAll((new ConfigElement(ConfigUtils.GetConfigFile().getCategory(ConfigUtils.CATEGORY_CLIENT_SETTINGS))).getChildElements());
+        list.addAll((new ConfigElement(ConfigUtils.GetConfigFile().getCategory(ConfigUtils.CATEGORY_CLIENT_SETTINGS.toLowerCase()))).getChildElements());
 
-        return new GuiConfig(this.owningScreen, list, this.owningScreen.modID, "client settings",
+        return new GuiConfig(this.owningScreen, list, this.owningScreen.modID, ConfigUtils.CATEGORY_CLIENT_SETTINGS.toLowerCase(),
                 this.configElement.requiresWorldRestart() || this.owningScreen.allRequireWorldRestart,
                 this.configElement.requiresMcRestart() || this.owningScreen.allRequireMcRestart,
                 GuiConfig.getAbridgedConfigPath(ConfigUtils.GetConfigFile().toString()),

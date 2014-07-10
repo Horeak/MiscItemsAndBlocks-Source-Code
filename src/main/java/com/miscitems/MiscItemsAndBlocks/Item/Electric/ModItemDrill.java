@@ -3,6 +3,7 @@ package com.miscitems.MiscItemsAndBlocks.Item.Electric;
 import com.google.common.collect.Sets;
 import com.miscitems.MiscItemsAndBlocks.Utils.Handlers.ChatMessageHandler;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
+import cpw.mods.fml.relauncher.ReflectionHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -14,6 +15,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemTool;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
@@ -43,6 +45,7 @@ public class ModItemDrill extends ModItemPowerTool{
 		super(0, par2, Mineable);
 		this.setMaxStackSize(1);
 		this.efficiencyOnProperMaterial = 10;
+        ReflectionHelper.setPrivateValue(ItemTool.class, this, "pickaxe", "toolClass");
 	}
 	
 	

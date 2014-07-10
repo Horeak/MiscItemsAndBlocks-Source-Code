@@ -23,6 +23,9 @@ public class ModConfigGui extends GuiConfig {
         list.add(new DummyCategoryElement(ConfigUtils.CATEGORY_SERVER_SETTINGS.toLowerCase(), "config.el.Server", ServerSettingsConfigEntry.class));
         list.add(new DummyCategoryElement(ConfigUtils.CATEGORY_BLOCKS.toLowerCase(), "config.el.Blocks", BlocksSettingsConfigEntry.class));
         list.add(new DummyCategoryElement(ConfigUtils.CATEGORY_ITEMS.toLowerCase(), "config.el.Items", ItemsSettingsConfigEntry.class));
+
+
+
         return list;
     }
 

@@ -23,12 +23,8 @@ public class BlocksSettingsConfigEntry extends CategoryEntry
     {
         List<IConfigElement> list = new ArrayList<IConfigElement>();
 
-        list.addAll((new ConfigElement(ConfigUtils.GetConfigFile().getCategory(ConfigUtils.CATEGORY_BLOCKS))).getChildElements());
+        list.addAll((new ConfigElement(ConfigUtils.GetConfigFile().getCategory(ConfigUtils.CATEGORY_BLOCKS.toLowerCase()))).getChildElements());
 
-        return new GuiConfig(this.owningScreen, list, this.owningScreen.modID, "blocks",
-                this.configElement.requiresWorldRestart() || this.owningScreen.allRequireWorldRestart,
-                true || this.owningScreen.allRequireMcRestart,
-                GuiConfig.getAbridgedConfigPath(ConfigUtils.GetConfigFile().toString()),
-                I18n.format("config.el.Blocks"));
+        return new GuiConfig(this.owningScreen, list, this.owningScreen.modID, ConfigUtils.CATEGORY_BLOCKS.toLowerCase() ,this.configElement.requiresWorldRestart() || this.owningScreen.allRequireWorldRestart,true || this.owningScreen.allRequireMcRestart, GuiConfig.getAbridgedConfigPath(ConfigUtils.GetConfigFile().toString()), I18n.format("config.el.Blocks"));
     }
 }

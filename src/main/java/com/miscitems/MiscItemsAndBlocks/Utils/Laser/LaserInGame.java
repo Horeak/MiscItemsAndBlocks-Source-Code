@@ -1,4 +1,4 @@
-package com.miscitems.MiscItemsAndBlocks.Laser;
+package com.miscitems.MiscItemsAndBlocks.Utils.Laser;
 
 import com.miscitems.MiscItemsAndBlocks.Main.ModItems;
 import cpw.mods.fml.relauncher.Side;

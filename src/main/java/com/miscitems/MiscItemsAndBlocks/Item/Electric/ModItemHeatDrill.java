@@ -1,7 +1,9 @@
 package com.miscitems.MiscItemsAndBlocks.Item.Electric;
 
 import com.google.common.collect.Sets;
+import com.miscitems.MiscItemsAndBlocks.Utils.Handlers.ParticleHelper;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
+import cpw.mods.fml.relauncher.ReflectionHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -15,6 +17,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemTool;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.world.World;
 
@@ -34,8 +37,8 @@ public class ModItemHeatDrill extends ModItemPowerTool{
 	
 	public ModItemHeatDrill() {
 		super(0.1F, ToolMaterial.EMERALD, Mineable);
-		
 		this.efficiencyOnProperMaterial = 8;
+        ReflectionHelper.setPrivateValue(ItemTool.class, this, "pickaxe", "toolClass");
 	}
 	
 	 public boolean canHarvestBlock(Block par1Block)
@@ -57,6 +60,7 @@ public class ModItemHeatDrill extends ModItemPowerTool{
 	    {
 	        if ((double)p_150894_3_.getBlockHardness(p_150894_2_, p_150894_4_, p_150894_5_, p_150894_6_) != 0.0D)
 	        {
+                if(!((EntityPlayer)p_150894_7_).capabilities.isCreativeMode)
                 RemovePower(p_150894_1_, 1);
 	        }
 
@@ -66,33 +70,43 @@ public class ModItemHeatDrill extends ModItemPowerTool{
     
 	public boolean onBlockStartBreak(ItemStack itemstack, int x, int y, int z, EntityPlayer player)
     {
-		
-		if(!player.worldObj.isRemote){
+        ParticleHelper particleHelper = new ParticleHelper(player.worldObj);
+
+
+
     	int Luck = EnchantmentHelper.getEnchantmentLevel(35, player.inventory.getCurrentItem());
-		
-		
 		Block block = player.worldObj.getBlock(x, y, z);
 		
-		if(block != null){
-			
-	        List<ItemStack> stacks = block.getDrops(player.worldObj, x, y, z, player.worldObj.getBlockMetadata(x, y, z), Luck);
-
-	        if (stacks != null) {
-	                for (ItemStack s : stacks) {
-	                        if (s != null) {
-
-	                        	Smelt(s, x, y, z, player.worldObj, player);
-	                        
-	                        }
-	                }
-	       }
-		}
-		
+		if(block != null) {
 
 
-		player.worldObj.setBlock(x, y, z, Blocks.air);
+                List<ItemStack> stacks = block.getDrops(player.worldObj, x, y, z, player.worldObj.getBlockMetadata(x, y, z), Luck);
+
+                if (stacks != null) {
+                    for (ItemStack s : stacks) {
+                        if (s != null) {
+
+                            Smelt(s, x, y, z, player.worldObj, player);
+
+                            for(int i = 0; i < 4; i++){
+                                particleHelper.SpawnParticleAroundBlock("flame", x, y, z, 0);
+                            }
+                        }
+                    }
+                }
+            }
+
+
+
+
+            if (!player.worldObj.isRemote)
+                player.worldObj.playAuxSFX(2001, x, y, z, Block.getIdFromBlock(player.worldObj.getBlock(x, y, z)) + (player.worldObj.getBlockMetadata(x, y, z) << 12));
+
+
+
+            player.worldObj.setBlock(x, y, z, Blocks.air);
 		this.onBlockDestroyed(itemstack,  player.worldObj, block, x, y, z, player);
-		}
+
 		return true;
     }
     
@@ -107,6 +121,7 @@ public class ModItemHeatDrill extends ModItemPowerTool{
 	   
 	public void Smelt(ItemStack stack, int x, int y, int z, World world, EntityPlayer player){
 
+        if(!world.isRemote){
 			ItemStack result = FurnaceRecipes.smelting().getSmeltingResult(stack);
 			if(result != null){
 				ItemStack smeltingStack;
@@ -118,14 +133,13 @@ public class ModItemHeatDrill extends ModItemPowerTool{
 				
 				EntityItem item = new EntityItem(world, x, y, z, smeltingStack);
 				world.spawnEntityInWorld(item);
-			}else{
+			}else {
 
-				EntityItem item = new EntityItem(world, x, y, z, stack);
-				world.spawnEntityInWorld(item);
+                EntityItem item = new EntityItem(world, x, y, z, stack);
+                world.spawnEntityInWorld(item);
 
-				
-			
 
+            }
 			}
 	   }
 	   
@@ -133,7 +147,8 @@ public class ModItemHeatDrill extends ModItemPowerTool{
 		public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int par7, float par8, float par9, float par10)
 	    {
 	    	int Luck = EnchantmentHelper.getEnchantmentLevel(35, player.inventory.getCurrentItem());
-	    	
+
+            ParticleHelper particleHelper = new ParticleHelper(world);
 	    	
   	        final Block block = world.getBlock(x, y, z);
   	        final int meta = world.getBlockMetadata(x, y, z);
@@ -141,56 +156,66 @@ public class ModItemHeatDrill extends ModItemPowerTool{
 	    	
 	    	if(block != null){
 		        List<ItemStack> stacks = block.getDrops(player.worldObj, x, y, z, player.worldObj.getBlockMetadata(x, y, z), Luck);
-		        
+
 		        ItemStack stack1 = new ItemStack(block);
     			ItemStack result1 = FurnaceRecipes.smelting().getSmeltingResult(stack1);
 
-		        if (stacks != null) {
+
+                    if(result1 != null){
+                        if(result1.getItem() instanceof ItemBlock){
+
+                            ItemBlock t = (ItemBlock)result1.getItem();
+
+                            if (!world.isRemote)
+                                world.playAuxSFX(2001, x, y, z, Block.getIdFromBlock(world.getBlock(x, y, z)) + (world.getBlockMetadata(x, y, z) << 12));
+
+                            for(int i = 0; i < 8; i++){
+                                particleHelper.SpawnParticleAroundBlock("flame", x, y, z, 0);
+                            }
+
+                            world.setBlock(x, y, z, Block.getBlockById(Item.getIdFromItem(t)));
+                            if(!player.capabilities.isCreativeMode)
+                            RemovePower(player.inventory.getCurrentItem(), 1);
+
+                        }
+                    }else  if (stacks != null) {
 		                for (ItemStack s : stacks) {
 		                        if (s != null) {
-		                        	
+
 	                    			ItemStack result = FurnaceRecipes.smelting().getSmeltingResult(s);
 	                    			if(result != null){
-
-		                        	
-	                    				
 		                        	if(result.getItem() instanceof ItemBlock){
-
-
 		                        		ItemBlock t = (ItemBlock)result.getItem();
 
-		                    				
-		                    				world.setBlock(x, y, z, Block.getBlockById(Item.getIdFromItem(t)));
-		                    				RemovePower(player.inventory.getCurrentItem(), 1);
-		                    				
-		                    			}
-		                        
-		                        
-	                    			}else{
-	                    				if(result1 != null){
-	    		                        	if(result1.getItem() instanceof ItemBlock){
+                                        if (!world.isRemote)
+                                            world.playAuxSFX(2001, x, y, z, Block.getIdFromBlock(world.getBlock(x, y, z)) + (world.getBlockMetadata(x, y, z) << 12));
 
-	    		                        		ItemBlock t = (ItemBlock)result.getItem();
-			                    				
-			                    				world.setBlock(x, y, z, Block.getBlockById(Item.getIdFromItem(t)));
-                                                RemovePower(player.inventory.getCurrentItem(), 1);
-			                    				
-			                    			}
-	                    				}
-	
-		
-		    	}
+                                        for(int i = 0; i < 8; i++){
+                                            particleHelper.SpawnParticleAroundBlock("flame", x, y, z, 0);
+                                        }
+
+		                    				world.setBlock(x, y, z, Block.getBlockById(Item.getIdFromItem(t)));
+                                        if(!player.capabilities.isCreativeMode)
+		                    				RemovePower(player.inventory.getCurrentItem(), 1);
+
+		                    			}
+
+
+	                    			}
+
 		    		}
 
 		                        
             
 		                }
-            
+
 	    	}
-	            return true;
+
+
+
+                return true;
 	    	}
-	    	
-	    	
+
 	        return true;
 	    }
 

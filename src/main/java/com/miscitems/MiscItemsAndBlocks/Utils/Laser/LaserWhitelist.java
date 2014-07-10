@@ -1,4 +1,4 @@
-package com.miscitems.MiscItemsAndBlocks.Laser;
+package com.miscitems.MiscItemsAndBlocks.Utils.Laser;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;

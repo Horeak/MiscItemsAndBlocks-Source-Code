@@ -1,4 +1,4 @@
-package com.miscitems.MiscItemsAndBlocks.Laser;
+package com.miscitems.MiscItemsAndBlocks.Utils.Laser;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;

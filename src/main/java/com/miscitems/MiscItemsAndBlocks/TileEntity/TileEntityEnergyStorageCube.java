@@ -6,7 +6,7 @@ import MiscItemsApi.Electric.IPowerTile;
 import MiscItemsApi.Electric.IWrenchAble;
 import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemElArmor;
 import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemPowerTool;
-import com.miscitems.MiscItemsAndBlocks.Laser.LaserUtil;
+import com.miscitems.MiscItemsAndBlocks.Utils.Laser.LaserUtil;
 import com.miscitems.MiscItemsAndBlocks.Utils.PowerUtils;
 import cpw.mods.fml.common.Loader;
 import ic2.api.energy.tile.IEnergySink;

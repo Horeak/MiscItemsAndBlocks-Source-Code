@@ -23,9 +23,9 @@ public class ItemsSettingsConfigEntry extends CategoryEntry
     {
         List<IConfigElement> list = new ArrayList<IConfigElement>();
 
-        list.addAll((new ConfigElement(ConfigUtils.GetConfigFile().getCategory(ConfigUtils.CATEGORY_ITEMS))).getChildElements());
+        list.addAll((new ConfigElement(ConfigUtils.GetConfigFile().getCategory(ConfigUtils.CATEGORY_ITEMS.toLowerCase()))).getChildElements());
 
-        return new GuiConfig(this.owningScreen, list, this.owningScreen.modID, "items",
+        return new GuiConfig(this.owningScreen, list, this.owningScreen.modID, ConfigUtils.CATEGORY_ITEMS.toLowerCase(),
                 this.configElement.requiresWorldRestart() || this.owningScreen.allRequireWorldRestart,
                 true || this.owningScreen.allRequireMcRestart,
                 GuiConfig.getAbridgedConfigPath(ConfigUtils.GetConfigFile().toString()),

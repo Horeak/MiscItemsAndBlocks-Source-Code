@@ -36,7 +36,7 @@ public class TileEntityGhostBlock extends TileEntity{
 
             NBT.setInteger("ID", Id);
 	      
-	      NBT.setInteger("Meta", Meta);
+	        NBT.setInteger("Meta", Meta);
 
             NBT.setBoolean("Locked", Locked);
             NBT.setString("Pl", Placer);

@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Utils.Render.TileEntityRenderer;
 
-import com.miscitems.MiscItemsAndBlocks.Laser.LaserUtil;
+import com.miscitems.MiscItemsAndBlocks.Utils.Laser.LaserUtil;
 import com.miscitems.MiscItemsAndBlocks.Utils.Render.Entity.LaserRender;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLaser;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;

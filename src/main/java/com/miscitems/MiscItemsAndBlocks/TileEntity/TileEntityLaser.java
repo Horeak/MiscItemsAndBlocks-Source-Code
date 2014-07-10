@@ -3,7 +3,7 @@ package com.miscitems.MiscItemsAndBlocks.TileEntity;
 import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemElArmor;
 import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemPowerStorage;
 import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemPowerTool;
-import com.miscitems.MiscItemsAndBlocks.Laser.*;
+import com.miscitems.MiscItemsAndBlocks.Utils.Laser.*;
 import com.miscitems.MiscItemsAndBlocks.Main.ModItems;
 import com.miscitems.MiscItemsAndBlocks.Network.Client.ClientLaserUpdatePacket;
 import com.miscitems.MiscItemsAndBlocks.Network.PacketHandler;

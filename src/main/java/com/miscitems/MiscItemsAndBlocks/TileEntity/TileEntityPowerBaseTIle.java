@@ -16,10 +16,11 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 
 @Optional.InterfaceList(    value =
-       {@Optional.Interface(iface = "ic2.api.energy.tile.IEnergyAcceptor",    modid = "IC2", striprefs = true),
-        @Optional.Interface(iface = "ic2.api.energy.tile.IEnergySink",    modid = "IC2", striprefs = true)
+       {@Optional.Interface(iface = "ic2.api.energy.tile.IEnergyAcceptor",    modid = "IC2"),
+        @Optional.Interface(iface = "ic2.api.energy.tile.IEnergySink",    modid = "IC2"),
+        @Optional.Interface(iface = "ic2.api.energy.tile.IEnergyTile",    modid = "IC2")
 })
-public abstract class TileEntityPowerBaseTile extends ModTileEntity implements IPowerTile, IEnergySink, IEnergyAcceptor {
+public abstract class TileEntityPowerBaseTile extends ModTileEntity implements IPowerTile, IEnergySink, IEnergyAcceptor, IEnergyTile {
 
     private double Power;
     private double PowerMax;
@@ -46,7 +47,7 @@ public abstract class TileEntityPowerBaseTile extends ModTileEntity implements I
     }
 
     public double GetPower(){
-        return Power;
+        return this.Power;
     }
 
 
@@ -125,17 +126,14 @@ public abstract class TileEntityPowerBaseTile extends ModTileEntity implements I
         return (int)this.GetMaxPower();
     }
 
-    @Override
     public double getDemandedEnergy() {
         return GetMaxPower() - GetPower();
     }
 
-    @Override
     public int getSinkTier() {
         return 1;
     }
 
-    @Override
     public double injectEnergy(ForgeDirection directionFrom, double amount, double voltage) {
 
         amount /= (PowerUtils.IC2_For_MiscPower / 2);

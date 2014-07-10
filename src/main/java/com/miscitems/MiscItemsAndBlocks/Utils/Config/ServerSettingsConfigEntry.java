@@ -23,9 +23,9 @@ public class ServerSettingsConfigEntry extends CategoryEntry
     {
         List<IConfigElement> list = new ArrayList<IConfigElement>();
 
-        list.addAll((new ConfigElement(ConfigUtils.GetConfigFile().getCategory(ConfigUtils.CATEGORY_SERVER_SETTINGS))).getChildElements());
+        list.addAll((new ConfigElement(ConfigUtils.GetConfigFile().getCategory(ConfigUtils.CATEGORY_SERVER_SETTINGS.toLowerCase()))).getChildElements());
 
-        return new GuiConfig(this.owningScreen, list, this.owningScreen.modID, "server settings",
+        return new GuiConfig(this.owningScreen, list, this.owningScreen.modID, ConfigUtils.CATEGORY_SERVER_SETTINGS.toLowerCase(),
                 this.configElement.requiresWorldRestart() || this.owningScreen.allRequireWorldRestart,
                 this.configElement.requiresMcRestart() || this.owningScreen.allRequireMcRestart,
                 GuiConfig.getAbridgedConfigPath(ConfigUtils.GetConfigFile().toString()),

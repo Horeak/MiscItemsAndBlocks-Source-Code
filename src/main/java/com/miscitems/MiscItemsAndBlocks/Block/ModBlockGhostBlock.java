@@ -21,6 +21,8 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import java.awt.*;
+
 public class ModBlockGhostBlock extends BlockContainer{
 
     public ModBlockGhostBlock() {
@@ -28,8 +30,23 @@ public class ModBlockGhostBlock extends BlockContainer{
 		this.setStepSound(soundTypeCloth);
 	
 	}
-	
 
+
+
+    public int colorMultiplier(IBlockAccess block, int x, int y, int z)
+    {
+        if(block.getTileEntity(x,y,z) instanceof  TileEntityGhostBlock){
+            TileEntityGhostBlock tile = (TileEntityGhostBlock)block.getTileEntity(x,y,z);
+            if(tile.Id != 0){
+                return Block.getBlockById(tile.Id).colorMultiplier(block, x,y,z);
+            }
+
+        }
+
+
+        return new Color(255,255,255).getRGB();
+
+    }
 	
 	IIcon defaultTexture;
 	
@@ -70,11 +87,13 @@ public class ModBlockGhostBlock extends BlockContainer{
     		if(player.getHeldItem() != null && !player.isSneaking()){
     			if(player.getHeldItem().getItem() instanceof ItemBlock){
     				Block block = Block.getBlockById(Item.getIdFromItem(player.getHeldItem().getItem()));
-    				if(!block.isOpaqueCube())
-                        return true;
+
+
 
 
     				if(block != null && block != Blocks.air){
+
+
                         if(tile.Locked){
                             if(tile.Placer == "" || player.getDisplayName().equalsIgnoreCase(tile.Placer)){
 
@@ -82,7 +101,8 @@ public class ModBlockGhostBlock extends BlockContainer{
                                 tile.Meta = player.getHeldItem().getItemDamage();
 
 
-                                world.setBlockMetadataWithNotify(x, y, z, 0, 3);
+                                world.setBlockMetadataWithNotify(x, y, z, player.getHeldItem().getItemDamage(), 3);
+                                world.setBlockMetadataWithNotify(x, y, z, player.getHeldItem().getItemDamage(), 2);
                                 world.markBlockForUpdate(x, y, z);
                                 return true;
                             }
@@ -90,9 +110,11 @@ public class ModBlockGhostBlock extends BlockContainer{
 
     					tile.Id = Block.getIdFromBlock(block);
     					tile.Meta = player.getHeldItem().getItemDamage();
+
     					
 
-                        world.setBlockMetadataWithNotify(x, y, z, 0, 3);
+                        world.setBlockMetadataWithNotify(x, y, z, player.getHeldItem().getItemDamage(), 3);
+                        world.setBlockMetadataWithNotify(x, y, z, player.getHeldItem().getItemDamage(), 2);
     	    			world.markBlockForUpdate(x, y, z);
     					return true;
                         }
@@ -118,6 +140,7 @@ public class ModBlockGhostBlock extends BlockContainer{
 
                 }else{
 
+                    if(!player.isSneaking())
                     if(tile.Placer == "" || player.getDisplayName().equalsIgnoreCase(tile.Placer) || player.capabilities.isCreativeMode){
 
                         tile.Id = 0;
@@ -130,13 +153,16 @@ public class ModBlockGhostBlock extends BlockContainer{
                     }
                 }else{
 
-                    tile.Id = 0;
-                    tile.Meta = 0;
+                    if(!player.isSneaking()) {
+                        tile.Id = 0;
+                        tile.Meta = 0;
 
 
-                    world.setBlockMetadataWithNotify(x, y, z, 0, 3);
-                    world.markBlockForUpdate(x, y, z);
-                    return true;
+                        world.setBlockMetadataWithNotify(x, y, z, 0, 3);
+                        world.markBlockForUpdate(x, y, z);
+
+                        return true;
+                    }
                 }
 
                 }
@@ -160,7 +186,7 @@ public class ModBlockGhostBlock extends BlockContainer{
 
     		if(tile.Id != 0){
                 Block block = Block.getBlockById(tile.Id);
-    			
+
     			return block.getIcon(side, tile.Meta);
     		}
     		

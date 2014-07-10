@@ -1,7 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Utils.Render.ItemRender;
 
 import com.miscitems.MiscItemsAndBlocks.Models.ModelPowerCable;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityPowerCable;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
@@ -14,9 +13,6 @@ import org.lwjgl.opengl.GL11;
 @SideOnly(Side.CLIENT)
 public class PowerCableItemRender implements IItemRenderer
 {
-
-    private TileEntityPowerCable tile = new TileEntityPowerCable();
-
 
 
 	@Override

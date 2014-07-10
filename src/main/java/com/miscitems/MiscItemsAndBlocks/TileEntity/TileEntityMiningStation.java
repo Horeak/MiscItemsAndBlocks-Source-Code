@@ -5,21 +5,28 @@ import com.miscitems.MiscItemsAndBlocks.Network.PacketTileWithItemUpdate;
 import com.miscitems.MiscItemsAndBlocks.Utils.Block.BlockUtil;
 import com.miscitems.MiscItemsAndBlocks.Utils.Inventory.Utils;
 import com.miscitems.MiscItemsAndBlocks.Utils.ItemHelper;
+import cpw.mods.fml.relauncher.ReflectionHelper;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemTool;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;
+import net.minecraft.world.WorldServer;
+import net.minecraftforge.common.util.FakePlayer;
+import net.minecraftforge.common.util.FakePlayerFactory;
 
 import java.util.List;
 
 public class TileEntityMiningStation extends TileEntityPowerInv{
 
 	public TileEntityMiningStation() {
-		super(1, "Mining Chamber", 64);
+
+        super(1, "Mining Chamber", 64);
+
+
 	}
 
 	int PowerTime = 0;
@@ -28,6 +35,19 @@ public class TileEntityMiningStation extends TileEntityPowerInv{
 	int GenerateTime = 0;
 	boolean CanMine = true;
 	boolean Ready = false;
+
+    public void validate(){
+        if(!worldObj.isRemote)
+        pl = FakePlayerFactory.getMinecraft((WorldServer)worldObj);
+
+    }
+
+    public void invalidate(){
+        if(pl != null)
+            worldObj.removeEntity(pl);
+    }
+
+    FakePlayer pl;
 	
 	public boolean Running;
 	
@@ -144,7 +164,9 @@ public class TileEntityMiningStation extends TileEntityPowerInv{
 	
     public void updateEntity()
     {
-    	
+
+        if(pl == null)
+            validate();
     	
     	if(MinedY == 0)
     		MinedY = this.yCoord - 1;
@@ -156,9 +178,9 @@ public class TileEntityMiningStation extends TileEntityPowerInv{
     	
     	if(Eff > 0){
     		int t = Eff * 3;
-    		this.MiningTime = 50 - t;
+    		this.MiningTime = 30 - t;
     	}else{
-    		this.MiningTime = 80;
+    		this.MiningTime = 60;
     	}
     	
     	
@@ -167,100 +189,94 @@ public class TileEntityMiningStation extends TileEntityPowerInv{
     	}
     	
     	
-    	if(!this.worldObj.isRemote){
-    	if(this.getStackInSlot(ToolSlot) != null ){
-    		if(GetPower() > 0){
-    		if(this.getStackInSlot(ToolSlot).getItem() instanceof ItemPickaxe){
-    			int DamageLeft = this.getStackInSlot(ToolSlot).getMaxDamage() - this.getStackInSlot(ToolSlot).getItemDamage();
-    			if(DamageLeft > 1){
-    			
-    			if(Ready){
-    				SetValue(1);
-    			}else{
-    				SetValue(3);
-    				return;
-    			}
-    			
-    			}else{
-    				SetValue(2);
-    				return;
-    			}
-    	    	
-    		}else{
-    			SetValue(2);
-    			return;
-    		}
-    	}else{
-    		SetValue(0);
-    		return;
-    	}
-    		
-    	}else{
-	    		SetValue(0);
-	    		return;
-	    	}
-    		
-    	}
-    	
-    	
-    	
-    	
-    	if(MinedY <= LastY){
-    		SetValue(0);
-    		Ready = false;
-    		return;
-    	}
-    	
-    	
-    	
-    	
-    	
-    	
-    	if(GetValue() == 1){
-    	
-    	if(Time == MiningTime){
-    		Time = 0;
-    		
-    		
-    		if(!this.worldObj.isRemote){
-    		MineBlock((this.xCoord + NumberX) - (int)Size / 2, MinedY, (this.zCoord + NumberZ) - (int)Size / 2);
-    		
-    		
-    		
-    		NumberX++;
-    		
-    		
-    		if(NumberX >= Size){
+    	if(!this.worldObj.isRemote) {
+            if (this.getStackInSlot(ToolSlot) != null) {
+                if (GetPower() > 0) {
+                    if (this.getStackInSlot(ToolSlot).getItem() instanceof ItemTool && ReflectionHelper.getPrivateValue(ItemTool.class, (ItemTool) this.getStackInSlot(ToolSlot).getItem(), "toolClass").equals("pickaxe")) {
+                            int DamageLeft = this.getStackInSlot(ToolSlot).getMaxDamage() - this.getStackInSlot(ToolSlot).getItemDamage();
+                            if (DamageLeft > 1) {
 
-    			if(NumberZ >= Size - 1){
-    				MinedY--;
-    				NumberZ = 0;
-    				NumberX = 0;
-    			}else{
+                                if (Ready) {
+                                    SetValue(1);
+                                } else {
+                                    SetValue(3);
+                                    return;
+                                }
 
-    				
-    				NumberX = 0;
-    				NumberZ++;
-    				}
-    			
-    		}
+                            } else {
+                                SetValue(2);
+                                return;
+                            }
 
-    		
-    	}
-    		
-    		
-    		
-    		
-    	}else{
-    		Time++;
-    		return;
-    	}
-    	
-    	
-    	}
+                        } else {
+                            SetValue(2);
+                            return;
+                        }
+                    } else {
+                        SetValue(0);
+                        return;
+                    }
 
-    		
-    		
+                } else {
+                    SetValue(0);
+                    return;
+                }
+
+            }
+
+
+            if (MinedY <= LastY) {
+                SetValue(0);
+                Ready = false;
+                return;
+            }
+
+
+            if (GetValue() == 1) {
+
+                if (Time >= MiningTime) {
+                    Time = 0;
+
+
+                    int x = (this.xCoord + NumberX) - (int) Size / 2,y = MinedY,z = (this.zCoord + NumberZ) - (int) Size / 2;
+                    if (!this.worldObj.isRemote) {
+                        if (!(((ItemTool) this.getStackInSlot(ToolSlot).getItem()).onBlockStartBreak(this.getStackInSlot(ToolSlot), x,y,z, pl)) || worldObj.getBlock(x,y,z) == Blocks.air) {
+                            MineBlock(x,y,z);
+
+
+                            NumberX++;
+
+
+                            if (NumberX >= Size) {
+
+                                if (NumberZ >= Size - 1) {
+                                    MinedY--;
+                                    NumberZ = 0;
+                                    NumberX = 0;
+                                } else {
+
+
+                                    NumberX = 0;
+                                    NumberZ++;
+                                }
+
+                            }
+
+
+                        }else{
+                            SetValue(2);
+                            Ready = false;
+                            return;
+                        }
+
+                    }
+                } else {
+                    Time += 1;
+                }
+
+
+            }
+
 
 
     	
@@ -279,43 +295,51 @@ public class TileEntityMiningStation extends TileEntityPowerInv{
     
     
     
-    public void MineBlock(int x, int y, int z){
+    public void MineBlock(int x, int y, int z) {
 
 
-    	if(this.worldObj.getBlock(x, y, z) != Blocks.air){
-    	if(this.worldObj.getBlock(x, y, z).getBlockHardness(this.worldObj, x, y, z) != -1){
-    	
+        if (this.worldObj.getBlock(x, y, z) != Blocks.air) {
+            if (this.worldObj.getBlock(x, y, z).getBlockHardness(this.worldObj, x, y, z) != -1) {
 
-        List<ItemStack> stacks = BlockUtil.getItemStackFromBlock(worldObj, x, y, z, Fortune);
+                if (!(((ItemTool) this.getStackInSlot(ToolSlot).getItem()).onBlockStartBreak(this.getStackInSlot(ToolSlot), x,y,z, pl))) {
 
-        if (stacks != null) {
-                for (ItemStack s : stacks) {
-                        if (s != null) {
+                    List<ItemStack> stacks = BlockUtil.getItemStackFromBlock(worldObj, x, y, z, Fortune);
+
+                    if (stacks != null) {
+                        for (ItemStack s : stacks) {
+                            if (s != null) {
                                 mineStack(s);
+                            }
                         }
-                }
-        
-        
-        
-    	}
-                this.SetPower(this.GetPower() - 1);
 
-            if(this.getStackInSlot(ToolSlot).getMaxDamage() != -1)
-               this.getStackInSlot(ToolSlot).attemptDamageItem(1, this.worldObj.rand);
-                
-                if (!worldObj.isRemote)
-                    worldObj.playAuxSFX(2001, x, y, z, Block.getIdFromBlock(worldObj.getBlock(x, y, z)) + (worldObj.getBlockMetadata(x, y, z) << 12));
-       
-    	
-                this.worldObj.setBlock(x, y, z, Blocks.air);
-                
-                Time = 0;
-    	
-    	}
+
+                    }
+                    this.SetPower(this.GetPower() - 1);
+
+
+                    ((ItemTool) this.getStackInSlot(ToolSlot).getItem()).onBlockDestroyed(this.getStackInSlot(ToolSlot), worldObj, worldObj.getBlock(x, y, z), x, y, z, pl);
+
+
+                    if (!worldObj.isRemote)
+                        worldObj.playAuxSFX(2001, x, y, z, Block.getIdFromBlock(worldObj.getBlock(x, y, z)) + (worldObj.getBlockMetadata(x, y, z) << 12));
+
+
+
+
+                   this.worldObj.getBlock(x,y,z).removedByPlayer(worldObj, pl, x,y,z, false);
+
+                    Time = 0;
+
+                }else{
+                    SetValue(2);
+                    Ready = false;
+                    return;
+                }
+            }
+
+        }
+
     }
-    	
-    }
-    	
     
 
 	
