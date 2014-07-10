@@ -1,7 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Book;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderItem;
@@ -18,18 +17,15 @@ public class BookTabButton extends GuiButton {
         super(par1, x, y, 27, 20, "");
         this.gui = gui;
          this.id = par1;
-        this.render =renderer;
+        this.render = renderer;
     }
 
     public void drawButton(Minecraft par1Minecraft, int x, int y)
     {
 
-
-        FontRenderer fontRendererObj = par1Minecraft.fontRenderer;
         par1Minecraft.getTextureManager().bindTexture(gui.Texture);
-        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+       // GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
-        RenderHelper.enableGUIStandardItemLighting();
 
         if(this.id == (gui.CurrentTab))
         this.drawTexturedModalRect(this.xPosition, this.yPosition, 24, 184, 27, 20);

@@ -13,8 +13,6 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
-import java.util.Arrays;
-
 public class RecipeSmeltingPage extends Page  {
 
 
@@ -29,7 +27,7 @@ public class RecipeSmeltingPage extends Page  {
     public RecipeSmeltingPage(ItemStack Input){
         this.Input = Input;
 
-        FurnaceItems = BookUtils.InfoPageFurnaceRecipes.get(Input.getItem().getUnlocalizedName(Input).replace(".name", "").replace("item.", "").replace("tile.", ""));
+        FurnaceItems = BookUtils.GetSmeltingRecipeItems(Input);
     }
 
 
@@ -62,7 +60,7 @@ public class RecipeSmeltingPage extends Page  {
                 drawTooltip(render, GetToolTip(FurnaceItems.GetStack_1()), MouseX, MouseY);
 
             if(OverSlot(posX + GridX + 54, posY + GridY + 19, MouseX, MouseY) && FurnaceItems.GetStack_2() != null)
-                drawTooltip(render, Arrays.asList(new String[]{FurnaceItems.GetStack_2().getDisplayName()}), MouseX, MouseY);
+                drawTooltip(render, (GetToolTipWithoutLink(FurnaceItems.GetStack_2())), MouseX, MouseY);
         }
 
 

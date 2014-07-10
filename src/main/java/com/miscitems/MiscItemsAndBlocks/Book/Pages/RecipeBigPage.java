@@ -7,19 +7,15 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
-
-import java.util.Arrays;
 
 public class RecipeBigPage extends Page {
 
 
     ItemStack RecipeItem;
     ItemStack[] RecipeItems;
-    ShapedRecipes Recipe;
 
 
     int GridX = 60;
@@ -30,9 +26,7 @@ public class RecipeBigPage extends Page {
 
     public RecipeBigPage(ItemStack Output){
         RecipeItem = Output;
-
-        Recipe = BookUtils.InfoPageShapedRecipes.get(RecipeItem.getItem().getUnlocalizedName(RecipeItem).replace(".name", ""));
-        RecipeItems = BookUtils.InfoPageShapedRecipes.get(RecipeItem.getItem().getUnlocalizedName(RecipeItem).replace(".name", "")).recipeItems;
+        RecipeItems = BookUtils.GetShapedRecipeItems(RecipeItem);
     }
 
     @Override
@@ -108,7 +102,7 @@ public class RecipeBigPage extends Page {
         RenderItem(ItemRender, render, RecipeItem, posX + GridX + 88, posY + GridY + 18);
 
         if(OverSlot(posX + GridX + 88, posY + GridY + 18, MouseX, MouseY)  && RecipeItem != null)
-            drawTooltip(render, Arrays.asList(new String[]{RecipeItem.getDisplayName()}), MouseX, MouseY);
+            drawTooltip(render, (GetToolTipWithoutLink(RecipeItem)), MouseX, MouseY);
 
 
 

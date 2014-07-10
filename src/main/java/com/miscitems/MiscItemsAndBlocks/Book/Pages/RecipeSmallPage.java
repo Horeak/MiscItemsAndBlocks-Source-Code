@@ -2,7 +2,6 @@ package com.miscitems.MiscItemsAndBlocks.Book.Pages;
 
 import com.miscitems.MiscItemsAndBlocks.Book.BookUtils;
 import com.miscitems.MiscItemsAndBlocks.Book.InfoPage;
-import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.entity.RenderItem;
@@ -11,7 +10,6 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class RecipeSmallPage extends Page{
@@ -27,7 +25,7 @@ public class RecipeSmallPage extends Page{
     public RecipeSmallPage(ItemStack Output){
         RecipeItem = Output;
 
-        RecipeItems = BookUtils.InfoPageShapelessRecipes.get(RecipeItem.getItem().getUnlocalizedName(RecipeItem).replace(".name", "")).recipeItems;
+        RecipeItems = BookUtils.GetShapelessRecipeItems(RecipeItem);
     }
 
 
@@ -71,7 +69,7 @@ public class RecipeSmallPage extends Page{
 
 
         if(OverSlot(posX + GridX + 63, posY + GridY + 9, MouseX, MouseY) && RecipeItem != null)
-            drawTooltip(render, Arrays.asList(new String[]{RecipeItem.getDisplayName()}), MouseX, MouseY);
+            drawTooltip(render, (GetToolTipWithoutLink(RecipeItem)), MouseX, MouseY);
 
 
          RenderItem(ItemRender, render, RecipeItem, posX + GridX + 63, posY + GridY + 9);
@@ -87,29 +85,30 @@ public class RecipeSmallPage extends Page{
 
 
         if(OverSlot(posX + GridX, posY + GridY, ClickedX, ClickedY) && ((ItemStack)RecipeItems.get(0)) != null){
-            if(BookUtils.GetInfoPagesForItem(((ItemStack)RecipeItems.get(0))) != null)
-                FMLClientHandler.instance().displayGuiScreen(Minecraft.getMinecraft().thePlayer, new InfoPage(((ItemStack)RecipeItems.get(0)), page.LastTab));
+            if(BookUtils.GetInfoPagesForItem(((ItemStack)RecipeItems.get(0))) != null) {
+                Minecraft.getMinecraft().displayGuiScreen(new InfoPage(((ItemStack) RecipeItems.get(0)), page.LastTab));
+            }
         }
 
         if(OverSlot(posX + GridX + 18, posY + GridY, ClickedX, ClickedY) && ((ItemStack)RecipeItems.get(1)) != null){
             if(BookUtils.GetInfoPagesForItem(((ItemStack)RecipeItems.get(1))) != null)
-                FMLClientHandler.instance().displayGuiScreen(Minecraft.getMinecraft().thePlayer, new InfoPage(((ItemStack)RecipeItems.get(1)), page.LastTab));
+                Minecraft.getMinecraft().displayGuiScreen(new InfoPage(((ItemStack)RecipeItems.get(1)), page.LastTab));
         }
 
         if(OverSlot(posX + GridX, posY + GridY + 18, ClickedX, ClickedY) && ((ItemStack)RecipeItems.get(2)) != null){
             if(BookUtils.GetInfoPagesForItem(((ItemStack)RecipeItems.get(2))) != null)
-                FMLClientHandler.instance().displayGuiScreen(Minecraft.getMinecraft().thePlayer, new InfoPage(((ItemStack)RecipeItems.get(2)), page.LastTab));
+                Minecraft.getMinecraft().displayGuiScreen(new InfoPage(((ItemStack)RecipeItems.get(2)), page.LastTab));
         }
 
         if(OverSlot(posX + GridX + 18, posY + GridY + 18, ClickedX, ClickedY) && ((ItemStack)RecipeItems.get(3)) != null){
             if(BookUtils.GetInfoPagesForItem(((ItemStack)RecipeItems.get(3))) != null)
-                FMLClientHandler.instance().displayGuiScreen(Minecraft.getMinecraft().thePlayer, new InfoPage(((ItemStack)RecipeItems.get(3)), page.LastTab));
+                Minecraft.getMinecraft().displayGuiScreen(new InfoPage(((ItemStack)RecipeItems.get(3)), page.LastTab));
         }
 
 
         if(OverSlot(posX + GridX, posY + GridY, ClickedX, ClickedY) && RecipeItem != null){
             if(BookUtils.GetInfoPagesForItem(RecipeItem) != null)
-                FMLClientHandler.instance().displayGuiScreen(Minecraft.getMinecraft().thePlayer, new InfoPage(RecipeItem, page.LastTab));
+                Minecraft.getMinecraft().displayGuiScreen(new InfoPage(RecipeItem, page.LastTab));
         }
 
     }

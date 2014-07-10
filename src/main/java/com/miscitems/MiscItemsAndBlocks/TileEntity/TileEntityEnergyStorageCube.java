@@ -44,11 +44,7 @@ public class TileEntityEnergyStorageCube extends TileEntityPowerInv implements I
 	   @Override
 	public void writeToNBT(NBTTagCompound compound){
 		super.writeToNBT(compound);
-		
 
-
-
-		compound.setInteger("Tickhandler", CurrentTick);
            compound.setDouble("MaxPower", MaxPower);
 
 	}
@@ -57,9 +53,6 @@ public class TileEntityEnergyStorageCube extends TileEntityPowerInv implements I
 	public void readFromNBT(NBTTagCompound compound){
 		super.readFromNBT(compound);
 
-
-		
-		CurrentTick = compound.getInteger("Tickhandler");
         MaxPower = compound.getDouble("MaxPower");
 		
 
@@ -199,11 +192,9 @@ public class TileEntityEnergyStorageCube extends TileEntityPowerInv implements I
     	if( GetPower() > GetMaxPower()){
     		SetPower(GetMaxPower());
     	}
-    	
 
-    	
-    	
-      	
+
+
     	if(CurrentTick >= Ticks){
     		CurrentTick = 0;
 
@@ -211,7 +202,6 @@ public class TileEntityEnergyStorageCube extends TileEntityPowerInv implements I
             if(!worldObj.isRemote){
             if(this.worldObj.getTileEntity(xCoord + ForgeDirection.getOrientation(LaserUtil.getOrientation(this.blockMetadata)).offsetX, yCoord + ForgeDirection.getOrientation(LaserUtil.getOrientation(this.blockMetadata)).offsetY, zCoord + ForgeDirection.getOrientation(LaserUtil.getOrientation(this.blockMetadata)).offsetZ) instanceof IPowerCable){
                 IPowerCable tile = (IPowerCable)this.worldObj.getTileEntity(xCoord + ForgeDirection.getOrientation(LaserUtil.getOrientation(this.blockMetadata)).offsetX, yCoord + ForgeDirection.getOrientation(LaserUtil.getOrientation(this.blockMetadata)).offsetY, zCoord + ForgeDirection.getOrientation(LaserUtil.getOrientation(this.blockMetadata)).offsetZ);
-
                 if(this.worldObj.getBlockMetadata(xCoord + ForgeDirection.getOrientation(LaserUtil.getOrientation(this.blockMetadata)).offsetX, yCoord + ForgeDirection.getOrientation(LaserUtil.getOrientation(this.blockMetadata)).offsetY, zCoord + ForgeDirection.getOrientation(LaserUtil.getOrientation(this.blockMetadata)).offsetZ) != 1){
                     if( GetPower() > 0){
                         if(tile.GetPower() < tile.GetMaxPower()){
@@ -226,7 +216,10 @@ public class TileEntityEnergyStorageCube extends TileEntityPowerInv implements I
 
             else if(this.worldObj.getTileEntity(xCoord + ForgeDirection.getOrientation(LaserUtil.getOrientation(this.blockMetadata)).offsetX, yCoord + ForgeDirection.getOrientation(LaserUtil.getOrientation(this.blockMetadata)).offsetY, zCoord + ForgeDirection.getOrientation(LaserUtil.getOrientation(this.blockMetadata)).offsetZ) instanceof IPowerTile){
     			IPowerTile tile = (IPowerTile)this.worldObj.getTileEntity(xCoord + ForgeDirection.getOrientation(LaserUtil.getOrientation(this.blockMetadata)).offsetX, yCoord + ForgeDirection.getOrientation(LaserUtil.getOrientation(this.blockMetadata)).offsetY, zCoord + ForgeDirection.getOrientation(LaserUtil.getOrientation(this.blockMetadata)).offsetZ);
-    			if( GetPower() > 0){
+                if (tile.equals(this))
+                  return;
+
+                if( GetPower() > 0){
     				if(tile.GetPower() < tile.GetMaxPower()){
     					SetPower(GetPower() - 1);
     					tile.SetPower(tile.GetPower() + 1);
@@ -237,9 +230,7 @@ public class TileEntityEnergyStorageCube extends TileEntityPowerInv implements I
                      if(this.worldObj.getTileEntity(xCoord + ForgeDirection.getOrientation(LaserUtil.getOrientation(this.blockMetadata)).offsetX, yCoord + ForgeDirection.getOrientation(LaserUtil.getOrientation(this.blockMetadata)).offsetY, zCoord + ForgeDirection.getOrientation(LaserUtil.getOrientation(this.blockMetadata)).offsetZ) instanceof IEnergySink) {
                          IEnergySink tile = (IEnergySink) this.worldObj.getTileEntity(xCoord + ForgeDirection.getOrientation(LaserUtil.getOrientation(this.blockMetadata)).offsetX, yCoord + ForgeDirection.getOrientation(LaserUtil.getOrientation(this.blockMetadata)).offsetY, zCoord + ForgeDirection.getOrientation(LaserUtil.getOrientation(this.blockMetadata)).offsetZ);
                          if (GetPower() > 0) {
-
-                            int t = 1;
-
+                           int t = 1;
                              if(GetPower() > 100)
                                   t = 100;
                              else if (GetPower() > 10)
@@ -262,14 +253,14 @@ public class TileEntityEnergyStorageCube extends TileEntityPowerInv implements I
             }
 
     		
-    		
-    		
 
 
-    	
 
-    		
-    		
+
+
+
+
+
     	}else{
     		CurrentTick++;
     	}

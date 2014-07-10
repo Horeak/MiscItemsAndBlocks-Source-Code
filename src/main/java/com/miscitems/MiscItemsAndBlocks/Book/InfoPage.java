@@ -17,8 +17,8 @@ public class InfoPage extends GuiScreen{
         return false;
     }
 
-    public final ResourceLocation TextureLeft = new ResourceLocation("miscitems" , "textures/gui/ResBook/bookLeft.png");
-    public final ResourceLocation TextureRight = new ResourceLocation("miscitems" , "textures/gui/ResBook/bookRight.png");
+    public final ResourceLocation TextureLeft = new ResourceLocation("miscitems" , "textures/gui/ResBook/BookLeft.png");
+    public final ResourceLocation TextureRight = new ResourceLocation("miscitems" , "textures/gui/ResBook/BookRight.png");
 
     public static final int xSizeOfTexture = 400;
     public static final int ySizeOfTexture = 206;

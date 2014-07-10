@@ -7,10 +7,9 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.ShapedRecipes;
-import net.minecraft.item.crafting.ShapelessRecipes;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class BookUtils {
 
@@ -36,30 +35,57 @@ public class BookUtils {
 
     public static HashMap<String, Page[]> InfoPages = new HashMap<String, Page[]>();
 
-    public static HashMap<String, ShapedRecipes> InfoPageShapedRecipes = new HashMap<String, ShapedRecipes>();
-    public static HashMap<String, ShapelessRecipes> InfoPageShapelessRecipes = new HashMap<String, ShapelessRecipes>();
+    public static HashMap<String, ItemStack[]> InfoPageShapedRecipes = new HashMap<String, ItemStack[]>();
+    public static HashMap<String, List<ItemStack>> InfoPageShapelessRecipes = new HashMap<String, List<ItemStack>>();
     public static HashMap<String, DoubleStackUtil> InfoPageFurnaceRecipes = new HashMap<String, DoubleStackUtil>();
 
 
 
 
 
+    public static void AddShapedRecipe(ItemStack stack, ItemStack[] items){
+
+        InfoPageShapedRecipes.put(stack.getDisplayName(), items);
+    }
+
+    public static void AddShapelessRecipe(ItemStack stack, List<ItemStack> items){
+
+        InfoPageShapelessRecipes.put(stack.getDisplayName(), items);
+    }
+
+    public static void AddSmeltingRecipe(ItemStack stack, DoubleStackUtil items){
+
+        InfoPageFurnaceRecipes.put(stack.getDisplayName(), items);
+    }
+
+
+    public static ItemStack[] GetShapedRecipeItems(ItemStack stack){
+        return InfoPageShapedRecipes.get(stack.getDisplayName());
+    }
+
+    public static List<ItemStack> GetShapelessRecipeItems(ItemStack stack){
+        return InfoPageShapelessRecipes.get(stack.getDisplayName());
+    }
+
+    public static DoubleStackUtil GetSmeltingRecipeItems(ItemStack stack){
+        return InfoPageFurnaceRecipes.get(stack.getDisplayName());
+    }
 
 
     public static void RegisterPagesForItem(ItemStack item, Page[] Pages) {
         if (item != null)
             if (item.getItem() instanceof ItemBlock) {
                 if (ConfigUtils.IsBlockEnabled(Block.getBlockById(Item.getIdFromItem(item.getItem()))))
-                    InfoPages.put(item.getItem().getUnlocalizedName(item), Pages);
+                    InfoPages.put(item.getDisplayName(), Pages);
 
             } else if (item.getItem() instanceof Item) {
                 if (ConfigUtils.IsItemEnabled(item.getItem()))
-                    InfoPages.put(item.getItem().getUnlocalizedName(item), Pages);
+                    InfoPages.put(item.getDisplayName(), Pages);
             }
     }
 
     public static Page[] GetInfoPagesForItem(ItemStack stack){
-        return InfoPages.get(stack.getItem().getUnlocalizedName(stack));
+        return InfoPages.get(stack.getDisplayName());
     }
 
     public static void RegisterTab(int Number, String Name, ItemStack stack, int Type){

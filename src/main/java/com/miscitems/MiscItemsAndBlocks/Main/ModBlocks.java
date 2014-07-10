@@ -30,7 +30,9 @@ import com.miscitems.MiscItemsAndBlocks.Block.Electric.ModBlockPowerCable;
 import com.miscitems.MiscItemsAndBlocks.Block.Electric.ModBlockSolarPanel;
 import com.miscitems.MiscItemsAndBlocks.Block.Electric.ModBlockTeleporter;
 import com.miscitems.MiscItemsAndBlocks.Block.Electric.ModBlockWindMill;
-import com.miscitems.MiscItemsAndBlocks.Block.Magic.ModBlockCrystalOre;
+import com.miscitems.MiscItemsAndBlocks.Block.Magic.ModBlockBlueCrystalOre;
+import com.miscitems.MiscItemsAndBlocks.Block.Magic.ModBlockGreenCrystalOre;
+import com.miscitems.MiscItemsAndBlocks.Block.Magic.ModBlockRedCrystalOre;
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlockComputer;
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlockDice;
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlockDiceHolder;
@@ -302,13 +304,13 @@ public class ModBlocks {
         GhostBlock = new ModBlockGhostBlock().setCreativeTab(Main.MiscTab);
         Register(GhostBlock, "Ghost Block", TileEntityGhostBlock.class);
 
-        BlueCrystalOre = new ModBlockCrystalOre(ModItems.BlueCrystal).setCreativeTab(Main.MagicTab).setBlockTextureName(Reference.Mod_Id + ":BlueCrystalOre");
+        BlueCrystalOre = new ModBlockBlueCrystalOre().setCreativeTab(Main.MagicTab).setBlockTextureName(Reference.Mod_Id + ":BlueCrystalOre");
         Register(BlueCrystalOre, "BlueCrystalOre");
 
-        GreenCrystalOre = new ModBlockCrystalOre(ModItems.GreenCrystal).setCreativeTab(Main.MagicTab).setBlockTextureName(Reference.Mod_Id + ":GreenCrystalOre");
+        GreenCrystalOre = new ModBlockGreenCrystalOre().setCreativeTab(Main.MagicTab).setBlockTextureName(Reference.Mod_Id + ":GreenCrystalOre");
         Register(GreenCrystalOre, "GreenCrystalOre");
 
-        RedCrystalOre = new ModBlockCrystalOre(ModItems.RedCrystal).setCreativeTab(Main.MagicTab).setBlockTextureName(Reference.Mod_Id + ":RedCrystalOre");
+        RedCrystalOre = new ModBlockRedCrystalOre().setCreativeTab(Main.MagicTab).setBlockTextureName(Reference.Mod_Id + ":RedCrystalOre");
         Register(RedCrystalOre, "RedCrystalOre");
 
         ColoredBrick = new ModBlockColoredMetalBrick().setBlockTextureName(Reference.Mod_Id + ":MetalBrick").setCreativeTab(Main.DecorativeTab);

@@ -5,6 +5,7 @@ import com.miscitems.MiscItemsAndBlocks.Network.PacketTileWithItemUpdate;
 import com.miscitems.MiscItemsAndBlocks.Utils.Block.BlockUtil;
 import com.miscitems.MiscItemsAndBlocks.Utils.Inventory.Utils;
 import com.miscitems.MiscItemsAndBlocks.Utils.ItemHelper;
+import com.mojang.authlib.GameProfile;
 import cpw.mods.fml.relauncher.ReflectionHelper;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -19,6 +20,7 @@ import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.common.util.FakePlayerFactory;
 
 import java.util.List;
+import java.util.UUID;
 
 public class TileEntityMiningStation extends TileEntityPowerInv{
 
@@ -38,7 +40,7 @@ public class TileEntityMiningStation extends TileEntityPowerInv{
 
     public void validate(){
         if(!worldObj.isRemote)
-        pl = FakePlayerFactory.getMinecraft((WorldServer)worldObj);
+        pl = FakePlayerFactory.get((WorldServer)worldObj, new GameProfile(UUID.randomUUID(), "[TileEntityMiningStation]"));
 
     }
 
