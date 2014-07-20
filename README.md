@@ -1,4 +1,4 @@
-MiscItemsAndBlocks-for-Minecraft-1.7
+MiscItemsAndBlocks-Source-Code
 ====================================
 
-The 1.7 version of MiscItemsAndBlocks
+The source code for the minecraft mod MiscItemsAndBlocks
