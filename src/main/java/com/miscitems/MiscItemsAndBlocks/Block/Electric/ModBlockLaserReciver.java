@@ -1,8 +1,8 @@
 package com.miscitems.MiscItemsAndBlocks.Block.Electric;
 
+import com.miscitems.MiscItemsAndBlocks.Block.Utils.ModBlockContainer;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLaserReciver;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
@@ -13,7 +13,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class ModBlockLaserReciver extends BlockContainer{
+public class ModBlockLaserReciver extends ModBlockContainer {
 
     public ModBlockLaserReciver() {
 		super(Material.iron);

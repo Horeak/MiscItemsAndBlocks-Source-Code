@@ -1,9 +1,9 @@
 package com.miscitems.MiscItemsAndBlocks.Block.Decorative;
 
+import com.miscitems.MiscItemsAndBlocks.Block.Utils.ModBlockContainer;
 import com.miscitems.MiscItemsAndBlocks.Main.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityGamePart;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -20,7 +20,7 @@ import net.minecraft.world.World;
 import java.awt.*;
 import java.util.List;
 
-public class ModBlockGamePart extends BlockContainer{
+public class ModBlockGamePart extends ModBlockContainer{
 
 
 	

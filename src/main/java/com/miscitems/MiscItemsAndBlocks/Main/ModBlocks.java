@@ -30,6 +30,7 @@ import com.miscitems.MiscItemsAndBlocks.Block.Electric.ModBlockPowerCable;
 import com.miscitems.MiscItemsAndBlocks.Block.Electric.ModBlockSolarPanel;
 import com.miscitems.MiscItemsAndBlocks.Block.Electric.ModBlockTeleporter;
 import com.miscitems.MiscItemsAndBlocks.Block.Electric.ModBlockWindMill;
+import com.miscitems.MiscItemsAndBlocks.Block.Magic.ModBlockBigCrystal;
 import com.miscitems.MiscItemsAndBlocks.Block.Magic.ModBlockBlueCrystalOre;
 import com.miscitems.MiscItemsAndBlocks.Block.Magic.ModBlockGreenCrystalOre;
 import com.miscitems.MiscItemsAndBlocks.Block.Magic.ModBlockRedCrystalOre;
@@ -41,7 +42,7 @@ import com.miscitems.MiscItemsAndBlocks.Block.ModBlockGhostBlock;
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlockOneWayGlass;
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlockSilverOre;
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlockSpeedBlock;
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlockStair;
+import com.miscitems.MiscItemsAndBlocks.Block.Utils.ModBlockStair;
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlockTimedBlock;
 import com.miscitems.MiscItemsAndBlocks.Block.Plants.ModBlockOrangeLeaf;
 import com.miscitems.MiscItemsAndBlocks.Block.Plants.ModBlockOrangeLog;
@@ -68,38 +69,7 @@ import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockTable;
 import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockTeleporter;
 import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockTrashBin;
 import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemXpStorageBlock;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityCardboardBox;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityComputer;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityDiceHolder;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityDisarmTrap;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityElectricFurnace;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityEnergyStorageCube;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityGamePart;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityGenerator;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityGhostBlock;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityItemPedestal;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLaser;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLaserReciver;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLensBench;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMetalPress;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMill;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMiningStation;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityOven;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityPaintBlock;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityPillar;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityPowerCable;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntitySolarPanel;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntitySquezer;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityStorageBlock;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityTable;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityTeleporter;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityTimedBlock;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityTrashBin;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityWindMill;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityWirelessItemTrans;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityWirelessRedstone;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityWorktable;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityXpStorage;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.*;
 import com.miscitems.MiscItemsAndBlocks.Utils.Config.ConfigUtils;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -120,9 +90,9 @@ public class ModBlocks {
 	public static Block DisarmTrap;
 	public static Block SilverOre;
 	public static Block Box;
-	public static Block Worktable;
-	public static Block Dice;
-	public static Block SpeedBlock;
+    public static Block Worktable;
+    public static Block Dice;
+    public static Block SpeedBlock;
 	public static Block Pillar;
 	public static Block TomatoPlant;
 	public static Block Mill;
@@ -157,6 +127,8 @@ public class ModBlocks {
 	public static Block Laser;
 	public static Block LaserReciver;
 	public static Block GhostBlock;
+
+    public static Block BigCrystal;
 
     public static Block ColoredBrick;
     public static Block ColoredBrickGlowstone;
@@ -318,6 +290,9 @@ public class ModBlocks {
 
         ColoredBrickGlowstone = new ModBlockColoredMetalBrick().setBlockTextureName(Reference.Mod_Id + ":MetalBrickGlowstone").setCreativeTab(Main.DecorativeTab).setLightLevel(1.0F);
         Register(ColoredBrickGlowstone, ModItemBlockColoredMetalBrick.class, "ColoredBrickGlowstone");
+
+        BigCrystal = new ModBlockBigCrystal().setCreativeTab(Main.MagicTab);
+        Register(BigCrystal, "BigCrystal", TileEntityBigCrystal.class);
 
 
 

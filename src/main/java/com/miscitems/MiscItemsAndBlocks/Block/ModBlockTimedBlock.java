@@ -1,13 +1,13 @@
 package com.miscitems.MiscItemsAndBlocks.Block;
 
+import com.miscitems.MiscItemsAndBlocks.Block.Utils.ModBlockContainer;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityTimedBlock;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class ModBlockTimedBlock extends BlockContainer{
+public class ModBlockTimedBlock extends ModBlockContainer {
 
 	public ModBlockTimedBlock() {
 		super(Material.glass);

@@ -1,15 +1,15 @@
 package com.miscitems.MiscItemsAndBlocks.Block.Decorative;
 
+import com.miscitems.MiscItemsAndBlocks.Block.Utils.ModBlockContainer;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityPillar;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class ModBlockPillar extends BlockContainer {
+public class ModBlockPillar extends ModBlockContainer {
 
     public ModBlockPillar() {
 		super(Material.rock);

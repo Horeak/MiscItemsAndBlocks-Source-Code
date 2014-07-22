@@ -1,5 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Block.BlockContainers;
 
+import com.miscitems.MiscItemsAndBlocks.Block.Utils.ModBlockContainer;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityOven;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
@@ -7,7 +8,6 @@ import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
@@ -23,7 +23,7 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class ModBlockOven extends BlockContainer{
+public class ModBlockOven extends ModBlockContainer {
 
 	public ModBlockOven() {
 		super(Material.rock);

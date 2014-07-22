@@ -1,8 +1,8 @@
 package com.miscitems.MiscItemsAndBlocks.Block.Decorative;
 
+import com.miscitems.MiscItemsAndBlocks.Block.Utils.ModBlockContainer;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityTable;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,7 +12,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class ModBlockTable extends BlockContainer{
+public class ModBlockTable extends ModBlockContainer{
 
     public ModBlockTable() {
 		super(Material.wood);

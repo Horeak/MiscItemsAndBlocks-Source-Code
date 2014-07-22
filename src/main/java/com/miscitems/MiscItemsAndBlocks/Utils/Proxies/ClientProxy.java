@@ -6,6 +6,7 @@ import com.miscitems.MiscItemsAndBlocks.Entity.EntitySilverArrow;
 import com.miscitems.MiscItemsAndBlocks.Event.GuiListener;
 import com.miscitems.MiscItemsAndBlocks.Main.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.ModTileEntity;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityBigCrystal;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityComputer;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityDiceHolder;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityDisarmTrap;
@@ -40,6 +41,7 @@ import com.miscitems.MiscItemsAndBlocks.Utils.Render.ItemRender.PowerCableItemRe
 import com.miscitems.MiscItemsAndBlocks.Utils.Render.ItemRender.TableItemRender;
 import com.miscitems.MiscItemsAndBlocks.Utils.Render.ItemRender.TeleporterItemRender;
 import com.miscitems.MiscItemsAndBlocks.Utils.Render.ItemRender.TrashBinItemRender;
+import com.miscitems.MiscItemsAndBlocks.Utils.Render.TileEntityRenderer.TileEntityBigCrystalRender;
 import com.miscitems.MiscItemsAndBlocks.Utils.Render.TileEntityRenderer.TileEntityBinRender;
 import com.miscitems.MiscItemsAndBlocks.Utils.Render.TileEntityRenderer.TileEntityComputerRender;
 import com.miscitems.MiscItemsAndBlocks.Utils.Render.TileEntityRenderer.TileEntityDiceHolderRender;
@@ -112,6 +114,8 @@ public class ClientProxy extends ServerProxy {
         
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMetalPress.class, new TileEntityMetalPressRender());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityLaserReciver.class, new TileEntityLaserReciverRender());
+
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBigCrystal.class, new TileEntityBigCrystalRender());
         
         
         RenderingRegistry.registerEntityRenderingHandler(EntitySilverArrow.class, new SilverArrowRender());

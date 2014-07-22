@@ -1,9 +1,9 @@
 package com.miscitems.MiscItemsAndBlocks.Block.Decorative;
 
+import com.miscitems.MiscItemsAndBlocks.Block.Utils.ModBlock;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -15,7 +15,7 @@ import net.minecraft.world.IBlockAccess;
 import java.awt.*;
 import java.util.List;
 
-public class ModBlockColoredMetalBrick extends Block {
+public class ModBlockColoredMetalBrick extends ModBlock {
 
 
 

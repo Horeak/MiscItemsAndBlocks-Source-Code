@@ -1,11 +1,11 @@
 package com.miscitems.MiscItemsAndBlocks.Block.Plants;
 
+import com.miscitems.MiscItemsAndBlocks.Block.Utils.ModBlock;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 
-public class ModBlockOrangePlanks extends Block{
+public class ModBlockOrangePlanks extends ModBlock{
 
 	public ModBlockOrangePlanks() {
 		super(Material.wood);

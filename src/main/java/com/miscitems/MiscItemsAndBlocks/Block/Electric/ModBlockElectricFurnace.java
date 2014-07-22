@@ -1,5 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Block.Electric;
 
+import com.miscitems.MiscItemsAndBlocks.Block.Utils.ModBlockContainer;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityElectricFurnace;
 import com.miscitems.MiscItemsAndBlocks.Utils.Config.ConfigUtils;
@@ -24,7 +25,7 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class ModBlockElectricFurnace extends BlockContainer{
+public class ModBlockElectricFurnace extends ModBlockContainer{
 
     public ModBlockElectricFurnace() {
 		super(Material.iron);

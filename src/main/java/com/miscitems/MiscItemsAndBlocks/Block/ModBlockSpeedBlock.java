@@ -1,14 +1,14 @@
 package com.miscitems.MiscItemsAndBlocks.Block;
 
+import com.miscitems.MiscItemsAndBlocks.Block.Utils.ModBlock;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
 
-public class ModBlockSpeedBlock extends Block{
+public class ModBlockSpeedBlock extends ModBlock {
 
 	public ModBlockSpeedBlock() {
 		super(Material.rock);

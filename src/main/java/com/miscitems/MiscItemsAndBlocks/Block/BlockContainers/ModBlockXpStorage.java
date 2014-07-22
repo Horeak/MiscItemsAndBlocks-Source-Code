@@ -1,5 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Block.BlockContainers;
 
+import com.miscitems.MiscItemsAndBlocks.Block.Utils.ModBlockContainer;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Main.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityXpStorage;
@@ -10,7 +11,6 @@ import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.item.EntityItem;
@@ -22,7 +22,7 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class ModBlockXpStorage extends BlockContainer{
+public class ModBlockXpStorage extends ModBlockContainer {
 
 	public ModBlockXpStorage() {
 		super(Material.iron);

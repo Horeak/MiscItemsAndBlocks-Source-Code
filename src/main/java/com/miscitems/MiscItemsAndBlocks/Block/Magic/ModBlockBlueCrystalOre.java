@@ -1,13 +1,13 @@
 package com.miscitems.MiscItemsAndBlocks.Block.Magic;
 
+import com.miscitems.MiscItemsAndBlocks.Block.Utils.ModBlock;
 import com.miscitems.MiscItemsAndBlocks.Main.ModItems;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 
 import java.util.Random;
 
-public class ModBlockBlueCrystalOre extends Block {
+public class ModBlockBlueCrystalOre extends ModBlock {
 
 
     public ModBlockBlueCrystalOre() {

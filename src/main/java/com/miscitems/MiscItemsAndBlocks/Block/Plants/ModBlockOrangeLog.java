@@ -1,11 +1,11 @@
 package com.miscitems.MiscItemsAndBlocks.Block.Plants;
 
+import com.miscitems.MiscItemsAndBlocks.Block.Utils.ModBlockRotatedPillar;
 import com.miscitems.MiscItemsAndBlocks.Main.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockRotatedPillar;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
@@ -16,7 +16,7 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class ModBlockOrangeLog extends BlockRotatedPillar {
+public class ModBlockOrangeLog extends ModBlockRotatedPillar {
 
     public ModBlockOrangeLog() {
 		super(Material.wood);

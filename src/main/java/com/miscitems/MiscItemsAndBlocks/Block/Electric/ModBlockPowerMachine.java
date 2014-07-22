@@ -1,13 +1,13 @@
 package com.miscitems.MiscItemsAndBlocks.Block.Electric;
 
+import com.miscitems.MiscItemsAndBlocks.Block.Utils.ModBlockContainer;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
-public abstract class ModBlockPowerMachine extends BlockContainer{
+public abstract class ModBlockPowerMachine extends ModBlockContainer {
 
 	protected ModBlockPowerMachine(Material par2Material) {
 		super(par2Material);
