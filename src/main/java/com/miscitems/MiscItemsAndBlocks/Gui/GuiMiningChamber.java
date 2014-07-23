@@ -3,7 +3,7 @@ package com.miscitems.MiscItemsAndBlocks.Gui;
 import com.miscitems.MiscItemsAndBlocks.Container.ContainerMiningChamber;
 import com.miscitems.MiscItemsAndBlocks.Network.PacketHandler;
 import com.miscitems.MiscItemsAndBlocks.Network.Server.ServerButtonPacket;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMiningStation;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityMiningStation;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;

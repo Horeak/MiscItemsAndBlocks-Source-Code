@@ -2,7 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.Utils.Laser;
 
 import com.miscitems.MiscItemsAndBlocks.Network.PacketHandler;
 import com.miscitems.MiscItemsAndBlocks.Network.Server.ServerSetBlockPacket;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLaserReciver;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityLaserReciver;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;

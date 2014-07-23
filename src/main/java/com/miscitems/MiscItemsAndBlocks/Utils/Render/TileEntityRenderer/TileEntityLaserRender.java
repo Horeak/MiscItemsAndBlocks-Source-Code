@@ -2,7 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.Utils.Render.TileEntityRenderer;
 
 import com.miscitems.MiscItemsAndBlocks.Utils.Laser.LaserUtil;
 import com.miscitems.MiscItemsAndBlocks.Utils.Render.Entity.LaserRender;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLaser;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityLaser;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
@@ -22,6 +22,8 @@ public class TileEntityLaserRender extends TileEntitySpecialRenderer {
      GL11.glColor4f((float)(laser.Red) / 255, (float)(laser.Green) / 255, (float)(laser.Blue) / 255, 0.4F);
      LaserRender.drawBoundingBox(laserOutline);
      LaserRender.drawBoundingBox(laserOutline.contract(0.12D, 0.12D, 0.12D));
+
+
 
      LaserRender.postLaserRender();
         GL11.glPopMatrix();

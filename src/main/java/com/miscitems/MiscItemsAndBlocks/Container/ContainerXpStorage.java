@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Container;
 
 
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityXpStorage;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Machines.TileEntityXpStorage;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;

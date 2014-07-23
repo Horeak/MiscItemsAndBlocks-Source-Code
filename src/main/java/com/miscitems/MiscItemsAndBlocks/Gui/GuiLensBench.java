@@ -4,7 +4,7 @@ import com.miscitems.MiscItemsAndBlocks.Container.ContainerLensBench;
 import com.miscitems.MiscItemsAndBlocks.GuiObjects.GuiLensBenchButton;
 import com.miscitems.MiscItemsAndBlocks.Network.PacketHandler;
 import com.miscitems.MiscItemsAndBlocks.Network.Server.ServerLensBenchPacketDone;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLensBench;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityLensBench;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiTextField;

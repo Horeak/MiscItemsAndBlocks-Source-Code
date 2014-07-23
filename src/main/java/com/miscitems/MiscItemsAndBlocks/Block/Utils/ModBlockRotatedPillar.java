@@ -8,13 +8,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
-/**
- * Automatic file template
- * File was created 22.07.2014 at 12:33
- * Class is located in package com.miscitems.MiscItemsAndBlocks.Block.Utils
- *
- * @author tm1990
- */
 public abstract class ModBlockRotatedPillar extends ModBlock {
 
     @SideOnly(Side.CLIENT)

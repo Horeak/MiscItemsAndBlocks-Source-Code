@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Item.ItemBlock;
 
 import com.miscitems.MiscItemsAndBlocks.Main.ModBlocks;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityXpStorage;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Machines.TileEntityXpStorage;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;

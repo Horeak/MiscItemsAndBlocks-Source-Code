@@ -3,7 +3,7 @@ package com.miscitems.MiscItemsAndBlocks.Gui;
 import com.miscitems.MiscItemsAndBlocks.Container.ContainerMetalPress;
 import com.miscitems.MiscItemsAndBlocks.Network.PacketHandler;
 import com.miscitems.MiscItemsAndBlocks.Network.Server.ServerButtonPacket;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMetalPress;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityMetalPress;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;

@@ -2,7 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.Block.Decorative;
 
 import com.miscitems.MiscItemsAndBlocks.Block.Utils.ModBlockContainer;
 import com.miscitems.MiscItemsAndBlocks.Main.ModBlocks;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityPaintBlock;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Decorative.TileEntityPaintBlock;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

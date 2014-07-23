@@ -30,7 +30,9 @@ import com.miscitems.MiscItemsAndBlocks.Block.Electric.ModBlockPowerCable;
 import com.miscitems.MiscItemsAndBlocks.Block.Electric.ModBlockSolarPanel;
 import com.miscitems.MiscItemsAndBlocks.Block.Electric.ModBlockTeleporter;
 import com.miscitems.MiscItemsAndBlocks.Block.Electric.ModBlockWindMill;
-import com.miscitems.MiscItemsAndBlocks.Block.Magic.ModBlockBigCrystal;
+import com.miscitems.MiscItemsAndBlocks.Block.Magic.ModBlockEnergyBattery;
+import com.miscitems.MiscItemsAndBlocks.Block.Magic.ModBlockMagicalInfuser;
+import com.miscitems.MiscItemsAndBlocks.Block.Magic.ModBlockPowerCrystal;
 import com.miscitems.MiscItemsAndBlocks.Block.Magic.ModBlockBlueCrystalOre;
 import com.miscitems.MiscItemsAndBlocks.Block.Magic.ModBlockGreenCrystalOre;
 import com.miscitems.MiscItemsAndBlocks.Block.Magic.ModBlockRedCrystalOre;
@@ -50,6 +52,7 @@ import com.miscitems.MiscItemsAndBlocks.Block.Plants.ModBlockOrangePlanks;
 import com.miscitems.MiscItemsAndBlocks.Block.Plants.ModBlockOrangeSapling;
 import com.miscitems.MiscItemsAndBlocks.Block.Plants.ModBlockTomatoPlant;
 import com.miscitems.MiscItemsAndBlocks.Block.Utils.ModBlockEmptyBlock;
+import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockPowerCrystal;
 import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockBox;
 import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockColoredMetalBrick;
 import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockComputer;
@@ -70,6 +73,36 @@ import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockTeleporter;
 import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockTrashBin;
 import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemXpStorageBlock;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.*;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Decorative.TileEntityItemPedestal;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Decorative.TileEntityPaintBlock;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Decorative.TileEntityPillar;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityElectricFurnace;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityEnergyStorageCube;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityGenerator;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityLaser;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityLaserReciver;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityLensBench;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityMetalPress;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityMiningStation;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityPowerCable;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntitySolarPanel;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityTeleporter;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityWindMill;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Inventories.TileEntityCardboardBox;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Inventories.TileEntityStorageBlock;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Magic.TileEntityEnergyBattery;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Magic.TileEntityMagicalInfuser;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityTable;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Machines.TileEntityDisarmTrap;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Machines.TileEntityMill;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Machines.TileEntityOven;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Machines.TileEntitySquezer;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Machines.TileEntityTrashBin;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Machines.TileEntityWirelessItemTrans;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Machines.TileEntityWirelessRedstone;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Machines.TileEntityWorktable;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Machines.TileEntityXpStorage;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Magic.TileEntityPowerCrystal;
 import com.miscitems.MiscItemsAndBlocks.Utils.Config.ConfigUtils;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -128,7 +161,9 @@ public class ModBlocks {
 	public static Block LaserReciver;
 	public static Block GhostBlock;
 
-    public static Block BigCrystal;
+    public static Block PowerCrystal;
+    public static Block EnergyBattery;
+    public static Block MagicalInfuser;
 
     public static Block ColoredBrick;
     public static Block ColoredBrickGlowstone;
@@ -291,9 +326,14 @@ public class ModBlocks {
         ColoredBrickGlowstone = new ModBlockColoredMetalBrick().setBlockTextureName(Reference.Mod_Id + ":MetalBrickGlowstone").setCreativeTab(Main.DecorativeTab).setLightLevel(1.0F);
         Register(ColoredBrickGlowstone, ModItemBlockColoredMetalBrick.class, "ColoredBrickGlowstone");
 
-        BigCrystal = new ModBlockBigCrystal().setCreativeTab(Main.MagicTab);
-        Register(BigCrystal, "BigCrystal", TileEntityBigCrystal.class);
+        PowerCrystal = new ModBlockPowerCrystal().setCreativeTab(Main.MagicTab).setBlockTextureName(Reference.Mod_Id + ":PowerCrystal");
+        Register(PowerCrystal, ModItemBlockPowerCrystal.class, "PowerCrystal", TileEntityPowerCrystal.class);
 
+        EnergyBattery = new ModBlockEnergyBattery().setCreativeTab(Main.MagicTab).setBlockTextureName(Reference.Mod_Id + ":EnergyBattery");
+        Register(EnergyBattery, "EnergyBattery", TileEntityEnergyBattery.class);
+
+        MagicalInfuser = new ModBlockMagicalInfuser().setCreativeTab(Main.MagicTab);
+        Register(MagicalInfuser, "MagicalInfuser", TileEntityMagicalInfuser.class);
 
 
 

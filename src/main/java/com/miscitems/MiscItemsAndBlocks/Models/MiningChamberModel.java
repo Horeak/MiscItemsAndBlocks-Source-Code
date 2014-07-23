@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Models;
 
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMiningStation;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityMiningStation;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;

@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.GuiObjects.Slots;
 
 import com.miscitems.MiscItemsAndBlocks.Main.ModItems;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLensBench;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityLensBench;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 

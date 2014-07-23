@@ -20,7 +20,7 @@ public class WorldGenRedCrystalOre extends WorldGenerator {
                 for(int g = 0; g < 3; g++) {
                     if (ConfigUtils.IsBlockEnabled(ModBlocks.RedCrystalOre)) {
                         int firstBlockXCoord = x + random.nextInt(16);
-                        int firstBlockYCoord = random.nextInt(15);
+                        int firstBlockYCoord = random.nextInt(30);
                         int firstBlockZCoord = z + random.nextInt(16);
 
 

@@ -21,7 +21,7 @@ public class WorldGenGreenCrystalOre extends WorldGenerator {
             for(int h = 0; h < 3; h++) {
                 if (ConfigUtils.IsBlockEnabled(ModBlocks.GreenCrystalOre)) {
                     int firstBlockXCoord = x + random.nextInt(16);
-                    int firstBlockYCoord = random.nextInt(24);
+                    int firstBlockYCoord = random.nextInt(35);
                     int firstBlockZCoord = z + random.nextInt(16);
 
 

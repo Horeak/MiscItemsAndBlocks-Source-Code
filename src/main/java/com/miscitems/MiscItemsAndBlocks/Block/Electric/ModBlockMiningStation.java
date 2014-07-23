@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Block.Electric;
 
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMiningStation;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityMiningStation;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

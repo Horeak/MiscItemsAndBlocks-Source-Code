@@ -2,7 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.Block.Decorative;
 
 import com.miscitems.MiscItemsAndBlocks.Block.Utils.ModBlockContainer;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityItemPedestal;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Decorative.TileEntityItemPedestal;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import net.minecraft.block.Block;

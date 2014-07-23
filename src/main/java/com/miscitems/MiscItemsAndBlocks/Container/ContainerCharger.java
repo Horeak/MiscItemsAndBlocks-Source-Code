@@ -3,7 +3,7 @@ package com.miscitems.MiscItemsAndBlocks.Container;
 import com.miscitems.MiscItemsAndBlocks.GuiObjects.Slots.ModSlotArmor;
 import com.miscitems.MiscItemsAndBlocks.GuiObjects.Slots.SlotPowerStorage;
 import com.miscitems.MiscItemsAndBlocks.GuiObjects.Slots.SlotUpgrades;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityEnergyStorageCube;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityEnergyStorageCube;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;

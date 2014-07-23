@@ -2,7 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.Block.BlockContainers;
 
 import com.miscitems.MiscItemsAndBlocks.Block.Utils.ModBlockContainer;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMill;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Machines.TileEntityMill;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import net.minecraft.block.Block;
@@ -39,8 +39,7 @@ public class ModBlockMill extends ModBlockContainer {
     }
 
 	@Override
-	public TileEntity createNewTileEntity(World world, int i) {
-		return new TileEntityMill();
+	public TileEntity createNewTileEntity(World world, int i) {		return new TileEntityMill();
 	}
 	
     public IIcon getIcon(int par1, int par2)

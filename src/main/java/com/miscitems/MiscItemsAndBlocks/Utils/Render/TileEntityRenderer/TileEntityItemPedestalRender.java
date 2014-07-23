@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Utils.Render.TileEntityRenderer;
 
 import com.miscitems.MiscItemsAndBlocks.Models.ItemPedestalModel;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityItemPedestal;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Decorative.TileEntityItemPedestal;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.entity.RenderItem;

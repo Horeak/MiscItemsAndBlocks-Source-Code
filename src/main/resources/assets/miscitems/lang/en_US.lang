@@ -52,6 +52,9 @@ tile.redcrystalore.name=Red Crystal ore
 tile.coloredbrick.name=Metal brick
 tile.coloredbrickglowstone.name=Glowstone Metal brick
 tile.gamepart.name=Game piece
+tile.powercrystal.name=Power Crystal
+tile.energybattery.name=Energy Battery
+tile.magicalinfuser.name=Magical Infuser
 
 
 //All items

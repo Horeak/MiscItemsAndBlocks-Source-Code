@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Utils.Render.TileEntityRenderer;
 
 import com.miscitems.MiscItemsAndBlocks.Models.MetalPressModel;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMetalPress;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityMetalPress;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;

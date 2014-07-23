@@ -5,7 +5,7 @@ import com.miscitems.MiscItemsAndBlocks.Container.ContainerXpStorage;
 import com.miscitems.MiscItemsAndBlocks.GuiObjects.GuiTipButton;
 import com.miscitems.MiscItemsAndBlocks.Network.PacketHandler;
 import com.miscitems.MiscItemsAndBlocks.Network.Server.ServerButtonPacket;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityXpStorage;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Machines.TileEntityXpStorage;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Messages;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;

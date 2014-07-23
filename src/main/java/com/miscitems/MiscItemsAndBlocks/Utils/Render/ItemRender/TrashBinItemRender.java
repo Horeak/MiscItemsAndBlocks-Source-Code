@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Utils.Render.ItemRender;
 
 import com.miscitems.MiscItemsAndBlocks.Models.TrashBinModel;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityTrashBin;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Machines.TileEntityTrashBin;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;

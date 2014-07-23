@@ -3,7 +3,7 @@ package com.miscitems.MiscItemsAndBlocks.Block.BlockContainers;
 import com.miscitems.MiscItemsAndBlocks.Block.Utils.ModBlockContainer;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Main.ModBlocks;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityStorageBlock;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Inventories.TileEntityStorageBlock;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import net.minecraft.block.Block;

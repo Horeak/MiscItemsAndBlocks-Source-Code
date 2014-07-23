@@ -2,7 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.Block.Electric;
 
 import com.miscitems.MiscItemsAndBlocks.Block.Utils.ModBlockContainer;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntitySolarPanel;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntitySolarPanel;
 import com.miscitems.MiscItemsAndBlocks.Utils.Config.ConfigUtils;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.common.network.internal.FMLNetworkHandler;

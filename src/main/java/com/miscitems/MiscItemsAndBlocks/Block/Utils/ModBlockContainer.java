@@ -6,13 +6,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-/**
- * Automatic file template
- * File was created 22.07.2014 at 12:19
- * Class is located in package com.miscitems.MiscItemsAndBlocks.Block.Utils
- *
- * @author tm1990
- */
+
 public abstract class ModBlockContainer extends ModBlock implements ITileEntityProvider {
     protected ModBlockContainer(Material p_i45394_1_) {
         super(p_i45394_1_);

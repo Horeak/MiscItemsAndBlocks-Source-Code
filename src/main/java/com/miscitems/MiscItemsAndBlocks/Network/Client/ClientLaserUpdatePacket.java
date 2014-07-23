@@ -2,7 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.Network.Client;
 
 
 import com.miscitems.MiscItemsAndBlocks.Network.AbstractPacket;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLaser;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityLaser;
 import cpw.mods.fml.relauncher.Side;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;

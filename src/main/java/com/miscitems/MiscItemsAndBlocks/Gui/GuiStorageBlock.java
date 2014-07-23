@@ -2,7 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.Gui;
 
 import com.miscitems.MiscItemsAndBlocks.Container.ContainerStorageBlock;
 import com.miscitems.MiscItemsAndBlocks.Container.ModGuiContainer;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityStorageBlock;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Inventories.TileEntityStorageBlock;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;

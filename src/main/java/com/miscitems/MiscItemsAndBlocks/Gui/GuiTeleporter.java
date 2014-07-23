@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Gui;
 
 import com.miscitems.MiscItemsAndBlocks.Container.ContainerTeleporter;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityTeleporter;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityTeleporter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.gui.inventory.GuiContainer;

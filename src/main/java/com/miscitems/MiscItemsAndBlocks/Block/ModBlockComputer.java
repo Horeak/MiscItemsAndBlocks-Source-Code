@@ -31,6 +31,7 @@ public class ModBlockComputer extends ModBlockContainer {
 
 	@Override
 	public TileEntity createNewTileEntity(World world, int i) {
+
 		return new TileEntityComputer();
 	}
 	

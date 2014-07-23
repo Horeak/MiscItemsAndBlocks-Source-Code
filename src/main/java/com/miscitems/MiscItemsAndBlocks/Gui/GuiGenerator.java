@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Gui;
 
 import com.miscitems.MiscItemsAndBlocks.Container.ContainerGenerator;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityGenerator;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityGenerator;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;

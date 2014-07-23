@@ -3,7 +3,7 @@ package com.miscitems.MiscItemsAndBlocks.Container;
 import com.miscitems.MiscItemsAndBlocks.GuiObjects.Slots.ModSlotChipSlot;
 import com.miscitems.MiscItemsAndBlocks.GuiObjects.Slots.ModSlotChipSlotOut;
 import com.miscitems.MiscItemsAndBlocks.GuiObjects.Slots.ModSlotOutput;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityWirelessItemTrans;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Machines.TileEntityWirelessItemTrans;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;

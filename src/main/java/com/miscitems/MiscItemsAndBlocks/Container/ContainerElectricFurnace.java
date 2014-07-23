@@ -2,7 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.Container;
 
 import com.miscitems.MiscItemsAndBlocks.GuiObjects.Slots.SlotOutput;
 import com.miscitems.MiscItemsAndBlocks.GuiObjects.Slots.SlotPowerStorage;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityElectricFurnace;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityElectricFurnace;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;

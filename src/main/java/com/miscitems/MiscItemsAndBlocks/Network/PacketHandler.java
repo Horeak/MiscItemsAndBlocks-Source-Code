@@ -41,6 +41,8 @@ public class PacketHandler {
         Main.handler.RegisterPacket(20, PacketTileUpdate.class);
         Main.handler.RegisterPacket(21, PacketTileWithItemUpdate.class);
 
+        Main.handler.RegisterPacket(22, MagicReciveParticleEffects.class);
+
     }
 
     public static Packet GetPacket(AbstractPacket packet){

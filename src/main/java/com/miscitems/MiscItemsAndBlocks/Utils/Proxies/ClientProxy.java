@@ -5,27 +5,28 @@ import com.miscitems.MiscItemsAndBlocks.Entity.EntityPowerArrow;
 import com.miscitems.MiscItemsAndBlocks.Entity.EntitySilverArrow;
 import com.miscitems.MiscItemsAndBlocks.Event.GuiListener;
 import com.miscitems.MiscItemsAndBlocks.Main.ModBlocks;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.ModTileEntity;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityBigCrystal;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Utils.ModTileEntity;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Magic.TileEntityPowerCrystal;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityComputer;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityDiceHolder;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityDisarmTrap;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Machines.TileEntityDisarmTrap;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityGamePart;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityItemPedestal;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLaser;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLaserReciver;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMetalPress;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityMiningStation;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityPillar;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityPowerCable;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Decorative.TileEntityItemPedestal;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityLaser;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityLaserReciver;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityMetalPress;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityMiningStation;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Decorative.TileEntityPillar;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityPowerCable;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityTable;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityTeleporter;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityTrashBin;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityTeleporter;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Machines.TileEntityTrashBin;
 import com.miscitems.MiscItemsAndBlocks.Utils.Config.ConfigUtils;
 import com.miscitems.MiscItemsAndBlocks.Utils.ItemHelper;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Colours;
 import com.miscitems.MiscItemsAndBlocks.Utils.Render.Entity.PowerArrowRender;
 import com.miscitems.MiscItemsAndBlocks.Utils.Render.Entity.SilverArrowRender;
+import com.miscitems.MiscItemsAndBlocks.Utils.Render.ItemRender.PowerCrystalItemRender;
 import com.miscitems.MiscItemsAndBlocks.Utils.Render.ItemRender.ComputerItemRender;
 import com.miscitems.MiscItemsAndBlocks.Utils.Render.ItemRender.DiceHolderItemRender;
 import com.miscitems.MiscItemsAndBlocks.Utils.Render.ItemRender.DisarmTrapItemRender;
@@ -41,7 +42,7 @@ import com.miscitems.MiscItemsAndBlocks.Utils.Render.ItemRender.PowerCableItemRe
 import com.miscitems.MiscItemsAndBlocks.Utils.Render.ItemRender.TableItemRender;
 import com.miscitems.MiscItemsAndBlocks.Utils.Render.ItemRender.TeleporterItemRender;
 import com.miscitems.MiscItemsAndBlocks.Utils.Render.ItemRender.TrashBinItemRender;
-import com.miscitems.MiscItemsAndBlocks.Utils.Render.TileEntityRenderer.TileEntityBigCrystalRender;
+import com.miscitems.MiscItemsAndBlocks.Utils.Render.TileEntityRenderer.TileEntityPowerCrystalRender;
 import com.miscitems.MiscItemsAndBlocks.Utils.Render.TileEntityRenderer.TileEntityBinRender;
 import com.miscitems.MiscItemsAndBlocks.Utils.Render.TileEntityRenderer.TileEntityComputerRender;
 import com.miscitems.MiscItemsAndBlocks.Utils.Render.TileEntityRenderer.TileEntityDiceHolderRender;
@@ -115,7 +116,7 @@ public class ClientProxy extends ServerProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMetalPress.class, new TileEntityMetalPressRender());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityLaserReciver.class, new TileEntityLaserReciverRender());
 
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBigCrystal.class, new TileEntityBigCrystalRender());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPowerCrystal.class, new TileEntityPowerCrystalRender());
         
         
         RenderingRegistry.registerEntityRenderingHandler(EntitySilverArrow.class, new SilverArrowRender());
@@ -144,12 +145,16 @@ public class ClientProxy extends ServerProxy {
         MinecraftForgeClient.registerItemRenderer(new ItemStack(ModBlocks.MetalPress).getItem(), new ItemRenderMetalPress());
         MinecraftForgeClient.registerItemRenderer(new ItemStack(ModBlocks.LaserReciver).getItem(), new LaserReciverItemRender());
 
+            MinecraftForgeClient.registerItemRenderer(new ItemStack(ModBlocks.PowerCrystal).getItem(), new PowerCrystalItemRender());
+
         }
 
 
         MinecraftForgeClient.registerItemRenderer(new ItemStack(ModBlocks.ColoredBrick).getItem(), new MetalBrickItemRender());
         MinecraftForgeClient.registerItemRenderer(new ItemStack(ModBlocks.ColoredBrickGlowstone).getItem(), new MetalBrickItemRender());
         MinecraftForgeClient.registerItemRenderer(new ItemStack(ModBlocks.PaintBlock).getItem(), new PaintBlockItemRender());
+
+
 }
     
         

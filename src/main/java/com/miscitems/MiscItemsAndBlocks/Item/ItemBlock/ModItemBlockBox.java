@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Item.ItemBlock;
 
 import com.miscitems.MiscItemsAndBlocks.Main.ModBlocks;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityCardboardBox;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Inventories.TileEntityCardboardBox;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.player.EntityPlayer;

@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Gui;
 
 import com.miscitems.MiscItemsAndBlocks.Container.ContainerSolarPanel;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntitySolarPanel;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntitySolarPanel;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.gui.inventory.GuiContainer;

@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Block.Decorative;
 
 import com.miscitems.MiscItemsAndBlocks.Block.Utils.ModBlockContainer;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityPillar;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Decorative.TileEntityPillar;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;

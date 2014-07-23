@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Utils.Render.TileEntityRenderer;
 
 import com.miscitems.MiscItemsAndBlocks.Models.TeleporterModel;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityTeleporter;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityTeleporter;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;

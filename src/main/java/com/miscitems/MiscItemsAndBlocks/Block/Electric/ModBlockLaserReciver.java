@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Block.Electric;
 
 import com.miscitems.MiscItemsAndBlocks.Block.Utils.ModBlockContainer;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityLaserReciver;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityLaserReciver;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
