@@ -36,6 +36,8 @@ public class Crafting {
         MagicUtils.RegisterInfusionRecipe(new ItemStack(ModItems.CrystalInfusedMetal), new ItemStack(Items.iron_ingot), new Object[]{ModItems.BlueCrystal, ModItems.BlueCrystal, ModItems.BlueCrystal}, 10);
         MagicUtils.RegisterInfusionRecipe(new ItemStack(ModItems.CrystalInfusedGem), new ItemStack(Items.diamond), new Object[]{ModItems.BlueCrystal, ModItems.BlueCrystal, ModItems.BlueCrystal, ModItems.BlueCrystal, ModItems.BlueCrystal}, 30);
         MagicUtils.RegisterInfusionRecipe(new ItemStack(ModItems.CrystalSilk, 3), new ItemStack(Items.string), new Object[]{Items.leather, Items.leather, ModItems.BlueCrystal}, 5);
+        MagicUtils.RegisterInfusionRecipe(new ItemStack(ModBlocks.InfusedMetalBlock), new ItemStack(Blocks.iron_block), new Object[]{ModItems.BlueCrystal, ModItems.BlueCrystal, ModItems.BlueCrystal, ModItems.BlueCrystal, ModItems.BlueCrystal, ModItems.BlueCrystal, ModItems.BlueCrystal, ModItems.BlueCrystal}, 90);
+        MagicUtils.RegisterInfusionRecipe(new ItemStack(ModBlocks.InfusedGemBlock), new ItemStack(Blocks.diamond_block), new Object[]{ModItems.BlueCrystal, ModItems.BlueCrystal, ModItems.BlueCrystal, ModItems.BlueCrystal, ModItems.BlueCrystal, ModItems.BlueCrystal, ModItems.BlueCrystal, ModItems.BlueCrystal}, 90);
 
         MagicUtils.RegisterInfusionRecipe(new ItemStack(ModItems.ChargedCrystal), new ItemStack(ModItems.RedCrystal), new Object[]{Items.glowstone_dust, Items.glowstone_dust, Items.glowstone_dust, Items.glowstone_dust, Items.redstone, Items.redstone, Items.redstone, Items.redstone}, 50);
         MagicUtils.RegisterInfusionRecipe(new ItemStack(ModBlocks.PowerCrystal), new ItemStack(ModItems.ChargedCrystal), new Object[]{ModItems.RedCrystal, ModItems.GreenCrystal, ModItems.BlueCrystal, ModItems.BlueCrystal}, 70);
@@ -54,6 +56,11 @@ public class Crafting {
         AddRecipe(new ItemStack(ModItems.InvisibilityCore,  1, 100), new Object[]{"DGC", "BRB", "CGD", 'D', Items.diamond, 'G', ModItems.GreenCrystal, 'B', ModItems.BlueCrystal, 'C', new ItemStack(ModItems.ChargedCrystal,1,0), 'R', ModItems.RedCrystal});
 
         AddRecipe(new ItemStack(ModBlocks.EnergyBattery), new Object[]{"GMG", "MCM", "GMG", 'G', Items.gold_ingot, 'M', ModItems.CrystalInfusedMetal, 'C', ModItems.CrystalInfusedGem});
+        AddRecipe(new ItemStack(ModBlocks.InfusedGemBlock), new Object[]{"XXX", "XXX", "XXX", 'X', ModItems.CrystalInfusedGem });
+        AddRecipe(new ItemStack(ModBlocks.InfusedMetalBlock), new Object[]{"XXX", "XXX", "XXX", 'X', ModItems.CrystalInfusedMetal });
+
+        AddShapelessRecipe(new ItemStack(ModItems.CrystalInfusedGem, 9), new Object[]{ModBlocks.InfusedGemBlock});
+        AddShapelessRecipe(new ItemStack(ModItems.CrystalInfusedMetal, 9), new Object[]{ModBlocks.InfusedMetalBlock});
 
         AddRecipe(new ItemStack(ModItems.ChargedCrystal, 1, 50), new Object[]{"RBG", "BCB", "GBR", 'R', Items.redstone, 'G', Items.glowstone_dust, 'B', ModItems.BlueCrystal, 'C', ModItems.GreenCrystal});
         AddRecipe(new ItemStack(ModItems.ChargedCrystal, 1, 50), new Object[]{"GBR", "BCB", "RBG", 'R', Items.redstone, 'G', Items.glowstone_dust, 'B', ModItems.BlueCrystal, 'C', ModItems.GreenCrystal});

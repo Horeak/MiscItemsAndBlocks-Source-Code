@@ -55,6 +55,8 @@ tile.gamepart.name=Game piece
 tile.powercrystal.name=Power Crystal
 tile.energybattery.name=Energy Battery
 tile.magicalinfuser.name=Magical Infuser
+tile.infusedgemblock.name=Crystal Infused Gem Block
+tile.infusedmetalblock.name=Crystal Infused Metal Block
 
 
 //All items

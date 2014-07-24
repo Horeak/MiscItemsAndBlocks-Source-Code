@@ -165,6 +165,7 @@ public class ModBlocks {
     public static Block PowerCrystal;
     public static Block EnergyBattery;
     public static Block MagicalInfuser;
+    public static Block InfusedGemBlock, InfusedMetalBlock;
 
     public static Block ColoredBrick;
     public static Block ColoredBrickGlowstone;
@@ -335,6 +336,12 @@ public class ModBlocks {
 
         MagicalInfuser = new ModBlockMagicalInfuser().setCreativeTab(Main.MagicTab);
         Register(MagicalInfuser, "MagicalInfuser", TileEntityMagicalInfuser.class);
+
+        InfusedGemBlock = new ModBlockEmptyBlock().setCreativeTab(Main.MagicTab).setBlockTextureName(Reference.Mod_Id + ":InfusedGemBlock").setHardness(2F);
+        Register(InfusedGemBlock, "InfusedGemBlock");
+
+        InfusedMetalBlock = new ModBlockEmptyBlock().setCreativeTab(Main.MagicTab).setBlockTextureName(Reference.Mod_Id + ":InfusedMetalBlock").setHardness(2F);
+        Register(InfusedMetalBlock, "InfusedMetalBlock");
 
 
 
