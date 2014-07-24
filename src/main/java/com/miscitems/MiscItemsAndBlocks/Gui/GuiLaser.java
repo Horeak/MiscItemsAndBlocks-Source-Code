@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Gui;
 
-import com.miscitems.MiscItemsAndBlocks.Container.ContainerLaser;
+import com.miscitems.MiscItemsAndBlocks.Container.Electric.ContainerLaser;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityLaser;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;

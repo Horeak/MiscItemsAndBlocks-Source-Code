@@ -25,7 +25,7 @@ public class WorldGenGreenCrystalOre extends WorldGenerator {
                     int firstBlockZCoord = z + random.nextInt(16);
 
 
-                    (new WorldGenMinable(ModBlocks.GreenCrystalOre, 3)).generate(world, random, firstBlockXCoord, firstBlockYCoord, firstBlockZCoord);
+                    (new WorldGenMinable(ModBlocks.GreenCrystalOre, 5)).generate(world, random, firstBlockXCoord, firstBlockYCoord, firstBlockZCoord);
 
                     return true;
                 } else {

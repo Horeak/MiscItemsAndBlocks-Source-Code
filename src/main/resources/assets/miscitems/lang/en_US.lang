@@ -122,19 +122,21 @@ item.turbine.name=Turbine
 item.rawpenguinmeat.name=Raw Penguin Meat
 item.cookedpenguin.name=Cooked Penguin Meat
 item.guidebook.name=Guide Book
-item.invishelmet.name=Invisibility Hood
-item.invischestplate.name=Invisibility Robes
-item.invisleggings.name=Invisibility Helmet Leggings
-item.invisboots.name=Invisibility Helmet Boots
+item.invishelmet.name=Cyrstal Infused Hood
+item.invischestplate.name=Cyrstal Infused Robes
+item.invisleggings.name=Cyrstal Infused Leggings
+item.invisboots.name=Cyrstal Infused Boots
 item.bluecrystal.name=Blue Crystal
 item.greencrystal.name=Green Crystal
 item.redcrystal.name=Red Crystal
 item.chargedcrystal.name=Charged Crystal
 item.invisibilitycore.name=Invisibility Core
-item.crystalsilk.name=Crystal Silk
+item.crystalsilk.name=Crystal Infused Silk
 item.crystalblade.name=Crystal Blade
 item.crystalpickaxe.name=Crystal Pickaxe
 powerupgrade.name=Power Upgrade
+item.crystalinfusedmetal.name=Crystal Infused Metal
+item.crystalinfusedgem.name=Crystal Infused Gem
 
 
 //Gui Names

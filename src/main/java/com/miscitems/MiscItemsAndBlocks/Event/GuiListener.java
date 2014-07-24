@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Event;
 
-import com.miscitems.MiscItemsAndBlocks.Gui.GuiOverlayInfoScreen;
+import com.miscitems.MiscItemsAndBlocks.Gui.Electric.GuiOverlayInfoScreen;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;

@@ -84,32 +84,31 @@ public class ModBlockPowerCrystal extends ModBlockContainer {
                 SetEmptyBlock(World, x, y + 2, z);
                 SetEmptyBlock(World, x, y + 3, z);
 
-                super.breakBlock(World, x, y, z, id, meta);
 
             } else if (tile.Middle) {
                 SetEmptyBlock(World, x, y + 1, z);
                 SetEmptyBlock(World, x, y + 2, z);
                 SetEmptyBlock(World, x, y - 1, z);
 
-                super.breakBlock(World, x, y, z, id, meta);
 
             } else if (tile.Top) {
                 SetEmptyBlock(World, x, y - 1, z);
                 SetEmptyBlock(World, x, y - 2, z);
                 SetEmptyBlock(World, x, y + 1, z);
 
-                super.breakBlock(World, x, y, z, id, meta);
 
             } else if (!tile.Bottom && !tile.Middle) {
                 SetEmptyBlock(World, x, y - 1, z);
                 SetEmptyBlock(World, x, y - 2, z);
                 SetEmptyBlock(World, x, y - 3, z);
 
-                super.breakBlock(World, x, y, z, id, meta);
 
             }
 
         }
+
+
+        super.breakBlock(World, x, y, z, id, meta);
 
     }
 

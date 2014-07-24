@@ -1,6 +1,43 @@
 package com.miscitems.MiscItemsAndBlocks.Gui;
 
 import com.miscitems.MiscItemsAndBlocks.Container.*;
+import com.miscitems.MiscItemsAndBlocks.Container.Electric.ContainerCharger;
+import com.miscitems.MiscItemsAndBlocks.Container.Electric.ContainerElectricFurnace;
+import com.miscitems.MiscItemsAndBlocks.Container.Electric.ContainerGenerator;
+import com.miscitems.MiscItemsAndBlocks.Container.Electric.ContainerLaser;
+import com.miscitems.MiscItemsAndBlocks.Container.Electric.ContainerLensBench;
+import com.miscitems.MiscItemsAndBlocks.Container.Electric.ContainerMetalPress;
+import com.miscitems.MiscItemsAndBlocks.Container.Electric.ContainerMiningChamber;
+import com.miscitems.MiscItemsAndBlocks.Container.Electric.ContainerSolarPanel;
+import com.miscitems.MiscItemsAndBlocks.Container.Electric.ContainerTeleporter;
+import com.miscitems.MiscItemsAndBlocks.Container.Electric.ContainerWirelessItemTransfer;
+import com.miscitems.MiscItemsAndBlocks.Container.Electric.ContainerWirelessRedstone;
+import com.miscitems.MiscItemsAndBlocks.Container.Machines.ContainerCraftingInv;
+import com.miscitems.MiscItemsAndBlocks.Container.Machines.ContainerMill;
+import com.miscitems.MiscItemsAndBlocks.Container.Machines.ContainerPizzaOven;
+import com.miscitems.MiscItemsAndBlocks.Container.Machines.ContainerSquezer;
+import com.miscitems.MiscItemsAndBlocks.Container.Machines.ContainerXpStorage;
+import com.miscitems.MiscItemsAndBlocks.Container.Magic.ContainerMagicalInfuser;
+import com.miscitems.MiscItemsAndBlocks.Gui.Computer.OldGuis.GuiChat;
+import com.miscitems.MiscItemsAndBlocks.Gui.Computer.OldGuis.GuiComputerScreen;
+import com.miscitems.MiscItemsAndBlocks.Gui.Computer.OldGuis.GuiGame1Select;
+import com.miscitems.MiscItemsAndBlocks.Gui.Computer.OldGuis.GuiPlayerFinder;
+import com.miscitems.MiscItemsAndBlocks.Gui.Electric.GuiCharger;
+import com.miscitems.MiscItemsAndBlocks.Gui.Electric.GuiElectricFurnace;
+import com.miscitems.MiscItemsAndBlocks.Gui.Electric.GuiGenerator;
+import com.miscitems.MiscItemsAndBlocks.Gui.Electric.GuiLensBench;
+import com.miscitems.MiscItemsAndBlocks.Gui.Electric.GuiMetalPress;
+import com.miscitems.MiscItemsAndBlocks.Gui.Electric.GuiMill;
+import com.miscitems.MiscItemsAndBlocks.Gui.Electric.GuiMiningChamber;
+import com.miscitems.MiscItemsAndBlocks.Gui.Electric.GuiSolarPanel;
+import com.miscitems.MiscItemsAndBlocks.Gui.Electric.GuiSquezer;
+import com.miscitems.MiscItemsAndBlocks.Gui.Electric.GuiTeleporter;
+import com.miscitems.MiscItemsAndBlocks.Gui.Electric.GuiWirelessItemTransfer;
+import com.miscitems.MiscItemsAndBlocks.Gui.Electric.GuiWirelessRedstone;
+import com.miscitems.MiscItemsAndBlocks.Gui.Machines.GuiPizzaOven;
+import com.miscitems.MiscItemsAndBlocks.Gui.Machines.GuiTrashBin;
+import com.miscitems.MiscItemsAndBlocks.Gui.Machines.GuiXpStorage;
+import com.miscitems.MiscItemsAndBlocks.Gui.Magic.GuiMagicalInfuser;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.*;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityElectricFurnace;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityEnergyStorageCube;
@@ -21,6 +58,7 @@ import com.miscitems.MiscItemsAndBlocks.TileEntity.Machines.TileEntityWirelessIt
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Machines.TileEntityWirelessRedstone;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Machines.TileEntityWorktable;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Machines.TileEntityXpStorage;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Magic.TileEntityMagicalInfuser;
 import cpw.mods.fml.common.network.IGuiHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -144,7 +182,11 @@ public class GuiHandler implements IGuiHandler{
         	return new ContainerGenerator(player.inventory, (TileEntityGenerator) tile_entity);
         }
 
-        
+
+        if(tile_entity instanceof TileEntityMagicalInfuser){
+
+            return new ContainerMagicalInfuser(player.inventory, (TileEntityMagicalInfuser) tile_entity);
+        }
         
         
         return null;
@@ -281,6 +323,11 @@ public class GuiHandler implements IGuiHandler{
         if(tile_entity instanceof TileEntityMiningStation){
         	
         	return new GuiMiningChamber(player.inventory, (TileEntityMiningStation) tile_entity);
+        }
+
+        if(tile_entity instanceof TileEntityMagicalInfuser){
+
+            return new GuiMagicalInfuser(player.inventory, (TileEntityMagicalInfuser) tile_entity);
         }
 
 

@@ -7,6 +7,7 @@ import com.miscitems.MiscItemsAndBlocks.Book.BookUtils;
 import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemPowerTool;
 import com.miscitems.MiscItemsAndBlocks.Main.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.Main.ModItems;
+import com.miscitems.MiscItemsAndBlocks.Utils.MagicUtils.MagicUtils;
 import com.miscitems.MiscItemsAndBlocks.Utils.RecipeUtils.CrystalToolUpgradeRecipe;
 import com.miscitems.MiscItemsAndBlocks.Utils.RecipeUtils.ItemRechargeRecipe;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -30,19 +31,59 @@ public class Crafting {
 	public static void RegisterRecipes(){
 
 
+        //Infusion Recipes
+        //MagicUtils.RegisterInfusionRecipe(new ItemStack(), new ItemStack(), new Object[]{}, 0);
+        MagicUtils.RegisterInfusionRecipe(new ItemStack(ModItems.CrystalInfusedMetal), new ItemStack(Items.iron_ingot), new Object[]{ModItems.BlueCrystal, ModItems.BlueCrystal, ModItems.BlueCrystal}, 10);
+        MagicUtils.RegisterInfusionRecipe(new ItemStack(ModItems.CrystalInfusedGem), new ItemStack(Items.diamond), new Object[]{ModItems.BlueCrystal, ModItems.BlueCrystal, ModItems.BlueCrystal, ModItems.BlueCrystal, ModItems.BlueCrystal}, 30);
+        MagicUtils.RegisterInfusionRecipe(new ItemStack(ModItems.CrystalSilk, 3), new ItemStack(Items.string), new Object[]{Items.leather, Items.leather, ModItems.BlueCrystal}, 5);
 
+        MagicUtils.RegisterInfusionRecipe(new ItemStack(ModItems.ChargedCrystal), new ItemStack(ModItems.RedCrystal), new Object[]{Items.glowstone_dust, Items.glowstone_dust, Items.glowstone_dust, Items.glowstone_dust, Items.redstone, Items.redstone, Items.redstone, Items.redstone}, 50);
+        MagicUtils.RegisterInfusionRecipe(new ItemStack(ModBlocks.PowerCrystal), new ItemStack(ModItems.ChargedCrystal), new Object[]{ModItems.RedCrystal, ModItems.GreenCrystal, ModItems.BlueCrystal, ModItems.BlueCrystal}, 70);
+
+        MagicUtils.RegisterInfusionRecipe(new ItemStack(ModItems.CrystalPickaxe), new ItemStack(Items.diamond_pickaxe), new Object[]{ModItems.CrystalInfusedMetal, ModItems.CrystalInfusedMetal, ModItems.CrystalInfusedGem, ModItems.GreenCrystal, ModItems.GreenCrystal, ModItems.RedCrystal, ModItems.RedCrystal, ModItems.ChargedCrystal}, 500);
+        MagicUtils.RegisterInfusionRecipe(new ItemStack(ModItems.CrystalBlade), new ItemStack(Items.diamond_sword), new Object[]{ModItems.CrystalInfusedMetal, ModItems.CrystalInfusedMetal, ModItems.CrystalInfusedGem, ModItems.GreenCrystal, ModItems.GreenCrystal, ModItems.RedCrystal, ModItems.RedCrystal, ModItems.ChargedCrystal}, 500);
+
+        MagicUtils.RegisterInfusionRecipe(new ItemStack(ModItems.InvisHelmet), new ItemStack(Items.leather_helmet), new Object[]{ModItems.CrystalSilk, ModItems.CrystalSilk, ModItems.CrystalSilk, ModItems.CrystalSilk, ModItems.CrystalSilk, ModItems.CrystalSilk, ModItems.CrystalSilk, ModItems.CrystalSilk}, 80);
+        MagicUtils.RegisterInfusionRecipe(new ItemStack(ModItems.InvisChestPlate), new ItemStack(Items.leather_chestplate), new Object[]{ModItems.CrystalSilk, ModItems.CrystalSilk, ModItems.CrystalSilk, ModItems.CrystalSilk, ModItems.CrystalSilk, ModItems.CrystalSilk, ModItems.CrystalSilk, ModItems.CrystalSilk}, 80);
+        MagicUtils.RegisterInfusionRecipe(new ItemStack(ModItems.InvisLeggings), new ItemStack(Items.leather_leggings), new Object[]{ModItems.CrystalSilk, ModItems.CrystalSilk, ModItems.CrystalSilk, ModItems.CrystalSilk, ModItems.CrystalSilk, ModItems.CrystalSilk, ModItems.CrystalSilk, ModItems.CrystalSilk}, 80);
+        MagicUtils.RegisterInfusionRecipe(new ItemStack(ModItems.InvisBoots), new ItemStack(Items.leather_boots), new Object[]{ModItems.CrystalSilk, ModItems.CrystalSilk, ModItems.CrystalSilk, ModItems.CrystalSilk, ModItems.CrystalSilk, ModItems.CrystalSilk, ModItems.CrystalSilk, ModItems.CrystalSilk}, 80);
+
+
+
+        //Magic Recipes
+        AddRecipe(new ItemStack(ModItems.InvisibilityCore,  1, 100), new Object[]{"DGC", "BRB", "CGD", 'D', Items.diamond, 'G', ModItems.GreenCrystal, 'B', ModItems.BlueCrystal, 'C', new ItemStack(ModItems.ChargedCrystal,1,0), 'R', ModItems.RedCrystal});
+
+        AddRecipe(new ItemStack(ModBlocks.EnergyBattery), new Object[]{"GMG", "MCM", "GMG", 'G', Items.gold_ingot, 'M', ModItems.CrystalInfusedMetal, 'C', ModItems.CrystalInfusedGem});
+
+        AddRecipe(new ItemStack(ModItems.ChargedCrystal, 1, 50), new Object[]{"RBG", "BCB", "GBR", 'R', Items.redstone, 'G', Items.glowstone_dust, 'B', ModItems.BlueCrystal, 'C', ModItems.GreenCrystal});
+        AddRecipe(new ItemStack(ModItems.ChargedCrystal, 1, 50), new Object[]{"GBR", "BCB", "RBG", 'R', Items.redstone, 'G', Items.glowstone_dust, 'B', ModItems.BlueCrystal, 'C', ModItems.GreenCrystal});
+
+        GameRegistry.addRecipe(new CrystalToolUpgradeRecipe(new ItemStack(ModItems.CrystalBlade), new ItemStack(Items.diamond), "ExtraDamage"));
+        GameRegistry.addRecipe(new CrystalToolUpgradeRecipe(new ItemStack(ModItems.CrystalBlade), new ItemStack(Items.blaze_rod), "FireDamage"));
+        GameRegistry.addRecipe(new CrystalToolUpgradeRecipe(new ItemStack(ModItems.CrystalBlade), new ItemStack(Items.ender_pearl), "Looting"));
+
+        GameRegistry.addRecipe(new ItemRechargeRecipe(50, 0, new ItemStack(ModItems.InvisibilityCore), new ItemStack(ModItems.ChargedCrystal, 1, 0)));
+        GameRegistry.addRecipe(new ItemRechargeRecipe(2, 0, new ItemStack(ModItems.ChargedCrystal), new ItemStack(Items.redstone, 1)));
+        GameRegistry.addRecipe(new ItemRechargeRecipe(5, 0, new ItemStack(ModItems.ChargedCrystal), new ItemStack(Items.glowstone_dust, 1)));
+
+
+
+        //NBT ItemStacks
         ItemStack FullBat = new ItemStack(ModItems.Battery); ((ModItemPowerTool)FullBat.getItem()).AddPower(FullBat, ((ModItemPowerTool)FullBat.getItem()).MaxPower(FullBat));
         ItemStack FullBigBat = new ItemStack(ModItems.BigBattery); ((ModItemPowerTool)FullBigBat.getItem()).AddPower(FullBigBat, ((ModItemPowerTool)FullBigBat.getItem()).MaxPower(FullBigBat));
         ItemStack FullAdvancedBat = new ItemStack(ModItems.AdvancedBattery); ((ModItemPowerTool)FullAdvancedBat.getItem()).AddPower(FullAdvancedBat, ((ModItemPowerTool)FullAdvancedBat.getItem()).MaxPower(FullAdvancedBat));
 
+        //Squeezer Recipes
         SqueezerRecipes.instance().AddRecipe(new ItemStack(Items.glass_bottle), new ItemStack(Items.apple), new ItemStack(ModItems.Liquid, 1, 0));
         SqueezerRecipes.instance().AddRecipe(new ItemStack(Items.bucket), new ItemStack(ModItems.Tomato), new ItemStack(ModItems.Liquid, 1, 1));
         SqueezerRecipes.instance().AddRecipe(new ItemStack(Items.glass_bottle), new ItemStack(ModItems.Orange), new ItemStack(ModItems.Liquid, 1, 2));
         SqueezerRecipes.instance().AddRecipe(new ItemStack(Items.glass_bottle), new ItemStack(Items.carrot), new ItemStack(ModItems.Liquid, 1, 3));
 
+        //Mill Recipes
         MillRecipes.instance().AddRecipe(new ItemStack(Items.wheat), new ItemStack(ModItems.Flour));
         MillRecipes.instance().AddRecipe(new ItemStack(Items.rotten_flesh), new ItemStack(Items.leather));
 
+        //Metal Press Recipes
         MetalPressRecipes.instance().AddRecipeMode_1(new ItemStack(Items.iron_ingot), new ItemStack(ModItems.IronPlate, 1, 0));
 
         MetalPressRecipes.instance().AddRecipeMode_4(new ItemStack(Items.iron_ingot),new ItemStack(Items.iron_ingot),new ItemStack(Items.iron_ingot),new ItemStack(Items.iron_ingot), new ItemStack(ModItems.IronPlate, 1, 2));
@@ -78,15 +119,6 @@ public class Crafting {
             AddRecipe(new ItemStack(ModBlocks.Table), new Object[]{"CCC", "HHH", "P P", 'C', new ItemStack(Blocks.carpet, 1, 14), 'P', Blocks.planks, 'H', Blocks.wooden_slab});
             AddRecipe(new ItemStack(ModItems.Turbine), new Object[]{"S S", " P ", "S S", 'S', Items.stick, 'P', Blocks.planks});
 
-            AddRecipe(new ItemStack(ModItems.ChargedCrystal, 1, 50), new Object[]{"RBG", "BCB", "GBR", 'R', Items.redstone, 'G', Items.glowstone_dust, 'B', ModItems.BlueCrystal, 'C', ModItems.GreenCrystal});
-            AddRecipe(new ItemStack(ModItems.ChargedCrystal, 1, 50), new Object[]{"GBR", "BCB", "RBG", 'R', Items.redstone, 'G', Items.glowstone_dust, 'B', ModItems.BlueCrystal, 'C', ModItems.GreenCrystal});
-            AddRecipe(new ItemStack(ModItems.InvisibilityCore,  1, 100), new Object[]{"DGC", "BRB", "CGD", 'D', Items.diamond, 'G', ModItems.GreenCrystal, 'B', ModItems.BlueCrystal, 'C', new ItemStack(ModItems.ChargedCrystal,1,0), 'R', ModItems.RedCrystal});
-            AddRecipe(new ItemStack(ModItems.CrystalSilk, 4), new Object[]{"SLS", "LCL", "SLS", 'S', Items.string, 'L', Items.leather, 'C', ModItems.BlueCrystal});
-
-            AddRecipe(new ItemStack(ModItems.InvisHelmet), new Object[]{"CCC", "C C", 'C', ModItems.CrystalSilk});
-            AddRecipe(new ItemStack(ModItems.InvisChestPlate), new Object[]{"C C", "CCC", "CCC", 'C', ModItems.CrystalSilk});
-            AddRecipe(new ItemStack(ModItems.InvisLeggings), new Object[]{"CCC", "C C", "C C", 'C', ModItems.CrystalSilk});
-            AddRecipe(new ItemStack(ModItems.InvisBoots), new Object[]{"C C", "C C",'C', ModItems.CrystalSilk});
 
         for(int i = 0; i < 16; i++)
             AddRecipe(new ItemStack(ModBlocks.GamePart, 8, i), new Object[]{ "BBB", " B ", "BBB", 'B', new ItemStack(Blocks.stained_hardened_clay, 1, i)});
@@ -97,16 +129,6 @@ public class Crafting {
         for(int i = 0; i < 16; i++)
             AddRecipe(new ItemStack(ModBlocks.ColoredBrickGlowstone, 8, i), new Object[]{"BBB", "BGB", "BBB", 'B', new ItemStack(ModBlocks.ColoredBrick, 1, i), 'G', Blocks.glowstone});
 
-
-            GameRegistry.addRecipe(new CrystalToolUpgradeRecipe(new ItemStack(ModItems.CrystalBlade), new ItemStack(Items.diamond), "ExtraDamage"));
-            GameRegistry.addRecipe(new CrystalToolUpgradeRecipe(new ItemStack(ModItems.CrystalBlade), new ItemStack(Items.blaze_rod), "FireDamage"));
-            GameRegistry.addRecipe(new CrystalToolUpgradeRecipe(new ItemStack(ModItems.CrystalBlade), new ItemStack(Items.ender_pearl), "Looting"));
-            AddRecipe(new ItemStack(ModItems.CrystalBlade), new Object[]{"GBR", "BCB", "DBG", 'B', ModItems.BlueCrystal, 'C', new ItemStack(ModItems.ChargedCrystal, 1, 0), 'D', Items.diamond_sword, 'G', ModItems.GreenCrystal, 'R', ModItems.RedCrystal});
-            AddRecipe(new ItemStack(ModItems.CrystalPickaxe), new Object[]{"GBR", "BCB", "DBG", 'B', ModItems.BlueCrystal, 'C', new ItemStack(ModItems.ChargedCrystal, 1, 0), 'D', Items.diamond_pickaxe, 'G', ModItems.GreenCrystal, 'R', ModItems.RedCrystal});
-
-            GameRegistry.addRecipe(new ItemRechargeRecipe(50, 0, new ItemStack(ModItems.InvisibilityCore), new ItemStack(ModItems.ChargedCrystal, 1, 0)));
-            GameRegistry.addRecipe(new ItemRechargeRecipe(2, 0, new ItemStack(ModItems.ChargedCrystal), new ItemStack(Items.redstone, 1)));
-            GameRegistry.addRecipe(new ItemRechargeRecipe(5, 0, new ItemStack(ModItems.ChargedCrystal), new ItemStack(Items.glowstone_dust, 1)));
 
             AddRecipe(new ItemStack(ModItems.GuideBook), new Object[]{"BP", "SP", 'B', Items.book, 'P', Items.paper, 'S', Items.string});
 		    AddRecipe(new ItemStack(ModItems.DataChip, 2),new Object[]{"CCC", "CGC", "III", 'C', ModItems.Cardboard, 'G', new ItemStack(ModItems.Circuit, 1, 0), 'I', Items.iron_ingot});

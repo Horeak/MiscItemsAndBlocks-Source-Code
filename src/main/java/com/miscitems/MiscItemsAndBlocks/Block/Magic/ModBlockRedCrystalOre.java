@@ -33,7 +33,7 @@ public class ModBlockRedCrystalOre extends ModBlock {
 
     public int quantityDropped(Random p_149745_1_)
     {
-        return 1 + p_149745_1_.nextInt(2);
+        return 1 + p_149745_1_.nextInt(3);
     }
 
 

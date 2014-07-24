@@ -107,7 +107,7 @@ public class ModItems {
 
     public static Item InvisHelmet, InvisChestPlate, InvisLeggings, InvisBoots;
     public static Item BlueCrystal, GreenCrystal, RedCrystal, ChargedCrystal, InvisibilityCore;
-    public static Item CrystalSilk, CrystalBlade, CrystalPickaxe;
+    public static Item CrystalSilk, CrystalBlade, CrystalPickaxe, CrystalInfusedMetal, CrystalInfusedGem;
 
     private static Item IconItem;
 
@@ -283,10 +283,15 @@ public class ModItems {
         CrystalBlade = new ModItemCrystalBlade().setCreativeTab(Main.MagicTab).setUnlocalizedName("CrystalBlade").setTextureName("MiscItems:CrystalBlade");
         Register(CrystalBlade, "CrystalBlade");
 
-
-
         CrystalPickaxe = new ModItemCrystalPickaxe().setTextureName(Reference.Mod_Id + ":CrystalPickaxe").setCreativeTab(Main.MagicTab);
         Register(CrystalPickaxe, "CrystalPickaxe");
+
+        CrystalInfusedMetal = new Item().setCreativeTab(Main.MagicTab).setTextureName(Reference.Mod_Id + ":CrystalInfusedMetal");
+        Register(CrystalInfusedMetal, "CrystalInfusedMetal");
+
+        CrystalInfusedGem = new Item().setCreativeTab(Main.MagicTab).setTextureName(Reference.Mod_Id + ":CrystalInfusedGem");
+        Register(CrystalInfusedGem, "CrystalInfusedGem");
+
 
         IconItem = new IconRegisteringItemClass();
         SilentRegister(IconItem);

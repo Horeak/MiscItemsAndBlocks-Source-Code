@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Network.Server;
 
-import com.miscitems.MiscItemsAndBlocks.Container.ContainerLensBench;
+import com.miscitems.MiscItemsAndBlocks.Container.Electric.ContainerLensBench;
 import com.miscitems.MiscItemsAndBlocks.Main.ModItems;
 import com.miscitems.MiscItemsAndBlocks.Network.AbstractPacket;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityLensBench;

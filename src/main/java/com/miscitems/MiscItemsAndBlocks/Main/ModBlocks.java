@@ -52,6 +52,7 @@ import com.miscitems.MiscItemsAndBlocks.Block.Plants.ModBlockOrangePlanks;
 import com.miscitems.MiscItemsAndBlocks.Block.Plants.ModBlockOrangeSapling;
 import com.miscitems.MiscItemsAndBlocks.Block.Plants.ModBlockTomatoPlant;
 import com.miscitems.MiscItemsAndBlocks.Block.Utils.ModBlockEmptyBlock;
+import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockEnergyBattery;
 import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockPowerCrystal;
 import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockBox;
 import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockColoredMetalBrick;
@@ -330,7 +331,7 @@ public class ModBlocks {
         Register(PowerCrystal, ModItemBlockPowerCrystal.class, "PowerCrystal", TileEntityPowerCrystal.class);
 
         EnergyBattery = new ModBlockEnergyBattery().setCreativeTab(Main.MagicTab).setBlockTextureName(Reference.Mod_Id + ":EnergyBattery");
-        Register(EnergyBattery, "EnergyBattery", TileEntityEnergyBattery.class);
+        Register(EnergyBattery, ModItemBlockEnergyBattery.class, "EnergyBattery", TileEntityEnergyBattery.class);
 
         MagicalInfuser = new ModBlockMagicalInfuser().setCreativeTab(Main.MagicTab);
         Register(MagicalInfuser, "MagicalInfuser", TileEntityMagicalInfuser.class);

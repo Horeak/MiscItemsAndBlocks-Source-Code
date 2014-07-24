@@ -1,5 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Container;
 
+import com.miscitems.MiscItemsAndBlocks.Container.Utils.ActiveContainer;
+import com.miscitems.MiscItemsAndBlocks.Container.Utils.ActiveSlot;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Inventories.TileEntityStorageBlock;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;

@@ -4,7 +4,7 @@ import com.miscitems.MiscItemsAndBlocks.TileEntity.Interfaces.Magic.MagicReceive
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Interfaces.Magic.MagicSender;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Utils.ModTileEntity;
 import com.miscitems.MiscItemsAndBlocks.Utils.Handlers.ParticleHelper;
-import com.miscitems.MiscItemsAndBlocks.Utils.MagicUtils;
+import com.miscitems.MiscItemsAndBlocks.Utils.MagicUtils.MagicUtils;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 
@@ -38,6 +38,8 @@ public class TileEntityEnergyBattery extends ModTileEntity implements MagicRecei
 
         Power = nbtTagCompound.getDouble("Power");
 
+        g = nbtTagCompound.getInteger("G");
+
     }
 
     @Override
@@ -45,6 +47,8 @@ public class TileEntityEnergyBattery extends ModTileEntity implements MagicRecei
         super.writeToNBT(nbtTagCompound);
 
         nbtTagCompound.setDouble("Power", Power);
+
+        nbtTagCompound.setInteger("G", g);
     }
 
     @Override
@@ -59,7 +63,7 @@ public class TileEntityEnergyBattery extends ModTileEntity implements MagicRecei
 
     @Override
     public double GetEnergyPacketSize() {
-        return 1;
+        return Power >= 5 ? 5 : 1;
     }
 
     @Override

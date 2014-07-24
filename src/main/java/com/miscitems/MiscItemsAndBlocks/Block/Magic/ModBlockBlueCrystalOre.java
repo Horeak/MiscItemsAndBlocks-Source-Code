@@ -27,12 +27,12 @@ public class ModBlockBlueCrystalOre extends ModBlock {
     public int quantityDroppedWithBonus(int p_149679_1_, Random p_149679_2_)
     {
 
-        return this.quantityDropped(p_149679_2_) + p_149679_2_.nextInt(p_149679_1_ + 2);
+        return this.quantityDropped(p_149679_2_) + p_149679_2_.nextInt(p_149679_1_ + 3);
     }
 
     public int quantityDropped(Random p_149745_1_)
     {
-        return 2 + p_149745_1_.nextInt(5);
+        return 3 + p_149745_1_.nextInt(8);
     }
 
 

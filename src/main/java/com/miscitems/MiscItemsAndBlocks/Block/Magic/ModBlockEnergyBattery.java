@@ -65,7 +65,23 @@ public class ModBlockEnergyBattery extends ModBlockContainer {
         if(world.getTileEntity(x,y,z) != null && world.getTileEntity(x,y,z) instanceof TileEntityEnergyBattery){
             TileEntityEnergyBattery tile = (TileEntityEnergyBattery)world.getTileEntity(x,y,z);
 
-            ChatMessageHandler.sendChatToPlayer(pl, "Energy stored: " + EnumChatFormatting.AQUA + (tile.GetStoredEnergy() / tile.GetMaxEnergy() * 100) + "%");
+            String t = (tile.GetStoredEnergy() / tile.GetMaxEnergy() * 100) + "";
+            int length = t.length();
+            String[] g = null;
+
+
+            if(length >= 6)
+             g = t.split(t.charAt(6) + "", 6);
+
+
+            String use;
+
+            if(g != null && g[0] != null)
+                use = g[0];
+            else
+            use = t;
+
+            ChatMessageHandler.sendChatToPlayer(pl, "Energy stored: " + EnumChatFormatting.AQUA + use + "%");
         }
 
         return false;
