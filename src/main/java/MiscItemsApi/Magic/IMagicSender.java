@@ -1,8 +1,8 @@
-package com.miscitems.MiscItemsAndBlocks.TileEntity.Interfaces.Magic;
+package MiscItemsApi.Magic;
 
 import net.minecraft.tileentity.TileEntity;
 
-public interface MagicSender {
+public interface IMagicSender {
 
     public double GetStoredEnergy();
     public double GetEnergyOffered();
@@ -13,7 +13,7 @@ public interface MagicSender {
 
     public void DecreaseEnergy(double i);
 
-    public void SendEnergy(MagicReceiver receiver, double i);
+    public void SendEnergy(IMagicReceiver receiver, double i);
 
-    public void OnSendEnergyPacket(TileEntity tile, MagicReceiver receiver);
+    public void OnSendEnergyPacket(TileEntity tile, IMagicReceiver receiver);
 }

@@ -1,18 +1,18 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity.Magic;
 
 
-import com.miscitems.MiscItemsAndBlocks.TileEntity.Interfaces.Magic.MagicReceiver;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.Interfaces.Magic.MagicSender;
+import MiscItemsApi.Magic.IMagicReceiver;
+import MiscItemsApi.Magic.IMagicSender;
+import MiscItemsApi.Magic.MagicEnergyUtils;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Utils.ModTileEntity;
 import com.miscitems.MiscItemsAndBlocks.Utils.Handlers.ParticleHelper;
-import com.miscitems.MiscItemsAndBlocks.Utils.MagicUtils.MagicUtils;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 
-public class TileEntityPowerCrystal extends ModTileEntity implements MagicSender{
+public class TileEntityPowerCrystal extends ModTileEntity implements IMagicSender {
 
 
     public int Red, Green, Blue, Rotation, Height, Mode;
@@ -122,7 +122,7 @@ public class TileEntityPowerCrystal extends ModTileEntity implements MagicSender
             if (g >= 50) {
                 g = 0;
 
-                MagicUtils.SendPower(this, this);
+                MagicEnergyUtils.SendPowerToNearbyReceivers(this);
             }else
                 g += 1;
 
@@ -231,7 +231,7 @@ public class TileEntityPowerCrystal extends ModTileEntity implements MagicSender
     }
 
     @Override
-    public void SendEnergy(MagicReceiver receiver, double i) {
+    public void SendEnergy(IMagicReceiver receiver, double i) {
           if(CanSendEnergyAmount(i)){
              if(receiver.CanReceiveEnergyAmount(i)){
                  DecreaseEnergy(i);
@@ -243,7 +243,7 @@ public class TileEntityPowerCrystal extends ModTileEntity implements MagicSender
     }
 
     @Override
-    public void OnSendEnergyPacket(TileEntity tile, MagicReceiver receiver) {
+    public void OnSendEnergyPacket(TileEntity tile, IMagicReceiver receiver) {
         if(receiver.CanReceiveEnergy() && CanSendEnergyAmount(GetEnergyPacketSize())){
 
             receiver.ReceiveEnergy(GetEnergyPacketSize());

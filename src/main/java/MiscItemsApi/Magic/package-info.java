@@ -1,3 +1,3 @@
 @API(apiVersion="1.0",owner="miscitems",provides="MiscItemsApi")
-package MiscItemsApi.Utils;
+package MiscItemsApi.Magic;
 import cpw.mods.fml.common.API;

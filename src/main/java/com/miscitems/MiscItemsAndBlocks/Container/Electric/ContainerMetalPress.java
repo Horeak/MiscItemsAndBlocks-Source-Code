@@ -70,7 +70,7 @@ public class ContainerMetalPress extends Container{
     public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2)
     {
 
-        int m = 6;
+        int m = 5;
 
         ItemStack itemstack = null;
         Slot slot = (Slot)this.inventorySlots.get(par2);

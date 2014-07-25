@@ -1,5 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Item.Magic;
 
+import MiscItemsApi.Magic.IEnergyStorageItem;
 import com.miscitems.MiscItemsAndBlocks.Item.Utils.ModItemWithDamage;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.relauncher.Side;
@@ -11,7 +12,7 @@ import net.minecraft.util.StatCollector;
 
 import java.util.List;
 
-public class ModItemChargedCrystal extends ModItemWithDamage {
+public class ModItemChargedCrystal extends ModItemWithDamage implements IEnergyStorageItem {
 
 
     public ModItemChargedCrystal() {
@@ -44,4 +45,23 @@ public class ModItemChargedCrystal extends ModItemWithDamage {
     }
 
 
+    @Override
+    public double GetEnergyStored(ItemStack stack) {
+        return stack.getMaxDamage() - stack.getItemDamage();
+    }
+
+    @Override
+    public double GetMaxEnergy(ItemStack stack) {
+        return stack.getMaxDamage();
+    }
+
+    @Override
+    public void SetEnergy(ItemStack stack, double i) {
+        stack.setItemDamage((int)i);
+    }
+
+    @Override
+    public void AddEnergy(ItemStack stack, double i) {
+        stack.setItemDamage(stack.getItemDamage() - (int)i);
+    }
 }

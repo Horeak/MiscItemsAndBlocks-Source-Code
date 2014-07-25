@@ -1,15 +1,16 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity.Magic;
 
-import com.miscitems.MiscItemsAndBlocks.TileEntity.Interfaces.Magic.MagicReceiver;
+import MiscItemsApi.Magic.IMagicReceiver;
+import MiscItemsApi.Recipes.InfusionRecipe;
+import MiscItemsApi.Recipes.RecipeHandler;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Utils.TileEntityInvBase;
-import com.miscitems.MiscItemsAndBlocks.Utils.MagicUtils.InfusionRecipe;
-import com.miscitems.MiscItemsAndBlocks.Utils.MagicUtils.MagicUtils;
+import com.miscitems.MiscItemsAndBlocks.Utils.MagicUtils;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
 import java.util.ArrayList;
 
-public class TileEntityMagicalInfuser extends TileEntityInvBase implements MagicReceiver {
+public class TileEntityMagicalInfuser extends TileEntityInvBase implements IMagicReceiver {
 
     public static int MainSlot = 0, OutputSlot = 9;
 
@@ -41,8 +42,8 @@ public class TileEntityMagicalInfuser extends TileEntityInvBase implements Magic
                     }
                 }
 
-                if(MagicUtils.GetInfusionRecipe(ls, MainItem) != null){
-                    InfusionRecipe infu = MagicUtils.GetInfusionRecipe(ls, MainItem);
+                if(RecipeHandler.GetInfusionRecipe(ls, MainItem) != null){
+                    InfusionRecipe infu = RecipeHandler.GetInfusionRecipe(ls, MainItem);
                     CurrentRes = infu;
 
                 }else{
@@ -65,7 +66,6 @@ public class TileEntityMagicalInfuser extends TileEntityInvBase implements Magic
 
         if(CurrentRes != null){
             if(!HasWork) {
-                if (GetStoredEnergy() >= CurrentRes.EnergyAmount) {
                     if (this.getStackInSlot(OutputSlot) == null) {
                         HasWork = true;
 
@@ -78,7 +78,7 @@ public class TileEntityMagicalInfuser extends TileEntityInvBase implements Magic
 
                     }
 
-                }
+
 
             }else{
 
@@ -112,8 +112,10 @@ public class TileEntityMagicalInfuser extends TileEntityInvBase implements Magic
 
 
                 }else{
-                    Progress += 1;
-                    SetPower(GetStoredEnergy() - (CurrentRes.EnergyAmount / FinishProg));
+                    if(GetStoredEnergy() >= (CurrentRes.EnergyAmount / FinishProg)) {
+                        Progress += 1;
+                        SetPower(GetStoredEnergy() - (CurrentRes.EnergyAmount / FinishProg));
+                    }
 
                 }
             }
@@ -195,4 +197,5 @@ public class TileEntityMagicalInfuser extends TileEntityInvBase implements Magic
         Power += i;
         MagicUtils.ReceiveEnergy(this);
     }
+
 }

@@ -1,4 +1,4 @@
-package com.miscitems.MiscItemsAndBlocks.Utils.MagicUtils;
+package MiscItemsApi.Recipes;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;

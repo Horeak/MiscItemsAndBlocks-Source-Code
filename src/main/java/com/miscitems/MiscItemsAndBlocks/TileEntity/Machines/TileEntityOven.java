@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity.Machines;
 
-import MiscItemsApi.Recipes.OvenRecipes;
+import MiscItemsApi.Recipes.RecipeHandler;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Utils.TileEntityInvBase;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
@@ -8,7 +8,13 @@ import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.item.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemFood;
+import net.minecraft.item.ItemHoe;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemSword;
+import net.minecraft.item.ItemTool;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -279,8 +285,8 @@ public class TileEntityOven extends TileEntityInvBase implements ISidedInventory
             Item item = itemU.getItem();
 
 
-            if (OvenRecipes.instance().GetResult(itemU) != null) {
-                return OvenRecipes.instance().GetResult(itemU);
+            if (RecipeHandler.GetOvenRecipe(itemU) != null) {
+                return RecipeHandler.GetOvenRecipe(itemU).Output;
             } else {
 
                 if (item instanceof ItemFood) {

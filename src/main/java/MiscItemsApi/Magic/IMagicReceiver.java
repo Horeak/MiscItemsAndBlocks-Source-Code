@@ -1,6 +1,6 @@
-package com.miscitems.MiscItemsAndBlocks.TileEntity.Interfaces.Magic;
+package MiscItemsApi.Magic;
 
-public interface MagicReceiver {
+public interface IMagicReceiver {
 
 
     public double GetStoredEnergy();
@@ -10,6 +10,7 @@ public interface MagicReceiver {
     public boolean CanReceiveEnergyAmount(double i);
 
     public void ReceiveEnergy(double i);
+
 
 
 

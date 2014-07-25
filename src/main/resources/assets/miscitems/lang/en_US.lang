@@ -57,6 +57,7 @@ tile.energybattery.name=Energy Battery
 tile.magicalinfuser.name=Magical Infuser
 tile.infusedgemblock.name=Crystal Infused Gem Block
 tile.infusedmetalblock.name=Crystal Infused Metal Block
+tile.magicalenergyrecharger.name=Magical Energy Recharger
 
 
 //All items

@@ -17,7 +17,7 @@ public class ModItemCrystalBlade extends ItemSword {
 
 
     public ModItemCrystalBlade() {
-        super(ToolMaterial.EMERALD);
+        super(ModItems.CrystalMaterial);
         this.setMaxDamage(-1);
 
     }

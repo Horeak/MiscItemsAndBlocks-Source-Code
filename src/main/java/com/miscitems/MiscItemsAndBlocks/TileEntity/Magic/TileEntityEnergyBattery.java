@@ -1,14 +1,16 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity.Magic;
 
-import com.miscitems.MiscItemsAndBlocks.TileEntity.Interfaces.Magic.MagicReceiver;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.Interfaces.Magic.MagicSender;
+import MiscItemsApi.Magic.IMagicReceiver;
+import MiscItemsApi.Magic.IMagicSender;
+import MiscItemsApi.Magic.MagicEnergyUtils;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Utils.ModTileEntity;
 import com.miscitems.MiscItemsAndBlocks.Utils.Handlers.ParticleHelper;
-import com.miscitems.MiscItemsAndBlocks.Utils.MagicUtils.MagicUtils;
+import com.miscitems.MiscItemsAndBlocks.Utils.MagicUtils;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 
-public class TileEntityEnergyBattery extends ModTileEntity implements MagicReceiver, MagicSender {
+public class TileEntityEnergyBattery extends ModTileEntity implements IMagicReceiver, IMagicSender {
+
 
     public double Power;
 
@@ -24,7 +26,7 @@ public class TileEntityEnergyBattery extends ModTileEntity implements MagicRecei
             if (g >= 50) {
                 g = 0;
 
-                MagicUtils.SendPower(this, this);
+                MagicEnergyUtils.SendPowerToNearbyReceivers(this);
             } else
                 g += 1;
 
@@ -85,7 +87,7 @@ public class TileEntityEnergyBattery extends ModTileEntity implements MagicRecei
     }
 
     @Override
-    public void SendEnergy(MagicReceiver receiver, double i) {
+    public void SendEnergy(IMagicReceiver receiver, double i) {
         if(CanSendEnergyAmount(i)){
             if(receiver.CanReceiveEnergyAmount(i)){
                 DecreaseEnergy(i);
@@ -97,13 +99,14 @@ public class TileEntityEnergyBattery extends ModTileEntity implements MagicRecei
     }
 
     @Override
-    public void OnSendEnergyPacket(TileEntity tile, MagicReceiver receiver) {
+    public void OnSendEnergyPacket(TileEntity tile, IMagicReceiver receiver) {
         ParticleHelper helper = new ParticleHelper(worldObj);
 
         if(receiver.CanReceiveEnergy() && CanSendEnergyAmount(GetEnergyPacketSize())){
 
             receiver.ReceiveEnergy(GetEnergyPacketSize());
             DecreaseEnergy(GetEnergyPacketSize());
+
 
  }
     }
@@ -129,4 +132,5 @@ public class TileEntityEnergyBattery extends ModTileEntity implements MagicRecei
 
         MagicUtils.ReceiveEnergy(this);
     }
+
 }

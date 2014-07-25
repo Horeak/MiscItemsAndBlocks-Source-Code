@@ -1,6 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity.Electric;
 
-import MiscItemsApi.Recipes.MetalPressRecipes;
+import MiscItemsApi.Recipes.MetalPressRecipe;
+import MiscItemsApi.Recipes.RecipeHandler;
 import com.miscitems.MiscItemsAndBlocks.Network.Client.ClientMetalPressPacketUpdate;
 import com.miscitems.MiscItemsAndBlocks.Network.PacketHandler;
 import cpw.mods.fml.common.network.NetworkRegistry;
@@ -66,29 +67,44 @@ public class TileEntityMetalPress extends TileEntityPowerInv implements ISidedIn
 			if(Mode == 1 ? GetPower() > 10 : GetPower() > 20){
 		if(WorkTime <= MaxWorkTime ){
 		if(Mode == 1){
-			ItemStack finishItem_1 = MetalPressRecipes.instance().GetResultMode_1(this.getStackInSlot(1));
+            ItemStack[] stack = new ItemStack[]{this.getStackInSlot(1)};
 
-           if(finishItem_1 != null && this.getStackInSlot(0) == null || finishItem_1 != null && this.getStackInSlot(0) != null && this.getStackInSlot(0).getItem() == finishItem_1.getItem() && this.getStackInSlot(0).stackSize < this.getInventoryStackLimit()) {
-            WorkTimeAdd();
+            if(stack != null && stack.length > 0 && stack[0] != null){
 
-			}else if (this.getStackInSlot(1) == null && Mode == 1 || finishItem_1 == null && Mode == 1){
-				SetWorkTimeUpdate(0);
-				
-			}
+                MetalPressRecipe pres = RecipeHandler.GetMetalPressRecipe(stack, Mode);
+                if(pres != null) {
+                    ItemStack finishItem_1 = pres.Item;
 
+                    if (finishItem_1 != null && this.getStackInSlot(0) == null || finishItem_1 != null && this.getStackInSlot(0) != null && this.getStackInSlot(0).getItem() == finishItem_1.getItem() && this.getStackInSlot(0).stackSize < this.getInventoryStackLimit()) {
+                        WorkTimeAdd();
+
+                    } else if (this.getStackInSlot(1) == null && Mode == 1 || finishItem_1 == null && Mode == 1) {
+                        SetWorkTimeUpdate(0);
+
+                    }
+                }
+            }
 			
 		}else if (Mode == 2){
 
-            ItemStack finishItem_4 = MetalPressRecipes.instance().GetResultMode_4(this.getStackInSlot(2), this.getStackInSlot(3), this.getStackInSlot(4), this.getStackInSlot(5));
+            ItemStack[] stacks = new ItemStack[]{this.getStackInSlot(2), this.getStackInSlot(3), this.getStackInSlot(4), this.getStackInSlot(5)};
 
-            if(finishItem_4 != null && this.getStackInSlot(0) == null || finishItem_4 != null && this.getStackInSlot(0) != null && this.getStackInSlot(0).getItem() == finishItem_4.getItem() && this.getStackInSlot(0).stackSize < this.getInventoryStackLimit()) {
-                WorkTimeAdd();
+            if(stacks != null && stacks.length > 0) {
 
-            }else if (this.getStackInSlot(2) == null && Mode == 2 || this.getStackInSlot(3) == null && Mode == 2 || this.getStackInSlot(4) == null && Mode == 2 || this.getStackInSlot(5) == null && Mode == 2 || finishItem_4 == null && Mode == 2){
-                SetWorkTimeUpdate(0);
+                MetalPressRecipe pres = RecipeHandler.GetMetalPressRecipe(stacks, Mode);
+                if (pres != null){
+                    ItemStack finishItem_4 = pres.Item;
+
+                if (finishItem_4 != null && this.getStackInSlot(0) == null || finishItem_4 != null && this.getStackInSlot(0) != null && this.getStackInSlot(0).getItem() == finishItem_4.getItem() && this.getStackInSlot(0).stackSize < this.getInventoryStackLimit()) {
+                    WorkTimeAdd();
+
+                } else if (this.getStackInSlot(2) == null && Mode == 2 || this.getStackInSlot(3) == null && Mode == 2 || this.getStackInSlot(4) == null && Mode == 2 || this.getStackInSlot(5) == null && Mode == 2 || finishItem_4 == null && Mode == 2) {
+                    SetWorkTimeUpdate(0);
+
+                }
 
             }
-			
+            }
 
 			
 		}
@@ -102,44 +118,50 @@ public class TileEntityMetalPress extends TileEntityPowerInv implements ISidedIn
 			
 			if(Mode == 1){
 
-                ItemStack FinishItem = MetalPressRecipes.instance().GetResultMode_1(this.getStackInSlot(1));
+                MetalPressRecipe pres = RecipeHandler.GetMetalPressRecipe(new ItemStack[]{this.getStackInSlot(1) }, Mode);
+                if(pres != null) {
+                    ItemStack FinishItem = pres.Item;
 
-				this.decrStackSize(1, 1);
-				this.SetPower(this.GetPower() - 10);
+                    this.decrStackSize(1, 1);
+                    this.SetPower(this.GetPower() - 10);
+
+                    if (this.getStackInSlot(0) == null) {
+                        this.setInventorySlotContents(0, FinishItem);
+
+                    } else if (this.getStackInSlot(0) != null && this.getStackInSlot(0).getItem() == FinishItem.getItem() && this.getStackInSlot(0).getItemDamage() == FinishItem.getItemDamage()) {
+
+                        if (this.getStackInSlot(0).stackSize < this.getInventoryStackLimit()) {
+                            this.setInventorySlotContents(0, new ItemStack(this.getStackInSlot(0).getItem(), this.getStackInSlot(0).stackSize + 1, this.getStackInSlot(0).getItemDamage()));
+                        }
+
+                    }
+                }
 				
-				if(this.getStackInSlot(0) == null){
-					this.setInventorySlotContents(0, FinishItem);
-					
-				}else if(this.getStackInSlot(0) != null && this.getStackInSlot(0).getItem() == FinishItem.getItem() && this.getStackInSlot(0).getItemDamage() == FinishItem.getItemDamage()){
+			}else if (Mode == 2) {
+                this.SetPower(this.GetPower() - 20);
 
-					if(this.getStackInSlot(0).stackSize < this.getInventoryStackLimit()){
-						this.setInventorySlotContents(0, new ItemStack(this.getStackInSlot(0).getItem(), this.getStackInSlot(0).stackSize + 1, this.getStackInSlot(0).getItemDamage()));
-					}
-					
-				}
-				
-			}else if (Mode == 2){
-				this.SetPower(this.GetPower() - 20);
-
-                ItemStack finishItem_4 = MetalPressRecipes.instance().GetResultMode_4(this.getStackInSlot(2), this.getStackInSlot(3), this.getStackInSlot(4), this.getStackInSlot(5));
+                MetalPressRecipe pres = RecipeHandler.GetMetalPressRecipe(new ItemStack[]{this.getStackInSlot(2), this.getStackInSlot(3), this.getStackInSlot(4), this.getStackInSlot(5)}, Mode);
+                if (pres != null){
+                    ItemStack finishItem_4 = pres.Item;
 
 
                 this.decrStackSize(2, 1);
-				this.decrStackSize(3, 1);
-				this.decrStackSize(4, 1);
-				this.decrStackSize(5, 1);
-				
-				if(this.getStackInSlot(0) == null){
-					this.setInventorySlotContents(0, finishItem_4);
-					
-				}else if(this.getStackInSlot(0) != null && this.getStackInSlot(0).getItem() == finishItem_4.getItem() && this.getStackInSlot(0).getItemDamage() == finishItem_4.getItemDamage()){
-				
-					if(this.getStackInSlot(0).stackSize < this.getInventoryStackLimit()){
-						this.setInventorySlotContents(0, new ItemStack(this.getStackInSlot(0).getItem(), this.getStackInSlot(0).stackSize + 1, this.getStackInSlot(0).getItemDamage()));
-					}
-					
-				}
-				
+                this.decrStackSize(3, 1);
+                this.decrStackSize(4, 1);
+                this.decrStackSize(5, 1);
+
+                if (this.getStackInSlot(0) == null) {
+                    this.setInventorySlotContents(0, finishItem_4);
+
+                } else if (this.getStackInSlot(0) != null && this.getStackInSlot(0).getItem() == finishItem_4.getItem() && this.getStackInSlot(0).getItemDamage() == finishItem_4.getItemDamage()) {
+
+                    if (this.getStackInSlot(0).stackSize < this.getInventoryStackLimit()) {
+                        this.setInventorySlotContents(0, new ItemStack(this.getStackInSlot(0).getItem(), this.getStackInSlot(0).stackSize + 1, this.getStackInSlot(0).getItemDamage()));
+                    }
+
+                }
+
+            }
 			}
 			
 		}

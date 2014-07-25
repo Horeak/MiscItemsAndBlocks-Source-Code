@@ -1,5 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Item.Magic;
 
+import MiscItemsApi.Magic.IEnergyStorageItem;
 import com.miscitems.MiscItemsAndBlocks.Item.Utils.ModItemWithDamage;
 import com.miscitems.MiscItemsAndBlocks.Utils.Proxies.ClientProxy;
 import com.miscitems.MiscItemsAndBlocks.Utils.InvisibilityUtils;
@@ -15,7 +16,7 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class ModItemInvisibilityCore extends ModItemWithDamage {
+public class ModItemInvisibilityCore extends ModItemWithDamage implements IEnergyStorageItem {
 
 
     public ModItemInvisibilityCore() {
@@ -77,4 +78,24 @@ public class ModItemInvisibilityCore extends ModItemWithDamage {
         list.add(StatCollector.translateToLocal("items.desc.invisCharged")+ " " + DamageLeft + "%");
     }
 
+    @Override
+    public double GetEnergyStored(ItemStack stack) {
+        return stack.getMaxDamage() - stack.getItemDamage();
+    }
+
+    @Override
+    public double GetMaxEnergy(ItemStack stack) {
+        return stack.getMaxDamage();
+    }
+
+    @Override
+    public void SetEnergy(ItemStack stack, double i) {
+
+        stack.setItemDamage((int)i);
+    }
+
+    @Override
+    public void AddEnergy(ItemStack stack, double i) {
+        stack.setItemDamage(stack.getItemDamage() - (int)i);
+    }
 }

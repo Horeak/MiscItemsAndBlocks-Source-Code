@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity.Machines;
 
-import MiscItemsApi.Recipes.MillRecipes;
+import MiscItemsApi.Recipes.RecipeHandler;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Utils.TileEntityInvBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -36,7 +36,7 @@ public class TileEntityMill extends TileEntityInvBase {
         {
         	
         	if(this.getStackInSlot(0) != null){
-        		ItemStack result = MillRecipes.instance().GetResult(getStackInSlot(0));
+        		ItemStack result = RecipeHandler.GetMillRecipe(getStackInSlot(0)).Output;
         		
         		if(result != null){
         		if(this.getStackInSlot(1) == null || this.getStackInSlot(1).stackSize <= this.getInventoryStackLimit()){

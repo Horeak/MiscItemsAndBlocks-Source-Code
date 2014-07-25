@@ -1,6 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity.Machines;
 
-import MiscItemsApi.Recipes.SqueezerRecipes;
+import MiscItemsApi.Recipes.RecipeHandler;
+import MiscItemsApi.Recipes.SqueezerRecipe;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Utils.TileEntityInvBase;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.ISidedInventory;
@@ -73,34 +74,39 @@ public class TileEntitySquezer extends TileEntityInvBase implements ISidedInvent
     	
     	
     	if(this.getStackInSlot(0) != null && this.getStackInSlot(1) != null){
-    		
-			ItemStack finishItem = SqueezerRecipes.instance().GetResult(getStackInSlot(0), getStackInSlot(1));
-			
-			
-			
-			if(finishItem != null){
-    		if(WorkTime >= FinishTime){
-    			WorkTime = 0;
 
-    			
-    			
-    			if(finishItem != null){
-    			this.decrStackSize(0, 1);
-    			this.decrStackSize(1, 1);
-    			
-    			if(this.getStackInSlot(2) == null || Inv[2].stackSize <= 0){
-    				this.setInventorySlotContents(2, finishItem);
-    			}else{
-    				
-    				Inv[2].stackSize = Inv[2].stackSize + 1;
+            SqueezerRecipe res = RecipeHandler.GetSqueezerRecipe(new ItemStack[]{this.getStackInSlot(0), this.getStackInSlot(1)});
 
-    			}
-    			
-    		}
+            if(res != null){
+			ItemStack finishItem = res.Output;
+
+
+
+            if(finishItem != null){
+    		if(WorkTime >= FinishTime) {
+                WorkTime = 0;
+
+
+                if (finishItem != null) {
+                    this.decrStackSize(0, 1);
+                    this.decrStackSize(1, 1);
+
+                    if (this.getStackInSlot(2) == null || Inv[2].stackSize <= 0) {
+                        this.setInventorySlotContents(2, finishItem);
+                    } else {
+
+                        Inv[2].stackSize = Inv[2].stackSize + 1;
+
+                    }
+
+                }
+            }else{
+                WorkTime++;
+            }
     		
     	}else{
-			WorkTime++;
-		}
+                WorkTime = 0;
+            }
     	
     	}else{
     		WorkTime = 0;

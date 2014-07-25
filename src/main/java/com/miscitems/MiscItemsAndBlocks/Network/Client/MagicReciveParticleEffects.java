@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Network.Client;
 
+import MiscItemsApi.Magic.IMagicReceiver;
 import com.miscitems.MiscItemsAndBlocks.Network.AbstractPacket;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.Interfaces.Magic.MagicReceiver;
 import com.miscitems.MiscItemsAndBlocks.Utils.Handlers.ParticleHelper;
 import cpw.mods.fml.relauncher.Side;
 import io.netty.buffer.ByteBuf;
@@ -36,7 +36,7 @@ public class MagicReciveParticleEffects extends AbstractPacket {
     @Override
     public void onMessage(Side side, EntityPlayer player) {
 
-        if(player.worldObj.getTileEntity(x,y,z) != null && player.worldObj.getTileEntity(x,y,z) instanceof MagicReceiver){
+        if(player.worldObj.getTileEntity(x,y,z) != null && player.worldObj.getTileEntity(x,y,z) instanceof IMagicReceiver){
 
             ParticleHelper helper = new ParticleHelper(player.worldObj);
 

@@ -118,7 +118,10 @@ public class ModItems {
     public static ArmorMaterial PowerArmor = EnumHelper.addArmorMaterial("PowerArmor", 37, new int[] {2, 4, 3, 2} , 30);
     public static ArmorMaterial InvisArmor = EnumHelper.addArmorMaterial("InvisArmor", 1, new int[]{0, 0, 0, 0}, 0);
 
-	public static void Init(){
+    public static ToolMaterial CrystalMaterial = EnumHelper.addToolMaterial("Crystal", ToolMaterial.EMERALD.getHarvestLevel(), 0, ToolMaterial.EMERALD.getEfficiencyOnProperMaterial(), ToolMaterial.EMERALD.getDamageVsEntity(), 0);
+
+
+    public static void Init(){
 
 
 

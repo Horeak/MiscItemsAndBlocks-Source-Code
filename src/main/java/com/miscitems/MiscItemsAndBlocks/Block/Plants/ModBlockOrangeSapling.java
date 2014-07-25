@@ -29,6 +29,7 @@ public class ModBlockOrangeSapling extends BlockBush implements IGrowable
         this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, f * 2.0F, 0.5F + f);
         this.setStepSound(soundTypeGrass);
         this.setCreativeTab(Main.MiscTab);
+        this.setHardness(0.1F);
     }
 
     public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random)
