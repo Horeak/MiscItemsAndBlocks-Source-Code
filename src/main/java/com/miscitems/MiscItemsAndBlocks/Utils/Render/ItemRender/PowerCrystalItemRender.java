@@ -51,7 +51,16 @@ public class PowerCrystalItemRender implements IItemRenderer
         GL11.glPushMatrix();
         GL11.glEnable(GL11.GL_ALPHA_TEST);
         GL11.glTranslated(0.3, 0.2, 0.3);
-        GL11.glScalef(0.8F, 0.8F, 0.8F);
+
+        if(type == ItemRenderType.INVENTORY){
+            GL11.glScalef(0.50F, 0.50F, 0.50F);
+            GL11.glTranslated(0.3, -0.6, 0.3);
+
+        }else {
+            GL11.glScalef(0.8F, 0.8F, 0.8F);
+            GL11.glTranslated(0.3, 0.2, 0.3);
+        }
+
         GL11.glEnable(GL11.GL_BLEND);
 
 

@@ -4,6 +4,8 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+import java.util.ArrayList;
+
 public class InfusionRecipe {
 
     public ItemStack[] stacks;
@@ -32,5 +34,16 @@ public class InfusionRecipe {
 
 
         return null;
+    }
+
+    public ArrayList GetStacks(){
+        ArrayList list = new ArrayList();
+
+        for(int i = 0; i < stacks.length; i++)
+            list.add(stacks[i]);
+
+        return list;
+
+
     }
 }

@@ -52,7 +52,7 @@ public class GuiMagicalInfuser extends GuiContainer {
 
         drawTexturedModalRect(x + 135, y + 60, 226, 123, (int) ((Prog/100) * 24), 6);
 
-        drawTexturedModalRect(x + 188, y + 207 - en + 1, 226, 1, 17, en);
+        drawTexturedModalRect(x + 191, y + 207 - en + 1, 226, 1, 17, en);
 
 
     }

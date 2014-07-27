@@ -11,7 +11,7 @@ public class RecipeHandler {
 
     private static ArrayList craftingRecipes = new ArrayList();
 
-    private static List getCraftingRecipes()
+    public static List getCraftingRecipes()
     {
         return craftingRecipes;
     }
@@ -105,6 +105,25 @@ public class RecipeHandler {
         InfusionRecipe r = new InfusionRecipe(result, input, stacks, Energy);
         craftingRecipes.add(r);
         return r;
+    }
+
+    public static InfusionRecipe GetInfusionRecipeFromOutput(ItemStack Output){
+        InfusionRecipe var13 = null;
+        for (Object var11 : getCraftingRecipes()) {
+            if (((var11 instanceof InfusionRecipe)))
+            {
+                if(AreStacksEqual(((InfusionRecipe) var11).GetOutput(), Output)){
+
+                            var13 = (InfusionRecipe) var11;
+                            return var13;
+
+
+
+                }
+
+            }
+        }
+        return var13;
     }
 
     public static InfusionRecipe GetInfusionRecipe(ArrayList<ItemStack> items, ItemStack input)

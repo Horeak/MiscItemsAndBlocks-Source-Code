@@ -39,11 +39,11 @@ public class MagicEnergyUtils {
                                  if(tilee.xCoord != tile.xCoord || tilee.yCoord != tile.yCoord || tilee.zCoord != tile.zCoord) {
 
                                     if (Rad == 0) {
-                                        Rad = tilee.getDistanceFrom(tile.xCoord, tile.yCoord, tile.zCoord);
+                                        Rad = tile.getDistanceFrom(tilee.xCoord, tilee.yCoord, tilee.zCoord);
                                         recc = rec;
 
-                                    } else if (Rad > 0 && tilee.getDistanceFrom(tile.xCoord, tile.yCoord, tile.zCoord) < Rad) {
-                                        Rad = tilee.getDistanceFrom(tile.xCoord, tile.yCoord, tile.zCoord);
+                                    } else if (Rad > 0 && tilee.getDistanceFrom(tilee.xCoord, tilee.yCoord, tilee.zCoord) < Rad) {
+                                        Rad = tile.getDistanceFrom(tilee.xCoord, tilee.yCoord, tilee.zCoord);
                                         recc = rec;
 
                                     }

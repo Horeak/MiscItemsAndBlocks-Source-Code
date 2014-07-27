@@ -11,12 +11,12 @@ import com.miscitems.MiscItemsAndBlocks.Event.GhostBlockBreakEvent;
 import com.miscitems.MiscItemsAndBlocks.Event.GuiListener;
 import com.miscitems.MiscItemsAndBlocks.Event.InvisibilityEvents;
 import com.miscitems.MiscItemsAndBlocks.Gui.GuiHandler;
-import com.miscitems.MiscItemsAndBlocks.Utils.Laser.DefaultLaser;
-import com.miscitems.MiscItemsAndBlocks.Utils.Laser.LaserRegistry;
 import com.miscitems.MiscItemsAndBlocks.Network.ChannelHandler;
 import com.miscitems.MiscItemsAndBlocks.Network.PacketHandler;
 import com.miscitems.MiscItemsAndBlocks.Utils.Config.ConfigUtils;
 import com.miscitems.MiscItemsAndBlocks.Utils.Crafting;
+import com.miscitems.MiscItemsAndBlocks.Utils.Laser.DefaultLaser;
+import com.miscitems.MiscItemsAndBlocks.Utils.Laser.LaserRegistry;
 import com.miscitems.MiscItemsAndBlocks.Utils.Proxies.ServerProxy;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Messages;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
@@ -50,7 +50,7 @@ import java.util.Map;
 import java.util.Set;
 
 
-	@Mod(modid = Reference.Mod_Id, name = Reference.Mod_Name, version = Reference.Version, guiFactory = "com.miscitems.MiscItemsAndBlocks.Utils.Config.GuiConfigFactory")
+	@Mod(modid = Reference.Mod_Id, name = Reference.Mod_Name, version = Reference.Version, guiFactory = "com.miscitems.MiscItemsAndBlocks.Utils.Config.GuiConfigFactory", dependencies = "after:NEI")
 	public class Main 
 	{
 
@@ -168,7 +168,6 @@ import java.util.Set;
 
         	Crafting.RegisterRecipes();
 
-
         	proxy.RegisterListeners();
 
         	proxy.registerRenderThings();
@@ -195,7 +194,8 @@ import java.util.Set;
 
         public void RegisterClientEvents()
         {
-	
+
+
 	
         	MinecraftForge.EVENT_BUS.register(new GuiListener());
 
@@ -257,6 +257,7 @@ import java.util.Set;
         {
         	
         	LaserRegistry.registerLaser("default", new DefaultLaser());
+
 	
         }
 
