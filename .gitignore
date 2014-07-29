@@ -2,6 +2,7 @@
 /build
 /.gradle
 /*.db
+/*.jar
 
 
 ## ForgeGradle

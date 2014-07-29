@@ -9,8 +9,6 @@ import net.minecraft.item.ItemSword;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
-import java.util.List;
-
 
 
 public class ModItemCrystalBlade extends ItemSword {
@@ -56,18 +54,6 @@ public class ModItemCrystalBlade extends ItemSword {
             }
         }
 
-        if(stack.getTagCompound() != null) {
-            if (stack.getTagCompound().getBoolean("ExtraDamage"))
-                EntityHit.attackEntityFrom(DamageSource.causeMobDamage(EntityAttacker), 20);
-
-
-             if(stack.getTagCompound().getBoolean("FireDamage"))
-                EntityHit.setFire(50);
-
-
-
-
-        }
 
         return true;
     }
@@ -85,36 +71,16 @@ public class ModItemCrystalBlade extends ItemSword {
 
 
 
-    public boolean hasEffect(ItemStack stack)
-    {
-        return stack.getTagCompound() != null;
-    }
+//    public boolean hasEffect(ItemStack stack)
+//    {
+//        return stack.getTagCompound() != null;
+//    }
 
     public int getItemEnchantability()
     {
         return 0;
     }
 
-
-    @Override
-    public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean par4)
-    {
-
-        if(itemstack.getTagCompound() != null) {
-
-            if (itemstack.getTagCompound().getBoolean("ExtraDamage"))
-                list.add("Upgraded: Extra Damage");
-
-            if (itemstack.getTagCompound().getBoolean("FireDamage"))
-                list.add("Upgraded: Fire Damage");
-
-            if (itemstack.getTagCompound().getBoolean("Looting"))
-                list.add("Upgraded: Looting");
-
-
-
-        }
-    }
 
 
 }

@@ -80,7 +80,13 @@ public class RecipeHandler {
         return stack1 == null && stack2 == null ||
                 stack1 != null && stack2 == null ? false :
                 stack1 == null && stack2 != null ? false :
-                        stack1.getItem() == stack2.getItem() && stack1.getItemDamage() == stack2.getItemDamage();
+
+                stack1.getItem() == stack2.getItem() && stack1.getItemDamage() == stack2.getItemDamage()
+
+                && stack1.getTagCompound() == null && stack2.getTagCompound() == null ||
+                 stack1.getItem() == stack2.getItem() && stack1.getItemDamage() == stack2.getItemDamage() &&
+                stack1.getTagCompound() != null && stack2.getTagCompound() != null &&
+                stack1.getTagCompound().equals(stack2.getTagCompound());
     }
 
 

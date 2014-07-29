@@ -17,9 +17,11 @@ buildscript {
 
 apply plugin: 'forge'
 
-mod_version  = "0.9.5.8"
+mod_version  = "0.9.6.0"
 minecraft_version = "1.7.10"
 forge_version = "10.13.0.1159"
+nei_version="1.0.2.15"
+ccc_version="1.0.2.9"
 
 group= "com.miscitems.MiscItemsAndBlocks" 
 archivesBaseName = "MiscItemsAndBlocks"
@@ -47,7 +49,11 @@ processResources {
         exclude '**/*.info'
     }
 	
-	
-	
-	
+}
+
+dependencies {
+	compile files (
+		"Libs/CodeChickenCore-${minecraft_version}-${ccc_version}-dev.jar",
+		"Libs/NotEnoughItems-${minecraft_version}-${nei_version}-dev.jar",
+		)
 }

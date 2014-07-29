@@ -7,14 +7,24 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
+
+import java.util.List;
 
 public class RecipeBigPage extends Page {
 
 
     ItemStack RecipeItem;
+    List<IRecipe> Recipes;
+
+    int CurrentRes = 0;
+
+    int Switch = 0;
+
     ItemStack[] RecipeItems;
 
 
@@ -24,9 +34,27 @@ public class RecipeBigPage extends Page {
 
     int posX, posY;
 
+    public ItemStack[] GetOreRecipe(Object[] ob){
+        ItemStack[] stacks = new ItemStack[ob.length];
+
+        for(int i = 0; i < stacks.length; i++){
+            stacks[i] = BookUtils.GetObject(ob[i]);
+        }
+
+        return stacks;
+    }
+
+
     public RecipeBigPage(ItemStack Output){
-        RecipeItem = Output;
-        RecipeItems = BookUtils.GetShapedRecipeItems(RecipeItem);
+        Recipes = BookUtils.GetShapedRecipeItems(Output);
+
+        if(Recipes.size() > 0)
+               if (Recipes.get(0) instanceof ShapedRecipes) {
+                RecipeItems = ((ShapedRecipes) (Recipes.get(0))).recipeItems;
+                RecipeItem = ((Recipes.get(0))).getRecipeOutput();
+            }
+
+
     }
 
     @Override
@@ -42,72 +70,102 @@ public class RecipeBigPage extends Page {
         this.posX = posX;
         this.posY = posY;
 
-        GL11.glDisable(GL11.GL_LIGHTING);
 
-        RenderItem(ItemRender, render, RecipeItems[0], posX + GridX, posY + GridY);
+        if(Recipes.size() > 0) {
+            if (Recipes.size() > 1) {
+                if (Switch >= BookUtils.RecipeChangeTime) {
+                    Switch = 0;
 
-        if(OverSlot(posX + GridX, posY + GridY, MouseX, MouseY) && RecipeItems[0] != null)
-            drawTooltip(render, GetToolTip(RecipeItems[0]), MouseX, MouseY);
+
+                    if (CurrentRes < Recipes.size()-1)
+                        CurrentRes += 1;
+
+                    else
+                        CurrentRes = 0;
+
+                } else {
+                    Switch += 1;
+                }
 
 
-        if(RecipeItems.length > 1) {
-            RenderItem(ItemRender, render, RecipeItems[1], posX + GridX + 18, posY + GridY);
-            if(OverSlot(posX + GridX + 18, posY + GridY, MouseX, MouseY) && RecipeItems[1] != null)
-                drawTooltip(render, GetToolTip(RecipeItems[1]), MouseX, MouseY);
+                       if (Recipes.get(CurrentRes) instanceof ShapedRecipes){
+                        RecipeItems = ((ShapedRecipes) (Recipes.get(CurrentRes))).recipeItems;
+                        RecipeItem = ((Recipes.get(CurrentRes))).getRecipeOutput();
+                }
+            }
+
+            GL11.glDisable(GL11.GL_LIGHTING);
+
+            if(RecipeItems != null) {
+                RenderItem(ItemRender, render, RecipeItems[0], posX + GridX, posY + GridY);
+
+
+                if (OverSlot(posX + GridX, posY + GridY, MouseX, MouseY) && RecipeItems[0] != null)
+                    drawTooltip(render, GetToolTip(RecipeItems[0]), MouseX, MouseY);
+
+
+                if (RecipeItems.length > 1) {
+                    RenderItem(ItemRender, render, RecipeItems[1], posX + GridX + 18, posY + GridY);
+                    if (OverSlot(posX + GridX + 18, posY + GridY, MouseX, MouseY) && RecipeItems[1] != null)
+                        drawTooltip(render, GetToolTip(RecipeItems[1]), MouseX, MouseY);
+                }
+
+                if (RecipeItems.length > 2) {
+                    RenderItem(ItemRender, render, RecipeItems[2], posX + GridX + (2 * 18), posY + GridY);
+                    if (OverSlot(posX + GridX + (2 * 18), posY + GridY, MouseX, MouseY) && RecipeItems[2] != null)
+                        drawTooltip(render, GetToolTip(RecipeItems[2]), MouseX, MouseY);
+                }
+
+                if (RecipeItems.length > 3) {
+                    RenderItem(ItemRender, render, RecipeItems[3], posX + GridX, posY + GridY + 18);
+                    if (OverSlot(posX + GridX, posY + GridY + 18, MouseX, MouseY) && RecipeItems[3] != null)
+                        drawTooltip(render, GetToolTip(RecipeItems[3]), MouseX, MouseY);
+                }
+
+                if (RecipeItems.length > 4) {
+                    RenderItem(ItemRender, render, RecipeItems[4], posX + GridX + 18, posY + GridY + 18);
+                    if (OverSlot(posX + GridX + 18, posY + GridY + 18, MouseX, MouseY) && RecipeItems[4] != null)
+                        drawTooltip(render, GetToolTip(RecipeItems[4]), MouseX, MouseY);
+                }
+
+                if (RecipeItems.length > 5) {
+                    RenderItem(ItemRender, render, RecipeItems[5], posX + GridX + (2 * 18), posY + GridY + 18);
+                    if (OverSlot(posX + GridX + (2 * 18), posY + GridY + 18, MouseX, MouseY) && RecipeItems[5] != null)
+                        drawTooltip(render, GetToolTip(RecipeItems[5]), MouseX, MouseY);
+                }
+
+                if (RecipeItems.length > 6) {
+                    RenderItem(ItemRender, render, RecipeItems[6], posX + GridX, posY + GridY + (2 * 18));
+                    if (OverSlot(posX + GridX, posY + GridY + (2 * 18), MouseX, MouseY) && RecipeItems[6] != null)
+                        drawTooltip(render, GetToolTip(RecipeItems[6]), MouseX, MouseY);
+                }
+
+                if (RecipeItems.length > 7) {
+                    RenderItem(ItemRender, render, RecipeItems[7], posX + GridX + 18, posY + GridY + (2 * 18));
+                    if (OverSlot(posX + GridX + 18, posY + GridY + (2 * 18), MouseX, MouseY) && RecipeItems[7] != null)
+                        drawTooltip(render, GetToolTip(RecipeItems[7]), MouseX, MouseY);
+                }
+
+                if (RecipeItems.length > 8) {
+                    RenderItem(ItemRender, render, RecipeItems[8], posX + GridX + (2 * 18), posY + GridY + (2 * 18));
+                    if (OverSlot(posX + GridX + (2 * 18), posY + GridY + (2 * 18), MouseX, MouseY) && RecipeItems[8] != null)
+                        drawTooltip(render, GetToolTip(RecipeItems[8]), MouseX, MouseY);
+                }
+
+
+                RenderItem(ItemRender, render, RecipeItem, posX + GridX + 88, posY + GridY + 18);
+
+
+                if (OverSlot(posX + GridX + 88, posY + GridY + 18, MouseX, MouseY) && RecipeItem != null)
+                    drawTooltip(render, (GetToolTipWithoutLink(RecipeItem)), MouseX, MouseY);
+
+            }
+
         }
-
-        if(RecipeItems.length > 2) {
-            RenderItem(ItemRender, render, RecipeItems[2], posX + GridX + (2 * 18), posY + GridY);
-            if(OverSlot(posX + GridX + (2 * 18), posY + GridY, MouseX, MouseY) && RecipeItems[2] != null)
-                drawTooltip(render, GetToolTip(RecipeItems[2]), MouseX, MouseY);
-        }
-
-        if(RecipeItems.length > 3) {
-            RenderItem(ItemRender, render, RecipeItems[3], posX + GridX, posY + GridY + 18);
-            if(OverSlot(posX + GridX, posY + GridY + 18, MouseX, MouseY) && RecipeItems[3] != null)
-                drawTooltip(render, GetToolTip(RecipeItems[3]), MouseX, MouseY);
-        }
-
-        if(RecipeItems.length > 4) {
-            RenderItem(ItemRender, render, RecipeItems[4], posX + GridX + 18, posY + GridY + 18);
-            if(OverSlot(posX + GridX + 18, posY + GridY + 18, MouseX, MouseY) && RecipeItems[4] != null)
-                drawTooltip(render, GetToolTip(RecipeItems[4]), MouseX, MouseY);
-        }
-
-        if(RecipeItems.length > 5) {
-            RenderItem(ItemRender, render, RecipeItems[5], posX + GridX + (2 * 18), posY + GridY + 18);
-            if(OverSlot(posX + GridX + (2 * 18), posY + GridY + 18, MouseX, MouseY) && RecipeItems[5] != null)
-                drawTooltip(render, GetToolTip(RecipeItems[5]), MouseX, MouseY);
-        }
-
-        if(RecipeItems.length > 6) {
-            RenderItem(ItemRender, render, RecipeItems[6], posX + GridX, posY + GridY + (2 * 18));
-            if(OverSlot(posX + GridX, posY + GridY + (2 * 18), MouseX, MouseY) && RecipeItems[6] != null)
-                drawTooltip(render, GetToolTip(RecipeItems[6]), MouseX, MouseY);
-        }
-
-        if(RecipeItems.length > 7) {
-            RenderItem(ItemRender, render, RecipeItems[7], posX + GridX + 18, posY + GridY + (2 * 18));
-            if(OverSlot(posX + GridX + 18, posY + GridY + (2 * 18), MouseX, MouseY) && RecipeItems[7] != null)
-                drawTooltip(render, GetToolTip(RecipeItems[7]), MouseX, MouseY);
-        }
-
-        if(RecipeItems.length > 8) {
-            RenderItem(ItemRender, render, RecipeItems[8], posX + GridX + (2 * 18), posY + GridY + (2 * 18));
-            if(OverSlot(posX + GridX + (2 * 18), posY + GridY + (2 * 18), MouseX, MouseY) && RecipeItems[8] != null)
-                drawTooltip(render, GetToolTip(RecipeItems[8]), MouseX, MouseY);
-        }
-
-
-        RenderItem(ItemRender, render, RecipeItem, posX + GridX + 88, posY + GridY + 18);
-
-        if(OverSlot(posX + GridX + 88, posY + GridY + 18, MouseX, MouseY)  && RecipeItem != null)
-            drawTooltip(render, (GetToolTipWithoutLink(RecipeItem)), MouseX, MouseY);
-
-
 
         GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
         GL11.glEnable(GL11.GL_LIGHTING);
+
 
     }
 

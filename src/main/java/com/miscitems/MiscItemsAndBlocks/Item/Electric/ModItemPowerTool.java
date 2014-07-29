@@ -24,8 +24,6 @@ public abstract class ModItemPowerTool extends ItemTool implements IPowerItem, I
 		super(damage, material, blocks);
 		this.canRepair = false;
 	}
-    //TODO Add method for better power handling for other machines with power items. (Add a function that is activated when the charge amount changes to update the current amount of power)
-    //TODO Change all machines handling power items over to use the new current power function
 
     public int getItemEnchantability()
     {
@@ -37,7 +35,7 @@ public abstract class ModItemPowerTool extends ItemTool implements IPowerItem, I
     public void AddPower(ItemStack stack, double Amount) {
 
         if(Loader.isModLoaded("IC2")) {
-            ElectricItem.manager.charge(stack, Amount, getTier(stack), false, false);
+            ElectricItem.manager.charge(stack, Amount, getTier(stack), true, false);
             return;
         }
 

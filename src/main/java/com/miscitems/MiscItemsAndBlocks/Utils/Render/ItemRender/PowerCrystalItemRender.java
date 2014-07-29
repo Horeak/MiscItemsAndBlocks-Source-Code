@@ -1,6 +1,5 @@
 package com.miscitems.MiscItemsAndBlocks.Utils.Render.ItemRender;
 
-import com.miscitems.MiscItemsAndBlocks.TileEntity.Magic.TileEntityPowerCrystal;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
@@ -16,12 +15,12 @@ public class PowerCrystalItemRender implements IItemRenderer
 {
 
     private final IModelCustom model;
+    ResourceLocation rs;
 
     public PowerCrystalItemRender() {
         model = AdvancedModelLoader.loadModel(new ResourceLocation("miscitems", "Models/BigCrystal.obj"));
+        rs = new ResourceLocation("miscitems", "textures/models/BigCrystalAlphaTexture.png");
     }
-
-    private TileEntityPowerCrystal tile = new TileEntityPowerCrystal();
 
 
 
@@ -49,7 +48,6 @@ public class PowerCrystalItemRender implements IItemRenderer
     @Override
     public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
         GL11.glPushMatrix();
-        GL11.glEnable(GL11.GL_ALPHA_TEST);
         GL11.glTranslated(0.3, 0.2, 0.3);
 
         if(type == ItemRenderType.INVENTORY){
@@ -59,20 +57,16 @@ public class PowerCrystalItemRender implements IItemRenderer
         }else {
             GL11.glScalef(0.8F, 0.8F, 0.8F);
             GL11.glTranslated(0.3, 0.2, 0.3);
-        }
-
-        GL11.glEnable(GL11.GL_BLEND);
+    }
 
 
-        Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation("miscitems", "textures/models/BigCrystalAlphaTexture.png"));
+        Minecraft.getMinecraft().renderEngine.bindTexture(rs);
 
         GL11.glPushMatrix();
-        GL11.glColor4f(0, 0, 0, 1F);
-        GL11.glEnable(GL11.GL_ALPHA_TEST);
+        GL11.glColor4f(0.01F, 0, 0, 1F);
         model.renderAll();
 
 
-        GL11.glDisable(GL11.GL_BLEND);
         GL11.glPopMatrix();
         GL11.glPopMatrix();
 

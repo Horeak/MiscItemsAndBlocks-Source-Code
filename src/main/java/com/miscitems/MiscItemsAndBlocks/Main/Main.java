@@ -17,6 +17,7 @@ import com.miscitems.MiscItemsAndBlocks.Utils.Config.ConfigUtils;
 import com.miscitems.MiscItemsAndBlocks.Utils.Crafting;
 import com.miscitems.MiscItemsAndBlocks.Utils.Laser.DefaultLaser;
 import com.miscitems.MiscItemsAndBlocks.Utils.Laser.LaserRegistry;
+import com.miscitems.MiscItemsAndBlocks.Utils.PillarUtils;
 import com.miscitems.MiscItemsAndBlocks.Utils.Proxies.ServerProxy;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Messages;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
@@ -87,7 +88,7 @@ import java.util.Set;
 
         };
 
-        public static CreativeTabs DecorativeTab = new CreativeTabs("tabMiscDeco")
+        public static CreativeTabs DecorativeTab = (new CreativeTabs("tabMiscDeco")
         {
 
 
@@ -105,7 +106,7 @@ import java.util.Set;
             }
 
 
-        };
+        });
 
 
         public static CreativeTabs ElectricTab = new CreativeTabs("tabMiscElectric")
@@ -160,6 +161,11 @@ import java.util.Set;
 
             PacketHandler.RegisterPackets();
             channels = getNewChannelHandler(handler.channel);
+
+            if(ConfigUtils.AllowCustomPillars) {
+                PillarUtils.RegisterBlackList();
+                PillarUtils.RegisterBlocks();
+            }
 
         	ModBlocks.Init();
         	ModItems.Init();

@@ -2,6 +2,9 @@ package com.miscitems.MiscItemsAndBlocks.Utils.Render.TileEntityRenderer;
 
 import com.miscitems.MiscItemsAndBlocks.Block.Decorative.ModBlockPillar;
 import com.miscitems.MiscItemsAndBlocks.Models.PillarModel;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Decorative.TileEntityPillar;
+import com.miscitems.MiscItemsAndBlocks.Utils.PillarUtils;
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
@@ -31,10 +34,19 @@ public class TileEntityPillarRender extends TileEntitySpecialRenderer {
     public void renderTileEntityAt(TileEntity te, double x, double y, double z, float scale) {
             GL11.glPushMatrix();
             GL11.glTranslatef((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);
-            
-            
-            bindTexture(new ResourceLocation("textures/blocks/quartz_block_top.png"));
-            
+
+              TileEntityPillar tile = (TileEntityPillar)te;
+
+
+        if(tile.ID > PillarUtils.BlU.size())
+            tile.ID = 0;
+
+        if(PillarUtils.BlU.size() > 0) {
+            Block block = Block.getBlockFromItem(PillarUtils.BlU.get(tile.ID).getItem());
+
+            bindTexture(new ResourceLocation(GameRegistry.findUniqueIdentifierFor(block).modId.toLowerCase(), "textures/blocks/" + (block.getIcon(0, tile.me).getIconName()).replace(GameRegistry.findUniqueIdentifierFor(block).modId + ":", "") + ".png"));
+
+        }
             if(te.hasWorldObj()){
             
             World world = te.getWorldObj();
@@ -58,22 +70,32 @@ public class TileEntityPillarRender extends TileEntitySpecialRenderer {
             left = IsPillar(world, X + 1, Y, Z);
             
          GL11.glPushMatrix();
-            GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
-            
-            this.model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F, top, bottom, front, back, left, right, false);
-            
-            GL11.glPopMatrix();
-            GL11.glPopMatrix();
-            }else{
-                
-           
-                
-             GL11.glPushMatrix();
+
                 GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
-                this.model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F, true, true, false, false, false, false, true);
-                
-                GL11.glPopMatrix();
-                GL11.glPopMatrix();
+
+                if(top || bottom) {
+                    this.model.render((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F, top, bottom);
+                }
+
+                if(front || back){
+                    GL11.glRotatef(90, 1.0F, 0.0F, 0.0F);
+                    GL11.glTranslatef( 0F, -1F,  -1F);
+                    this.model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F, back, front);
+                }
+
+                if(right || left){
+                    GL11.glRotatef(90, 0.0F, 0.0F, 1.0F);
+                    GL11.glTranslatef( 1F, -1F,  0F);
+                    this.model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F, right, left);
+
+                }
+
+                if(!front && !back && !right && !left && !top && !bottom){
+                    this.model.render((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F, false, false);
+                }
+            
+            GL11.glPopMatrix();
+            GL11.glPopMatrix();
             }
     }
      

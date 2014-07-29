@@ -1,21 +1,22 @@
 package com.miscitems.MiscItemsAndBlocks.Utils;
 
 import MiscItemsApi.Recipes.RecipeHandler;
-import com.miscitems.MiscItemsAndBlocks.Book.BookUtils;
 import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemPowerTool;
 import com.miscitems.MiscItemsAndBlocks.Main.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.Main.ModItems;
+import com.miscitems.MiscItemsAndBlocks.Utils.Config.ConfigUtils;
 import com.miscitems.MiscItemsAndBlocks.Utils.RecipeUtils.CrystalToolUpgradeRecipe;
 import com.miscitems.MiscItemsAndBlocks.Utils.RecipeUtils.ItemRechargeRecipe;
-import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.relauncher.Side;
 import net.minecraft.block.Block;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
 import java.util.ArrayList;
@@ -27,7 +28,6 @@ public class Crafting {
 
 	public static void RegisterRecipes(){
 
-
         //Infusion Recipes
         //MagicUtils.RegisterInfusionRecipe(new ItemStack(), new ItemStack(), new Object[]{}, 0);
         RecipeHandler.RegisterInfusionRecipe(ModItems.CrystalInfusedMetal, new ItemStack(Items.iron_ingot), new Object[]{ModItems.BlueCrystal, ModItems.BlueCrystal, ModItems.BlueCrystal}, 10);
@@ -35,6 +35,7 @@ public class Crafting {
         RecipeHandler.RegisterInfusionRecipe(new ItemStack(ModItems.CrystalSilk, 3), new ItemStack(Items.string), new Object[]{Items.leather, Items.leather, ModItems.BlueCrystal}, 5);
         RecipeHandler.RegisterInfusionRecipe(ModBlocks.InfusedMetalBlock, new ItemStack(Blocks.iron_block), new Object[]{ModItems.BlueCrystal, ModItems.BlueCrystal, ModItems.BlueCrystal, ModItems.BlueCrystal, ModItems.BlueCrystal, ModItems.BlueCrystal, ModItems.BlueCrystal, ModItems.BlueCrystal}, 90);
         RecipeHandler.RegisterInfusionRecipe(ModBlocks.InfusedGemBlock, new ItemStack(Blocks.diamond_block), new Object[]{ModItems.BlueCrystal, ModItems.BlueCrystal, ModItems.BlueCrystal, ModItems.BlueCrystal, ModItems.BlueCrystal, ModItems.BlueCrystal, ModItems.BlueCrystal, ModItems.BlueCrystal}, 90);
+        RecipeHandler.RegisterInfusionRecipe(new ItemStack(ModItems.ChargedCrystal, 1, ModItems.ChargedCrystal.getMaxDamage()), new ItemStack(ModItems.RedCrystal), new Object[]{ModItems.BlueCrystal, ModItems.BlueCrystal, ModItems.BlueCrystal, ModItems.BlueCrystal, ModItems.BlueCrystal, ModItems.BlueCrystal, ModItems.BlueCrystal, ModItems.BlueCrystal}, 150);
 
         RecipeHandler.RegisterInfusionRecipe(ModItems.CrystalPickaxe, new ItemStack(Items.diamond_pickaxe), new Object[]{ModItems.CrystalInfusedMetal, ModItems.CrystalInfusedMetal, ModItems.CrystalInfusedGem, ModItems.GreenCrystal, ModItems.GreenCrystal, ModItems.RedCrystal, ModItems.RedCrystal, ModItems.ChargedCrystal}, 1000);
         RecipeHandler.RegisterInfusionRecipe(ModItems.CrystalBlade, new ItemStack(Items.diamond_sword), new Object[]{ModItems.CrystalInfusedMetal, ModItems.CrystalInfusedMetal, ModItems.CrystalInfusedGem, ModItems.GreenCrystal, ModItems.GreenCrystal, ModItems.RedCrystal, ModItems.RedCrystal, ModItems.ChargedCrystal}, 1000);
@@ -49,6 +50,7 @@ public class Crafting {
         RecipeHandler.RegisterInfusionRecipe(ModBlocks.MagicalRecharger, new ItemStack(ModBlocks.EnergyBattery), new Object[]{ModItems.CrystalInfusedGem, ModItems.CrystalInfusedGem, ModItems.CrystalInfusedGem, ModItems.CrystalInfusedGem, ModItems.CrystalInfusedMetal, ModItems.CrystalInfusedMetal, ModItems.CrystalInfusedMetal, ModItems.CrystalInfusedMetal}, 300);
 
 
+
         //Magic Recipes
         AddRecipe(new ItemStack(ModBlocks.EnergyBattery), new Object[]{"GMG", "MCM", "GMG", 'G', Items.gold_ingot, 'M', ModItems.CrystalInfusedMetal, 'C', ModItems.CrystalInfusedGem});
         AddRecipe(new ItemStack(ModBlocks.MagicalInfuser), new Object[]{"OCO", "GRG", "OBO", 'O', Blocks.obsidian, 'C', ModItems.ChargedCrystal, 'G', ModItems.GreenCrystal, 'B', ModItems.BlueCrystal, 'R', ModItems.RedCrystal});
@@ -61,9 +63,13 @@ public class Crafting {
         AddRecipe(new ItemStack(ModItems.ChargedCrystal, 1, 50), new Object[]{"RBG", "BCB", "GBR", 'R', Items.redstone, 'G', Items.glowstone_dust, 'B', ModItems.BlueCrystal, 'C', ModItems.GreenCrystal});
         AddRecipe(new ItemStack(ModItems.ChargedCrystal, 1, 50), new Object[]{"GBR", "BCB", "RBG", 'R', Items.redstone, 'G', Items.glowstone_dust, 'B', ModItems.BlueCrystal, 'C', ModItems.GreenCrystal});
 
-        GameRegistry.addRecipe(new CrystalToolUpgradeRecipe(new ItemStack(ModItems.CrystalBlade), new ItemStack(Items.diamond), "ExtraDamage"));
-        GameRegistry.addRecipe(new CrystalToolUpgradeRecipe(new ItemStack(ModItems.CrystalBlade), new ItemStack(Items.blaze_rod), "FireDamage"));
-        GameRegistry.addRecipe(new CrystalToolUpgradeRecipe(new ItemStack(ModItems.CrystalBlade), new ItemStack(Items.ender_pearl), "Looting"));
+        GameRegistry.addRecipe(new CrystalToolUpgradeRecipe(new ItemStack(ModItems.CrystalBlade), new ItemStack(Items.diamond), Enchantment.sharpness, 3));
+        GameRegistry.addRecipe(new CrystalToolUpgradeRecipe(new ItemStack(ModItems.CrystalBlade), new ItemStack(Items.blaze_rod), Enchantment.fireAspect, 1));
+        GameRegistry.addRecipe(new CrystalToolUpgradeRecipe(new ItemStack(ModItems.CrystalBlade), new ItemStack(Items.ender_pearl), Enchantment.looting, 2));
+
+        GameRegistry.addRecipe(new CrystalToolUpgradeRecipe(new ItemStack(ModItems.CrystalPickaxe), new ItemStack(Items.diamond), Enchantment.efficiency, 3));
+        GameRegistry.addRecipe(new CrystalToolUpgradeRecipe(new ItemStack(ModItems.CrystalPickaxe), new ItemStack(Items.blaze_rod), Enchantment.silkTouch, 1));
+        GameRegistry.addRecipe(new CrystalToolUpgradeRecipe(new ItemStack(ModItems.CrystalPickaxe), new ItemStack(Items.ender_pearl), Enchantment.fortune, 2));
 
         GameRegistry.addRecipe(new ItemRechargeRecipe(50, 0, new ItemStack(ModItems.InvisibilityCore), new ItemStack(ModItems.ChargedCrystal, 1, 0)));
         GameRegistry.addRecipe(new ItemRechargeRecipe(2, 0, new ItemStack(ModItems.ChargedCrystal), new ItemStack(Items.redstone, 1)));
@@ -72,9 +78,9 @@ public class Crafting {
 
 
         //NBT ItemStacks
-        ItemStack FullBat = new ItemStack(ModItems.Battery); ((ModItemPowerTool)FullBat.getItem()).AddPower(FullBat, ((ModItemPowerTool)FullBat.getItem()).MaxPower(FullBat));
-        ItemStack FullBigBat = new ItemStack(ModItems.BigBattery); ((ModItemPowerTool)FullBigBat.getItem()).AddPower(FullBigBat, ((ModItemPowerTool)FullBigBat.getItem()).MaxPower(FullBigBat));
-        ItemStack FullAdvancedBat = new ItemStack(ModItems.AdvancedBattery); ((ModItemPowerTool)FullAdvancedBat.getItem()).AddPower(FullAdvancedBat, ((ModItemPowerTool)FullAdvancedBat.getItem()).MaxPower(FullAdvancedBat));
+        ItemStack FullBat = new ItemStack(ModItems.Battery); ((ModItemPowerTool)FullBat.getItem()).AddPower(FullBat, ((ModItemPowerTool) FullBat.getItem()).MaxPower(FullBat));
+        ItemStack FullBigBat = new ItemStack(ModItems.BigBattery); ((ModItemPowerTool)FullBigBat.getItem()).AddPower(FullBigBat, ((ModItemPowerTool) FullBigBat.getItem()).MaxPower(FullBigBat));
+        ItemStack FullAdvancedBat = new ItemStack(ModItems.AdvancedBattery); ((ModItemPowerTool)FullAdvancedBat.getItem()).AddPower(FullAdvancedBat, ((ModItemPowerTool) FullAdvancedBat.getItem()).MaxPower(FullAdvancedBat));
 
         //Squeezer Recipes
         RecipeHandler.RegisterSqueezerRecipe(new ItemStack(ModItems.Liquid, 1, 0), new Object[]{Items.glass_bottle, Items.apple});
@@ -130,6 +136,27 @@ public class Crafting {
 
         for(int i = 0; i < 16; i++)
             AddRecipe(new ItemStack(ModBlocks.ColoredBrickGlowstone, 8, i), new Object[]{"BBB", "BGB", "BBB", 'B', new ItemStack(ModBlocks.ColoredBrick, 1, i), 'G', Blocks.glowstone});
+
+
+        //TODO Fix (it only registers a few of the items
+        for(int i = 0; i < PillarUtils.BlU.size(); i++){
+            if(ConfigUtils.AllowCustomPillars) {
+                Block bl = Block.getBlockFromItem(PillarUtils.BlU.get(i).getItem());
+                ItemStack stack = null;
+
+                if (Item.getItemFromBlock(bl) != null && Item.getItemFromBlock(bl) instanceof ItemBlock && Item.getItemFromBlock(bl).getHasSubtypes()) {
+                    stack = new ItemStack(ModBlocks.Pillar, 8, PillarUtils.BlU.get(i).getItemDamage());
+                } else {
+                    stack = new ItemStack(ModBlocks.Pillar, 8, 0);
+                }
+
+                stack.setTagCompound(new NBTTagCompound());
+                stack.getTagCompound().setInteger("Bl", i);
+
+
+                AddRecipe(stack, new Object[]{"BBB", " B ", "BBB", 'B', new ItemStack(bl, 1, stack.getItemDamage())});
+            }
+        }
 
 
             AddRecipe(new ItemStack(ModItems.GuideBook), new Object[]{"BP", "SP", 'B', Items.book, 'P', Items.paper, 'S', Items.string});
@@ -235,8 +262,6 @@ public class Crafting {
             return;
         FurnaceRecipes.smelting().func_151394_a(Input, Output, Xp);
 
-        if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
-            BookUtils.AddSmeltingRecipe(Input, new DoubleStackUtil(Input, Output));
     }
 
     public static void RegisterSmelting(Item Input, ItemStack Output, float Xp){
@@ -244,19 +269,14 @@ public class Crafting {
             return;
         GameRegistry.addSmelting(Input, Output, Xp);
 
-        if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
-        BookUtils.AddSmeltingRecipe(new ItemStack(Input), new DoubleStackUtil(new ItemStack(Input), Output));
     }
 
     public static void RegisterSmelting(Block Input, ItemStack Output, float Xp){
         if(!Block.blockRegistry.containsId(Block.getIdFromBlock(Input)) || !Item.itemRegistry.containsId(Item.getIdFromItem(Output.getItem())))
             return;
 
-
         GameRegistry.addSmelting(Input, Output, Xp);
 
-        if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
-            BookUtils.AddSmeltingRecipe(new ItemStack(Input), new DoubleStackUtil(new ItemStack(Input), Output));
     }
 
     
@@ -420,8 +440,6 @@ public class Crafting {
         }
 
 
-        if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
-        BookUtils.AddShapedRecipe(stack, aitemstack);
 
         return true;
     }
@@ -472,8 +490,6 @@ public class Crafting {
             return false;
 
 
-        if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
-       BookUtils.AddShapelessRecipe(par1ItemStack, arraylist);
 
       return true;
     }

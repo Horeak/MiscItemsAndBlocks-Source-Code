@@ -20,6 +20,7 @@ public class ModBlockMagicalInfuser extends ModBlockContainer {
 
     public ModBlockMagicalInfuser(){
         super(Material.iron);
+        this.setHardness(3);
     }
 
     @Override

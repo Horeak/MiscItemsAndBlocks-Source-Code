@@ -22,6 +22,7 @@ public class ConfigUtils {
     public static boolean AllowPowerArmorEffects;
     public static boolean HDTextures;
     public static boolean DisableCustomItemModels;
+    public static boolean AllowCustomPillars;
 
     public static int LeveOfLogging;
 
@@ -67,6 +68,7 @@ public class ConfigUtils {
 
         //Server side configs
         AllowPowerArmorEffects = config.getBoolean("Enable Powerarmor effects?", CATEGORY_SERVER_SETTINGS, true, "Disable the effects the power armor gives");
+        AllowCustomPillars = config.getBoolean("Enable pillars for all vanilla blocks?", CATEGORY_SERVER_SETTINGS, true, "Enable the use of pillars of all blocks");
 
 
 

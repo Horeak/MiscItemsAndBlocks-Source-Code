@@ -17,6 +17,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class InfusionRecipeHandler extends TemplateRecipeHandler {
 
 int OffsetX = 5;
@@ -114,7 +115,7 @@ int OffsetY = 0;
 
     @Override
     public void drawExtras(int recipe) {
-        drawProgressBar(67 + OffsetX, 29 + OffsetY, 102, 79, 24, 6, 50, 0);
+        drawProgressBar(67 + OffsetX, 29 + OffsetY, 102, 79, 24, 6, 100, 0);
 
         if(GetRecipeFromInt(recipe) != null){
             InfusionRecipe res = GetRecipeFromInt(recipe);

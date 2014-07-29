@@ -2,8 +2,11 @@ package com.miscitems.MiscItemsAndBlocks.Utils.Render.ItemRender;
 
 import com.miscitems.MiscItemsAndBlocks.Models.PillarModel;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Decorative.TileEntityPillar;
+import com.miscitems.MiscItemsAndBlocks.Utils.PillarUtils;
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
@@ -53,15 +56,29 @@ public class PillarItemRender implements IItemRenderer
         }else{
             GL11.glTranslatef((float) 0.5F, (float) 1.4F, (float) 0.5F);
         }
-        
-        
-       Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("textures/blocks/quartz_block_top.png"));
-        
-        
-       GL11.glPushMatrix();
+
+        if(PillarUtils.BlU.size() > 0) {
+            if (item.getTagCompound() != null) {
+                if(item.getTagCompound().getInteger("Bl") > PillarUtils.BlU.size())
+                    item.getTagCompound().setInteger("Bl", 0);
+
+                Block block = Block.getBlockFromItem(PillarUtils.BlU.get(item.getTagCompound().getInteger("Bl")).getItem());
+
+
+                ResourceLocation res = new ResourceLocation(GameRegistry.findUniqueIdentifierFor(block).modId.toLowerCase(), "textures/blocks/" + (block.getIcon(0, item.getItemDamage()).getIconName()).replace(GameRegistry.findUniqueIdentifierFor(block).modId + ":", "") + ".png");
+
+
+                if(res != null) {
+
+                    Minecraft.getMinecraft().getTextureManager().bindTexture(res);
+                }
+            }
+
+        }
+        GL11.glPushMatrix();
        GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
        
-      model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F, true, true, false, false, false, false, true);
+      model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F, false, false);
        
        GL11.glPopMatrix();
        GL11.glPopMatrix();

@@ -19,6 +19,7 @@ import net.minecraft.world.World;
 public class ModBLockMagicalEnergyRecharger extends ModBlockContainer{
     public ModBLockMagicalEnergyRecharger() {
         super(Material.iron);
+        this.setHardness(4);
     }
 
     @Override
@@ -32,9 +33,9 @@ public class ModBLockMagicalEnergyRecharger extends ModBlockContainer{
 
     public void registerBlockIcons(IIconRegister icon)
     {
-        Top = icon.registerIcon(Reference.Mod_Id + ":MagicalchargerTop");
-        Side = icon.registerIcon(Reference.Mod_Id + ":MagicalchargerSide");
-        Bottom = icon.registerIcon(Reference.Mod_Id + ":MagicalchargerBottom");
+        Top = icon.registerIcon(Reference.Mod_Id + ":MagicalChargerTop");
+        Side = icon.registerIcon(Reference.Mod_Id + ":MagicalChargerSide");
+        Bottom = icon.registerIcon(Reference.Mod_Id + ":MagicalChargerBottom");
 
     }
 

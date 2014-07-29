@@ -2,22 +2,24 @@ package com.miscitems.MiscItemsAndBlocks.Utils.RecipeUtils;
 
 import com.miscitems.MiscItemsAndBlocks.Main.ModItems;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
 public class CrystalToolUpgradeRecipe implements IRecipe {
 
     ItemStack UpgradeItem;
     ItemStack Tool;
-    String UpgradeString;
+    Enchantment encahantment;
+    int lv;
 
-    public CrystalToolUpgradeRecipe(ItemStack Tool, ItemStack UpgradeItem, String Upgrade){
+    public CrystalToolUpgradeRecipe(ItemStack Tool, ItemStack UpgradeItem, Enchantment encahantment, int Level){
         this.UpgradeItem = UpgradeItem;
-        this.UpgradeString = Upgrade;
+        this.encahantment = encahantment;
         this.Tool = Tool;
+        this.lv = Level;
 
     }
 
@@ -59,10 +61,8 @@ public class CrystalToolUpgradeRecipe implements IRecipe {
 
 
                 if (HasUpgradeItem && Crystals == 3 && HasTool) {
-                    if(Tool.getTagCompound() != null && Tool.getTagCompound().hasKey(UpgradeString))
-                        return false;
 
-                    return true;
+                            return  !EnchantmentHelper.getEnchantments(tmpStack).containsValue(encahantment);
                 }
 
             }
@@ -79,27 +79,14 @@ public class CrystalToolUpgradeRecipe implements IRecipe {
 
         for(int i = 0; i < inv.getSizeInventory(); i++){
             if(inv.getStackInSlot(i) != null && inv.getStackInSlot(i).getItem() == Tool.getItem())
-                CurrentTool = inv.getStackInSlot(i);
+                CurrentTool = inv.getStackInSlot(i).copy();
         }
 
-
         if(CurrentTool != null) {
-
             ItemStack newItem = new ItemStack(CurrentTool.getItem(), CurrentTool.stackSize, CurrentTool.getItemDamage());
+            newItem.setTagCompound(CurrentTool.getTagCompound());
 
-            if (CurrentTool.getTagCompound() != null)
-                newItem.setTagCompound(CurrentTool.stackTagCompound);
-            else
-                newItem.setTagCompound(new NBTTagCompound());
-
-
-            if (!newItem.getTagCompound().hasKey(UpgradeString))
-                newItem.getTagCompound().setBoolean(UpgradeString, true);
-
-
-            if(newItem.getItem() == ModItems.CrystalBlade)
-                if(UpgradeString == "Looting")
-                    newItem.addEnchantment(Enchantment.looting, 1);
+                    newItem.addEnchantment(encahantment, lv);
 
 
 

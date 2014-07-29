@@ -113,7 +113,6 @@ import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityTimedBlock;
 import com.miscitems.MiscItemsAndBlocks.Utils.Config.ConfigUtils;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.relauncher.ReflectionHelper;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
@@ -221,7 +220,7 @@ public class ModBlocks {
         Register(GamePart, ModItemBlockGamePiece.class, "Game Piece", TileEntityGamePart.class);
 
         
-        Pillar = new ModBlockPillar().setCreativeTab(Main.DecorativeTab);
+        Pillar = new ModBlockPillar();
         Register(Pillar, ModItemBlockPillar.class,"Pillar", TileEntityPillar.class);
         
         TomatoPlant = new ModBlockTomatoPlant();
@@ -381,9 +380,6 @@ public class ModBlocks {
 
 			if(ConfigUtils.IsBlockEnabled(block)){
 
-                if(Float.parseFloat(ReflectionHelper.getPrivateValue(Block.class, block, "blockHardness").toString()) == 0)
-                    block.setHardness(2F);
-
 	            block.setBlockName(Name.toLowerCase().replace(" ", "_"));
 		        GameRegistry.registerBlock(block, Name.toLowerCase().replace(" ", "_"));
 			}
@@ -407,9 +403,6 @@ public class ModBlocks {
 
         if (ConfigUtils.IsBlockEnabled(Block)) {
 
-            if(Float.parseFloat(ReflectionHelper.getPrivateValue(Block.class, Block, "blockHardness").toString()) == 0)
-                Block.setHardness(2F);
-
         Block.setBlockName(Name.toLowerCase().replace(" ", "_"));
         GameRegistry.registerBlock(Block, itemclass, Name.toLowerCase().replace(" ", "_"));
     }
@@ -419,9 +412,6 @@ public class ModBlocks {
 
     public static void Register(Block Block, Class<? extends ItemBlock> itemclass, String Name, Class<? extends TileEntity> tileClass){
         ConfigUtils.BlockConfigNames.put(Block, Name);
-
-        if(Float.parseFloat(ReflectionHelper.getPrivateValue(Block.class, Block, "blockHardness").toString()) == 0)
-            Block.setHardness(2F);
 
         if(ConfigUtils.IsBlockEnabled(Block)){
             Block.setBlockName(Name.toLowerCase().replace(" ", "_"));

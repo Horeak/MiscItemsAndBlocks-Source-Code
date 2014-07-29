@@ -57,10 +57,18 @@ public abstract class Page {
         GL11.glDisable(GL11.GL_LIGHTING);
         Minecraft mc = Minecraft.getMinecraft();
         GL11.glTranslatef(0.0F, 0.0F, 32.0F);
+
+        if(stack != null && stack.stackSize > 1){
+
+            Minecraft.getMinecraft().fontRenderer.drawString("x" + stack.stackSize, x, y + 18, new Color(0, 0, 0).getRGB());
+        }
+
         ItemRender.zLevel = 200.0F;
         FontRenderer font = null;
         if (font == null) font = render;
         ItemRender.renderItemAndEffectIntoGUI(font, mc.getTextureManager(), stack, x, y);
+
+
         ItemRender.zLevel = 0.0F;
         GL11.glEnable(GL11.GL_LIGHTING);
         GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
@@ -71,11 +79,9 @@ public abstract class Page {
     protected void drawTooltip(FontRenderer render, ArrayList par1List, int par2, int par3)
     {
         GL11.glDisable(GL11.GL_LIGHTING);
-        GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+        GL11.glTranslatef(0.0F, 0.0F, 32.0F);
+
         if (!par1List.isEmpty()) {
-
-
-
 
             GL11.glDisable(GL12.GL_RESCALE_NORMAL);
             GL11.glDisable(GL11.GL_DEPTH_TEST);
@@ -126,7 +132,6 @@ public abstract class Page {
                 for (int k2 = 0; k2 < par1List.size(); ++k2) {
                     String s1 = (String) par1List.get(k2);
 
-                    GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
                     render.drawString(s1, i1, j1, new Color(255, 255, 255).getRGB());
 
                     if (k2 == 0) {
@@ -137,13 +142,12 @@ public abstract class Page {
                 }
 
                 this.zLevel = 0.0F;
-               GL11.glEnable(GL11.GL_DEPTH_TEST);
-                GL11.glEnable(GL12.GL_RESCALE_NORMAL);
 
             }
 
-
         GL11.glEnable(GL11.GL_LIGHTING);
+        GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+
     }
 
 
@@ -190,15 +194,21 @@ public abstract class Page {
         ArrayList<String> list = new ArrayList<String>();
         List t = stack.getTooltip(Minecraft.getMinecraft().thePlayer, false);
 
-        for(int i = 0; i < t.size(); i++) {
-                list.add((String)t.get(i));
+        if(Keyboard.isKeyDown(Keyboard.KEY_LCONTROL) && t.size() > 1) {
+            for (int i = 0; i < t.size(); i++) {
+                list.add((String) t.get(i));
+            }
+        }else{
+            list.add(stack.getDisplayName());
+            if(t.size() > 1)
+            list.add("Hold LControl to see default tooltip.");
         }
-
 
         if(h) {
             if (BookUtils.GetInfoPagesForItem(stack) != null)
                 list.add(EnumChatFormatting.WHITE + "  - " + (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) ? StatCollector.translateToLocal("book.gui.itemOpen") : StatCollector.translateToLocal("book.gui.shiftText")));
         }
+
 
         return list;
 
