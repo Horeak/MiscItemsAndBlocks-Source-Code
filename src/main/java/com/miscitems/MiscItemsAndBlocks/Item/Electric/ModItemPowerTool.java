@@ -1,6 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Item.Electric;
 
 import MiscItemsApi.Electric.IPowerItem;
+import cofh.api.energy.IEnergyContainerItem;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Optional;
 import ic2.api.item.ElectricItem;
@@ -17,8 +18,14 @@ import net.minecraft.util.StatCollector;
 import java.util.List;
 import java.util.Set;
 
-@Optional.Interface(iface = "ic2.api.item.IElectricItem", modid =  "IC2", striprefs = true)
-public abstract class ModItemPowerTool extends ItemTool implements IPowerItem, IElectricItem{
+@Optional.InterfaceList( value =
+
+        {@Optional.Interface(iface = "ic2.api.item.IElectricItem", modid =  "IC2", striprefs = true),
+        @Optional.Interface(iface = "cofh.api.energy.IEnergyContainerItem", modid =  "CoFHCore", striprefs = true)
+
+        })
+
+public abstract class ModItemPowerTool extends ItemTool implements IPowerItem, IElectricItem, IEnergyContainerItem{
 
 	public ModItemPowerTool(float damage, ToolMaterial material, Set blocks) {
 		super(damage, material, blocks);
@@ -34,6 +41,10 @@ public abstract class ModItemPowerTool extends ItemTool implements IPowerItem, I
     @Override
     public void AddPower(ItemStack stack, double Amount) {
 
+        if(Amount > getMaxCharge(stack))
+            Amount = getMaxCharge(stack);
+
+
         if(Loader.isModLoaded("IC2")) {
             ElectricItem.manager.charge(stack, Amount, getTier(stack), true, false);
             return;
@@ -47,10 +58,14 @@ public abstract class ModItemPowerTool extends ItemTool implements IPowerItem, I
         }
 
 
+
     }
 
     @Override
     public void RemovePower(ItemStack stack, double Amount) {
+
+        if(Amount > getMaxCharge(stack))
+            Amount = getMaxCharge(stack);
 
         if(Loader.isModLoaded("IC2")) {
             ElectricItem.manager.discharge(stack, Amount, getTier(stack), false, true, false);
@@ -165,4 +180,49 @@ public abstract class ModItemPowerTool extends ItemTool implements IPowerItem, I
 
     }
 
+    @Override
+    public int receiveEnergy(ItemStack container, int maxReceive, boolean simulate) {
+
+        int energy = (int)CurrentPower(container);
+        double Added = 1;
+
+        if(energy < getMaxCharge(container) && maxReceive >= 1000) {
+            if (!simulate) {
+                AddPower(container, Added);
+            }
+        }
+        return 1000;
+    }
+
+    @Override
+    public int extractEnergy(ItemStack container, int maxExtract, boolean simulate) {
+
+
+        int energy = (int)CurrentPower(container);
+        double Removed = 1;
+        if(energy > 0.0 && maxExtract >= 1000) {
+
+            if (!simulate) {
+
+                RemovePower(container, Removed);
+            }
+
+        }else
+                return 0;
+
+
+        return 1000;
+    }
+
+    @Override
+    public int getEnergyStored(ItemStack container) {
+
+        return (int)CurrentPower(container);
+    }
+
+    @Override
+    public int getMaxEnergyStored(ItemStack container) {
+
+        return (int)getMaxCharge(container);
+    }
 }

@@ -22,7 +22,7 @@ public class ModItemWithDamage extends ItemTool{
     int MaxDamage;
 
     protected ModItemWithDamage(int ItemMaxDamage) {
-        super(0, ToolMaterial.WOOD, Sets.newHashSet());
+        super(0, ToolMaterial.EMERALD, Sets.newHashSet());
         this.setMaxDamage(ItemMaxDamage);
 
         MaxDamage = ItemMaxDamage;

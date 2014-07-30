@@ -3,7 +3,7 @@ package com.miscitems.MiscItemsAndBlocks.TileEntity.Magic;
 import MiscItemsApi.Magic.IEnergyStorageItem;
 import MiscItemsApi.Magic.IMagicReceiver;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Utils.TileEntityInvBase;
-import com.miscitems.MiscItemsAndBlocks.Utils.MagicUtils;
+import com.miscitems.MiscItemsAndBlocks.Utils.Magic.MagicUtils;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 

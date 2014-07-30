@@ -6,8 +6,10 @@ import com.miscitems.MiscItemsAndBlocks.TileEntity.Decorative.TileEntityPillar;
 import com.miscitems.MiscItemsAndBlocks.Utils.PillarUtils;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockAir;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
@@ -43,6 +45,12 @@ public class TileEntityPillarRender extends TileEntitySpecialRenderer {
 
         if(PillarUtils.BlU.size() > 0) {
             Block block = Block.getBlockFromItem(PillarUtils.BlU.get(tile.ID).getItem());
+
+            if(block instanceof BlockAir || block == null || block == Blocks.air) {
+                GL11.glPopMatrix();
+                return;
+            }
+
 
             bindTexture(new ResourceLocation(GameRegistry.findUniqueIdentifierFor(block).modId.toLowerCase(), "textures/blocks/" + (block.getIcon(0, tile.me).getIconName()).replace(GameRegistry.findUniqueIdentifierFor(block).modId + ":", "") + ".png"));
 

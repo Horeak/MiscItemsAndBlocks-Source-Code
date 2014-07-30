@@ -96,7 +96,7 @@ public class RecipeBigPage extends Page {
 
             GL11.glDisable(GL11.GL_LIGHTING);
 
-            if(RecipeItems != null) {
+            if(RecipeItems != null && RecipeItems.length > 0) {
                 RenderItem(ItemRender, render, RecipeItems[0], posX + GridX, posY + GridY);
 
 

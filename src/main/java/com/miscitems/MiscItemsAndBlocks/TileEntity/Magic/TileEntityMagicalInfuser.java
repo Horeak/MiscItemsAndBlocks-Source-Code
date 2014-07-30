@@ -4,7 +4,7 @@ import MiscItemsApi.Magic.IMagicReceiver;
 import MiscItemsApi.Recipes.InfusionRecipe;
 import MiscItemsApi.Recipes.RecipeHandler;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Utils.TileEntityInvBase;
-import com.miscitems.MiscItemsAndBlocks.Utils.MagicUtils;
+import com.miscitems.MiscItemsAndBlocks.Utils.Magic.MagicUtils;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 

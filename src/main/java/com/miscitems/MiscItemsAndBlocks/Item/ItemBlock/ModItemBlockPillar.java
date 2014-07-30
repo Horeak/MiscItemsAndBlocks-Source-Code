@@ -3,12 +3,17 @@ package com.miscitems.MiscItemsAndBlocks.Item.ItemBlock;
 import com.miscitems.MiscItemsAndBlocks.Main.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Decorative.TileEntityPillar;
 import com.miscitems.MiscItemsAndBlocks.Utils.PillarUtils;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
+
+import java.util.List;
 
 public class ModItemBlockPillar extends ItemBlock{
 
@@ -17,16 +22,26 @@ public class ModItemBlockPillar extends ItemBlock{
 	}
 
 
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, EntityPlayer p_77624_2_, List list, boolean p_77624_4_) {
+
+        if(stack.getTagCompound() != null){
+
+
+        if(stack.getTagCompound() != null){
+            if(PillarUtils.BlU.get(stack.getTagCompound().getInteger("Bl")) != null) {
+                list.add(EnumChatFormatting.DARK_BLUE + "" +  EnumChatFormatting.ITALIC + StatCollector.translateToLocal("tile.pillar.name") + ": " +StatCollector.translateToLocal(PillarUtils.BlU.get(stack.getTagCompound().getInteger("Bl")).getUnlocalizedName() + ".name"));
+            }
+
+        }
+
+        }
+    }
+
     public String getItemStackDisplayName(ItemStack stack)
     {
 
-        if(stack != null)
-        if(stack.getTagCompound() != null){
-            if(PillarUtils.BlU.get(stack.getTagCompound().getInteger("Bl")) != null)
-            return StatCollector.translateToLocal(PillarUtils.BlU.get(stack.getTagCompound().getInteger("Bl")).getUnlocalizedName() + ".name") + " " + StatCollector.translateToLocal("tile.pillar.name");
-        }
-
-        return ("" + StatCollector.translateToLocal(this.getUnlocalizedNameInefficiently(stack) + ".name")).trim();
+        return StatCollector.translateToLocal("tile.pillar.name");
     }
 
     public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ, int metadata)

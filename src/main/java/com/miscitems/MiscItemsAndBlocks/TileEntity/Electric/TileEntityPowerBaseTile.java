@@ -1,6 +1,9 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity.Electric;
 
 import MiscItemsApi.Electric.IPowerTile;
+import cofh.api.energy.IEnergyConnection;
+import cofh.api.energy.IEnergyHandler;
+import cofh.api.energy.IEnergyStorage;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Utils.ModTileEntity;
 import com.miscitems.MiscItemsAndBlocks.Utils.PowerUtils;
 import cpw.mods.fml.common.Loader;
@@ -19,9 +22,12 @@ import net.minecraftforge.common.util.ForgeDirection;
 @Optional.InterfaceList(    value =
        {@Optional.Interface(iface = "ic2.api.energy.tile.IEnergyAcceptor",    modid = "IC2"),
         @Optional.Interface(iface = "ic2.api.energy.tile.IEnergySink",    modid = "IC2"),
-        @Optional.Interface(iface = "ic2.api.energy.tile.IEnergyTile",    modid = "IC2")
+        @Optional.Interface(iface = "ic2.api.energy.tile.IEnergyTile",    modid = "IC2"),
+        @Optional.Interface(iface = "cofh.api.energy.IEnergyStorage",    modid = "CoFHCore"),
+        @Optional.Interface(iface = "cofh.api.energy.IEnergyConnection",    modid = "CoFHCore"),
+        @Optional.Interface(iface = "cofh.api.energy.IEnergyHandler",    modid = "CoFHCore")
 })
-public abstract class TileEntityPowerBaseTile extends ModTileEntity implements IPowerTile, IEnergySink, IEnergyAcceptor, IEnergyTile {
+public abstract class TileEntityPowerBaseTile extends ModTileEntity implements IPowerTile, IEnergySink, IEnergyAcceptor, IEnergyTile, IEnergyStorage, IEnergyConnection, IEnergyHandler {
 
     private double Power;
     private double PowerMax;
@@ -137,7 +143,7 @@ public abstract class TileEntityPowerBaseTile extends ModTileEntity implements I
 
     public double injectEnergy(ForgeDirection directionFrom, double amount, double voltage) {
 
-        amount /= (PowerUtils.IC2_For_MiscPower / 2);
+        amount /= (PowerUtils.ModPower_For_MiscPower / 2);
 
         if(GetPower() < GetMaxPower())
         AddPower(amount);
@@ -157,5 +163,77 @@ public abstract class TileEntityPowerBaseTile extends ModTileEntity implements I
             return emitter instanceof IEnergyTile;
 
         return false;
+    }
+
+    @Override
+    public int receiveEnergy(int maxReceive, boolean simulate) {
+
+        int energy = (int)GetPower();
+        double Added = 0.1;
+
+        if(energy < GetMaxPower()) {
+            if (!simulate) {
+                AddPower(Added);
+            }
+
+        }else
+        return 0;
+
+
+        return 100;
+    }
+
+    @Override
+    public int extractEnergy(int maxExtract, boolean simulate) {
+
+
+        int energy = (int)GetPower();
+        double Removed = 1 / 1000;
+
+        if(energy > 0.0) {
+            if (!simulate) {
+                SetPower(GetPower() - Removed);
+            }
+
+        }else
+            return 0;
+
+
+        return 1;
+    }
+
+    @Override
+    public int getEnergyStored() {
+        return (int)GetPower();
+    }
+
+    @Override
+    public int getMaxEnergyStored() {
+        return (int)GetMaxPower();
+    }
+
+    @Override
+    public boolean canConnectEnergy(ForgeDirection from) {
+        return true;
+    }
+
+    @Override
+    public int receiveEnergy(ForgeDirection from, int maxReceive, boolean simulate) {
+        return receiveEnergy(maxReceive, simulate);
+    }
+
+    @Override
+    public int extractEnergy(ForgeDirection from, int maxExtract, boolean simulate) {
+        return extractEnergy(maxExtract, simulate);
+    }
+
+    @Override
+    public int getEnergyStored(ForgeDirection from) {
+        return getEnergyStored();
+    }
+
+    @Override
+    public int getMaxEnergyStored(ForgeDirection from) {
+        return getMaxEnergyStored();
     }
 }

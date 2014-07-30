@@ -75,12 +75,12 @@ public void updateEntity() {
             if(Loader.isModLoaded("IC2")){
                 if(dischargeStack.getItem() instanceof IElectricItem){
                     if(ElectricItem.manager.getCharge(dischargeStack) > 10) {
-                        ElectricItem.manager.discharge(dischargeStack, PowerUtils.IC2_For_MiscPower, ((IElectricItem)dischargeStack.getItem()).getTier(dischargeStack), false, false, false);
-                        AddPower(PowerUtils.MiscPower_For_IC2);
+                        ElectricItem.manager.discharge(dischargeStack, PowerUtils.ModPower_For_MiscPower, ((IElectricItem)dischargeStack.getItem()).getTier(dischargeStack), false, false, false);
+                        AddPower(PowerUtils.MiscPower_For_ModPower);
 
                     }else if (ElectricItem.manager.getCharge(dischargeStack) > 0){
-                        ElectricItem.manager.discharge(dischargeStack, PowerUtils.IC2_For_MiscPower / 10, ((IElectricItem)dischargeStack.getItem()).getTier(dischargeStack), false, false, false);
-                        AddPower(PowerUtils.MiscPower_For_IC2 / 10);
+                        ElectricItem.manager.discharge(dischargeStack, PowerUtils.ModPower_For_MiscPower / 10, ((IElectricItem)dischargeStack.getItem()).getTier(dischargeStack), false, false, false);
+                        AddPower(PowerUtils.MiscPower_For_ModPower / 10);
                     }
 
 

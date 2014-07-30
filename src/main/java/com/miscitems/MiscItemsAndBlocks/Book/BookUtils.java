@@ -185,7 +185,6 @@ public class BookUtils {
 
 
     public static void RegisterPagesForItem(ItemStack item, Page[] Pages) {
-
         list.add(new UtilsStackPages(item, Pages));
     }
 

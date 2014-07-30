@@ -9,6 +9,7 @@ import com.miscitems.MiscItemsAndBlocks.Utils.RecipeUtils.CrystalToolUpgradeReci
 import com.miscitems.MiscItemsAndBlocks.Utils.RecipeUtils.ItemRechargeRecipe;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockAir;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -16,15 +17,13 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.oredict.ShapedOreRecipe;
-
-import java.util.ArrayList;
-import java.util.HashMap;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 public class Crafting {
-
-    public static ArrayList<String> Recipes = new ArrayList<String>();
 
 	public static void RegisterRecipes(){
 
@@ -63,17 +62,17 @@ public class Crafting {
         AddRecipe(new ItemStack(ModItems.ChargedCrystal, 1, 50), new Object[]{"RBG", "BCB", "GBR", 'R', Items.redstone, 'G', Items.glowstone_dust, 'B', ModItems.BlueCrystal, 'C', ModItems.GreenCrystal});
         AddRecipe(new ItemStack(ModItems.ChargedCrystal, 1, 50), new Object[]{"GBR", "BCB", "RBG", 'R', Items.redstone, 'G', Items.glowstone_dust, 'B', ModItems.BlueCrystal, 'C', ModItems.GreenCrystal});
 
-        GameRegistry.addRecipe(new CrystalToolUpgradeRecipe(new ItemStack(ModItems.CrystalBlade), new ItemStack(Items.diamond), Enchantment.sharpness, 3));
-        GameRegistry.addRecipe(new CrystalToolUpgradeRecipe(new ItemStack(ModItems.CrystalBlade), new ItemStack(Items.blaze_rod), Enchantment.fireAspect, 1));
-        GameRegistry.addRecipe(new CrystalToolUpgradeRecipe(new ItemStack(ModItems.CrystalBlade), new ItemStack(Items.ender_pearl), Enchantment.looting, 2));
+        AddRecipe(new CrystalToolUpgradeRecipe(new ItemStack(ModItems.CrystalBlade), new ItemStack(Items.diamond), Enchantment.sharpness, 3));
+        AddRecipe(new CrystalToolUpgradeRecipe(new ItemStack(ModItems.CrystalBlade), new ItemStack(Items.blaze_rod), Enchantment.fireAspect, 1));
+        AddRecipe(new CrystalToolUpgradeRecipe(new ItemStack(ModItems.CrystalBlade), new ItemStack(Items.ender_pearl), Enchantment.looting, 2));
 
-        GameRegistry.addRecipe(new CrystalToolUpgradeRecipe(new ItemStack(ModItems.CrystalPickaxe), new ItemStack(Items.diamond), Enchantment.efficiency, 3));
-        GameRegistry.addRecipe(new CrystalToolUpgradeRecipe(new ItemStack(ModItems.CrystalPickaxe), new ItemStack(Items.blaze_rod), Enchantment.silkTouch, 1));
-        GameRegistry.addRecipe(new CrystalToolUpgradeRecipe(new ItemStack(ModItems.CrystalPickaxe), new ItemStack(Items.ender_pearl), Enchantment.fortune, 2));
+        AddRecipe(new CrystalToolUpgradeRecipe(new ItemStack(ModItems.CrystalPickaxe), new ItemStack(Items.diamond), Enchantment.efficiency, 3));
+        AddRecipe(new CrystalToolUpgradeRecipe(new ItemStack(ModItems.CrystalPickaxe), new ItemStack(Items.blaze_rod), Enchantment.silkTouch, 1));
+        AddRecipe(new CrystalToolUpgradeRecipe(new ItemStack(ModItems.CrystalPickaxe), new ItemStack(Items.ender_pearl), Enchantment.fortune, 2));
 
-        GameRegistry.addRecipe(new ItemRechargeRecipe(50, 0, new ItemStack(ModItems.InvisibilityCore), new ItemStack(ModItems.ChargedCrystal, 1, 0)));
-        GameRegistry.addRecipe(new ItemRechargeRecipe(2, 0, new ItemStack(ModItems.ChargedCrystal), new ItemStack(Items.redstone, 1)));
-        GameRegistry.addRecipe(new ItemRechargeRecipe(5, 0, new ItemStack(ModItems.ChargedCrystal), new ItemStack(Items.glowstone_dust, 1)));
+        AddRecipe(new ItemRechargeRecipe(50, 0, new ItemStack(ModItems.InvisibilityCore), new ItemStack(ModItems.ChargedCrystal, 1, 0)));
+        AddRecipe(new ItemRechargeRecipe(2, 0, new ItemStack(ModItems.ChargedCrystal), new ItemStack(Items.redstone, 1)));
+        AddRecipe(new ItemRechargeRecipe(5, 0, new ItemStack(ModItems.ChargedCrystal), new ItemStack(Items.glowstone_dust, 1)));
 
 
 
@@ -117,10 +116,14 @@ public class Crafting {
             AddShapelessRecipe(new ItemStack(ModItems.AdvancedBattery), new Object[]{new ItemStack(ModItems.BigBattery), new ItemStack(ModItems.Circuit, 1, 1), new ItemStack(ModItems.BigBattery)});
             AddShapelessRecipe(FullAdvancedBat, new Object[]{FullBigBat, new ItemStack(ModItems.Circuit, 1, 1), FullBigBat});
 
-            GameRegistry.addRecipe(new ShapedOreRecipe(ModBlocks.Worktable, new Object[] {"WWW", "PIP", "PCP", 'W', Blocks.wool, Character.valueOf('P'), "plankWood", 'C', Blocks.chest, 'I', Blocks.crafting_table}));
-		    GameRegistry.addRecipe(new ShapedOreRecipe(ModBlocks.Dice, new Object[]{"PPP", "PDP", "PPP", Character.valueOf('P'), "plankWood", 'D', Items.dye}));
-		    GameRegistry.addRecipe(new ShapedOreRecipe(ModBlocks.Table, new Object[]{"CCC", "HHH", "P P", 'C', new ItemStack(Blocks.carpet, 1, 14), Character.valueOf('P'), "plankWood", Character.valueOf('H'), "slabWood"}));
-		    GameRegistry.addRecipe(new ShapedOreRecipe(ModItems.Turbine, new Object[]{"S S", " P ", "S S", 'S', Items.stick, Character.valueOf('P'), "plankWood"}));
+            AddShapedOreRecipe(new ShapedOreRecipe(ModBlocks.Worktable, new Object[]{"WWW", "PIP", "PCP", 'W', Blocks.wool, Character.valueOf('P'), "plankWood", 'C', Blocks.chest, 'I', Blocks.crafting_table}));
+            AddShapedOreRecipe(new ShapedOreRecipe(ModBlocks.Dice, new Object[]{"PPP", "PDP", "PPP", Character.valueOf('P'), "plankWood", 'D', Items.dye}));
+            AddShapedOreRecipe(new ShapedOreRecipe(ModBlocks.Table, new Object[]{"CCC", "HHH", "P P", 'C', new ItemStack(Blocks.carpet, 1, 14), Character.valueOf('P'), "plankWood", Character.valueOf('H'), "slabWood"}));
+            AddShapedOreRecipe(new ShapedOreRecipe(ModItems.Turbine, new Object[]{"S S", " P ", "S S", 'S', Items.stick, Character.valueOf('P'), "plankWood"}));
+
+            AddShapedOreRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.GhostBlock, 32), new Object[]{"GPG", "GSG", "GDG", 'G', Blocks.glass, 'P', Items.paper, 'D', Items.diamond, Character.valueOf('S'), "ingotSilver"}));
+            AddShapedOreRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.GhostBlock, 4), new Object[]{"GPG", "GSG", "GDG", 'G', Blocks.glass, 'P', Items.paper, 'D', Items.diamond, Character.valueOf('S'), "nuggetSilver"}));
+            AddShapedOreRecipe(new ShapedOreRecipe(new ItemStack(ModItems.Lens), new Object[]{"ISI", "SGS", "ISI", 'I', Items.iron_ingot, Character.valueOf('S'), "nuggetSilver", 'G', Blocks.glass_pane}));
 
             AddRecipe(new ItemStack(ModBlocks.Worktable), new Object[] {"WWW", "PIP", "PCP", 'W', Blocks.wool, 'P', Blocks.planks, 'C', Blocks.chest, 'I', Blocks.crafting_table});
             AddRecipe(new ItemStack(ModBlocks.Dice), new Object[]{"PPP", "PDP", "PPP", 'P', Blocks.planks, 'D', Items.dye});
@@ -138,23 +141,30 @@ public class Crafting {
             AddRecipe(new ItemStack(ModBlocks.ColoredBrickGlowstone, 8, i), new Object[]{"BBB", "BGB", "BBB", 'B', new ItemStack(ModBlocks.ColoredBrick, 1, i), 'G', Blocks.glowstone});
 
 
-        //TODO Fix (it only registers a few of the items
         for(int i = 0; i < PillarUtils.BlU.size(); i++){
             if(ConfigUtils.AllowCustomPillars) {
                 Block bl = Block.getBlockFromItem(PillarUtils.BlU.get(i).getItem());
                 ItemStack stack = null;
 
+
                 if (Item.getItemFromBlock(bl) != null && Item.getItemFromBlock(bl) instanceof ItemBlock && Item.getItemFromBlock(bl).getHasSubtypes()) {
-                    stack = new ItemStack(ModBlocks.Pillar, 8, PillarUtils.BlU.get(i).getItemDamage());
+                    stack = new ItemStack(ModBlocks.Pillar, 16, PillarUtils.BlU.get(i).getItemDamage());
                 } else {
-                    stack = new ItemStack(ModBlocks.Pillar, 8, 0);
+                    stack = new ItemStack(ModBlocks.Pillar, 16, 0);
                 }
 
                 stack.setTagCompound(new NBTTagCompound());
                 stack.getTagCompound().setInteger("Bl", i);
 
+                if(bl instanceof BlockAir || bl == null || bl == Blocks.air) {
+                   continue;
+                }
 
-                AddRecipe(stack, new Object[]{"BBB", " B ", "BBB", 'B', new ItemStack(bl, 1, stack.getItemDamage())});
+                ItemStack stk = new ItemStack(bl, 1, stack.getItemDamage());
+
+                ShapedRecipes recipe = new ShapedRecipes(3, 3, new ItemStack[]{stk, stk, stk, null, stk, null, stk, stk, stk}, stack);
+
+                AddRecipe(recipe);
             }
         }
 
@@ -218,14 +228,11 @@ public class Crafting {
 			AddRecipe(new ItemStack(ModItems.AntiFallChestPlate), new Object[]{"PUP", "FCF", "PBP", 'P', new ItemStack(ModItems.IronPlate, 1, 2), 'U', new ItemStack(ModItems.Upgrades, 1, 0), 'F', ModItems.FloatBlockPlacer, 'C', Items.iron_chestplate, 'B', FullAdvancedBat});
 			AddRecipe(new ItemStack(ModItems.InfoScreenHelmet), new Object[]{"IIP", "GCB", "IIP", 'I', new ItemStack(ModItems.IronPlate, 1 ,0), 'P', new ItemStack(ModItems.IronPlate, 1, 2), 'G', Blocks.glass_pane, 'C', new ItemStack(ModItems.Circuit, 1, 1), 'B', FullBat});
 			AddRecipe(new ItemStack(Items.saddle), new Object[]{"LLL", "LSL", " I ", 'L', Items.leather, 'S', Items.string, 'I', Items.iron_ingot});
-	        AddRecipe(new ItemStack(ModBlocks.Pillar, 4), new Object[]{"QQQ", " Q ", "QQQ", 'Q', Blocks.quartz_block});
 	        AddRecipe(new ItemStack(ModBlocks.ElectricFurnace), new Object[]{"PMP", "PFP", "PCP", 'P', new ItemStack(ModItems.IronPlate, 1, 2), 'M', ModBlocks.MachinePart, 'F', Blocks.furnace, 'C', new ItemStack(ModItems.Circuit, 1, 1)});
             AddRecipe(new ItemStack(ModItems.FlightChestPlate), new Object[] {"IFI", "ISI", "III", 'I', ModItems.SilverIngot, 'S', Items.nether_star, 'F', Items.feather});
-            AddRecipe(new ItemStack(ModItems.Lens), new Object[]{"ISI", "SGS", "ISI", 'I', Items.iron_ingot, 'S', ModItems.SilverNugget, 'G', Blocks.glass_pane});
             AddRecipe(new ItemStack(ModBlocks.Laser), new Object[]{"HCH", "BML", "HCH", 'H', new ItemStack(ModItems.IronPlate, 1, 2), 'C', ModBlocks.PowerCable, 'B', FullBat, 'M', ModBlocks.MachinePart, 'L', ModItems.Lens});
             AddRecipe(new ItemStack(ModBlocks.LaserReciver), new Object[]{"HBH", "CLC", "HRH", 'H', new ItemStack(ModItems.IronPlate, 1, 2), 'B', FullBat, 'C', ModBlocks.PowerCable, 'L', ModItems.Lens, 'R', Blocks.redstone_block});
-            AddRecipe(new ItemStack(ModBlocks.GhostBlock, 32), new Object[]{"GPG", "GSG", "GDG", 'G', Blocks.glass, 'P', Items.paper, 'D', Items.diamond, 'S', ModItems.SilverIngot});
-            AddRecipe(new ItemStack(ModBlocks.GhostBlock, 4), new Object[]{"GPG", "GSG", "GDG", 'G', Blocks.glass, 'P', Items.paper, 'D', Items.diamond, 'S', ModItems.SilverNugget});
+
 
             AddRecipe(new ItemStack(ModBlocks.PowerCrystal), new Object[]{"BPB", "GRG", "BPB", 'B', ModItems.BlueCrystal, 'P', ModItems.ChargedCrystal, 'G', ModItems.GreenCrystal, 'R', ModItems.RedCrystal});
 
@@ -245,257 +252,73 @@ public class Crafting {
 
     }
 
-    public static boolean RegisterRes(String name){
-
-
-        if(!Recipes.contains(name)){
-            Recipes.add(name);
-            return true;
-        }
-
-        return false;
-    }
-
 
     public static void RegisterSmelting(ItemStack Input, ItemStack Output, float Xp){
-        if(!Item.itemRegistry.containsId(Item.getIdFromItem(Input.getItem())) || !Item.itemRegistry.containsId(Item.getIdFromItem(Output.getItem())))
-            return;
+        if(StackEnabled(Output))
         FurnaceRecipes.smelting().func_151394_a(Input, Output, Xp);
 
     }
 
     public static void RegisterSmelting(Item Input, ItemStack Output, float Xp){
-        if(!Item.itemRegistry.containsId(Item.getIdFromItem(Input)) || !Item.itemRegistry.containsId(Item.getIdFromItem(Output.getItem())))
-            return;
+        if(StackEnabled(Output))
         GameRegistry.addSmelting(Input, Output, Xp);
 
     }
 
     public static void RegisterSmelting(Block Input, ItemStack Output, float Xp){
-        if(!Block.blockRegistry.containsId(Block.getIdFromBlock(Input)) || !Item.itemRegistry.containsId(Item.getIdFromItem(Output.getItem())))
-            return;
-
+        if(StackEnabled(Output))
         GameRegistry.addSmelting(Input, Output, Xp);
 
     }
 
     
     public static void AddRecipe(ItemStack output, Object... Array){
-
-        if(CheckBigRecipe(output, Array)) {
-            String name = output.getItem().getUnlocalizedName(output).replace("tile.", "").replace(".name", "").replace(" ", "_").replace("item.", "");
-
-
-            if (RegisterRes(name)) {
-                GameRegistry.addShapedRecipe(output, Array);
-
-
-            } else {
-                if (!RegisterRes(name)) {
-                    for (int i = 0; i < 20; i++) {
-
-                        if (RegisterRes(name + "_" + i)) {
-
-                            name = output.getItem().getUnlocalizedName(output).replace("tile.", "").replace(".name", "").replace(" ", "_").replace("item.", "") + "_" + i;
-
-
-                            if (CheckBigRecipe(output, Array)) {
-                                GameRegistry.addShapedRecipe(output, Array);
-                                break;
-                            }
-                        }
-
-                    }
-                }
-
-
-            }
-
-
-        }
+        if (StackEnabled(output))
+            GameRegistry.addShapedRecipe(output, Array);
     }
-    
+
     public static void AddShapelessRecipe(ItemStack output, Object... Array) {
-
-        if (CheckSmallRecipe(output, Array)) {
-            String name = output.getItem().getUnlocalizedName(output).replace("tile.", "").replace(".name", "").replace(" ", "_").replace("item.", "");
-
-
-            if (RegisterRes(name)) {
+        if (StackEnabled(output))
                 GameRegistry.addShapelessRecipe(output, Array);
-
-
-
-        } else {
-            if (!RegisterRes(name)) {
-                for (int i = 0; i < 20; i++) {
-
-                    if (RegisterRes(name + "_" + i)) {
-
-                        name = output.getItem().getUnlocalizedName(output).replace("tile.", "").replace(".name", "").replace(" ", "_").replace("item.", "") + "_" + i;
-
-
-                        if (CheckSmallRecipe(output, Array)) {
-                            GameRegistry.addShapelessRecipe(output, Array);
-                            break;
-                        }
-                    }
-
-                }
-            }
-
-
-        }
-    }
-
-    }
-
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-    public static boolean CheckBigRecipe(ItemStack stack, Object ... par2ArrayOfObj)
-    {
-
-
-
-        String s = "";
-        int i = 0;
-        int j = 0;
-        int k = 0;
-
-        if (par2ArrayOfObj[i] instanceof String[])
-        {
-            String[] astring = (String[])((String[])par2ArrayOfObj[i++]);
-
-            for (int l = 0; l < astring.length; ++l)
-            {
-                String s1 = astring[l];
-                ++k;
-                j = s1.length();
-                s = s + s1;
-            }
-        }
-        else
-        {
-            while (par2ArrayOfObj[i] instanceof String)
-            {
-                String s2 = (String)par2ArrayOfObj[i++];
-                ++k;
-                j = s2.length();
-                s = s + s2;
-            }
-        }
-
-        HashMap hashmap;
-
-        for (hashmap = new HashMap(); i < par2ArrayOfObj.length; i += 2)
-        {
-            Character character = (Character)par2ArrayOfObj[i];
-            ItemStack itemstack1 = null;
-
-            if (par2ArrayOfObj[i + 1] instanceof Item)
-            {
-                itemstack1 = new ItemStack((Item)par2ArrayOfObj[i + 1]);
-            }
-            else if (par2ArrayOfObj[i + 1] instanceof Block)
-            {
-                itemstack1 = new ItemStack((Block)par2ArrayOfObj[i + 1], 1, 32767);
-            }
-            else if (par2ArrayOfObj[i + 1] instanceof ItemStack)
-            {
-                itemstack1 = (ItemStack)par2ArrayOfObj[i + 1];
-            }
-
-            hashmap.put(character, itemstack1);
-        }
-
-        ItemStack[] aitemstack = new ItemStack[j * k];
-
-        for (int i1 = 0; i1 < j * k; ++i1)
-        {
-            char c0 = s.charAt(i1);
-
-            if (hashmap.containsKey(Character.valueOf(c0)))
-            {
-                aitemstack[i1] = ((ItemStack)hashmap.get(Character.valueOf(c0))).copy();
-            }
-            else
-            {
-                aitemstack[i1] = null;
-            }
-        }
-
-
-
-        if(Item.itemRegistry.containsId(Item.getIdFromItem(stack.getItem()))){
-        for(int z = 0; z  < aitemstack.length; z++){
-            if(aitemstack[z] != null){
-                if(Item.itemRegistry.containsId(Item.getIdFromItem(aitemstack[z].getItem())) == false){
-                    return false;
-                }
-
-            }
-        }
-
-    }else{
-            return false;
-        }
-
-
-
-        return true;
     }
 
 
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-    public static boolean CheckSmallRecipe(ItemStack par1ItemStack, Object ... par2ArrayOfObj)
-    {
-        ArrayList arraylist = new ArrayList();
-        Object[] aobject = par2ArrayOfObj;
-        int i = par2ArrayOfObj.length;
-
-        for (int j = 0; j < i; ++j)
-        {
-            Object object1 = aobject[j];
-
-            if (object1 instanceof ItemStack)
-            {
-                arraylist.add(((ItemStack)object1).copy());
-            }
-            else if (object1 instanceof Item)
-            {
-                arraylist.add(new ItemStack((Item)object1));
-            }
-            else
-            {
-                if (!(object1 instanceof Block))
-                {
-                    throw new RuntimeException("Invalid shapeless recipy!");
-                }
-
-                arraylist.add(new ItemStack((Block)object1));
-            }
-
-        }
-
-        if(Item.itemRegistry.containsId(Item.getIdFromItem(par1ItemStack.getItem()))){
-            for(int z = 0; z  < arraylist.size(); z++){
-                if((ItemStack)arraylist.get(z) != null){
-                if(Item.itemRegistry.containsId(Item.getIdFromItem(((ItemStack)arraylist.get(z)).getItem())) == false){
-                    return false;
-                }
-
-            }
-            }
-
-        }else
-            return false;
-
-
-
-      return true;
+    public static void AddRecipe(IRecipe res){
+        if (StackEnabled(res.getRecipeOutput()))
+            GameRegistry.addRecipe(res);
     }
 
 
 
 
+
+    public static void AddShapedOreRecipe(ShapedOreRecipe res){
+        if(StackEnabled(res.getRecipeOutput()))
+            GameRegistry.addRecipe(res);
+    }
+
+    public static void AddShapelessOreRecipe(ShapelessOreRecipe res){
+        if(StackEnabled(res.getRecipeOutput()))
+            GameRegistry.addRecipe(res);
+    }
+
+    public static boolean StackEnabled(ItemStack stack){
+
+        boolean Register = false;
+
+        if(stack != null){
+            if(stack.getItem() instanceof ItemBlock){
+                Block bl = Block.getBlockFromItem(stack.getItem());
+
+                Register = ConfigUtils.IsBlockEnabled(bl);
+
+            }else if(stack.getItem() instanceof Item && !(stack.getItem() instanceof ItemBlock)){
+                Item itm = stack.getItem();
+
+                Register = ConfigUtils.IsItemEnabled(itm);
+            }
+        }
+        return Register;
+    }
     
 }

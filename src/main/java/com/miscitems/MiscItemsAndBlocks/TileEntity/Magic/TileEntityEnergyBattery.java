@@ -5,7 +5,7 @@ import MiscItemsApi.Magic.IMagicSender;
 import MiscItemsApi.Magic.MagicEnergyUtils;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Utils.ModTileEntity;
 import com.miscitems.MiscItemsAndBlocks.Utils.Handlers.ParticleHelper;
-import com.miscitems.MiscItemsAndBlocks.Utils.MagicUtils;
+import com.miscitems.MiscItemsAndBlocks.Utils.Magic.MagicUtils;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 

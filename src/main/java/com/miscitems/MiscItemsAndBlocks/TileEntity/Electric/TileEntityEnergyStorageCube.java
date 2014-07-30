@@ -125,28 +125,6 @@ public class TileEntityEnergyStorageCube extends TileEntityPowerInv implements I
             }
 
 
-        }else {
-
-
-            if(Loader.isModLoaded("IC2")){
-                if(chargeStack.getItem() instanceof IElectricItem){
-                    if(GetPower() >= 1) {
-
-                        if (ElectricItem.manager.getCharge(chargeStack) < ((IElectricItem) chargeStack.getItem()).getMaxCharge(chargeStack)) {
-                            ElectricItem.manager.charge(chargeStack, PowerUtils.IC2_For_MiscPower, ((IElectricItem) chargeStack.getItem()).getTier(chargeStack), false, false);
-                            SetPower(GetPower() - PowerUtils.MiscPower_For_IC2);
-                        }
-
-                    }else if (GetPower() > 0.0){
-                        if (ElectricItem.manager.getCharge(chargeStack) < ((IElectricItem) chargeStack.getItem()).getMaxCharge(chargeStack)) {
-                            ElectricItem.manager.charge(chargeStack, PowerUtils.IC2_For_MiscPower / 10, ((IElectricItem) chargeStack.getItem()).getTier(chargeStack), false, false);
-                            SetPower(GetPower() - PowerUtils.MiscPower_For_IC2 / 10);
-                        }
-                    }
-
-
-                }
-            }
         }
 
 		}
@@ -171,12 +149,12 @@ public class TileEntityEnergyStorageCube extends TileEntityPowerInv implements I
                 if(Loader.isModLoaded("IC2")){
                     if(dischargeStack.getItem() instanceof IElectricItem){
                         if(ElectricItem.manager.getCharge(dischargeStack) > 10) {
-                            ElectricItem.manager.discharge(dischargeStack, PowerUtils.IC2_For_MiscPower, ((IElectricItem)dischargeStack.getItem()).getTier(dischargeStack), false, false, false);
-                            AddPower(PowerUtils.MiscPower_For_IC2);
+                            ElectricItem.manager.discharge(dischargeStack, PowerUtils.ModPower_For_MiscPower, ((IElectricItem)dischargeStack.getItem()).getTier(dischargeStack), false, false, false);
+                            AddPower(PowerUtils.MiscPower_For_ModPower);
 
                         }else if (ElectricItem.manager.getCharge(dischargeStack) > 0){
-                            ElectricItem.manager.discharge(dischargeStack, PowerUtils.IC2_For_MiscPower / 10, ((IElectricItem)dischargeStack.getItem()).getTier(dischargeStack), false, false, false);
-                            AddPower(PowerUtils.MiscPower_For_IC2 / 10);
+                            ElectricItem.manager.discharge(dischargeStack, PowerUtils.ModPower_For_MiscPower / 10, ((IElectricItem)dischargeStack.getItem()).getTier(dischargeStack), false, false, false);
+                            AddPower(PowerUtils.MiscPower_For_ModPower / 10);
                         }
 
 
@@ -239,7 +217,7 @@ public class TileEntityEnergyStorageCube extends TileEntityPowerInv implements I
 
 
                              if(tile.getDemandedEnergy() > 0) {
-                                 tile.injectEnergy(ForgeDirection.getOrientation(LaserUtil.getOrientation(this.blockMetadata)), (t / 10) * PowerUtils.IC2_For_MiscPower, 10);
+                                 tile.injectEnergy(ForgeDirection.getOrientation(LaserUtil.getOrientation(this.blockMetadata)), (t / 10) * PowerUtils.ModPower_For_MiscPower, 10);
                                  SetPower(GetPower() - t);
                              }
 

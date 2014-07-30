@@ -2,6 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.Utils;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockAir;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -43,6 +44,14 @@ public class PillarUtils {
         BlackList.add(Blocks.sponge);
         BlackList.add(Blocks.lit_pumpkin);
         BlackList.add(Blocks.mycelium);
+        BlackList.add(Blocks.bookshelf);
+        BlackList.add(Blocks.crafting_table);
+        BlackList.add(Blocks.brown_mushroom_block);
+        BlackList.add(Blocks.red_mushroom_block);
+        BlackList.add(Blocks.stained_hardened_clay);
+        BlackList.add(Blocks.command_block);
+        BlackList.add(Blocks.wooden_slab);
+        BlackList.add(Blocks.air);
     }
 
 
@@ -50,10 +59,12 @@ public class PillarUtils {
         for(Object r : Block.blockRegistry) {
             Block bl = (Block) r;
 
-            if (GameRegistry.findUniqueIdentifierFor(bl).modId.equals("minecraft")) {
+            if (GameRegistry.findUniqueIdentifierFor(bl).modId.equals("minecraft") && !(bl instanceof BlockAir)) {
 
                 if (bl.isOpaqueCube() && bl.getRenderType() == 0 && !BlackList.contains(bl)) {
+
                     if (Item.getItemFromBlock(bl) != null && Item.getItemFromBlock(bl) instanceof ItemBlock && Item.getItemFromBlock(bl).getHasSubtypes()) {
+
 
                         ArrayList e = new ArrayList();
                         Item.getItemFromBlock(bl).getSubItems(Item.getItemFromBlock(bl), null, e);

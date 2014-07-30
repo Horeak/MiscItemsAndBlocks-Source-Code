@@ -1,6 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Item.Electric;
 
 import MiscItemsApi.Electric.IPowerItem;
+import cofh.api.energy.IEnergyContainerItem;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Optional;
 import ic2.api.item.ElectricItem;
@@ -16,8 +17,14 @@ import net.minecraft.util.StatCollector;
 
 import java.util.List;
 
-@Optional.Interface(iface = "ic2.api.item.IElectricItem", modid =  "IC2", striprefs = true)
-public abstract class ModItemElArmor extends ItemArmor implements IPowerItem, IElectricItem {
+@Optional.InterfaceList( value =
+
+        {@Optional.Interface(iface = "ic2.api.item.IElectricItem", modid =  "IC2", striprefs = true),
+                @Optional.Interface(iface = "cofh.api.energy.IEnergyContainerItem", modid =  "CoFHCore", striprefs = true)
+
+        })
+
+public abstract class ModItemElArmor extends ItemArmor implements IPowerItem, IElectricItem, IEnergyContainerItem {
 
 
 
@@ -130,5 +137,53 @@ public abstract class ModItemElArmor extends ItemArmor implements IPowerItem, IE
 
         list.add(stack);
 
+    }
+
+
+    @Override
+    public int receiveEnergy(ItemStack container, int maxReceive, boolean simulate) {
+
+        int energy = (int)CurrentPower(container);
+        double Added = 0.01;
+
+        if(energy < getMaxCharge(container)) {
+            if (!simulate) {
+                AddPower(container, Added);
+            }
+
+        }
+        return 1;
+    }
+
+    @Override
+    public int extractEnergy(ItemStack container, int maxExtract, boolean simulate) {
+
+
+        int energy = (int)CurrentPower(container);
+        double Removed = 0.01;
+
+        if(energy > 0.0) {
+
+            if (!simulate) {
+
+                RemovePower(container, Removed);
+            }
+        }else
+            return 0;
+
+
+        return 1;
+    }
+
+    @Override
+    public int getEnergyStored(ItemStack container) {
+
+        return (int)CurrentPower(container);
+    }
+
+    @Override
+    public int getMaxEnergyStored(ItemStack container) {
+
+        return (int)getMaxCharge(container);
     }
 }

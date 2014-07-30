@@ -9,6 +9,7 @@ import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockAir;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -90,6 +91,9 @@ public class ModBlockPillar extends ModBlockContainer {
             }else {
                 stack = new ItemStack(ModBlocks.Pillar);
             }
+
+            if(bl instanceof BlockAir || bl == null || bl == Blocks.air)
+                continue;
 
 
             stack.setTagCompound(new NBTTagCompound());

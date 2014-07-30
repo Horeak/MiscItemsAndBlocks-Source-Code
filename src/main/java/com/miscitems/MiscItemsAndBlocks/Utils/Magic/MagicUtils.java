@@ -1,4 +1,4 @@
-package com.miscitems.MiscItemsAndBlocks.Utils;
+package com.miscitems.MiscItemsAndBlocks.Utils.Magic;
 
 import com.miscitems.MiscItemsAndBlocks.Network.Client.MagicReciveParticleEffects;
 import com.miscitems.MiscItemsAndBlocks.Network.PacketHandler;

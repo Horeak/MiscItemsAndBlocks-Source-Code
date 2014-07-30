@@ -7,13 +7,14 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockAir;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
-
 
 
 @SideOnly(Side.CLIENT)
@@ -48,27 +49,35 @@ public class PillarItemRender implements IItemRenderer
 	@Override
 	public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
 
-		PillarModel model = new PillarModel();
-	    
-	    GL11.glPushMatrix();
-        if(type == ItemRenderType.EQUIPPED_FIRST_PERSON){
+        PillarModel model = new PillarModel();
+
+        GL11.glPushMatrix();
+        if (type == ItemRenderType.EQUIPPED_FIRST_PERSON) {
             GL11.glTranslatef((float) 0.5F, (float) 1.9F, (float) 0.5F);
-        }else{
+        } else {
             GL11.glTranslatef((float) 0.5F, (float) 1.4F, (float) 0.5F);
         }
 
-        if(PillarUtils.BlU.size() > 0) {
+        if (PillarUtils.BlU.size() > 0) {
             if (item.getTagCompound() != null) {
-                if(item.getTagCompound().getInteger("Bl") > PillarUtils.BlU.size())
+                if (item.getTagCompound().getInteger("Bl") > PillarUtils.BlU.size())
                     item.getTagCompound().setInteger("Bl", 0);
 
                 Block block = Block.getBlockFromItem(PillarUtils.BlU.get(item.getTagCompound().getInteger("Bl")).getItem());
 
 
-                ResourceLocation res = new ResourceLocation(GameRegistry.findUniqueIdentifierFor(block).modId.toLowerCase(), "textures/blocks/" + (block.getIcon(0, item.getItemDamage()).getIconName()).replace(GameRegistry.findUniqueIdentifierFor(block).modId + ":", "") + ".png");
+                if(block instanceof BlockAir || block == null || block == Blocks.air) {
+                    GL11.glPopMatrix();
+                    return;
+                }
 
 
-                if(res != null) {
+                if (block != null){
+
+                    ResourceLocation res = new ResourceLocation(GameRegistry.findUniqueIdentifierFor(block).modId.toLowerCase(), "textures/blocks/" + (block.getIcon(0, item.getItemDamage()).getIconName()).replace(GameRegistry.findUniqueIdentifierFor(block).modId + ":", "") + ".png");
+
+
+                if (res != null) {
 
                     Minecraft.getMinecraft().getTextureManager().bindTexture(res);
                 }
@@ -76,12 +85,13 @@ public class PillarItemRender implements IItemRenderer
 
         }
         GL11.glPushMatrix();
-       GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
-       
-      model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F, false, false);
-       
-       GL11.glPopMatrix();
-       GL11.glPopMatrix();
-        
+        GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
+
+        model.render((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F, false, false);
+
+        GL11.glPopMatrix();
+        GL11.glPopMatrix();
+
+    }
 	}
 }

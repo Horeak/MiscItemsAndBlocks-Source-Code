@@ -3,14 +3,9 @@ package com.miscitems.MiscItemsAndBlocks.TileEntity.Electric;
 import MiscItemsApi.Electric.IPowerCable;
 import MiscItemsApi.Electric.IPowerGeneration;
 import MiscItemsApi.Electric.IPowerTile;
-import com.miscitems.MiscItemsAndBlocks.Utils.PowerUtils;
-import cpw.mods.fml.common.Loader;
-import ic2.api.energy.tile.IEnergySink;
-import ic2.api.energy.tile.IEnergyTile;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
 
 public abstract  class TileEntityPowerGeneration extends TileEntityPowerInv implements IPowerGeneration{
 
@@ -305,11 +300,6 @@ public abstract  class TileEntityPowerGeneration extends TileEntityPowerInv impl
     	}
 
 
-        if(Loader.isModLoaded("IC2"))
-            if(tile_e instanceof IEnergySink)
-                ((IEnergySink)tile_e).injectEnergy(ForgeDirection.UP, Amount * PowerUtils.IC2_For_MiscPower / 3, 1);
-
-
 
     	
     }
@@ -335,9 +325,6 @@ public abstract  class TileEntityPowerGeneration extends TileEntityPowerInv impl
             return true;
         }
 
-
-        if(Loader.isModLoaded("IC2"))
-            return tile_e instanceof IEnergyTile;
 
     		return false;
 

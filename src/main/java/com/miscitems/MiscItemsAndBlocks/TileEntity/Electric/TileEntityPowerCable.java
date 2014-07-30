@@ -5,22 +5,15 @@ import MiscItemsApi.Electric.IPowerGeneration;
 import MiscItemsApi.Electric.IPowerTile;
 import MiscItemsApi.Electric.IWrenchAble;
 import com.miscitems.MiscItemsAndBlocks.Block.Electric.ModBlockPowerCable;
-import com.miscitems.MiscItemsAndBlocks.Utils.Laser.LaserUtil;
 import com.miscitems.MiscItemsAndBlocks.Utils.Handlers.ChatMessageHandler;
-import com.miscitems.MiscItemsAndBlocks.Utils.PowerUtils;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.Optional;
-import ic2.api.energy.tile.IEnergyConductor;
-import ic2.api.energy.tile.IEnergySink;
-import ic2.api.energy.tile.IEnergyTile;
+import com.miscitems.MiscItemsAndBlocks.Utils.Laser.LaserUtil;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-@Optional.Interface(iface = "ic2.api.energy.tile.IEnergyConductor",    modid = "IC2", striprefs = true)
-public class TileEntityPowerCable extends TileEntityPowerBaseTile implements IPowerCable, IWrenchAble, IEnergyConductor {
+public class TileEntityPowerCable extends TileEntityPowerBaseTile implements IPowerCable, IWrenchAble {
 
 
 	
@@ -139,9 +132,6 @@ public class TileEntityPowerCable extends TileEntityPowerBaseTile implements IPo
     	if(Meta != 2)
     	if(tile instanceof IPowerCable)return true;
 
-        if(Loader.isModLoaded("IC2"))
-            return tile instanceof IEnergyTile;
-    	
     	// 1 No BlockContainers
     	// 2 No Cables
 
@@ -202,19 +192,8 @@ public class TileEntityPowerCable extends TileEntityPowerBaseTile implements IPo
                 Cable(world, x, y, z);
         }
 
-        }else{
-            if(Loader.isModLoaded("IC2"))
-                if(tile_e instanceof IEnergyTile){
-                    if(GetPower() > 0)
-                    if(tile_e instanceof IEnergySink) {
-                        if(((IEnergySink)tile_e).getDemandedEnergy() > 0)
-                        ((IEnergySink) tile_e).injectEnergy(ForgeDirection.UP, 1 * PowerUtils.IC2_For_MiscPower / 3, 1);
-                        SetPower(GetPower() - 1);
-                    }
-                }
-
-
         }
+
     }
 
  }
@@ -243,52 +222,7 @@ public class TileEntityPowerCable extends TileEntityPowerBaseTile implements IPo
 
 }
 
-    @Override
-    public double getConductionLoss() {
-        return 0;
-    }
 
-    @Override
-    public double getInsulationEnergyAbsorption() {
-        return 100;
-    }
-
-    @Override
-    public double getInsulationBreakdownEnergy() {
-        return 1000;
-    }
-
-    @Override
-    public double getConductorBreakdownEnergy() {
-        return 0;
-    }
-
-    @Override
-    public void removeInsulation() {
-
-    }
-
-    @Override
-    public void removeConductor() {
-
-    }
-
-    @Override
-    public boolean emitsEnergyTo(TileEntity receiver, ForgeDirection direction) {
-
-
-        if(receiver instanceof TileEntityEnergyStorageCube){
-            return direction.ordinal() != receiver.getWorldObj().getBlockMetadata(receiver.xCoord, receiver.yCoord, receiver.zCoord);
-        }
-
-        if(receiver instanceof  IPowerTile)
-        return true;
-
-        if(Loader.isModLoaded("IC2"))
-            return receiver instanceof IEnergyTile;
-
-        return false;
-    }
 }
 
 
