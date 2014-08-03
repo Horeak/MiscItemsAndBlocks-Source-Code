@@ -63,7 +63,14 @@ public class PillarItemRender implements IItemRenderer
                 if (item.getTagCompound().getInteger("Bl") > PillarUtils.BlU.size())
                     item.getTagCompound().setInteger("Bl", 0);
 
-                Block block = Block.getBlockFromItem(PillarUtils.BlU.get(item.getTagCompound().getInteger("Bl")).getItem());
+
+                int i = item.getTagCompound().getInteger("Bl");
+
+                 if(i >= PillarUtils.BlU.size())
+
+                     i = PillarUtils.BlU.size()-1;
+
+                Block block = Block.getBlockFromItem(PillarUtils.BlU.get(i).getItem());
 
 
                 if(block instanceof BlockAir || block == null || block == Blocks.air) {

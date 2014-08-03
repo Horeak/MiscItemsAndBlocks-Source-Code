@@ -19,9 +19,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.ShapedRecipes;
+import net.minecraft.item.crafting.ShapelessRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
+
+import java.util.ArrayList;
 
 public class Crafting {
 
@@ -131,44 +134,6 @@ public class Crafting {
             AddRecipe(new ItemStack(ModItems.Turbine), new Object[]{"S S", " P ", "S S", 'S', Items.stick, 'P', Blocks.planks});
 
 
-        for(int i = 0; i < 16; i++)
-            AddRecipe(new ItemStack(ModBlocks.GamePart, 8, i), new Object[]{ "BBB", " B ", "BBB", 'B', new ItemStack(Blocks.stained_hardened_clay, 1, i)});
-
-        for(int i = 0; i < 16; i++)
-            AddRecipe(new ItemStack(ModBlocks.ColoredBrick, 8, i), new Object[]{"ISI", "SDS", "ISI", 'I', Items.iron_ingot, 'S', Blocks.stonebrick, 'D', new ItemStack(Items.dye, 1, 15 - i)});
-
-        for(int i = 0; i < 16; i++)
-            AddRecipe(new ItemStack(ModBlocks.ColoredBrickGlowstone, 8, i), new Object[]{"BBB", "BGB", "BBB", 'B', new ItemStack(ModBlocks.ColoredBrick, 1, i), 'G', Blocks.glowstone});
-
-
-        for(int i = 0; i < PillarUtils.BlU.size(); i++){
-            if(ConfigUtils.AllowCustomPillars) {
-                Block bl = Block.getBlockFromItem(PillarUtils.BlU.get(i).getItem());
-                ItemStack stack = null;
-
-
-                if (Item.getItemFromBlock(bl) != null && Item.getItemFromBlock(bl) instanceof ItemBlock && Item.getItemFromBlock(bl).getHasSubtypes()) {
-                    stack = new ItemStack(ModBlocks.Pillar, 16, PillarUtils.BlU.get(i).getItemDamage());
-                } else {
-                    stack = new ItemStack(ModBlocks.Pillar, 16, 0);
-                }
-
-                stack.setTagCompound(new NBTTagCompound());
-                stack.getTagCompound().setInteger("Bl", i);
-
-                if(bl instanceof BlockAir || bl == null || bl == Blocks.air) {
-                   continue;
-                }
-
-                ItemStack stk = new ItemStack(bl, 1, stack.getItemDamage());
-
-                ShapedRecipes recipe = new ShapedRecipes(3, 3, new ItemStack[]{stk, stk, stk, null, stk, null, stk, stk, stk}, stack);
-
-                AddRecipe(recipe);
-            }
-        }
-
-
             AddRecipe(new ItemStack(ModItems.GuideBook), new Object[]{"BP", "SP", 'B', Items.book, 'P', Items.paper, 'S', Items.string});
 		    AddRecipe(new ItemStack(ModItems.DataChip, 2),new Object[]{"CCC", "CGC", "III", 'C', ModItems.Cardboard, 'G', new ItemStack(ModItems.Circuit, 1, 0), 'I', Items.iron_ingot});
 	     	AddRecipe(new ItemStack(ModBlocks.Teleporter), new Object[]{"HCH", "BEB", "HCH", 'H', new ItemStack(ModItems.IronPlate, 1, 2), 'C', new ItemStack(ModItems.Circuit, 1, 1), 'B', FullAdvancedBat, 'E', Items.ender_pearl});
@@ -248,6 +213,65 @@ public class Crafting {
             RegisterSmelting(new ItemStack(ModItems.IronPlate, 1, 0), new ItemStack(ModItems.IronPlate, 1, 1), 20F);
 
 
+
+
+        for(int i = 0; i < 16; i++)
+            AddRecipe(new ItemStack(ModBlocks.GamePart, 8, i), new Object[]{ "BBB", " B ", "BBB", 'B', new ItemStack(Blocks.stained_hardened_clay, 1, i)});
+
+        for(int i = 0; i < 16; i++)
+            AddRecipe(new ItemStack(ModBlocks.ColoredBrick, 8, i), new Object[]{"ISI", "SDS", "ISI", 'I', Items.iron_ingot, 'S', Blocks.stonebrick, 'D', new ItemStack(Items.dye, 1, 15 - i)});
+
+        for(int i = 0; i < 16; i++)
+            AddRecipe(new ItemStack(ModBlocks.ColoredBrickGlowstone, 8, i), new Object[]{"BBB", "BGB", "BBB", 'B', new ItemStack(ModBlocks.ColoredBrick, 1, i), 'G', Blocks.glowstone});
+
+
+        for(int i = 0; i < 16; i ++)
+        PillarUtils.BlU.add(new ItemStack(Blocks.stained_hardened_clay, 1, i));
+
+
+        for(int i = 0; i < 16; i++){
+
+            ItemStack stack = new ItemStack(ModBlocks.Pillar);
+            stack.setItemDamage(i);
+
+            stack.setTagCompound(new NBTTagCompound());
+            stack.getTagCompound().setInteger("Bl", PillarUtils.BlU.size()-1);
+
+            ArrayList List = new ArrayList();
+            List.add(new ItemStack(ModBlocks.GamePart, 1, i));
+
+            ShapelessRecipes res = new ShapelessRecipes(stack, List);
+
+            AddRecipe(res);
+
+        }
+
+        for(int i = 0; i < PillarUtils.BlU.size(); i++){
+            if(ConfigUtils.AllowCustomPillars) {
+                Block bl = Block.getBlockFromItem(PillarUtils.BlU.get(i).getItem());
+                ItemStack stack = null;
+
+
+                if (Item.getItemFromBlock(bl) != null && Item.getItemFromBlock(bl) instanceof ItemBlock && Item.getItemFromBlock(bl).getHasSubtypes()) {
+                    stack = new ItemStack(ModBlocks.Pillar, 16, PillarUtils.BlU.get(i).getItemDamage());
+                } else {
+                    stack = new ItemStack(ModBlocks.Pillar, 16, 0);
+                }
+
+                stack.setTagCompound(new NBTTagCompound());
+                stack.getTagCompound().setInteger("Bl", i);
+
+                if(bl instanceof BlockAir || bl == null || bl == Blocks.air) {
+                    continue;
+                }
+
+                ItemStack stk = new ItemStack(bl, 1, stack.getItemDamage());
+
+                ShapedRecipes recipe = new ShapedRecipes(3, 3, new ItemStack[]{stk, stk, stk, null, stk, null, stk, stk, stk}, stack);
+
+                AddRecipe(recipe);
+            }
+        }
 
 
     }

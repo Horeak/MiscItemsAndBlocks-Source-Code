@@ -38,6 +38,7 @@ public class ModBlockGhostBlock extends ModBlockContainer {
         if(block.getTileEntity(x,y,z) instanceof  TileEntityGhostBlock){
             TileEntityGhostBlock tile = (TileEntityGhostBlock)block.getTileEntity(x,y,z);
             if(tile.Id != 0){
+                if(Block.getBlockById(tile.Id) != null && !(Block.getBlockById(tile.Id) instanceof ModBlockGhostBlock))
                 return Block.getBlockById(tile.Id).colorMultiplier(block, x,y,z);
             }
 
@@ -89,6 +90,8 @@ public class ModBlockGhostBlock extends ModBlockContainer {
     				Block block = Block.getBlockById(Item.getIdFromItem(player.getHeldItem().getItem()));
 
 
+                    if(block instanceof ModBlockGhostBlock)
+                        return false;
 
 
     				if(block != null && block != Blocks.air){
@@ -174,8 +177,11 @@ public class ModBlockGhostBlock extends ModBlockContainer {
         return false;
     }
     
-    public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_, int p_149668_2_, int p_149668_3_, int p_149668_4_)
+    public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z)
     {
+        if(world.isBlockIndirectlyGettingPowered(x,y,z))
+            return super.getCollisionBoundingBoxFromPool(world,x,y,z);
+
         return null;
     }
     public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side)

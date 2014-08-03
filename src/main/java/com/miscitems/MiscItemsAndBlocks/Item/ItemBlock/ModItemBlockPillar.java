@@ -29,9 +29,12 @@ public class ModItemBlockPillar extends ItemBlock{
 
 
         if(stack.getTagCompound() != null){
-            if(PillarUtils.BlU.get(stack.getTagCompound().getInteger("Bl")) != null) {
-                list.add(EnumChatFormatting.DARK_BLUE + "" +  EnumChatFormatting.ITALIC + StatCollector.translateToLocal("tile.pillar.name") + ": " +StatCollector.translateToLocal(PillarUtils.BlU.get(stack.getTagCompound().getInteger("Bl")).getUnlocalizedName() + ".name"));
-            }
+            int i = stack.getTagCompound().getInteger("Bl");
+
+            ItemStack st = new ItemStack(PillarUtils.BlU.get(i).getItem(), 1, stack.getItemDamage());
+
+                list.add(EnumChatFormatting.DARK_BLUE + "" +  EnumChatFormatting.ITALIC + StatCollector.translateToLocal("tile.pillar.name") + ": " +StatCollector.translateToLocal(st.getUnlocalizedName() + ".name"));
+
 
         }
 
