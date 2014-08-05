@@ -17,6 +17,7 @@ public class ConfigUtils {
     public static final String CATEGORY_SERVER_SETTINGS = "Server Settings";
     public static final String CATEGORY_BLOCKS = "Blocks";
     public static final String CATEGORY_ITEMS = "Items";
+    public static final String CATEGORY_WORLDGEN = "WorldGen";
 
     public static boolean SpawnParticles;
     public static boolean AllowPowerArmorEffects;
@@ -45,8 +46,12 @@ public class ConfigUtils {
         config.addCustomCategoryComment(CATEGORY_BLOCKS, "This allows you to enabled/disable the different blocks from the mod");
         config.addCustomCategoryComment(CATEGORY_ITEMS, "This allows you to enabled/disable the different items from the mod");
 
+        config.addCustomCategoryComment(CATEGORY_WORLDGEN, "This allows you to disable and change different world generation types");
+
         config.setCategoryRequiresMcRestart(CATEGORY_BLOCKS, true);
         config.setCategoryRequiresMcRestart(CATEGORY_ITEMS, true);
+
+        config.setCategoryRequiresMcRestart(CATEGORY_WORLDGEN, true);
 
 
 
@@ -117,5 +122,30 @@ public class ConfigUtils {
         config.save();
 
         return bl;
+    }
+
+
+    public static boolean IsWorldGeneratorEnabled(String WorldGen){
+        boolean bl = config.get(CATEGORY_WORLDGEN, "Enable Worldgen: " + WorldGen, true).getBoolean(true);
+
+        if(config.hasChanged())
+            config.save();
+
+        return bl;
+    }
+
+    public static int GetWorldGenerationChance(String WorldGen, int def){
+        if(IsWorldGeneratorEnabled(WorldGen)){
+            int t = config.get(CATEGORY_WORLDGEN, "The amount of times it will try to spawn in a chunk: " + WorldGen, def).getInt(def);
+
+            if(config.hasChanged())
+                config.save();
+
+            return t;
+
+
+        }
+
+        return 0;
     }
 }
