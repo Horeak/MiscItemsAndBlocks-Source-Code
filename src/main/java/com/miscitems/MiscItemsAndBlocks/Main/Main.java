@@ -17,7 +17,6 @@ import com.miscitems.MiscItemsAndBlocks.Utils.Config.ConfigUtils;
 import com.miscitems.MiscItemsAndBlocks.Utils.Crafting;
 import com.miscitems.MiscItemsAndBlocks.Utils.Laser.DefaultLaser;
 import com.miscitems.MiscItemsAndBlocks.Utils.Laser.LaserRegistry;
-import com.miscitems.MiscItemsAndBlocks.Utils.Magic.MaterialEnergyUtils;
 import com.miscitems.MiscItemsAndBlocks.Utils.PillarUtils;
 import com.miscitems.MiscItemsAndBlocks.Utils.Proxies.ServerProxy;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Messages;
@@ -175,8 +174,6 @@ import java.util.Set;
 
         	Crafting.RegisterRecipes();
 
-            //Material values
-            MaterialEnergyUtils.RegisterManualValues();
 
         	proxy.RegisterListeners();
 
@@ -233,9 +230,6 @@ import java.util.Set;
 
         	proxy.registerRenderers();
 
-
-            //Material values
-            MaterialEnergyUtils.RegisterAutomaticValues();
 
     
         	EntityRegistry.registerGlobalEntityID(EntitySilverArrow.class, "SilverArrow", EntityRegistry.findGlobalUniqueEntityId());

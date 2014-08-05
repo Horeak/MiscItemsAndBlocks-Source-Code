@@ -4,8 +4,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderItem;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
 
 public class BookTabButton extends GuiButton {
 
@@ -24,27 +22,28 @@ public class BookTabButton extends GuiButton {
     {
 
         par1Minecraft.getTextureManager().bindTexture(gui.Texture);
-       // GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
 
-        if(this.id == (gui.CurrentTab))
-        this.drawTexturedModalRect(this.xPosition, this.yPosition, 24, 184, 27, 20);
-        else
+
+        if(this.id == (gui.CurrentTab)) {
+
+            this.drawTexturedModalRect(this.xPosition, this.yPosition, 24, 184, 27, 20);
+
+        }else {
+
             this.drawTexturedModalRect(this.xPosition, this.yPosition, 24, 205, 27, 20);
+        }
 
         if(BookUtils.GetTabIconItem(this.id) != null && BookUtils.GetTabIconItem(this.id).getItem() != null){
 
-            GL11.glDisable(GL11.GL_LIGHTING);
-            GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
+            RenderHelper.enableStandardItemLighting();
             BookUtils.renderitem.RenderItem(render, par1Minecraft.fontRenderer, BookUtils.GetTabIconItem(this.id), this.xPosition + 8, this.yPosition + 2);
+            RenderHelper.disableStandardItemLighting();
 
-            GL11.glEnable(GL11.GL_LIGHTING);
         }
 
 
-        RenderHelper.disableStandardItemLighting();
-        GL11.glDisable(GL12.GL_RESCALE_NORMAL);
 
 
 

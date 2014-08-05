@@ -90,10 +90,10 @@ public class RecipeSmeltingPage extends Page  {
                     RenderItem(ItemRender, render, FurnaceItems.GetStack_2(), posX + GridX + 54, posY + GridY + 19);
 
                     if (OverSlot(posX + GridX + 1, posY + GridY + 1, MouseX, MouseY) && FurnaceItems.GetStack_1() != null)
-                        drawTooltip(render, GetToolTip(FurnaceItems.GetStack_1()), MouseX, MouseY);
+                        Page.drawTooltip(GetToolTip(FurnaceItems.GetStack_1()), MouseX, MouseY);
 
                     if (OverSlot(posX + GridX + 54, posY + GridY + 19, MouseX, MouseY) && FurnaceItems.GetStack_2() != null)
-                        drawTooltip(render, (GetToolTipWithoutLink(FurnaceItems.GetStack_2())), MouseX, MouseY);
+                        Page.drawTooltip((GetToolTipWithoutLink(FurnaceItems.GetStack_2())), MouseX, MouseY);
                 }
 
 

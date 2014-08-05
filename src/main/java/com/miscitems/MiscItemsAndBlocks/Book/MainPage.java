@@ -59,8 +59,8 @@ public class MainPage extends GuiScreen {
 
 
         if(BookUtils.GetTabType(CurrentTab) == 2) {
-            if(BookUtils.TabItems.get(CurrentTab)!= null && BookUtils.TabItems.get(CurrentTab).length > 1) {
-                int Pages =  1 + BookUtils.TabItems.get(CurrentTab).length / 30;
+            if(BookUtils.GetTabItems(CurrentTab)!= null && BookUtils.GetTabItems(CurrentTab).length > 1) {
+                int Pages =  1 + BookUtils.GetTabItems(CurrentTab).length / 30;
 
                 fontRendererObj.drawString("Page " + CurrentPage + "/" + Pages, posX + 170, posY + 8, 4210752);
             }
@@ -103,8 +103,8 @@ public class MainPage extends GuiScreen {
     public void ChangeItems(){
         if(BookUtils.GetTabType(CurrentTab) == 2){
 
-            if(BookUtils.TabItems.get(CurrentTab)!= null && BookUtils.TabItems.get(CurrentTab).length > 1) {
-                int Pages = 1 + BookUtils.TabItems.get(CurrentTab).length / 30;
+            if(BookUtils.GetTabItems(CurrentTab)!= null && BookUtils.GetTabItems(CurrentTab).length > 1) {
+                int Pages = 1 + BookUtils.GetTabItems(CurrentTab).length / 30;
 
                 if(Pages > 1){
                     buttonList.add(new GuiButton(1 + BookUtils.MaxTabs, posX + 150, posY + 180, 55, 20, "Next Page"));
@@ -112,10 +112,10 @@ public class MainPage extends GuiScreen {
 
                 }
 
-                    for (int i = 0; i < BookUtils.TabItems.get(CurrentTab).length; i++) {
+                    for (int i = 0; i < BookUtils.GetTabItems(CurrentTab).length; i++) {
                         int t = i - ((CurrentPage-1) * 30);
 
-                        if(i < (BookUtils.TabItems.get(CurrentTab).length)) {
+                        if(i < (BookUtils.GetTabItems(CurrentTab).length)) {
 
                             if(CurrentPage == 1 && i < 30) {
                                 buttonList.add(new BookItemSelectButton(i + BookUtils.MaxTabs + 4, i, posX + 15 + (t >= 15 ? 100 : 0), posY + (t >= 15 ? (t - 13) * 10 : (t * 10) + 21), this));
@@ -131,7 +131,7 @@ public class MainPage extends GuiScreen {
 
                 }
 
-            }else if (BookUtils.TabItems.get(CurrentTab)!= null && BookUtils.TabItems.get(CurrentTab).length == 1){
+            }else if (BookUtils.GetTabItems(CurrentTab)!= null && BookUtils.GetTabItems(CurrentTab).length == 1){
                     int g = 1 >= 15 ? 1 : 0;
                     int h = g == 1 ? 1 - 15 : 0;
 
@@ -164,8 +164,8 @@ public class MainPage extends GuiScreen {
         }else if(button.id == 1 + BookUtils.MaxTabs){
             if(BookUtils.GetTabType(CurrentTab) == 2) {
 
-                if (BookUtils.TabItems.get(CurrentTab) != null && BookUtils.TabItems.get(CurrentTab).length > 1) {
-                    int Pages = 1 + BookUtils.TabItems.get(CurrentTab).length / 30;
+                if (BookUtils.GetTabItems(CurrentTab) != null && BookUtils.GetTabItems(CurrentTab).length > 1) {
+                    int Pages = 1 + BookUtils.GetTabItems(CurrentTab).length / 30;
                     if(Pages > CurrentPage)
                         CurrentPage++;
                     initGui();
@@ -177,7 +177,7 @@ public class MainPage extends GuiScreen {
 
             if(BookUtils.GetTabType(CurrentTab) == 2) {
 
-                if (BookUtils.TabItems.get(CurrentTab) != null && BookUtils.TabItems.get(CurrentTab).length > 1) {
+                if (BookUtils.GetTabItems(CurrentTab) != null && BookUtils.GetTabItems(CurrentTab).length > 1) {
                     if(CurrentPage > 1)
                         CurrentPage--;
                     initGui();
@@ -189,7 +189,9 @@ public class MainPage extends GuiScreen {
             if(button instanceof BookItemSelectButton) {
 
                 BookItemSelectButton btn = (BookItemSelectButton)button;
-                FMLClientHandler.instance().displayGuiScreen(Minecraft.getMinecraft().thePlayer, new InfoPage(BookUtils.TabItems.get(CurrentTab)[btn.Id], CurrentTab));
+
+                if(BookUtils.GetTabItems(CurrentTab).length >= btn.Id && BookUtils.GetTabItems(CurrentTab)[btn.Id] != null && BookUtils.GetTabItems(CurrentTab)[btn.Id].getItem() != null)
+                FMLClientHandler.instance().displayGuiScreen(Minecraft.getMinecraft().thePlayer, new InfoPage(BookUtils.GetTabItems(CurrentTab)[btn.Id], CurrentTab));
             }
         }
 

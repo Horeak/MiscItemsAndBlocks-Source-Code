@@ -186,6 +186,7 @@ book.gui.recipe=Recipe
 book.gui.smelting=Smelting
 book.gui.itemOpen=Click to open page for this item.
 book.gui.shiftText=Hold shift for text
+book.recipe.disabled=Recipe Disabled
 words.holesize=Hole size
 words.power=Power
 words.hole=Hole

@@ -12,6 +12,7 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -117,27 +118,27 @@ public class RecipeSmallPage extends Page {
             }
 
             if (OverSlot(posX + GridX, posY + GridY, MouseX, MouseY) && ((ItemStack) RecipeItems.get(0)) != null) {
-                drawTooltip(render, GetToolTip(((ItemStack) RecipeItems.get(0))), MouseX, MouseY);
+                Page.drawTooltip(GetToolTip(((ItemStack) RecipeItems.get(0))), MouseX, MouseY);
             }
 
 
             if (RecipeItems.size() > 1)
                 if (OverSlot(posX + GridX + 18, posY + GridY, MouseX, MouseY) && ((ItemStack) RecipeItems.get(1)) != null)
-                    drawTooltip(render, GetToolTip(((ItemStack) RecipeItems.get(1))), MouseX, MouseY);
+                    Page.drawTooltip(GetToolTip(((ItemStack) RecipeItems.get(1))), MouseX, MouseY);
 
 
             if (RecipeItems.size() > 2)
                 if (OverSlot(posX + GridX, posY + GridY + 18, MouseX, MouseY) && ((ItemStack) RecipeItems.get(2)) != null)
-                    drawTooltip(render, GetToolTip(((ItemStack) RecipeItems.get(2))), MouseX, MouseY);
+                    Page.drawTooltip(GetToolTip(((ItemStack) RecipeItems.get(2))), MouseX, MouseY);
 
 
             if (RecipeItems.size() > 3)
                 if (OverSlot(posX + GridX + 18, posY + GridY + 18, MouseX, MouseY) && ((ItemStack) RecipeItems.get(3)) != null)
-                    drawTooltip(render, GetToolTip(((ItemStack) RecipeItems.get(3))), MouseX, MouseY);
+                    Page.drawTooltip(GetToolTip(((ItemStack) RecipeItems.get(3))), MouseX, MouseY);
 
 
             if (OverSlot(posX + GridX + 63, posY + GridY + 9, MouseX, MouseY) && RecipeItem != null)
-                drawTooltip(render, (GetToolTipWithoutLink(RecipeItem)), MouseX, MouseY);
+                Page.drawTooltip((GetToolTipWithoutLink(RecipeItem)), MouseX, MouseY);
 
 
             RenderItem(ItemRender, render, RecipeItem, posX + GridX + 63, posY + GridY + 9);
@@ -147,6 +148,12 @@ public class RecipeSmallPage extends Page {
             GL11.glEnable(GL11.GL_LIGHTING);
 
         }
+        else{
+
+            net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();
+            render.drawString(EnumChatFormatting.RED + StatCollector.translateToLocal("book.recipe.disabled"), posX + 40, posY + 78, new Color(255, 0, 0).getRGB());
+        }
+
     }
 
 

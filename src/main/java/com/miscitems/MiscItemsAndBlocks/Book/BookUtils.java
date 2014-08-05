@@ -2,16 +2,17 @@ package com.miscitems.MiscItemsAndBlocks.Book;
 
 import com.miscitems.MiscItemsAndBlocks.Book.Pages.Page;
 import com.miscitems.MiscItemsAndBlocks.Book.Utils.UtilsStackPages;
+import com.miscitems.MiscItemsAndBlocks.Utils.Config.ConfigUtils;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.item.crafting.ShapelessRecipes;
-import net.minecraftforge.oredict.ShapedOreRecipe;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -112,11 +113,15 @@ public class BookUtils {
      */
     public static HashMap<Integer, Integer> TabType = new HashMap<Integer, Integer>();
 
-    public static HashMap<Integer, ItemStack[]> TabItems = new HashMap<Integer, ItemStack[]>();
+    private static HashMap<Integer, ItemStack[]> TabItems = new HashMap<Integer, ItemStack[]>();
     public static HashMap<Integer, String> TextTabString = new HashMap<Integer, String>();
 
 
 
+    public static ItemStack[] GetTabItems(int i){
+
+        return TabItems.get(i);
+    }
 
     public static int RecipeChangeTime = 100;
 
@@ -131,13 +136,8 @@ public class BookUtils {
                     list.add(res);
                 }
 
-            }else if(r instanceof ShapedOreRecipe){
-                ShapedOreRecipe res = (ShapedOreRecipe)r;
-
-                if(AreStacksEqual(stack, res.getRecipeOutput())){
-                    list.add(res);
-                }
             }
+
         }
 
 
@@ -155,13 +155,6 @@ public class BookUtils {
                     list.add(res);
                 }
 
-            }else if(r instanceof ShapelessOreRecipe){
-
-                ShapelessOreRecipe res = (ShapelessOreRecipe)r;
-
-                if(AreStacksEqual(stack, res.getRecipeOutput())){
-                    list.add(res);
-                }
             }
 
 
@@ -208,7 +201,28 @@ public class BookUtils {
     public static void RegisterTab(int Number, String Name, ItemStack stack, int Type){
         if(TabNames.size() < MaxTabs){
              TabNames.put(Number, Name);
-             TabIcons.put(Number, stack);
+
+            ItemStack stan = GetObject(Blocks.bedrock);
+
+            if(stack!= null && stack.getItem() != null){
+
+                if(stack.getItem() instanceof ItemBlock){
+                    Block bl = (Block)Block.getBlockFromItem((ItemBlock)stack.getItem());
+
+                    if(ConfigUtils.IsBlockEnabled(bl))
+                        stan = stack;
+
+                }else{
+
+                    if(ConfigUtils.IsItemEnabled(stack.getItem()))
+                        stan = stack;
+                }
+
+            }
+
+             TabIcons.put(Number, stan);
+
+
             TabType.put(Number, Type);
             Tabs++;
         }
@@ -218,7 +232,31 @@ public class BookUtils {
 
     public static void RegisterItemsForTab(int Number, ItemStack[] stacks){
         if(!TabNames.get(Number).isEmpty()){
-            TabItems.put(Number, stacks);
+            ArrayList<ItemStack> list = new ArrayList<ItemStack>();
+
+            for(ItemStack sta : stacks){
+                if(sta!= null && sta.getItem() != null){
+
+                    if(sta.getItem() instanceof ItemBlock){
+                        Block bl = (Block)Block.getBlockFromItem((ItemBlock)sta.getItem());
+
+                        if(ConfigUtils.IsBlockEnabled(bl))
+                            list.add(sta);
+
+                    }else{
+
+                        if(ConfigUtils.IsItemEnabled(sta.getItem()))
+                            list.add(sta);
+                    }
+
+                }
+            }
+
+            ItemStack[] stak = new ItemStack[list.size()];
+            for(int i = 0; i < stak.length; i++)
+                stak[i] = list.get(i);
+
+            TabItems.put(Number, stak);
         }
     }
 

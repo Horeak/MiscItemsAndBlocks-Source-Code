@@ -4,8 +4,6 @@ import com.miscitems.MiscItemsAndBlocks.Book.BookUtils;
 import com.miscitems.MiscItemsAndBlocks.Book.InfoPage;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
@@ -13,7 +11,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -75,114 +72,7 @@ public abstract class Page {
     }
 
 
-    @SuppressWarnings("rawtypes")
-    protected void drawTooltip(FontRenderer render, ArrayList par1List, int par2, int par3)
-    {
-        GL11.glDisable(GL11.GL_LIGHTING);
-        GL11.glTranslatef(0.0F, 0.0F, 32.0F);
 
-        if (!par1List.isEmpty()) {
-
-            GL11.glDisable(GL12.GL_RESCALE_NORMAL);
-            GL11.glDisable(GL11.GL_DEPTH_TEST);
-            int k = 0;
-
-
-
-            for ( int i = 0; i < par1List.size(); i++) {
-
-                    String s = (String) par1List.get(i);
-                    int l = render.getStringWidth(s);
-
-                    if (l > k) {
-                        k = l;
-                    }
-                }
-
-                int i1 = par2 + 12;
-                int j1 = par3 - 12;
-                int k1 = 8;
-
-                if (par1List.size() > 1) {
-                    k1 += 2 + (par1List.size() - 1) * 10;
-                }
-
-                if (i1 + k > this.width) {
-                    i1 -= 28 + k;
-                }
-
-                if (j1 + k1 + 6 > this.height) {
-                    j1 = this.height - k1 - 6;
-                }
-
-                this.zLevel = 300.0F;
-                int l1 = -267386864;
-                this.drawGradientRect(i1 - 3, j1 - 4, i1 + k + 3, j1 - 3, l1, l1);
-                this.drawGradientRect(i1 - 3, j1 + k1 + 3, i1 + k + 3, j1 + k1 + 4, l1, l1);
-                this.drawGradientRect(i1 - 3, j1 - 3, i1 + k + 3, j1 + k1 + 3, l1, l1);
-                this.drawGradientRect(i1 - 4, j1 - 3, i1 - 3, j1 + k1 + 3, l1, l1);
-                this.drawGradientRect(i1 + k + 3, j1 - 3, i1 + k + 4, j1 + k1 + 3, l1, l1);
-                int i2 = 1347420415;
-                int j2 = (i2 & 16711422) >> 1 | i2 & -16777216;
-                this.drawGradientRect(i1 - 3, j1 - 3 + 1, i1 - 3 + 1, j1 + k1 + 3 - 1, i2, j2);
-                this.drawGradientRect(i1 + k + 2, j1 - 3 + 1, i1 + k + 3, j1 + k1 + 3 - 1, i2, j2);
-                this.drawGradientRect(i1 - 3, j1 - 3, i1 + k + 3, j1 - 3 + 1, i2, i2);
-                this.drawGradientRect(i1 - 3, j1 + k1 + 2, i1 + k + 3, j1 + k1 + 3, j2, j2);
-
-                for (int k2 = 0; k2 < par1List.size(); ++k2) {
-                    String s1 = (String) par1List.get(k2);
-
-                    render.drawString(s1, i1, j1, new Color(255, 255, 255).getRGB());
-
-                    if (k2 == 0) {
-                        j1 += 2;
-                    }
-
-                    j1 += 10;
-                }
-
-                this.zLevel = 0.0F;
-
-            }
-
-        GL11.glEnable(GL11.GL_LIGHTING);
-        GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-
-    }
-
-
-    protected void drawGradientRect(int par1, int par2, int par3, int par4, int par5, int par6)
-    {
-        GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-        float f = (float)(par5 >> 24 & 255) / 255.0F;
-        float f1 = (float)(par5 >> 16 & 255) / 255.0F;
-        float f2 = (float)(par5 >> 8 & 255) / 255.0F;
-        float f3 = (float)(par5 & 255) / 255.0F;
-        float f4 = (float)(par6 >> 24 & 255) / 255.0F;
-        float f5 = (float)(par6 >> 16 & 255) / 255.0F;
-        float f6 = (float)(par6 >> 8 & 255) / 255.0F;
-        float f7 = (float)(par6 & 255) / 255.0F;
-        GL11.glDisable(GL11.GL_LIGHTING);
-        GL11.glDisable(GL11.GL_TEXTURE_2D);
-        GL11.glEnable(GL11.GL_BLEND);
-        GL11.glDisable(GL11.GL_ALPHA_TEST);
-        OpenGlHelper.glBlendFunc(770, 771, 1, 0);
-        GL11.glShadeModel(GL11.GL_SMOOTH);
-        Tessellator tessellator = Tessellator.instance;
-        tessellator.startDrawingQuads();
-        tessellator.setColorRGBA_F(f1, f2, f3, f);
-        tessellator.addVertex((double)par3, (double)par2, (double)this.zLevel);
-        tessellator.addVertex((double)par1, (double)par2, (double)this.zLevel);
-        tessellator.setColorRGBA_F(f5, f6, f7, f4);
-        tessellator.addVertex((double)par1, (double)par4, (double)this.zLevel);
-        tessellator.addVertex((double)par3, (double)par4, (double)this.zLevel);
-        tessellator.draw();
-        GL11.glShadeModel(GL11.GL_FLAT);
-        GL11.glDisable(GL11.GL_BLEND);
-        GL11.glEnable(GL11.GL_ALPHA_TEST);
-        GL11.glEnable(GL11.GL_TEXTURE_2D);
-        GL11.glEnable(GL11.GL_LIGHTING);
-    }
 
 
     protected boolean OverSlot(int x, int y, int MouseX, int MouseY){
@@ -196,12 +86,12 @@ public abstract class Page {
 
         if(Keyboard.isKeyDown(Keyboard.KEY_LCONTROL) && t.size() > 1) {
             for (int i = 0; i < t.size(); i++) {
-                list.add((String) t.get(i));
+                list.add(EnumChatFormatting.WHITE + (String) t.get(i));
             }
         }else{
-            list.add(stack.getDisplayName());
+            list.add(stack.getRarity().rarityColor + stack.getDisplayName());
             if(t.size() > 1)
-            list.add("Hold LControl to see default tooltip.");
+            list.add(EnumChatFormatting.WHITE + "Hold LControl to see default tooltip.");
         }
 
         if(h) {

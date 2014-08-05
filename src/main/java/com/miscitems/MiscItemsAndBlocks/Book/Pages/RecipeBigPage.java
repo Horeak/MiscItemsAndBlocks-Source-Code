@@ -13,6 +13,7 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
+import java.awt.*;
 import java.util.List;
 
 public class RecipeBigPage extends Page {
@@ -94,62 +95,61 @@ public class RecipeBigPage extends Page {
                 }
             }
 
-            GL11.glDisable(GL11.GL_LIGHTING);
 
             if(RecipeItems != null && RecipeItems.length > 0) {
                 RenderItem(ItemRender, render, RecipeItems[0], posX + GridX, posY + GridY);
 
 
                 if (OverSlot(posX + GridX, posY + GridY, MouseX, MouseY) && RecipeItems[0] != null)
-                    drawTooltip(render, GetToolTip(RecipeItems[0]), MouseX, MouseY);
+                    Page.drawTooltip(GetToolTip(RecipeItems[0]), MouseX, MouseY);
 
 
                 if (RecipeItems.length > 1) {
                     RenderItem(ItemRender, render, RecipeItems[1], posX + GridX + 18, posY + GridY);
                     if (OverSlot(posX + GridX + 18, posY + GridY, MouseX, MouseY) && RecipeItems[1] != null)
-                        drawTooltip(render, GetToolTip(RecipeItems[1]), MouseX, MouseY);
+                        Page.drawTooltip(GetToolTip(RecipeItems[1]), MouseX, MouseY);
                 }
 
                 if (RecipeItems.length > 2) {
                     RenderItem(ItemRender, render, RecipeItems[2], posX + GridX + (2 * 18), posY + GridY);
                     if (OverSlot(posX + GridX + (2 * 18), posY + GridY, MouseX, MouseY) && RecipeItems[2] != null)
-                        drawTooltip(render, GetToolTip(RecipeItems[2]), MouseX, MouseY);
+                        Page.drawTooltip(GetToolTip(RecipeItems[2]), MouseX, MouseY);
                 }
 
                 if (RecipeItems.length > 3) {
                     RenderItem(ItemRender, render, RecipeItems[3], posX + GridX, posY + GridY + 18);
                     if (OverSlot(posX + GridX, posY + GridY + 18, MouseX, MouseY) && RecipeItems[3] != null)
-                        drawTooltip(render, GetToolTip(RecipeItems[3]), MouseX, MouseY);
+                        Page.drawTooltip(GetToolTip(RecipeItems[3]), MouseX, MouseY);
                 }
 
                 if (RecipeItems.length > 4) {
                     RenderItem(ItemRender, render, RecipeItems[4], posX + GridX + 18, posY + GridY + 18);
                     if (OverSlot(posX + GridX + 18, posY + GridY + 18, MouseX, MouseY) && RecipeItems[4] != null)
-                        drawTooltip(render, GetToolTip(RecipeItems[4]), MouseX, MouseY);
+                        Page.drawTooltip(GetToolTip(RecipeItems[4]), MouseX, MouseY);
                 }
 
                 if (RecipeItems.length > 5) {
                     RenderItem(ItemRender, render, RecipeItems[5], posX + GridX + (2 * 18), posY + GridY + 18);
                     if (OverSlot(posX + GridX + (2 * 18), posY + GridY + 18, MouseX, MouseY) && RecipeItems[5] != null)
-                        drawTooltip(render, GetToolTip(RecipeItems[5]), MouseX, MouseY);
+                        Page.drawTooltip(GetToolTip(RecipeItems[5]), MouseX, MouseY);
                 }
 
                 if (RecipeItems.length > 6) {
                     RenderItem(ItemRender, render, RecipeItems[6], posX + GridX, posY + GridY + (2 * 18));
                     if (OverSlot(posX + GridX, posY + GridY + (2 * 18), MouseX, MouseY) && RecipeItems[6] != null)
-                        drawTooltip(render, GetToolTip(RecipeItems[6]), MouseX, MouseY);
+                        Page.drawTooltip(GetToolTip(RecipeItems[6]), MouseX, MouseY);
                 }
 
                 if (RecipeItems.length > 7) {
                     RenderItem(ItemRender, render, RecipeItems[7], posX + GridX + 18, posY + GridY + (2 * 18));
                     if (OverSlot(posX + GridX + 18, posY + GridY + (2 * 18), MouseX, MouseY) && RecipeItems[7] != null)
-                        drawTooltip(render, GetToolTip(RecipeItems[7]), MouseX, MouseY);
+                        Page.drawTooltip(GetToolTip(RecipeItems[7]), MouseX, MouseY);
                 }
 
                 if (RecipeItems.length > 8) {
                     RenderItem(ItemRender, render, RecipeItems[8], posX + GridX + (2 * 18), posY + GridY + (2 * 18));
                     if (OverSlot(posX + GridX + (2 * 18), posY + GridY + (2 * 18), MouseX, MouseY) && RecipeItems[8] != null)
-                        drawTooltip(render, GetToolTip(RecipeItems[8]), MouseX, MouseY);
+                        Page.drawTooltip(GetToolTip(RecipeItems[8]), MouseX, MouseY);
                 }
 
 
@@ -157,14 +157,18 @@ public class RecipeBigPage extends Page {
 
 
                 if (OverSlot(posX + GridX + 88, posY + GridY + 18, MouseX, MouseY) && RecipeItem != null)
-                    drawTooltip(render, (GetToolTipWithoutLink(RecipeItem)), MouseX, MouseY);
+                    Page.drawTooltip((GetToolTipWithoutLink(RecipeItem)), MouseX, MouseY);
 
             }
 
         }
+        else{
 
-        GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-        GL11.glEnable(GL11.GL_LIGHTING);
+
+        net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();
+        render.drawString(EnumChatFormatting.RED + StatCollector.translateToLocal("book.recipe.disabled"), posX + 50, posY + 85, new Color(255, 0, 0).getRGB());
+        }
+
 
 
     }
