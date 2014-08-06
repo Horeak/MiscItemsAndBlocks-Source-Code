@@ -51,7 +51,6 @@ import com.miscitems.MiscItemsAndBlocks.Block.Plants.ModBlockOrangeLog;
 import com.miscitems.MiscItemsAndBlocks.Block.Plants.ModBlockOrangePlanks;
 import com.miscitems.MiscItemsAndBlocks.Block.Plants.ModBlockOrangeSapling;
 import com.miscitems.MiscItemsAndBlocks.Block.Plants.ModBlockTomatoPlant;
-import com.miscitems.MiscItemsAndBlocks.Block.Utils.ModBlockEmptyBlock;
 import com.miscitems.MiscItemsAndBlocks.Block.Utils.ModBlockStair;
 import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockBox;
 import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockColoredMetalBrick;
@@ -114,6 +113,8 @@ import com.miscitems.MiscItemsAndBlocks.Utils.Config.ConfigUtils;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockCompressed;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -314,7 +315,7 @@ public class ModBlocks {
         WireLessRedstone = new ModBlockWirelessRedstone().setCreativeTab(Main.MiscTab);
         Register(WireLessRedstone, "Wireless Redstone", TileEntityWirelessRedstone.class);
         
-        SilverBlock = new ModBlockEmptyBlock().setBlockTextureName(Reference.Mod_Id + ":" + "SilverBlock").setHardness(2.7F).setCreativeTab(Main.MiscTab);
+        SilverBlock = new BlockCompressed(MapColor.ironColor).setBlockTextureName(Reference.Mod_Id + ":" + "SilverBlock").setHardness(2.7F).setCreativeTab(Main.MiscTab);
         Register(SilverBlock, "Silver Block");
         
         WirelessItemTrans = new ModBlockWirelessItemTransfer().setCreativeTab(Main.MiscTab);
@@ -350,10 +351,10 @@ public class ModBlocks {
         MagicalRecharger = new ModBLockMagicalEnergyRecharger().setCreativeTab(Main.MagicTab);
         Register(MagicalRecharger, "MagicalEnergyRecharger", TileEntityMagicalEnergyRecharger.class);
 
-        InfusedGemBlock = new ModBlockEmptyBlock().setCreativeTab(Main.MagicTab).setBlockTextureName(Reference.Mod_Id + ":InfusedGemBlock").setHardness(2F);
+        InfusedGemBlock = new BlockCompressed(MapColor.blueColor).setCreativeTab(Main.MagicTab).setBlockTextureName(Reference.Mod_Id + ":InfusedGemBlock").setHardness(2F);
         Register(InfusedGemBlock, "InfusedGemBlock");
 
-        InfusedMetalBlock = new ModBlockEmptyBlock().setCreativeTab(Main.MagicTab).setBlockTextureName(Reference.Mod_Id + ":InfusedMetalBlock").setHardness(2F);
+        InfusedMetalBlock = new BlockCompressed(MapColor.blueColor).setCreativeTab(Main.MagicTab).setBlockTextureName(Reference.Mod_Id + ":InfusedMetalBlock").setHardness(2F);
         Register(InfusedMetalBlock, "InfusedMetalBlock");
 
 

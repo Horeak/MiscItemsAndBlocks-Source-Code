@@ -12,6 +12,8 @@ public class StackUtils
 
     public static ItemStack GetObject(Object ob){
 
+     if(ob == null)
+         return null;
 
         if(ob instanceof Block)
             return new ItemStack((Block)ob);
@@ -28,7 +30,6 @@ public class StackUtils
                 return (ItemStack)((List)ob).get(0);
             }
         }
-
 
         return null;
     }
@@ -47,11 +48,28 @@ public class StackUtils
     }
 
     public static boolean AreStacksEqual(ItemStack stack1, ItemStack stack2){
+    return stack1 == null && stack2 == null ||
+            stack1 != null && stack2 == null ? false :
+            stack1 == null && stack2 != null ? false :
+
+                    stack1.getItem() == null && stack2.getItem() == null ||
+                            stack1.getItem() != null && stack2.getItem() == null ? false :
+                            stack1.getItem() == null && stack2.getItem() != null ? false :
+
+                                    stack1.getItem() == stack2.getItem() && stack1.getItemDamage() == stack2.getItemDamage();
+
+}
+
+    public static boolean AreStacksEqualFus(ItemStack stack1, ItemStack stack2){
         return stack1 == null && stack2 == null ||
                 stack1 != null && stack2 == null ? false :
                 stack1 == null && stack2 != null ? false :
 
-                        stack1.getItem() == stack2.getItem() && stack1.getItemDamage() == stack2.getItemDamage();
+                        stack1.getItem() == null && stack2.getItem() == null ||
+                                stack1.getItem() != null && stack2.getItem() == null ? false :
+                                stack1.getItem() == null && stack2.getItem() != null ? false :
+
+                                        stack1.getItem() == stack2.getItem();
 
     }
 

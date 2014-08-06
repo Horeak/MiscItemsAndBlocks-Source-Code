@@ -6,7 +6,6 @@ import com.miscitems.MiscItemsAndBlocks.Utils.Game.GameInfo;
 import com.miscitems.MiscItemsAndBlocks.Utils.Game.GameInvite;
 import com.miscitems.MiscItemsAndBlocks.Utils.Handlers.ParticleHelper;
 import com.miscitems.MiscItemsAndBlocks.Utils.Magic.MagicalMaterialUtils;
-import com.miscitems.MiscItemsAndBlocks.Utils.Magic.MaterialValue;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import net.minecraft.entity.player.EntityPlayer;
@@ -81,13 +80,7 @@ public class ServerTickHandler{
 
 
         if(player.inventory.getCurrentItem() != null){
-
-            MaterialValue val = MagicalMaterialUtils.GetValue(player.inventory.getCurrentItem());
-
-
-            if(val != null)
-                System.out.println(val.value);
-
+            System.out.println(MagicalMaterialUtils.GetEnergyValue(player.inventory.getCurrentItem()));
         }
 		
 		if(Counter >= 50){
