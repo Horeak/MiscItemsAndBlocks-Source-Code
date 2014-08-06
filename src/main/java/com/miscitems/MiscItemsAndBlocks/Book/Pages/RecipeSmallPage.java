@@ -2,6 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.Book.Pages;
 
 import com.miscitems.MiscItemsAndBlocks.Book.BookUtils;
 import com.miscitems.MiscItemsAndBlocks.Book.InfoPage;
+import com.miscitems.MiscItemsAndBlocks.Utils.StackUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.entity.RenderItem;
@@ -37,7 +38,7 @@ public class RecipeSmallPage extends Page {
         ArrayList<ItemStack> stacks = new ArrayList<ItemStack>();
 
         for (int i = 0; i < ob.size(); i++) {
-            stacks.add(BookUtils.GetObject(ob));
+            stacks.add(StackUtils.GetObject(ob));
 
         }
 

@@ -2,6 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.Book.Pages;
 
 import com.miscitems.MiscItemsAndBlocks.Book.BookUtils;
 import com.miscitems.MiscItemsAndBlocks.Book.InfoPage;
+import com.miscitems.MiscItemsAndBlocks.Utils.StackUtils;
 import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -39,7 +40,7 @@ public class RecipeBigPage extends Page {
         ItemStack[] stacks = new ItemStack[ob.length];
 
         for(int i = 0; i < stacks.length; i++){
-            stacks[i] = BookUtils.GetObject(ob[i]);
+            stacks[i] = StackUtils.GetObject(ob[i]);
         }
 
         return stacks;

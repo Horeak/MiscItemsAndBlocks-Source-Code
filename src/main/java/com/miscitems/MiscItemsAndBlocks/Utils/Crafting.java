@@ -1,7 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Utils;
 
 import MiscItemsApi.Recipes.RecipeHandler;
-import com.miscitems.MiscItemsAndBlocks.Book.BookUtils;
 import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemPowerTool;
 import com.miscitems.MiscItemsAndBlocks.Main.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.Main.ModItems;
@@ -287,13 +286,13 @@ public class Crafting {
     }
 
     public static void RegisterSmelting(Item Input, ItemStack Output, float Xp){
-        if(StackEnabled(Output) && StackEnabled(BookUtils.GetObject(Input)))
+        if(StackEnabled(Output) && StackEnabled(StackUtils.GetObject(Input)))
         GameRegistry.addSmelting(Input, Output, Xp);
 
     }
 
     public static void RegisterSmelting(Block Input, ItemStack Output, float Xp){
-        if(StackEnabled(Output) && StackEnabled(BookUtils.GetObject(Input)))
+        if(StackEnabled(Output) && StackEnabled(StackUtils.GetObject(Input)))
         GameRegistry.addSmelting(Input, Output, Xp);
 
     }
@@ -302,8 +301,8 @@ public class Crafting {
     public static void AddRecipe(ItemStack output, Object... Array){
 
         for(int i = 0; i < Array.length; i++)
-            if(BookUtils.GetObject(Array[i]) != null)
-                if(!StackEnabled(BookUtils.GetObject(Array[i])))
+            if(StackUtils.GetObject(Array[i]) != null)
+                if(!StackEnabled(StackUtils.GetObject(Array[i])))
                     return;
 
 
@@ -315,8 +314,8 @@ public class Crafting {
     public static void AddShapelessRecipe(ItemStack output, Object... Array) {
 
         for(int i = 0; i < Array.length; i++)
-            if(BookUtils.GetObject(Array[i]) != null)
-            if(!StackEnabled(BookUtils.GetObject(Array[i])))
+            if(StackUtils.GetObject(Array[i]) != null)
+            if(!StackEnabled(StackUtils.GetObject(Array[i])))
                 return;
 
 
@@ -339,8 +338,8 @@ public class Crafting {
     public static void AddShapedOreRecipe(ShapedOreRecipe res){
 
         for(int i = 0; i < res.getInput().length; i++)
-            if(BookUtils.GetObject(res.getInput()[i]) != null)
-        if(!StackEnabled(BookUtils.GetObject(res.getInput()[i])))
+            if(StackUtils.GetObject(res.getInput()[i]) != null)
+        if(!StackEnabled(StackUtils.GetObject(res.getInput()[i])))
             return;
 
 
@@ -351,8 +350,8 @@ public class Crafting {
     public static void AddShapelessOreRecipe(ShapelessOreRecipe res){
 
         for(int i = 0; i < res.getInput().size(); i++)
-            if(BookUtils.GetObject(res.getInput().get(i)) != null)
-            if(!StackEnabled(BookUtils.GetObject(res.getInput().get(i))))
+            if(StackUtils.GetObject(res.getInput().get(i)) != null)
+            if(!StackEnabled(StackUtils.GetObject(res.getInput().get(i))))
                 return;
 
 

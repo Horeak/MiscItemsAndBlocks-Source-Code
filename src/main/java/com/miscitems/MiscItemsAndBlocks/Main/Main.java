@@ -17,6 +17,7 @@ import com.miscitems.MiscItemsAndBlocks.Utils.Config.ConfigUtils;
 import com.miscitems.MiscItemsAndBlocks.Utils.Crafting;
 import com.miscitems.MiscItemsAndBlocks.Utils.Laser.DefaultLaser;
 import com.miscitems.MiscItemsAndBlocks.Utils.Laser.LaserRegistry;
+import com.miscitems.MiscItemsAndBlocks.Utils.Magic.MagicalMaterialUtils;
 import com.miscitems.MiscItemsAndBlocks.Utils.PillarUtils;
 import com.miscitems.MiscItemsAndBlocks.Utils.Proxies.ServerProxy;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Messages;
@@ -174,6 +175,9 @@ import java.util.Set;
 
         	Crafting.RegisterRecipes();
 
+
+            MagicalMaterialUtils.RegisterManualValues();
+            MagicalMaterialUtils.RegisterAutomaticValues();
 
         	proxy.RegisterListeners();
 

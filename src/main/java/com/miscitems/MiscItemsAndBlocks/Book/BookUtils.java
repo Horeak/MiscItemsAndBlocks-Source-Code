@@ -3,9 +3,9 @@ package com.miscitems.MiscItemsAndBlocks.Book;
 import com.miscitems.MiscItemsAndBlocks.Book.Pages.Page;
 import com.miscitems.MiscItemsAndBlocks.Book.Utils.UtilsStackPages;
 import com.miscitems.MiscItemsAndBlocks.Utils.Config.ConfigUtils;
+import com.miscitems.MiscItemsAndBlocks.Utils.StackUtils;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
@@ -34,73 +34,6 @@ public class BookUtils {
 
 
 
-    public static ItemStack GetObject(Object ob){
-
-        if(ob instanceof Block)
-            return new ItemStack((Block)ob);
-
-        if(ob instanceof Item)
-            return new ItemStack((Item)ob);
-
-        if(ob instanceof ItemStack)
-            return (ItemStack)ob;
-
-        return null;
-    }
-
-
-    public static ItemStack[] GetMultiObject(Object... ob){
-        if(ob instanceof Block[]) {
-            Block[] bl = (Block[])ob;
-            ItemStack[] stacks = new ItemStack[bl.length];
-
-            for(int i  = 0; i < stacks.length; i++){
-                stacks[i] = new ItemStack(bl[i]);
-            }
-
-            return stacks;
-        }
-
-        if(ob instanceof Item[]) {
-            Item[] bl = (Item[])ob;
-            ItemStack[] stacks = new ItemStack[bl.length];
-
-            for(int i  = 0; i < stacks.length; i++){
-                stacks[i] = new ItemStack(bl[i]);
-            }
-
-            return stacks;
-        }
-
-
-
-        if(ob instanceof ItemStack[])
-            return (ItemStack[])ob;
-
-        if(ob instanceof Object[]){
-            Object[] obj = (Object[])ob;
-            ItemStack[] stacks = new ItemStack[obj.length];
-
-            for(int i = 0; i < stacks.length; i++){
-                stacks[i] = (ItemStack)GetObject(obj[i]);
-            }
-
-            return stacks;
-
-        }
-
-
-        return null;
-    }
-
-    private static boolean AreStacksEqual(ItemStack stack1, ItemStack stack2){
-        return stack1 == null && stack2 == null ||
-                stack1 != null && stack2 == null ? false :
-                stack1 == null && stack2 != null ? false :
-
-                        stack1.getItem() == stack2.getItem() && stack1.getItemDamage() == stack2.getItemDamage();
-
-    }
 
 
 
@@ -132,7 +65,7 @@ public class BookUtils {
             if(r instanceof ShapedRecipes){
                 ShapedRecipes res = (ShapedRecipes)r;
 
-                if(AreStacksEqual(stack, res.getRecipeOutput())){
+                if(StackUtils.AreStacksEqual(stack, res.getRecipeOutput())){
                     list.add(res);
                 }
 
@@ -151,7 +84,7 @@ public class BookUtils {
             if(r instanceof ShapelessRecipes){
                 ShapelessRecipes res = (ShapelessRecipes)r;
 
-                if(AreStacksEqual(stack, res.getRecipeOutput())){
+                if(StackUtils.AreStacksEqual(stack, res.getRecipeOutput())){
                     list.add(res);
                 }
 
@@ -187,7 +120,7 @@ public class BookUtils {
             if(r instanceof UtilsStackPages){
                 UtilsStackPages pg = (UtilsStackPages)r;
 
-                if(AreStacksEqual(stack, pg.item)){
+                if(StackUtils.AreStacksEqual(stack, pg.item)){
                     return pg.pages;
                 }
 
@@ -202,7 +135,7 @@ public class BookUtils {
         if(TabNames.size() < MaxTabs){
              TabNames.put(Number, Name);
 
-            ItemStack stan = GetObject(Blocks.bedrock);
+            ItemStack stan = StackUtils.GetObject(Blocks.bedrock);
 
             if(stack!= null && stack.getItem() != null){
 
