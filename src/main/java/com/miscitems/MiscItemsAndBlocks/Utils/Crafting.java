@@ -1,6 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Utils;
 
 import MiscItemsApi.Recipes.RecipeHandler;
+import com.miscitems.MiscItemsAndBlocks.Book.BookUtils;
 import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemPowerTool;
 import com.miscitems.MiscItemsAndBlocks.Main.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.Main.ModItems;
@@ -78,12 +79,6 @@ public class Crafting {
         AddRecipe(new ItemRechargeRecipe(5, 0, new ItemStack(ModItems.ChargedCrystal), new ItemStack(Items.glowstone_dust, 1)));
 
 
-
-        //NBT ItemStacks
-        ItemStack FullBat = new ItemStack(ModItems.Battery); ((ModItemPowerTool)FullBat.getItem()).AddPower(FullBat, ((ModItemPowerTool) FullBat.getItem()).MaxPower(FullBat));
-        ItemStack FullBigBat = new ItemStack(ModItems.BigBattery); ((ModItemPowerTool)FullBigBat.getItem()).AddPower(FullBigBat, ((ModItemPowerTool) FullBigBat.getItem()).MaxPower(FullBigBat));
-        ItemStack FullAdvancedBat = new ItemStack(ModItems.AdvancedBattery); ((ModItemPowerTool)FullAdvancedBat.getItem()).AddPower(FullAdvancedBat, ((ModItemPowerTool) FullAdvancedBat.getItem()).MaxPower(FullAdvancedBat));
-
         //Squeezer Recipes
         RecipeHandler.RegisterSqueezerRecipe(new ItemStack(ModItems.Liquid, 1, 0), new Object[]{Items.glass_bottle, Items.apple});
         RecipeHandler.RegisterSqueezerRecipe(new ItemStack(ModItems.Liquid, 1, 1), new Object[]{Items.bucket, ModItems.Tomato});
@@ -98,6 +93,14 @@ public class Crafting {
         RecipeHandler.RegisterMetalPressRecipe(new ItemStack(ModItems.IronPlate, 1, 0), new Object[]{Items.iron_ingot}, 1);
         RecipeHandler.RegisterMetalPressRecipe(new ItemStack(ModItems.IronPlate, 1, 2), new Object[]{Items.iron_ingot, Items.iron_ingot, Items.iron_ingot, Items.iron_ingot}, 2);
 
+
+
+
+
+        //NBT ItemStacks
+        ItemStack FullBat = new ItemStack(ModItems.Battery); ((ModItemPowerTool)FullBat.getItem()).AddPower(FullBat, ((ModItemPowerTool) FullBat.getItem()).MaxPower(FullBat));
+        ItemStack FullBigBat = new ItemStack(ModItems.BigBattery); ((ModItemPowerTool)FullBigBat.getItem()).AddPower(FullBigBat, ((ModItemPowerTool) FullBigBat.getItem()).MaxPower(FullBigBat));
+        ItemStack FullAdvancedBat = new ItemStack(ModItems.AdvancedBattery); ((ModItemPowerTool)FullAdvancedBat.getItem()).AddPower(FullAdvancedBat, ((ModItemPowerTool) FullAdvancedBat.getItem()).MaxPower(FullAdvancedBat));
 
 		    AddShapelessRecipe(new ItemStack(ModItems.PaintBrush, 1, 1), new Object[]{new ItemStack(ModItems.PaintBrush, 1, 0), new ItemStack(Items.dye, 1, 1)});
 		    AddShapelessRecipe(new ItemStack(ModItems.PaintBrush, 1, 2), new Object[]{new ItemStack(ModItems.PaintBrush, 1, 0), new ItemStack(Items.dye, 1, 2)});
@@ -278,36 +281,53 @@ public class Crafting {
 
 
     public static void RegisterSmelting(ItemStack Input, ItemStack Output, float Xp){
-        if(StackEnabled(Output))
+        if(StackEnabled(Output) && StackEnabled(Input))
         FurnaceRecipes.smelting().func_151394_a(Input, Output, Xp);
 
     }
 
     public static void RegisterSmelting(Item Input, ItemStack Output, float Xp){
-        if(StackEnabled(Output))
+        if(StackEnabled(Output) && StackEnabled(BookUtils.GetObject(Input)))
         GameRegistry.addSmelting(Input, Output, Xp);
 
     }
 
     public static void RegisterSmelting(Block Input, ItemStack Output, float Xp){
-        if(StackEnabled(Output))
+        if(StackEnabled(Output) && StackEnabled(BookUtils.GetObject(Input)))
         GameRegistry.addSmelting(Input, Output, Xp);
 
     }
 
     
     public static void AddRecipe(ItemStack output, Object... Array){
+
+        for(int i = 0; i < Array.length; i++)
+            if(BookUtils.GetObject(Array[i]) != null)
+                if(!StackEnabled(BookUtils.GetObject(Array[i])))
+                    return;
+
+
         if (StackEnabled(output))
-            GameRegistry.addShapedRecipe(output, Array);
+           GameRegistry.addShapedRecipe(output, Array);
     }
 
+
     public static void AddShapelessRecipe(ItemStack output, Object... Array) {
+
+        for(int i = 0; i < Array.length; i++)
+            if(BookUtils.GetObject(Array[i]) != null)
+            if(!StackEnabled(BookUtils.GetObject(Array[i])))
+                return;
+
+
+
         if (StackEnabled(output))
-                GameRegistry.addShapelessRecipe(output, Array);
+            GameRegistry.addShapelessRecipe(output, Array);
     }
 
 
     public static void AddRecipe(IRecipe res){
+
         if (StackEnabled(res.getRecipeOutput()))
             GameRegistry.addRecipe(res);
     }
@@ -317,32 +337,62 @@ public class Crafting {
 
 
     public static void AddShapedOreRecipe(ShapedOreRecipe res){
+
+        for(int i = 0; i < res.getInput().length; i++)
+            if(BookUtils.GetObject(res.getInput()[i]) != null)
+        if(!StackEnabled(BookUtils.GetObject(res.getInput()[i])))
+            return;
+
+
         if(StackEnabled(res.getRecipeOutput()))
-            GameRegistry.addRecipe(res);
+            AddRecipe(res);
     }
 
     public static void AddShapelessOreRecipe(ShapelessOreRecipe res){
+
+        for(int i = 0; i < res.getInput().size(); i++)
+            if(BookUtils.GetObject(res.getInput().get(i)) != null)
+            if(!StackEnabled(BookUtils.GetObject(res.getInput().get(i))))
+                return;
+
+
         if(StackEnabled(res.getRecipeOutput()))
-            GameRegistry.addRecipe(res);
+            AddRecipe(res);
     }
 
     public static boolean StackEnabled(ItemStack stack){
 
-        boolean Register = false;
+        if(stack == null || stack != null && stack.getItem() == null)
+            return false;
 
-        if(stack != null){
-            if(stack.getItem() instanceof ItemBlock){
-                Block bl = Block.getBlockFromItem(stack.getItem());
 
-                Register = ConfigUtils.IsBlockEnabled(bl);
+            if (stack.getItem() instanceof ItemBlock) {
+                Block bl = Block.getBlockFromItem((ItemBlock) stack.getItem());
+                if (bl != null) {
 
-            }else if(stack.getItem() instanceof Item && !(stack.getItem() instanceof ItemBlock)){
+
+                    if(ConfigUtils.BlockConfigNames.get(bl) == null)
+                        return true;
+
+                     return ConfigUtils.IsBlockEnabled(bl);
+                }
+
+            } else  {
                 Item itm = stack.getItem();
+                if (itm != null) {
 
-                Register = ConfigUtils.IsItemEnabled(itm);
-            }
-        }
-        return Register;
+
+                    if(ConfigUtils.ItemConfigNames.get(itm) == null)
+                        return true;
+
+                      return ConfigUtils.IsItemEnabled(itm);
+
+
+                }
+           }
+
+
+        return true;
     }
     
 }

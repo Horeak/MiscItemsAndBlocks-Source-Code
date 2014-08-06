@@ -3,6 +3,7 @@ package com.miscitems.MiscItemsAndBlocks.TileEntity.Electric;
 import com.miscitems.MiscItemsAndBlocks.Network.PacketHandler;
 import com.miscitems.MiscItemsAndBlocks.Network.PacketTileWithItemUpdate;
 import com.miscitems.MiscItemsAndBlocks.Utils.Block.BlockUtil;
+import com.miscitems.MiscItemsAndBlocks.Utils.Config.ConfigUtils;
 import com.miscitems.MiscItemsAndBlocks.Utils.Inventory.Utils;
 import com.miscitems.MiscItemsAndBlocks.Utils.ItemHelper;
 import com.mojang.authlib.GameProfile;
@@ -29,6 +30,7 @@ public class TileEntityMiningStation extends TileEntityPowerInv{
         super(1, "Mining Chamber", 64);
 
 
+
 	}
 
 	int PowerTime = 0;
@@ -41,6 +43,7 @@ public class TileEntityMiningStation extends TileEntityPowerInv{
     public void validate(){
         if(!worldObj.isRemote)
         pl = FakePlayerFactory.get((WorldServer)worldObj, new GameProfile(UUID.randomUUID(), "[TileEntityMiningStation]"));
+
 
     }
 
@@ -166,6 +169,17 @@ public class TileEntityMiningStation extends TileEntityPowerInv{
 	
     public void updateEntity()
     {
+
+        MaxSize = ConfigUtils.GetConfigFile().getInt("Mining Station Max Size", ConfigUtils.CATEGORY_SERVER_SETTINGS, 11, 1,  3000, "Max size of Mining Station (Must be an odd number)");
+
+        if((MaxSize & 1) == 0){
+            MaxSize = 11;
+
+        }else if (MaxSize <= 0)
+            MaxSize = 11;
+
+        if(Size > MaxSize)
+            SetSize(MaxSize);
 
         if(pl == null)
             validate();
@@ -390,8 +404,8 @@ public class TileEntityMiningStation extends TileEntityPowerInv{
     		
     //Size +
     	case 5:
-    		if(Size + 2 > 11)
-    			Size = 11;
+    		if(Size + 2 > MaxSize)
+    			Size = MaxSize;
     		else
     			Size = Size + 2;
     		break;

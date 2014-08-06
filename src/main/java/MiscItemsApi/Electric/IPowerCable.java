@@ -4,7 +4,7 @@ package MiscItemsApi.Electric;
 public interface IPowerCable{
 
 
-    /** Gets the current power amount from the calbe
+    /** Gets the current power amount from the cable
      *
      * @return the amount of power stored
      */

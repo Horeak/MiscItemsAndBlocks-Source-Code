@@ -37,11 +37,11 @@ public class ModWorldGenerator extends WorldGenerator implements IWorldGenerator
 	
     private void generateSurface(World world, Random random, int ChunkX, int ChunkZ) {
 
-            RegisterWorldGenerator(new WorldGenOrangeTree(false, 6, 0, 0, false), ModBlocks.OrangeLog, "OrangeTree", 1, new BiomeGenBase[]{BiomeGenBase.plains}, world, random, ChunkX + random.nextInt(16), random.nextInt(90), ChunkZ + random.nextInt(16));
-            RegisterWorldGenerator(new WorldGenMinable(ModBlocks.SilverOre, 2, Blocks.stone), ModBlocks.SilverOre, "SilverOre", 3, null, world, random, ChunkX, 0, ChunkZ);
-            RegisterWorldGenerator(new WorldGenMinable(ModBlocks.BlueCrystalOre, 8), ModBlocks.BlueCrystalOre, "BlueCrystalOre", 23, null, world, random, ChunkX, 0, ChunkZ);
-            RegisterWorldGenerator(new WorldGenMinable(ModBlocks.GreenCrystalOre, 5), ModBlocks.GreenCrystalOre, "GreenCrystalOre", 12, null, world, random, ChunkX, 0, ChunkZ);
-            RegisterWorldGenerator(new WorldGenMinable(ModBlocks.RedCrystalOre, 4), ModBlocks.RedCrystalOre, "RedCrystalOre", 8, null, world, random, ChunkX, 0, ChunkZ);
+            RegisterWorldGenerator(new WorldGenOrangeTree(false, 6, 0, 0, false), ModBlocks.OrangeLog, "OrangeTree", 1, 90, new BiomeGenBase[]{BiomeGenBase.plains}, world, random, ChunkX, 0, ChunkZ);
+            RegisterWorldGenerator(new WorldGenMinable(ModBlocks.SilverOre, 2, Blocks.stone), ModBlocks.SilverOre, "SilverOre", 3, 14, null, world, random, ChunkX, 0, ChunkZ);
+            RegisterWorldGenerator(new WorldGenMinable(ModBlocks.BlueCrystalOre, 8), ModBlocks.BlueCrystalOre, "BlueCrystalOre", 23, 42, null, world, random, ChunkX, 0, ChunkZ);
+            RegisterWorldGenerator(new WorldGenMinable(ModBlocks.GreenCrystalOre, 5), ModBlocks.GreenCrystalOre, "GreenCrystalOre", 12, 30, null, world, random, ChunkX, 0, ChunkZ);
+            RegisterWorldGenerator(new WorldGenMinable(ModBlocks.RedCrystalOre, 4), ModBlocks.RedCrystalOre, "RedCrystalOre", 8, 28, null, world, random, ChunkX, 0, ChunkZ);
 
     			
 	}
@@ -50,7 +50,7 @@ public class ModWorldGenerator extends WorldGenerator implements IWorldGenerator
     private void generateNether(World world, Random rand, int chunkX, int chunkZ) {}
     private void generateEnd(World world, Random rand, int chunkX, int chunkZ) {}
 
-    public void RegisterWorldGenerator(WorldGenerator gen, Block bl, String Name, int Chance,  BiomeGenBase[] Biomes, World world, Random rand, int x, int y, int z){
+    public void RegisterWorldGenerator(WorldGenerator gen, Block bl, String Name, int Chance, int MaxY,  BiomeGenBase[] Biomes, World world, Random rand, int x, int y, int z){
         if(ConfigUtils.IsWorldGeneratorEnabled(Name) && ConfigUtils.IsBlockEnabled(bl)){
 
             int Ch = ConfigUtils.GetWorldGenerationChance(Name, Chance);
@@ -64,7 +64,7 @@ public class ModWorldGenerator extends WorldGenerator implements IWorldGenerator
 
             if(list.contains(world.getBiomeGenForCoords(x, y)) || list.size() <= 0)
             for(int j = 0; j < Ch; j++)
-            gen.generate(world,rand,x,y,z);
+            gen.generate(world,rand,x + rand.nextInt(16),y + rand.nextInt(MaxY) ,z + rand.nextInt(16));
 
 
         }

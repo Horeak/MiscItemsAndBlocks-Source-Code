@@ -2,10 +2,8 @@ package com.miscitems.MiscItemsAndBlocks.Utils;
 
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Colours;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Strings;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.Comparator;
 
@@ -14,69 +12,12 @@ public class ItemHelper {
 
     private static double rand;
 
-    public static String encodeItemStackAsString(ItemStack itemStack) {
-
-        StringBuilder stringBuilder = new StringBuilder();
-
-        stringBuilder.append(String.format("%s%s%s", itemStack, Strings.TOKEN_DELIMITER, itemStack.getItemDamage()));
-
-        return stringBuilder.toString();
-    }
-
-    public static ItemStack decodeItemStackFromString(String encodedItemStack) {
-
-        ItemStack decodedItemStack = null;
-
-        final int UNDEFINED = -1;
-        final int ERROR = -2;
-
-        int itemId = UNDEFINED;
-        int meta = UNDEFINED;
-
-        String[] splitString = encodedItemStack.split(Strings.TOKEN_DELIMITER);
-
-        if (splitString.length >= 1) {
-
-            try {
-                itemId = Integer.parseInt(splitString[0]);
-            }
-            catch (NumberFormatException e) {
-                itemId = ERROR;
-            }
-        }
-
-        if (splitString.length >= 2) {
-
-            try {
-                meta = Integer.parseInt(splitString[1]);
-            }
-            catch (NumberFormatException e) {
-                meta = ERROR;
-            }
-        }
-
-        if (meta == UNDEFINED) {
-            meta = OreDictionary.WILDCARD_VALUE;
-        }
-
-        if (itemId != UNDEFINED && itemId != ERROR) {
-            if (meta != ERROR) {
-                decodedItemStack = new ItemStack(Item.getItemById(itemId), 1, meta);
-            }
-        }
-
-        return decodedItemStack;
-    }
 
     public static boolean compare(ItemStack first, ItemStack second) {
 
         return (ItemStackComparator.compare(first, second) == 0);
     }
 
-    public static boolean hasColor(ItemStack itemStack) {
-
-        return !itemStack.hasTagCompound() ? false : !itemStack.getTagCompound().hasKey(Strings.NBT_ITEM_DISPLAY) ? false : itemStack.getTagCompound().getCompoundTag(Strings.NBT_ITEM_DISPLAY).hasKey(Strings.NBT_ITEM_COLOR);
-    }
 
     public static int getColor(ItemStack itemStack) {
 
