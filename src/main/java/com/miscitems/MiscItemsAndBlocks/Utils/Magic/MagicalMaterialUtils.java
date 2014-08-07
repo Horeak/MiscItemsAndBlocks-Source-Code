@@ -180,7 +180,7 @@ public class MagicalMaterialUtils {
             }
         }
 
-        RegisterValue(stack, val);
+        RegisterValue(stack, val / GetOutputNumber(stack));
 
     }
 
@@ -300,6 +300,25 @@ public class MagicalMaterialUtils {
         }
 
         return i;
+    }
+
+    public static int GetOutputNumber(ItemStack stack){
+        for(Object r : CraftingManager.getInstance().getRecipeList()) {
+            if (r instanceof IRecipe) {
+                IRecipe rep = (IRecipe) r;
+
+                if (StackUtils.AreStacksEqual(rep.getRecipeOutput(), stack)) {
+                    int i = rep.getRecipeOutput().stackSize / 4;
+
+
+                    if(i > 1)
+                    return i;
+                }
+            }
+
+        }
+
+        return 1;
     }
 
     public static ArrayList<ItemStack> GetRecipeItems(Object r)
