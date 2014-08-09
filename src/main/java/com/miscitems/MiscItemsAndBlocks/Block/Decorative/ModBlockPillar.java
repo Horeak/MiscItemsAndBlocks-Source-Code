@@ -14,12 +14,19 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import java.util.Random;
+
 public class ModBlockPillar extends ModBlockContainer {
 
     public ModBlockPillar() {
 		super(Material.rock);
 		this.setHardness(1F);
 	}
+
+    public int quantityDropped(Random p_149745_1_)
+    {
+        return 0;
+    }
 
 	@Override
 	public TileEntity createNewTileEntity(World world, int i) {

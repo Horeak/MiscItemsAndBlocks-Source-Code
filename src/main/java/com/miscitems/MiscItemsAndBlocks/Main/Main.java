@@ -7,10 +7,14 @@ import com.miscitems.MiscItemsAndBlocks.Entity.EntityPowerArrow;
 import com.miscitems.MiscItemsAndBlocks.Entity.EntitySilverArrow;
 import com.miscitems.MiscItemsAndBlocks.Event.BoneMealEvent;
 import com.miscitems.MiscItemsAndBlocks.Event.DisarmStickEvent;
+import com.miscitems.MiscItemsAndBlocks.Event.EntityConstructingEvent;
 import com.miscitems.MiscItemsAndBlocks.Event.GhostBlockBreakEvent;
 import com.miscitems.MiscItemsAndBlocks.Event.GuiListener;
 import com.miscitems.MiscItemsAndBlocks.Event.InvisibilityEvents;
+import com.miscitems.MiscItemsAndBlocks.Event.JoinWorld;
+import com.miscitems.MiscItemsAndBlocks.Event.OnPlayerRespawn;
 import com.miscitems.MiscItemsAndBlocks.Gui.GuiHandler;
+import com.miscitems.MiscItemsAndBlocks.Gui.Overlayes.GuiOverlayMagicEnergy;
 import com.miscitems.MiscItemsAndBlocks.Network.ChannelHandler;
 import com.miscitems.MiscItemsAndBlocks.Network.PacketHandler;
 import com.miscitems.MiscItemsAndBlocks.Utils.Config.ConfigUtils;
@@ -186,6 +190,10 @@ import java.util.Set;
         	proxy.RegisterClientTickhandler();
         	proxy.RegisterServerTickhandler();
 
+            MinecraftForge.EVENT_BUS.register(new EntityConstructingEvent());
+            MinecraftForge.EVENT_BUS.register(new JoinWorld());
+            MinecraftForge.EVENT_BUS.register(new OnPlayerRespawn());
+
             MinecraftForge.EVENT_BUS.register(new InvisibilityEvents());
             FMLCommonHandler.instance().bus().register(new InvisibilityEvents());
             FMLCommonHandler.instance().bus().register(new ConfigUtils());
@@ -207,7 +215,8 @@ import java.util.Set;
         {
 
 
-	
+
+            MinecraftForge.EVENT_BUS.register(new GuiOverlayMagicEnergy());
         	MinecraftForge.EVENT_BUS.register(new GuiListener());
 
 

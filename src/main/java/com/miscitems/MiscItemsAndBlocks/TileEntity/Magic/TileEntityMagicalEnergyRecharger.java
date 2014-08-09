@@ -16,7 +16,7 @@ public class TileEntityMagicalEnergyRecharger extends TileEntityInvBase implemen
     public double CurrentItemMaxPower = 0;
 
     int Tick = 0;
-    static int ReachTick = 10;
+    static int ReachTick = 5;
 
     public void updateEntity(){
         if(this.getStackInSlot(0) != null){
@@ -37,7 +37,7 @@ public class TileEntityMagicalEnergyRecharger extends TileEntityInvBase implemen
                             stor.AddEnergy(stack, 1);
 
                         }else{
-                            Tick += 1;
+                           Tick += 1;
                         }
 
 
@@ -46,10 +46,10 @@ public class TileEntityMagicalEnergyRecharger extends TileEntityInvBase implemen
 
             }
 
-        }else{
-            CurrentItemMaxPower = 0;
-            CurrentItemPower = 0;
-        }
+    }else{
+           CurrentItemMaxPower = 0;
+           CurrentItemPower = 0;
+      }
 
     }
 

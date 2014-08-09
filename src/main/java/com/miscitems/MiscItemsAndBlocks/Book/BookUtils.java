@@ -4,6 +4,8 @@ import com.miscitems.MiscItemsAndBlocks.Book.Pages.Page;
 import com.miscitems.MiscItemsAndBlocks.Book.Utils.UtilsStackPages;
 import com.miscitems.MiscItemsAndBlocks.Utils.Config.ConfigUtils;
 import com.miscitems.MiscItemsAndBlocks.Utils.StackUtils;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
@@ -20,6 +22,7 @@ import java.util.List;
 
 public class BookUtils {
 
+    @SideOnly(Side.CLIENT)
     public static GuiItemRender renderitem = new GuiItemRender();
 
 

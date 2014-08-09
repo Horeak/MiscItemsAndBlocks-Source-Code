@@ -5,6 +5,7 @@ import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemAntiFallChest;
 import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemBattery;
 import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemBigBattery;
 import com.miscitems.MiscItemsAndBlocks.Item.Magic.ModItemChargedCrystal;
+import com.miscitems.MiscItemsAndBlocks.Item.Magic.ModItemSoulOrb;
 import com.miscitems.MiscItemsAndBlocks.Item.ModItemCheese;
 import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemCircuit;
 import com.miscitems.MiscItemsAndBlocks.Item.Magic.ModItemCrystalBlade;
@@ -108,6 +109,7 @@ public class ModItems {
     public static Item InvisHelmet, InvisChestPlate, InvisLeggings, InvisBoots;
     public static Item BlueCrystal, GreenCrystal, RedCrystal, ChargedCrystal, InvisibilityCore;
     public static Item CrystalSilk, CrystalBlade, CrystalPickaxe, CrystalInfusedMetal, CrystalInfusedGem;
+    public static Item SoulOrb;
 
     private static Item IconItem;
 
@@ -276,6 +278,9 @@ public class ModItems {
 
         ChargedCrystal = new ModItemChargedCrystal().setUnlocalizedName("ChargedCrystal").setCreativeTab(Main.MagicTab);
         Register(ChargedCrystal, "ChargedCrystal");
+
+        SoulOrb = new ModItemSoulOrb().setUnlocalizedName("SoulOrb").setCreativeTab(Main.MagicTab).setTextureName(Reference.Mod_Id + ":SoulOrb");
+        Register(SoulOrb, "SoulOrb");
 
         InvisibilityCore = new ModItemInvisibilityCore().setUnlocalizedName("InvisibilityCore").setCreativeTab(Main.MagicTab);
         Register(InvisibilityCore, "InvisibilityCore");

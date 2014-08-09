@@ -34,6 +34,7 @@ import com.miscitems.MiscItemsAndBlocks.Block.Magic.ModBLockMagicalEnergyRecharg
 import com.miscitems.MiscItemsAndBlocks.Block.Magic.ModBlockBlueCrystalOre;
 import com.miscitems.MiscItemsAndBlocks.Block.Magic.ModBlockEnergyBattery;
 import com.miscitems.MiscItemsAndBlocks.Block.Magic.ModBlockGreenCrystalOre;
+import com.miscitems.MiscItemsAndBlocks.Block.Magic.ModBlockMagicalDeconstructor;
 import com.miscitems.MiscItemsAndBlocks.Block.Magic.ModBlockMagicalInfuser;
 import com.miscitems.MiscItemsAndBlocks.Block.Magic.ModBlockPowerCrystal;
 import com.miscitems.MiscItemsAndBlocks.Block.Magic.ModBlockRedCrystalOre;
@@ -100,6 +101,7 @@ import com.miscitems.MiscItemsAndBlocks.TileEntity.Machines.TileEntityWirelessRe
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Machines.TileEntityWorktable;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Machines.TileEntityXpStorage;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Magic.TileEntityEnergyBattery;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Magic.TileEntityMagicalDecontructor;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Magic.TileEntityMagicalEnergyRecharger;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Magic.TileEntityMagicalInfuser;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Magic.TileEntityPowerCrystal;
@@ -174,6 +176,7 @@ public class ModBlocks {
     public static Block MagicalInfuser;
     public static Block InfusedGemBlock, InfusedMetalBlock;
     public static Block MagicalRecharger;
+    public static Block MagicalDeconstructor;
 
     public static Block ColoredBrick;
     public static Block ColoredBrickGlowstone;
@@ -342,6 +345,9 @@ public class ModBlocks {
         PowerCrystal = new ModBlockPowerCrystal().setCreativeTab(Main.MagicTab).setBlockTextureName(Reference.Mod_Id + ":PowerCrystal");
         Register(PowerCrystal, ModItemBlockPowerCrystal.class, "PowerCrystal", TileEntityPowerCrystal.class);
 
+        MagicalDeconstructor = new ModBlockMagicalDeconstructor().setCreativeTab(Main.MagicTab);
+        Register(MagicalDeconstructor, "MagicalDeconstructor", TileEntityMagicalDecontructor.class);
+
         MagicalInfuser = new ModBlockMagicalInfuser().setCreativeTab(Main.MagicTab);
         Register(MagicalInfuser, "MagicalInfuser", TileEntityMagicalInfuser.class);
 
@@ -356,6 +362,7 @@ public class ModBlocks {
 
         InfusedMetalBlock = new BlockCompressed(MapColor.blueColor).setCreativeTab(Main.MagicTab).setBlockTextureName(Reference.Mod_Id + ":InfusedMetalBlock").setHardness(2F);
         Register(InfusedMetalBlock, "InfusedMetalBlock");
+
 
 
 

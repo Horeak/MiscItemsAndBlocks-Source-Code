@@ -58,6 +58,7 @@ tile.magicalinfuser.name=Magical Infuser
 tile.infusedgemblock.name=Crystal Infused Gem Block
 tile.infusedmetalblock.name=Crystal Infused Metal Block
 tile.magicalenergyrecharger.name=Magical Energy Recharger
+tile.magicaldeconstructor.name=Magical Material Deconstructor
 
 
 //All items
@@ -140,6 +141,7 @@ item.crystalpickaxe.name=Crystal Pickaxe
 powerupgrade.name=Power Upgrade
 item.crystalinfusedmetal.name=Crystal Infused Metal
 item.crystalinfusedgem.name=Crystal Infused Gem
+item.soulorb.name=Soul Orb
 
 
 //Gui Names
@@ -237,6 +239,8 @@ items.desc.silversword.3=Last Hit
 items.desc.silversword.4=Last hit: Nothing
 items.desc.silversword.5=Sword made by
 items.desc.silversword.6=Sword made by: <Empty>
+items.desc.soulorb.bound=Orb bound to: $player
+items.desc.soulorb.unbound=Orb not bound
 
 //Chat messages
 items.drill.change.1=Drill Mode set to : Normal (1x1)
@@ -251,6 +255,9 @@ items.drill.mode.3=Biggest
 //Entity names
 entity.powerarrow.name=Power Arrow
 entity.silverarrow.name=Silver Arrow
+
+//Damagesources
+damage.soulorb.overuse=%1$s overused his magical abilities
 
 //Death messages
 death.attack.powerarrow.shotby=%1$s was shot by %2$s with a electric bow.

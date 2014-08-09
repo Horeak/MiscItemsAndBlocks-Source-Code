@@ -1,4 +1,4 @@
-package com.miscitems.MiscItemsAndBlocks.Gui.Electric;
+package com.miscitems.MiscItemsAndBlocks.Gui.Overlayes;
 
 import MiscItemsApi.Electric.IPowerItem;
 import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemElArmor;

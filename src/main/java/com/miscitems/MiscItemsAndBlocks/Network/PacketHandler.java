@@ -43,6 +43,8 @@ public class PacketHandler {
 
         Main.handler.RegisterPacket(22, MagicReciveParticleEffects.class);
 
+        Main.handler.RegisterPacket(23, SyncPlayerPropsPacket.class);
+
     }
 
     public static Packet GetPacket(AbstractPacket packet){

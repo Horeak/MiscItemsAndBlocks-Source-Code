@@ -98,4 +98,9 @@ public class ModItemInvisibilityCore extends ModItemWithDamage implements IEnerg
     public void AddEnergy(ItemStack stack, double i) {
         stack.setItemDamage(stack.getItemDamage() - (int)i);
     }
+
+    @Override
+    public void RemoveEnergy(ItemStack stack, double i) {
+        stack.setItemDamage(stack.getItemDamage() + (int)i);
+    }
 }

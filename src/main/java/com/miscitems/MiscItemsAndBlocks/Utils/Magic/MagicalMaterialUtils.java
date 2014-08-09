@@ -308,10 +308,8 @@ public class MagicalMaterialUtils {
                 IRecipe rep = (IRecipe) r;
 
                 if (StackUtils.AreStacksEqual(rep.getRecipeOutput(), stack)) {
-                    int i = rep.getRecipeOutput().stackSize / 4;
+                    int i = rep.getRecipeOutput().stackSize;
 
-
-                    if(i > 1)
                     return i;
                 }
             }

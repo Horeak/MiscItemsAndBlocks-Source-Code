@@ -19,7 +19,7 @@ public class ModItemChargedCrystal extends ModItemWithDamage implements IEnergyS
         super(50);
     }
 
-    public boolean hasEffect(ItemStack stack)
+    public boolean hasEffect(ItemStack stack, int pas)
     {
         return stack.getItemDamage() <= 25;
     }
@@ -63,5 +63,10 @@ public class ModItemChargedCrystal extends ModItemWithDamage implements IEnergyS
     @Override
     public void AddEnergy(ItemStack stack, double i) {
         stack.setItemDamage(stack.getItemDamage() - (int)i);
+    }
+
+    @Override
+    public void RemoveEnergy(ItemStack stack, double i) {
+        stack.setItemDamage(stack.getItemDamage() + (int)i);
     }
 }

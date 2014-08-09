@@ -18,6 +18,7 @@ import com.miscitems.MiscItemsAndBlocks.Container.Machines.ContainerPizzaOven;
 import com.miscitems.MiscItemsAndBlocks.Container.Machines.ContainerSquezer;
 import com.miscitems.MiscItemsAndBlocks.Container.Machines.ContainerXpStorage;
 import com.miscitems.MiscItemsAndBlocks.Container.Magic.ContainerMagicalCharger;
+import com.miscitems.MiscItemsAndBlocks.Container.Magic.ContainerMagicalDeconstructor;
 import com.miscitems.MiscItemsAndBlocks.Container.Magic.ContainerMagicalInfuser;
 import com.miscitems.MiscItemsAndBlocks.Gui.Computer.OldGuis.GuiChat;
 import com.miscitems.MiscItemsAndBlocks.Gui.Computer.OldGuis.GuiComputerScreen;
@@ -39,6 +40,7 @@ import com.miscitems.MiscItemsAndBlocks.Gui.Machines.GuiPizzaOven;
 import com.miscitems.MiscItemsAndBlocks.Gui.Machines.GuiTrashBin;
 import com.miscitems.MiscItemsAndBlocks.Gui.Machines.GuiXpStorage;
 import com.miscitems.MiscItemsAndBlocks.Gui.Magic.GuiMagicalCharger;
+import com.miscitems.MiscItemsAndBlocks.Gui.Magic.GuiMagicalDeconstructor;
 import com.miscitems.MiscItemsAndBlocks.Gui.Magic.GuiMagicalInfuser;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.*;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityElectricFurnace;
@@ -60,6 +62,7 @@ import com.miscitems.MiscItemsAndBlocks.TileEntity.Machines.TileEntityWirelessIt
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Machines.TileEntityWirelessRedstone;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Machines.TileEntityWorktable;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Machines.TileEntityXpStorage;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Magic.TileEntityMagicalDecontructor;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Magic.TileEntityMagicalEnergyRecharger;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Magic.TileEntityMagicalInfuser;
 import cpw.mods.fml.common.network.IGuiHandler;
@@ -194,6 +197,11 @@ public class GuiHandler implements IGuiHandler{
         if(tile_entity instanceof TileEntityMagicalEnergyRecharger){
 
             return new ContainerMagicalCharger(player.inventory, (TileEntityMagicalEnergyRecharger) tile_entity);
+        }
+
+        if(tile_entity instanceof TileEntityMagicalDecontructor){
+
+            return new ContainerMagicalDeconstructor(player.inventory, (TileEntityMagicalDecontructor) tile_entity);
         }
         
         
@@ -341,6 +349,11 @@ public class GuiHandler implements IGuiHandler{
         if(tile_entity instanceof TileEntityMagicalEnergyRecharger){
 
             return new GuiMagicalCharger(player.inventory, (TileEntityMagicalEnergyRecharger) tile_entity);
+        }
+
+        if(tile_entity instanceof TileEntityMagicalDecontructor){
+
+            return new GuiMagicalDeconstructor(player.inventory, (TileEntityMagicalDecontructor) tile_entity);
         }
 
 

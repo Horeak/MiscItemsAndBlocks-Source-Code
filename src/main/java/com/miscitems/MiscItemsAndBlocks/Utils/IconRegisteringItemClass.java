@@ -21,7 +21,6 @@ public class IconRegisteringItemClass extends Item {
     public static IIcon RedstoneSlot;
     public static IIcon LapisSlot;
 
-    public static IIcon MagicEnergyPacketParticleIcon;
 
 
     @SideOnly(Side.CLIENT)
@@ -39,7 +38,6 @@ public class IconRegisteringItemClass extends Item {
         RedstoneSlot = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "RedstoneSlot");
         LapisSlot = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "LapisSlot");
 
-        MagicEnergyPacketParticleIcon = par1IconRegister.registerIcon(Reference.Mod_Id + ":MagicPacket");
 
 
 

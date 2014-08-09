@@ -9,4 +9,5 @@ public interface IEnergyStorageItem {
 
     public void SetEnergy(ItemStack stack, double i);
     public void AddEnergy(ItemStack stack, double i);
+    public void RemoveEnergy(ItemStack stack, double i);
 }
