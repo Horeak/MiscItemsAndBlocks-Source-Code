@@ -2,7 +2,6 @@ package com.miscitems.MiscItemsAndBlocks.Block.Electric;
 
 import MiscUtils.Block.ModBlockContainer;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityWindMill;
-import com.miscitems.MiscItemsAndBlocks.Utils.ConfigUtils;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -32,7 +31,7 @@ public class ModBlockWindMill extends ModBlockContainer {
     @SideOnly(Side.CLIENT)
 	   public void registerBlockIcons(IIconRegister par1IconRegister)
 	   {
-		   this.IconSide = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "WindMillSide" + (ConfigUtils.HDTextures ? "_16" : ""));
+		   this.IconSide = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "WindMillSide");
 		   this.IconTop = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "ModuleBlank");
 		   
 	   }

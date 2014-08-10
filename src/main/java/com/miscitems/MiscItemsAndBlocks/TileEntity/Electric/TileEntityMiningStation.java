@@ -1,12 +1,11 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity.Electric;
 
 import MiscUtils.Network.PacketHandler;
-import com.miscitems.MiscItemsAndBlocks.Main.Main;
-import com.miscitems.MiscItemsAndBlocks.Network.PacketTileWithItemUpdate;
 import MiscUtils.Utils.Block.BlockUtil;
 import MiscUtils.Utils.Inventory.Utils;
 import MiscUtils.Utils.ItemHelper;
-import com.miscitems.MiscItemsAndBlocks.Utils.ConfigUtils;
+import com.miscitems.MiscItemsAndBlocks.Main.Main;
+import com.miscitems.MiscItemsAndBlocks.Network.PacketTileWithItemUpdate;
 import com.mojang.authlib.GameProfile;
 import cpw.mods.fml.relauncher.ReflectionHelper;
 import net.minecraft.block.Block;
@@ -171,7 +170,7 @@ public class TileEntityMiningStation extends TileEntityPowerInv{
     public void updateEntity()
     {
 
-        MaxSize = ConfigUtils.GetConfigFile().getInt("Mining Station Max Size", ConfigUtils.CATEGORY_SERVER_SETTINGS, 11, 1,  3000, "Max size of Mining Station (Must be an odd number)");
+        MaxSize = Main.config.GetConfigFile().getInt("Mining Station Max Size", Main.config.CATEGORY_SERVER_SETTINGS, 11, 1,  3000, "Max size of Mining Station (Must be an odd number)");
 
         if((MaxSize & 1) == 0){
             MaxSize = 11;

@@ -1,40 +1,34 @@
 package com.miscitems.MiscItemsAndBlocks.Utils;
 
+import MiscUtils.Utils.Config.ConfigBase;
 import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraftforge.common.config.Configuration;
 
 import java.io.File;
-import java.util.HashMap;
 
-public class ConfigUtils{
-
-
-    public static final String CATEGORY_CLIENT_SETTINGS = "Client Settings";
-    public static final String CATEGORY_SERVER_SETTINGS = "Server Settings";
-    public static final String CATEGORY_BLOCKS = "Blocks";
-    public static final String CATEGORY_ITEMS = "Items";
-    public static final String CATEGORY_WORLDGEN = "WorldGen";
+public class Config extends ConfigBase {
+    protected Configuration config;
 
     public static boolean SpawnParticles;
     public static boolean AllowPowerArmorEffects;
-    public static boolean HDTextures;
     public static boolean DisableCustomItemModels;
     public static boolean AllowCustomPillars;
 
-    public static int LeveOfLogging;
 
-    public static HashMap<Block, String> BlockConfigNames = new HashMap<Block, String>();
-    public static HashMap<Item, String> ItemConfigNames = new HashMap<Item, String>();
+    public Config(String Loc){
 
-    private static Configuration config;
+        config = new Configuration(new File(Loc + "/tm1990's mods/MiscItemsAndBlocks.cfg"));
+        InitConfig();
+    }
 
+    @Override
+    public Configuration GetConfigFile() {
+        return config;
+    }
 
-    public static void InitConfig(String FileLoc){
-
-        config = new Configuration(new File(FileLoc + "/tm1990's mods/MiscItemsAndBlocksConfig.cfg"));
+    @Override
+    public void InitConfig() {
 
         config.addCustomCategoryComment(CATEGORY_CLIENT_SETTINGS, "Client side only settings. Settings that does not affect gameplay");
         config.addCustomCategoryComment(CATEGORY_SERVER_SETTINGS, "Server side settings which can affect gameplay");
@@ -49,45 +43,26 @@ public class ConfigUtils{
 
         config.setCategoryRequiresMcRestart(CATEGORY_WORLDGEN, true);
 
-
-
         LoadConfig();
-
     }
 
-    public static void LoadConfig(){
-
+    @Override
+    public void LoadConfig() {
 
         //Client side configs
-        HDTextures = !config.getBoolean("Should HD textures be used for some blocks?", CATEGORY_CLIENT_SETTINGS, true,  "Disable the use of textures bigger then 16x16");
         SpawnParticles = config.getBoolean("Spawn particles?", CATEGORY_CLIENT_SETTINGS, true, "Should the mod use partciles for some things");
         DisableCustomItemModels = config.getBoolean("Disable custom item models?",CATEGORY_CLIENT_SETTINGS, false, "Disable the use of custom models on some items");
-
-        LeveOfLogging = config.get(CATEGORY_CLIENT_SETTINGS, "What level of debug out should the mod have? 1/2/3", 1).getInt();
-
 
 
         //Server side configs
         AllowPowerArmorEffects = config.getBoolean("Enable Powerarmor effects?", CATEGORY_SERVER_SETTINGS, true, "Disable the effects the power armor gives");
         AllowCustomPillars = config.getBoolean("Enable pillars for all vanilla blocks?", CATEGORY_SERVER_SETTINGS, true, "Enable the use of pillars of all blocks");
 
-
-
-
         if(config.hasChanged())
             config.save();
-
-
     }
 
-
-
-    public static Configuration GetConfigFile(){
-        return config;
-    }
-
-
-    public static  boolean IsBlockEnabled(Block block){
+    public  boolean IsBlockEnabled(Block block){
         if(BlockConfigNames.get(block) == null)
             return false;
 
@@ -102,7 +77,7 @@ public class ConfigUtils{
 
 
 
-    public static  boolean IsItemEnabled(Item item){
+    public  boolean IsItemEnabled(Item item){
         if(ItemConfigNames.get(item) == null)
             return false;
 
@@ -115,7 +90,7 @@ public class ConfigUtils{
     }
 
 
-    public static  boolean IsWorldGeneratorEnabled(String WorldGen){
+    public  boolean IsWorldGeneratorEnabled(String WorldGen){
         boolean bl = GetConfigFile().get(CATEGORY_WORLDGEN, "Enable Worldgen: " + WorldGen, true).getBoolean(true);
 
         if(GetConfigFile().hasChanged())
@@ -124,7 +99,7 @@ public class ConfigUtils{
         return bl;
     }
 
-    public static  int GetWorldGenerationChance(String WorldGen, int def){
+    public  int GetWorldGenerationChance(String WorldGen, int def){
         if(IsWorldGeneratorEnabled(WorldGen)){
             int t = GetConfigFile().get(CATEGORY_WORLDGEN, "The amount of times it will try to spawn in a chunk: " + WorldGen, def).getInt(def);
 
@@ -138,18 +113,8 @@ public class ConfigUtils{
         return 0;
     }
 
-    public static  Item GetCheckedItem(Item item){
-        if(IsItemEnabled(item))
-            return item;
-        else
-            return ItemBlock.getItemFromBlock(Blocks.bedrock);
-    }
-
-    public static  Block GetCheckedBlock(Block block){
-        if(IsBlockEnabled(block))
-            return block;
-        else
-            return Blocks.bedrock;
+    public boolean CanSpawnParticles(){
+        return GetConfigFile().getBoolean("Can Spawn Particles", CATEGORY_CLIENT_SETTINGS, true, "Should particles be enabled?");
     }
 
 }

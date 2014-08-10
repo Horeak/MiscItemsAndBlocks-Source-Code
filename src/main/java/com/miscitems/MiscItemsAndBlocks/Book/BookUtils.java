@@ -3,7 +3,7 @@ package com.miscitems.MiscItemsAndBlocks.Book;
 import MiscUtils.Utils.StackUtils;
 import com.miscitems.MiscItemsAndBlocks.Book.Pages.Page;
 import com.miscitems.MiscItemsAndBlocks.Book.Utils.UtilsStackPages;
-import com.miscitems.MiscItemsAndBlocks.Utils.ConfigUtils;
+import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -145,12 +145,12 @@ public class BookUtils {
                 if(stack.getItem() instanceof ItemBlock){
                     Block bl = (Block)Block.getBlockFromItem((ItemBlock)stack.getItem());
 
-                    if(ConfigUtils.IsBlockEnabled(bl))
+                    if(Main.config.IsBlockEnabled(bl))
                         stan = stack;
 
                 }else{
 
-                    if(ConfigUtils.IsItemEnabled(stack.getItem()))
+                    if(Main.config.IsItemEnabled(stack.getItem()))
                         stan = stack;
                 }
 
@@ -176,12 +176,12 @@ public class BookUtils {
                     if(sta.getItem() instanceof ItemBlock){
                         Block bl = (Block)Block.getBlockFromItem((ItemBlock)sta.getItem());
 
-                        if(ConfigUtils.IsBlockEnabled(bl))
+                        if(Main.config.IsBlockEnabled(bl))
                             list.add(sta);
 
                     }else{
 
-                        if(ConfigUtils.IsItemEnabled(sta.getItem()))
+                        if(Main.config.IsItemEnabled(sta.getItem()))
                             list.add(sta);
                     }
 

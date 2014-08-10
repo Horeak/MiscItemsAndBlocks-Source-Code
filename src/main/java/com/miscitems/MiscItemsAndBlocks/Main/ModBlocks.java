@@ -2,6 +2,8 @@ package com.miscitems.MiscItemsAndBlocks.Main;
 
 
 import MiscUtils.Block.ModBlockStair;
+import MiscUtils.Utils.Register.BlockRegister;
+import MiscUtils.Utils.Register.OreDictionaryRegister;
 import com.miscitems.MiscItemsAndBlocks.Block.BlockContainers.ModBlockCardboardBox;
 import com.miscitems.MiscItemsAndBlocks.Block.BlockContainers.ModBlockMill;
 import com.miscitems.MiscItemsAndBlocks.Block.BlockContainers.ModBlockOven;
@@ -96,16 +98,12 @@ import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityGamePart;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityGhostBlock;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityTable;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityTimedBlock;
-import com.miscitems.MiscItemsAndBlocks.Utils.ConfigUtils;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
-import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCompressed;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -168,156 +166,158 @@ public class ModBlocks {
 
 	public static void Init(){
 
+        BlockRegister Utils = new BlockRegister(Main.config, Reference.Mod_Id);
 
 
 
 		XpStorage = new ModBlockXpStorage().setCreativeTab(Main.MiscTab);
-		Register(XpStorage, ModItemXpStorageBlock.class, "Xp Storage Block", TileEntityXpStorage.class);
+        Utils.Register(XpStorage, ModItemXpStorageBlock.class, "Xp Storage Block", TileEntityXpStorage.class);
 		
 		Bin = new ModBlockTrashBin().setCreativeTab(Main.MiscTab);
-		Register(Bin, ModItemBlockTrashBin.class,"Trash Bin", TileEntityTrashBin.class);
+        Utils.Register(Bin, ModItemBlockTrashBin.class, "Trash Bin", TileEntityTrashBin.class);
 		
 		DisarmTrap = new ModBlockDisarmTrap().setCreativeTab(Main.MiscTab);
-		Register(DisarmTrap, ModItemBlockDisarmTrap.class,"Disarm Trap", TileEntityDisarmTrap.class);
+        Utils.Register(DisarmTrap, ModItemBlockDisarmTrap.class, "Disarm Trap", TileEntityDisarmTrap.class);
 		
 		SilverOre = new ModBlockSilverOre().setCreativeTab(Main.MiscTab);
-		Register(SilverOre, "Silver Ore");
+        Utils.Register(SilverOre, "Silver Ore");
 
         StoneStair = new ModBlockStair(Blocks.stone, 0);
-        Register(StoneStair, "Stone Stair");
+        Utils.Register(StoneStair, "Stone Stair");
         
         Box = new ModBlockCardboardBox().setCreativeTab(Main.MiscTab);
-        Register(Box, ModItemBlockBox.class, "Cardboard Box", TileEntityCardboardBox.class);
+        Utils.Register(Box, ModItemBlockBox.class, "Cardboard Box", TileEntityCardboardBox.class);
         
         Worktable = new ModBlockWorktable().setCreativeTab(Main.MiscTab);
-        Register(Worktable, "Worktable", TileEntityWorktable.class);
+        Utils.Register(Worktable, "Worktable", TileEntityWorktable.class);
         
         Dice = new ModBlockDice().setCreativeTab(Main.MiscTab);
-        Register(Dice, ModItemBlockDice.class, "Dice");
+        Utils.Register(Dice, ModItemBlockDice.class, "Dice");
         
         SpeedBlock = new ModBlockSpeedBlock().setCreativeTab(Main.MiscTab);
-        Register(SpeedBlock, "Speed Block");
+        Utils.Register(SpeedBlock, "Speed Block");
         
         GamePart = new ModBlockGamePart().setCreativeTab(Main.DecorativeTab);
-        Register(GamePart, ModItemBlockGamePiece.class, "Game Piece", TileEntityGamePart.class);
+        Utils.Register(GamePart, ModItemBlockGamePiece.class, "Game Piece", TileEntityGamePart.class);
 
         
         Pillar = new ModBlockPillar();
-        Register(Pillar, ModItemBlockPillar.class,"Pillar", TileEntityPillar.class);
+        Utils.Register(Pillar, ModItemBlockPillar.class, "Pillar", TileEntityPillar.class);
         
         TomatoPlant = new ModBlockTomatoPlant();
-        Register(TomatoPlant, "Tomato Plant");
+        Utils.Register(TomatoPlant, "Tomato Plant");
 
         Mill = new ModBlockMill().setCreativeTab(Main.MiscTab);
-        Register(Mill, "Mill", TileEntityMill.class);
+        Utils.Register(Mill, "Mill", TileEntityMill.class);
 
         Squezer = new ModBlockSquezer().setCreativeTab(Main.MiscTab);
-        Register(Squezer, "Squeezer", TileEntitySquezer.class);
+        Utils.Register(Squezer, "Squeezer", TileEntitySquezer.class);
         
         OrangeLeaf = new ModBlockOrangeLeaf().setCreativeTab(Main.MiscTab);
-        Register(OrangeLeaf, "Orange Tree Leaves");
+        Utils.Register(OrangeLeaf, "Orange Tree Leaves");
         
         OrangeSapling = new ModBlockOrangeSapling();
-        Register((Block) OrangeSapling, "Orange Tree Sapling");
+        Utils.Register((Block) OrangeSapling, "Orange Tree Sapling");
         
 
         Oven = new ModBlockOven().setCreativeTab(Main.MiscTab);
-        Register(Oven, "Oven", TileEntityOven.class);
+        Utils.Register(Oven, "Oven", TileEntityOven.class);
         
         OrangeLog = new ModBlockOrangeLog().setCreativeTab(Main.MiscTab);
-        Register(OrangeLog, "Orange Tree Wood");
+        Utils.Register(OrangeLog, "Orange Tree Wood");
         
         OrangePlanks = new ModBlockOrangePlanks().setCreativeTab(Main.MiscTab);
-        Register(OrangePlanks, "Orange Tree Planks");
+        Utils.Register(OrangePlanks, "Orange Tree Planks");
         
         MachinePart = new ModBlockMachinePart().setCreativeTab(Main.ElectricTab).setHardness(1F);
-        Register(MachinePart, "Machine Part");
+        Utils.Register(MachinePart, "Machine Part");
 
         Charger = new ModBlockEnergyStorageCube().setCreativeTab(Main.ElectricTab);
-        Register(Charger, "Charger", TileEntityEnergyStorageCube.class);
+        Utils.Register(Charger, "Charger", TileEntityEnergyStorageCube.class);
         
         SolarPanel = new ModBlockSolarPanel().setCreativeTab(Main.ElectricTab);
-        Register(SolarPanel, "Solar PanelBlock", TileEntitySolarPanel.class);
+        Utils.Register(SolarPanel, "Solar PanelBlock", TileEntitySolarPanel.class);
         
         WindMill = new ModBlockWindMill().setCreativeTab(Main.ElectricTab);
-        Register(WindMill, "Wind Mill", TileEntityWindMill.class);
+        Utils.Register(WindMill, "Wind Mill", TileEntityWindMill.class);
         
         Generator = new ModBlockGenerator().setCreativeTab(Main.ElectricTab);
-        Register(Generator, "Coal Generator", TileEntityGenerator.class);
+        Utils.Register(Generator, "Coal Generator", TileEntityGenerator.class);
 
         ElectricFurnace = new ModBlockElectricFurnace().setCreativeTab(Main.ElectricTab);
-        Register(ElectricFurnace, "Electric Furnace", TileEntityElectricFurnace.class);
+        Utils.Register(ElectricFurnace, "Electric Furnace", TileEntityElectricFurnace.class);
         
         PowerCable = new ModBlockPowerCable().setCreativeTab(Main.ElectricTab);
-        Register(PowerCable, ModItemBlockPowerCable.class, "Power Cable", TileEntityPowerCable.class);
+        Utils.Register(PowerCable, ModItemBlockPowerCable.class, "Power Cable", TileEntityPowerCable.class);
         
         MetalPress = new ModBlockMetalPress().setCreativeTab(Main.ElectricTab);
-        Register(MetalPress, ModItemBlockMetalPress.class, "Metal Press", TileEntityMetalPress.class);
+        Utils.Register(MetalPress, ModItemBlockMetalPress.class, "Metal Press", TileEntityMetalPress.class);
         
         LensBench = new ModBlockLensBench().setCreativeTab(Main.ElectricTab);
-        Register(LensBench, "Lens Bench", TileEntityLensBench.class);
+        Utils.Register(LensBench, "Lens Bench", TileEntityLensBench.class);
         
         Laser = new ModBlockLaser().setCreativeTab(Main.ElectricTab);
-        Register(Laser, "Laser", TileEntityLaser.class);
+        Utils.Register(Laser, "Laser", TileEntityLaser.class);
         
         LaserReciver = new ModBlockLaserReciver().setBlockTextureName(Reference.Mod_Id + ":LaserReciver").setCreativeTab(Main.ElectricTab);
-        Register(LaserReciver, ModItemBlockLaserReciver.class, "Laser Reciver", TileEntityLaserReciver.class);
+        Utils.Register(LaserReciver, ModItemBlockLaserReciver.class, "Laser Reciver", TileEntityLaserReciver.class);
         
         MiningChamber = new ModBlockMiningStation().setCreativeTab(Main.ElectricTab);
-        Register(MiningChamber, ModItemBlockMiningChamber.class, "Mining Station", TileEntityMiningStation.class);
+        Utils.Register(MiningChamber, ModItemBlockMiningChamber.class, "Mining Station", TileEntityMiningStation.class);
         
         Teleporter = new ModBlockTeleporter().setCreativeTab(Main.ElectricTab);
-        Register(Teleporter, ModItemBlockTeleporter.class, "Teleporter", TileEntityTeleporter.class);
+        Utils.Register(Teleporter, ModItemBlockTeleporter.class, "Teleporter", TileEntityTeleporter.class);
         
         ItemPedestal = new ModBlockItemPedestal().setCreativeTab(Main.DecorativeTab);
-        Register(ItemPedestal, ModItemBlockItemPedestal.class, "Item Pedestal", TileEntityItemPedestal.class);
+        Utils.Register(ItemPedestal, ModItemBlockItemPedestal.class, "Item Pedestal", TileEntityItemPedestal.class);
         
         Table = new ModBlockTable().setCreativeTab(Main.DecorativeTab);
-        Register(Table, ModItemBlockTable.class ,"Table", TileEntityTable.class);
+        Utils.Register(Table, ModItemBlockTable.class, "Table", TileEntityTable.class);
         
         PaintBlock = new ModBlockPaintBlock().setCreativeTab(Main.DecorativeTab);
-        Register(PaintBlock, ModItemBlockPaintBlock.class, "Paint Block", TileEntityPaintBlock.class);
+        Utils.Register(PaintBlock, ModItemBlockPaintBlock.class, "Paint Block", TileEntityPaintBlock.class);
         
         TimedBlock = new ModBlockTimedBlock();
-        Register(TimedBlock, "Float Block", TileEntityTimedBlock.class);
+        Utils.Register(TimedBlock, "Float Block", TileEntityTimedBlock.class);
         
         OneWayGlass = new ModBlockOneWayGlass().setCreativeTab(Main.MiscTab);
-        Register(OneWayGlass, "One Way Glass");
+        Utils.Register(OneWayGlass, "One Way Glass");
         
         Computer = new ModBlockComputer().setCreativeTab(Main.MiscTab);
-        Register(Computer, ModItemBlockComputer.class, "Computer", TileEntityComputer.class);
+        Utils.Register(Computer, ModItemBlockComputer.class, "Computer", TileEntityComputer.class);
         
         StorageBlock = new ModBlockStorageBlock().setCreativeTab(Main.MiscTab);
-        Register(StorageBlock, ModItemBlockStorageBlock.class, "Storage Block", TileEntityStorageBlock.class);
+        Utils.Register(StorageBlock, ModItemBlockStorageBlock.class, "Storage Block", TileEntityStorageBlock.class);
         
         DiceHolder = new ModBlockDiceHolder().setCreativeTab(Main.MiscTab);
-        Register(DiceHolder, ModItemBlockDiceHolder.class, "Dice Stand", TileEntityDiceHolder.class);
+        Utils.Register(DiceHolder, ModItemBlockDiceHolder.class, "Dice Stand", TileEntityDiceHolder.class);
         
         WireLessRedstone = new ModBlockWirelessRedstone().setCreativeTab(Main.MiscTab);
-        Register(WireLessRedstone, "Wireless Redstone", TileEntityWirelessRedstone.class);
+        Utils.Register(WireLessRedstone, "Wireless Redstone", TileEntityWirelessRedstone.class);
         
         SilverBlock = new BlockCompressed(MapColor.ironColor).setBlockTextureName(Reference.Mod_Id + ":" + "SilverBlock").setHardness(2.7F).setCreativeTab(Main.MiscTab);
-        Register(SilverBlock, "Silver Block");
+        Utils.Register(SilverBlock, "Silver Block");
         
         WirelessItemTrans = new ModBlockWirelessItemTransfer().setCreativeTab(Main.MiscTab);
-        Register(WirelessItemTrans, "Wireless Item Transfer", TileEntityWirelessItemTrans.class);
+        Utils.Register(WirelessItemTrans, "Wireless Item Transfer", TileEntityWirelessItemTrans.class);
 
         GhostBlock = new ModBlockGhostBlock().setCreativeTab(Main.MiscTab);
-        Register(GhostBlock, "Ghost Block", TileEntityGhostBlock.class);
+        Utils.Register(GhostBlock, "Ghost Block", TileEntityGhostBlock.class);
 
         ColoredBrick = new ModBlockColoredMetalBrick().setBlockTextureName(Reference.Mod_Id + ":MetalBrick").setCreativeTab(Main.DecorativeTab);
-        Register(ColoredBrick, ModItemBlockColoredMetalBrick.class, "ColoredBrick");
+        Utils.Register(ColoredBrick, ModItemBlockColoredMetalBrick.class, "ColoredBrick");
 
         ColoredBrickGlowstone = new ModBlockColoredMetalBrick().setBlockTextureName(Reference.Mod_Id + ":MetalBrickGlowstone").setCreativeTab(Main.DecorativeTab).setLightLevel(1.0F);
-        Register(ColoredBrickGlowstone, ModItemBlockColoredMetalBrick.class, "ColoredBrickGlowstone");
+        Utils.Register(ColoredBrickGlowstone, ModItemBlockColoredMetalBrick.class, "ColoredBrickGlowstone");
 
 
 
 
+        OreDictionaryRegister OreUtils = new OreDictionaryRegister(Main.config);
 
-        OreDictionary.registerOre("oreSilver", new ItemStack(SilverOre));
-        OreDictionary.registerOre("logWood", new ItemStack(OrangeLog));
-        OreDictionary.registerOre("plankWood", new ItemStack(OrangePlanks));
+        OreUtils.RegisterOreDictionary("oreSilver", new ItemStack(SilverOre));
+        OreUtils.RegisterOreDictionary("logWood", new ItemStack(OrangeLog));
+        OreUtils.RegisterOreDictionary("plankWood", new ItemStack(OrangePlanks));
 
 
 
@@ -329,52 +329,6 @@ public class ModBlocks {
 
 	
 	
-	    
-		public static void Register(Block block, String Name){
-            ConfigUtils.BlockConfigNames.put(block, Name);
-
-			if(ConfigUtils.IsBlockEnabled(block)){
-
-	            block.setBlockName(Name.toLowerCase().replace(" ", "_"));
-		        GameRegistry.registerBlock(block, Name.toLowerCase().replace(" ", "_"));
-			}
-		}
-
-
-    public static void Register(Block block, String Name, Class<? extends TileEntity> tileClass){
-        ConfigUtils.BlockConfigNames.put(block, Name);
-
-        if(ConfigUtils.IsBlockEnabled(block)){
-
-            Register(block, Name);
-            GameRegistry.registerTileEntity(tileClass, "[MiscItems]" + Name);
-        }
-    }
-
-
-
-     public static void Register(Block Block, Class<? extends ItemBlock> itemclass, String Name) {
-         ConfigUtils.BlockConfigNames.put(Block, Name);
-
-        if (ConfigUtils.IsBlockEnabled(Block)) {
-
-        Block.setBlockName(Name.toLowerCase().replace(" ", "_"));
-        GameRegistry.registerBlock(Block, itemclass, Name.toLowerCase().replace(" ", "_"));
-    }
-}
-
-
-
-    public static void Register(Block Block, Class<? extends ItemBlock> itemclass, String Name, Class<? extends TileEntity> tileClass){
-        ConfigUtils.BlockConfigNames.put(Block, Name);
-
-        if(ConfigUtils.IsBlockEnabled(Block)){
-            Block.setBlockName(Name.toLowerCase().replace(" ", "_"));
-            GameRegistry.registerBlock(Block, itemclass, Name.toLowerCase().replace(" ", "_"));
-            GameRegistry.registerTileEntity(tileClass, "[MiscItems]" + Name);
-        }
-    }
-
 
 }
 

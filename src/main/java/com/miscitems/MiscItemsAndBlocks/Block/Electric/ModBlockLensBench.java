@@ -3,7 +3,6 @@ package com.miscitems.MiscItemsAndBlocks.Block.Electric;
 import MiscUtils.Block.ModBlockContainer;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityLensBench;
-import com.miscitems.MiscItemsAndBlocks.Utils.ConfigUtils;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import net.minecraft.block.Block;
@@ -29,7 +28,7 @@ public class ModBlockLensBench extends ModBlockContainer {
 
     public void registerBlockIcons(IIconRegister icon)
     {
-    	Top = icon.registerIcon(Reference.Mod_Id + ":LensBenchTop" + (ConfigUtils.HDTextures ? "_16" : ""));
+    	Top = icon.registerIcon(Reference.Mod_Id + ":LensBenchTop");
     	Side = icon.registerIcon(Reference.Mod_Id + ":LensBenchSide");
     	Bottom = icon.registerIcon(Reference.Mod_Id + ":LensBenchBottom");
     	

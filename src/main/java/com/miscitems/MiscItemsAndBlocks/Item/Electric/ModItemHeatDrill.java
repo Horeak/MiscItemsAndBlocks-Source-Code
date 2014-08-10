@@ -2,7 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.Item.Electric;
 
 import MiscUtils.Utils.Handlers.ParticleHelper;
 import com.google.common.collect.Sets;
-import com.miscitems.MiscItemsAndBlocks.Utils.ConfigUtils;
+import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.relauncher.ReflectionHelper;
 import cpw.mods.fml.relauncher.Side;
@@ -71,7 +71,7 @@ public class ModItemHeatDrill extends ModItemPowerTool{
     
 	public boolean onBlockStartBreak(ItemStack itemstack, int x, int y, int z, EntityPlayer player)
     {
-        ParticleHelper particleHelper = new ParticleHelper(player.worldObj, ConfigUtils.SpawnParticles);
+        ParticleHelper particleHelper = new ParticleHelper(player.worldObj, Main.config.SpawnParticles);
 
 
 
@@ -149,7 +149,7 @@ public class ModItemHeatDrill extends ModItemPowerTool{
 	    {
 	    	int Luck = EnchantmentHelper.getEnchantmentLevel(35, player.inventory.getCurrentItem());
 
-            ParticleHelper particleHelper = new ParticleHelper(world, ConfigUtils.SpawnParticles);
+            ParticleHelper particleHelper = new ParticleHelper(world, Main.config.SpawnParticles);
 	    	
   	        final Block block = world.getBlock(x, y, z);
   	        final int meta = world.getBlockMetadata(x, y, z);

@@ -5,7 +5,6 @@ import MiscUtils.Utils.Handlers.ChatMessageHandler;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Main.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Machines.TileEntityXpStorage;
-import com.miscitems.MiscItemsAndBlocks.Utils.ConfigUtils;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import cpw.mods.fml.relauncher.Side;
@@ -35,7 +34,7 @@ public class ModBlockXpStorage extends ModBlockContainer {
 	   @SideOnly(Side.CLIENT)
 	   public void registerBlockIcons(IIconRegister par1IconRegister)
 	   {
-		   this.blockIcon = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "XpStorage" + (ConfigUtils.HDTextures ? "_16" : ""));
+		   this.blockIcon = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "XpStorage");
 		   
 	   }
 

@@ -3,7 +3,6 @@ package com.miscitems.MiscItemsAndBlocks.Block.BlockContainers;
 import MiscUtils.Block.ModBlockContainer;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Machines.TileEntityWirelessItemTrans;
-import com.miscitems.MiscItemsAndBlocks.Utils.ConfigUtils;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import net.minecraft.block.Block;
@@ -31,7 +30,7 @@ public class ModBlockWirelessItemTransfer extends ModBlockContainer {
 	
     
     public void registerBlockIcons(IIconRegister icon) {
-        this.blockIcon = icon.registerIcon(Reference.Mod_Id + ":" + "WirelessItemTransfer" + (ConfigUtils.HDTextures ? "_16" : ""));
+        this.blockIcon = icon.registerIcon(Reference.Mod_Id + ":" + "WirelessItemTransfer");
 }
     
     public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)

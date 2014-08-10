@@ -2,10 +2,10 @@ package com.miscitems.MiscItemsAndBlocks.Utils.Proxies;
 
 
 import MiscUtils.TileEntity.ModTileEntity;
-import MiscUtils.Utils.ItemHelper;
 import com.miscitems.MiscItemsAndBlocks.Entity.EntityPowerArrow;
 import com.miscitems.MiscItemsAndBlocks.Entity.EntitySilverArrow;
 import com.miscitems.MiscItemsAndBlocks.Event.GuiListener;
+import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Main.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Decorative.TileEntityItemPedestal;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Decorative.TileEntityPillar;
@@ -21,8 +21,6 @@ import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityComputer;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityDiceHolder;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityGamePart;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityTable;
-import com.miscitems.MiscItemsAndBlocks.Utils.ConfigUtils;
-import com.miscitems.MiscItemsAndBlocks.Utils.References.Colours;
 import com.miscitems.MiscItemsAndBlocks.Utils.Render.Entity.PowerArrowRender;
 import com.miscitems.MiscItemsAndBlocks.Utils.Render.Entity.SilverArrowRender;
 import com.miscitems.MiscItemsAndBlocks.Utils.Render.ItemRender.ComputerItemRender;
@@ -120,7 +118,7 @@ public class ClientProxy extends ServerProxy {
         
         //Register Custom Item Models
         
-        if(!ConfigUtils.DisableCustomItemModels){
+        if(!Main.config.DisableCustomItemModels){
         MinecraftForgeClient.registerItemRenderer(new ItemStack(ModBlocks.Bin).getItem(), new TrashBinItemRender());
         MinecraftForgeClient.registerItemRenderer(new ItemStack(ModBlocks.ItemPedestal).getItem(), new ItemPedestalItemRender());
         MinecraftForgeClient.registerItemRenderer(new ItemStack(ModBlocks.MiningChamber).getItem(), new MiningChamberItemRender());
@@ -185,9 +183,6 @@ public class ClientProxy extends ServerProxy {
             if (tileEntity instanceof TileEntityItemPedestal) {
 
                 ItemStack itemStack = new ItemStack(itemID, stackSize, metaData);
-                if (color != Integer.parseInt(Colours.PURE_WHITE, 16)) {
-                    ItemHelper.setColor(itemStack, color);
-                }
 
                 ((TileEntityItemPedestal) tileEntity).setInventorySlotContents(0, itemStack);
             }
@@ -195,9 +190,6 @@ public class ClientProxy extends ServerProxy {
             if (tileEntity instanceof TileEntityMiningStation) {
 
                 ItemStack itemStack = new ItemStack(itemID, stackSize, metaData);
-                if (color != Integer.parseInt(Colours.PURE_WHITE, 16)) {
-                    ItemHelper.setColor(itemStack, color);
-                }
 
                 ((TileEntityMiningStation) tileEntity).setInventorySlotContents(0, itemStack);
             }

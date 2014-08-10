@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Main;
 
-import MiscUtils.Network.ChannelHandler;
+import MiscUtils.Network.ChannelUtils;
 import com.google.common.collect.Sets;
 import com.miscitems.MiscItemsAndBlocks.Book.BookRegestration;
 import com.miscitems.MiscItemsAndBlocks.Book.SmallFontRenderer;
@@ -30,7 +30,7 @@ import com.miscitems.MiscItemsAndBlocks.Network.Server.ServerGamePacketInvite;
 import com.miscitems.MiscItemsAndBlocks.Network.Server.ServerLensBenchPacketDone;
 import com.miscitems.MiscItemsAndBlocks.Network.Server.ServerPaintBrushChangePacket;
 import com.miscitems.MiscItemsAndBlocks.Network.Server.ServerSetBlockPacket;
-import com.miscitems.MiscItemsAndBlocks.Utils.ConfigUtils;
+import com.miscitems.MiscItemsAndBlocks.Utils.Config;
 import com.miscitems.MiscItemsAndBlocks.Utils.Crafting;
 import com.miscitems.MiscItemsAndBlocks.Utils.Laser.DefaultLaser;
 import com.miscitems.MiscItemsAndBlocks.Utils.Laser.LaserRegistry;
@@ -63,7 +63,6 @@ import net.minecraftforge.common.MinecraftForge;
 import org.apache.logging.log4j.LogManager;
 
 import java.util.EnumMap;
-import java.util.Map;
 import java.util.Set;
 
 
@@ -83,6 +82,8 @@ import java.util.Set;
 
         public static final org.apache.logging.log4j.Logger logger = LogManager.getLogger("MiscItems");
 
+        public static Config config;
+
         public static CreativeTabs MiscTab = new CreativeTabs("tabMiscMisc")
         {
 
@@ -91,7 +92,7 @@ import java.util.Set;
             @SideOnly(Side.CLIENT)
             public Item getTabIconItem()
             {
-                return ConfigUtils.GetCheckedItem(ModItems.GuideBook);
+                return config.GetCheckedItem(ModItems.GuideBook);
             }
 
         };
@@ -105,7 +106,7 @@ import java.util.Set;
             public Item getTabIconItem()
             {
 
-                return ItemBlock.getItemFromBlock(ConfigUtils.GetCheckedBlock(ModBlocks.GamePart));
+                return ItemBlock.getItemFromBlock(config.GetCheckedBlock(ModBlocks.GamePart));
 
             }
 
@@ -121,7 +122,7 @@ import java.util.Set;
             @SideOnly(Side.CLIENT)
             public Item getTabIconItem()
             {
-                return ItemBlock.getItemFromBlock(ConfigUtils.GetCheckedBlock(ModBlocks.Charger));
+                return ItemBlock.getItemFromBlock(config.GetCheckedBlock(ModBlocks.Charger));
             }
 
         };
@@ -130,21 +131,26 @@ import java.util.Set;
 
 
         public static EnumMap<Side, FMLEmbeddedChannel> channels;
-
-        public static ChannelHandler handler = new ChannelHandler(Reference.Channel);
+        public static ChannelUtils Utils;
 
 	
         @EventHandler
         public void preInit(FMLPreInitializationEvent event)
         {
 
-             ConfigUtils.InitConfig(event.getModConfigurationDirectory() + "");
+            config = new Config(event.getModConfigurationDirectory() + "");
 
 
+
+
+            Utils = new ChannelUtils(Reference.Channel, Reference.Mod_Id);
             RegisterPackets();
-            channels = getNewChannelHandler(handler.channel);
+            channels = Utils.getNewChannelHandler();
 
-            if(ConfigUtils.AllowCustomPillars) {
+
+
+
+            if(config.AllowCustomPillars) {
                 PillarUtils.RegisterBlackList();
                 PillarUtils.RegisterBlocks(event.getSide());
             }
@@ -241,27 +247,27 @@ import java.util.Set;
         public static void RegisterPackets(){
 
 
-            Main.handler.RegisterPacket(ClientChatMessageRecivedPacket.class);
-            Main.handler.RegisterPacket(ClientGamePacketBegin.class);
-            Main.handler.RegisterPacket(ClientGamePacketChange.class);
-            Main.handler.RegisterPacket(ClientGamePacketInviteRecived.class);
-            Main.handler.RegisterPacket(ClientGamePacketRestart.class);
-            Main.handler.RegisterPacket(ClientGhostBlockPacket.class);
-            Main.handler.RegisterPacket(ClientLaserUpdatePacket.class);
-            Main.handler.RegisterPacket(ClientMetalPressPacketUpdate.class);
+            Utils.handler.RegisterPacket(ClientChatMessageRecivedPacket.class);
+            Utils.handler.RegisterPacket(ClientGamePacketBegin.class);
+            Utils.handler.RegisterPacket(ClientGamePacketChange.class);
+            Utils.handler.RegisterPacket(ClientGamePacketInviteRecived.class);
+            Utils.handler.RegisterPacket(ClientGamePacketRestart.class);
+            Utils.handler.RegisterPacket(ClientGhostBlockPacket.class);
+            Utils.handler.RegisterPacket(ClientLaserUpdatePacket.class);
+            Utils.handler.RegisterPacket(ClientMetalPressPacketUpdate.class);
 
-            Main.handler.RegisterPacket(ServerButtonPacket.class);
-            Main.handler.RegisterPacket(ServerChatMessagePacket.class);
-            Main.handler.RegisterPacket(ServerGamePacketAccept.class);
-            Main.handler.RegisterPacket(ServerGamePacketChange.class);
-            Main.handler.RegisterPacket(ServerGamePacketClosed.class);
-            Main.handler.RegisterPacket(ServerGamePacketInvite.class);
-            Main.handler.RegisterPacket(ServerLensBenchPacketDone.class);
-            Main.handler.RegisterPacket(ServerPaintBrushChangePacket.class);
-            Main.handler.RegisterPacket(ServerSetBlockPacket.class);
+            Utils.handler.RegisterPacket(ServerButtonPacket.class);
+            Utils.handler.RegisterPacket(ServerChatMessagePacket.class);
+            Utils.handler.RegisterPacket(ServerGamePacketAccept.class);
+            Utils.handler.RegisterPacket(ServerGamePacketChange.class);
+            Utils.handler.RegisterPacket(ServerGamePacketClosed.class);
+            Utils.handler.RegisterPacket(ServerGamePacketInvite.class);
+            Utils.handler.RegisterPacket(ServerLensBenchPacketDone.class);
+            Utils.handler.RegisterPacket(ServerPaintBrushChangePacket.class);
+            Utils.handler.RegisterPacket(ServerSetBlockPacket.class);
 
-            Main.handler.RegisterPacket(PacketTileUpdate.class);
-            Main.handler.RegisterPacket(PacketTileWithItemUpdate.class);
+            Utils.handler.RegisterPacket(PacketTileUpdate.class);
+            Utils.handler.RegisterPacket(PacketTileWithItemUpdate.class);
 
 
         }
@@ -288,21 +294,5 @@ import java.util.Set;
             font = new SmallFontRenderer(mc.gameSettings, new ResourceLocation("minecraft:textures/font/ascii.png"), mc.renderEngine, false);
         }
 
-        public static EnumMap<Side, FMLEmbeddedChannel> getNewChannelHandler(String modId)
-        {
-
-            EnumMap<Side, FMLEmbeddedChannel> handlers = NetworkRegistry.INSTANCE.newChannel(modId, handler);
-
-            ChannelHandler.PacketExecuter executer = new ChannelHandler.PacketExecuter();
-
-            for(Map.Entry<Side, FMLEmbeddedChannel> e : handlers.entrySet())
-            {
-                FMLEmbeddedChannel channel = e.getValue();
-                String codec = channel.findChannelHandlerNameForType(ChannelHandler.class);
-                channel.pipeline().addAfter(codec, "PacketExecuter", executer);
-            }
-
-            return handlers;
-        }
 
 	}

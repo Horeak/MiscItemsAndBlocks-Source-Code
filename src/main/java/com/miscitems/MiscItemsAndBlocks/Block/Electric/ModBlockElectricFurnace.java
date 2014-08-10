@@ -3,7 +3,6 @@ package com.miscitems.MiscItemsAndBlocks.Block.Electric;
 import MiscUtils.Block.ModBlockContainer;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityElectricFurnace;
-import com.miscitems.MiscItemsAndBlocks.Utils.ConfigUtils;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import cpw.mods.fml.relauncher.Side;
@@ -181,9 +180,9 @@ public class ModBlockElectricFurnace extends ModBlockContainer{
 	   public void registerBlockIcons(IIconRegister par1IconRegister)
 	    {
 	    	
-	        this.IconSide = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "ElFurnaceSide" + (ConfigUtils.HDTextures ? "_16" : ""));
-	        this.IconFront = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "ElFurnaceFront" + (ConfigUtils.HDTextures ? "_16" : ""));
-	        this.IconFrontLit = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "ElFurnaceFrontLit" + (ConfigUtils.HDTextures ? "_16" : ""));
+	        this.IconSide = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "ElFurnaceSide");
+	        this.IconFront = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "ElFurnaceFront" );
+	        this.IconFrontLit = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "ElFurnaceFrontLit");
 	        
 	    }
 	    

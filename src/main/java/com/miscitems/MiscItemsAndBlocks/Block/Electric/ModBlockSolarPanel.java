@@ -3,7 +3,6 @@ package com.miscitems.MiscItemsAndBlocks.Block.Electric;
 import MiscUtils.Block.ModBlockContainer;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntitySolarPanel;
-import com.miscitems.MiscItemsAndBlocks.Utils.ConfigUtils;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import cpw.mods.fml.relauncher.Side;
@@ -36,8 +35,8 @@ public class ModBlockSolarPanel extends ModBlockContainer {
 	   @SideOnly(Side.CLIENT)
 	   public void registerBlockIcons(IIconRegister par1IconRegister)
 	   {
-		   this.TopIcon = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "SolarPanelTop" + (ConfigUtils.HDTextures ? "_16" : ""));
-		   this.SideIcon = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "ModuleBlank" + (ConfigUtils.HDTextures ? "_16" : ""));
+		   this.TopIcon = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "SolarPanelTop");
+		   this.SideIcon = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "ModuleBlank");
 		   
 	   }
 	   

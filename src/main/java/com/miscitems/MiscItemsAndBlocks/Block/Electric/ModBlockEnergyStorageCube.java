@@ -4,7 +4,6 @@ import MiscUtils.Block.ModBlockContainer;
 import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemWrench;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityEnergyStorageCube;
-import com.miscitems.MiscItemsAndBlocks.Utils.ConfigUtils;
 import com.miscitems.MiscItemsAndBlocks.Utils.Laser.LaserUtil;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
@@ -51,8 +50,8 @@ public class ModBlockEnergyStorageCube extends ModBlockContainer {
 	   @SideOnly(Side.CLIENT)
 	   public void registerBlockIcons(IIconRegister par1IconRegister)
 	   {
-		   this.InIcon = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "ChargerSideIn" + (ConfigUtils.HDTextures ? "_16" : ""));
-		   this.OutIcon = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "ChargerSideOut" + (ConfigUtils.HDTextures ? "_16" : ""));
+		   this.InIcon = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "ChargerSideIn");
+		   this.OutIcon = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "ChargerSideOut");
 		   
 	   }
 	   

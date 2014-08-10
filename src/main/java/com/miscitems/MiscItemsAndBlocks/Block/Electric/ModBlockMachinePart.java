@@ -1,7 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Block.Electric;
 
 import MiscUtils.Block.ModBlock;
-import com.miscitems.MiscItemsAndBlocks.Utils.ConfigUtils;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -18,7 +17,7 @@ public class ModBlockMachinePart extends ModBlock{
 	   @SideOnly(Side.CLIENT)
 	   public void registerBlockIcons(IIconRegister par1IconRegister)
 	   {
-		   this.blockIcon = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "MachinePart" + (ConfigUtils.HDTextures ? "_16" : ""));
+		   this.blockIcon = par1IconRegister.registerIcon(Reference.Mod_Id + ":" + "MachinePart");
 		   
 	   }
 

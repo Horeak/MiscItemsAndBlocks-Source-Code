@@ -1,8 +1,8 @@
 package com.miscitems.MiscItemsAndBlocks.Utils.Tickhandler;
 
 import MiscUtils.Utils.Handlers.ParticleHelper;
+import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Main.ModItems;
-import com.miscitems.MiscItemsAndBlocks.Utils.ConfigUtils;
 import com.miscitems.MiscItemsAndBlocks.Utils.Game.GameInfo;
 import com.miscitems.MiscItemsAndBlocks.Utils.Game.GameInvite;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -53,7 +53,7 @@ public class ServerTickHandler{
 
 
         if(particleHelper == null){
-            particleHelper = new ParticleHelper(event.player.worldObj, ConfigUtils.SpawnParticles);
+            particleHelper = new ParticleHelper(event.player.worldObj, Main.config.SpawnParticles);
         }
 
     }
@@ -83,7 +83,7 @@ public class ServerTickHandler{
 
 
 
-        if(ConfigUtils.AllowPowerArmorEffects)
+        if(Main.config.AllowPowerArmorEffects)
 		if(player.capabilities.isCreativeMode == false){
 
 			Flight(player);

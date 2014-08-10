@@ -1,8 +1,8 @@
 package com.miscitems.MiscItemsAndBlocks.WorldGen;
 
 import MiscUtils.Utils.WorldGen.WorldGenUtils;
+import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Main.ModBlocks;
-import com.miscitems.MiscItemsAndBlocks.Utils.ConfigUtils;
 import cpw.mods.fml.common.IWorldGenerator;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -35,8 +35,8 @@ public class ModWorldGenerator extends WorldGenerator implements IWorldGenerator
 	
     private void generateSurface(World world, Random random, int ChunkX, int ChunkZ) {
 
-        WorldGenUtils.RegisterWorldGeneratorOld(new WorldGenOrangeTree(false, 6, 0, 0, false), "OrangeTree", 1, 90, new BiomeGenBase[]{BiomeGenBase.plains}, world, random, ChunkX, 0, ChunkZ, ConfigUtils.GetConfigFile());
-        WorldGenUtils.RegisterWorldGeneratorOld(new WorldGenMinable(ModBlocks.SilverOre, 2), "SilverOre", 3, 14, null, world, random, ChunkX, 0, ChunkZ,  ConfigUtils.GetConfigFile());
+        WorldGenUtils.RegisterWorldGenerator(new WorldGenOrangeTree(false, 6, 0, 0, false), "OrangeTree", 1, 90, new BiomeGenBase[]{BiomeGenBase.plains}, world, random, ChunkX, 0, ChunkZ, Main.config);
+        WorldGenUtils.RegisterWorldGenerator(new WorldGenMinable(ModBlocks.SilverOre, 2), "SilverOre", 3, 14, null, world, random, ChunkX, 0, ChunkZ, Main.config);
 
     			
 	}
