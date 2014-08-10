@@ -2,8 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.TileEntity.Electric;
 
 import MiscUtils.Network.PacketHandler;
 import MiscUtils.Utils.Block.BlockUtil;
-import MiscUtils.Utils.Inventory.Utils;
-import MiscUtils.Utils.ItemHelper;
+import MiscUtils.Utils.Inventory.InventoryUtils;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Network.PacketTileWithItemUpdate;
 import com.mojang.authlib.GameProfile;
@@ -435,7 +434,7 @@ public class TileEntityMiningStation extends TileEntityPowerInv{
         ItemStack itemStack = getStackInSlot(0);
 
         if (itemStack != null && itemStack.stackSize > 0)
-            return PacketHandler.GetPacket(new PacketTileWithItemUpdate(xCoord, yCoord, zCoord, orientation, state, customName, itemStack.getItem().getIdFromItem(itemStack.getItem()), itemStack.getItemDamage(), itemStack.stackSize, ItemHelper.getColor(itemStack)), Main.channels);
+            return PacketHandler.GetPacket(new PacketTileWithItemUpdate(xCoord, yCoord, zCoord, orientation, state, customName, itemStack.getItem().getIdFromItem(itemStack.getItem()), itemStack.getItemDamage(), itemStack.stackSize, 0), Main.channels);
         else
             return super.getDescriptionPacket();
     }
@@ -444,7 +443,7 @@ public class TileEntityMiningStation extends TileEntityPowerInv{
     	
     	
         // First, try to add to a nearby chest
-        stack.stackSize -= Utils.addToRandomInventoryAround(worldObj, xCoord, yCoord, zCoord, stack);
+        stack.stackSize -= InventoryUtils.addToRandomInventoryAround(worldObj, xCoord, yCoord, zCoord, stack);
 
 
         // Lastly, throw the object away

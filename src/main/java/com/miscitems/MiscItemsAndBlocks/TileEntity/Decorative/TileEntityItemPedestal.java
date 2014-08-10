@@ -1,10 +1,9 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity.Decorative;
 
 import MiscUtils.Network.PacketHandler;
+import MiscUtils.TileEntity.TileEntityInvBase;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Network.PacketTileWithItemUpdate;
-import MiscUtils.TileEntity.TileEntityInvBase;
-import MiscUtils.Utils.ItemHelper;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.Packet;
@@ -22,7 +21,7 @@ public class TileEntityItemPedestal extends TileEntityInvBase implements IInvent
         ItemStack itemStack = getStackInSlot(0);
 
         if (itemStack != null && itemStack.stackSize > 0)
-            return PacketHandler.GetPacket(new PacketTileWithItemUpdate(xCoord, yCoord, zCoord, orientation, state, customName, itemStack.getItem().getIdFromItem(itemStack.getItem()), itemStack.getItemDamage(), itemStack.stackSize, ItemHelper.getColor(itemStack)), Main.channels);
+            return PacketHandler.GetPacket(new PacketTileWithItemUpdate(xCoord, yCoord, zCoord, orientation, state, customName, itemStack.getItem().getIdFromItem(itemStack.getItem()), itemStack.getItemDamage(), itemStack.stackSize, 0), Main.channels);
         else
             return super.getDescriptionPacket();
     }

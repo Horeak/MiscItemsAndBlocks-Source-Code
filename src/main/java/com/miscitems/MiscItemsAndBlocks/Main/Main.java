@@ -66,7 +66,7 @@ import java.util.EnumMap;
 import java.util.Set;
 
 
-	@Mod(modid = Reference.Mod_Id, name = Reference.Mod_Name, version = Reference.Version, guiFactory = "MiscUtils.Utils.Config.GuiConfigFactory", dependencies = "after:NEI;required-after:MiscUtils")
+	@Mod(modid = Reference.Mod_Id, name = Reference.Mod_Name, version = Reference.Version, dependencies = "after:NEI;required-after:MiscUtils")
 	public class Main 
 	{
 
