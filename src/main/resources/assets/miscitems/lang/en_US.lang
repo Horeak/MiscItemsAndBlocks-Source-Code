@@ -142,6 +142,8 @@ powerupgrade.name=Power Upgrade
 item.crystalinfusedmetal.name=Crystal Infused Metal
 item.crystalinfusedgem.name=Crystal Infused Gem
 item.soulorb.name=Soul Orb
+item.parchment.name=Spell Parchment
+item.spell.name=Spell
 
 
 //Gui Names

@@ -6,6 +6,7 @@ import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemBattery;
 import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemBigBattery;
 import com.miscitems.MiscItemsAndBlocks.Item.Magic.ModItemChargedCrystal;
 import com.miscitems.MiscItemsAndBlocks.Item.Magic.ModItemSoulOrb;
+import com.miscitems.MiscItemsAndBlocks.Item.Magic.ModItemSpell;
 import com.miscitems.MiscItemsAndBlocks.Item.ModItemCheese;
 import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemCircuit;
 import com.miscitems.MiscItemsAndBlocks.Item.Magic.ModItemCrystalBlade;
@@ -110,8 +111,11 @@ public class ModItems {
     public static Item BlueCrystal, GreenCrystal, RedCrystal, ChargedCrystal, InvisibilityCore;
     public static Item CrystalSilk, CrystalBlade, CrystalPickaxe, CrystalInfusedMetal, CrystalInfusedGem;
     public static Item SoulOrb;
+    public static Item Parchment;
+    public static Item Spell;
 
     private static Item IconItem;
+    public static Item SpellIconItem;
 
 
 
@@ -300,6 +304,16 @@ public class ModItems {
         CrystalInfusedGem = new Item().setCreativeTab(Main.MagicTab).setTextureName(Reference.Mod_Id + ":CrystalInfusedGem");
         Register(CrystalInfusedGem, "CrystalInfusedGem");
 
+        Parchment = new Item().setCreativeTab(Main.MagicTab).setTextureName(Reference.Mod_Id + ":Parchment").setMaxStackSize(1);
+        Register(Parchment, "Parchment");
+
+        Spell = new ModItemSpell().setTextureName(Reference.Mod_Id + ":Spell").setMaxStackSize(1);
+        Register(Spell, "Spell");
+
+
+
+        SpellIconItem = new Item().setTextureName(Reference.Mod_Id + ":SpellPar");
+        SilentRegister(SpellIconItem);
 
         IconItem = new IconRegisteringItemClass();
         SilentRegister(IconItem);

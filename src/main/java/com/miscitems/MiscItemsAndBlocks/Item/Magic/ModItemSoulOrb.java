@@ -17,6 +17,10 @@ import java.util.List;
 public class ModItemSoulOrb extends Item implements IEnergyStorageItem {
 
 
+    public ModItemSoulOrb(){
+        this.setMaxStackSize(1);
+    }
+
     @SideOnly(Side.CLIENT)
     @Deprecated
     public boolean hasEffect(ItemStack stack, int pass)
@@ -130,10 +134,10 @@ public class ModItemSoulOrb extends Item implements IEnergyStorageItem {
     public void RemoveEnergy(ItemStack stack, double i) {
         if( GetOwner(stack) != null){
             if(MagicInfoStorage.get(GetOwner(stack)) != null){
-                if(MagicInfoStorage.get(GetOwner(stack)).GetPlayerEnergy() >= 1)
+                if(MagicInfoStorage.get(GetOwner(stack)).GetPlayerEnergy() >= i)
                 MagicInfoStorage.get(GetOwner(stack)).DecreasePlayerEnergy(i);
+
                 else
-                      if(GetOwner(stack).getHealth() > 1)
                     GetOwner(stack).attackEntityFrom(new DamageSource("damage.soulorb.overuse"), 1F);
 
             }

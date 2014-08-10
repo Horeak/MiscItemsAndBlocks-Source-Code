@@ -4,7 +4,9 @@ import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraftforge.common.config.Configuration;
 
 import java.io.File;
@@ -146,5 +148,19 @@ public class ConfigUtils {
 
         }
         return 0;
+    }
+
+    public static Item GetCheckedItem(Item item){
+        if(IsItemEnabled(item))
+            return item;
+        else
+            return ItemBlock.getItemFromBlock(Blocks.bedrock);
+    }
+
+    public static Block GetCheckedBlock(Block block){
+        if(IsBlockEnabled(block))
+            return block;
+        else
+            return Blocks.bedrock;
     }
 }

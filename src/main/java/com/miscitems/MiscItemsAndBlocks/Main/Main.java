@@ -12,6 +12,7 @@ import com.miscitems.MiscItemsAndBlocks.Event.GhostBlockBreakEvent;
 import com.miscitems.MiscItemsAndBlocks.Event.GuiListener;
 import com.miscitems.MiscItemsAndBlocks.Event.InvisibilityEvents;
 import com.miscitems.MiscItemsAndBlocks.Event.JoinWorld;
+import com.miscitems.MiscItemsAndBlocks.Event.MagicRecharge;
 import com.miscitems.MiscItemsAndBlocks.Event.OnPlayerRespawn;
 import com.miscitems.MiscItemsAndBlocks.Gui.GuiHandler;
 import com.miscitems.MiscItemsAndBlocks.Gui.Overlayes.GuiOverlayMagicEnergy;
@@ -22,6 +23,7 @@ import com.miscitems.MiscItemsAndBlocks.Utils.Crafting;
 import com.miscitems.MiscItemsAndBlocks.Utils.Laser.DefaultLaser;
 import com.miscitems.MiscItemsAndBlocks.Utils.Laser.LaserRegistry;
 import com.miscitems.MiscItemsAndBlocks.Utils.Magic.MagicalMaterialUtils;
+import com.miscitems.MiscItemsAndBlocks.Utils.Magic.Spells.EntitySpellProjectile;
 import com.miscitems.MiscItemsAndBlocks.Utils.PillarUtils;
 import com.miscitems.MiscItemsAndBlocks.Utils.Proxies.ServerProxy;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Messages;
@@ -43,7 +45,6 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -81,14 +82,7 @@ import java.util.Set;
             @SideOnly(Side.CLIENT)
             public Item getTabIconItem()
             {
-                if(ConfigUtils.IsItemEnabled(ModItems.GuideBook))
-                {
-                    return ModItems.GuideBook;
-                }else
-
-                {
-                    return ItemBlock.getItemFromBlock(Blocks.bedrock);
-                }
+                return ConfigUtils.GetCheckedItem(ModItems.GuideBook);
             }
 
         };
@@ -102,11 +96,7 @@ import java.util.Set;
             public Item getTabIconItem()
             {
 
-                if(ConfigUtils.IsBlockEnabled(ModBlocks.GamePart)) {
-                    return new ItemStack(ModBlocks.GamePart).getItem();
-                }
-
-                return ItemBlock.getItemFromBlock(Blocks.bedrock);
+                return ItemBlock.getItemFromBlock(ConfigUtils.GetCheckedBlock(ModBlocks.GamePart));
 
             }
 
@@ -122,12 +112,7 @@ import java.util.Set;
             @SideOnly(Side.CLIENT)
             public Item getTabIconItem()
             {
-                if(ConfigUtils.IsBlockEnabled(ModBlocks.Charger)){
-                    return ItemBlock.getItemFromBlock(ModBlocks.Charger);
-                }else
-                {
-                    return ItemBlock.getItemFromBlock(Blocks.bedrock);
-                }
+                return ItemBlock.getItemFromBlock(ConfigUtils.GetCheckedBlock(ModBlocks.Charger));
             }
 
         };
@@ -141,12 +126,8 @@ import java.util.Set;
             @SideOnly(Side.CLIENT)
             public Item getTabIconItem()
             {
-                if(ConfigUtils.IsItemEnabled(ModItems.InvisibilityCore)){
-                    return ModItems.InvisibilityCore;
-                }else
-                {
-                    return ItemBlock.getItemFromBlock(Blocks.bedrock);
-                }
+
+                return ConfigUtils.GetCheckedItem(ModItems.SoulOrb);
             }
 
         };
@@ -198,6 +179,22 @@ import java.util.Set;
             FMLCommonHandler.instance().bus().register(new InvisibilityEvents());
             FMLCommonHandler.instance().bus().register(new ConfigUtils());
 
+            FMLCommonHandler.instance().bus().register(new MagicRecharge());
+
+
+            EntityRegistry.registerGlobalEntityID(EntitySilverArrow.class, "SilverArrow", EntityRegistry.findGlobalUniqueEntityId());
+            EntityRegistry.registerModEntity(EntitySilverArrow.class, "SilverArrow", 0, this, 128, 1, true);
+
+            EntityRegistry.registerGlobalEntityID(EntityPowerArrow.class, "PowerArrow", EntityRegistry.findGlobalUniqueEntityId());
+            EntityRegistry.registerModEntity(EntityPowerArrow.class, "PowerArrow", 1, this, 128, 1, true);
+
+            EntityRegistry.registerGlobalEntityID(EntitySpellProjectile.class, "SpellProjectile", EntityRegistry.findGlobalUniqueEntityId());
+            EntityRegistry.registerModEntity(EntitySpellProjectile.class, "SpellProjectile", 2, this, 128, 1, true);
+
+
+
+
+
         	//Register Events
         	if(event.getSide() == Side.SERVER)
         		RegisterServerEvents();
@@ -209,6 +206,7 @@ import java.util.Set;
                 registerRenderer();
                 BookRegestration.Register();
             }
+
         }
 
         public void RegisterClientEvents()
@@ -244,15 +242,7 @@ import java.util.Set;
         	proxy.registerRenderers();
 
 
-    
-        	EntityRegistry.registerGlobalEntityID(EntitySilverArrow.class, "SilverArrow", EntityRegistry.findGlobalUniqueEntityId());
-        	EntityRegistry.registerModEntity(EntitySilverArrow.class, "SilverArrow", 0, this, 128, 1, true);
-        
-        	EntityRegistry.registerGlobalEntityID(EntityPowerArrow.class, "PowerArrow", EntityRegistry.findGlobalUniqueEntityId());
-        	EntityRegistry.registerModEntity(EntityPowerArrow.class, "PowerArrow", 1, this, 128, 1, true);
 
-
-        
         
         	GameRegistry.registerWorldGenerator(new ModWorldGenerator(), 3);
         

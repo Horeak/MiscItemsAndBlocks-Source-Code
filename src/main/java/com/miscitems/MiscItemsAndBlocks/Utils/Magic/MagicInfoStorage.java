@@ -22,6 +22,9 @@ public class MagicInfoStorage implements IExtendedEntityProperties
 
     boolean HasMagic;
 
+    public int RechargeTime;
+    public int Recharge;
+
 
 
     public static EntityPlayer GetPlayerFromStack(ItemStack stack){
@@ -50,8 +53,10 @@ public class MagicInfoStorage implements IExtendedEntityProperties
     {
         this.player = player;
 
-        MagicEnergy = 100;
-        MaxMagicEnergy = 100;
+        MagicEnergy = MagicRef.BaseEnergy;
+        MaxMagicEnergy = MagicRef.BaseMaxEnergy;
+
+        Recharge = MagicRef.BaseRechargeTime;
 
         HasMagic = false;
 
@@ -88,6 +93,9 @@ public class MagicInfoStorage implements IExtendedEntityProperties
 
         properties.setBoolean("HM", HasMagic);
 
+        properties.setInteger("Recharge", Recharge);
+        properties.setInteger("RechargeTime", RechargeTime);
+
         compound.setTag(EXT_PROP_NAME, properties);
 
     }
@@ -101,6 +109,9 @@ public class MagicInfoStorage implements IExtendedEntityProperties
         MaxMagicEnergy = properties.getDouble("MaxEn");
 
         HasMagic = properties.getBoolean("HM");
+
+        Recharge = properties.getInteger("Recharge");
+        RechargeTime = properties.getInteger("RechargeTime");
     }
 
 

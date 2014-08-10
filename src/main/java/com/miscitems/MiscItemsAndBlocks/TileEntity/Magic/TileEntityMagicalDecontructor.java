@@ -57,13 +57,14 @@ public class TileEntityMagicalDecontructor extends TileEntityInvBase implements 
                                     orb.RemoveEnergy(stack, 1);
                                     Energy += 1;
 
+
                                 }else{
 
                                     //Removing power from a players health
                                     if(orb.GetOwner(stack).getHealth() > 1){
 
-                                        orb.RemoveEnergy(stack, 1);
-                                        Energy += 1;
+                                        orb.RemoveEnergy(stack, 10);
+                                        Energy += 0.5;
 
                                     }
 
