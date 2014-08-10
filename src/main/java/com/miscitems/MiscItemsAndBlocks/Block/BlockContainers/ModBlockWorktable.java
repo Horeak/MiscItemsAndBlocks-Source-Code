@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Block.BlockContainers;
 
-import com.miscitems.MiscItemsAndBlocks.Block.Utils.ModBlockContainer;
+import MiscUtils.Block.ModBlockContainer;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Machines.TileEntityWorktable;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;

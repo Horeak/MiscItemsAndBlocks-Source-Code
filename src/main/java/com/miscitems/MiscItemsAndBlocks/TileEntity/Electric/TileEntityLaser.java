@@ -1,12 +1,19 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity.Electric;
 
+import MiscUtils.Network.PacketHandler;
 import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemElArmor;
 import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemPowerStorage;
 import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemPowerTool;
-import com.miscitems.MiscItemsAndBlocks.Utils.Laser.*;
+import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Main.ModItems;
 import com.miscitems.MiscItemsAndBlocks.Network.Client.ClientLaserUpdatePacket;
-import com.miscitems.MiscItemsAndBlocks.Network.PacketHandler;
+import com.miscitems.MiscItemsAndBlocks.Utils.Laser.ILaser;
+import com.miscitems.MiscItemsAndBlocks.Utils.Laser.ILaserProvider;
+import com.miscitems.MiscItemsAndBlocks.Utils.Laser.ILaserReciver;
+import com.miscitems.MiscItemsAndBlocks.Utils.Laser.LaserInGame;
+import com.miscitems.MiscItemsAndBlocks.Utils.Laser.LaserRegistry;
+import com.miscitems.MiscItemsAndBlocks.Utils.Laser.LaserUtil;
+import com.miscitems.MiscItemsAndBlocks.Utils.Laser.LaserWhitelist;
 import com.miscitems.MiscItemsAndBlocks.Utils.PowerUtils;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.relauncher.Side;
@@ -425,7 +432,7 @@ double extraMaxZ = 0.0D;
 
         if(this.getStackInSlot(0) != null)
         if(Red > 0 || Green > 0 || Blue > 0 || Strength > 1 || Power > 0 || Valid)
-            return PacketHandler.GetPacket(new ClientLaserUpdatePacket(xCoord, yCoord, zCoord, Red, Green, Blue, Strength, Power));
+            return PacketHandler.GetPacket(new ClientLaserUpdatePacket(xCoord, yCoord, zCoord, Red, Green, Blue, Strength, Power), Main.channels);
 
         else
             return super.getDescriptionPacket();

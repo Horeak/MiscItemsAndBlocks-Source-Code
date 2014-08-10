@@ -4,40 +4,33 @@ import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemAdvancedBattery;
 import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemAntiFallChest;
 import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemBattery;
 import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemBigBattery;
-import com.miscitems.MiscItemsAndBlocks.Item.Magic.ModItemChargedCrystal;
-import com.miscitems.MiscItemsAndBlocks.Item.Magic.ModItemSoulOrb;
-import com.miscitems.MiscItemsAndBlocks.Item.Magic.ModItemSpell;
-import com.miscitems.MiscItemsAndBlocks.Item.ModItemCheese;
 import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemCircuit;
-import com.miscitems.MiscItemsAndBlocks.Item.Magic.ModItemCrystalBlade;
-import com.miscitems.MiscItemsAndBlocks.Item.Magic.ModItemCrystalPickaxe;
 import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemDataChip;
-import com.miscitems.MiscItemsAndBlocks.Item.Tools.ModItemDisarmStick;
 import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemDrill;
 import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemElectricBow;
 import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemElectricShear;
 import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemFloatBlockPlacer;
-import com.miscitems.MiscItemsAndBlocks.Item.Tools.ModItemGuideBook;
 import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemHeatDrill;
 import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemInfoScreenHelmet;
-import com.miscitems.MiscItemsAndBlocks.Item.Magic.ModItemInvisArmor;
-import com.miscitems.MiscItemsAndBlocks.Item.Magic.ModItemInvisibilityCore;
 import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemIronPlate;
 import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemLens;
+import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemUpgrades;
+import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemWrench;
+import com.miscitems.MiscItemsAndBlocks.Item.ModItemCheese;
 import com.miscitems.MiscItemsAndBlocks.Item.ModItemLiquid;
 import com.miscitems.MiscItemsAndBlocks.Item.ModItemOrange;
-import com.miscitems.MiscItemsAndBlocks.Item.Tools.ModItemPaintBrush;
 import com.miscitems.MiscItemsAndBlocks.Item.ModItemPizza;
 import com.miscitems.MiscItemsAndBlocks.Item.ModItemPizzaRaw;
+import com.miscitems.MiscItemsAndBlocks.Item.ModItemTomato;
+import com.miscitems.MiscItemsAndBlocks.Item.ModItemTomatoSeeds;
+import com.miscitems.MiscItemsAndBlocks.Item.Tools.ModItemDisarmStick;
+import com.miscitems.MiscItemsAndBlocks.Item.Tools.ModItemGuideBook;
+import com.miscitems.MiscItemsAndBlocks.Item.Tools.ModItemPaintBrush;
 import com.miscitems.MiscItemsAndBlocks.Item.Tools.ModItemPowerArmor;
 import com.miscitems.MiscItemsAndBlocks.Item.Tools.ModItemSilverBow;
 import com.miscitems.MiscItemsAndBlocks.Item.Tools.ModItemSilverSword;
-import com.miscitems.MiscItemsAndBlocks.Item.ModItemTomato;
-import com.miscitems.MiscItemsAndBlocks.Item.ModItemTomatoSeeds;
-import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemUpgrades;
-import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemWrench;
 import com.miscitems.MiscItemsAndBlocks.Item.Tools.ModItemXpExtractor;
-import com.miscitems.MiscItemsAndBlocks.Utils.Config.ConfigUtils;
+import com.miscitems.MiscItemsAndBlocks.Utils.ConfigUtils;
 import com.miscitems.MiscItemsAndBlocks.Utils.IconRegisteringItemClass;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -107,24 +100,14 @@ public class ModItems {
 	
 	public static Item GuideBook;
 
-    public static Item InvisHelmet, InvisChestPlate, InvisLeggings, InvisBoots;
-    public static Item BlueCrystal, GreenCrystal, RedCrystal, ChargedCrystal, InvisibilityCore;
-    public static Item CrystalSilk, CrystalBlade, CrystalPickaxe, CrystalInfusedMetal, CrystalInfusedGem;
-    public static Item SoulOrb;
-    public static Item Parchment;
-    public static Item Spell;
 
     private static Item IconItem;
-    public static Item SpellIconItem;
 
 
 
 
     public static ToolMaterial SilverMaterial = EnumHelper.addToolMaterial("Silver", 5, 257, 13.0F, 0.0F, 45);
     public static ArmorMaterial PowerArmor = EnumHelper.addArmorMaterial("PowerArmor", 37, new int[] {2, 4, 3, 2} , 30);
-    public static ArmorMaterial InvisArmor = EnumHelper.addArmorMaterial("InvisArmor", 1, new int[]{0, 0, 0, 0}, 0);
-
-    public static ToolMaterial CrystalMaterial = EnumHelper.addToolMaterial("Crystal", ToolMaterial.EMERALD.getHarvestLevel(), 0, ToolMaterial.EMERALD.getEfficiencyOnProperMaterial(), ToolMaterial.EMERALD.getDamageVsEntity(), 0);
 
 
     public static void Init(){
@@ -164,17 +147,6 @@ public class ModItems {
         JumpingBoots = (new ModItemPowerArmor(PowerArmor, Main.proxy.addArmor("Power"), 3, 4, "PowerarmorBoots")).setUnlocalizedName("Powerarmor Boots").setCreativeTab(Main.MiscTab);
         Register(JumpingBoots, ("powerarmor.boots"));
 
-        InvisHelmet =  (new ModItemInvisArmor(InvisArmor, Main.proxy.addArmor("Invis"), 0, 1)).setUnlocalizedName("InvisHelmet").setCreativeTab(Main.MagicTab).setTextureName("MiscItems:InvisHelmet");
-        Register(InvisHelmet, "InvisHelmet");
-
-        InvisChestPlate =  (new ModItemInvisArmor(InvisArmor, Main.proxy.addArmor("Invis"), 1, 2)).setUnlocalizedName("InvisChestPlate").setCreativeTab(Main.MagicTab).setTextureName("MiscItems:InvisChestPlate");
-        Register(InvisChestPlate, "InvisChestPlate");
-
-        InvisLeggings =  (new ModItemInvisArmor(InvisArmor, Main.proxy.addArmor("Invis"), 2, 3)).setUnlocalizedName("InvisLeggings").setCreativeTab(Main.MagicTab).setTextureName("MiscItems:InvisLeggings");
-        Register(InvisLeggings, "InvisLeggings");
-
-        InvisBoots =  (new ModItemInvisArmor(InvisArmor, Main.proxy.addArmor("Invis"), 3, 4)).setUnlocalizedName("InvisBoots").setCreativeTab(Main.MagicTab).setTextureName("MiscItems:InvisBoots");
-        Register(InvisBoots, "InvisBoots");
 
         Cardboard = new Item().setUnlocalizedName("Cardboard").setCreativeTab(Main.MiscTab).setTextureName(Reference.Mod_Id + ":Cardboard");
         Register(Cardboard, ("cardboard"));
@@ -271,49 +243,6 @@ public class ModItems {
 		Lens = new ModItemLens().setUnlocalizedName("Lens").setCreativeTab(Main.ElectricTab);
 		Register(Lens, "Lens");
 
-        BlueCrystal = new Item().setUnlocalizedName("BlueCrystal").setCreativeTab(Main.MagicTab).setTextureName("MiscItems:BlueCrystal");
-        Register(BlueCrystal, "BlueCrystal");
-
-        GreenCrystal = new Item().setUnlocalizedName("GreenCrystal").setCreativeTab(Main.MagicTab).setTextureName("MiscItems:GreenCrystal");
-        Register(GreenCrystal, "GreenCrystal");
-
-        RedCrystal = new Item().setUnlocalizedName("RedCrystal").setCreativeTab(Main.MagicTab).setTextureName("MiscItems:RedCrystal");
-        Register(RedCrystal, "RedCrystal");
-
-        ChargedCrystal = new ModItemChargedCrystal().setUnlocalizedName("ChargedCrystal").setCreativeTab(Main.MagicTab);
-        Register(ChargedCrystal, "ChargedCrystal");
-
-        SoulOrb = new ModItemSoulOrb().setUnlocalizedName("SoulOrb").setCreativeTab(Main.MagicTab).setTextureName(Reference.Mod_Id + ":SoulOrb");
-        Register(SoulOrb, "SoulOrb");
-
-        InvisibilityCore = new ModItemInvisibilityCore().setUnlocalizedName("InvisibilityCore").setCreativeTab(Main.MagicTab);
-        Register(InvisibilityCore, "InvisibilityCore");
-
-        CrystalSilk = new Item().setCreativeTab(Main.MagicTab).setUnlocalizedName("CrystalSilk").setTextureName("MiscItems:CrystalSilk");
-        Register(CrystalSilk, "CrystalSilk");
-
-        CrystalBlade = new ModItemCrystalBlade().setCreativeTab(Main.MagicTab).setUnlocalizedName("CrystalBlade").setTextureName("MiscItems:CrystalBlade");
-        Register(CrystalBlade, "CrystalBlade");
-
-        CrystalPickaxe = new ModItemCrystalPickaxe().setTextureName(Reference.Mod_Id + ":CrystalPickaxe").setCreativeTab(Main.MagicTab);
-        Register(CrystalPickaxe, "CrystalPickaxe");
-
-        CrystalInfusedMetal = new Item().setCreativeTab(Main.MagicTab).setTextureName(Reference.Mod_Id + ":CrystalInfusedMetal");
-        Register(CrystalInfusedMetal, "CrystalInfusedMetal");
-
-        CrystalInfusedGem = new Item().setCreativeTab(Main.MagicTab).setTextureName(Reference.Mod_Id + ":CrystalInfusedGem");
-        Register(CrystalInfusedGem, "CrystalInfusedGem");
-
-        Parchment = new Item().setCreativeTab(Main.MagicTab).setTextureName(Reference.Mod_Id + ":Parchment").setMaxStackSize(1);
-        Register(Parchment, "Parchment");
-
-        Spell = new ModItemSpell().setTextureName(Reference.Mod_Id + ":Spell").setMaxStackSize(1);
-        Register(Spell, "Spell");
-
-
-
-        SpellIconItem = new Item().setTextureName(Reference.Mod_Id + ":SpellPar");
-        SilentRegister(SpellIconItem);
 
         IconItem = new IconRegisteringItemClass();
         SilentRegister(IconItem);

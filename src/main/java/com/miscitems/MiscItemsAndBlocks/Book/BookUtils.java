@@ -1,9 +1,9 @@
 package com.miscitems.MiscItemsAndBlocks.Book;
 
+import MiscUtils.Utils.StackUtils;
 import com.miscitems.MiscItemsAndBlocks.Book.Pages.Page;
 import com.miscitems.MiscItemsAndBlocks.Book.Utils.UtilsStackPages;
-import com.miscitems.MiscItemsAndBlocks.Utils.Config.ConfigUtils;
-import com.miscitems.MiscItemsAndBlocks.Utils.StackUtils;
+import com.miscitems.MiscItemsAndBlocks.Utils.ConfigUtils;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;

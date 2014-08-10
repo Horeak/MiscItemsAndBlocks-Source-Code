@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Container.Electric;
 
-import com.miscitems.MiscItemsAndBlocks.GuiObjects.Slots.ModSlotArmor;
+import MiscUtils.GuiObjects.Slots.ModSlotArmor;
 import com.miscitems.MiscItemsAndBlocks.GuiObjects.Slots.SlotPowerStorage;
 import com.miscitems.MiscItemsAndBlocks.GuiObjects.Slots.SlotUpgrades;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityEnergyStorageCube;

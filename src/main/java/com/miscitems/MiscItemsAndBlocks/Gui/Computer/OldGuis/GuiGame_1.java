@@ -1,7 +1,8 @@
 package com.miscitems.MiscItemsAndBlocks.Gui.Computer.OldGuis;
 
+import MiscUtils.Network.PacketHandler;
+import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Network.Client.ClientGamePacketRestart;
-import com.miscitems.MiscItemsAndBlocks.Network.PacketHandler;
 import com.miscitems.MiscItemsAndBlocks.Network.Server.ServerGamePacketChange;
 import com.miscitems.MiscItemsAndBlocks.Network.Server.ServerGamePacketClosed;
 import net.minecraft.client.Minecraft;
@@ -203,10 +204,10 @@ public class GuiGame_1 extends GuiScreen
                         if(player_1 != player_2){
                         	
                         	if(player_1.getCommandSenderName().equalsIgnoreCase(Minecraft.getMinecraft().thePlayer.getCommandSenderName())){
-                        		PacketHandler.sendToPlayer(new ClientGamePacketRestart(), (EntityPlayerMP)player_2);
+                        		PacketHandler.sendToPlayer(new ClientGamePacketRestart(), (EntityPlayerMP) player_2, Main.channels);
                         		
                         	}else if (player_2.getCommandSenderName().equalsIgnoreCase(Minecraft.getMinecraft().thePlayer.getCommandSenderName())){
-                        		PacketHandler.sendToPlayer(new ClientGamePacketRestart(), (EntityPlayerMP)player_1);
+                        		PacketHandler.sendToPlayer(new ClientGamePacketRestart(), (EntityPlayerMP)player_1, Main.channels);
                         	}
                         	
                         }
@@ -234,7 +235,7 @@ public class GuiGame_1 extends GuiScreen
 
 			                        if(player_1 != player_2)
 
-			                        	PacketHandler.sendToServer(new ServerGamePacketChange(button.id - 1, CurrentTurn, player_1.getCommandSenderName(), player_2.getCommandSenderName()));
+			                        	PacketHandler.sendToServer(new ServerGamePacketChange(button.id - 1, CurrentTurn, player_1.getCommandSenderName(), player_2.getCommandSenderName()), Main.channels);
 	                     
 	    	
 	    	if(Buttons[button.id - 1].enabled){
@@ -352,7 +353,7 @@ public class GuiGame_1 extends GuiScreen
 
 		                        if(player_1 != player_2)
 
-		                        	PacketHandler.sendToServer(new ServerGamePacketClosed(player_1.getCommandSenderName(), player_2.getCommandSenderName()));
+		                        	PacketHandler.sendToServer(new ServerGamePacketClosed(player_1.getCommandSenderName(), player_2.getCommandSenderName()), Main.channels);
 		                        	
 		                        	
 	    	

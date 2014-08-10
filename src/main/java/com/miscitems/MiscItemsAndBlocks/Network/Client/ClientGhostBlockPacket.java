@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Network.Client;
 
 
-import com.miscitems.MiscItemsAndBlocks.Network.AbstractPacket;
+import MiscUtils.Network.AbstractPacket;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityGhostBlock;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.relauncher.Side;

@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Network.Server;
 
+import MiscUtils.Network.AbstractPacket;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
-import com.miscitems.MiscItemsAndBlocks.Network.AbstractPacket;
 import com.miscitems.MiscItemsAndBlocks.Utils.Game.GameInfo;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.relauncher.Side;

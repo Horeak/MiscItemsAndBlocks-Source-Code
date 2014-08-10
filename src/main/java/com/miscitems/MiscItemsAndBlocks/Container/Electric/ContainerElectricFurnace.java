@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Container.Electric;
 
-import com.miscitems.MiscItemsAndBlocks.GuiObjects.Slots.SlotOutput;
+import MiscUtils.GuiObjects.Slots.SlotOutput;
 import com.miscitems.MiscItemsAndBlocks.GuiObjects.Slots.SlotPowerStorage;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityElectricFurnace;
 import cpw.mods.fml.relauncher.Side;

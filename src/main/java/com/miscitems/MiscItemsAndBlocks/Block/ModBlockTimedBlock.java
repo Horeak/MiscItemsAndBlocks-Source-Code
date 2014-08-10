@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Block;
 
-import com.miscitems.MiscItemsAndBlocks.Block.Utils.ModBlockContainer;
+import MiscUtils.Block.ModBlockContainer;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityTimedBlock;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import net.minecraft.block.material.Material;

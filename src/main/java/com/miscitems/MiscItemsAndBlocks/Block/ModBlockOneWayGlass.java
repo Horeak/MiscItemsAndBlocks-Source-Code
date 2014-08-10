@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Block;
 
-import com.miscitems.MiscItemsAndBlocks.Block.Utils.ModBlockRotatedPillar;
+import MiscUtils.Block.ModBlockRotatedPillar;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;

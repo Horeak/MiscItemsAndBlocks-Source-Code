@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Gui;
 
+import MiscUtils.GuiObjects.GuiTipButton;
 import com.miscitems.MiscItemsAndBlocks.Container.ContainerBox;
-import com.miscitems.MiscItemsAndBlocks.GuiObjects.GuiTipButton;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Inventories.TileEntityCardboardBox;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Messages;
 import net.minecraft.client.Minecraft;

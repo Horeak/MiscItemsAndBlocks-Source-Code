@@ -1,10 +1,10 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity.Electric;
 
 import MiscItemsApi.Electric.IPowerTile;
+import MiscUtils.TileEntity.ModTileEntity;
 import cofh.api.energy.IEnergyConnection;
 import cofh.api.energy.IEnergyHandler;
 import cofh.api.energy.IEnergyStorage;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.Utils.ModTileEntity;
 import com.miscitems.MiscItemsAndBlocks.Utils.PowerUtils;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Optional;

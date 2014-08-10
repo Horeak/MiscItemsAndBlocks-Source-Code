@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Item.Electric;
 
-import com.miscitems.MiscItemsAndBlocks.Utils.Handlers.ChatMessageHandler;
+import MiscUtils.Utils.Handlers.ChatMessageHandler;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

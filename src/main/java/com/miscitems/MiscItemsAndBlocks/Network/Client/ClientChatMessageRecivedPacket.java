@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Network.Client;
 
+import MiscUtils.Network.AbstractPacket;
 import com.miscitems.MiscItemsAndBlocks.Gui.Computer.OldGuis.GuiChat;
-import com.miscitems.MiscItemsAndBlocks.Network.AbstractPacket;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.ByteBufUtils;

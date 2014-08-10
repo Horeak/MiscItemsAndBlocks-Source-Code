@@ -1,6 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Main;
 
 
+import MiscUtils.Block.ModBlockStair;
 import com.miscitems.MiscItemsAndBlocks.Block.BlockContainers.ModBlockCardboardBox;
 import com.miscitems.MiscItemsAndBlocks.Block.BlockContainers.ModBlockMill;
 import com.miscitems.MiscItemsAndBlocks.Block.BlockContainers.ModBlockOven;
@@ -30,14 +31,6 @@ import com.miscitems.MiscItemsAndBlocks.Block.Electric.ModBlockPowerCable;
 import com.miscitems.MiscItemsAndBlocks.Block.Electric.ModBlockSolarPanel;
 import com.miscitems.MiscItemsAndBlocks.Block.Electric.ModBlockTeleporter;
 import com.miscitems.MiscItemsAndBlocks.Block.Electric.ModBlockWindMill;
-import com.miscitems.MiscItemsAndBlocks.Block.Magic.ModBLockMagicalEnergyRecharger;
-import com.miscitems.MiscItemsAndBlocks.Block.Magic.ModBlockBlueCrystalOre;
-import com.miscitems.MiscItemsAndBlocks.Block.Magic.ModBlockEnergyBattery;
-import com.miscitems.MiscItemsAndBlocks.Block.Magic.ModBlockGreenCrystalOre;
-import com.miscitems.MiscItemsAndBlocks.Block.Magic.ModBlockMagicalDeconstructor;
-import com.miscitems.MiscItemsAndBlocks.Block.Magic.ModBlockMagicalInfuser;
-import com.miscitems.MiscItemsAndBlocks.Block.Magic.ModBlockPowerCrystal;
-import com.miscitems.MiscItemsAndBlocks.Block.Magic.ModBlockRedCrystalOre;
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlockComputer;
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlockDice;
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlockDiceHolder;
@@ -52,14 +45,12 @@ import com.miscitems.MiscItemsAndBlocks.Block.Plants.ModBlockOrangeLog;
 import com.miscitems.MiscItemsAndBlocks.Block.Plants.ModBlockOrangePlanks;
 import com.miscitems.MiscItemsAndBlocks.Block.Plants.ModBlockOrangeSapling;
 import com.miscitems.MiscItemsAndBlocks.Block.Plants.ModBlockTomatoPlant;
-import com.miscitems.MiscItemsAndBlocks.Block.Utils.ModBlockStair;
 import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockBox;
 import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockColoredMetalBrick;
 import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockComputer;
 import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockDice;
 import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockDiceHolder;
 import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockDisarmTrap;
-import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockEnergyBattery;
 import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockGamePiece;
 import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockItemPedestal;
 import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockLaserReciver;
@@ -68,7 +59,6 @@ import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockMiningChamber
 import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockPaintBlock;
 import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockPillar;
 import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockPowerCable;
-import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockPowerCrystal;
 import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockStorageBlock;
 import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockTable;
 import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockTeleporter;
@@ -100,18 +90,13 @@ import com.miscitems.MiscItemsAndBlocks.TileEntity.Machines.TileEntityWirelessIt
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Machines.TileEntityWirelessRedstone;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Machines.TileEntityWorktable;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Machines.TileEntityXpStorage;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.Magic.TileEntityEnergyBattery;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.Magic.TileEntityMagicalDecontructor;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.Magic.TileEntityMagicalEnergyRecharger;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.Magic.TileEntityMagicalInfuser;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.Magic.TileEntityPowerCrystal;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityComputer;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityDiceHolder;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityGamePart;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityGhostBlock;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityTable;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityTimedBlock;
-import com.miscitems.MiscItemsAndBlocks.Utils.Config.ConfigUtils;
+import com.miscitems.MiscItemsAndBlocks.Utils.ConfigUtils;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
@@ -171,12 +156,6 @@ public class ModBlocks {
 	public static Block LaserReciver;
 	public static Block GhostBlock;
 
-    public static Block PowerCrystal;
-    public static Block EnergyBattery;
-    public static Block MagicalInfuser;
-    public static Block InfusedGemBlock, InfusedMetalBlock;
-    public static Block MagicalRecharger;
-    public static Block MagicalDeconstructor;
 
     public static Block ColoredBrick;
     public static Block ColoredBrickGlowstone;
@@ -184,7 +163,6 @@ public class ModBlocks {
 	public static ModBlockStair StoneStair;
 	public static IPlantable OrangeSapling;
 
-    public static Block BlueCrystalOre, GreenCrystalOre, RedCrystalOre;
 	
 
 
@@ -327,42 +305,11 @@ public class ModBlocks {
         GhostBlock = new ModBlockGhostBlock().setCreativeTab(Main.MiscTab);
         Register(GhostBlock, "Ghost Block", TileEntityGhostBlock.class);
 
-        BlueCrystalOre = new ModBlockBlueCrystalOre().setCreativeTab(Main.MagicTab).setBlockTextureName(Reference.Mod_Id + ":BlueCrystalOre");
-        Register(BlueCrystalOre, "BlueCrystalOre");
-
-        GreenCrystalOre = new ModBlockGreenCrystalOre().setCreativeTab(Main.MagicTab).setBlockTextureName(Reference.Mod_Id + ":GreenCrystalOre");
-        Register(GreenCrystalOre, "GreenCrystalOre");
-
-        RedCrystalOre = new ModBlockRedCrystalOre().setCreativeTab(Main.MagicTab).setBlockTextureName(Reference.Mod_Id + ":RedCrystalOre");
-        Register(RedCrystalOre, "RedCrystalOre");
-
         ColoredBrick = new ModBlockColoredMetalBrick().setBlockTextureName(Reference.Mod_Id + ":MetalBrick").setCreativeTab(Main.DecorativeTab);
         Register(ColoredBrick, ModItemBlockColoredMetalBrick.class, "ColoredBrick");
 
         ColoredBrickGlowstone = new ModBlockColoredMetalBrick().setBlockTextureName(Reference.Mod_Id + ":MetalBrickGlowstone").setCreativeTab(Main.DecorativeTab).setLightLevel(1.0F);
         Register(ColoredBrickGlowstone, ModItemBlockColoredMetalBrick.class, "ColoredBrickGlowstone");
-
-        PowerCrystal = new ModBlockPowerCrystal().setCreativeTab(Main.MagicTab).setBlockTextureName(Reference.Mod_Id + ":PowerCrystal");
-        Register(PowerCrystal, ModItemBlockPowerCrystal.class, "PowerCrystal", TileEntityPowerCrystal.class);
-
-        MagicalDeconstructor = new ModBlockMagicalDeconstructor().setCreativeTab(Main.MagicTab);
-        Register(MagicalDeconstructor, "MagicalDeconstructor", TileEntityMagicalDecontructor.class);
-
-        MagicalInfuser = new ModBlockMagicalInfuser().setCreativeTab(Main.MagicTab);
-        Register(MagicalInfuser, "MagicalInfuser", TileEntityMagicalInfuser.class);
-
-        EnergyBattery = new ModBlockEnergyBattery().setCreativeTab(Main.MagicTab).setBlockTextureName(Reference.Mod_Id + ":EnergyBattery");
-        Register(EnergyBattery, ModItemBlockEnergyBattery.class, "EnergyBattery", TileEntityEnergyBattery.class);
-
-        MagicalRecharger = new ModBLockMagicalEnergyRecharger().setCreativeTab(Main.MagicTab);
-        Register(MagicalRecharger, "MagicalEnergyRecharger", TileEntityMagicalEnergyRecharger.class);
-
-        InfusedGemBlock = new BlockCompressed(MapColor.blueColor).setCreativeTab(Main.MagicTab).setBlockTextureName(Reference.Mod_Id + ":InfusedGemBlock").setHardness(2F);
-        Register(InfusedGemBlock, "InfusedGemBlock");
-
-        InfusedMetalBlock = new BlockCompressed(MapColor.blueColor).setCreativeTab(Main.MagicTab).setBlockTextureName(Reference.Mod_Id + ":InfusedMetalBlock").setHardness(2F);
-        Register(InfusedMetalBlock, "InfusedMetalBlock");
-
 
 
 

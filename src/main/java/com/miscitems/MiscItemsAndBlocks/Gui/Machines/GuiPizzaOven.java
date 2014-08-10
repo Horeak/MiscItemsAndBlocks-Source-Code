@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Gui.Machines;
 
+import MiscUtils.GuiObjects.GuiTipButton;
 import com.miscitems.MiscItemsAndBlocks.Container.Machines.ContainerPizzaOven;
-import com.miscitems.MiscItemsAndBlocks.GuiObjects.GuiTipButton;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Machines.TileEntityOven;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Messages;
 import net.minecraft.client.Minecraft;

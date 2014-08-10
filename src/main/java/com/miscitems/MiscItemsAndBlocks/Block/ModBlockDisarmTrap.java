@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Block;
 
-import com.miscitems.MiscItemsAndBlocks.Block.Utils.ModBlockContainer;
+import MiscUtils.Block.ModBlockContainer;
 import com.miscitems.MiscItemsAndBlocks.Main.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Machines.TileEntityDisarmTrap;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;

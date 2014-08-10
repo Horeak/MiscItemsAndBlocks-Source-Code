@@ -1,7 +1,8 @@
 package com.miscitems.MiscItemsAndBlocks.Gui.Electric;
 
+import MiscUtils.Network.PacketHandler;
 import com.miscitems.MiscItemsAndBlocks.Container.Electric.ContainerMetalPress;
-import com.miscitems.MiscItemsAndBlocks.Network.PacketHandler;
+import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Network.Server.ServerButtonPacket;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityMetalPress;
 import net.minecraft.client.Minecraft;
@@ -85,7 +86,7 @@ public class GuiMetalPress extends GuiContainer{
 	
 	@Override
 	protected void actionPerformed(GuiButton button){
-		PacketHandler.sendToServer(new ServerButtonPacket((byte) button.id));
+		PacketHandler.sendToServer(new ServerButtonPacket((byte) button.id), Main.channels);
 		
 	}
 

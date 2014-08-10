@@ -1,8 +1,8 @@
 package com.miscitems.MiscItemsAndBlocks.Utils.Render.TileEntityRenderer;
 
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityLaser;
 import com.miscitems.MiscItemsAndBlocks.Utils.Laser.LaserUtil;
 import com.miscitems.MiscItemsAndBlocks.Utils.Render.Entity.LaserRender;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityLaser;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;

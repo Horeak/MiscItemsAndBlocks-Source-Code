@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Network.Server;
 
+import MiscUtils.Network.AbstractPacket;
 import com.miscitems.MiscItemsAndBlocks.Item.Tools.ModItemPaintBrush;
-import com.miscitems.MiscItemsAndBlocks.Network.AbstractPacket;
 import cpw.mods.fml.relauncher.Side;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;

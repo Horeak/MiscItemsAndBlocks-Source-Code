@@ -1,8 +1,8 @@
 package com.miscitems.MiscItemsAndBlocks.Container.Electric;
 
+import MiscUtils.GuiObjects.Slots.SlotOutput;
 import com.miscitems.MiscItemsAndBlocks.GuiObjects.Slots.ModSlotChipSlot;
 import com.miscitems.MiscItemsAndBlocks.GuiObjects.Slots.ModSlotChipSlotOut;
-import com.miscitems.MiscItemsAndBlocks.GuiObjects.Slots.ModSlotOutput;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Machines.TileEntityWirelessItemTrans;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -53,7 +53,7 @@ public class ContainerWirelessItemTransfer extends Container{
     		   for(int y = 0; y < 2; y++){
     		for(int x = 0; x < 9; x++){
     			
-    			addSlotToContainer(new ModSlotOutput(tile, 4 + ((y * 9) + x), 8 + (x * 18), 108 + (y * 18)));
+    			addSlotToContainer(new SlotOutput(tile, 4 + ((y * 9) + x), 8 + (x * 18), 108 + (y * 18)));
     			
     			
     		}

@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Block.Decorative;
 
-import com.miscitems.MiscItemsAndBlocks.Block.Utils.ModBlock;
+import MiscUtils.Block.ModBlock;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

@@ -1,8 +1,8 @@
 package com.miscitems.MiscItemsAndBlocks.Book.Pages;
 
+import MiscUtils.Utils.StackUtils;
 import com.miscitems.MiscItemsAndBlocks.Book.BookUtils;
 import com.miscitems.MiscItemsAndBlocks.Book.InfoPage;
-import com.miscitems.MiscItemsAndBlocks.Utils.StackUtils;
 import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;

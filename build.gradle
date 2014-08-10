@@ -17,7 +17,7 @@ buildscript {
 
 apply plugin: 'forge'
 
-mod_version  = "0.9.6.1"
+mod_version  = "1.0.0"
 minecraft_version = "1.7.10"
 forge_version = "10.13.0.1159"
 nei_version="1.0.2.15"

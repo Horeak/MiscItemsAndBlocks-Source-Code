@@ -1,8 +1,5 @@
-package com.miscitems.MiscItemsAndBlocks.Utils.Config;
+package com.miscitems.MiscItemsAndBlocks.Utils;
 
-import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
-import cpw.mods.fml.client.event.ConfigChangedEvent;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -12,7 +9,7 @@ import net.minecraftforge.common.config.Configuration;
 import java.io.File;
 import java.util.HashMap;
 
-public class ConfigUtils {
+public class ConfigUtils{
 
 
     public static final String CATEGORY_CLIENT_SETTINGS = "Client Settings";
@@ -29,11 +26,8 @@ public class ConfigUtils {
 
     public static int LeveOfLogging;
 
-
     public static HashMap<Block, String> BlockConfigNames = new HashMap<Block, String>();
     public static HashMap<Item, String> ItemConfigNames = new HashMap<Item, String>();
-
-
 
     private static Configuration config;
 
@@ -87,61 +81,55 @@ public class ConfigUtils {
     }
 
 
-    @SubscribeEvent
-    public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event) {
-        if(event.modID.equalsIgnoreCase(Reference.Mod_Id)) {
-            LoadConfig();
-        }
-    }
 
     public static Configuration GetConfigFile(){
         return config;
     }
 
 
-    public static boolean IsBlockEnabled(Block block){
+    public static  boolean IsBlockEnabled(Block block){
         if(BlockConfigNames.get(block) == null)
             return false;
 
 
-        boolean bl = config.get(CATEGORY_BLOCKS, "Enable " + BlockConfigNames.get(block).replace("tile.", "").replace(".name", ""), true).getBoolean(true);
+        boolean bl = GetConfigFile().get(CATEGORY_BLOCKS, "Enable " + BlockConfigNames.get(block).replace("tile.", "").replace(".name", ""), true).getBoolean(true);
 
-        if(config.hasChanged())
-        config.save();
+        if(GetConfigFile().hasChanged())
+            GetConfigFile().save();
 
         return bl;
     }
 
 
 
-    public static boolean IsItemEnabled(Item item){
+    public static  boolean IsItemEnabled(Item item){
         if(ItemConfigNames.get(item) == null)
             return false;
 
-        boolean bl = config.get(CATEGORY_ITEMS, "Enable " + ItemConfigNames.get(item).replace("item.", "").replace(".name", ""), true).getBoolean(true);
+        boolean bl = GetConfigFile().get(CATEGORY_ITEMS, "Enable " + ItemConfigNames.get(item).replace("item.", "").replace(".name", ""), true).getBoolean(true);
 
-        if(config.hasChanged())
-        config.save();
-
-        return bl;
-    }
-
-
-    public static boolean IsWorldGeneratorEnabled(String WorldGen){
-        boolean bl = config.get(CATEGORY_WORLDGEN, "Enable Worldgen: " + WorldGen, true).getBoolean(true);
-
-        if(config.hasChanged())
-            config.save();
+        if(GetConfigFile().hasChanged())
+            GetConfigFile().save();
 
         return bl;
     }
 
-    public static int GetWorldGenerationChance(String WorldGen, int def){
+
+    public static  boolean IsWorldGeneratorEnabled(String WorldGen){
+        boolean bl = GetConfigFile().get(CATEGORY_WORLDGEN, "Enable Worldgen: " + WorldGen, true).getBoolean(true);
+
+        if(GetConfigFile().hasChanged())
+            GetConfigFile().save();
+
+        return bl;
+    }
+
+    public static  int GetWorldGenerationChance(String WorldGen, int def){
         if(IsWorldGeneratorEnabled(WorldGen)){
-            int t = config.get(CATEGORY_WORLDGEN, "The amount of times it will try to spawn in a chunk: " + WorldGen, def).getInt(def);
+            int t = GetConfigFile().get(CATEGORY_WORLDGEN, "The amount of times it will try to spawn in a chunk: " + WorldGen, def).getInt(def);
 
-            if(config.hasChanged())
-                config.save();
+            if(GetConfigFile().hasChanged())
+                GetConfigFile().save();
 
             return t;
 
@@ -150,17 +138,18 @@ public class ConfigUtils {
         return 0;
     }
 
-    public static Item GetCheckedItem(Item item){
+    public static  Item GetCheckedItem(Item item){
         if(IsItemEnabled(item))
             return item;
         else
             return ItemBlock.getItemFromBlock(Blocks.bedrock);
     }
 
-    public static Block GetCheckedBlock(Block block){
+    public static  Block GetCheckedBlock(Block block){
         if(IsBlockEnabled(block))
             return block;
         else
             return Blocks.bedrock;
     }
+
 }

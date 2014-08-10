@@ -1,8 +1,8 @@
 package com.miscitems.MiscItemsAndBlocks.Network.Client;
 
+import MiscUtils.Network.AbstractPacket;
+import MiscUtils.Utils.Handlers.ChatMessageHandler;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
-import com.miscitems.MiscItemsAndBlocks.Network.AbstractPacket;
-import com.miscitems.MiscItemsAndBlocks.Utils.Handlers.ChatMessageHandler;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.ByteBufUtils;

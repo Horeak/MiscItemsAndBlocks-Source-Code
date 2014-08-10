@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Container.Electric;
 
+import MiscUtils.GuiObjects.Slots.ModSlotItemsOnly;
 import com.miscitems.MiscItemsAndBlocks.GuiObjects.Slots.ModSlotBatterySlot;
-import com.miscitems.MiscItemsAndBlocks.GuiObjects.Slots.ModSlotItemsOnly;
 import com.miscitems.MiscItemsAndBlocks.Main.ModItems;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityLaser;
 import cpw.mods.fml.relauncher.Side;

@@ -1,8 +1,8 @@
 package com.miscitems.MiscItemsAndBlocks.Network.Server;
 
+import MiscUtils.Network.AbstractPacket;
 import com.miscitems.MiscItemsAndBlocks.Container.Electric.ContainerLensBench;
 import com.miscitems.MiscItemsAndBlocks.Main.ModItems;
-import com.miscitems.MiscItemsAndBlocks.Network.AbstractPacket;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityLensBench;
 import cpw.mods.fml.relauncher.Side;
 import io.netty.buffer.ByteBuf;

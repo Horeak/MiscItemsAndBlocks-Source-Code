@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Utils.Render.ItemRender;
 
-import com.miscitems.MiscItemsAndBlocks.Utils.Render.Utils.RenderHelper;
+import MiscUtils.Utils.Render.RenderHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.item.ItemDye;

@@ -1,8 +1,8 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity.Machines;
 
+import MiscUtils.TileEntity.TileEntityInvBase;
 import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemDataChip;
 import com.miscitems.MiscItemsAndBlocks.Main.ModItems;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.Utils.TileEntityInvBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 

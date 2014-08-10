@@ -1,8 +1,10 @@
 package com.miscitems.MiscItemsAndBlocks.Network.Server;
 
-import com.miscitems.MiscItemsAndBlocks.Network.AbstractPacket;
+
+import MiscUtils.Network.AbstractPacket;
+import MiscUtils.Network.PacketHandler;
+import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Network.Client.ClientChatMessageRecivedPacket;
-import com.miscitems.MiscItemsAndBlocks.Network.PacketHandler;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.relauncher.Side;
 import io.netty.buffer.ByteBuf;
@@ -41,7 +43,7 @@ public void fromBytes(ByteBuf buf, Side side) {
 		String Channel = text[2];
 
 
-            PacketHandler.sendToPlayer(new ClientChatMessageRecivedPacket(Player + "-" + Message + "-" + Channel), player);
+            PacketHandler.sendToPlayer(new ClientChatMessageRecivedPacket(Player + "-" + Message + "-" + Channel), player, Main.channels);
 
 		}
 

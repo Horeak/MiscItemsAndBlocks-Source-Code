@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Block;
 
-import com.miscitems.MiscItemsAndBlocks.Block.Utils.ModBlockContainer;
+import MiscUtils.Block.ModBlockContainer;
 import com.miscitems.MiscItemsAndBlocks.Gui.GuiHandler;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityComputer;

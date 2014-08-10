@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Block.Decorative;
 
-import com.miscitems.MiscItemsAndBlocks.Block.Utils.ModBlockContainer;
+import MiscUtils.Block.ModBlockContainer;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Decorative.TileEntityItemPedestal;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;

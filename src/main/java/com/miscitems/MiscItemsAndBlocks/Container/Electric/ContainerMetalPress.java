@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Container.Electric;
 
-import com.miscitems.MiscItemsAndBlocks.GuiObjects.Slots.ModSlotOutput;
+import MiscUtils.GuiObjects.Slots.SlotOutput;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityMetalPress;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -25,7 +25,7 @@ public class ContainerMetalPress extends Container{
     	this.tile = tile;
     	
     	
-    	this.addSlotToContainer(new ModSlotOutput(tile, 0, 133, 30));	
+    	this.addSlotToContainer(new SlotOutput(tile, 0, 133, 30));
     	
 		this.addSlotToContainer(new Slot(tile, 1, 31, 31));
 		

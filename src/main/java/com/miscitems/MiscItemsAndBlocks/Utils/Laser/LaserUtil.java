@@ -1,6 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Utils.Laser;
 
-import com.miscitems.MiscItemsAndBlocks.Network.PacketHandler;
+import MiscUtils.Network.PacketHandler;
+import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Network.Server.ServerSetBlockPacket;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityLaserReciver;
 import net.minecraft.block.Block;
@@ -137,7 +138,7 @@ if(laserProvider.GetLensPower() >= block.getBlockHardness(laserProvider.getWorld
 
 		
 
-		PacketHandler.sendToServer(new ServerSetBlockPacket(laserProvider.getWorld().getWorldInfo().getVanillaDimension(), xTemp, yTemp, zTemp, Blocks.air));
+		PacketHandler.sendToServer(new ServerSetBlockPacket(laserProvider.getWorld().getWorldInfo().getVanillaDimension(), xTemp, yTemp, zTemp, Blocks.air), Main.channels);
 		
 		
 	}

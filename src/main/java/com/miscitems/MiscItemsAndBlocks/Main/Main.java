@@ -1,5 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Main;
 
+import MiscUtils.Network.ChannelHandler;
 import com.google.common.collect.Sets;
 import com.miscitems.MiscItemsAndBlocks.Book.BookRegestration;
 import com.miscitems.MiscItemsAndBlocks.Book.SmallFontRenderer;
@@ -7,23 +8,32 @@ import com.miscitems.MiscItemsAndBlocks.Entity.EntityPowerArrow;
 import com.miscitems.MiscItemsAndBlocks.Entity.EntitySilverArrow;
 import com.miscitems.MiscItemsAndBlocks.Event.BoneMealEvent;
 import com.miscitems.MiscItemsAndBlocks.Event.DisarmStickEvent;
-import com.miscitems.MiscItemsAndBlocks.Event.EntityConstructingEvent;
 import com.miscitems.MiscItemsAndBlocks.Event.GhostBlockBreakEvent;
 import com.miscitems.MiscItemsAndBlocks.Event.GuiListener;
-import com.miscitems.MiscItemsAndBlocks.Event.InvisibilityEvents;
-import com.miscitems.MiscItemsAndBlocks.Event.JoinWorld;
-import com.miscitems.MiscItemsAndBlocks.Event.MagicRecharge;
-import com.miscitems.MiscItemsAndBlocks.Event.OnPlayerRespawn;
 import com.miscitems.MiscItemsAndBlocks.Gui.GuiHandler;
-import com.miscitems.MiscItemsAndBlocks.Gui.Overlayes.GuiOverlayMagicEnergy;
-import com.miscitems.MiscItemsAndBlocks.Network.ChannelHandler;
-import com.miscitems.MiscItemsAndBlocks.Network.PacketHandler;
-import com.miscitems.MiscItemsAndBlocks.Utils.Config.ConfigUtils;
+import com.miscitems.MiscItemsAndBlocks.Network.Client.ClientChatMessageRecivedPacket;
+import com.miscitems.MiscItemsAndBlocks.Network.Client.ClientGamePacketBegin;
+import com.miscitems.MiscItemsAndBlocks.Network.Client.ClientGamePacketChange;
+import com.miscitems.MiscItemsAndBlocks.Network.Client.ClientGamePacketInviteRecived;
+import com.miscitems.MiscItemsAndBlocks.Network.Client.ClientGamePacketRestart;
+import com.miscitems.MiscItemsAndBlocks.Network.Client.ClientGhostBlockPacket;
+import com.miscitems.MiscItemsAndBlocks.Network.Client.ClientLaserUpdatePacket;
+import com.miscitems.MiscItemsAndBlocks.Network.Client.ClientMetalPressPacketUpdate;
+import com.miscitems.MiscItemsAndBlocks.Network.PacketTileUpdate;
+import com.miscitems.MiscItemsAndBlocks.Network.PacketTileWithItemUpdate;
+import com.miscitems.MiscItemsAndBlocks.Network.Server.ServerButtonPacket;
+import com.miscitems.MiscItemsAndBlocks.Network.Server.ServerChatMessagePacket;
+import com.miscitems.MiscItemsAndBlocks.Network.Server.ServerGamePacketAccept;
+import com.miscitems.MiscItemsAndBlocks.Network.Server.ServerGamePacketChange;
+import com.miscitems.MiscItemsAndBlocks.Network.Server.ServerGamePacketClosed;
+import com.miscitems.MiscItemsAndBlocks.Network.Server.ServerGamePacketInvite;
+import com.miscitems.MiscItemsAndBlocks.Network.Server.ServerLensBenchPacketDone;
+import com.miscitems.MiscItemsAndBlocks.Network.Server.ServerPaintBrushChangePacket;
+import com.miscitems.MiscItemsAndBlocks.Network.Server.ServerSetBlockPacket;
+import com.miscitems.MiscItemsAndBlocks.Utils.ConfigUtils;
 import com.miscitems.MiscItemsAndBlocks.Utils.Crafting;
 import com.miscitems.MiscItemsAndBlocks.Utils.Laser.DefaultLaser;
 import com.miscitems.MiscItemsAndBlocks.Utils.Laser.LaserRegistry;
-import com.miscitems.MiscItemsAndBlocks.Utils.Magic.MagicalMaterialUtils;
-import com.miscitems.MiscItemsAndBlocks.Utils.Magic.Spells.EntitySpellProjectile;
 import com.miscitems.MiscItemsAndBlocks.Utils.PillarUtils;
 import com.miscitems.MiscItemsAndBlocks.Utils.Proxies.ServerProxy;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Messages;
@@ -57,7 +67,7 @@ import java.util.Map;
 import java.util.Set;
 
 
-	@Mod(modid = Reference.Mod_Id, name = Reference.Mod_Name, version = Reference.Version, guiFactory = "com.miscitems.MiscItemsAndBlocks.Utils.Config.GuiConfigFactory", dependencies = "after:NEI")
+	@Mod(modid = Reference.Mod_Id, name = Reference.Mod_Name, version = Reference.Version, guiFactory = "MiscUtils.Utils.Config.GuiConfigFactory", dependencies = "after:NEI;required-after:MiscUtils")
 	public class Main 
 	{
 
@@ -72,7 +82,6 @@ import java.util.Set;
         public static Set EmptyToolSet = Sets.newHashSet();
 
         public static final org.apache.logging.log4j.Logger logger = LogManager.getLogger("MiscItems");
-
 
         public static CreativeTabs MiscTab = new CreativeTabs("tabMiscMisc")
         {
@@ -118,19 +127,6 @@ import java.util.Set;
         };
 
 
-        public static CreativeTabs MagicTab = new CreativeTabs("tabMiscMagic")
-        {
-
-
-            @Override
-            @SideOnly(Side.CLIENT)
-            public Item getTabIconItem()
-            {
-
-                return ConfigUtils.GetCheckedItem(ModItems.SoulOrb);
-            }
-
-        };
 
 
         public static EnumMap<Side, FMLEmbeddedChannel> channels;
@@ -142,10 +138,10 @@ import java.util.Set;
         public void preInit(FMLPreInitializationEvent event)
         {
 
-        	ConfigUtils.InitConfig(event.getModConfigurationDirectory() + "");
+             ConfigUtils.InitConfig(event.getModConfigurationDirectory() + "");
 
 
-            PacketHandler.RegisterPackets();
+            RegisterPackets();
             channels = getNewChannelHandler(handler.channel);
 
             if(ConfigUtils.AllowCustomPillars) {
@@ -161,8 +157,6 @@ import java.util.Set;
         	Crafting.RegisterRecipes();
 
 
-            MagicalMaterialUtils.RegisterManualValues();
-            MagicalMaterialUtils.RegisterAutomaticValues();
 
         	proxy.RegisterListeners();
 
@@ -171,16 +165,6 @@ import java.util.Set;
         	proxy.RegisterClientTickhandler();
         	proxy.RegisterServerTickhandler();
 
-            MinecraftForge.EVENT_BUS.register(new EntityConstructingEvent());
-            MinecraftForge.EVENT_BUS.register(new JoinWorld());
-            MinecraftForge.EVENT_BUS.register(new OnPlayerRespawn());
-
-            MinecraftForge.EVENT_BUS.register(new InvisibilityEvents());
-            FMLCommonHandler.instance().bus().register(new InvisibilityEvents());
-            FMLCommonHandler.instance().bus().register(new ConfigUtils());
-
-            FMLCommonHandler.instance().bus().register(new MagicRecharge());
-
 
             EntityRegistry.registerGlobalEntityID(EntitySilverArrow.class, "SilverArrow", EntityRegistry.findGlobalUniqueEntityId());
             EntityRegistry.registerModEntity(EntitySilverArrow.class, "SilverArrow", 0, this, 128, 1, true);
@@ -188,8 +172,6 @@ import java.util.Set;
             EntityRegistry.registerGlobalEntityID(EntityPowerArrow.class, "PowerArrow", EntityRegistry.findGlobalUniqueEntityId());
             EntityRegistry.registerModEntity(EntityPowerArrow.class, "PowerArrow", 1, this, 128, 1, true);
 
-            EntityRegistry.registerGlobalEntityID(EntitySpellProjectile.class, "SpellProjectile", EntityRegistry.findGlobalUniqueEntityId());
-            EntityRegistry.registerModEntity(EntitySpellProjectile.class, "SpellProjectile", 2, this, 128, 1, true);
 
 
 
@@ -214,7 +196,6 @@ import java.util.Set;
 
 
 
-            MinecraftForge.EVENT_BUS.register(new GuiOverlayMagicEnergy());
         	MinecraftForge.EVENT_BUS.register(new GuiListener());
 
 
@@ -257,6 +238,33 @@ import java.util.Set;
         }
 
 
+        public static void RegisterPackets(){
+
+
+            Main.handler.RegisterPacket(ClientChatMessageRecivedPacket.class);
+            Main.handler.RegisterPacket(ClientGamePacketBegin.class);
+            Main.handler.RegisterPacket(ClientGamePacketChange.class);
+            Main.handler.RegisterPacket(ClientGamePacketInviteRecived.class);
+            Main.handler.RegisterPacket(ClientGamePacketRestart.class);
+            Main.handler.RegisterPacket(ClientGhostBlockPacket.class);
+            Main.handler.RegisterPacket(ClientLaserUpdatePacket.class);
+            Main.handler.RegisterPacket(ClientMetalPressPacketUpdate.class);
+
+            Main.handler.RegisterPacket(ServerButtonPacket.class);
+            Main.handler.RegisterPacket(ServerChatMessagePacket.class);
+            Main.handler.RegisterPacket(ServerGamePacketAccept.class);
+            Main.handler.RegisterPacket(ServerGamePacketChange.class);
+            Main.handler.RegisterPacket(ServerGamePacketClosed.class);
+            Main.handler.RegisterPacket(ServerGamePacketInvite.class);
+            Main.handler.RegisterPacket(ServerLensBenchPacketDone.class);
+            Main.handler.RegisterPacket(ServerPaintBrushChangePacket.class);
+            Main.handler.RegisterPacket(ServerSetBlockPacket.class);
+
+            Main.handler.RegisterPacket(PacketTileUpdate.class);
+            Main.handler.RegisterPacket(PacketTileWithItemUpdate.class);
+
+
+        }
 
 
 

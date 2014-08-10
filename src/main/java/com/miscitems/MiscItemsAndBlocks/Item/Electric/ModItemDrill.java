@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Item.Electric;
 
+import MiscUtils.Utils.Handlers.ChatMessageHandler;
 import com.google.common.collect.Sets;
-import com.miscitems.MiscItemsAndBlocks.Utils.Handlers.ChatMessageHandler;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.relauncher.ReflectionHelper;
 import cpw.mods.fml.relauncher.Side;
@@ -17,7 +17,12 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.*;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.IIcon;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.StatCollector;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
 import java.util.List;

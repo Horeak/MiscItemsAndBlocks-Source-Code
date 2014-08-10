@@ -1,5 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Network;
 
+import MiscUtils.Network.AbstractPacket;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import cpw.mods.fml.relauncher.Side;
 import io.netty.buffer.ByteBuf;

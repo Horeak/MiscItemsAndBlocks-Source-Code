@@ -1,6 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Network.Server;
 
-import com.miscitems.MiscItemsAndBlocks.Network.AbstractPacket;
+
+import MiscUtils.Network.AbstractPacket;
 import cpw.mods.fml.relauncher.Side;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.block.Block;

@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Block.Plants;
 
-import com.miscitems.MiscItemsAndBlocks.Block.Utils.ModBlock;
+import MiscUtils.Block.ModBlock;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;

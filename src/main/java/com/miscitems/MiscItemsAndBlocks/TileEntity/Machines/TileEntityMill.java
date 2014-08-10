@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity.Machines;
 
 import MiscItemsApi.Recipes.RecipeHandler;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.Utils.TileEntityInvBase;
+import MiscUtils.TileEntity.TileEntityInvBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 

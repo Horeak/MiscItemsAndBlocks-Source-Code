@@ -1,8 +1,10 @@
 package com.miscitems.MiscItemsAndBlocks.Network.Server;
 
-import com.miscitems.MiscItemsAndBlocks.Network.AbstractPacket;
+
+import MiscUtils.Network.AbstractPacket;
+import MiscUtils.Network.PacketHandler;
+import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Network.Client.ClientGamePacketChange;
-import com.miscitems.MiscItemsAndBlocks.Network.PacketHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.relauncher.Side;
@@ -58,7 +60,7 @@ public void fromBytes(ByteBuf buf, Side side) {
 		 else
 			 plyr = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().func_152612_a(Player_1);
 		 
-		PacketHandler.sendToPlayer(new ClientGamePacketChange(Number, Player, Player_1, Player_2), plyr);
+		PacketHandler.sendToPlayer(new ClientGamePacketChange(Number, Player, Player_1, Player_2), plyr, Main.channels);
 	}
 
 }

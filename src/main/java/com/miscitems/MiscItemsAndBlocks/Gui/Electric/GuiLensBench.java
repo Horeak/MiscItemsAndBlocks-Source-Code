@@ -1,8 +1,9 @@
 package com.miscitems.MiscItemsAndBlocks.Gui.Electric;
 
+import MiscUtils.Network.PacketHandler;
 import com.miscitems.MiscItemsAndBlocks.Container.Electric.ContainerLensBench;
 import com.miscitems.MiscItemsAndBlocks.GuiObjects.GuiLensBenchButton;
-import com.miscitems.MiscItemsAndBlocks.Network.PacketHandler;
+import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Network.Server.ServerLensBenchPacketDone;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityLensBench;
 import net.minecraft.client.Minecraft;
@@ -132,7 +133,7 @@ public class GuiLensBench extends GuiContainer{
     	
     	if(tile.getStackInSlot(0) != null){
 
-    		PacketHandler.sendToServer(new ServerLensBenchPacketDone(Color, Red, Green, Blue, Power, Strength, TransferPower, Damage, Redstone, tile.xCoord, tile.yCoord, tile.zCoord));
+    		PacketHandler.sendToServer(new ServerLensBenchPacketDone(Color, Red, Green, Blue, Power, Strength, TransferPower, Damage, Redstone, tile.xCoord, tile.yCoord, tile.zCoord), Main.channels);
     	}
     	
 		if(button.id == 0){
@@ -255,7 +256,7 @@ public class GuiLensBench extends GuiContainer{
 			
 	    	if(tile.getStackInSlot(0) != null){
 
-	    		PacketHandler.sendToServer(new ServerLensBenchPacketDone(Color, Red, Green, Blue, Power, Strength, TransferPower, Damage, Redstone, tile.xCoord, tile.yCoord, tile.zCoord));
+	    		PacketHandler.sendToServer(new ServerLensBenchPacketDone(Color, Red, Green, Blue, Power, Strength, TransferPower, Damage, Redstone, tile.xCoord, tile.yCoord, tile.zCoord), Main.channels);
 	    	}
 		}
 			
@@ -306,7 +307,7 @@ public class GuiLensBench extends GuiContainer{
 
     	if(tile.getStackInSlot(0) != null){
 
-    		PacketHandler.sendToServer(new ServerLensBenchPacketDone(Color, Red, Green, Blue, Power, Strength, TransferPower, Damage, Redstone, tile.xCoord, tile.yCoord, tile.zCoord));
+    		PacketHandler.sendToServer(new ServerLensBenchPacketDone(Color, Red, Green, Blue, Power, Strength, TransferPower, Damage, Redstone, tile.xCoord, tile.yCoord, tile.zCoord), Main.channels);
     	}
     }
     

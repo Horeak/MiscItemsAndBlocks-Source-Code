@@ -1,11 +1,12 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity.Electric;
 
-import com.miscitems.MiscItemsAndBlocks.Network.PacketHandler;
+import MiscUtils.Network.PacketHandler;
+import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Network.PacketTileWithItemUpdate;
-import com.miscitems.MiscItemsAndBlocks.Utils.Block.BlockUtil;
-import com.miscitems.MiscItemsAndBlocks.Utils.Config.ConfigUtils;
-import com.miscitems.MiscItemsAndBlocks.Utils.Inventory.Utils;
-import com.miscitems.MiscItemsAndBlocks.Utils.ItemHelper;
+import MiscUtils.Utils.Block.BlockUtil;
+import MiscUtils.Utils.Inventory.Utils;
+import MiscUtils.Utils.ItemHelper;
+import com.miscitems.MiscItemsAndBlocks.Utils.ConfigUtils;
 import com.mojang.authlib.GameProfile;
 import cpw.mods.fml.relauncher.ReflectionHelper;
 import net.minecraft.block.Block;
@@ -435,7 +436,7 @@ public class TileEntityMiningStation extends TileEntityPowerInv{
         ItemStack itemStack = getStackInSlot(0);
 
         if (itemStack != null && itemStack.stackSize > 0)
-            return PacketHandler.GetPacket(new PacketTileWithItemUpdate(xCoord, yCoord, zCoord, orientation, state, customName, itemStack.getItem().getIdFromItem(itemStack.getItem()), itemStack.getItemDamage(), itemStack.stackSize, ItemHelper.getColor(itemStack)));
+            return PacketHandler.GetPacket(new PacketTileWithItemUpdate(xCoord, yCoord, zCoord, orientation, state, customName, itemStack.getItem().getIdFromItem(itemStack.getItem()), itemStack.getItemDamage(), itemStack.stackSize, ItemHelper.getColor(itemStack)), Main.channels);
         else
             return super.getDescriptionPacket();
     }

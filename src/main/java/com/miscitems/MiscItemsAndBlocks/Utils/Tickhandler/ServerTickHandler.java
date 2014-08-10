@@ -1,10 +1,10 @@
 package com.miscitems.MiscItemsAndBlocks.Utils.Tickhandler;
 
+import MiscUtils.Utils.Handlers.ParticleHelper;
 import com.miscitems.MiscItemsAndBlocks.Main.ModItems;
-import com.miscitems.MiscItemsAndBlocks.Utils.Config.ConfigUtils;
+import com.miscitems.MiscItemsAndBlocks.Utils.ConfigUtils;
 import com.miscitems.MiscItemsAndBlocks.Utils.Game.GameInfo;
 import com.miscitems.MiscItemsAndBlocks.Utils.Game.GameInvite;
-import com.miscitems.MiscItemsAndBlocks.Utils.Handlers.ParticleHelper;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import net.minecraft.entity.player.EntityPlayer;
@@ -53,7 +53,7 @@ public class ServerTickHandler{
 
 
         if(particleHelper == null){
-            particleHelper = new ParticleHelper(event.player.worldObj);
+            particleHelper = new ParticleHelper(event.player.worldObj, ConfigUtils.SpawnParticles);
         }
 
     }

@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Gui.Electric;
 
+import MiscUtils.GuiObjects.GuiTipButton;
 import com.miscitems.MiscItemsAndBlocks.Container.Machines.ContainerMill;
-import com.miscitems.MiscItemsAndBlocks.GuiObjects.GuiTipButton;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Machines.TileEntityMill;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Messages;
 import net.minecraft.client.Minecraft;

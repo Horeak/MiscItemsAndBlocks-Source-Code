@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.WorldGen;
 
 import com.miscitems.MiscItemsAndBlocks.Main.ModBlocks;
-import com.miscitems.MiscItemsAndBlocks.Utils.Config.ConfigUtils;
+import com.miscitems.MiscItemsAndBlocks.Utils.ConfigUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;

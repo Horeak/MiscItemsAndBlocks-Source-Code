@@ -1,9 +1,9 @@
 package com.miscitems.MiscItemsAndBlocks.Network.Client;
 
 
+import MiscUtils.Network.AbstractPacket;
 import com.miscitems.MiscItemsAndBlocks.Gui.Computer.OldGuis.GuiGame_1;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
-import com.miscitems.MiscItemsAndBlocks.Network.AbstractPacket;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.relauncher.Side;

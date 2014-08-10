@@ -1,7 +1,8 @@
 package com.miscitems.MiscItemsAndBlocks.Gui.Electric;
 
+import MiscUtils.Network.PacketHandler;
 import com.miscitems.MiscItemsAndBlocks.Container.Electric.ContainerMiningChamber;
-import com.miscitems.MiscItemsAndBlocks.Network.PacketHandler;
+import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Network.Server.ServerButtonPacket;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityMiningStation;
 import net.minecraft.client.Minecraft;
@@ -102,7 +103,7 @@ public class GuiMiningChamber extends GuiContainer{
 	
 	@Override
 	protected void actionPerformed(GuiButton button){
-		PacketHandler.sendToServer(new ServerButtonPacket((byte) button.id));
+		PacketHandler.sendToServer(new ServerButtonPacket((byte) button.id), Main.channels);
 		
 //		if(button.id == 3){
 //			if(Start.displayString == StatCollector.translateToLocal("words.start")){

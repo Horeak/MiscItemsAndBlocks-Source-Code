@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Block.Plants;
 
-import com.miscitems.MiscItemsAndBlocks.Block.Utils.ModBlockRotatedPillar;
+import MiscUtils.Block.ModBlockRotatedPillar;
 import com.miscitems.MiscItemsAndBlocks.Main.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.relauncher.Side;

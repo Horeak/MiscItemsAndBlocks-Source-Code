@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Container;
 
-import com.miscitems.MiscItemsAndBlocks.GuiObjects.Slots.ModSlotArmor;
+import MiscUtils.GuiObjects.Slots.ModSlotArmor;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Machines.TileEntityTrashBin;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;

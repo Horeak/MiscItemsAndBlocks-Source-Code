@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity.Inventories;
 
 
-import com.miscitems.MiscItemsAndBlocks.TileEntity.Utils.TileEntityInvBase;
+import MiscUtils.TileEntity.TileEntityInvBase;
 
 public class TileEntityCardboardBox extends TileEntityInvBase {
 

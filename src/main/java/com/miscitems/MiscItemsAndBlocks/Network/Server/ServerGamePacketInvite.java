@@ -1,10 +1,12 @@
 package com.miscitems.MiscItemsAndBlocks.Network.Server;
 
-import com.miscitems.MiscItemsAndBlocks.Network.AbstractPacket;
+
+import MiscUtils.Network.AbstractPacket;
+import MiscUtils.Network.PacketHandler;
+import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Network.Client.ClientGamePacketInviteRecived;
-import com.miscitems.MiscItemsAndBlocks.Network.PacketHandler;
-import com.miscitems.MiscItemsAndBlocks.Utils.Proxies.ServerProxy;
 import com.miscitems.MiscItemsAndBlocks.Utils.Game.GameInvite;
+import com.miscitems.MiscItemsAndBlocks.Utils.Proxies.ServerProxy;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.relauncher.Side;
@@ -50,7 +52,7 @@ public class ServerGamePacketInvite extends AbstractPacket {
           {
         	  
           	ServerProxy.tickHandlerServer.playerGameRequests.put(plyr.getCommandSenderName(), new GameInvite(player.getCommandSenderName()));
-          	PacketHandler.sendToPlayer(new ClientGamePacketInviteRecived(player.getCommandSenderName()), plyr);
+          	PacketHandler.sendToPlayer(new ClientGamePacketInviteRecived(player.getCommandSenderName()), plyr, Main.channels);
           }
 		  }
 

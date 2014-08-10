@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity.Decorative;
 
-import com.miscitems.MiscItemsAndBlocks.TileEntity.Utils.ModTileEntity;
+import MiscUtils.TileEntity.ModTileEntity;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class TileEntityPillar extends ModTileEntity{

@@ -1,8 +1,9 @@
 package com.miscitems.MiscItemsAndBlocks.Utils.Game;
 
+import MiscUtils.Network.PacketHandler;
+import MiscUtils.Utils.Handlers.ChatMessageHandler;
+import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Network.Client.ClientGamePacketBegin;
-import com.miscitems.MiscItemsAndBlocks.Network.PacketHandler;
-import com.miscitems.MiscItemsAndBlocks.Utils.Handlers.ChatMessageHandler;
 import net.minecraft.entity.player.EntityPlayer;
 
 public class GameInfo
@@ -24,8 +25,8 @@ public class GameInfo
         {
 
 
-        	PacketHandler.sendToPlayer(new ClientGamePacketBegin(Player_1.getCommandSenderName(), Player_2.getCommandSenderName()), Player_1);
-        	PacketHandler.sendToPlayer(new ClientGamePacketBegin(Player_1.getCommandSenderName(), Player_2.getCommandSenderName()), Player_2);
+        	PacketHandler.sendToPlayer(new ClientGamePacketBegin(Player_1.getCommandSenderName(), Player_2.getCommandSenderName()), Player_1, Main.channels);
+        	PacketHandler.sendToPlayer(new ClientGamePacketBegin(Player_1.getCommandSenderName(), Player_2.getCommandSenderName()), Player_2, Main.channels);
         
         return this;
         }

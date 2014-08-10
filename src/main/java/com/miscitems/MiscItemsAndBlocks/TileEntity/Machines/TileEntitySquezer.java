@@ -2,7 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.TileEntity.Machines;
 
 import MiscItemsApi.Recipes.RecipeHandler;
 import MiscItemsApi.Recipes.SqueezerRecipe;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.Utils.TileEntityInvBase;
+import MiscUtils.TileEntity.TileEntityInvBase;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;

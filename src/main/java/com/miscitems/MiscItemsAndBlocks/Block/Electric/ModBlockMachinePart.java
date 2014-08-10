@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Block.Electric;
 
-import com.miscitems.MiscItemsAndBlocks.Block.Utils.ModBlock;
-import com.miscitems.MiscItemsAndBlocks.Utils.Config.ConfigUtils;
+import MiscUtils.Block.ModBlock;
+import com.miscitems.MiscItemsAndBlocks.Utils.ConfigUtils;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
