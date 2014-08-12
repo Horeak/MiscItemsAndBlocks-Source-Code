@@ -17,23 +17,28 @@ buildscript {
 
 apply plugin: 'forge'
 
-mod_version  = "1.0.0"
-minecraft_version = "1.7.10"
-forge_version = "10.13.0.1159"
-nei_version="1.0.2.15"
-ccc_version="1.0.2.9"
+ext.configFile = file "build.properties"
+ 
+
+configFile.withReader {
+ 
+        def prop = new Properties()
+        prop.load(it)
+        ext.config = new ConfigSlurper().parse prop
+}
 
 group= "com.miscitems.MiscItemsAndBlocks" 
+version = config.mod_version 
 archivesBaseName = "MiscItemsAndBlocks"
 
 
 minecraft {
-version = minecraft_version + "-" + forge_version
+  version = config.minecraft_version + "-" + config.forge_version
 
     replaceIn "Utils/References/Reference.java"
-    replace "@VERSION@", mod_version
+    replace "@VERSION@", config.mod_version
 }
-    version = "${minecraft_version}-${mod_version}"
+    version = "${config.minecraft_version}-${config.mod_version}"
 
 
 processResources {
@@ -42,7 +47,7 @@ processResources {
         include '*.info'
 
         // replaces
-        expand 'version': version, 'buildnumber': "${System.getenv().BUILD_NUMBER}", 'minecraft_version': minecraft_version
+        expand 'version': version, 'buildnumber': "${System.getenv().BUILD_NUMBER}", 'minecraft_version': config.minecraft_version
     }
 
     from(sourceSets.main.resources.srcDirs) {
@@ -53,7 +58,36 @@ processResources {
 
 dependencies {
 	compile files (
-		"Libs/CodeChickenCore-${minecraft_version}-${ccc_version}-dev.jar",
-		"Libs/NotEnoughItems-${minecraft_version}-${nei_version}-dev.jar",
+		"Libs/CodeChickenCore-${config.minecraft_version}-${config.ccc_version}-dev.jar",
+		"Libs/NotEnoughItems-${config.minecraft_version}-${config.nei_version}-dev.jar",
+		"Libs/MiscUtils-deobf-${config.minecraft_version}-${config.miscutils_version}.jar",
 		)
+}
+
+
+repositories {
+        mavenCentral()
+}
+ 
+
+jar {
+        appendix = 'universal'
+}
+ 
+
+task sourceJar(type: Jar) {
+    from sourceSets.main.allSource
+    appendix = 'src'
+}
+ 
+
+task deobfJar(type: Jar) {
+        from sourceSets.main.output
+        appendix = 'deobf'
+}
+ 
+
+artifacts {
+        archives sourceJar
+        archives deobfJar
 }
