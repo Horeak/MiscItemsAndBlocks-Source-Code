@@ -21,6 +21,7 @@ import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityComputer;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityDiceHolder;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityGamePart;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityTable;
+import com.miscitems.MiscItemsAndBlocks.Utils.Render.BlockRender.BlockRenderWithoutLight;
 import com.miscitems.MiscItemsAndBlocks.Utils.Render.Entity.PowerArrowRender;
 import com.miscitems.MiscItemsAndBlocks.Utils.Render.Entity.SilverArrowRender;
 import com.miscitems.MiscItemsAndBlocks.Utils.Render.ItemRender.ComputerItemRender;
@@ -77,8 +78,6 @@ public class ClientProxy extends ServerProxy {
         tickHandlerClient = new TickHandlerClient();
     }
 
-    public static boolean HasValidInvisibilityArmor = false;
-
 
     @Override
     public EntityPlayer getPlayer() {
@@ -87,7 +86,9 @@ public class ClientProxy extends ServerProxy {
     }
 
     public void registerRenderThings() {
-	
+
+        RenderColorBlock = RenderingRegistry.getNextAvailableRenderId();
+        RenderingRegistry.registerBlockHandler(new BlockRenderWithoutLight());
 
     	
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTrashBin.class, new TileEntityBinRender());
@@ -110,6 +111,7 @@ public class ClientProxy extends ServerProxy {
         
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMetalPress.class, new TileEntityMetalPressRender());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityLaserReciver.class, new TileEntityLaserReciverRender());
+
         
         
         RenderingRegistry.registerEntityRenderingHandler(EntitySilverArrow.class, new SilverArrowRender());

@@ -49,6 +49,7 @@ tile.ghost_block.name=Ghost block
 tile.coloredbrick.name=Metal brick
 tile.coloredbrickglowstone.name=Glowstone Metal brick
 tile.gamepart.name=Game piece
+tile.colorblock.name=Color Block
 
 //All items
 item.xpextractor.name=Xp extractor

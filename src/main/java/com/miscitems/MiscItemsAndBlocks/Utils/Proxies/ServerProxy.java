@@ -13,6 +13,7 @@ public class ServerProxy{
 public static ServerTickHandler tickHandlerServer;
     public static TickHandlerClient tickHandlerClient;
 
+    public int RenderColorBlock = 0;
 
     public void registerRenderThings(){
         
