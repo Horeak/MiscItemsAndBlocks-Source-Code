@@ -68,7 +68,6 @@ import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockTable;
 import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockTeleporter;
 import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockTrashBin;
 import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemXpStorageBlock;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.Decorative.TileEntityColorBlock;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Decorative.TileEntityItemPedestal;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Decorative.TileEntityPaintBlock;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Decorative.TileEntityPillar;
@@ -314,7 +313,7 @@ public class ModBlocks {
         Utils.Register(ColoredBrickGlowstone, ModItemBlockColoredMetalBrick.class, "ColoredBrickGlowstone");
 
         ColorBlock = new ModBlockColorBlock().setCreativeTab(Main.DecorativeTab).setBlockTextureName(Reference.Mod_Id + ":BlankTexture");
-        Utils.Register(ColorBlock, ModItemBlockColor.class, "ColorBlock", TileEntityColorBlock.class);
+        Utils.Register(ColorBlock, ModItemBlockColor.class, "ColorBlock");
 
 
 

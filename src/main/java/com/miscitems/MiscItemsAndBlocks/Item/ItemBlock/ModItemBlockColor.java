@@ -1,6 +1,5 @@
 package com.miscitems.MiscItemsAndBlocks.Item.ItemBlock;
 
-import com.miscitems.MiscItemsAndBlocks.Block.Decorative.ModBlockColorBlock;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
@@ -23,9 +22,6 @@ public class ModItemBlockColor extends ItemBlock{
 
         if(m < 0)
             m = 0;
-
-        if(stack.getItemDamage() > 15)
-            return ModBlockColorBlock.CustomColorsNames[stack.getItemDamage() - 16] + " " + StatCollector.translateToLocal(stack.getItem().getUnlocalizedName() + ".name");
 
         return StatCollector.translateToLocal("item.fireworksCharge." + ItemDye.field_150923_a[m]) + " " + StatCollector.translateToLocal(stack.getItem().getUnlocalizedName() + ".name");
     }

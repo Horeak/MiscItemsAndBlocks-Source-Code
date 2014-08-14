@@ -230,7 +230,7 @@ public class ModBlockGhostBlock extends ModBlockContainer {
    {
        return false;
    }
-   
+
    
     
 }
