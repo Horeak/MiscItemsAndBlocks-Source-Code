@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Utils.Game;
 
 import MiscUtils.Network.PacketHandler;
-import MiscUtils.Utils.Handlers.ChatMessageHandler;
+import MiscUtils.Handlers.ChatMessageHandler;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Network.Client.ClientGamePacketBegin;
 import net.minecraft.entity.player.EntityPlayer;

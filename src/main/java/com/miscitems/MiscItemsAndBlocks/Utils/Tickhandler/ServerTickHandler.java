@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Utils.Tickhandler;
 
-import MiscUtils.Utils.Handlers.ParticleHelper;
+import MiscUtils.Handlers.ParticleHelper;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Main.ModItems;
 import com.miscitems.MiscItemsAndBlocks.Utils.Game.GameInfo;

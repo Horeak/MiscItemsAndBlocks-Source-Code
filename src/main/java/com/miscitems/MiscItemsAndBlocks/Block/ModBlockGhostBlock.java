@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Block;
 
 import MiscUtils.Block.ModBlockContainer;
-import MiscUtils.Utils.Handlers.ChatMessageHandler;
+import MiscUtils.Handlers.ChatMessageHandler;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityGhostBlock;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.relauncher.Side;

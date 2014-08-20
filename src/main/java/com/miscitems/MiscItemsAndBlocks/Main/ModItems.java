@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Main;
 
-import MiscUtils.Utils.Register.ItemRegister;
-import MiscUtils.Utils.Register.OreDictionaryRegister;
+import MiscUtils.Register.ItemRegister;
+import MiscUtils.Register.OreDictionaryRegister;
 import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemAdvancedBattery;
 import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemAntiFallChest;
 import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemBattery;
@@ -41,7 +41,6 @@ import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.EnumHelper;
-import net.minecraftforge.oredict.OreDictionary;
 
 public class ModItems {
 

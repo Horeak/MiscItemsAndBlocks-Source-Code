@@ -21,7 +21,7 @@ import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityComputer;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityDiceHolder;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityGamePart;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityTable;
-import MiscUtils.Utils.Render.BlockRender.BlockRenderWithoutLight;
+import MiscUtils.Render.BlockRender.BlockRenderWithoutLight;
 import com.miscitems.MiscItemsAndBlocks.Utils.Render.Entity.PowerArrowRender;
 import com.miscitems.MiscItemsAndBlocks.Utils.Render.Entity.SilverArrowRender;
 import com.miscitems.MiscItemsAndBlocks.Utils.Render.ItemRender.ComputerItemRender;

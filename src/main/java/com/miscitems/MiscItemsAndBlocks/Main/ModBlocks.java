@@ -2,8 +2,8 @@ package com.miscitems.MiscItemsAndBlocks.Main;
 
 
 import MiscUtils.Block.ModBlockStair;
-import MiscUtils.Utils.Register.BlockRegister;
-import MiscUtils.Utils.Register.OreDictionaryRegister;
+import MiscUtils.Register.BlockRegister;
+import MiscUtils.Register.OreDictionaryRegister;
 import com.miscitems.MiscItemsAndBlocks.Block.BlockContainers.ModBlockCardboardBox;
 import com.miscitems.MiscItemsAndBlocks.Block.BlockContainers.ModBlockMill;
 import com.miscitems.MiscItemsAndBlocks.Block.BlockContainers.ModBlockOven;

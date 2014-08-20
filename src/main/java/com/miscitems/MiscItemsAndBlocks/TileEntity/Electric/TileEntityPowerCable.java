@@ -4,7 +4,7 @@ import MiscItemsApi.Electric.IPowerCable;
 import MiscItemsApi.Electric.IPowerGeneration;
 import MiscItemsApi.Electric.IPowerTile;
 import MiscItemsApi.Electric.IWrenchAble;
-import MiscUtils.Utils.Handlers.ChatMessageHandler;
+import MiscUtils.Handlers.ChatMessageHandler;
 import com.miscitems.MiscItemsAndBlocks.Block.Electric.ModBlockPowerCable;
 import com.miscitems.MiscItemsAndBlocks.Utils.Laser.LaserUtil;
 import net.minecraft.block.Block;

@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Network.Server;
 
 import MiscUtils.Network.AbstractPacket;
-import MiscUtils.Utils.Handlers.ChatMessageHandler;
+import MiscUtils.Handlers.ChatMessageHandler;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Utils.Game.GameInvite;
 import cpw.mods.fml.common.FMLCommonHandler;

@@ -1,8 +1,8 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity.Electric;
 
 import MiscUtils.Network.PacketHandler;
-import MiscUtils.Utils.Block.BlockUtil;
-import MiscUtils.Utils.Inventory.InventoryUtils;
+import MiscUtils.Block.BlockUtil;
+import MiscUtils.Inventory.InventoryUtils;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Network.PacketTileWithItemUpdate;
 import com.mojang.authlib.GameProfile;

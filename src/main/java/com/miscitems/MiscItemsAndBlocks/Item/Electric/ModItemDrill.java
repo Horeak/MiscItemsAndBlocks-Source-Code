@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Item.Electric;
 
-import MiscUtils.Utils.Handlers.ChatMessageHandler;
+import MiscUtils.Handlers.ChatMessageHandler;
 import com.google.common.collect.Sets;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.relauncher.ReflectionHelper;

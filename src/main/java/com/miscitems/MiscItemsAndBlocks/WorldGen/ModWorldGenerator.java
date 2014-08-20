@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.WorldGen;
 
-import MiscUtils.Utils.WorldGen.WorldGenUtils;
+import MiscUtils.WorldGen.WorldGenUtils;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Main.ModBlocks;
 import cpw.mods.fml.common.IWorldGenerator;

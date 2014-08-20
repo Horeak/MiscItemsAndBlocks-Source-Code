@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Item.Electric;
 
-import MiscUtils.Utils.Handlers.ParticleHelper;
+import MiscUtils.Handlers.ParticleHelper;
 import com.google.common.collect.Sets;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;

@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Block.BlockContainers;
 
 import MiscUtils.Block.ModBlockContainer;
-import MiscUtils.Utils.Handlers.ChatMessageHandler;
+import MiscUtils.Handlers.ChatMessageHandler;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Main.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Machines.TileEntityXpStorage;

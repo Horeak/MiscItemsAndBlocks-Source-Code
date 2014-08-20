@@ -1,7 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Block.Electric;
 
 import MiscUtils.Block.ModBlockContainer;
-import MiscUtils.Utils.Handlers.ChatMessageHandler;
+import MiscUtils.Handlers.ChatMessageHandler;
 import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemWrench;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityPowerCable;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
