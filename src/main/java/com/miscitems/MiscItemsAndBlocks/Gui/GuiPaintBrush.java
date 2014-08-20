@@ -135,7 +135,7 @@ public class GuiPaintBrush extends GuiScreen
 		    	}
 	        	
 		    	
-		    	PacketHandler.sendToServer(new ServerPaintBrushChangePacket((int) ((SliderRed.sliderValue * 100) * Max / 100), (int) ((SliderGreen.sliderValue * 100) * Max / 100), (int) ((SliderBlue.sliderValue * 100) * Max / 100)), Main.channels);
+		    	PacketHandler.sendToServer(new ServerPaintBrushChangePacket((int) ((SliderRed.sliderValue * 100) * Max / 100), (int) ((SliderGreen.sliderValue * 100) * Max / 100), (int) ((SliderBlue.sliderValue * 100) * Max / 100)), Main.Utils.channels);
 	        	break;
 	        }
 

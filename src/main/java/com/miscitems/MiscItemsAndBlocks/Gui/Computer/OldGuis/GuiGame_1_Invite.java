@@ -133,7 +133,7 @@ public class GuiGame_1_Invite extends GuiScreen{
 	        	
 	    	if(button.id <= players.size()){
 
-	    		PacketHandler.sendToServer(new ServerGamePacketInvite(players.get(button.id)), Main.channels);
+	    		PacketHandler.sendToServer(new ServerGamePacketInvite(players.get(button.id)), Main.Utils.channels);
 	    	}
 	    	
 	    	if(button.id == players.size() + 1){

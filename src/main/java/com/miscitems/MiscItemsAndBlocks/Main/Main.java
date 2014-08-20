@@ -47,7 +47,6 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.network.FMLEmbeddedChannel;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -62,7 +61,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import org.apache.logging.log4j.LogManager;
 
-import java.util.EnumMap;
 import java.util.Set;
 
 
@@ -130,7 +128,6 @@ import java.util.Set;
 
 
 
-        public static EnumMap<Side, FMLEmbeddedChannel> channels;
         public static ChannelUtils Utils;
 
 	
@@ -145,7 +142,6 @@ import java.util.Set;
 
             Utils = new ChannelUtils(Reference.Channel, Reference.Mod_Id);
             RegisterPackets();
-            channels = Utils.getNewChannelHandler();
 
 
 

@@ -237,7 +237,7 @@ public class TileEntityMetalPress extends TileEntityPowerInv implements ISidedIn
 				WorkTime++;
 
 
-                PacketHandler.sendToAllAround(new ClientMetalPressPacketUpdate(this.xCoord, this.yCoord, this.zCoord, WorkTime, false), new NetworkRegistry.TargetPoint(this.worldObj.getWorldInfo().getVanillaDimension(), xCoord, yCoord, zCoord, 100), Main.channels);
+                PacketHandler.sendToAllAround(new ClientMetalPressPacketUpdate(this.xCoord, this.yCoord, this.zCoord, WorkTime, false), new NetworkRegistry.TargetPoint(this.worldObj.getWorldInfo().getVanillaDimension(), xCoord, yCoord, zCoord, 100), Main.Utils.channels);
 	    	}
 			
 			
@@ -248,7 +248,7 @@ public class TileEntityMetalPress extends TileEntityPowerInv implements ISidedIn
 
 
 
-                PacketHandler.sendToAllAround(new ClientMetalPressPacketUpdate(this.xCoord, this.yCoord, this.zCoord, WorkTime, true), new NetworkRegistry.TargetPoint(this.worldObj.getWorldInfo().getVanillaDimension(), xCoord, yCoord, zCoord, 100), Main.channels);
+                PacketHandler.sendToAllAround(new ClientMetalPressPacketUpdate(this.xCoord, this.yCoord, this.zCoord, WorkTime, true), new NetworkRegistry.TargetPoint(this.worldObj.getWorldInfo().getVanillaDimension(), xCoord, yCoord, zCoord, 100), Main.Utils.channels);
 	    	
 	    	}
 
@@ -263,7 +263,7 @@ public class TileEntityMetalPress extends TileEntityPowerInv implements ISidedIn
 				WorkTime = i;
 
 
-                PacketHandler.sendToAllAround(new ClientMetalPressPacketUpdate(this.xCoord, this.yCoord, this.zCoord, WorkTime, false), new NetworkRegistry.TargetPoint(this.worldObj.getWorldInfo().getVanillaDimension(), xCoord, yCoord, zCoord, 100), Main.channels);
+                PacketHandler.sendToAllAround(new ClientMetalPressPacketUpdate(this.xCoord, this.yCoord, this.zCoord, WorkTime, false), new NetworkRegistry.TargetPoint(this.worldObj.getWorldInfo().getVanillaDimension(), xCoord, yCoord, zCoord, 100), Main.Utils.channels);
 	    	
 			}
 

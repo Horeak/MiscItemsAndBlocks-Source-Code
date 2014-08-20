@@ -52,7 +52,7 @@ public class ServerGamePacketInvite extends AbstractPacket {
           {
         	  
           	ServerProxy.tickHandlerServer.playerGameRequests.put(plyr.getCommandSenderName(), new GameInvite(player.getCommandSenderName()));
-          	PacketHandler.sendToPlayer(new ClientGamePacketInviteRecived(player.getCommandSenderName()), plyr, Main.channels);
+          	PacketHandler.sendToPlayer(new ClientGamePacketInviteRecived(player.getCommandSenderName()), plyr, Main.Utils.channels);
           }
 		  }
 

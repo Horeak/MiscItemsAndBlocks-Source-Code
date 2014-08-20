@@ -49,7 +49,7 @@ public class TileEntityGhostBlock extends TileEntity{
 
 
         if (Id > 0 || Placer != null)
-            return PacketHandler.GetPacket(new ClientGhostBlockPacket(xCoord, yCoord, zCoord, Id, Meta, Placer), Main.channels);
+            return PacketHandler.GetPacket(new ClientGhostBlockPacket(xCoord, yCoord, zCoord, Id, Meta, Placer), Main.Utils.channels);
         else
             return super.getDescriptionPacket();
     }

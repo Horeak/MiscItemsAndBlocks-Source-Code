@@ -133,7 +133,7 @@ public class GuiLensBench extends GuiContainer{
     	
     	if(tile.getStackInSlot(0) != null){
 
-    		PacketHandler.sendToServer(new ServerLensBenchPacketDone(Color, Red, Green, Blue, Power, Strength, TransferPower, Damage, Redstone, tile.xCoord, tile.yCoord, tile.zCoord), Main.channels);
+    		PacketHandler.sendToServer(new ServerLensBenchPacketDone(Color, Red, Green, Blue, Power, Strength, TransferPower, Damage, Redstone, tile.xCoord, tile.yCoord, tile.zCoord), Main.Utils.channels);
     	}
     	
 		if(button.id == 0){
@@ -256,7 +256,7 @@ public class GuiLensBench extends GuiContainer{
 			
 	    	if(tile.getStackInSlot(0) != null){
 
-	    		PacketHandler.sendToServer(new ServerLensBenchPacketDone(Color, Red, Green, Blue, Power, Strength, TransferPower, Damage, Redstone, tile.xCoord, tile.yCoord, tile.zCoord), Main.channels);
+	    		PacketHandler.sendToServer(new ServerLensBenchPacketDone(Color, Red, Green, Blue, Power, Strength, TransferPower, Damage, Redstone, tile.xCoord, tile.yCoord, tile.zCoord), Main.Utils.channels);
 	    	}
 		}
 			
@@ -307,7 +307,7 @@ public class GuiLensBench extends GuiContainer{
 
     	if(tile.getStackInSlot(0) != null){
 
-    		PacketHandler.sendToServer(new ServerLensBenchPacketDone(Color, Red, Green, Blue, Power, Strength, TransferPower, Damage, Redstone, tile.xCoord, tile.yCoord, tile.zCoord), Main.channels);
+    		PacketHandler.sendToServer(new ServerLensBenchPacketDone(Color, Red, Green, Blue, Power, Strength, TransferPower, Damage, Redstone, tile.xCoord, tile.yCoord, tile.zCoord), Main.Utils.channels);
     	}
     }
     

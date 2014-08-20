@@ -60,7 +60,7 @@ public void fromBytes(ByteBuf buf, Side side) {
 		 else
 			 plyr = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().func_152612_a(Player_1);
 		 
-		PacketHandler.sendToPlayer(new ClientGamePacketChange(Number, Player, Player_1, Player_2), plyr, Main.channels);
+		PacketHandler.sendToPlayer(new ClientGamePacketChange(Number, Player, Player_1, Player_2), plyr, Main.Utils.channels);
 	}
 
 }

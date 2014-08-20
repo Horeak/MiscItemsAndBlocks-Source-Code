@@ -256,7 +256,7 @@ public class GuiChat extends GuiContainer{
 
 
 
-        	PacketHandler.sendToServer(new ServerChatMessagePacket(mc.thePlayer.getCommandSenderName() + "-" + chatBar.getText() + "-" + Channel), Main.channels);
+        	PacketHandler.sendToServer(new ServerChatMessagePacket(mc.thePlayer.getCommandSenderName() + "-" + chatBar.getText() + "-" + Channel), Main.Utils.channels);
 
                 
                 
@@ -357,7 +357,7 @@ public class GuiChat extends GuiContainer{
 		
 		
 	public void SendMessage(String Message){
-    	PacketHandler.sendToServer(new ServerChatMessagePacket(mc.thePlayer.getCommandSenderName() + "-" + Message + "-" + Channel), Main.channels);
+    	PacketHandler.sendToServer(new ServerChatMessagePacket(mc.thePlayer.getCommandSenderName() + "-" + Message + "-" + Channel), Main.Utils.channels);
 
         
          

@@ -432,7 +432,7 @@ double extraMaxZ = 0.0D;
 
         if(this.getStackInSlot(0) != null)
         if(Red > 0 || Green > 0 || Blue > 0 || Strength > 1 || Power > 0 || Valid)
-            return PacketHandler.GetPacket(new ClientLaserUpdatePacket(xCoord, yCoord, zCoord, Red, Green, Blue, Strength, Power), Main.channels);
+            return PacketHandler.GetPacket(new ClientLaserUpdatePacket(xCoord, yCoord, zCoord, Red, Green, Blue, Strength, Power), Main.Utils.channels);
 
         else
             return super.getDescriptionPacket();

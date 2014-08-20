@@ -43,7 +43,7 @@ public void fromBytes(ByteBuf buf, Side side) {
 		String Channel = text[2];
 
 
-            PacketHandler.sendToPlayer(new ClientChatMessageRecivedPacket(Player + "-" + Message + "-" + Channel), player, Main.channels);
+            PacketHandler.sendToPlayer(new ClientChatMessageRecivedPacket(Player + "-" + Message + "-" + Channel), player, Main.Utils.channels);
 
 		}
 

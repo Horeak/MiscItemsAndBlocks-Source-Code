@@ -25,8 +25,8 @@ public class GameInfo
         {
 
 
-        	PacketHandler.sendToPlayer(new ClientGamePacketBegin(Player_1.getCommandSenderName(), Player_2.getCommandSenderName()), Player_1, Main.channels);
-        	PacketHandler.sendToPlayer(new ClientGamePacketBegin(Player_1.getCommandSenderName(), Player_2.getCommandSenderName()), Player_2, Main.channels);
+        	PacketHandler.sendToPlayer(new ClientGamePacketBegin(Player_1.getCommandSenderName(), Player_2.getCommandSenderName()), Player_1, Main.Utils.channels);
+        	PacketHandler.sendToPlayer(new ClientGamePacketBegin(Player_1.getCommandSenderName(), Player_2.getCommandSenderName()), Player_2, Main.Utils.channels);
         
         return this;
         }

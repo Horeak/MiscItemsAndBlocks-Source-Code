@@ -103,15 +103,8 @@ public class GuiMiningChamber extends GuiContainer{
 	
 	@Override
 	protected void actionPerformed(GuiButton button){
-		PacketHandler.sendToServer(new ServerButtonPacket((byte) button.id), Main.channels);
-		
-//		if(button.id == 3){
-//			if(Start.displayString == StatCollector.translateToLocal("words.start")){
-//				Start.displayString = StatCollector.translateToLocal("words.stop");
-//			}else if (Start.displayString == StatCollector.translateToLocal("words.stop")){
-//				Start.displayString = StatCollector.translateToLocal("words.start");
-//			}
-//		}
+		PacketHandler.sendToServer(new ServerButtonPacket((byte) button.id), Main.Utils.channels);
+
 
 	}
 	
