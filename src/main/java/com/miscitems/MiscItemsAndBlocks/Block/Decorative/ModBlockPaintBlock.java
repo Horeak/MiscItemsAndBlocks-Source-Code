@@ -77,9 +77,13 @@ public class ModBlockPaintBlock extends ModBlockContainer{
 
             stack.setTagCompound(new NBTTagCompound());
 
+            if(tile.Red > 0 || tile.Green > 0 || tile.Blue > 0) {
                 stack.stackTagCompound.setInteger("Red", tile.Red);
                 stack.stackTagCompound.setInteger("Green", tile.Green);
                 stack.stackTagCompound.setInteger("Blue", tile.Blue);
+            }else {
+                stack.setTagCompound(null);
+            }
 
 
 

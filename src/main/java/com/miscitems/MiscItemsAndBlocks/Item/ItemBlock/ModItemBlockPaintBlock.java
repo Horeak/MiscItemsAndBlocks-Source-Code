@@ -23,7 +23,7 @@ public class ModItemBlockPaintBlock extends ItemBlock {
 
         if(stack.getTagCompound() != null){
             Color c = new Color(stack.getTagCompound().getInteger("Red"), stack.getTagCompound().getInteger("Green"), stack.getTagCompound().getInteger("Blue"));
-            list.add("Color: " + EnumChatFormatting.BLUE + c.getRGB());
+            list.add("Color: " + EnumChatFormatting.BLUE + " R: " + c.getRed() + " G: " + c.getGreen() + " B: " + c.getBlue());
         }
 
     }

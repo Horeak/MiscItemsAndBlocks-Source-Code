@@ -178,15 +178,6 @@ words.red=Red
 words.green=Green
 words.blue=Blue
 
-//Config
-config.el.Client=Client Settings
-config.el.Server=Server Settings
-config.el.Blocks=Blocks
-config.el.Items=Items
-config.el.Client.tooltip=Client side settings.
-config.el.Server.tooltip=Server side settings.
-config.el.Blocks.tooltip=Enable/Disable blocks.
-config.el.Items.tooltip=Enable/Disable Items.
 
 //Different descriptions used on item tooltips
 items.desc.invisCharged=Charge:
