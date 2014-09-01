@@ -14,7 +14,6 @@ import com.miscitems.MiscItemsAndBlocks.Block.BlockContainers.ModBlockWirelessIt
 import com.miscitems.MiscItemsAndBlocks.Block.BlockContainers.ModBlockWirelessRedstone;
 import com.miscitems.MiscItemsAndBlocks.Block.BlockContainers.ModBlockWorktable;
 import com.miscitems.MiscItemsAndBlocks.Block.BlockContainers.ModBlockXpStorage;
-import com.miscitems.MiscItemsAndBlocks.Block.Decorative.ModBlockColorBlock;
 import com.miscitems.MiscItemsAndBlocks.Block.Decorative.ModBlockColoredMetalBrick;
 import com.miscitems.MiscItemsAndBlocks.Block.Decorative.ModBlockGamePart;
 import com.miscitems.MiscItemsAndBlocks.Block.Decorative.ModBlockItemPedestal;
@@ -49,7 +48,6 @@ import com.miscitems.MiscItemsAndBlocks.Block.Plants.ModBlockOrangePlanks;
 import com.miscitems.MiscItemsAndBlocks.Block.Plants.ModBlockOrangeSapling;
 import com.miscitems.MiscItemsAndBlocks.Block.Plants.ModBlockTomatoPlant;
 import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockBox;
-import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockColor;
 import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockColoredMetalBrick;
 import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockComputer;
 import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockDice;
@@ -312,8 +310,6 @@ public class ModBlocks {
         ColoredBrickGlowstone = new ModBlockColoredMetalBrick().setBlockTextureName(Reference.Mod_Id + ":MetalBrickGlowstone").setCreativeTab(Main.DecorativeTab).setLightLevel(1.0F);
         Utils.Register(ColoredBrickGlowstone, ModItemBlockColoredMetalBrick.class, "ColoredBrickGlowstone");
 
-        ColorBlock = new ModBlockColorBlock().setCreativeTab(Main.DecorativeTab).setBlockTextureName(Reference.Mod_Id + ":BlankTexture");
-        Utils.Register(ColorBlock, ModItemBlockColor.class, "ColorBlock");
 
 
 

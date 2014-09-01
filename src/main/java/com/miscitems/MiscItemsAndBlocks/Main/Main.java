@@ -10,6 +10,7 @@ import com.miscitems.MiscItemsAndBlocks.Event.BoneMealEvent;
 import com.miscitems.MiscItemsAndBlocks.Event.DisarmStickEvent;
 import com.miscitems.MiscItemsAndBlocks.Event.GhostBlockBreakEvent;
 import com.miscitems.MiscItemsAndBlocks.Event.GuiListener;
+import com.miscitems.MiscItemsAndBlocks.Gui.Computer.ProgramList;
 import com.miscitems.MiscItemsAndBlocks.Gui.GuiHandler;
 import com.miscitems.MiscItemsAndBlocks.Network.Client.ClientChatMessageRecivedPacket;
 import com.miscitems.MiscItemsAndBlocks.Network.Client.ClientGamePacketBegin;
@@ -157,6 +158,8 @@ import java.util.Set;
         	Messages.Init();
 
         	Crafting.RegisterRecipes();
+
+            ProgramList.RegisterPrograms();
 
 
 

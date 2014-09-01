@@ -21,7 +21,7 @@ import com.miscitems.MiscItemsAndBlocks.Container.Machines.ContainerPizzaOven;
 import com.miscitems.MiscItemsAndBlocks.Container.Machines.ContainerSquezer;
 import com.miscitems.MiscItemsAndBlocks.Container.Machines.ContainerXpStorage;
 import com.miscitems.MiscItemsAndBlocks.Gui.Computer.OldGuis.GuiChat;
-import com.miscitems.MiscItemsAndBlocks.Gui.Computer.OldGuis.GuiComputerScreen;
+import com.miscitems.MiscItemsAndBlocks.Gui.Computer.GuiComputerScreen;
 import com.miscitems.MiscItemsAndBlocks.Gui.Computer.OldGuis.GuiGame1Select;
 import com.miscitems.MiscItemsAndBlocks.Gui.Computer.OldGuis.GuiPlayerFinder;
 import com.miscitems.MiscItemsAndBlocks.Gui.Electric.GuiCharger;
@@ -83,7 +83,7 @@ public class GuiHandler implements IGuiHandler{
         
         if (ID < 0)
             return null;
-        
+
         if(tile_entity instanceof TileEntityComputer){
         	return new ContainerComputer((TileEntityComputer)tile_entity);
         }

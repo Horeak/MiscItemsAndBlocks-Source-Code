@@ -308,25 +308,24 @@ public class MiningChamberModel extends ModelBase
 
 	
 	
-	if(!Item){
-		if(Mode == 1){
-    setRotation(DrillBlade1, 0F, 0.2268928F + CurrentRotation , 0F);
-    setRotation(DrillBlade2, 0F, -0.296706F + CurrentRotation , 0F);
-    setRotation(DrillBlade3, 0F, 0.3141593F + CurrentRotation , 0F);
-    setRotation(DrillBlade4, 0F, -0.3665191F + CurrentRotation , 0F);
-	
-	CurrentRotation = CurrentRotation + 0.01F;
-	
-	}else{
-		CurrentRotation = 0.0F;
-	}
-	}else{
-	    setRotation(DrillBlade1, 0F, 0.2268928F , 0F);
-	    setRotation(DrillBlade2, 0F, -0.296706F , 0F);
-	    setRotation(DrillBlade3, 0F, 0.3141593F , 0F);
-	    setRotation(DrillBlade4, 0F, -0.3665191F , 0F);
-	}
-	
+	if(!Item) {
+        if (Mode == 1) {
+
+            float g = new Long(System.currentTimeMillis()).shortValue() / 60;
+            float t = 0.08F;
+
+            setRotation(DrillBlade1, 0F, t * g, 0F);
+            setRotation(DrillBlade2, 0F, -t * g, 0F);
+            setRotation(DrillBlade3, 0F, t * g, 0F);
+            setRotation(DrillBlade4, 0F, -t * g, 0F);
+
+        } else {
+            setRotation(DrillBlade1, 0F, 0.2268928F, 0F);
+            setRotation(DrillBlade2, 0F, -0.296706F, 0F);
+            setRotation(DrillBlade3, 0F, 0.3141593F, 0F);
+            setRotation(DrillBlade4, 0F, -0.3665191F, 0F);
+        }
+    }
     DrillBlade1.render(f5);
     DrillBlade2.render(f5);
     DrillBlade3.render(f5);

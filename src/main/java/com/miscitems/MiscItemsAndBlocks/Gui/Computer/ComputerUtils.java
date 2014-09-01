@@ -1,21 +1,22 @@
 package com.miscitems.MiscItemsAndBlocks.Gui.Computer;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ComputerUtils {
 
-    private static HashMap<ComputerProgram, Boolean> ProgramEnabled = new HashMap<ComputerProgram, Boolean>();
-    private static HashMap<String, ComputerProgram> Programs = new HashMap<String, ComputerProgram>();
+    public static HashMap<ComputerProgram, Boolean> ProgramEnabled = new HashMap<ComputerProgram, Boolean>();
+    public static HashMap<String, ComputerProgram> ProgramIds = new HashMap<String, ComputerProgram>();
+    public static ArrayList<ComputerProgram> Programs = new ArrayList<ComputerProgram>();
 
-    private static final int MAX_WINDOW_SIZE_X = 250;
-    private static final int MAX_WINDOW_SIZE_Y = 157;
-
-    public static int GetMaxWindowSizeX(){return MAX_WINDOW_SIZE_X;}
-    public static int GetMaxWindowSizeY(){return MAX_WINDOW_SIZE_Y;}
 
     public static void AddProgram(ComputerProgram Program){
-        Programs.put(Program.GetId(), Program);
-        ProgramEnabled.put(Program, Program.IsEnabled());
+        if(Program.IsEnabled()) {
+            ProgramIds.put(Program.GetId(), Program);
+            ProgramEnabled.put(Program, Program.IsEnabled());
+            Programs.add(Program);
+        }
 
     }
+
 }

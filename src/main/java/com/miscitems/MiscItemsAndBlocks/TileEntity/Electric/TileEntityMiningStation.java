@@ -1,16 +1,16 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity.Electric;
 
-import MiscUtils.Network.PacketHandler;
 import MiscUtils.Block.BlockUtil;
 import MiscUtils.Inventory.InventoryUtils;
+import MiscUtils.Network.PacketHandler;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Network.PacketTileWithItemUpdate;
 import com.mojang.authlib.GameProfile;
-import cpw.mods.fml.relauncher.ReflectionHelper;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 import net.minecraft.nbt.NBTTagCompound;
@@ -207,7 +207,13 @@ public class TileEntityMiningStation extends TileEntityPowerInv{
     	if(!this.worldObj.isRemote) {
             if (this.getStackInSlot(ToolSlot) != null) {
                 if (GetPower() > 0) {
-                    if (this.getStackInSlot(ToolSlot).getItem() instanceof ItemTool && ReflectionHelper.getPrivateValue(ItemTool.class, (ItemTool) this.getStackInSlot(ToolSlot).getItem(), "toolClass").equals("pickaxe")) {
+
+                    boolean t = false;
+
+                         t =   this.getStackInSlot(ToolSlot).getItem().getToolClasses(this.getStackInSlot(ToolSlot)).contains("pickaxe");
+
+
+                    if (this.getStackInSlot(ToolSlot).getItem() instanceof ItemPickaxe || this.getStackInSlot(ToolSlot).getItem() instanceof ItemTool && t) {
                             int DamageLeft = this.getStackInSlot(ToolSlot).getMaxDamage() - this.getStackInSlot(ToolSlot).getItemDamage();
                             if (DamageLeft > 1) {
 

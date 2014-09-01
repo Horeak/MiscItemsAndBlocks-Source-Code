@@ -1,17 +1,18 @@
 package com.miscitems.MiscItemsAndBlocks.Gui.Computer;
 
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.GuiButton;
+
+import java.util.List;
+
 public abstract class ComputerProgram {
 
     //Receiving the info for the program from the the parent
-    public ComputerProgram(String Id, String Name, boolean Enabled, int XSize, int YSize, int XCord, int YCord, ProgramIconInfo Icon){
+    public ComputerProgram(String Id, String Name, boolean Enabled, ProgramIconInfo Icon){
 
         this.ProgramId = Id;
         this.ProgramName = Name;
         this.Enabled = Enabled;
-        this.WindowSizeX = XSize;
-        this.WindowSizeY = YSize;
-        this.WindowXCord = XCord;
-        this.WindowYCord = YCord;
         this.ProgramIcon = Icon;
     }
 
@@ -24,14 +25,6 @@ public abstract class ComputerProgram {
     //The id for the program. Used for saving the program to the server
     protected String ProgramId;
 
-    //The size of the program window
-    protected int WindowSizeX;
-    protected int WindowSizeY;
-
-    //The coordinates of the program on the screen
-    protected int WindowXCord;
-    protected int WindowYCord;
-
     //The icon used for the program
     protected ProgramIconInfo ProgramIcon;
 
@@ -40,11 +33,18 @@ public abstract class ComputerProgram {
     //Returns true if the program is enabled on the server
     public boolean IsEnabled(){return Enabled;}
 
-    //Returns true if the program runs with fullscreen
-    public boolean IsFullScreen(){return WindowSizeX >= ComputerUtils.GetMaxWindowSizeX() && WindowSizeY >= ComputerUtils.GetMaxWindowSizeY();}
+    //Allows programs to add buttons to the gui while the program is open
+    public void AddButton(List buttonList, int x, int y){}
 
-    //Returns true if the window can be moved around on the screen
-    public boolean CanBeMoved(){return !IsFullScreen();}
+    //Called when a button in the program is clicked
+    public void ButtonClicked(GuiButton button){}
+
+    //Called when the mouse is clicked when the program is open
+    public void MouseClicked(int x, int y, int par3){}
+
+    //Called when a key is typed when the program is open
+    //Returns a boolean if it should call keyTyped in the computer gui instance
+    public boolean KeyTyped(char key, int keycode){return true;}
 
     //Returns the name of the program
     public String GetName(){return ProgramName;}
@@ -52,18 +52,22 @@ public abstract class ComputerProgram {
     //Returns the id of the program. Used for identifying the program and saving syncing it with the server
     public String GetId(){return ProgramId;}
 
-    //Returns the size of the window
-    public int GetSizeX(){return WindowSizeX;}
-    public int GetSizeY(){return WindowSizeY;}
-
-    //Returns the coordinates for the position of the program on the screen
-    public int GetX(){return WindowXCord;}
-    public int GetY(){return WindowYCord;}
 
     //Returns the ProgramIconInfo to be used for the program icon
     public ProgramIconInfo GetIcon(){return ProgramIcon;}
 
-    //TODO Implement properly
-    public abstract void RenderWindow(int xCord, int yCord);
+    //Called when the program is closed
+    public void CloseProgram(){}
+
+    //Called when the program is opened
+    public void OpenProgram(){}
+
+    //Renders the program
+    public abstract void RenderWindow(GuiComputerScreen guiInstance, FontRenderer font, int xCord, int yCord);
+
+    public void DrawScreen(int Xcord, int yCord, int x, int y, float par3){}
+
+    //Gets a new instance of the program
+    public abstract ComputerProgram GetInstance();
 
 }
