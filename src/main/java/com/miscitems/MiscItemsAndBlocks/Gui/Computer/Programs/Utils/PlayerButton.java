@@ -3,17 +3,20 @@ package com.miscitems.MiscItemsAndBlocks.Gui.Computer.Programs.Utils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
-public class PlayerButton extends GuiButton {
-    String Name;
-    boolean Admin;
+import java.awt.*;
 
-    public PlayerButton(int id, int x, int y, String Name, boolean Admin) {
+public class PlayerButton extends GuiButton {
+    EntityPlayer Player;
+    ChatChannel Channel;
+
+    public PlayerButton(int id, int x, int y, EntityPlayer Player, ChatChannel Channel) {
         super(id, x, y, 65, 9, "");
-        this.Name = Name;
-        this.Admin = Admin;
+        this.Player = Player;
+        this.Channel = Channel;
     }
 
 
@@ -28,19 +31,36 @@ public class PlayerButton extends GuiButton {
 
             GL11.glColor4f(1F, 1F, 1F, 1F);
 
-            if(Admin) {
-                drawTexturedModalRect((this.xPosition - 2), (this.yPosition - 2), 22, 153, 11, 11);
 
-                float scale = 0.5F;
-                GL11.glScalef(scale, scale, scale);
-                fontRendererObj.drawString("     " + Name, (this.xPosition + 2) * 2, (this.yPosition + 2) * 2, 24737632);
-            }else{
-                float scale = 0.5F;
-                GL11.glScalef(scale, scale, scale);
-                fontRendererObj.drawString(Name, this.xPosition * 2, (this.yPosition + 2) * 2, 24737632);
+            if(Player != null) {
+
+                ChatRanks Rank = Channel.GetPlayerRank(Player);
+
+                if (Rank.color != null) {
+
+                    Color c = Rank.color;
+
+                    float r = (float) ((double) c.getRed() / (double) 255), g = (float) ((double) c.getGreen() / (double) 255), b = (float) ((double) c.getBlue() / (double) 255);
+
+                    GL11.glColor4f(r, g, b, 1F);
+
+                    drawTexturedModalRect((this.xPosition - 2), (this.yPosition - 2), 22, 153, 11, 11);
+
+                    GL11.glColor4f(1F, 1F, 1F, 1F);
+
+                    float scale = 0.5F;
+                    GL11.glScalef(scale, scale, scale);
+                    fontRendererObj.drawString("     " + Player.getDisplayName(), (this.xPosition + 2) * 2, (this.yPosition + 2) * 2, 24737632);
+
+
+                } else {
+                    float scale = 0.5F;
+                    GL11.glScalef(scale, scale, scale);
+                    fontRendererObj.drawString(Player.getDisplayName(), this.xPosition * 2, (this.yPosition + 2) * 2, 24737632);
+                }
+
+
             }
-
-
 
 
         }

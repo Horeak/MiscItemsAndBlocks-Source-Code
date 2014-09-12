@@ -23,7 +23,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GuiChatProgram extends ComputerProgram {
+public class ChatProgram extends ComputerProgram {
 
 
     private final ResourceLocation Texture = new ResourceLocation("miscitems" , "textures/gui/ChatGui.png");
@@ -42,7 +42,7 @@ public class GuiChatProgram extends ComputerProgram {
 
     int posX = 0, posY = 0;
 
-    public GuiChatProgram() {
+    public ChatProgram() {
         super("Chat_ID", "Chat", true, new ProgramIconInfo(new ResourceLocation("miscitems", "textures/gui/ComputerIcons/ComputerIcons.png"), 0, 0, 16, 16));
     }
 
@@ -313,7 +313,7 @@ public class GuiChatProgram extends ComputerProgram {
 
     @Override
     public ComputerProgram GetInstance() {
-        return new GuiChatProgram();
+        return new ChatProgram();
     }
 
 
@@ -459,7 +459,7 @@ public class GuiChatProgram extends ComputerProgram {
         int lines = CurrentChannel.ConnectedPlayers.size();
 
         int xBase = x + 152 + 80;
-        int yBase = y + 35;
+        int yBase = y + 34;
 
         List list = new ArrayList();
 
@@ -482,16 +482,8 @@ public class GuiChatProgram extends ComputerProgram {
             EntityPlayer player = CurrentChannel.ConnectedPlayers.get(i);
             if(player != null) {
 
-                PlayerButton button;
+                PlayerButton button = new PlayerButton(3 + i, ((xBase)),  ((yBase + (lines * 5))), player, CurrentChannel);
 
-                if(CurrentChannel.Admins.contains(player)){
-
-                    button = new PlayerButton(3 + i,  ((xBase)), ((yBase + (lines * 5))), player.getDisplayName(), true);
-
-                }else {
-
-                    button = new PlayerButton(3 + i, ((xBase)),  ((yBase + (lines * 5))), player.getDisplayName(), false);
-                }
 
                 list.add(button);
 

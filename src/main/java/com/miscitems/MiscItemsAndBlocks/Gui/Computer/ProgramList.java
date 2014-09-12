@@ -1,15 +1,13 @@
 package com.miscitems.MiscItemsAndBlocks.Gui.Computer;
 
-import com.miscitems.MiscItemsAndBlocks.Gui.Computer.Programs.GuiChatProgram;
-import com.miscitems.MiscItemsAndBlocks.Gui.Computer.Programs.Utils.ChannelUtils;
+import com.miscitems.MiscItemsAndBlocks.Gui.Computer.Programs.ChatProgram;
 
 public class ProgramList {
 
     public static void RegisterPrograms(){
 
 
-        ComputerUtils.AddProgram(new GuiChatProgram());
+        ComputerUtils.AddProgram(new ChatProgram());
 
-        ChannelUtils.AddChannel("Default", "Default", false);
     }
 }

@@ -16,7 +16,7 @@ public class ChannelUtils {
 
         if (channel == null) {
             channel = new ChatChannel(Name, Name, true);
-            channel.MakePlayerAdmin(player);
+            channel.SetPlayerRank(player, ChatRanks.Owner);
 
 
             ChannelUtils.AddChannel(channel);
@@ -29,7 +29,7 @@ public class ChannelUtils {
     public static ChatChannel GetChannel(String Name){
 
         for(ChatChannel channel : Channels){
-            if(channel.ChannelName.equals(Name))
+            if(channel.ChannelName.equalsIgnoreCase(Name))
                 return channel;
 
         }
@@ -58,9 +58,27 @@ public class ChannelUtils {
 
         }
 
+        Channels.add(channel);
+        ChannelIds.put(ID, channel);
+
+
+        return true;
+    }
+
+    public static boolean AddChannel(String Name, String ID, boolean CanClose, boolean OpAdmins){
+        ChatChannel channel = new ChatChannel(ID, Name, CanClose);
+
+        for(ChatChannel chan : Channels){
+            if(chan.ChannelId.equalsIgnoreCase(channel.ChannelId))
+                return false;
+
+        }
+
+        channel.OpAdmins = OpAdmins;
 
         Channels.add(channel);
         ChannelIds.put(ID, channel);
+
 
         return true;
     }
@@ -78,9 +96,11 @@ public class ChannelUtils {
     public static boolean ConnectToChannel(String Id, EntityPlayer player){
         ChatChannel channel = ChannelIds.get(Id);
 
-        if(!channel.Banned.contains(player) && !channel.ConnectedPlayers.contains(player)){
-            channel.ConnectedPlayers.add(player);
+        if(!channel.Banned.contains(player)){
+            channel.AddPlayer(player);
             channel.AddMessage(" * " + player.getDisplayName() + " Joined the channel.");
+
+           // PacketHandler.sendToServer(new ChannelUpdatePlayer(Id, player, false), Main.Utils.channels);
 
             return true;
         }
@@ -91,9 +111,12 @@ public class ChannelUtils {
     public static boolean DisconnectFromChannel(String Id, EntityPlayer player){
         ChatChannel channel = ChannelIds.get(Id);
 
+
         if(channel.ConnectedPlayers.contains(player)){
-            channel.ConnectedPlayers.remove(player);
+            channel.RemovePlayer(player);
             channel.AddMessage(" * " + player.getDisplayName() + " Left the channel.");
+
+           // PacketHandler.sendToServer(new ChannelUpdatePlayer(Id, player, true), Main.Utils.channels);
 
             if(channel.Close){
                 if(channel.ConnectedPlayers.size() <= 0){

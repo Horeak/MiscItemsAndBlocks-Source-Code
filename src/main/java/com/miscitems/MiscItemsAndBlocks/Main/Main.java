@@ -12,7 +12,6 @@ import com.miscitems.MiscItemsAndBlocks.Event.GhostBlockBreakEvent;
 import com.miscitems.MiscItemsAndBlocks.Event.GuiListener;
 import com.miscitems.MiscItemsAndBlocks.Gui.Computer.ProgramList;
 import com.miscitems.MiscItemsAndBlocks.Gui.GuiHandler;
-import com.miscitems.MiscItemsAndBlocks.Network.Client.ClientChatMessageRecivedPacket;
 import com.miscitems.MiscItemsAndBlocks.Network.Client.ClientGamePacketBegin;
 import com.miscitems.MiscItemsAndBlocks.Network.Client.ClientGamePacketChange;
 import com.miscitems.MiscItemsAndBlocks.Network.Client.ClientGamePacketInviteRecived;
@@ -23,7 +22,6 @@ import com.miscitems.MiscItemsAndBlocks.Network.Client.ClientMetalPressPacketUpd
 import com.miscitems.MiscItemsAndBlocks.Network.PacketTileUpdate;
 import com.miscitems.MiscItemsAndBlocks.Network.PacketTileWithItemUpdate;
 import com.miscitems.MiscItemsAndBlocks.Network.Server.ServerButtonPacket;
-import com.miscitems.MiscItemsAndBlocks.Network.Server.ServerChatMessagePacket;
 import com.miscitems.MiscItemsAndBlocks.Network.Server.ServerGamePacketAccept;
 import com.miscitems.MiscItemsAndBlocks.Network.Server.ServerGamePacketChange;
 import com.miscitems.MiscItemsAndBlocks.Network.Server.ServerGamePacketClosed;
@@ -159,7 +157,10 @@ import java.util.Set;
 
         	Crafting.RegisterRecipes();
 
+            if(event.getSide() == Side.CLIENT)
             ProgramList.RegisterPrograms();
+
+            com.miscitems.MiscItemsAndBlocks.Gui.Computer.Programs.Utils.ChannelUtils.AddChannel("Default", "Default", false, config.GetConfigFile().getBoolean("Op gives admin in all chat channels", Config.CATEGORY_SERVER_SETTINGS, true, "Should players with op get admin in all chat channels?"));
 
 
 
@@ -246,7 +247,7 @@ import java.util.Set;
         public static void RegisterPackets(){
 
 
-            Utils.handler.RegisterPacket(ClientChatMessageRecivedPacket.class);
+
             Utils.handler.RegisterPacket(ClientGamePacketBegin.class);
             Utils.handler.RegisterPacket(ClientGamePacketChange.class);
             Utils.handler.RegisterPacket(ClientGamePacketInviteRecived.class);
@@ -256,7 +257,6 @@ import java.util.Set;
             Utils.handler.RegisterPacket(ClientMetalPressPacketUpdate.class);
 
             Utils.handler.RegisterPacket(ServerButtonPacket.class);
-            Utils.handler.RegisterPacket(ServerChatMessagePacket.class);
             Utils.handler.RegisterPacket(ServerGamePacketAccept.class);
             Utils.handler.RegisterPacket(ServerGamePacketChange.class);
             Utils.handler.RegisterPacket(ServerGamePacketClosed.class);
