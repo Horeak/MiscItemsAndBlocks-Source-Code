@@ -1,8 +1,5 @@
 package com.miscitems.MiscItemsAndBlocks.Gui.Computer.Programs.Utils;
 
-import MiscUtils.Network.AbstractPacket;
-import MiscUtils.Network.PacketHandler;
-import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import cpw.mods.fml.common.FMLCommonHandler;
 import net.minecraft.entity.player.EntityPlayer;
 
@@ -42,11 +39,15 @@ public class ChatChannel {
         return ChatRanks.User;
     }
 
+
+
     public void SetPlayerRank(EntityPlayer player, ChatRanks rank){
         UserRanks.remove(player);
         UserRanks.put(player, rank);
 
     }
+
+
 
     public void AddPlayer(EntityPlayer pl){
         ConnectedPlayers.add(pl);
@@ -67,6 +68,8 @@ public class ChatChannel {
         }
     }
 
+
+
     public void RemovePlayer(EntityPlayer pl){
 
         ConnectedPlayers.remove(pl);
@@ -76,35 +79,79 @@ public class ChatChannel {
 
     }
 
+
+
     public void AddMessageFromPlayer(EntityPlayer player, String Message){
         AddMessage(player.getDisplayName() + ": " + Message);
     }
 
-    public void AddServerSideMessage(String Message){
+
+
+    public void AddMessageToChannel(String Message){
         Messages.add(Message);
     }
 
+
+    //Add network sync code (only add on client side for sender. But sync to server and resend to other clients for others) (Or figure out a way to have chat log stored server side)
     public void AddMessage(String Message)
     {
         Messages.add(Message);
     }
+
+
 
     public void ClearChat(){
         Messages.clear();
     }
 
 
+
+
+    public boolean IsPlayerConnected(EntityPlayer player){
+        return ConnectedPlayers.contains(player);
+    }
+
+    public boolean CanConnectPlayer(EntityPlayer player){
+        return !Banned.contains(player);
+    }
+
+    public void ConnectPlayer(EntityPlayer player){
+
+       AddPlayer(player);
+       AddMessage(" * " + player.getDisplayName() + " Joined the channel.");
+    }
+
+
+
+    public void DisconnectPlayer(EntityPlayer player){
+
+        RemovePlayer(player);
+        AddMessage(" * " + player.getDisplayName() + " Left the channel.");
+    }
+
+
+
+    public void KickPlayer(EntityPlayer player){
+
+        AddMessage(player.getDisplayName() + " was kicked from the channel.");
+
+        ChannelUtils.DisconnectFromChannel(ChannelId, player);
+        ChannelUtils.ConnectToChannel("Default", player);
+    }
+
+
+
     public void BanPlayer(EntityPlayer player){
+        AddMessage(player.getDisplayName() + " was banned from the channel.");
+        ChannelUtils.DisconnectFromChannel(ChannelId, player);
+
         Banned.add(player);
     }
 
-    public void SendPacketToAllConnectedPlayers(AbstractPacket packet){
 
-        for(EntityPlayer pl : ConnectedPlayers){
-                PacketHandler.sendToPlayer(packet, pl, Main.Utils.channels);
-
-        }
-
+    public void UnBanPlayer(EntityPlayer player){
+        Banned.remove(player);
     }
+
 
 }

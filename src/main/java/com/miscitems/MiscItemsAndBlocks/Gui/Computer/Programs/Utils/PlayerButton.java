@@ -50,7 +50,7 @@ public class PlayerButton extends GuiButton {
 
                     float scale = 0.5F;
                     GL11.glScalef(scale, scale, scale);
-                    fontRendererObj.drawString("     " + Player.getDisplayName(), (this.xPosition + 2) * 2, (this.yPosition + 2) * 2, 24737632);
+                    fontRendererObj.drawString("     " + Player.getDisplayName(), (this.xPosition + 2) * 2, (this.yPosition + 2) * 2, c.getRGB());
 
 
                 } else {

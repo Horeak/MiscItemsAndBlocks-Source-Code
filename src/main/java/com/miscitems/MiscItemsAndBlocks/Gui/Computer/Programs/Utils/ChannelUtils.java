@@ -96,11 +96,9 @@ public class ChannelUtils {
     public static boolean ConnectToChannel(String Id, EntityPlayer player){
         ChatChannel channel = ChannelIds.get(Id);
 
-        if(!channel.Banned.contains(player)){
-            channel.AddPlayer(player);
-            channel.AddMessage(" * " + player.getDisplayName() + " Joined the channel.");
+        if(channel.CanConnectPlayer(player)){
 
-           // PacketHandler.sendToServer(new ChannelUpdatePlayer(Id, player, false), Main.Utils.channels);
+            channel.ConnectPlayer(player);
 
             return true;
         }
@@ -112,11 +110,9 @@ public class ChannelUtils {
         ChatChannel channel = ChannelIds.get(Id);
 
 
-        if(channel.ConnectedPlayers.contains(player)){
-            channel.RemovePlayer(player);
-            channel.AddMessage(" * " + player.getDisplayName() + " Left the channel.");
+        if(channel.IsPlayerConnected(player)){
 
-           // PacketHandler.sendToServer(new ChannelUpdatePlayer(Id, player, true), Main.Utils.channels);
+            channel.DisconnectPlayer(player);
 
             if(channel.Close){
                 if(channel.ConnectedPlayers.size() <= 0){

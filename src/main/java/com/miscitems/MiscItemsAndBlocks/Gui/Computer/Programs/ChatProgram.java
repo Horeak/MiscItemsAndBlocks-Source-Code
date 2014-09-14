@@ -5,6 +5,7 @@ import com.miscitems.MiscItemsAndBlocks.Gui.Computer.GuiComputerScreen;
 import com.miscitems.MiscItemsAndBlocks.Gui.Computer.ProgramIconInfo;
 import com.miscitems.MiscItemsAndBlocks.Gui.Computer.Programs.Utils.ChannelUtils;
 import com.miscitems.MiscItemsAndBlocks.Gui.Computer.Programs.Utils.ChatChannel;
+import com.miscitems.MiscItemsAndBlocks.Gui.Computer.Programs.Utils.ChatRanks;
 import com.miscitems.MiscItemsAndBlocks.Gui.Computer.Programs.Utils.PlayerButton;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -13,6 +14,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.input.Keyboard;
@@ -27,11 +29,12 @@ public class ChatProgram extends ComputerProgram {
 
 
     private final ResourceLocation Texture = new ResourceLocation("miscitems" , "textures/gui/ChatGui.png");
-    private final ResourceLocation Connect = new ResourceLocation("miscitems" , "textures/gui/GuiBlankOutInv.png");
+    private final ResourceLocation Options = new ResourceLocation("miscitems" , "textures/gui/GuiBlankOutInv.png");
 
 
-    boolean ConnectWindow = false;
+    boolean ConnectWindow = false, PlayerHandleWindow = false;
     ChatChannel CurrentChannel = null;
+    EntityPlayer CurrentHandel = null;
 
     GuiTextField ConnectText;
     GuiTextField ChatText;
@@ -39,6 +42,7 @@ public class ChatProgram extends ComputerProgram {
     float zLevel = 0;
     public float chatScroll, playerListScroll;
     public boolean chatScrolling, playerScrolling;
+
 
     int posX = 0, posY = 0;
 
@@ -62,10 +66,10 @@ public class ChatProgram extends ComputerProgram {
     }
 
     public void MouseClicked(int x, int y, int par3){
-            if(ConnectText != null && ConnectWindow)
+            if(ConnectText != null && ConnectWindow && !PlayerHandleWindow)
             ConnectText.mouseClicked(x,y,par3);
 
-            if(ChatText != null && !ConnectWindow)
+            if(ChatText != null && !ConnectWindow && !PlayerHandleWindow)
                 ChatText.mouseClicked(x,y,par3);
 
         boolean isOnChatScroll = x >= posX + 207 && x < posX + 207 + 4 && y >= posY + 34 && y < posY + 109;
@@ -124,7 +128,10 @@ public class ChatProgram extends ComputerProgram {
 
     public void OpenProgram(){
 
-        if(ChannelUtils.ConnectToChannel("Default", Minecraft.getMinecraft().thePlayer)){
+        ChatChannel channel = ChannelUtils.GetChannel("Default");
+
+        if(channel.CanConnectPlayer(Minecraft.getMinecraft().thePlayer)){
+            ChannelUtils.ConnectToChannel(channel.ChannelId, Minecraft.getMinecraft().thePlayer);
             CurrentChannel = ChannelUtils.GetChannel("Default");
         }
 
@@ -132,7 +139,10 @@ public class ChatProgram extends ComputerProgram {
 
     public void CloseProgram(){
 
-        if(ChannelUtils.DisconnectFromChannel(CurrentChannel.ChannelId, Minecraft.getMinecraft().thePlayer)) {
+        if(CurrentChannel != null)
+        if(CurrentChannel.IsPlayerConnected(Minecraft.getMinecraft().thePlayer)) {
+
+            ChannelUtils.DisconnectFromChannel(CurrentChannel.ChannelId, Minecraft.getMinecraft().thePlayer);
             CurrentChannel = null;
         }
 
@@ -142,38 +152,146 @@ public class ChatProgram extends ComputerProgram {
 
 
     public void AddButton(List buttonList, int x, int y){
+
+
         GuiButton buttonConnect = new GuiButton(0, x + 33, y + 5, 82, 20, "Connect");
         buttonList.add(buttonConnect);
 
-        buttonConnect.enabled = !ConnectWindow;
+        buttonConnect.enabled = !ConnectWindow && !PlayerHandleWindow;
 
         if(ConnectWindow){
          buttonList.add(new GuiButton(1, x + 125, y + 90, 50, 20, "Done"));
          buttonList.add(new GuiButton(2, x + 75, y + 90, 50, 20, "Default"));
         }
 
-        for(Object r : addPlayerList(x, y)){
-            if(r instanceof GuiButton){
-                buttonList.add(r);
+
+        if(PlayerHandleWindow && CurrentHandel != null){
+
+
+            ChatRanks RankUse = CurrentChannel.GetPlayerRank(Minecraft.getMinecraft().thePlayer);
+            ChatRanks RankCheck = CurrentChannel.GetPlayerRank(CurrentHandel);
+
+            int i = 0;
+
+            if(RankUse.Value - 2 >= RankCheck.Value)
+                i = 3;
+
+            else if(RankUse.Value - 1 >= RankCheck.Value)
+                i = 2;
+
+            else
+            i = 1;
+
+
+            if(i <= 1){
+
+                buttonList.add(new GuiButton(1, x + 96, y + 90, 60, 20, "Done"));
+
+            }else if (i == 2){
+
+                int XBase = 102;
+
+                buttonList.add(new GuiButton(1, x + XBase + 40, y + 90, 40, 20, "Done"));
+                buttonList.add(new GuiButton(3, x + XBase, y + 90, 40, 20, "Kick"));
+                buttonList.add(new GuiButton(5, x + XBase - 40, y + 90, 40, 20, "Demote"));
+
+            }else if (i == 3){
+
+                int XBase = 105;
+
+                buttonList.add(new GuiButton(1, x + XBase + 40, y + 90, 40, 20, "Done"));
+                buttonList.add(new GuiButton(2, x + XBase, y + 90, 40, 20, "Ban"));
+                buttonList.add(new GuiButton(3, x + XBase - 40, y + 90, 40, 20, "Kick"));
+                buttonList.add(new GuiButton(5, x + XBase + 20, y + 70, 40, 20, "Demote"));
+                buttonList.add(new GuiButton(4, x + XBase - 20, y + 70, 40, 20, "Promote"));
 
             }
+
         }
 
+
+        if(!ConnectWindow && !PlayerHandleWindow) {
+            List list = addPlayerList(x, y);
+
+            if (list != null && list.size() > 0)
+                for (Object r : list) {
+                    if (r instanceof GuiButton) {
+                        buttonList.add(r);
+
+                    }
+                }
+
+
+        }
     }
 
     public void ButtonClicked(GuiButton button){
 
-        if(button instanceof PlayerButton){
+        if(PlayerHandleWindow && CurrentHandel != null){
+            int id = button.id;
+
+
+
+            //1 = done
+            //2 = ban
+            //3 = kick
+            //4 = promote
+            //5 = demote
+
+            if(id == 1){
+
+                PlayerHandleWindow = false;
+                CurrentHandel = null;
+
+            }else if (id == 2){
+                CurrentChannel.BanPlayer(CurrentHandel);
+            }else if (id == 3){
+                CurrentChannel.KickPlayer(CurrentHandel);
+            }else if(id == 4){
+
+
+                ChatRanks rank = CurrentChannel.GetPlayerRank(CurrentHandel);
+
+                if(rank.Value == 0)
+                    CurrentChannel.SetPlayerRank(CurrentHandel, ChatRanks.Moderator);
+
+                else if(rank.Value == 1)
+                    CurrentChannel.SetPlayerRank(CurrentHandel, ChatRanks.Admin);
+
+                else if(rank.Value == 2)
+                    CurrentChannel.SetPlayerRank(CurrentHandel, ChatRanks.Owner);
+
+
+            }else if(id == 5){
+
+
+                ChatRanks rank = CurrentChannel.GetPlayerRank(CurrentHandel);
+
+                if(rank.Value == 1)
+                    CurrentChannel.SetPlayerRank(CurrentHandel, ChatRanks.User);
+
+                else if(rank.Value == 2)
+                    CurrentChannel.SetPlayerRank(CurrentHandel, ChatRanks.Moderator);
+
+                else if(rank.Value == 3)
+                    CurrentChannel.SetPlayerRank(CurrentHandel, ChatRanks.Admin);
+
+
+            }
+        }
+
+        if(button instanceof PlayerButton && !PlayerHandleWindow){
             EntityPlayer player = Minecraft.getMinecraft().thePlayer;
 
             EntityPlayer pl = CurrentChannel.ConnectedPlayers.get(button.id - 3);
 
-            if(pl != null && !player.getCommandSenderName().equalsIgnoreCase(pl.getCommandSenderName())){
+          //  if(pl != null && !player.getCommandSenderName().equalsIgnoreCase(pl.getCommandSenderName())){
 
 
+                CurrentHandel = pl;
+                PlayerHandleWindow = true;
 
-
-            }
+            //}
 
         }
 
@@ -210,7 +328,7 @@ public class ChatProgram extends ComputerProgram {
 
     public void DrawScreen(int xCord, int yCord, int x, int y, float par3){
 
-        if(!ConnectWindow) {
+        if(!ConnectWindow && !PlayerHandleWindow) {
             boolean flag = Mouse.isButtonDown(0);
             if (!flag) {
                 chatScrolling = false;
@@ -263,12 +381,14 @@ public class ChatProgram extends ComputerProgram {
             drawChat(guiInstance, xCord, yCord);
 
 
+
+
+
         GL11.glPushMatrix();
         Minecraft.getMinecraft().renderEngine.bindTexture(Texture);
         GL11.glTranslatef(0.0F, -82F * playerListScroll, 0.0F);
         guiInstance.drawTexturedModalRect(xCord + 299, yCord + 96, 3, 154, 4, 15);
         GL11.glPopMatrix();
-
 
         if(ConnectWindow){
             guiInstance.drawDefaultBackground();
@@ -277,7 +397,7 @@ public class ChatProgram extends ComputerProgram {
             GL11.glEnable(GL11.GL_BLEND);
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
-            Minecraft.getMinecraft().renderEngine.bindTexture(Connect);
+            Minecraft.getMinecraft().renderEngine.bindTexture(Options);
 
             guiInstance.drawTexturedModalRect(xCord + 36, yCord + 30, 0,0, 176, 88);
 
@@ -307,7 +427,48 @@ public class ChatProgram extends ComputerProgram {
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
             GL11.glDisable(GL11.GL_LIGHTING);
 
+        }else if(PlayerHandleWindow){
+
+
+            guiInstance.drawDefaultBackground();
+
+
+            GL11.glEnable(GL11.GL_BLEND);
+            GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+
+            Minecraft.getMinecraft().renderEngine.bindTexture(Options);
+
+            guiInstance.drawTexturedModalRect(xCord + 36, yCord + 30, 0,0, 176, 88);
+
+
+
+            if(CurrentHandel != null){
+
+                ChatRanks rank = CurrentChannel.GetPlayerRank(CurrentHandel);
+
+                Color rankColor = rank.color;
+
+                if(rankColor == null)
+                    rankColor = new Color(107, 107, 107);
+
+                font.drawString(EnumChatFormatting.DARK_GRAY + "Player: " + EnumChatFormatting.RESET + CurrentHandel.getDisplayName(), xCord + 45, yCord + 41, rankColor.getRGB());
+                font.drawString(EnumChatFormatting.DARK_GRAY + "Rank: " + EnumChatFormatting.RESET + rank.Name, xCord + 45, yCord + 50, rankColor.getRGB());
+
+            }
+
+
+            GL11.glDisable(GL11.GL_BLEND);
+            GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+            GL11.glDisable(GL11.GL_LIGHTING);
+
         }
+
+
+
+
+
+
+
 
     }
 
@@ -315,6 +476,18 @@ public class ChatProgram extends ComputerProgram {
     public ComputerProgram GetInstance() {
         return new ChatProgram();
     }
+
+
+    /**
+     *
+     *
+     *
+     *  The code for drawing chat and player list begins here!
+     *
+     *
+     *
+     */
+
 
 
     public void drawSolidRect(int par0, int par1, int par2, int par3, int par4, float alpha)
@@ -340,94 +513,86 @@ public class ChatProgram extends ComputerProgram {
     {
 
 
-        GL11.glEnable(GL11.GL_STENCIL_TEST);
-        GL11.glColorMask(false, false, false, false);
+        if(CurrentChannel != null) {
+            GL11.glEnable(GL11.GL_STENCIL_TEST);
+            GL11.glColorMask(false, false, false, false);
 
-        GL11.glStencilFunc(GL11.GL_ALWAYS, 1, 0xFF);
-        GL11.glStencilOp(GL11.GL_KEEP, GL11.GL_KEEP, GL11.GL_REPLACE);
-        GL11.glStencilMask(0xFF);
-        GL11.glClear(GL11.GL_STENCIL_BUFFER_BIT);
+            GL11.glStencilFunc(GL11.GL_ALWAYS, 1, 0xFF);
+            GL11.glStencilOp(GL11.GL_KEEP, GL11.GL_KEEP, GL11.GL_REPLACE);
+            GL11.glStencilMask(0xFF);
+            GL11.glClear(GL11.GL_STENCIL_BUFFER_BIT);
 
-        drawSolidRect(x + 13, y + 34, 200, 78, 0xffffff, 1.0F);
+            drawSolidRect(x + 13, y + 34, 200, 78, 0xffffff, 1.0F);
 
-        GL11.glStencilMask(0x00);
-        GL11.glStencilFunc(GL11.GL_EQUAL, 1, 0xFF);
+            GL11.glStencilMask(0x00);
+            GL11.glStencilFunc(GL11.GL_EQUAL, 1, 0xFF);
 
-        GL11.glColorMask(true, true, true, true);
-
-        GL11.glPushMatrix();
-        float scale = 0.5F;
-
-        GL11.glScalef(scale, scale, scale);
-        int lines = 0;
-
-        int Split = 322;
-
-
-
-
-        //Getting the amount of lines
-        for(int i = 0; i < CurrentChannel.Messages.size(); i++)
-        {
-            List<?> list = Minecraft.getMinecraft().fontRenderer.listFormattedStringToWidth(CurrentChannel.Messages.get(i), Split);
-
-            lines += list.size();
-        }
-
-
-
-        //Translating the Gl11 area with the scroll bar value
-        if(lines > 15)
-        {
-            GL11.glTranslatef(0.0F, -(lines - 15) * 13.0F * (0.77F - chatScroll), 0.0F);
-        }
-
-
-        lines = 0;
-
-
-        //Drawing the lines
-        for(int i = 0; i < CurrentChannel.Messages.size(); i++)
-        {
-            String msg = CurrentChannel.Messages.get(i);
-
-            List<?> list = Minecraft.getMinecraft().fontRenderer.listFormattedStringToWidth(msg, Split);
-
-            for(int kk = 0; kk < list.size(); kk++)
-            {
-
-
-                if(kk == 0)
-                {
-                        Minecraft.getMinecraft().fontRenderer.drawString(list.get(kk).toString(), (int)((x + 38) / scale), (int)((y + 34 + (lines * 5)) / scale), 24737632, false);
-
-                }
-                else
-                {
-                       Minecraft.getMinecraft().fontRenderer.drawString(" " + list.get(kk).toString(), (int)((x + 38) / scale), (int)((y + 39 + (lines * 5)) / scale), 24737632, false);
-                }
-
-            }
-            if(list.size() > 1)
-                lines++;
-
-            lines++;
-        }
-
-
-        GL11.glDisable(GL11.GL_STENCIL_TEST);
-
-        GL11.glPopMatrix();
-        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        if(lines > 15){
+            GL11.glColorMask(true, true, true, true);
 
             GL11.glPushMatrix();
-            Minecraft.getMinecraft().renderEngine.bindTexture(Texture);
-            GL11.glTranslatef(0.0F, -82F * chatScroll, 0.0F);
-            gui.drawTexturedModalRect(x + 207, y + 96, 3, 154, 4, 15);
+            float scale = 0.5F;
+
+            GL11.glScalef(scale, scale, scale);
+            int lines = 0;
+
+            int Split = 322;
+
+
+            //Getting the amount of lines
+            for (int i = 0; i < CurrentChannel.Messages.size(); i++) {
+                List<?> list = Minecraft.getMinecraft().fontRenderer.listFormattedStringToWidth(CurrentChannel.Messages.get(i), Split);
+
+                lines += list.size();
+            }
+
+
+            //Translating the Gl11 area with the scroll bar value
+            if (lines > 15) {
+                GL11.glTranslatef(0.0F, -(lines - 15) * 13.0F * (0.77F - chatScroll), 0.0F);
+            }
+
+
+            lines = 0;
+
+
+            //Drawing the lines
+            for (int i = 0; i < CurrentChannel.Messages.size(); i++) {
+                String msg = CurrentChannel.Messages.get(i);
+
+                List<?> list = Minecraft.getMinecraft().fontRenderer.listFormattedStringToWidth(msg, Split);
+
+                for (int kk = 0; kk < list.size(); kk++) {
+
+
+                    if (kk == 0) {
+                        Minecraft.getMinecraft().fontRenderer.drawString(list.get(kk).toString(), (int) ((x + 38) / scale), (int) ((y + 34 + (lines * 5)) / scale), 24737632, false);
+
+                    } else {
+                        Minecraft.getMinecraft().fontRenderer.drawString(" " + list.get(kk).toString(), (int) ((x + 38) / scale), (int) ((y + 39 + (lines * 5)) / scale), 24737632, false);
+                    }
+
+                }
+                if (list.size() > 1)
+                    lines++;
+
+                lines++;
+            }
+
+
+            GL11.glDisable(GL11.GL_STENCIL_TEST);
+
             GL11.glPopMatrix();
+            GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+            if (lines > 15) {
+
+                GL11.glPushMatrix();
+                Minecraft.getMinecraft().renderEngine.bindTexture(Texture);
+                GL11.glTranslatef(0.0F, -82F * chatScroll, 0.0F);
+                gui.drawTexturedModalRect(x + 207, y + 96, 3, 154, 4, 15);
+                GL11.glPopMatrix();
 
 
+            }
         }
     }
 
@@ -435,72 +600,83 @@ public class ChatProgram extends ComputerProgram {
     public List addPlayerList(int x, int y)
     {
 
-        GL11.glEnable(GL11.GL_STENCIL_TEST);
-        GL11.glColorMask(false, false, false, false);
+        if(CurrentChannel != null) {
+            GL11.glPushMatrix();
 
-        GL11.glStencilFunc(GL11.GL_ALWAYS, 1, 0xFF);
-        GL11.glStencilOp(GL11.GL_KEEP, GL11.GL_KEEP, GL11.GL_REPLACE);
-        GL11.glStencilMask(0xFF);
-        GL11.glClear(GL11.GL_STENCIL_BUFFER_BIT);
+            GL11.glEnable(GL11.GL_STENCIL_TEST);
+            GL11.glColorMask(false, false, false, false);
 
-        drawSolidRect(x + 152 + 80, y + 33, 67, 81, 0xffffff, 1.0F);
+            GL11.glStencilFunc(GL11.GL_ALWAYS, 1, 0xFF);
+            GL11.glStencilOp(GL11.GL_KEEP, GL11.GL_KEEP, GL11.GL_REPLACE);
+            GL11.glStencilMask(0xFF);
+            GL11.glClear(GL11.GL_STENCIL_BUFFER_BIT);
 
-        GL11.glStencilMask(0x00);
-        GL11.glStencilFunc(GL11.GL_EQUAL, 1, 0xFF);
+            drawSolidRect(x + 152 + 80, y + 33, 67, 81, 0xffffff, 1.0F);
 
-        GL11.glColorMask(true, true, true, true);
+            GL11.glStencilMask(0x00);
+            GL11.glStencilFunc(GL11.GL_EQUAL, 1, 0xFF);
 
-        GL11.glPushMatrix();
-        float scale = 0.5F;
+            GL11.glColorMask(true, true, true, true);
 
-        GL11.glScalef(scale, scale, scale);
+            GL11.glPushMatrix();
+            float scale = 0.5F;
 
-
-        int lines = CurrentChannel.ConnectedPlayers.size();
-
-        int xBase = x + 152 + 80;
-        int yBase = y + 34;
-
-        List list = new ArrayList();
+            GL11.glScalef(scale, scale, scale);
 
 
-        //Translating the Gl11 area with the scroll bar value
-        if(lines > 15)
-        {
-            GL11.glTranslatef(0.0F, -(lines - 15) * 13.0F * (0.77F - playerListScroll), 0.0F);
-        }
+            int Size = 0;
+
+            if (CurrentChannel != null && CurrentChannel.ConnectedPlayers != null && CurrentChannel.ConnectedPlayers.size() > 0)
+                Size = CurrentChannel.ConnectedPlayers.size();
 
 
+            int lines = Size;
 
-        lines = 0;
+            int xBase = x + 152 + 80;
+            int yBase = y + 34;
 
-
-        //Drawing the lines
-        for(int i = 0; i < CurrentChannel.ConnectedPlayers.size(); i++)
-        {
-
-            EntityPlayer player = CurrentChannel.ConnectedPlayers.get(i);
-            if(player != null) {
-
-                PlayerButton button = new PlayerButton(3 + i, ((xBase)),  ((yBase + (lines * 5))), player, CurrentChannel);
+            List list = new ArrayList();
 
 
-                list.add(button);
-
+            //Translating the Gl11 area with the scroll bar value
+            if (lines > 15) {
+                GL11.glTranslatef(0.0F, -(lines - 15) * 13.0F * (0.77F - playerListScroll), 0.0F);
             }
 
-            lines++;
+
+            lines = 0;
+
+
+            //Adding player list buttons
+            for (int i = 0; i < Size; i++) {
+
+                EntityPlayer player = CurrentChannel.ConnectedPlayers.get(i);
+                if (player != null) {
+
+
+                    PlayerButton button = new PlayerButton(3 + i, ((xBase)), ((yBase + (lines * 5))), player, CurrentChannel);
+
+
+                    list.add(button);
+
+                }
+
+                lines++;
+            }
+
+
+            GL11.glDisable(GL11.GL_STENCIL_TEST);
+
+            GL11.glPopMatrix();
+            GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+
+            GL11.glPopMatrix();
+
+
+            return list;
         }
 
-
-       GL11.glDisable(GL11.GL_STENCIL_TEST);
-
-        GL11.glPopMatrix();
-        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-
-
-
-        return list;
+        return null;
 
     }
 
