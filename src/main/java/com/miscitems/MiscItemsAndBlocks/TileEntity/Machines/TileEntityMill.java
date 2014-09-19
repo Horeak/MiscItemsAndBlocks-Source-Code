@@ -35,7 +35,7 @@ public class TileEntityMill extends TileEntityInvBase {
         public void updateEntity()
         {
         	
-        	if(this.getStackInSlot(0) != null){
+        	if(this.getStackInSlot(0) != null && getStackInSlot(0).getItem() != null && RecipeHandler.GetMillRecipe(getStackInSlot(0)) != null){
         		ItemStack result = RecipeHandler.GetMillRecipe(getStackInSlot(0)).Output;
         		
         		if(result != null){

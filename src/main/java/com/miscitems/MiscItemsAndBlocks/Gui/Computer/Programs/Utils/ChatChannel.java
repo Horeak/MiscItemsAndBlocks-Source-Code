@@ -1,6 +1,9 @@
 package com.miscitems.MiscItemsAndBlocks.Gui.Computer.Programs.Utils;
 
-import cpw.mods.fml.common.FMLCommonHandler;
+import MiscUtils.Network.PacketHandler;
+import com.miscitems.MiscItemsAndBlocks.Main.Main;
+import com.miscitems.MiscItemsAndBlocks.Network.ComputerPrograms.Chat.PacketAddPlayerServerToClient;
+import com.miscitems.MiscItemsAndBlocks.Network.ComputerPrograms.Chat.PacketChatMessagetoServer;
 import net.minecraft.entity.player.EntityPlayer;
 
 import java.util.ArrayList;
@@ -50,22 +53,24 @@ public class ChatChannel {
 
 
     public void AddPlayer(EntityPlayer pl){
+
         ConnectedPlayers.add(pl);
 
-        if(OpAdmins){
-            if(pl!= null) {
-                if(FMLCommonHandler.instance().getMinecraftServerInstance().isDedicatedServer()) {
-                    if (FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().func_152607_e(pl.getGameProfile())) {
+        PacketHandler.sendToServer(new PacketAddPlayerServerToClient(ChannelName, pl.getCommandSenderName()), Main.Utils.channels);
 
-                        SetPlayerRank(pl, ChatRanks.Admin);
 
-                    }
-
-                }else if (FMLCommonHandler.instance().getMinecraftServerInstance().isSinglePlayer()){
-                    SetPlayerRank(pl, ChatRanks.Admin);
-                }
-            }
-        }
+        //Redo this in a way where it does not crash dedicated servers
+//        if(OpAdmins){
+//            if(pl!= null) {
+//                    if (FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().func_152607_e(pl.getGameProfile())) {
+//
+//                        SetPlayerRank(pl, ChatRanks.Admin);
+//
+//                    }
+//
+//
+//            }
+//        }
     }
 
 
@@ -86,18 +91,18 @@ public class ChatChannel {
     }
 
 
-
-    public void AddMessageToChannel(String Message){
-        Messages.add(Message);
-    }
-
-
     //Add network sync code (only add on client side for sender. But sync to server and resend to other clients for others) (Or figure out a way to have chat log stored server side)
     public void AddMessage(String Message)
     {
-        Messages.add(Message);
+
+        PacketHandler.sendToServer(new PacketChatMessagetoServer(ChannelName, Message), Main.Utils.channels);
+
     }
 
+
+    public void ResendMessage(String Message){
+        Messages.add(Message);
+    }
 
 
     public void ClearChat(){

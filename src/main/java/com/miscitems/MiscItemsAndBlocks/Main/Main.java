@@ -19,6 +19,10 @@ import com.miscitems.MiscItemsAndBlocks.Network.Client.ClientGamePacketRestart;
 import com.miscitems.MiscItemsAndBlocks.Network.Client.ClientGhostBlockPacket;
 import com.miscitems.MiscItemsAndBlocks.Network.Client.ClientLaserUpdatePacket;
 import com.miscitems.MiscItemsAndBlocks.Network.Client.ClientMetalPressPacketUpdate;
+import com.miscitems.MiscItemsAndBlocks.Network.ComputerPrograms.Chat.PacketAddPlayerNew;
+import com.miscitems.MiscItemsAndBlocks.Network.ComputerPrograms.Chat.PacketAddPlayerOld;
+import com.miscitems.MiscItemsAndBlocks.Network.ComputerPrograms.Chat.PacketAddPlayerServerToClient;
+import com.miscitems.MiscItemsAndBlocks.Network.ComputerPrograms.Chat.PacketChatMessagetoServer;
 import com.miscitems.MiscItemsAndBlocks.Network.PacketTileUpdate;
 import com.miscitems.MiscItemsAndBlocks.Network.PacketTileWithItemUpdate;
 import com.miscitems.MiscItemsAndBlocks.Network.Server.ServerButtonPacket;
@@ -247,6 +251,11 @@ import java.util.Set;
         public static void RegisterPackets(){
 
 
+
+            Utils.handler.RegisterPacket(PacketChatMessagetoServer.class);
+            Utils.handler.RegisterPacket(PacketAddPlayerOld.class);
+            Utils.handler.RegisterPacket(PacketAddPlayerNew.class);
+            Utils.handler.RegisterPacket(PacketAddPlayerServerToClient.class);
 
             Utils.handler.RegisterPacket(ClientGamePacketBegin.class);
             Utils.handler.RegisterPacket(ClientGamePacketChange.class);

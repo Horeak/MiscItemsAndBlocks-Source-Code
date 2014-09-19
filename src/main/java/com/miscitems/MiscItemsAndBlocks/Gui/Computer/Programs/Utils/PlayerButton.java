@@ -14,7 +14,7 @@ public class PlayerButton extends GuiButton {
     ChatChannel Channel;
 
     public PlayerButton(int id, int x, int y, EntityPlayer Player, ChatChannel Channel) {
-        super(id, x, y, 65, 9, "");
+        super(id, x, y, 65, 13, "");
         this.Player = Player;
         this.Channel = Channel;
     }
@@ -38,6 +38,8 @@ public class PlayerButton extends GuiButton {
 
                 if (Rank.color != null) {
 
+
+                    GL11.glPushMatrix();
                     Color c = Rank.color;
 
                     float r = (float) ((double) c.getRed() / (double) 255), g = (float) ((double) c.getGreen() / (double) 255), b = (float) ((double) c.getBlue() / (double) 255);
@@ -49,14 +51,16 @@ public class PlayerButton extends GuiButton {
                     GL11.glColor4f(1F, 1F, 1F, 1F);
 
                     float scale = 0.5F;
-                    GL11.glScalef(scale, scale, scale);
-                    fontRendererObj.drawString("     " + Player.getDisplayName(), (this.xPosition + 2) * 2, (this.yPosition + 2) * 2, c.getRGB());
+                   // GL11.glScalef(scale, scale, scale);
+                    fontRendererObj.drawString("  " + Player.getDisplayName(), (this.xPosition + 2), (this.yPosition ), c.getRGB());
+
+                    GL11.glPopMatrix();
 
 
                 } else {
                     float scale = 0.5F;
-                    GL11.glScalef(scale, scale, scale);
-                    fontRendererObj.drawString(Player.getDisplayName(), this.xPosition * 2, (this.yPosition + 2) * 2, 24737632);
+                   // GL11.glScalef(scale, scale, scale);
+                    fontRendererObj.drawString(Player.getDisplayName(), this.xPosition, (this.yPosition + 2), 24737632);
                 }
 
 

@@ -621,7 +621,7 @@ public class ChatProgram extends ComputerProgram {
             GL11.glPushMatrix();
             float scale = 0.5F;
 
-            GL11.glScalef(scale, scale, scale);
+            //GL11.glScalef(scale, scale, scale);
 
 
             int Size = 0;
@@ -647,6 +647,10 @@ public class ChatProgram extends ComputerProgram {
             lines = 0;
 
 
+            GL11.glPushMatrix();
+            GL11.glTranslatef(0.0F, -82F * playerListScroll, 0.0F);
+            GL11.glPopMatrix();
+
             //Adding player list buttons
             for (int i = 0; i < Size; i++) {
 
@@ -654,7 +658,7 @@ public class ChatProgram extends ComputerProgram {
                 if (player != null) {
 
 
-                    PlayerButton button = new PlayerButton(3 + i, ((xBase)), ((yBase + (lines * 5))), player, CurrentChannel);
+                    PlayerButton button = new PlayerButton(3 + i, ((xBase)), ((yBase + (lines * 8))), player, CurrentChannel);
 
 
                     list.add(button);
@@ -671,7 +675,6 @@ public class ChatProgram extends ComputerProgram {
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
             GL11.glPopMatrix();
-
 
             return list;
         }

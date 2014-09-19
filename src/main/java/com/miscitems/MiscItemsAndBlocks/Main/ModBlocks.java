@@ -33,7 +33,6 @@ import com.miscitems.MiscItemsAndBlocks.Block.Electric.ModBlockPowerCable;
 import com.miscitems.MiscItemsAndBlocks.Block.Electric.ModBlockSolarPanel;
 import com.miscitems.MiscItemsAndBlocks.Block.Electric.ModBlockTeleporter;
 import com.miscitems.MiscItemsAndBlocks.Block.Electric.ModBlockWindMill;
-import com.miscitems.MiscItemsAndBlocks.Block.ModBlockComputer;
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlockDice;
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlockDiceHolder;
 import com.miscitems.MiscItemsAndBlocks.Block.ModBlockDisarmTrap;
@@ -49,7 +48,6 @@ import com.miscitems.MiscItemsAndBlocks.Block.Plants.ModBlockOrangeSapling;
 import com.miscitems.MiscItemsAndBlocks.Block.Plants.ModBlockTomatoPlant;
 import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockBox;
 import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockColoredMetalBrick;
-import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockComputer;
 import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockDice;
 import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockDiceHolder;
 import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemBlockDisarmTrap;
@@ -92,7 +90,6 @@ import com.miscitems.MiscItemsAndBlocks.TileEntity.Machines.TileEntityWirelessIt
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Machines.TileEntityWirelessRedstone;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Machines.TileEntityWorktable;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Machines.TileEntityXpStorage;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityComputer;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityDiceHolder;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityGamePart;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.TileEntityGhostBlock;
@@ -282,9 +279,10 @@ public class ModBlocks {
         
         OneWayGlass = new ModBlockOneWayGlass().setCreativeTab(Main.MiscTab);
         Utils.Register(OneWayGlass, "One Way Glass");
-        
-        Computer = new ModBlockComputer().setCreativeTab(Main.MiscTab);
-        Utils.Register(Computer, ModItemBlockComputer.class, "Computer", TileEntityComputer.class);
+
+        //TODO FINSIH!
+//        Computer = new ModBlockComputer().setCreativeTab(Main.MiscTab);
+//        Utils.Register(Computer, ModItemBlockComputer.class, "Computer", TileEntityComputer.class);
         
         StorageBlock = new ModBlockStorageBlock().setCreativeTab(Main.MiscTab);
         Utils.Register(StorageBlock, ModItemBlockStorageBlock.class, "Storage Block", TileEntityStorageBlock.class);
