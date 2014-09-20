@@ -151,7 +151,7 @@ import java.util.Set;
 
             if(config.AllowCustomPillars) {
                 PillarUtils.RegisterBlackList();
-                PillarUtils.RegisterBlocks(event.getSide());
+                PillarUtils.RegisterBlocks();
             }
 
         	ModBlocks.Init();

@@ -69,7 +69,7 @@ public class Crafting {
         Utils.AddShapelessRecipe(FullAdvancedBat, new Object[]{FullBigBat, new ItemStack(ModItems.Circuit, 1, 1), FullBigBat});
 
         Utils.AddShapedOreRecipe(new ShapedOreRecipe(ModBlocks.Worktable, new Object[]{"WWW", "PIP", "PCP", 'W', Blocks.wool, Character.valueOf('P'), "plankWood", 'C', Blocks.chest, 'I', Blocks.crafting_table}));
-        Utils.AddShapedOreRecipe(new ShapedOreRecipe(ModBlocks.Dice, new Object[]{"PPP", "PDP", "PPP", Character.valueOf('P'), "plankWood", 'D', Items.dye}));
+        Utils.AddShapedOreRecipe(new ShapedOreRecipe(ModBlocks.Dice, new Object[]{"PPP", "PDP", "PPP", Character.valueOf('P'), "plankWood", 'D', "dyeBlack"}));
         Utils.AddShapedOreRecipe(new ShapedOreRecipe(ModBlocks.Table, new Object[]{"CCC", "HHH", "P P", 'C', new ItemStack(Blocks.carpet, 1, 14), Character.valueOf('P'), "plankWood", Character.valueOf('H'), "slabWood"}));
         Utils.AddShapedOreRecipe(new ShapedOreRecipe(ModItems.Turbine, new Object[]{"S S", " P ", "S S", 'S', Items.stick, Character.valueOf('P'), "plankWood"}));
 
@@ -77,10 +77,10 @@ public class Crafting {
         Utils.AddShapedOreRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.GhostBlock, 4), new Object[]{"GPG", "GSG", "GDG", 'G', Blocks.glass, 'P', Items.paper, 'D', Items.diamond, Character.valueOf('S'), "nuggetSilver"}));
         Utils.AddShapedOreRecipe(new ShapedOreRecipe(new ItemStack(ModItems.Lens), new Object[]{"ISI", "SGS", "ISI", 'I', Items.iron_ingot, Character.valueOf('S'), "nuggetSilver", 'G', Blocks.glass_pane}));
 
-        Utils.AddRecipe(new ItemStack(ModBlocks.Worktable), new Object[] {"WWW", "PIP", "PCP", 'W', Blocks.wool, 'P', Blocks.planks, 'C', Blocks.chest, 'I', Blocks.crafting_table});
-        Utils.AddRecipe(new ItemStack(ModBlocks.Dice), new Object[]{"PPP", "PDP", "PPP", 'P', Blocks.planks, 'D', Items.dye});
-        Utils.AddRecipe(new ItemStack(ModBlocks.Table), new Object[]{"CCC", "HHH", "P P", 'C', new ItemStack(Blocks.carpet, 1, 14), 'P', Blocks.planks, 'H', Blocks.wooden_slab});
-        Utils.AddRecipe(new ItemStack(ModItems.Turbine), new Object[]{"S S", " P ", "S S", 'S', Items.stick, 'P', Blocks.planks});
+//        Utils.AddRecipe(new ItemStack(ModBlocks.Worktable), new Object[] {"WWW", "PIP", "PCP", 'W', Blocks.wool, 'P', Blocks.planks, 'C', Blocks.chest, 'I', Blocks.crafting_table});
+//        Utils.AddRecipe(new ItemStack(ModBlocks.Dice), new Object[]{"PPP", "PDP", "PPP", 'P', Blocks.planks, 'D', Items.dye});
+//        Utils.AddRecipe(new ItemStack(ModBlocks.Table), new Object[]{"CCC", "HHH", "P P", 'C', new ItemStack(Blocks.carpet, 1, 14), 'P', Blocks.planks, 'H', Blocks.wooden_slab});
+//        Utils.AddRecipe(new ItemStack(ModItems.Turbine), new Object[]{"S S", " P ", "S S", 'S', Items.stick, 'P', Blocks.planks});
 
 
         Utils.AddRecipe(new ItemStack(ModItems.GuideBook), new Object[]{"BP", "SP", 'B', Items.book, 'P', Items.paper, 'S', Items.string});

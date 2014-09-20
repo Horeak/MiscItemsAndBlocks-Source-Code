@@ -15,6 +15,8 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.item.crafting.ShapelessRecipes;
+import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -73,7 +75,19 @@ public class BookUtils {
                 }
 
             }
+        }
 
+        if(list.size() <= 0){
+            for(Object r : CraftingManager.getInstance().getRecipeList()){
+                if(r instanceof ShapedOreRecipe){
+                    ShapedOreRecipe res = (ShapedOreRecipe)r;
+
+                    if(StackUtils.AreStacksEqual(stack, res.getRecipeOutput())){
+                        list.add(res);
+                    }
+
+                }
+            }
         }
 
 
@@ -92,8 +106,20 @@ public class BookUtils {
                 }
 
             }
+        }
 
 
+        if(list.size() <= 0){
+            for(Object r : CraftingManager.getInstance().getRecipeList()){
+                if(r instanceof ShapelessOreRecipe){
+                    ShapelessOreRecipe res = (ShapelessOreRecipe)r;
+
+                    if(StackUtils.AreStacksEqual(stack, res.getRecipeOutput())){
+                        list.add(res);
+                    }
+
+                }
+            }
         }
 
         return list;

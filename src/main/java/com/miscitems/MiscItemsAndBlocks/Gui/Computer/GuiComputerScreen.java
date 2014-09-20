@@ -98,7 +98,7 @@ public class GuiComputerScreen extends GuiContainer{
                         int g = i - (h * 12);
                         if (h < 7) {
 
-                            ProgramButton button = new ProgramButton(i, posX + 11 + (g * 20), posY + 13 + (h * 20), ComputerUtils.Programs.get(i).GetIcon());
+                            ProgramButton button = new ProgramButton(i, posX + 11 + (g * 20), posY + 13 + (h * 20), ComputerUtils.Programs.get(i).GetIcon(), ComputerUtils.Programs.get(i).GetName());
 
                             buttonList.add(button);
 

@@ -12,6 +12,7 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
+import net.minecraftforge.oredict.ShapedOreRecipe;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
@@ -54,7 +55,11 @@ public class RecipeBigPage extends Page {
                if (Recipes.get(0) instanceof ShapedRecipes) {
                 RecipeItems = ((ShapedRecipes) (Recipes.get(0))).recipeItems;
                 RecipeItem = ((Recipes.get(0))).getRecipeOutput();
-            }
+
+            }else if(Recipes.get(0) instanceof ShapedOreRecipe){
+                   RecipeItems = GetOreRecipe(((ShapedOreRecipe) (Recipes.get(0))).getInput());
+                   RecipeItem = ((Recipes.get(0))).getRecipeOutput();
+               }
 
 
     }
@@ -93,7 +98,11 @@ public class RecipeBigPage extends Page {
                        if (Recipes.get(CurrentRes) instanceof ShapedRecipes){
                         RecipeItems = ((ShapedRecipes) (Recipes.get(CurrentRes))).recipeItems;
                         RecipeItem = ((Recipes.get(CurrentRes))).getRecipeOutput();
-                }
+
+                }else if(Recipes.get(CurrentRes) instanceof ShapedOreRecipe){
+                           RecipeItems = GetOreRecipe(((ShapedOreRecipe) (Recipes.get(CurrentRes))).getInput());
+                           RecipeItem = ((Recipes.get(CurrentRes))).getRecipeOutput();
+                       }
             }
 
 

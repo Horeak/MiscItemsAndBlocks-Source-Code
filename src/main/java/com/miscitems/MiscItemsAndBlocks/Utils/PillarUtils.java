@@ -1,7 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Utils;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.relauncher.Side;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockAir;
 import net.minecraft.init.Blocks;
@@ -59,24 +58,18 @@ public class PillarUtils {
 
 
 
-    public static void RegisterBlocks(Side side){
+    public static void RegisterBlocks(){
         for(Object r : Block.blockRegistry) {
             Block bl = (Block) r;
+            GameRegistry.UniqueIdentifier id = GameRegistry.findUniqueIdentifierFor(bl);
 
-            if (GameRegistry.findUniqueIdentifierFor(bl).modId.equals("minecraft") && !(bl instanceof BlockAir)) {
+            if (id != null && id.modId != null && id.modId.equals("minecraft") && !(bl instanceof BlockAir)) {
 
                 if (bl.isOpaqueCube() && bl.getRenderType() == 0 && !BlackList.contains(bl)) {
 
-                    if (side == Side.CLIENT && Item.getItemFromBlock(bl) != null && Item.getItemFromBlock(bl) instanceof ItemBlock && Item.getItemFromBlock(bl).getHasSubtypes()) {
+                    if (Item.getItemFromBlock(bl) != null && Item.getItemFromBlock(bl) instanceof ItemBlock && Item.getItemFromBlock(bl).getHasSubtypes()) {
 
-                        ArrayList e = new ArrayList();
-
-                        if(bl != null)
-                        Item.getItemFromBlock(bl).getSubItems(Item.getItemFromBlock(bl), null, e);
-
-                        int Length = e.size();
-
-                        for (int i = 0; i < Length; i++) {
+                        for (int i = 0; i < 16; i++) {
                             if (!bl.hasTileEntity(i)) {
                                 BlU.add(new ItemStack(bl, 1, i));
 

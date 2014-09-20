@@ -86,7 +86,7 @@ public class ChannelUtils {
     public static boolean CloseChannel(ChatChannel channel){
         if(channel.Close){
             Channels.remove(channel);
-            ChannelIds.remove(channel.ChannelId, channel);
+            ChannelIds.remove(channel.ChannelId);
             return true;
         }
 

@@ -11,6 +11,7 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.ShapelessRecipes;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
@@ -54,19 +55,9 @@ public class RecipeSmallPage extends Page {
             RecipeItems = ((ShapelessRecipes) (Recipes.get(0))).recipeItems;
             RecipeItem = (Recipes.get(0).getRecipeOutput());
 
-        }else if(!(Recipes.get(0) instanceof ShapelessRecipes) && Recipes.size() > 1){
-            if (Recipes.get(1) instanceof ShapelessRecipes) {
-                RecipeItems = ((ShapelessRecipes) (Recipes.get(1))).recipeItems;
-                RecipeItem = (Recipes.get(1).getRecipeOutput());
-            }
-
-        }else if(!(Recipes.get(1) instanceof ShapelessRecipes) && Recipes.size() > 2){
-            if (Recipes.get(2) instanceof ShapelessRecipes) {
-                RecipeItems = ((ShapelessRecipes) (Recipes.get(2))).recipeItems;
-                RecipeItem = (Recipes.get(2).getRecipeOutput());
-            }
-
-
+        }else if(Recipes.get(0) instanceof ShapelessOreRecipe){
+            RecipeItems = GetOreRecipe(((ShapelessOreRecipe) (Recipes.get(0))).getInput());
+            RecipeItem = (Recipes.get(0).getRecipeOutput());
         }
 
 
@@ -104,6 +95,10 @@ public class RecipeSmallPage extends Page {
 
                 if (Recipes.get(CurrentRes) instanceof ShapelessRecipes) {
                     RecipeItems = ((ShapelessRecipes) (Recipes.get(CurrentRes))).recipeItems;
+                    RecipeItem = (Recipes.get(CurrentRes).getRecipeOutput());
+
+                }else if(Recipes.get(CurrentRes) instanceof ShapelessOreRecipe){
+                    RecipeItems = GetOreRecipe(((ShapelessOreRecipe) (Recipes.get(CurrentRes))).getInput());
                     RecipeItem = (Recipes.get(CurrentRes).getRecipeOutput());
 
                 }
