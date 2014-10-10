@@ -180,7 +180,6 @@ words.blue=Blue
 
 
 //Different descriptions used on item tooltips
-items.desc.invisCharged=Charge:
 items.desc.string.powerleft=Power left
 items.desc.string.outofpowerrecharge=Out of power recharge
 items.desc.disarmstick.1=Disarms the player hit.

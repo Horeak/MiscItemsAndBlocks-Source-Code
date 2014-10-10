@@ -3,8 +3,6 @@ package com.miscitems.MiscItemsAndBlocks.Models;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-import net.minecraft.item.ItemDye;
-import net.minecraft.util.ResourceLocation;
 
 public class TableModel extends ModelBase
 {
@@ -51,27 +49,6 @@ public class TableModel extends ModelBase
     ModelRenderer BackRightCorner2;
     ModelRenderer BackRightCorner3;
     ModelRenderer FrontRight5;
-
-    ModelRenderer WoolFull;
-
-    ResourceLocation[] Textures = new ResourceLocation[]{
-            new ResourceLocation("textures/blocks/wool_colored_" + ItemDye.field_150923_a[0] + ".png"),
-            new ResourceLocation("textures/blocks/wool_colored_" + ItemDye.field_150923_a[1] + ".png"),
-            new ResourceLocation("textures/blocks/wool_colored_" + ItemDye.field_150923_a[2] + ".png"),
-            new ResourceLocation("textures/blocks/wool_colored_" + ItemDye.field_150923_a[3] + ".png"),
-            new ResourceLocation("textures/blocks/wool_colored_" + ItemDye.field_150923_a[4] + ".png"),
-            new ResourceLocation("textures/blocks/wool_colored_" + ItemDye.field_150923_a[5] + ".png"),
-            new ResourceLocation("textures/blocks/wool_colored_" + ItemDye.field_150923_a[6] + ".png"),
-            new ResourceLocation("textures/blocks/wool_colored_" + ItemDye.field_150923_a[7] + ".png"),
-            new ResourceLocation("textures/blocks/wool_colored_" + ItemDye.field_150923_a[8] + ".png"),
-            new ResourceLocation("textures/blocks/wool_colored_" + ItemDye.field_150923_a[9] + ".png"),
-            new ResourceLocation("textures/blocks/wool_colored_" + ItemDye.field_150923_a[10] + ".png"),
-            new ResourceLocation("textures/blocks/wool_colored_" + ItemDye.field_150923_a[11] + ".png"),
-            new ResourceLocation("textures/blocks/wool_colored_" + ItemDye.field_150923_a[12] + ".png"),
-            new ResourceLocation("textures/blocks/wool_colored_" + ItemDye.field_150923_a[13] + ".png"),
-            new ResourceLocation("textures/blocks/wool_colored_" + ItemDye.field_150923_a[14] + ".png"),
-            new ResourceLocation("textures/blocks/wool_colored_" + ItemDye.field_150923_a[15] + ".png")
-    };
 
 
   public TableModel()
@@ -391,8 +368,6 @@ public class TableModel extends ModelBase
     
     
     TableTop.render(f5);
-
-
 
 
           if (Wool) {
