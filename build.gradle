@@ -58,10 +58,7 @@ processResources {
 
 dependencies {
 	compile files (
-		"Libs/CodeChickenCore-${config.minecraft_version}-${config.ccc_version}-dev.jar",
-		"Libs/NotEnoughItems-${config.minecraft_version}-${config.nei_version}-dev.jar",
-		"Libs/MiscUtils-deobf-${config.minecraft_version}-${config.miscutils_version}.jar",
-		)
+		"Libs/")
 }
 
 
@@ -76,18 +73,22 @@ jar {
  
 
 task sourceJar(type: Jar) {
-    from sourceSets.main.allSource
-    appendix = 'src'
+from sourceSets.main.allJava
+classifier = 'sources'
 }
- 
-
+task apiZip(type: Zip) {
+from(sourceSets.main.java)
+{
+include "MiscItemsApi/*"
+}
+classifier = 'api'
+}
 task deobfJar(type: Jar) {
-        from sourceSets.main.output
-        appendix = 'deobf'
+from sourceSets.main.output
+classifier = 'deobf'
 }
- 
-
 artifacts {
-        archives sourceJar
-        archives deobfJar
+archives sourceJar
+archives deobfJar
+archives apiZip
 }

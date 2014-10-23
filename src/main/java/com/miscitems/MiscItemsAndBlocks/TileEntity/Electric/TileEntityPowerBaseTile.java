@@ -5,6 +5,7 @@ import MiscUtils.TileEntity.ModTileEntity;
 import cofh.api.energy.IEnergyConnection;
 import cofh.api.energy.IEnergyHandler;
 import cofh.api.energy.IEnergyStorage;
+import MiscItemsApi.Electric.PowerPacket;
 import com.miscitems.MiscItemsAndBlocks.Utils.PowerUtils;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Optional;
@@ -34,6 +35,10 @@ public abstract class TileEntityPowerBaseTile extends ModTileEntity implements I
 
 
 
+    @Override
+    public void OnRecivedEnergyPacket(PowerPacket packet) {
+        AddPower(packet.Stored);
+    }
 
     public void validate()
     {
@@ -103,10 +108,6 @@ public abstract class TileEntityPowerBaseTile extends ModTileEntity implements I
         return CanAcceptPower();
     }
 
-    @Override
-    public boolean ConnectsToCables() {
-        return AcceptsPower();
-    }
 
 
     @Override
@@ -156,6 +157,7 @@ public abstract class TileEntityPowerBaseTile extends ModTileEntity implements I
 
     public boolean acceptsEnergyFrom(TileEntity emitter, ForgeDirection direction){
 
+
         if(emitter instanceof  IPowerTile)
             return true;
 
@@ -201,6 +203,12 @@ public abstract class TileEntityPowerBaseTile extends ModTileEntity implements I
 
         return 1;
     }
+
+    @Override
+    public boolean ConnectsToTile(TileEntity tile) {
+        return true;
+    }
+
 
     @Override
     public int getEnergyStored() {

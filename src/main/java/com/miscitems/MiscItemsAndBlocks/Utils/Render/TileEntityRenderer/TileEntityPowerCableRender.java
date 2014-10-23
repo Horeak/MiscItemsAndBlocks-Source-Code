@@ -2,8 +2,8 @@ package com.miscitems.MiscItemsAndBlocks.Utils.Render.TileEntityRenderer;
 
 import MiscItemsApi.Electric.IPowerGeneration;
 import MiscItemsApi.Electric.IPowerTile;
-import com.miscitems.MiscItemsAndBlocks.Block.Electric.ModBlockPowerCable;
 import com.miscitems.MiscItemsAndBlocks.Models.ModelPowerCable;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityPowerCable;
 import cpw.mods.fml.common.Loader;
 import ic2.api.energy.tile.IEnergyTile;
 import net.minecraft.block.Block;
@@ -95,17 +95,8 @@ public class TileEntityPowerCableRender extends TileEntitySpecialRenderer {
     	int Meta2 = world.getBlockMetadata(x, y, z);
     	
     	Block block = BlockID;
-    	
-    	if(Meta == 4 && block instanceof ModBlockPowerCable && Meta2 == 4)return true;
-    	else if(block instanceof ModBlockPowerCable && Meta == 5 || Meta == 4 && Meta2 == 4 || Meta2 == 5)return true;
-    	
-    	else
-    		if(Meta != 2 && Meta != 4)
-    	    	if(block instanceof ModBlockPowerCable && Meta2 != 2 && Meta2 != 4)return true;
-    	
-    	
-    	if(Meta != 1)
-    	if(tile instanceof IPowerTile && ((IPowerTile)tile).ConnectsToCables())return true;
+
+    	if(tile instanceof IPowerTile && ((IPowerTile)tile).ConnectsToTile(new TileEntityPowerCable()))return true;
     	
     	else if(tile instanceof IPowerGeneration)return true;
 

@@ -1,5 +1,7 @@
 package MiscItemsApi.Electric;
 
+import net.minecraft.tileentity.TileEntity;
+
 public interface IPowerTile {
 
 
@@ -40,11 +42,12 @@ public interface IPowerTile {
      */
 	public boolean AcceptsPower();
 
-    /** Decides if the machine can connect to cables
+    /** Decides if the machine can connect to a TileEntity
      *
-     * @return connects to cables
+     * @return connects to tile
      */
-	public boolean ConnectsToCables();
-	
+	public boolean ConnectsToTile(TileEntity tile);
+
+    public void OnRecivedEnergyPacket(PowerPacket packet);
 	
 }

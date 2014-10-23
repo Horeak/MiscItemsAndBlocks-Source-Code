@@ -480,8 +480,9 @@ public class TileEntityMiningStation extends TileEntityPowerInv{
 	public double GetMaxPower() {
 		return 100;
 	}
-    
-	@Override
+
+
+    @Override
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
 
 		return false;

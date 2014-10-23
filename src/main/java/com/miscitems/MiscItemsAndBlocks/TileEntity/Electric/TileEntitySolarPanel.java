@@ -84,4 +84,6 @@ public class TileEntitySolarPanel extends TileEntityPowerGeneration{
 	public double GeneratedPower() {
 		return 3;
 	}
+
+
 }

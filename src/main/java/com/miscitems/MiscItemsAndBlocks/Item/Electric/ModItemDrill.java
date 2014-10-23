@@ -139,7 +139,7 @@ public class ModItemDrill extends ModItemPowerTool{
 	    			  
 	            if(HasInfo(itemstack)){
 	    			  NBTTagCompound Compound = itemstack.getTagCompound().getCompoundTag("Data");
-		    		list.add(EnumChatFormatting.GOLD + StatCollector.translateToLocal("items.desc.drill.2") + ": " + Compound.getString("Mode"));	
+		    		list.add(EnumChatFormatting.GOLD + StatCollector.translateToLocal("items.desc.drill.2") + ": " + StatCollector.translateToLocal("items.desc.drill.mode. + " + Compound.getString("Mode")));
 	            }else{
 
 	            	list.add(EnumChatFormatting.GOLD + StatCollector.translateToLocal("items.desc.drill.2_normal"));
@@ -165,7 +165,7 @@ public class ModItemDrill extends ModItemPowerTool{
 	    	if(player.isSneaking()){
 
 	    		if(!HasInfo(item)){
-	    			compound.setString("Mode", StatCollector.translateToLocal("items.drill.mode.2"));
+	    			compound.setInteger("Mode", 2);
 	    		if(world.isRemote)
 	    			ChatMessageHandler.sendChatToPlayer(player, StatCollector.translateToLocal("items.drill.change.2"));
 	    		}
@@ -173,24 +173,24 @@ public class ModItemDrill extends ModItemPowerTool{
 	    		if(HasInfo(item)){
 	    			  NBTTagCompound Compound = item.getTagCompound().getCompoundTag("Data");
 	    			  
-	    			  if(Compound.getString("Mode") == StatCollector.translateToLocal("items.drill.mode.1")){
+	    			  if(Compound.getInteger("Mode") == 1){
 	    				  
-	    				  compound.setString("Mode", StatCollector.translateToLocal("items.drill.mode.2"));
+	    				  compound.setInteger("Mode", 2);
 	    		    		if(world.isRemote)
 	    		    			ChatMessageHandler.sendChatToPlayer(player, StatCollector.translateToLocal("items.drill.change.2"));
 	    				  
-	    			  }else if (Compound.getString("Mode") == StatCollector.translateToLocal("items.drill.mode.2")){
-	    				  compound.setString("Mode", StatCollector.translateToLocal("items.drill.mode.3"));
+	    			  }else if (Compound.getInteger("Mode") == 2){
+	    				  compound.setInteger("Mode",3);
 	    		    		if(world.isRemote)
 	    		    			ChatMessageHandler.sendChatToPlayer(player, StatCollector.translateToLocal("items.drill.change.3"));
 	    				  
-	    			  }else if (Compound.getString("Mode") == StatCollector.translateToLocal("items.drill.mode.3")){
-	    				  compound.setString("Mode", StatCollector.translateToLocal("items.drill.mode.1"));
+	    			  }else if (Compound.getInteger("Mode") == 3){
+	    				  compound.setInteger("Mode", 1);
 	    		    		if(world.isRemote)
 	    		    			ChatMessageHandler.sendChatToPlayer(player, StatCollector.translateToLocal("items.drill.change.1"));
 	    				  
 	    			  }else{
-	    				  compound.setString("Mode", StatCollector.translateToLocal("items.drill.mode.2"));
+	    				  compound.setInteger("Mode", 2);
 	    			  }
 	    		
 	    		}
@@ -246,13 +246,13 @@ public class ModItemDrill extends ModItemPowerTool{
 	    		        int yRange = 0;
 	    		        int zRange = 0;
 	    	    		
-	    	    		if(Compound.getString("Mode") == StatCollector.translateToLocal("items.drill.mode.2")){
+	    	    		if(Compound.getInteger("Mode") == 2){
 	    	    			
 		    		        xRange = 1;
 		    		        yRange = 1;
 		    		        zRange = 1;
 	    	            
-	    	    		}else if (Compound.getString("Mode") == StatCollector.translateToLocal("items.drill.mode.3")){
+	    	    		}else if (Compound.getInteger("Mode") == 3){
 	    	    			
 		    		        xRange = 2;
 		    		        yRange = 2;
