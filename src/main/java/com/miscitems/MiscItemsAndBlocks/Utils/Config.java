@@ -16,7 +16,7 @@ public class Config extends ConfigBase {
     public static final String CATEGORY_SERVER_SETTINGS = "Server Settings";
 
     public Config(String Loc){
-        super(new Configuration(new File(Loc + "/tm1990's mods/MiscItemsAndBlocks.cfg")));
+        super(new Configuration(new File(Loc + "/MiscUtils mods/MiscItemsAndBlocks.cfg")));
         InitConfig();
     }
 

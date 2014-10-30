@@ -96,7 +96,7 @@ public class ModItemPaintBrush extends Item{
 	    		if(tile_e instanceof TileEntityPaintBlock){
 	    			TileEntityPaintBlock tile = (TileEntityPaintBlock)tile_e;
 
-	    	    	UpdateBlock(world, x, y, z);
+                    tile.UpdateColor();
 	    			
 	    			int Meta = stack.getItemDamage();
 	    			
@@ -109,21 +109,21 @@ public class ModItemPaintBrush extends Item{
 	    				
 	    			if(Meta == 1){
 	    				tile.SetRed(tile.GetRed() - Change);
-		    	    	UpdateBlock(world, x, y, z);
+                        tile.UpdateColor();
 	    				return true;
 	    			}else if (Meta == 2){
 	    				tile.SetGreen(tile.GetGreen() - Change);
-		    	    	UpdateBlock(world, x, y, z);
+                        tile.UpdateColor();
 	    				return true;
 	    			}else if (Meta == 3){
 	    				tile.SetBlue(tile.GetBlue() - Change);
-		    	    	UpdateBlock(world, x, y, z);
+                        tile.UpdateColor();
 	    				return true;
 	    			}else if (Meta == 0){
 	    				tile.SetRed(tile.GetRed() - Change);
 	    				tile.SetGreen(tile.GetGreen() - Change);
 	    				tile.SetBlue(tile.GetBlue() - Change);
-		    	    	UpdateBlock(world, x, y, z);
+                        tile.UpdateColor();
 	    				return true;
 	    			}else if (Meta == 4){
 	    				
@@ -158,21 +158,21 @@ public class ModItemPaintBrush extends Item{
 	    				
 		    			if(Meta == 1){
 			    			tile.SetRed(tile.GetRed() + Change);
-			    	    	UpdateBlock(world, x, y, z);
+                            tile.UpdateColor();
 		    				return true;
 		    				
 		    			}else if (Meta == 2){
 			    			tile.SetGreen(tile.GetGreen() + Change);
-			    	    	UpdateBlock(world, x, y, z);
+                            tile.UpdateColor();
 		    				return true;
 		    				
 		    			}else if (Meta == 3){
 		    				tile.SetBlue(tile.GetBlue() + Change);
-			    	    	UpdateBlock(world, x, y, z);
+                            tile.UpdateColor();
 		    				return true;
 		    			}else if (Meta == 4 || Meta == 5){
-		    				
-			    	    	UpdateBlock(world, x, y, z);
+
+                            tile.UpdateColor();
 		    				
 
 		    				if(stack.stackTagCompound == null){
@@ -192,7 +192,7 @@ public class ModItemPaintBrush extends Item{
 		    					tile.SetBlue(stack.stackTagCompound.getInteger("Blue"));
 		    					
 		    				}
-			    	    	UpdateBlock(world, x, y, z);
+			    	    	tile.UpdateColor();
 	    					return true;
 	    			}
 	    			
@@ -210,15 +210,7 @@ public class ModItemPaintBrush extends Item{
 	    	
 	        return false;
 	    }
-	    
-	    public void UpdateBlock(World world, int x, int y, int z){
-	    	world.markBlockForUpdate(x, y, z);
-	    	world.setBlockMetadataWithNotify(x, y, z, 0, 2);
 
-	    	
-
-	    	
-	    }
 	    
 	    @Override
 	    public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean par4)

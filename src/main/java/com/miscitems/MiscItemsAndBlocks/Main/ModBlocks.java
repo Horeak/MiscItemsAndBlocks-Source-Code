@@ -153,7 +153,6 @@ public class ModBlocks {
 	public static Block Laser;
 	public static Block LaserReciver;
 	public static Block GhostBlock;
-    public static Block ColorBlock;
 
 
     public static Block ColoredBrick;

@@ -21,12 +21,14 @@ public class TileEntityPaintBlock extends TileEntity{
 	
 	public static int Max = 255;
 
+    public void UpdateColor(){
 
-	public void updateEntity(){
-			
-		if(this.worldObj.isRemote)
-		this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-	}
+        worldObj.markBlockForUpdate(xCoord,yCoord, zCoord);
+        worldObj.notifyBlocksOfNeighborChange(xCoord, yCoord, zCoord, worldObj.getBlock(xCoord, yCoord, zCoord));
+
+    }
+
+
 	  
       public void SetRed(int i){
     	  if(i < Max + 1 && i > 0)
