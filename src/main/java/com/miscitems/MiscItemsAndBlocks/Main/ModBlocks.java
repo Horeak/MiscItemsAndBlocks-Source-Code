@@ -2,7 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.Main;
 
 
 import MiscUtils.Block.ModBlockStair;
-import MiscUtils.MiscUtils;
+import MiscUtils.MiscUtilsMain;
 import MiscUtils.Register.BlockRegister;
 import MiscUtils.Register.OreDictionaryRegister;
 import com.miscitems.MiscItemsAndBlocks.Block.BlockContainers.ModBlockCardboardBox;
@@ -284,7 +284,7 @@ public class ModBlocks {
         Utils.Register(OneWayGlass, "One Way Glass");
 
         //TODO FINSIH!
-        if(MiscUtils.IsLoadedInDev) {
+        if(MiscUtilsMain.IsLoadedInDev) {
             Computer = new ModBlockComputer().setCreativeTab(Main.MiscTab);
             Utils.Register(Computer, ModItemBlockComputer.class, "Computer", TileEntityComputer.class);
         }

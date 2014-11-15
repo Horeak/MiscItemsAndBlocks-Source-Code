@@ -1,5 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Main;
 
+import MiscUtils.GuideBase.MiscUtilsGuideInstance;
+import MiscUtils.GuideBase.Registry.GuideModRegistry;
 import MiscUtils.Network.ChannelUtils;
 import com.google.common.collect.Sets;
 import com.miscitems.MiscItemsAndBlocks.Book.BookRegestration;
@@ -145,6 +147,8 @@ import java.util.Set;
 
             Utils = new ChannelUtils(Reference.Channel, Reference.Mod_Id);
             RegisterPackets();
+
+            GuideModRegistry.RegisterModToGuide(new MiscItemsGuideIntegration());
 
 
 

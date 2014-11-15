@@ -225,5 +225,9 @@ death.attack.laser.damage=%1$s was fried by a laser.
 death.attack.disarmed=%1$s was disarmed.
 death.attack.step.disarm=%1$s stepped on a disarm trap and was disarmed for his life.
 string.death.silversword=%1$s Was slaing with a Silver Sword by %2$s
-string.versioncheck.newversion=%EnumRed A new version of %ModName is available. Version: %EnumYellow%NewVersion%EnumGold  Download link: %DowLink %EnumBlue Changes in this version: %Changes
 
+
+guide.miscitems.name=MiscItems Guide
+guide.miscitems.tab.main=Main Table
+guide.miscitems.tab.blocks=Blocks Tab
+guide.miscitems.tab.items=Items Tab
