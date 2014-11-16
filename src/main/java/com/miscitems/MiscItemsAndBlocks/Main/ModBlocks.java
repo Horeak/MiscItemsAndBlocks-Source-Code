@@ -308,10 +308,10 @@ public class ModBlocks {
         Utils.Register(GhostBlock, "Ghost Block", TileEntityGhostBlock.class);
 
         ColoredBrick = new ModBlockColoredMetalBrick().setBlockTextureName(Reference.Mod_Id + ":MetalBrick").setCreativeTab(Main.DecorativeTab);
-        Utils.Register(ColoredBrick, ModItemBlockColoredMetalBrick.class, "ColoredBrick");
+        Utils.Register(ColoredBrick, ModItemBlockColoredMetalBrick.class, "Colored Brick");
 
         ColoredBrickGlowstone = new ModBlockColoredMetalBrick().setBlockTextureName(Reference.Mod_Id + ":MetalBrickGlowstone").setCreativeTab(Main.DecorativeTab).setLightLevel(1.0F);
-        Utils.Register(ColoredBrickGlowstone, ModItemBlockColoredMetalBrick.class, "ColoredBrickGlowstone");
+        Utils.Register(ColoredBrickGlowstone, ModItemBlockColoredMetalBrick.class, "Colored Brick Glowstone");
 
 
 

@@ -1,8 +1,8 @@
 package com.miscitems.MiscItemsAndBlocks.Main;
 
-import MiscUtils.GuideBase.MiscUtilsGuideInstance;
 import MiscUtils.GuideBase.Registry.GuideModRegistry;
 import MiscUtils.Network.ChannelUtils;
+import MiscUtils.Utils.Recipe.RecipeUtils;
 import com.google.common.collect.Sets;
 import com.miscitems.MiscItemsAndBlocks.Book.BookRegestration;
 import com.miscitems.MiscItemsAndBlocks.Book.SmallFontRenderer;
@@ -14,6 +14,9 @@ import com.miscitems.MiscItemsAndBlocks.Event.GhostBlockBreakEvent;
 import com.miscitems.MiscItemsAndBlocks.Event.GuiListener;
 import com.miscitems.MiscItemsAndBlocks.Gui.Computer.ProgramList;
 import com.miscitems.MiscItemsAndBlocks.Gui.GuiHandler;
+import com.miscitems.MiscItemsAndBlocks.Main.Guide.MillGuideRecipeType;
+import com.miscitems.MiscItemsAndBlocks.Main.Guide.MiscItemsGuideIntegration;
+import com.miscitems.MiscItemsAndBlocks.Main.Guide.SquezerGuideRecipeType;
 import com.miscitems.MiscItemsAndBlocks.Network.Client.ClientGamePacketBegin;
 import com.miscitems.MiscItemsAndBlocks.Network.Client.ClientGamePacketChange;
 import com.miscitems.MiscItemsAndBlocks.Network.Client.ClientGamePacketInviteRecived;
@@ -148,7 +151,10 @@ import java.util.Set;
             Utils = new ChannelUtils(Reference.Channel, Reference.Mod_Id);
             RegisterPackets();
 
+            //Guide Integration
             GuideModRegistry.RegisterModToGuide(new MiscItemsGuideIntegration());
+            RecipeUtils.RecipeTypeRenders.add(new MillGuideRecipeType());
+            RecipeUtils.RecipeTypeRenders.add(new SquezerGuideRecipeType());
 
 
 

@@ -5,7 +5,7 @@ import MiscItemsApi.Recipes.SqueezerRecipe;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.TemplateRecipeHandler;
-import com.miscitems.MiscItemsAndBlocks.Gui.Electric.GuiSquezer;
+import com.miscitems.MiscItemsAndBlocks.Gui.Machines.GuiSquezer;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;

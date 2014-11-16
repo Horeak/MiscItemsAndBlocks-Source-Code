@@ -43,9 +43,9 @@ public class ModItemIronPlate extends Item{
     	int meta = stack.getItemDamage();
 
     	
-    	if(meta == 0)return "item.ironplate.1";
-    	if(meta == 1)return "item.ironplate.2";
-    	if(meta == 2)return "item.ironplate.3";
+    	if(meta == 0)return "item.iron_plate.1";
+    	if(meta == 1)return "item.iron_plate.2";
+    	if(meta == 2)return "item.iron_plate.3";
     	
     	
     	

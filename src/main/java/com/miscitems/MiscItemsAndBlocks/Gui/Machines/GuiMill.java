@@ -1,4 +1,4 @@
-package com.miscitems.MiscItemsAndBlocks.Gui.Electric;
+package com.miscitems.MiscItemsAndBlocks.Gui.Machines;
 
 import MiscUtils.GuiObjects.GuiTipButton;
 import com.miscitems.MiscItemsAndBlocks.Container.Machines.ContainerMill;

@@ -5,7 +5,7 @@ import MiscItemsApi.Recipes.RecipeHandler;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.TemplateRecipeHandler;
-import com.miscitems.MiscItemsAndBlocks.Gui.Electric.GuiMill;
+import com.miscitems.MiscItemsAndBlocks.Gui.Machines.GuiMill;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;

@@ -115,37 +115,37 @@ public class ModItems {
 
 
         GuideBook = new ModItemGuideBook().setUnlocalizedName("item.guidebook").setCreativeTab(Main.MiscTab).setTextureName(Reference.Mod_Id + ":" + "book");
-        Utils.Register(GuideBook, "GuideBook");
+        Utils.Register(GuideBook, "Guide Book");
 
 		XpExtractor = new ModItemXpExtractor().setCreativeTab(Main.MiscTab);
-        Utils.Register(XpExtractor, ("xpextractor"));
+        Utils.Register(XpExtractor, ("xp extractor"));
 
 		SilverIngot = new Item().setUnlocalizedName("SilverIngot").setCreativeTab(Main.MiscTab).setTextureName(Reference.Mod_Id + ":SilverIngot");
-        Utils.Register(SilverIngot, ("silveringot"));
+        Utils.Register(SilverIngot, ("silver ingot"));
 
 		SilverNugget = new Item().setUnlocalizedName("SilverNugget").setCreativeTab(Main.MiscTab).setTextureName(Reference.Mod_Id + ":SilverNugget");
-        Utils.Register(SilverNugget, ("silvernugget"));
+        Utils.Register(SilverNugget, ("silver nugget"));
 
 		SilverSword = new ModItemSilverSword(SilverMaterial).setUnlocalizedName("SilverSword").setCreativeTab(Main.MiscTab);
-        Utils.Register(SilverSword, ("silversword"));
+        Utils.Register(SilverSword, ("silver sword"));
 
 		SilverBow = new ModItemSilverBow().setUnlocalizedName("SilverBow").setCreativeTab(Main.MiscTab);
-        Utils.Register(SilverBow, ("silverbow"));
+        Utils.Register(SilverBow, ("silver bow"));
 
 		SilverArrow = new Item().setUnlocalizedName("SilverArrow").setCreativeTab(Main.MiscTab).setTextureName(Reference.Mod_Id + ":SilverArrow");
-        Utils.Register(SilverArrow, ("silverarrow"));
+        Utils.Register(SilverArrow, ("silver arrow"));
 
         DivingHelmet = (new ModItemPowerArmor(PowerArmor, Main.proxy.addArmor("Power"), 0, 1, "PowerarmorHelmet")).setUnlocalizedName("Powerarmor Helmet").setCreativeTab(Main.MiscTab);
-        Utils.Register(DivingHelmet, ("powerarmor.helmet"));
+        Utils.Register(DivingHelmet, ("power armor.helmet"));
 
         FlightChestPlate = (new ModItemPowerArmor(PowerArmor, Main.proxy.addArmor("Power"), 1, 2, "PowerarmorChestplate")).setUnlocalizedName("Powerarmor Chestplate").setCreativeTab(Main.MiscTab);
         Utils.Register(FlightChestPlate, ("powerarmor.chestplate"));
 
         RunningLeggings = (new ModItemPowerArmor(PowerArmor, Main.proxy.addArmor("Power"), 2, 3, "PowerarmorLeggings")).setUnlocalizedName("Powerarmor Leggings").setCreativeTab(Main.MiscTab);
-        Utils.Register(RunningLeggings, ("powerarmor.leggings"));
+        Utils.Register(RunningLeggings, ("power armor.leggings"));
 
         JumpingBoots = (new ModItemPowerArmor(PowerArmor, Main.proxy.addArmor("Power"), 3, 4, "PowerarmorBoots")).setUnlocalizedName("Powerarmor Boots").setCreativeTab(Main.MiscTab);
-        Utils.Register(JumpingBoots, ("powerarmor.boots"));
+        Utils.Register(JumpingBoots, ("power armor.boots"));
 
 
         Cardboard = new Item().setUnlocalizedName("Cardboard").setCreativeTab(Main.MiscTab).setTextureName(Reference.Mod_Id + ":Cardboard");
@@ -158,10 +158,10 @@ public class ModItems {
         Utils.Register(Flour, ("flour"));
 
         TomatoSeeds = new ModItemTomatoSeeds(ModBlocks.TomatoPlant, Blocks.farmland);
-        Utils.Register(TomatoSeeds, ("tomatoseeds"));
+        Utils.Register(TomatoSeeds, ("tomato seeds"));
 
         PizzaBottom = new Item().setUnlocalizedName("PizzaBottom").setCreativeTab(Main.MiscTab).setTextureName(Reference.Mod_Id + ":PizzaBottom");
-        Utils.Register(PizzaBottom, ("pizzabase"));
+        Utils.Register(PizzaBottom, ("pizza base"));
 
         Liquid = new ModItemLiquid().setUnlocalizedName("Liquid").setCreativeTab(Main.MiscTab);
         Utils.RegisterOutName(Liquid, "Liquid");
@@ -178,8 +178,8 @@ public class ModItems {
         Orange = new ModItemOrange().setUnlocalizedName("Orange").setCreativeTab(Main.MiscTab);
         Utils.Register(Orange, ("orange"));
 
-        DisarmStick = new ModItemDisarmStick().setUnlocalizedName("DisarmStick").setCreativeTab(Main.MiscTab);
-        Utils.Register(DisarmStick, ("disarmstick"));
+        DisarmStick = new ModItemDisarmStick().setUnlocalizedName("DisarmStick");
+        Utils.Register(DisarmStick, ("disarm stick"));
 
         Drill = new ModItemDrill(ToolMaterial.EMERALD).setUnlocalizedName("Drill").setCreativeTab(Main.ElectricTab);
         Utils.Register(Drill, ("drill"));
@@ -191,7 +191,7 @@ public class ModItems {
         Utils.Register(CableItem, ("cable"));
 
         SolarCells = new Item().setUnlocalizedName("SolarCells").setCreativeTab(Main.ElectricTab).setTextureName(Reference.Mod_Id + ":SolarCells");
-        Utils.Register(SolarCells, ("solarcells"));
+        Utils.Register(SolarCells, ("solar cells"));
 
         Turbine = new Item().setUnlocalizedName("Turbine").setCreativeTab(Main.ElectricTab).setTextureName(Reference.Mod_Id + ":Turbine");
         Utils.Register(Turbine, ("turbine"));
@@ -200,16 +200,16 @@ public class ModItems {
         Utils.Register(Battery, ("battery"));
 
         BigBattery = new ModItemBigBattery().setUnlocalizedName("BigBattery").setCreativeTab(Main.ElectricTab);
-        Utils.Register(BigBattery, ("bigbattery"));
+        Utils.Register(BigBattery, ("big battery"));
 
         AdvancedBattery = new ModItemAdvancedBattery().setUnlocalizedName("AdvancedBattery").setCreativeTab(Main.ElectricTab);
-        Utils.Register(AdvancedBattery, ("advancedbattery"));
+        Utils.Register(AdvancedBattery, ("advanced battery"));
 
         ElectricShears = new ModItemElectricShear().setUnlocalizedName("ELShears").setCreativeTab(Main.ElectricTab);
-        Utils.Register(ElectricShears, ("electricshears"));
+        Utils.Register(ElectricShears, ("electric shears"));
 
         ElectricBow = new ModItemElectricBow().setUnlocalizedName("ElBow").setCreativeTab(Main.ElectricTab);
-        Utils.Register(ElectricBow, ("electricbow"));
+        Utils.Register(ElectricBow, ("electric bow"));
 
         Upgrades = new ModItemUpgrades().setUnlocalizedName("Upgrades").setCreativeTab(Main.ElectricTab);
         Utils.RegisterOutName(Upgrades, "Upgrades");
@@ -221,21 +221,21 @@ public class ModItems {
         Utils.Register(IronPlate, "Iron Plate");
 
         HeatDrill = new ModItemHeatDrill().setUnlocalizedName("HeatDrill").setCreativeTab(Main.ElectricTab);
-        Utils.Register(HeatDrill, ("heatdrill"));
+        Utils.Register(HeatDrill, ("heat drill"));
 
         PaintBrush = new ModItemPaintBrush().setUnlocalizedName("PaintBrush").setCreativeTab(Main.MiscTab);
         Utils.RegisterOutName(PaintBrush, "Paint Brush");
 
         FloatBlockPlacer = new ModItemFloatBlockPlacer().setUnlocalizedName("FloatPlacer").setTextureName(Reference.Mod_Id + ":FloatBlockPlacer").setCreativeTab(Main.ElectricTab);
-        Utils.Register(FloatBlockPlacer, ("floatblockplacer"));
+        Utils.Register(FloatBlockPlacer, ("float block placer"));
 
         Main.proxy.addArmor("AntiFall");
 
         AntiFallChestPlate = (new ModItemAntiFallChest(1, 1)).setUnlocalizedName("AntiFallChestPlate").setTextureName(Reference.Mod_Id + ":AntiFallChest").setCreativeTab(Main.ElectricTab);
-        Utils.Register(AntiFallChestPlate, ("antifallchestplate"));
+        Utils.Register(AntiFallChestPlate, ("anti fall chestplate"));
 
         InfoScreenHelmet = new ModItemInfoScreenHelmet(1, 0).setUnlocalizedName("InfoScreenHelmet").setTextureName(Reference.Mod_Id + ":InfoScreenHelmet").setCreativeTab(Main.ElectricTab);
-        Utils.Register(InfoScreenHelmet, ("infoscreen"));
+        Utils.Register(InfoScreenHelmet, ("info screen"));
 
         DataChip = new ModItemDataChip().setUnlocalizedName("DataChip").setCreativeTab(Main.ElectricTab);
         Utils.Register(DataChip, "Data Chip");

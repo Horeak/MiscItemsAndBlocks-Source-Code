@@ -1,8 +1,11 @@
-package com.miscitems.MiscItemsAndBlocks.Main;
+package com.miscitems.MiscItemsAndBlocks.Main.Guide;
 
 import MiscUtils.GuideBase.Utils.GuideInstance;
 import MiscUtils.GuideBase.Utils.GuideTab;
 import MiscUtils.GuideBase.Utils.ModGuideText;
+import com.miscitems.MiscItemsAndBlocks.Main.Main;
+import com.miscitems.MiscItemsAndBlocks.Main.ModBlocks;
+import com.miscitems.MiscItemsAndBlocks.Main.ModItems;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
