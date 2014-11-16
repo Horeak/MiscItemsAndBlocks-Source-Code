@@ -7,7 +7,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -69,19 +68,12 @@ public class ModBlockDiceHolder extends ModBlockContainer {
 	    }
 	    
 	    public void onNeighborBlockChange(World world, int x, int y, int z, Block block) {
-	    	
-	    	
-	    	if(!world.isRemote){
-	    		
-	    		if(world.isBlockIndirectlyGettingPowered(x, y, z)){
-	    			if(block == Blocks.redstone_block || block  == Blocks.redstone_wire || block == Blocks.redstone_torch || block == Blocks.unpowered_repeater){
-	    				
-	    				
 
+	    	if(!world.isRemote){
+	    		if(world.isBlockIndirectlyGettingPowered(x, y, z)){
 	    		    	Random rand = new Random();
-	    		    	
 	    		    	world.setBlockMetadataWithNotify(x, y, z, rand.nextInt(7), 2);
-	    			}
+
 	    			
 	    		}
 	    		

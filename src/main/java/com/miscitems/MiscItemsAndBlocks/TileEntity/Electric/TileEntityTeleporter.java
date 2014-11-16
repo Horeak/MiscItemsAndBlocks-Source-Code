@@ -21,7 +21,7 @@ public class TileEntityTeleporter extends TileEntityPowerInv{
 	int CurrentUpdateTick = 0;
 	int UpdateTick = 20;
 
-	
+    //TODO Redo? Chunloading when sending? accross dimensions?
 	public void updateEntity(){
 		
 		if(this.GetPower() >= 100 && IsLinked)

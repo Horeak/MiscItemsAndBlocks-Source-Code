@@ -15,7 +15,8 @@ public class TileEntityWirelessRedstone extends TileEntityInvBase {
 	int CurrentUpdateTick = 0;
 	int UpdateTick = 20;
 
-	
+
+    //TODO Redo? Chunloading when sending? accross dimensions?
 	public void updateEntity(){
 		
 		if(IsLinked)
@@ -120,39 +121,15 @@ public class TileEntityWirelessRedstone extends TileEntityInvBase {
 		if(IsLinked){
 			
 			if(Mode == 1 && CardMode == 1){
-				if(this.worldObj.getBlockMetadata(this.getStackInSlot(2).stackTagCompound.getInteger("WirelessRedstone_x"),
-						this.getStackInSlot(2).stackTagCompound.getInteger("WirelessRedstone_y"), this.getStackInSlot(2).stackTagCompound.getInteger("WirelessRedstone_z")
-						) == 0){
-				
-				
-					if(this.worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord)){
-						
-						this.worldObj.setBlockMetadataWithNotify(this.getStackInSlot(2).stackTagCompound.getInteger("WirelessRedstone_x"),
-						this.getStackInSlot(2).stackTagCompound.getInteger("WirelessRedstone_y"), this.getStackInSlot(2).stackTagCompound.getInteger("WirelessRedstone_z"), 1, 1);
-	
-					
-						this.worldObj.setBlockMetadataWithNotify(this.getStackInSlot(2).stackTagCompound.getInteger("WirelessRedstone_x"),
-						this.getStackInSlot(2).stackTagCompound.getInteger("WirelessRedstone_y"), this.getStackInSlot(2).stackTagCompound.getInteger("WirelessRedstone_z"), 1, 2);
-					}
-					
-					
-					
-				}else if(!this.worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord) && this.worldObj.getBlockMetadata(this.getStackInSlot(2).stackTagCompound.getInteger("WirelessRedstone_x"),
-						this.getStackInSlot(2).stackTagCompound.getInteger("WirelessRedstone_y"), this.getStackInSlot(2).stackTagCompound.getInteger("WirelessRedstone_z")
-						) == 1){
-					
+				if(this.worldObj.getBlockMetadata(x,y,z) == 0 && this.worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord)){
+                        this.worldObj.setBlockMetadataWithNotify(x,y,z, 1, 3);
+                        this.worldObj.notifyBlocksOfNeighborChange(x,y,z,worldObj.getBlock(x,y,z));
 
-						this.worldObj.setBlockMetadataWithNotify(this.getStackInSlot(2).stackTagCompound.getInteger("WirelessRedstone_x"),
-						this.getStackInSlot(2).stackTagCompound.getInteger("WirelessRedstone_y"), this.getStackInSlot(2).stackTagCompound.getInteger("WirelessRedstone_z"), 0, 1);
-
-						
-						this.worldObj.setBlockMetadataWithNotify(this.getStackInSlot(2).stackTagCompound.getInteger("WirelessRedstone_x"),
-						this.getStackInSlot(2).stackTagCompound.getInteger("WirelessRedstone_y"), this.getStackInSlot(2).stackTagCompound.getInteger("WirelessRedstone_z"), 0, 2);
-
+				}else if(!this.worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord) && this.worldObj.getBlockMetadata(x,y,z) == 1){
+						this.worldObj.setBlockMetadataWithNotify(x,y,z, 0, 3);
+                        this.worldObj.notifyBlocksOfNeighborChange(x,y,z,worldObj.getBlock(x,y,z));
 				}
-				
-				//this.worldObj.markBlockForUpdate(this.getStackInSlot(2).stackTagCompound.getInteger("WirelessRedstone_x") + 1,this.getStackInSlot(2).stackTagCompound.getInteger("WirelessRedstone_y"), this.getStackInSlot(2).stackTagCompound.getInteger("WirelessRedstone_z"));
-			
+
 		
 				}
 				

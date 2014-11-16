@@ -88,7 +88,6 @@ import ic2.api.item.ElectricItem;
  * @endcode
  */
 public class BasicSource extends TileEntity implements IEnergySource {
-
 	// **********************************
 	// *** Methods for use by the mod ***
 	// **********************************
@@ -98,7 +97,7 @@ public class BasicSource extends TileEntity implements IEnergySource {
 	 * 
 	 * @param parent1 Base TileEntity represented by this energy source.
 	 * @param capacity1 Maximum amount of eu to store.
-	 * @param tier1 IC2 tier, 1=LV, 2=MV, ...
+	 * @param tier1 IC2 tier, 1 = LV, 2 = MV, ...
 	 */
 	public BasicSource(TileEntity parent1, double capacity1, int tier1) {
 		double power = EnergyNet.instance.getPowerFromTier(tier1);
@@ -106,6 +105,7 @@ public class BasicSource extends TileEntity implements IEnergySource {
 		this.parent = parent1;
 		this.capacity = capacity1 < power ? power : capacity1;
 		this.tier = tier1;
+		this.power = power;
 	}
 
 	// in-world te forwards	>>
@@ -215,8 +215,6 @@ public class BasicSource extends TileEntity implements IEnergySource {
 	 * @param capacity1 Capacity in EU.
 	 */
 	public void setCapacity(double capacity1) {
-		double power = EnergyNet.instance.getPowerFromTier(tier);
-
 		if (capacity1 < power) capacity1 = power;
 
 		this.capacity = capacity1;
@@ -242,6 +240,7 @@ public class BasicSource extends TileEntity implements IEnergySource {
 		if (capacity < power) capacity = power;
 
 		this.tier = tier1;
+		this.power = power;
 	}
 
 
@@ -350,7 +349,7 @@ public class BasicSource extends TileEntity implements IEnergySource {
 
 	@Override
 	public double getOfferedEnergy() {
-		return energyStored;
+		return Math.min(energyStored, power);
 	}
 
 	@Override
@@ -370,6 +369,7 @@ public class BasicSource extends TileEntity implements IEnergySource {
 
 	protected double capacity;
 	protected int tier;
+	protected double power;
 	protected double energyStored;
 	protected boolean addedToEnet;
 }

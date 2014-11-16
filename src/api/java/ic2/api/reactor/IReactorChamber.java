@@ -17,5 +17,4 @@ public interface IReactorChamber {
 	 */
 	
 	public void setRedstoneSignal(boolean redstone);
-
 }

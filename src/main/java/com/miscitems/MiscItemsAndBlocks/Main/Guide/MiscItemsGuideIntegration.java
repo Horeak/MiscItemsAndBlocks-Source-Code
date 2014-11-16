@@ -34,12 +34,12 @@ public class MiscItemsGuideIntegration extends GuideInstance {
 
     @Override
     public ItemStack ModPageDisplay() {
-        return new ItemStack(Main.config.GetCheckedItem(ModItems.GuideBook));
+        return new ItemStack(Main.config.GetCheckedBlock(ModBlocks.ItemPedestal));
     }
 
     @Override
     public String ModDescription() {
-        return "MiscItemsAndBlocks is a mod which just adds alot of random items and blocks to game with some being useful while others can be usless and pointless. ";
+        return "MiscItemsAndBlocks is a mod which just adds alot of random items and blocks to game with some being useful while others can be usless and pointless. The mod has features related to electrical systems, decorations, magic and a few more minor things. In the end the mod is just a collection of a buch of random blocks and items that might not fit very well together but they are there in case anyone might find them useful. ";
     }
 
     ModGuideText MainTab;
@@ -63,6 +63,8 @@ public class MiscItemsGuideIntegration extends GuideInstance {
                 }
             }
         }
+
+        BlocksTab.Register(ModBlocks.Pillar);
 
 
         for(Object r : Item.itemRegistry) {

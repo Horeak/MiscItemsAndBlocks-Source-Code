@@ -252,16 +252,19 @@ public class ModBlocks {
         
         MetalPress = new ModBlockMetalPress().setCreativeTab(Main.ElectricTab);
         Utils.Register(MetalPress, ModItemBlockMetalPress.class, "Metal Press", TileEntityMetalPress.class);
-        
-        LensBench = new ModBlockLensBench().setCreativeTab(Main.ElectricTab);
-        Utils.Register(LensBench, "Lens Bench", TileEntityLensBench.class);
-        
-        Laser = new ModBlockLaser().setCreativeTab(Main.ElectricTab);
-        Utils.Register(Laser, "Laser", TileEntityLaser.class);
-        
-        LaserReciver = new ModBlockLaserReciver().setBlockTextureName(Reference.Mod_Id + ":LaserReciver").setCreativeTab(Main.ElectricTab);
-        Utils.Register(LaserReciver, ModItemBlockLaserReciver.class, "Laser Reciver", TileEntityLaserReciver.class);
-        
+
+        //TODO Keep?
+        if(MiscUtilsMain.IsLoadedInDev) {
+            LensBench = new ModBlockLensBench().setCreativeTab(Main.ElectricTab);
+            Utils.Register(LensBench, "Lens Bench", TileEntityLensBench.class);
+
+            Laser = new ModBlockLaser().setCreativeTab(Main.ElectricTab);
+            Utils.Register(Laser, "Laser", TileEntityLaser.class);
+
+            LaserReciver = new ModBlockLaserReciver().setBlockTextureName(Reference.Mod_Id + ":LaserReciver").setCreativeTab(Main.ElectricTab);
+            Utils.Register(LaserReciver, ModItemBlockLaserReciver.class, "Laser Reciver", TileEntityLaserReciver.class);
+        }
+
         MiningChamber = new ModBlockMiningStation().setCreativeTab(Main.ElectricTab);
         Utils.Register(MiningChamber, ModItemBlockMiningChamber.class, "Mining Station", TileEntityMiningStation.class);
         

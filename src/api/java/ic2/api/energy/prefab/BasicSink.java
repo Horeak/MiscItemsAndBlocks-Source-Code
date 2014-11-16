@@ -89,7 +89,6 @@ import ic2.api.item.ElectricItem;
  * @endcode
  */
 public class BasicSink extends TileEntity implements IEnergySink {
-
 	// **********************************
 	// *** Methods for use by the mod ***
 	// **********************************
@@ -99,7 +98,7 @@ public class BasicSink extends TileEntity implements IEnergySink {
 	 * 
 	 * @param parent1 TileEntity represented by this energy sink.
 	 * @param capacity1 Maximum amount of eu to store.
-	 * @param tier1 IC2 tier, 1=LV, 2=MV, ...
+	 * @param tier1 IC2 tier, 1 = LV, 2 = MV, ...
 	 */
 	public BasicSink(TileEntity parent1, int capacity1, int tier1) {
 		this.parent = parent1;

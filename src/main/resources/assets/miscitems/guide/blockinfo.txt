@@ -1,0 +1,60 @@
+//StorageBlocks
+block.info.xp_storage_block=The xp storage block is a storage block where you can store experience levels to prevent loss or to simply store them for later. The xp storage block also saves its contents when picked up.
+block.info.cardboard_box=The cardboard box is a small storage block which is created by a easier renewable material then a chest so easier to create. The cardboard box also stores its contents when picked up.
+block.info.storage_block=The storage block is a block which allows for storage of huge amount of items in a small area. By default the storage block has 200 inventory slots which each can have 1 stack of items. But the number of slots can be changed in the config.
+
+//Machines
+block.info.trash_bin=The trash bin is a item disposal block. It will delete all items put into its inventory.
+block.info.mill=The mill is a machine used to processing certain items like wheat into flour. 
+block.info.squeezer=The squeezer is a machine that is used to creating juices and other liquids from food, plants and similar.
+block.info.oven=The oven is a furnace-like machine but it will only cook food. The oven generates heat when supplied with coal or any other fuel and will always try to be at 100%. The ovens heat will slowly sink unless coal is supplied.
+block.info.wireless_redstone=The wireless redstone uses the same link system as the teleport but instead of teleporting an entity it transmits a redstone signal.
+block.info.wireless_item_transfer=The wireless item transfer uses the same link system as the teleport and the wireless redstone but sends items.
+
+//FunctionalBlocks
+block.info.disarm_trap=The disarm trap works almost like a pressure plate where it activates when something steps on top of it. The difference however is that the disarm trap will disarm and damage the player stepping on it so all of that players items will be dropped on the ground.
+block.info.worktable=The worktable is kind of a upgraded version of the normal crafting table because the work table has a internal storage area for storing crafting materials and its crafting grid also stores its contents. The worktable can also consume items from the storage area in order to craft the item in the crafting grid. 
+block.info.speed_block=The speed block is a block that can be used for entity transport as it accelerates a entities movement speed. It works with any entity so it works with players, items, mobs....
+block.info.item_pedestal=The item pedestal is a item display block it will display any item placed onto it until the item is removed.
+
+//WorldGen
+block.info.silver_ore=The silver ore is a world gen ore which is very rare to find and only spawns below y level 14. But if you are lucky enough to find a few silver ore blocks you can use it to create very powerful items.
+
+//RandomBlocks
+block.info.stone_stair=The stone stair works like any of the other stair types and is just for looks.
+block.info.dice=The dice is a minecraft version of a real life dice. It works by throwing it on the ground and then the number will be changed to a random number between 1 and 6.
+block.info.gamepart=The game pieces are pieces that are meant to be used as parts of board games or other similar games made in minecraft. The game pieces can be right-clicked on in order to move it in that direction. Game pices can also down blocks and up on top of other game pieces with same color.
+block.info.table=The table is a decorative block which does not have any actual functionality other the decorative. The cloth ontop of the table can be toggle on by right-clicking with a carpet or an empty hand. Tables will also connected with nearby tables.
+block.info.paint_block=The paint block is a decorative block which can use any combination from the RGB color system which is about 16 million different colors. The color of the block can be changed using the different paint brushes. The block is white by default and when starting to add color to it, it will seam black but it is just a very dark color. The more of one specific color the block has the brighter the color will be.
+block.info.one_way_glass=The one way glass is a simple blocks which works by having one side look like glass and other sides looks like stone. This allows for secret windows or other builds.
+block.info.dice_stand=The dice stand is a block version of the normal dice. The dice stand will react to redstone signals and when right clicked. Other then those two differences it works the same as the normal dice.
+block.info.silver_block=A storage block for silver ingots. You will probably not see a lot of these...
+block.info.ghost_block=The ghost block is a non-solid block which can be camouflaged as another block. If you right click the ghost block with another block the ghost block will render as that block (does not support custom models). If you shift-right click it you can toggle lock mode which makes it where only the placer of the block or a player in creative can edit it. The block can also be made solid by applying a redstone signal. The ghost block can also be used for mob traps since mobs does not see that it is non-solid and will believe it is a solid block. 
+block.info.colored_brick=The metal brick block is a decorative block which can be colored in any dye color. Warning: may cause lag on slower computers uses 64x texture.
+block.info.colored_brick_glowstone=The Glowstone metal brick is a version of the metal brick that emittes light. Warning: may cause lag on slower computers uses 64x texture.
+block.info.pillar=The pillar is a decorative block which can be made by almost any vanilla minecraft block. Warning: Recipe rendering can be buggy blame minecraft.
+
+block.info.orange_tree_leaves=Found on orange trees which spawn in plains biomes. Has a chance of dropping oranges when broken/decaying.
+block.info.orange_tree_sapling=The orange tree sapling drops from orange tree leaves and can be used to grow new orange trees.
+block.info.orange_tree_wood=The orange tree wood can be gathered from orange trees which spawn in plains biomes.
+block.info.orange_tree_planks=The orange tree planks are crafted from orange tree wood and can be used as any other plank type.
+
+//ElectricCrafting
+block.info.machine_part=The machine part is a crafting component used to create the different blocks in the electric system.
+
+//ElectricStorage
+block.info.charger=The energy storage cube is a energy storage unit. It will accept power through all sides excluding the front side marked with a red icon. The energy storage cube will then output power through the front if possible.
+
+//ElectricGeneration
+block.info.solar_panelblock=The solar panel is a power generation block it will generate power if it has a clear view of the sky and to the sun.
+block.info.wind_mill=The wind mill will generate power if it is located above y level 80 and will generate 1 extra power for each 10 blocks above 80.
+block.info.coal_generator=The generator generate power by consuming fuel and turning the fuel into power.
+
+//ElectricConsumption
+block.info.electric_furnace=The electric furnace is a electric machines that will accept power and use that power to smelt any item given to it. The electric furnace consumes 2 power per item but smelts faster then a normal furnace.
+block.info.metal_press=The metal press is a electric machine which allows creation of cheaper iron plate production and creation of other items.
+block.info.mining_station=The mining station is automatic mining machines. The mining station requires a pickaxe and power to run. When the mining station has its requirements and has been programmed to mine it will start a hole of the specified size directly under the mining station and will try to output all items mined to a nearby inventory and if it fails it will be dropped on the ground. 
+block.info.teleporter=The teleporter allows a player to teleport from a sending location to a receiving location. To set up a sending location put a Data Chip in the top left corner of the receiving teleporter and then take the linked Data Chip out of the bottom left slot after that put the Data Chip in the top right slot in the sending teleporter then they are linked one-way. When a sending teleporter is linked and has at least 100 power stand on top of it and hold shift to teleport. Both sender and receiver can be turned off with redstone. 
+
+//ElectricTransfer
+block.info.power_cable=The power cable is a power transfer block. It will receive energy and split it through all other available directions. The power cable does not have any power loss over long distances. But power stored in a cable will be lost when logging out or unloading the chunk.

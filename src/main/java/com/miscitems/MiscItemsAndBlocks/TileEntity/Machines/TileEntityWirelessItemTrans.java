@@ -18,7 +18,8 @@ public class TileEntityWirelessItemTrans extends TileEntityInvBase implements IS
 	
 	int SendingTick = 0;
 	 int SendTick = 20;
-	
+
+    //TODO Redo? Chunloading when sending? accross dimensions?
 	public void updateEntity(){
 		
 		if(IsLinked)
@@ -145,13 +146,9 @@ public class TileEntityWirelessItemTrans extends TileEntityInvBase implements IS
 							if(tile_e.getStackInSlot(i) != null && tile_e.getStackInSlot(i).getItem() == this.getStackInSlot(3).getItem()){
 								
 								if(tile_e.getStackInSlot(i).stackSize < this.getInventoryStackLimit()){
-									
-									
 
-									
 									ItemStack stack = tile_e.getStackInSlot(i).splitStack(tile_e.getStackInSlot(i).stackSize + 1);
-									
-									
+
 									tile_e.setInventorySlotContents(i, stack);
 									SendingTick = 0;
 									

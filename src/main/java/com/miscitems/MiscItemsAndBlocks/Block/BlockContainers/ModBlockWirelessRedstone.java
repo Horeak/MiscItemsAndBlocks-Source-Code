@@ -77,18 +77,7 @@ public class ModBlockWirelessRedstone extends ModBlockContainer {
     {
         return true;
     }
-    
-    
-    public int isProvidingStrongPower(IBlockAccess access, int x, int y, int z, int side)
-    {
-    	if(access.getBlockMetadata(x, y, z) == 1){
-    		return 16;
-    	}
-    	
-        return 0;
-    }
-    
-    
+
     @Override
     public void breakBlock(World World, int x, int y, int z, Block id, int meta)
     {
