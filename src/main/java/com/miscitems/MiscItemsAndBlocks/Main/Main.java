@@ -22,7 +22,6 @@ import com.miscitems.MiscItemsAndBlocks.Network.Client.ClientGamePacketChange;
 import com.miscitems.MiscItemsAndBlocks.Network.Client.ClientGamePacketInviteRecived;
 import com.miscitems.MiscItemsAndBlocks.Network.Client.ClientGamePacketRestart;
 import com.miscitems.MiscItemsAndBlocks.Network.Client.ClientGhostBlockPacket;
-import com.miscitems.MiscItemsAndBlocks.Network.Client.ClientLaserUpdatePacket;
 import com.miscitems.MiscItemsAndBlocks.Network.Client.ClientMetalPressPacketUpdate;
 import com.miscitems.MiscItemsAndBlocks.Network.ComputerPrograms.Chat.PacketAddPlayerNew;
 import com.miscitems.MiscItemsAndBlocks.Network.ComputerPrograms.Chat.PacketAddPlayerOld;
@@ -37,11 +36,9 @@ import com.miscitems.MiscItemsAndBlocks.Network.Server.ServerGamePacketClosed;
 import com.miscitems.MiscItemsAndBlocks.Network.Server.ServerGamePacketInvite;
 import com.miscitems.MiscItemsAndBlocks.Network.Server.ServerLensBenchPacketDone;
 import com.miscitems.MiscItemsAndBlocks.Network.Server.ServerPaintBrushChangePacket;
-import com.miscitems.MiscItemsAndBlocks.Network.Server.ServerSetBlockPacket;
 import com.miscitems.MiscItemsAndBlocks.Utils.Config;
 import com.miscitems.MiscItemsAndBlocks.Utils.Crafting;
-import com.miscitems.MiscItemsAndBlocks.Utils.Laser.DefaultLaser;
-import com.miscitems.MiscItemsAndBlocks.Utils.Laser.LaserRegistry;
+import com.miscitems.MiscItemsAndBlocks.Utils.Laser.Events.LaserDefaultActionEvent;
 import com.miscitems.MiscItemsAndBlocks.Utils.PillarUtils;
 import com.miscitems.MiscItemsAndBlocks.Utils.Proxies.ServerProxy;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Messages;
@@ -193,6 +190,7 @@ import java.util.Set;
             EntityRegistry.registerModEntity(EntityPowerArrow.class, "PowerArrow", 1, this, 128, 1, true);
 
 
+            MinecraftForge.EVENT_BUS.register(new LaserDefaultActionEvent());
 
 
 
@@ -272,7 +270,6 @@ import java.util.Set;
             Utils.handler.RegisterPacket(ClientGamePacketInviteRecived.class);
             Utils.handler.RegisterPacket(ClientGamePacketRestart.class);
             Utils.handler.RegisterPacket(ClientGhostBlockPacket.class);
-            Utils.handler.RegisterPacket(ClientLaserUpdatePacket.class);
             Utils.handler.RegisterPacket(ClientMetalPressPacketUpdate.class);
 
             Utils.handler.RegisterPacket(ServerButtonPacket.class);
@@ -282,7 +279,6 @@ import java.util.Set;
             Utils.handler.RegisterPacket(ServerGamePacketInvite.class);
             Utils.handler.RegisterPacket(ServerLensBenchPacketDone.class);
             Utils.handler.RegisterPacket(ServerPaintBrushChangePacket.class);
-            Utils.handler.RegisterPacket(ServerSetBlockPacket.class);
 
             Utils.handler.RegisterPacket(PacketTileUpdate.class);
             Utils.handler.RegisterPacket(PacketTileWithItemUpdate.class);
@@ -295,10 +291,7 @@ import java.util.Set;
         @EventHandler
         public void PostInit(FMLPostInitializationEvent event)
         {
-        	
-        	LaserRegistry.registerLaser("default", new DefaultLaser());
 
-	
         }
 
 

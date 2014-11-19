@@ -2,168 +2,78 @@ package com.miscitems.MiscItemsAndBlocks.TileEntity.Electric;
 
 import MiscItemsApi.Electric.IPowerTile;
 import com.miscitems.MiscItemsAndBlocks.Utils.Laser.ILaserReciver;
-import com.miscitems.MiscItemsAndBlocks.Utils.Laser.LaserInGame;
+import com.miscitems.MiscItemsAndBlocks.Utils.Laser.LaserInstance;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class TileEntityLaserReciver extends TileEntity implements ILaserReciver{
 
 	public boolean Redstone;
-	
-	@Override
-	public int getX() {
-		return xCoord;
-	}
 
-	@Override
-	public int getY() {
-		return yCoord;
-	}
-
-	@Override
-	public int getZ() {
-		return zCoord;
-	}
-
-	@Override
-	public World getWorld() {
-		return worldObj;
-	}
-	
 	
 	int ResetTime = 0;
 	int Reset = 2;
 	
 	public void updateEntity(){
-		if(ResetTime <= Reset)
+		if(ResetTime < Reset)
 			ResetTime++;
 		else{
-			Redstone = false;
-			
-			worldObj.notifyBlocksOfNeighborChange(xCoord, yCoord, zCoord, worldObj.getBlock(xCoord, yCoord, zCoord));
-			
+             SetState(false);
 		}
 		
 	}
+
+    public void SetState(boolean state){
+        if(Redstone != state) {
+            Redstone = state;
+            worldObj.notifyBlocksOfNeighborChange(xCoord, yCoord, zCoord, worldObj.getBlock(xCoord, yCoord, zCoord));
+            worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+        }
+    }
 
 	@Override
-	public boolean canPassOnSide(World world, int orginX, int orginY, int orginZ, int side, LaserInGame laserInGame) {
-		
+	public boolean CanLaserPass(LaserInstance instance, ForgeDirection dir) {
 
-		TileEntity tile_e = world.getTileEntity(orginX, orginY, orginZ);
-		if(tile_e instanceof TileEntityLaser){
-			TileEntityLaser tile = (TileEntityLaser)tile_e;
-			//z+
-			
-			
-			ResetTime = 0;
-			
-			if(tile.getStackInSlot(0) != null){
-				if(tile.getStackInSlot(0).stackTagCompound != null){
-				boolean Redstone = tile.getStackInSlot(0).stackTagCompound.getBoolean("Redstone");
-				boolean Power = tile.getStackInSlot(0).stackTagCompound.getBoolean("TransferPower");
-				
-				this.Redstone = Redstone;
-				
-				world.notifyBlocksOfNeighborChange(xCoord, yCoord, zCoord, world.getBlock(xCoord, yCoord, zCoord));
-				
-		if(side == 4){
-			
-			if(Power)
-			if(world.getTileEntity(xCoord + 1, yCoord, zCoord) instanceof IPowerTile){
-				if(world.getTileEntity(xCoord + 1, yCoord, zCoord) instanceof IPowerTile){
-					IPowerTile tilePow = (IPowerTile)world.getTileEntity(xCoord + 1, yCoord, zCoord);
-					if(tile.GetPower() > 0 && tilePow.GetPower() < tilePow.GetMaxPower()){
-					tile.SetPower(tile.GetPower() - 1);
-					tilePow.SetPower(tilePow.GetPower() + 1);
-					
-					}
-				}
-			}
-			
-			
-		
+        int meta = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
+        ForgeDirection dirr = ForgeDirection.getOrientation(meta);
 
-		
-		}else if(side == 3){
-
-			if(Power)
-			if(world.getTileEntity(xCoord, yCoord, zCoord - 1) instanceof IPowerTile){
-				if(world.getTileEntity(xCoord, yCoord, zCoord - 1) instanceof IPowerTile){
-					IPowerTile tilePow = (IPowerTile)world.getTileEntity(xCoord, yCoord, zCoord - 1);
-					if(tile.GetPower() > 0 && tilePow.GetPower() < tilePow.GetMaxPower()){
-					tile.SetPower(tile.GetPower() - 1);
-					tilePow.SetPower(tilePow.GetPower() + 1);
-					
-					}
-				}
-			}
-			
-			
-		
-			
-
-		
-		}else if (side == 2){
-			
-			
-			if(Power)
-			if(world.getTileEntity(xCoord, yCoord, zCoord + 1) instanceof IPowerTile ){
-				if(world.getTileEntity(xCoord, yCoord, zCoord + 1) instanceof IPowerTile){
-					IPowerTile tilePow = (IPowerTile)world.getTileEntity(xCoord, yCoord, zCoord + 1);
-					if(tile.GetPower() > 0 && tilePow.GetPower() < tilePow.GetMaxPower()){
-					tile.SetPower(tile.GetPower() - 1);
-					tilePow.SetPower(tilePow.GetPower() + 1);
-					
-					}
-				}
-			
-			
-		}
-			
-			
-
-			
-		}else if (side == 5){
-			
-			if(Power)
-				if(world.getTileEntity(xCoord - 1, yCoord, zCoord) instanceof IPowerTile){
-					if(world.getTileEntity(xCoord - 1, yCoord, zCoord) instanceof IPowerTile){
-						IPowerTile tilePow = (IPowerTile)world.getTileEntity(xCoord - 1, yCoord, zCoord);
-						if(tile.GetPower() > 0 && tilePow.GetPower() < tilePow.GetMaxPower()){
-						tile.SetPower(tile.GetPower() - 1);
-						tilePow.SetPower(tilePow.GetPower() + 1);
-						
-						}
-					}
-				
-				
-			}
-			
-
-			
-		}
-		
-		
-		
-				
-				
-				}
-		}
-		
-		}
-		return false;
-	}
-
-	@Override
-	public void passLaser(World world, int orginX, int orginY, int orginZ, int side, LaserInGame laserInGame) {
+        return dir != dirr && dir != dirr.getOpposite();
 
 	}
 
-	@Override
-	public void removeLasersFromSide(World world, int orginX, int orginY, int orginZ, int side) {
-	}
 
-	
+    @Override
+    public void LaserReceiveOnSide(LaserInstance instance, ForgeDirection side) {
 
+        if(instance.Redstone){
+            SetState(true);
+            ResetTime = 0;
+        }
+
+        if(instance.TransPower){
+            ForgeDirection dir = side;
+
+
+            int xTemp = xCoord + dir.offsetX;
+            int yTemp = yCoord + dir.offsetY;
+            int zTemp = zCoord + dir.offsetZ;
+
+            if(worldObj.getTileEntity(xTemp, yTemp, zTemp) != null){
+                TileEntity te = worldObj.getTileEntity(xTemp, yTemp, zTemp);
+
+                if(te instanceof IPowerTile){
+                    IPowerTile tee = (IPowerTile)te;
+
+                    if(tee.AcceptsPower()){
+                        tee.AddPower(instance.GetPowerTransferAmount());
+
+
+                    }
+
+                }
+
+            }
+
+        }
+    }
 }

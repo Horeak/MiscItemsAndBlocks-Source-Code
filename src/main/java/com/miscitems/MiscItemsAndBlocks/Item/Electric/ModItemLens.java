@@ -1,5 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Item.Electric;
 
+import com.miscitems.MiscItemsAndBlocks.Main.ModItems;
 import com.miscitems.MiscItemsAndBlocks.Utils.References.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -7,9 +8,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
-import net.minecraft.world.World;
 
 import java.awt.*;
 import java.util.List;
@@ -39,6 +38,7 @@ public class ModItemLens extends Item{
 	    	
 	    	if(par2 == 0)
 	    		return super.getColorFromItemStack(par1ItemStack, par2);
+
 	    	else if (par2 == 1 || par2 == 2){
 	    		if(par1ItemStack.stackTagCompound != null){
 	    			if(par1ItemStack.stackTagCompound.getBoolean("Color")){
@@ -123,18 +123,72 @@ public class ModItemLens extends Item{
 	    	}
 	    	
 	    }
-	    
-	    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int par4, int par5, int par6, int par7, float par8, float par9, float par10)
-	    {
-	    	
-	    	if(player.isSneaking()){
-	    		stack.setTagCompound(new NBTTagCompound());
-	    		
-	    		stack.stackTagCompound.setBoolean("Color", true);
-	    		stack.stackTagCompound.setInteger("Red", 255);
-	    		
-	    		
-	    	}
-	        return false;
-	    }
+
+
+
+    public static Color GetLensColor(ItemStack stack) {
+        if(stack != null && stack.getItem() == ModItems.Lens){
+            if(stack.stackTagCompound != null) {
+                int Red = stack.stackTagCompound.getInteger("Red");
+                int Green = stack.stackTagCompound.getInteger("Green");
+                int Blue = stack.stackTagCompound.getInteger("Blue");
+
+                return new Color(Red, Green, Blue);
+
+            }
+        }
+
+        return null;
+    }
+
+    public static int GetLensStrength(ItemStack stack) {
+        if(stack != null && stack.getItem() == ModItems.Lens){
+            if(stack.stackTagCompound != null)
+                return stack.stackTagCompound.getInteger("Strength");
+
+
+        }
+
+        return 0;
+    }
+
+    public static int GetLensPower(ItemStack stack) {
+        if(stack != null && stack.getItem() == ModItems.Lens){
+            if(stack.stackTagCompound != null)
+                return stack.stackTagCompound.getInteger("Power");
+
+        }
+        return 0;
+    }
+
+    public static boolean TransfersPower(ItemStack stack) {
+        if(stack != null && stack.getItem() == ModItems.Lens){
+            if(stack.stackTagCompound != null)
+                return stack.stackTagCompound.getBoolean("TransferPower");
+
+
+        }
+        return false;
+    }
+
+
+    public static boolean EmitsRedstone(ItemStack stack) {
+        if(stack != null && stack.getItem() == ModItems.Lens){
+            if(stack.stackTagCompound != null)
+                return stack.stackTagCompound.getBoolean("Redstone");
+
+
+        }
+        return false;
+    }
+
+    public static boolean DoesDamage(ItemStack stack) {
+        if(stack != null && stack.getItem() == ModItems.Lens){
+            if(stack.stackTagCompound != null)
+                return !stack.stackTagCompound.getBoolean("Safe");
+
+
+        }
+        return true;
+    }
 }

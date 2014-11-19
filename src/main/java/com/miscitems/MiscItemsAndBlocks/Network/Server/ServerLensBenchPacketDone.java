@@ -4,6 +4,7 @@ import MiscUtils.Network.AbstractPacket;
 import com.miscitems.MiscItemsAndBlocks.Container.Electric.ContainerLensBench;
 import com.miscitems.MiscItemsAndBlocks.Main.ModItems;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityLensBench;
+import com.miscitems.MiscItemsAndBlocks.Utils.Laser.LaserUtil;
 import cpw.mods.fml.relauncher.Side;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
@@ -112,9 +113,9 @@ public class ServerLensBenchPacketDone extends AbstractPacket {
     		
     		tile.getStackInSlot(0).stackTagCompound.setInteger("Power", Power);
     		tile.getStackInSlot(0).stackTagCompound.setInteger("Strength", Strength);
-    		
-    		tile.getStackInSlot(0).stackTagCompound.setInteger("PowerUse", (((Power) * 3) + ((Strength / 4))) + (Damage ? 5 : 0) + (TransferPower ? 2 : 0) + (Redstone ? 1 : 0));
-    		
+
+    		tile.getStackInSlot(0).stackTagCompound.setInteger("PowerUse", (int)LaserUtil.GetLensPowerUsaeg(Power, Strength, Damage, TransferPower, Redstone));
+
     		if(tile.getStackInSlot(0).stackTagCompound.getInteger("PowerUse") < 0){
         		tile.getStackInSlot(0).stackTagCompound.setInteger("PowerUse", 0);
     		}

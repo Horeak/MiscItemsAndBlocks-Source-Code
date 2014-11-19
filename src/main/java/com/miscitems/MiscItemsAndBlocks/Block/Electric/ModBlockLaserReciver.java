@@ -1,17 +1,18 @@
 package com.miscitems.MiscItemsAndBlocks.Block.Electric;
 
 import MiscUtils.Block.ModBlockContainer;
+import com.miscitems.MiscItemsAndBlocks.Main.ModBlocks;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityLaserReciver;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.init.Blocks;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class ModBlockLaserReciver extends ModBlockContainer {
 
@@ -22,24 +23,33 @@ public class ModBlockLaserReciver extends ModBlockContainer {
 	
     public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z) {
     	int Meta = world.getBlockMetadata(x, y, z);
-    	
-    	if(Meta == 2){
-    		this.setBlockBounds(0.1F, 0.1F, 0.7F, 0.9F, 0.9F, 1F);
-    		
-    	}else if (Meta == 3){
-    		this.setBlockBounds(0.1F, 0.1F, 0F, 0.9F, 0.9F, 0.3F);
-    		
-    	}else if (Meta == 4){
-    		
-    		this.setBlockBounds(0.7F, 0.1F, 0.1F, 1F, 0.9F, 0.9F);
-    		
-    	}else if (Meta == 5){
-    		
-    		this.setBlockBounds(0F, 0.1F, 0.1F, 0.3F, 0.9F, 0.9F);
-    		
-    	}else{
-    		this.setBlockBounds(0F, 0F, 0F, 1F, 1F, 1F);
-    	}
+        ForgeDirection dir = ForgeDirection.getOrientation(Meta);
+
+        if(dir == ForgeDirection.UP) {
+            this.setBlockBounds(0.1F, 0F, 0.1F, 0.9F, 0.3F, 0.9F);
+
+        }else if(dir == ForgeDirection.DOWN) {
+            this.setBlockBounds(0.1F, 0.7F, 0.1F, 0.9F, 1f, 0.9F);
+
+        }else if(Meta == 2){
+            this.setBlockBounds(0.1F, 0.1F, 0.7F, 0.9F, 0.9F, 1F);
+
+        }else if (Meta == 3){
+            this.setBlockBounds(0.1F, 0.1F, 0F, 0.9F, 0.9F, 0.3F);
+
+        }else if (Meta == 4){
+
+            this.setBlockBounds(0.7F, 0.1F, 0.1F, 1F, 0.9F, 0.9F);
+
+        }else if (Meta == 5){
+
+            this.setBlockBounds(0F, 0.1F, 0.1F, 0.3F, 0.9F, 0.9F);
+
+
+
+        }else{
+            this.setBlockBounds(0F, 0F, 0F, 1F, 1F, 1F);
+        }
     	
     	
     }
@@ -49,100 +59,9 @@ public class ModBlockLaserReciver extends ModBlockContainer {
 		return new TileEntityLaserReciver();
 	}
 
-	
-	 private void func_149930_e(World p_149930_1_, int p_149930_2_, int p_149930_3_, int p_149930_4_)
-	    {
-	        if (!p_149930_1_.isRemote)
-	        {
-	            Block block = p_149930_1_.getBlock(p_149930_2_, p_149930_3_, p_149930_4_ - 1);
-	            Block block1 = p_149930_1_.getBlock(p_149930_2_, p_149930_3_, p_149930_4_ + 1);
-	            Block block2 = p_149930_1_.getBlock(p_149930_2_ - 1, p_149930_3_, p_149930_4_);
-	            Block block3 = p_149930_1_.getBlock(p_149930_2_ + 1, p_149930_3_, p_149930_4_);
-	            byte b0 = 3;
 
-	            if (block.func_149730_j() && !block1.func_149730_j())
-	            {
-	                b0 = 3;
-	            }
-
-	            if (block1.func_149730_j() && !block.func_149730_j())
-	            {
-	                b0 = 2;
-	            }
-
-	            if (block2.func_149730_j() && !block3.func_149730_j())
-	            {
-	                b0 = 5;
-	            }
-
-	            if (block3.func_149730_j() && !block2.func_149730_j())
-	            {
-	                b0 = 4;
-	            }
-
-	            p_149930_1_.setBlockMetadataWithNotify(p_149930_2_, p_149930_3_, p_149930_4_, b0, 2);
-	        }
-	    }
-	  
-	    public void onBlockAdded(World par1World, int par2, int par3, int par4)
-	    {
-	        super.onBlockAdded(par1World, par2, par3, par4);
-	        this.func_149930_e(par1World, par2, par3, par4);
-	     
-	    }
-	
  
-	    public boolean canPlaceBlockOnSide(World world, int x, int y, int z, int side)
-	    {
-	    	
-	    	 if(side == 2)
-	    		return world.getBlock(x, y, z + 1).isOpaqueCube();
-	    	
-	    	
-	    	else if(side == 3)
-	    		return world.getBlock(x, y, z - 1).isOpaqueCube();
-	    	
-	    	
-	    	else if(side == 4)
-	    		return world.getBlock(x + 1, y, z).isOpaqueCube();
-	    	
-	    	
-	    	else if(side == 5)
-	    		return world.getBlock(x - 1, y, z).isOpaqueCube();
-	    	
-	    	
-	    	
-	    	
-	        return false;
-	    }
-	    
-	    
- public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack)
- {
-     int l = MathHelper.floor_double((double)(par5EntityLivingBase.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
 
-     if (l == 0)
-     {
-         par1World.setBlockMetadataWithNotify(par2, par3, par4, 2, 2);
-     }
-
-     if (l == 1)
-     {
-         par1World.setBlockMetadataWithNotify(par2, par3, par4, 5, 2);
-     }
-
-     if (l == 2)
-     {
-         par1World.setBlockMetadataWithNotify(par2, par3, par4, 3, 2);
-     }
-
-     if (l == 3)
-     {
-         par1World.setBlockMetadataWithNotify(par2, par3, par4, 4, 2);
-     }
-
- }
-	
 	@Override
 	public void breakBlock(World World, int x, int y, int z, Block block, int meta)
 	{
@@ -229,4 +148,34 @@ public class ModBlockLaserReciver extends ModBlockContainer {
         return 0;
     }
 
+
+    public boolean canBlockStay(World world, int x, int y, int z)
+    {
+
+            ForgeDirection dir = ForgeDirection.getOrientation(world.getBlockMetadata(x,y,z));
+             dir = dir.getOpposite();
+
+            int xCord = x + dir.offsetX;
+            int yCord = y + dir.offsetY;
+            int zCord = z + dir.offsetZ;
+
+            if(!world.isSideSolid(xCord, yCord, zCord, dir)){
+                return false;
+            }
+
+
+
+        return true;
+    }
+
+
+    public void onNeighborBlockChange(World world, int x, int y, int z, Block block) {
+        if(world.getBlock(x,y,z) == ModBlocks.LaserReciver) {
+            if (!canBlockStay((World) world, x, y, z)) {
+                world.getBlock(x, y, z).dropBlockAsItem((World) world, x, y, z, world.getBlockMetadata(x, y, z), 1);
+                ((World) world).setBlock(x, y, z, Blocks.air, 0, 2);
+
+            }
+        }
+    }
 }

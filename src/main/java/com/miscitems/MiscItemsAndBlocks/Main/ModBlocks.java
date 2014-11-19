@@ -253,8 +253,7 @@ public class ModBlocks {
         MetalPress = new ModBlockMetalPress().setCreativeTab(Main.ElectricTab);
         Utils.Register(MetalPress, ModItemBlockMetalPress.class, "Metal Press", TileEntityMetalPress.class);
 
-        //TODO Keep?
-        if(MiscUtilsMain.IsLoadedInDev) {
+        //TODO Redo laser and lens system. people wanted to keep it
             LensBench = new ModBlockLensBench().setCreativeTab(Main.ElectricTab);
             Utils.Register(LensBench, "Lens Bench", TileEntityLensBench.class);
 
@@ -263,7 +262,7 @@ public class ModBlocks {
 
             LaserReciver = new ModBlockLaserReciver().setBlockTextureName(Reference.Mod_Id + ":LaserReciver").setCreativeTab(Main.ElectricTab);
             Utils.Register(LaserReciver, ModItemBlockLaserReciver.class, "Laser Reciver", TileEntityLaserReciver.class);
-        }
+
 
         MiningChamber = new ModBlockMiningStation().setCreativeTab(Main.ElectricTab);
         Utils.Register(MiningChamber, ModItemBlockMiningChamber.class, "Mining Station", TileEntityMiningStation.class);

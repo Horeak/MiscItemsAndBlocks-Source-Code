@@ -175,17 +175,17 @@ public class TileEntityOven extends TileEntityInvBase implements ISidedInventory
 
     		
     					if(Heat > 0 && Heat <= 25){
-    						WorkTime++;
+    						WorkTime += 1;
     						
     						
     					}else if(Heat > 25 && Heat <= 50){
-    						WorkTime = WorkTime + 3;
+    						WorkTime += 8;
     						
     					}else if(Heat > 50 && Heat <= 75){
-    						WorkTime = WorkTime + 5;
+    						WorkTime += 10;
     						
     					}else if(Heat > 75 && Heat <= 100){
-    						WorkTime = WorkTime + 10;
+    						WorkTime += 15;
     						
     						
     					}

@@ -60,11 +60,6 @@ public class TileEntityItemPedestalRender extends TileEntitySpecialRenderer {
 
             this.model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
 
-            GL11.glPopMatrix();
-            GL11.glPushMatrix();
-         
-
-     
             if(tile.getStackInSlot(0) != null){
             float scaleFactor = getGhostItemScaleFactor(tile.getStackInSlot(0));
             float rotationAngle = (float) (520.0 * (System.currentTimeMillis() & 0x3FFFL) / 0x3FFFL);

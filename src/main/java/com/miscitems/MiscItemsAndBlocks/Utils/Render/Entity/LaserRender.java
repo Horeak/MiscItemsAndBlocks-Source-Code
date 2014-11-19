@@ -8,6 +8,10 @@ import org.lwjgl.opengl.GL11;
 
 public class LaserRender {
 
+    /**
+     * Based on @author ProPercivalalb <https://github.com/ProPercivalalb/LaserMod>
+     */
+
 public static void preLaserRender() {
 RenderHelper.disableStandardItemLighting();
 OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 160F, 160F);

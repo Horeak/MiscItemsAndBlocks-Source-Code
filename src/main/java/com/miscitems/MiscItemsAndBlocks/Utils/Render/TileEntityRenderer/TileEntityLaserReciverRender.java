@@ -7,6 +7,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 import org.lwjgl.opengl.GL11;
 
 public class TileEntityLaserReciverRender extends TileEntitySpecialRenderer {
@@ -38,11 +39,26 @@ public class TileEntityLaserReciverRender extends TileEntitySpecialRenderer {
             GL11.glPushMatrix();
             GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
             
-            	int Meta = tile.getBlockMetadata();
-            	int face = Meta == 2 ? 0 : Meta == 3 ? 2 : Meta == 4 ? 3 : Meta == 5 ? 5 : 0;
-            	
-            GL11.glRotatef((face * 90F), 0.0F, 1.0F, 0.0F);
-            
+            	int Meta = tile.getWorldObj().getBlockMetadata(tile.xCoord, tile.yCoord, tile.zCoord);
+                ForgeDirection dir = ForgeDirection.getOrientation(Meta);
+
+            if(dir != ForgeDirection.UP && dir != ForgeDirection.DOWN) {
+                int face = Meta == 2 ? 0 : Meta == 3 ? 2 : Meta == 4 ? 3 : Meta == 5 ? 5 : 0;
+
+                GL11.glRotatef((face * 90F), 0.0F, 1.0F, 0.0F);
+            }else{
+                if(dir == ForgeDirection.UP){
+
+                        GL11.glTranslatef(0, 1F, 1);
+                        GL11.glRotatef(-90, 0.5F, 0.0F, 0.0F);
+
+                    } else {
+                    GL11.glTranslatef(0, 1F, -1);
+                    GL11.glRotatef(90, 0.5F, 0.0F, 0.0F);
+
+                }
+            }
+
 
             
             this.model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);

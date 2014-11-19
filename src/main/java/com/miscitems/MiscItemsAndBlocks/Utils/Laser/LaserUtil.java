@@ -1,161 +1,139 @@
 package com.miscitems.MiscItemsAndBlocks.Utils.Laser;
 
-import MiscUtils.Network.PacketHandler;
-import com.miscitems.MiscItemsAndBlocks.Main.Main;
-import com.miscitems.MiscItemsAndBlocks.Network.Server.ServerSetBlockPacket;
-import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityLaserReciver;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
-import net.minecraft.init.Blocks;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.Facing;
+import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
+import javax.vecmath.Vector3d;
+import java.util.ArrayList;
 import java.util.List;
 
 public class LaserUtil {
-	
-	/**
-	 * @author ProPercivalalb <https://github.com/ProPercivalalb/LaserMod>
-	 */
 
-public static int TICK_RATE = 2;
-public static double LASER_SIZE = 0.4D; 
+public static double LASER_SIZE = 0.3D;
 
 public static int getOrientation(int meta) {
 return meta & 7;
 }
 
-public static ILaserReciver getFirstReciver(ILaserProvider laserProvider, int meta) {
-int orientation = getOrientation(meta);
+public static Vector3d getFirstBlockPos(LaserInstance instance) {
+int orientation = getOrientation(instance.side);
 
-for(int distance = 1; distance <= laserProvider.GetLensStrength(); distance++) {
-int xTemp = laserProvider.getX() + ForgeDirection.VALID_DIRECTIONS[orientation].offsetX * distance;
-int yTemp = laserProvider.getY() + ForgeDirection.VALID_DIRECTIONS[orientation].offsetY * distance;
-int zTemp = laserProvider.getZ() + ForgeDirection.VALID_DIRECTIONS[orientation].offsetZ * distance;
+for(int distance = 1; distance <= instance.strength; distance++) {
+int xTemp =  (int)instance.Position.x + ForgeDirection.VALID_DIRECTIONS[orientation].offsetX * distance;
+int yTemp =  (int)instance.Position.y + ForgeDirection.VALID_DIRECTIONS[orientation].offsetY * distance;
+int zTemp =  (int)instance.Position.z + ForgeDirection.VALID_DIRECTIONS[orientation].offsetZ * distance;
 
-
-Block block = laserProvider.getWorld().getBlock(xTemp, yTemp, zTemp);
-int blockMeta = laserProvider.getWorld().getBlockMetadata(xTemp, yTemp, zTemp);
-TileEntity tileEntity = laserProvider.getWorld().getTileEntity(xTemp, yTemp, zTemp);
-
-if(tileEntity instanceof ILaserReciver)
-return (ILaserReciver)tileEntity;
-
-if(!LaserWhitelist.canLaserPassThrought(block, blockMeta))
-break;
+if(!CanLaserPass(instance.world, xTemp, yTemp, zTemp, instance) && EntitiesInLaser(instance).size() <= 0){
+    return new Vector3d(xTemp, yTemp, zTemp);
 }
-
-        return null;
 }
-
-public static boolean isValidSourceOfPowerOnSide(ILaserProvider laserProvider, ILaserReciver laserReciver, int side) {
-for(int distance = 1; distance <= laserProvider.GetLensStrength(); distance++) {
-int xTemp = laserReciver.getX() + ForgeDirection.VALID_DIRECTIONS[side].offsetX * distance;
-int yTemp = laserReciver.getY() + ForgeDirection.VALID_DIRECTIONS[side].offsetY * distance;
-int zTemp = laserReciver.getZ() + ForgeDirection.VALID_DIRECTIONS[side].offsetZ * distance;
-
-
-Block block = laserReciver.getWorld().getBlock(xTemp, yTemp, zTemp);
-int blockMeta = laserReciver.getWorld().getBlockMetadata(xTemp, yTemp, zTemp);
-TileEntity tileEntity = laserReciver.getWorld().getTileEntity(xTemp, yTemp, zTemp);
-
-if(!LaserWhitelist.canLaserPassThrought(block, blockMeta))
-if(tileEntity instanceof ILaserProvider)
-return ((ILaserProvider)tileEntity).isSendingSignalFromSide(laserReciver.getWorld(), laserReciver.getX(), laserReciver.getY(), laserReciver.getZ(), Facing.oppositeSide[side]);
-else
-break;
-}
-
-     return false;
+    return null;
 }
 
 
-@SuppressWarnings({ "unused", "rawtypes", "unchecked" })
-public static AxisAlignedBB getLaserOutline(ILaserProvider laserProvider, int meta, double renderX, double renderY, double renderZ) {
-int orientation = getOrientation(meta);
-double offsetMin = 0.5D - LASER_SIZE / 2;
-double offsetMax = 0.5D + LASER_SIZE / 2;
+public static AxisAlignedBB getLaserOutline(LaserInstance instance, double renderX, double renderY, double renderZ) {
+
+   int orientation = getOrientation(instance.side);
+   ForgeDirection dir = ForgeDirection.getOrientation(orientation);
+
+    double offsetMin = 0.5D - LASER_SIZE / 2;
+    double offsetMax = 0.5D + LASER_SIZE / 2;
+
+    renderX += dir.offsetX / 1.8;
+    renderY += dir.offsetY / 1.8;
+    renderZ += dir.offsetZ / 1.8;
+
 AxisAlignedBB boundingBox = AxisAlignedBB.getBoundingBox(renderX + offsetMin, renderY + offsetMin, renderZ + offsetMin, renderX + offsetMax, renderY + offsetMax, renderZ + offsetMax);
-
 double[] extra = new double[ForgeDirection.VALID_DIRECTIONS.length];
 
-for(int distance = 1; distance <= laserProvider.GetLensStrength(); distance++) {
-int xTemp = laserProvider.getX() + ForgeDirection.VALID_DIRECTIONS[orientation].offsetX * distance;
-int yTemp = laserProvider.getY() + ForgeDirection.VALID_DIRECTIONS[orientation].offsetY * distance;
-int zTemp = laserProvider.getZ() + ForgeDirection.VALID_DIRECTIONS[orientation].offsetZ * distance;
+    extra[orientation] -= 0.26;
+
+     for(int distance = 1; distance <= instance.strength; distance++) {
+       int xTemp = (int)instance.Position.x + dir.offsetX * (distance - 1);
+       int yTemp = (int)instance.Position.y + dir.offsetY * (distance - 1);
+       int zTemp = (int)instance.Position.z + dir.offsetZ * (distance - 1);
+
+         AxisAlignedBB aabb = AxisAlignedBB.getBoundingBox(xTemp, yTemp, zTemp, xTemp + offsetMax, yTemp + offsetMax, zTemp + offsetMax);
+         List ents = instance.world.getEntitiesWithinAABB(Entity.class, aabb);
+
+         if(ents.size() > 0){
+             extra[orientation] += 1.3 - offsetMax + 0.01D;
+             break;
+         }
 
 
+        //Add offset for blocks
+        if (CanLaserPass(instance.world, xTemp, yTemp, zTemp, instance)) {
+            extra[orientation] += 1;
 
-Block block = laserProvider.getWorld().getBlock(xTemp, yTemp, zTemp);
-int blockMeta = laserProvider.getWorld().getBlockMetadata(xTemp, yTemp, zTemp);
-TileEntity tile = laserProvider.getWorld().getTileEntity(xTemp, yTemp, zTemp);
+        }
+        else {
 
-AxisAlignedBB aabb = AxisAlignedBB.getBoundingBox(xTemp, yTemp, zTemp, xTemp + offsetMax, yTemp + offsetMax, zTemp + offsetMax);
-
-List ents = laserProvider.getWorld().getEntitiesWithinAABB(Entity.class, aabb);
-if(ents.size() > 0){
-
-	extra[orientation] += 1.3 - offsetMax + 0.01D;
-	
-	break;
-}
-	
-
-
-
-if(LaserWhitelist.canLaserPassThrought(block, blockMeta) || !block.isOpaqueCube() && !block.hasTileEntity(blockMeta))
-extra[orientation] += 1;
-
-else if (laserProvider.getWorld().getTileEntity(xTemp, yTemp, zTemp) instanceof TileEntityLaserReciver){
-	
-
-	int Meta = laserProvider.getWorld().getBlockMetadata(xTemp, yTemp, zTemp);
-	int Ont = orientation;
-	
-	if(Meta == 3 && Ont == 2 || Meta == 4 && Ont == 5 || Meta == 2 && Ont == 3 || Meta == 5 && Ont == 4){
-	extra[orientation] += 1.9 - offsetMax + 0.01D;
-
-	
-	break;
-	
-	
-	}else{
-		extra[orientation] += 1;
-		continue;
-	}
-		
-}
-else {
-extra[orientation] += 1 - offsetMax + 0.01D;
-
-
-if(block != null)
-if(laserProvider.GetLensPower() >= block.getBlockHardness(laserProvider.getWorld(), xTemp, yTemp, zTemp) && block.getBlockHardness(laserProvider.getWorld(), xTemp, yTemp, zTemp) > -1 && laserProvider.GetLensPower() > 0){
-	if(!block.hasTileEntity(blockMeta)){
-
-
-		
-
-		PacketHandler.sendToServer(new ServerSetBlockPacket(laserProvider.getWorld().getWorldInfo().getVanillaDimension(), xTemp, yTemp, zTemp, Blocks.air), Main.Utils.channels);
-		
-		
-	}
-}
-
-
-break;
-}
+            extra[orientation] += 1;
+            break;
+        }
 
 }
 
         boundingBox.setBounds(boundingBox.minX - extra[4], boundingBox.minY - extra[0], boundingBox.minZ - extra[2], boundingBox.maxX + extra[5], boundingBox.maxY + extra[1], boundingBox.maxZ + extra[3]);
-        
-
-        
-        
         return boundingBox;
 }
+
+
+    public static boolean CanLaserPass(World world, int x, int y, int z, LaserInstance laser){
+        Block block = world.getBlock(x, y, z);
+        int blockMeta = world.getBlockMetadata(x,y,z);
+
+        if(world.getTileEntity(x,y,z) != null){
+            if(world.getTileEntity(x,y,z) instanceof ILaserReciver){
+                ILaserReciver ii = (ILaserReciver)world.getTileEntity(x,y,z);
+
+                return ii.CanLaserPass(laser, ForgeDirection.getOrientation(laser.side));
+            }else{
+                return false;
+            }
+
+        }else{
+
+            return !block.isOpaqueCube() && !block.hasTileEntity(blockMeta);
+        }
+
+
+    }
+
+    public static ArrayList<Entity> EntitiesInLaser(LaserInstance instance){
+        ArrayList<Entity> List = new ArrayList<Entity>();
+
+        ForgeDirection dir = ForgeDirection.getOrientation( getOrientation(instance.side));
+        double offsetMax = 0.5D + LASER_SIZE / 2;
+
+        for(int distance = 1; distance <= instance.strength; distance++) {
+            int xTemp = (int) instance.Position.x + dir.offsetX * (distance - 1);
+            int yTemp = (int) instance.Position.y + dir.offsetY * (distance - 1);
+            int zTemp = (int) instance.Position.z + dir.offsetZ * (distance - 1);
+
+            //Add offset for entities
+            AxisAlignedBB aabb = AxisAlignedBB.getBoundingBox(xTemp, yTemp, zTemp, xTemp + offsetMax, yTemp + offsetMax, zTemp + offsetMax);
+            List ents = instance.world.getEntitiesWithinAABB(Entity.class, aabb);
+
+            if (ents.size() > 0) {
+                for(int i = 0; i < ents.size(); i++){
+                    List.add((Entity)ents.get(i));
+                }
+
+            }
+            }
+
+
+            return List;
+        }
+
+    public static double GetLensPowerUsaeg(int Power, double Strength, boolean Damage, boolean TransferPower, boolean Redstone){
+
+        return (((Power) * 3) + ((Strength / 4))) + (Damage ? 5 : 0) + (TransferPower ? 10 : 0) + (Redstone ? 1 : 0);
+    }
 
 }
