@@ -1,6 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.Gui;
 
-import MiscUtils.GuiObjects.ModGuiSlider;
+import MiscUtils.GuiObjects.ModGuiColorSlider;
 import MiscUtils.Network.PacketHandler;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import com.miscitems.MiscItemsAndBlocks.Network.Server.ServerPaintBrushChangePacket;
@@ -25,12 +25,9 @@ public class GuiPaintBrush extends GuiScreen
     public static final int ySizeOfTexture = 114;
     
     private final ItemStack stack;
-    
-    ModGuiSlider SliderRed;
-    ModGuiSlider SliderBlue;
-    ModGuiSlider SliderGreen;
-    
-    
+
+    ModGuiColorSlider SliderRed, SliderBlue, SliderGreen;
+
     int Max = TileEntityPaintBlock.Max;
     
 	
@@ -49,25 +46,22 @@ public class GuiPaintBrush extends GuiScreen
 
 	        int posX = (this.width - xSizeOfTexture) / 2;
 	        int posY = (this.height - ySizeOfTexture) / 2;
+
+            initGui();
 	        
 
 	        drawTexturedModalRect(posX, posY, 0, 0, xSizeOfTexture, ySizeOfTexture);
-
-            
-	        
 	        fontRendererObj.drawString(StatCollector.translateToLocal("gui.painteditor"), posX + 10, posY + 6, 10);
 	        
 	        
 	        int xd = 159;
 	        int yd = 63;
 
-	        this.drawRect(posX + xd,  posY + yd, posX + xd + 46, posY + yd + 46, GetColor());
+	        this.drawRect(posX + xd,  posY + yd, posX + xd + 46, posY + yd + 46, GetColor().getRGB());
 	         
 	        
 	        
 	        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-	        GL11.glDisable(GL11.GL_LIGHTING);
-
 	        super.drawScreen(x, y, f);
 	    }
 
@@ -77,11 +71,12 @@ public class GuiPaintBrush extends GuiScreen
 	    }
 	    
 
-	    public int GetColor(){
-
-	    	Color color = new Color(SliderRed.sliderValue, SliderGreen.sliderValue, SliderBlue.sliderValue);
-	    	
-	    	return color.getRGB();
+	    public Color GetColor(){
+            if(SliderRed != null && SliderGreen != null && SliderBlue != null) {
+                Color color = new Color(SliderRed.sliderValue, SliderGreen.sliderValue, SliderBlue.sliderValue);
+                return color;
+            }
+            return new Color(0,0,0);
 	    }
 
 	    
@@ -91,17 +86,34 @@ public class GuiPaintBrush extends GuiScreen
 			buttonList.clear();
 	        int posX = (this.width - xSizeOfTexture) / 2;
 	        int posY = (this.height - ySizeOfTexture) / 2;
-	        
-	        
-	        SliderRed = new ModGuiSlider(0, posX + 5, posY + 20, StatCollector.translateToLocal("gui.string.redvalue"), 0, Max);
-	        SliderGreen = new ModGuiSlider(1, posX + 5, posY + 50, StatCollector.translateToLocal("gui.string.greenvalue"), 0, Max);
-	        SliderBlue = new ModGuiSlider(2, posX + 5, posY + 80, StatCollector.translateToLocal("gui.string.bluevalue"), 0, Max);
-	        
+
+
+            if(SliderRed == null) {
+                SliderRed = new ModGuiColorSlider(0, posX + 5, posY + 20, 150, 20, 0, Max, new Color(0,0,0), new Color(Max,0,0));
+            }else{
+                SliderRed.xPosition = posX + 5;
+                SliderRed.yPosition = posY + 20;
+
+            }
+
+            if(SliderGreen == null){
+	        SliderGreen = new ModGuiColorSlider(1, posX + 5, posY + 50, 150, 20, 0, Max, new Color(0, 0, 0), new Color(0, Max, 0));
+            }else{
+                SliderGreen.xPosition = posX + 5;
+                SliderGreen.yPosition = posY + 50;
+            }
+
+            if(SliderBlue == null){
+	        SliderBlue = new ModGuiColorSlider(2, posX + 5, posY + 80, 150, 20, 0, Max, new Color(0, 0, 0), new Color(0, 0, Max));
+            }else{
+                SliderBlue.xPosition = posX + 5;
+                SliderBlue.yPosition = posY + 80;
+            }
+
+
+
 	        buttonList.add(new GuiButton(3, posX + 157, posY + 34, 48, 18, StatCollector.translateToLocal("gui.string.setcolor")));
 
-
-			
-			
 	        buttonList.add(SliderRed);
 	        buttonList.add(SliderGreen);
 	        buttonList.add(SliderBlue);

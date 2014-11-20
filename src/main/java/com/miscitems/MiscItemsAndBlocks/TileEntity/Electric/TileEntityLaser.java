@@ -70,7 +70,6 @@ public void updateEntity() {
 
 
 
-    //TODO Add consumption of power
     ItemStack lens = this.getStackInSlot(0);
 
     if(lens != null && lens.getItem() instanceof ModItemLens && lens.stackTagCompound != null){
@@ -100,8 +99,12 @@ public void updateEntity() {
         Vector3d BLPos = LaserUtil.getFirstBlockPos(laser);
         if(BLPos != null){
             laser.ActionOn(BLPos);
-
         }
+
+        LaserUtil.updateForEntities(laser);
+
+
+        SetPower(GetPower() - (laser.GetPowerUsage() / (20 * 5)));
     }
 }
 

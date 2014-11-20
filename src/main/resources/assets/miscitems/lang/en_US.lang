@@ -50,6 +50,7 @@ tile.colored_brick.name=Metal brick
 tile.colored_brick_glowstone.name=Glowstone Metal brick
 tile.gamepart.name=Game piece
 tile.color_block.name=Color Block
+tile.creative_energy_source.name=Creative Energy Source
 
 //All items
 item.xp_extractor.name=Xp extractor

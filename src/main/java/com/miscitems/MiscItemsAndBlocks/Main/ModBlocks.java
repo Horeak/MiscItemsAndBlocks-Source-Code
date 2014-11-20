@@ -21,6 +21,7 @@ import com.miscitems.MiscItemsAndBlocks.Block.Decorative.ModBlockItemPedestal;
 import com.miscitems.MiscItemsAndBlocks.Block.Decorative.ModBlockPaintBlock;
 import com.miscitems.MiscItemsAndBlocks.Block.Decorative.ModBlockPillar;
 import com.miscitems.MiscItemsAndBlocks.Block.Decorative.ModBlockTable;
+import com.miscitems.MiscItemsAndBlocks.Block.Electric.ModBlockCreativeEnergySource;
 import com.miscitems.MiscItemsAndBlocks.Block.Electric.ModBlockElectricFurnace;
 import com.miscitems.MiscItemsAndBlocks.Block.Electric.ModBlockEnergyStorageCube;
 import com.miscitems.MiscItemsAndBlocks.Block.Electric.ModBlockGenerator;
@@ -70,6 +71,7 @@ import com.miscitems.MiscItemsAndBlocks.Item.ItemBlock.ModItemXpStorageBlock;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Decorative.TileEntityItemPedestal;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Decorative.TileEntityPaintBlock;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Decorative.TileEntityPillar;
+import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityCreativeEnergySource;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityElectricFurnace;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityEnergyStorageCube;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityGenerator;
@@ -154,6 +156,8 @@ public class ModBlocks {
 	public static Block LaserReciver;
 	public static Block GhostBlock;
 
+    public static Block CreativeEnergySource;
+
 
     public static Block ColoredBrick;
     public static Block ColoredBrickGlowstone;
@@ -231,6 +235,10 @@ public class ModBlocks {
         
         MachinePart = new ModBlockMachinePart().setCreativeTab(Main.ElectricTab).setHardness(1F);
         Utils.Register(MachinePart, "Machine Part");
+
+
+        CreativeEnergySource = new ModBlockCreativeEnergySource().setCreativeTab(Main.ElectricTab).setBlockTextureName(Reference.Mod_Id + ":CreativeEnergySource");
+        Utils.Register(CreativeEnergySource, "Creative Energy Source", TileEntityCreativeEnergySource.class);
 
         Charger = new ModBlockEnergyStorageCube().setCreativeTab(Main.ElectricTab);
         Utils.Register(Charger, "Charger", TileEntityEnergyStorageCube.class);

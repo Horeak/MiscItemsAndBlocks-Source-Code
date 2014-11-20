@@ -1,10 +1,10 @@
 package com.miscitems.MiscItemsAndBlocks.Utils.Laser;
 
+import com.miscitems.MiscItemsAndBlocks.Utils.Laser.Events.LaserActionEntityEvent;
 import net.minecraft.entity.Entity;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldProvider;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import javax.vecmath.Vector3d;
@@ -64,87 +64,18 @@ public class LaserInstance {
         return this;
     }
 
-    public LaserInstance setColor(int r, int g, int b){
-        this.red = r;
-        this.blue = b;
-        this.green = g;
-
-        return this;
-    }
 
     public double GetPowerUsage(){
         return LaserUtil.GetLensPowerUsaeg(power, strength, Damage, TransPower, Redstone);
     }
 
+    //TODO Change consumption rate?
     public double GetPowerTransferAmount(){
-        return GetPowerUsage() / 250;
+        return GetPowerUsage() / 180;
     }
 
 
-
-public LaserInstance readFromNBT(NBTTagCompound tag) {
-    strength = tag.getDouble("strength");
-    side = tag.getInteger("side");
-
-    power = tag.getInteger("power");
-
-    Damage = tag.getBoolean("Damage");
-    Redstone = tag.getBoolean("Redstone");
-    TransPower = tag.getBoolean("TransPower");
-
-    red = tag.getInteger("red");
-    green = tag.getInteger("green");
-    blue = tag.getInteger("blue");
-
-    double x = tag.getDouble("xCord");
-    double y = tag.getDouble("yCord");
-    double z = tag.getDouble("zCord");
-
-    Position = new Vector3d(x,y,z);
-
-    int id = tag.getInteger("dimId");
-    WorldProvider prov = WorldProvider.getProviderForDimension(id);
-
-    if(prov != null)
-        world = prov.worldObj;
-
-return this;
-}
-
-
-
-public NBTTagCompound writeToNBT(NBTTagCompound tag) {
-    tag.setDouble("strength", strength);
-    tag.setInteger("side", side);
-
-    tag.setInteger("power", power);
-
-    tag.setBoolean("Damage", Damage);
-    tag.setBoolean("Redstone", Redstone);
-    tag.setBoolean("TransPower", TransPower);
-
-    tag.setInteger("red", red);
-    tag.setInteger("green", green);
-    tag.setInteger("blue", blue);
-
-    tag.setDouble("xCord", Position.x);
-    tag.setDouble("yCord", Position.y);
-    tag.setDouble("zCord", Position.z);
-
-    tag.setInteger("dimId", world.provider.dimensionId);
-
-return tag;
-}
-
-
-public LaserInstance copy() {
-    LaserInstance laser = new LaserInstance(world, Position, new Color(red, green, blue));
-    NBTTagCompound tag = new NBTTagCompound();
-    writeToNBT(tag);
-    laser.readFromNBT(tag);
-    return laser;
-}
-    //TODO Add block mining functionality and entity ignite
+    //TODO Add block mining functionality
     public void ActionOn(Vector3d pos){
 
         if(world.getTileEntity((int)pos.x, (int)pos.y, (int)pos.z) != null){
@@ -162,7 +93,12 @@ public LaserInstance copy() {
 
     public void ActionOnEntity(Entity ent){
 
+        LaserActionEntityEvent event = new LaserActionEntityEvent(this, ent);
 
+        if(!event.isCanceled()){
+            MinecraftForge.EVENT_BUS.post(event);
+
+        }
     }
 
 }

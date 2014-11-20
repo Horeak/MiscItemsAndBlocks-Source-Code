@@ -33,6 +33,47 @@ if(!CanLaserPass(instance.world, xTemp, yTemp, zTemp, instance) && EntitiesInLas
     return null;
 }
 
+    public static void updateForEntities(LaserInstance instance){
+        int orientation = getOrientation(instance.side);
+        ForgeDirection dir = ForgeDirection.getOrientation(orientation);
+
+        double offsetMax = 0.5D + LASER_SIZE / 2;
+
+
+        for(int distance = 1; distance <= instance.strength; distance++) {
+            int xTemp = (int)instance.Position.x + dir.offsetX * (distance - 1);
+            int yTemp = (int)instance.Position.y + dir.offsetY * (distance - 1);
+            int zTemp = (int)instance.Position.z + dir.offsetZ * (distance - 1);
+
+            AxisAlignedBB aabb = AxisAlignedBB.getBoundingBox(xTemp, yTemp, zTemp, xTemp + offsetMax, yTemp + offsetMax, zTemp + offsetMax);
+
+            List ents = instance.world.getEntitiesWithinAABB(Entity.class, aabb);
+
+            double minLen = -1;
+            Entity entUse = null;
+
+            for(Object r : ents){
+                if(r instanceof Entity){
+                    Entity ent = (Entity)r;
+
+                    if(minLen == -1 || ent.getDistance(instance.Position.x, instance.Position.y, instance.Position.z) < minLen){
+                        minLen = ent.getDistance(instance.Position.x, instance.Position.y, instance.Position.z);
+                        entUse = ent;
+                    }
+
+                }
+            }
+
+
+            instance.ActionOnEntity(entUse);
+
+            }
+
+
+        }
+
+
+
 
 public static AxisAlignedBB getLaserOutline(LaserInstance instance, double renderX, double renderY, double renderZ) {
 

@@ -76,22 +76,17 @@ public class ModItemLens extends Item{
 	    		list.add("Power used: " + stack.stackTagCompound.getInteger("PowerUse"));
 	    		
 
+                if(stack.stackTagCompound.getBoolean("TransferPower") || stack.stackTagCompound.getBoolean("Redstone") || !stack.stackTagCompound.getBoolean("Safe"))
 	    		list.add("Modifiers:");
 	    		
 	    		if(stack.stackTagCompound.getBoolean("TransferPower"))
 	    			list.add("Transfers power");
-	    		else
-	    			list.add("Does not transfer power");
 	    		
 	    		if(stack.stackTagCompound.getBoolean("Redstone"))
-	    			list.add("Emites redstone signal");
-	    		else
-	    			list.add("Does not emit redstone signal");
+	    			list.add("Transfers redstone signal");
 	    		
-	    		if(stack.stackTagCompound.getBoolean("Safe"))
-	    			list.add("Does no damage");
-	    		else
-	    			list.add("Damages entities");
+	    		if(!stack.stackTagCompound.getBoolean("Safe"))
+	    			list.add("Inflicts damage");
 	    		
 	    		
 	    		
