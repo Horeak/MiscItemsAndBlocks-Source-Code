@@ -4,8 +4,6 @@ import MiscUtils.GuideBase.Registry.GuideModRegistry;
 import MiscUtils.Network.ChannelUtils;
 import MiscUtils.Utils.Recipe.RecipeUtils;
 import com.google.common.collect.Sets;
-import com.miscitems.MiscItemsAndBlocks.Book.BookRegestration;
-import com.miscitems.MiscItemsAndBlocks.Book.SmallFontRenderer;
 import com.miscitems.MiscItemsAndBlocks.Entity.EntityPowerArrow;
 import com.miscitems.MiscItemsAndBlocks.Entity.EntitySilverArrow;
 import com.miscitems.MiscItemsAndBlocks.Event.BoneMealEvent;
@@ -57,12 +55,10 @@ import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import org.apache.logging.log4j.LogManager;
 
@@ -95,7 +91,7 @@ import java.util.Set;
             @SideOnly(Side.CLIENT)
             public Item getTabIconItem()
             {
-                return config.GetCheckedItem(ModItems.GuideBook);
+                return Item.getItemFromBlock(config.GetCheckedBlock(ModBlocks.ItemPedestal));
             }
 
         };
@@ -202,10 +198,6 @@ import java.util.Set;
         	if(event.getSide() == Side.CLIENT)
         		RegisterClientEvents();
 
-            if(event.getSide() == Side.CLIENT) {
-                registerRenderer();
-                BookRegestration.Register();
-            }
 
         }
 
@@ -295,15 +287,6 @@ import java.util.Set;
         }
 
 
-        @SideOnly(Side.CLIENT)
-        public static SmallFontRenderer font;
-
-        @SideOnly(Side.CLIENT)
-        public void registerRenderer ()
-        {
-            Minecraft mc = Minecraft.getMinecraft();
-            font = new SmallFontRenderer(mc.gameSettings, new ResourceLocation("minecraft:textures/font/ascii.png"), mc.renderEngine, false);
-        }
 
 
 	}

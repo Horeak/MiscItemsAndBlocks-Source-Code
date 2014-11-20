@@ -112,9 +112,7 @@ item.info_screen.name=Info display screen
 item.data_chip.name=Data chip
 item.lens.name=Lens
 item.creative_battery.name=Creative Battery
-item.guidebook.Guide.name=Guide Book
 item.turbine.name=Turbine
-item.guide_book.name=Guide Book
 powerupgrade.name=Power Upgrade
 
 

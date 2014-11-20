@@ -26,7 +26,6 @@ import com.miscitems.MiscItemsAndBlocks.Item.ModItemPizzaRaw;
 import com.miscitems.MiscItemsAndBlocks.Item.ModItemTomato;
 import com.miscitems.MiscItemsAndBlocks.Item.ModItemTomatoSeeds;
 import com.miscitems.MiscItemsAndBlocks.Item.Tools.ModItemDisarmStick;
-import com.miscitems.MiscItemsAndBlocks.Item.Tools.ModItemGuideBook;
 import com.miscitems.MiscItemsAndBlocks.Item.Tools.ModItemPaintBrush;
 import com.miscitems.MiscItemsAndBlocks.Item.Tools.ModItemPowerArmor;
 import com.miscitems.MiscItemsAndBlocks.Item.Tools.ModItemSilverBow;
@@ -96,8 +95,6 @@ public class ModItems {
 	public static Item InfoScreenHelmet;
 	
 	public static Item Lens;
-	
-	public static Item GuideBook;
 
 
     private static Item IconItem;
@@ -113,9 +110,6 @@ public class ModItems {
 
         ItemRegister Utils = new ItemRegister(Main.config, Reference.Mod_Id);
 
-
-        GuideBook = new ModItemGuideBook().setUnlocalizedName("item.guidebook").setCreativeTab(Main.MiscTab).setTextureName(Reference.Mod_Id + ":" + "book");
-        Utils.Register(GuideBook, "Guide Book");
 
 		XpExtractor = new ModItemXpExtractor().setCreativeTab(Main.MiscTab);
         Utils.Register(XpExtractor, ("xp extractor"));
