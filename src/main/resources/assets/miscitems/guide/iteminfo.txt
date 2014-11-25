@@ -1,0 +1,62 @@
+//FunctionalItems
+item.info.xp_extractor=The xp extractor allows you to extract experience levels and store them in a glass bottle as a Bottle o' Enchanting. To use the xp extractor you have to have atleast one bottle in your inventory and atleast one experience level then just hold right click.
+
+//CraftingItems
+item.info.silver_ingot=The silver ingot is a ingot produced by smelting silver ore. Silver ingot is a very rare and powerful ingot that can be used to make very powerful tools and armor.
+item.info.silver_nugget=The silver nugget is a nugget version of the silver ingot. The silver nugget has limited use and is currently only used in crafting of a limited amount of items.
+item.info.carboard=The cardboard item is a crafting item used in the creation of the Cardboard box. 
+item.info.flour=The flour is a crafting item that can be used to create bread more efficiently or to create pizzas.  
+item.info.pizza_base=The pizza base is a crafting item used in the creation of pizzas.
+
+//Tools
+item.info.silver_sword=The silver sword is a very powerful sword. It will one-hit kill most vanilla mobs and also has a small info storage to see how many mobs it has hit, what the last mob was and who created the sword. Because of the swords strength it is not very durable and breaks very fast.
+item.info.silver_bow=The silver bow is a very strong bow made out of the strong silver ingots. There for the bow does a lot of damage but might not one-hit kill as the sword does.
+
+//ConsumptionItems
+item.info.silver_arrow=The silver arrow is used as ammunition for the silver bow. 
+
+//Armor
+item.info.power_armor.helmet=The powerarmor helmet is a part of the very powerful power armor set. The helmet gives special effects depending on the players "state". The helmet will give water breathing and night vision when under water.
+item.info.power_armor.chestplate=The powerarmor chestplate is a part of the very powerful power armor set. The chestplate will allow you to have creative-like flight in survival.
+item.info.power_armor.leggings=The powerarmor leggings is a part of the very powerful power armor set. The leggings gives special effects depending on the players "state". The leggings will give a large speed boost while on the ground.
+item.info.power_armor.boots=The powerarmor boots is a part of the very powerful power armor set. The boots gives special effects depending on the players "state". The boots gives a jump boost effect while one the ground that allows you to jump 2-3 blocks high.
+
+//Plants
+item.info.tomato=The tomato is a product gotten by harvesting tomato plants. A tomato can then be used to create tomato sauce used to create pizzas or it can be used as a food item.
+item.info.tomato_seeds=The tomato seeds is the seeds that is required to plant and grow the tomato plants to get tomatos.
+item.info.orange=The orange is a item dropped by breaking orange leaves. The orange when eaten gives a limited regeneration effect.
+
+//RandomItems
+item.info.liquid.1=The apple juice is one of three juices that can be created in a squeezer. Each of the juices gives a effect when you drink it. The effects are: Apple Juice: Regeneration(15s), Orange Juice: Regeneration(30s), Carrot Juice: Night Vision(15s).
+item.info.paintbrush.1=The paint brushes are used to color the paint block. The different paint brushes has different effects: The normal Red,Green and Blue paint brushes add one of that color to the paint block when right-clicked on it and removes one when shift-right clicked. The paint copy brush can copy a color with shift-right click and paste with right-click. And the paint edit brush can open a color gui by shift-right clicking. 
+//Eat-able
+item.info.cheese=Cheese is a food item that can be either eaten directly or be used in the creation of pizzas.
+item.info.pizzaraw.1=The raw pizza is a food item that can be created in four types: Fish, Pork, Beef and Chicken. If the pizza is eaten raw it has a chance of giving the hunger effect. 
+item.info.pizza.1=The pizza is a very good food item which will both regen hunger and will also give a saturation effect which will make the food able to last longer.
+
+//ElectricTools
+item.info.drill=The drill is a electric tool that can be recharged in an Energy Storage Cube. When the drill is charged it works as a pickaxe and shovel in one where it mines both stone, ores, obsidian like a normal diamond pickaxe but it can also mine things like sand and gravel. The drill also has 3 mods which can be changed by shift-right clicking with the tool. The three modes all have a different mining size and the modes are: Normal(1x1), Bigger(3x3), Biggest(5x5)
+item.info.electric_shears=The electric shears is a recharge able version of the normal mincraft shears.
+item.info.electric_bow=The electric bow is bow the uses power instead of actual arrows. So as long as the bow has power it can shot and does not consume arrows.
+item.info.wrench=The wrench is a tool that is used for settings and minor interaction with some electric blocks.
+item.info.heat_drill=The heat drill is a upgraded version of the normal drill. The heat drill when mining a block will try to auto-smelt that block and give you the smelted version if there is one. The heat drill can also be right-clicked on a block to smelt it if that block has a smelted version. The heat drill does not have different sizes like the normal drill has.
+item.info.float_block_placer=The floating platform placer is a tool that can be helpful for creating bases in the air or void like worlds or to prevent death from fall damage. When the floating platform placer is used it will create a 3x3 platform one block under the player and reduce the players fall speed. After a few seconds the platform will disappear. 
+
+//ElectricCraftingItems
+item.info.circuit.basic=The circuit items are crafting items that are used in the creation of almost all electrical blocks and items.
+item.info.cable=The cable item is a crafting item used in the creation of power cables that can transfer power.
+item.info.solar_cells=The solar cells is a crafting item used to create solar panels which can generate power.
+item.info.turbine=The turbine is a crafting item used to created the wind mill which can create power when located above y 80.
+
+//ElectricStorage
+item.info.battery=The battery is one of three power storage items with the normal battery being the smallest with a capacity of only 16 power.
+item.info.big_battery=The big battery is the second of the three power storage items and is the second largest with a capacity of 32 power.
+item.info.advaced_battery=The advanced battery is the third of the three power storage items and is the largest of the three with a capacity of 64 power.
+ 
+//ElectricItems
+item.info.powerupgrade=The power upgrade is a item that can increase a Energy Storage Cube's max energy. So for each power upgrade used in it, it will get an extra 100 of storage capacity.
+item.info.iron_plate.1=The iron plate is one of three types of iron plates. There is the normal Iron Plate then it is Small Hardened Iron Plate and the Hardened Iron Plate. The iron plates are used in creation of both blocks and items in the power system where the normal iron plate is used for more basic blocks and items and the hardened iron plate is used for the more advanced ones. 
+item.info.anti_fall_chestplate=The antifall chestplate is a electric armor piece that will prevent fall damage. When falling the armor will activate and use small amounts of power to slow down the fall to a non-harmful speed allowing a gliding like effect.  
+item.info.info_screen=The info display screen is a electric head piece that when worn will show a small info window on the ingame ui where it will show the current power status of all worn electric armor and the currently held electric item.
+item.info.data_chip=The data chip is a item used to store transfer information for things like the teleporter and wireless redstone.
+item.info.lens=The lens is the main item used to controll the laser block. The lens can be modified in a lens bench and can then be inserted into a laser block where it will decide how the laser will look and how it will interact with the world.

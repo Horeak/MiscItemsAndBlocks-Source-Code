@@ -23,7 +23,6 @@ public final class BCLog {
 	}
 
 	public static void initLog() {
-		// TODO: check if the code below is still useful and remove otherwise.
 		//logger.setParent(FMLLog.getLogger());
 
 		logger.info("Starting BuildCraft " + getVersion());

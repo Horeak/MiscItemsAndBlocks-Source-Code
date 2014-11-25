@@ -133,7 +133,7 @@ public class ModItems {
         Utils.Register(DivingHelmet, ("power armor.helmet"));
 
         FlightChestPlate = (new ModItemPowerArmor(PowerArmor, Main.proxy.addArmor("Power"), 1, 2, "PowerarmorChestplate")).setUnlocalizedName("Powerarmor Chestplate").setCreativeTab(Main.MiscTab);
-        Utils.Register(FlightChestPlate, ("powerarmor.chestplate"));
+        Utils.Register(FlightChestPlate, ("power armor.chestplate"));
 
         RunningLeggings = (new ModItemPowerArmor(PowerArmor, Main.proxy.addArmor("Power"), 2, 3, "PowerarmorLeggings")).setUnlocalizedName("Powerarmor Leggings").setCreativeTab(Main.MiscTab);
         Utils.Register(RunningLeggings, ("power armor.leggings"));

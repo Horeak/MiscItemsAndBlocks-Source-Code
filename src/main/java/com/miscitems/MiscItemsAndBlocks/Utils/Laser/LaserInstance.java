@@ -12,6 +12,8 @@ import java.awt.*;
 
 public class LaserInstance {
 
+    //TODO Add invisible laser option and laser googles or something similar to allow you to see the lasers.
+
     public World world;
     public Vector3d Position;
 	
@@ -75,7 +77,7 @@ public class LaserInstance {
     }
 
 
-    //TODO Add block mining functionality
+    //TODO Add block mining functionality?
     public void ActionOn(Vector3d pos){
 
         if(world.getTileEntity((int)pos.x, (int)pos.y, (int)pos.z) != null){

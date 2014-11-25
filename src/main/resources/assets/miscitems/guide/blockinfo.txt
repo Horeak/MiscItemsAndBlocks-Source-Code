@@ -44,6 +44,7 @@ block.info.machine_part=The machine part is a crafting component used to create 
 
 //ElectricStorage
 block.info.charger=The energy storage cube is a energy storage unit. It will accept power through all sides excluding the front side marked with a red icon. The energy storage cube will then output power through the front if possible.
+block.info.creative_energy_source=The creative energy source block is a creative only block that will output 100 power each tick from every direction.
 
 //ElectricGeneration
 block.info.solar_panelblock=The solar panel is a power generation block it will generate power if it has a clear view of the sky and to the sun.

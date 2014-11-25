@@ -10,6 +10,7 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
@@ -73,7 +74,7 @@ public class GuiPaintBrush extends GuiScreen
 
 	    public Color GetColor(){
             if(SliderRed != null && SliderGreen != null && SliderBlue != null) {
-                Color color = new Color(SliderRed.sliderValue, SliderGreen.sliderValue, SliderBlue.sliderValue);
+                Color color = new Color((SliderRed.sliderValue), (SliderGreen.sliderValue), (SliderBlue.sliderValue));
                 return color;
             }
             return new Color(0,0,0);
@@ -89,25 +90,31 @@ public class GuiPaintBrush extends GuiScreen
 
 
             if(SliderRed == null) {
-                SliderRed = new ModGuiColorSlider(0, posX + 5, posY + 20, 150, 20, 0, Max, new Color(0,0,0), new Color(Max,0,0));
+                SliderRed = new ModGuiColorSlider(0, posX + 5, posY + 20, 150, 20, new Color(0,0,0), new Color(Max,0,0));
             }else{
                 SliderRed.xPosition = posX + 5;
                 SliderRed.yPosition = posY + 20;
 
-            }
+                SliderRed.label = EnumChatFormatting.RED + "Red: " + GetColor().getRed() + EnumChatFormatting.RESET;
+        }
+
 
             if(SliderGreen == null){
-	        SliderGreen = new ModGuiColorSlider(1, posX + 5, posY + 50, 150, 20, 0, Max, new Color(0, 0, 0), new Color(0, Max, 0));
+	        SliderGreen = new ModGuiColorSlider(1, posX + 5, posY + 50, 150, 20, new Color(0, 0, 0), new Color(0, Max, 0));
             }else{
                 SliderGreen.xPosition = posX + 5;
                 SliderGreen.yPosition = posY + 50;
+
+                SliderGreen.label = EnumChatFormatting.GREEN + "Green: " + GetColor().getGreen() + EnumChatFormatting.RESET;
             }
 
             if(SliderBlue == null){
-	        SliderBlue = new ModGuiColorSlider(2, posX + 5, posY + 80, 150, 20, 0, Max, new Color(0, 0, 0), new Color(0, 0, Max));
+	        SliderBlue = new ModGuiColorSlider(2, posX + 5, posY + 80, 150, 20, new Color(0, 0, 0), new Color(0, 0, Max));
             }else{
                 SliderBlue.xPosition = posX + 5;
                 SliderBlue.yPosition = posY + 80;
+
+                SliderBlue.label = EnumChatFormatting.BLUE + "Blue: " + GetColor().getBlue() + EnumChatFormatting.RESET;
             }
 
 

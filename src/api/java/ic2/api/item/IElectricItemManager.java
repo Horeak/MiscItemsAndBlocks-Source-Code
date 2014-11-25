@@ -91,5 +91,4 @@ public interface IElectricItemManager {
 	 */
 	String getToolTip(ItemStack stack);
 
-	// TODO: add tier getter
 }

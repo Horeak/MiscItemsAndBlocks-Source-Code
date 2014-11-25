@@ -155,12 +155,12 @@ public class SchematicEntity extends Schematic {
 
 					rqs.add(ItemStack.loadItemStackFromNBT(sub));
 				} else {
-					// TODO: requirement can't be retreived, this blueprint is
+					// requirement can't be retreived, this blueprint is
 					// only useable in creative
 				}
 			} catch (Throwable t) {
 				t.printStackTrace();
-				// TODO: requirement can't be retreived, this blueprint is
+				// requirement can't be retreived, this blueprint is
 				// only useable in creative
 			}
 		}
