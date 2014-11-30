@@ -80,6 +80,12 @@ public class ClientProxy extends ServerProxy {
 
 
     @Override
+    public void PreInt() {
+
+        Main.localizationUpdater.registerListener();
+    }
+
+    @Override
     public EntityPlayer getPlayer() {
 
         return FMLClientHandler.instance().getClientPlayerEntity();

@@ -2,6 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.Main;
 
 import MiscUtils.GuideBase.Registry.GuideModRegistry;
 import MiscUtils.Network.ChannelUtils;
+import MiscUtils.Utils.LocalizationUpdater;
 import MiscUtils.Utils.Recipe.RecipeUtils;
 import com.google.common.collect.Sets;
 import com.miscitems.MiscItemsAndBlocks.Entity.EntityPowerArrow;
@@ -83,6 +84,8 @@ import java.util.Set;
 
         public static Config config;
 
+        public static LocalizationUpdater localizationUpdater;
+
         public static CreativeTabs MiscTab = new CreativeTabs("tabMiscMisc")
         {
 
@@ -143,6 +146,12 @@ import java.util.Set;
 
             Utils = new ChannelUtils(Reference.Channel, Reference.Mod_Id);
             RegisterPackets();
+
+            localizationUpdater = new LocalizationUpdater("tm1990", "MiscItemsAndBlocks-Source-Code", "master", "src/main/resources/assets/miscitems/lang/");
+            localizationUpdater.initializeThread(config.GetConfigFile());
+
+            proxy.PreInt();
+
 
             //Guide Integration
             GuideModRegistry.RegisterModToGuide(new MiscItemsGuideIntegration());

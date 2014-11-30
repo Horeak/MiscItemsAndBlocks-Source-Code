@@ -19,6 +19,11 @@ public static ServerTickHandler tickHandlerServer;
         
     }
 
+
+    public void PreInt() {
+
+    }
+
     public EntityPlayer getPlayer(){return null;}
     
     
