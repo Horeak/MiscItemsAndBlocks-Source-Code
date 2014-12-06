@@ -3,7 +3,7 @@ package com.miscitems.MiscItemsAndBlocks.Main;
 import MiscUtils.GuideBase.Registry.GuideModRegistry;
 import MiscUtils.Network.ChannelUtils;
 import MiscUtils.Utils.LocalizationUpdater;
-import MiscUtils.Utils.Recipe.RecipeUtils;
+import MiscUtils.GuideBase.Recipe.RecipeUtils;
 import com.google.common.collect.Sets;
 import com.miscitems.MiscItemsAndBlocks.Entity.EntityPowerArrow;
 import com.miscitems.MiscItemsAndBlocks.Entity.EntitySilverArrow;
@@ -12,6 +12,11 @@ import com.miscitems.MiscItemsAndBlocks.Event.DisarmStickEvent;
 import com.miscitems.MiscItemsAndBlocks.Event.GhostBlockBreakEvent;
 import com.miscitems.MiscItemsAndBlocks.Event.GuiListener;
 import com.miscitems.MiscItemsAndBlocks.Gui.Computer.ProgramList;
+import com.miscitems.MiscItemsAndBlocks.Gui.Computer.Programs.Utils.ChatPackets.AddChannel;
+import com.miscitems.MiscItemsAndBlocks.Gui.Computer.Programs.Utils.ChatPackets.CloseChannel;
+import com.miscitems.MiscItemsAndBlocks.Gui.Computer.Programs.Utils.ChatPackets.ConnectToChannel;
+import com.miscitems.MiscItemsAndBlocks.Gui.Computer.Programs.Utils.ChatPackets.CreateChannel;
+import com.miscitems.MiscItemsAndBlocks.Gui.Computer.Programs.Utils.ChatPackets.DisconnectFromChannel;
 import com.miscitems.MiscItemsAndBlocks.Gui.GuiHandler;
 import com.miscitems.MiscItemsAndBlocks.Main.Guide.MillGuideRecipeType;
 import com.miscitems.MiscItemsAndBlocks.Main.Guide.MiscItemsGuideIntegration;
@@ -283,6 +288,15 @@ import java.util.Set;
 
             Utils.handler.RegisterPacket(PacketTileUpdate.class);
             Utils.handler.RegisterPacket(PacketTileWithItemUpdate.class);
+
+            //Computer packets
+
+            //ChatPackets
+            Utils.handler.RegisterPacket(AddChannel.class);
+            Utils.handler.RegisterPacket(CloseChannel.class);
+            Utils.handler.RegisterPacket(CreateChannel.class);
+            Utils.handler.RegisterPacket(ConnectToChannel.class);
+            Utils.handler.RegisterPacket(DisconnectFromChannel.class);
 
 
         }

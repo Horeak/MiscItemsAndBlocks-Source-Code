@@ -1,12 +1,13 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity.Electric;
 
 import MiscItemsApi.Electric.IPowerTile;
+import MiscItemsApi.Electric.PowerPacket;
 import MiscUtils.TileEntity.ModTileEntity;
 import cofh.api.energy.IEnergyConnection;
 import cofh.api.energy.IEnergyHandler;
 import cofh.api.energy.IEnergyStorage;
-import MiscItemsApi.Electric.PowerPacket;
 import com.miscitems.MiscItemsAndBlocks.Utils.PowerUtils;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Optional;
 import ic2.api.energy.event.EnergyTileLoadEvent;
@@ -18,24 +19,24 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
+import universalelectricity.api.core.grid.electric.IEnergyContainer;
 
 
 @Optional.InterfaceList(    value =
-        {@Optional.Interface(iface = "ic2.api.energy.tile.IEnergyAcceptor",    modid = "IC2"),
-                @Optional.Interface(iface = "ic2.api.energy.tile.IEnergySink",    modid = "IC2"),
-                @Optional.Interface(iface = "ic2.api.energy.tile.IEnergyTile",    modid = "IC2"),
-                @Optional.Interface(iface = "cofh.api.energy.IEnergyStorage",    modid = "CoFHCore"),
-                @Optional.Interface(iface = "cofh.api.energy.IEnergyConnection",    modid = "CoFHCore"),
-                @Optional.Interface(iface = "cofh.api.energy.IEnergyHandler",    modid = "CoFHCore")
+        {@Optional.Interface(iface = "ic2.api.energy.tile.IEnergyAcceptor",    modid = "IC2", striprefs = true),
+                @Optional.Interface(iface = "ic2.api.energy.tile.IEnergySink",    modid = "IC2", striprefs = true),
+                @Optional.Interface(iface = "ic2.api.energy.tile.IEnergyTile",    modid = "IC2", striprefs = true),
+                @Optional.Interface(iface = "cofh.api.energy.IEnergyStorage",    modid = "CoFHCore", striprefs = true),
+                @Optional.Interface(iface = "cofh.api.energy.IEnergyConnection",    modid = "CoFHCore", striprefs = true),
+                @Optional.Interface(iface = "cofh.api.energy.IEnergyHandler",    modid = "CoFHCore", striprefs = true),
+        @Optional.Interface(iface = "universalelectricity.api.core.grid.electric.IEnergyContainer",    modid = "UniversalElectricity", striprefs = true)
         })
-public abstract class TileEntityPowerBaseTile extends ModTileEntity implements IPowerTile, IEnergySink, IEnergyAcceptor, IEnergyTile, IEnergyStorage, IEnergyConnection, IEnergyHandler {
+public abstract class TileEntityPowerBaseTile extends ModTileEntity implements IPowerTile, IEnergySink, IEnergyAcceptor, IEnergyTile, IEnergyStorage, IEnergyConnection, IEnergyHandler, IEnergyContainer {
 
     private double Power;
     private double PowerMax;
 
 
-
-    @Override
     public void OnRecivedEnergyPacket(PowerPacket packet) {
         AddPower(packet.Stored);
     }
@@ -43,6 +44,8 @@ public abstract class TileEntityPowerBaseTile extends ModTileEntity implements I
     public void validate()
     {
       super.validate();
+
+        if(!FMLCommonHandler.instance().getEffectiveSide().isClient())
         if(Loader.isModLoaded("IC2"))
         MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
     }
@@ -50,6 +53,8 @@ public abstract class TileEntityPowerBaseTile extends ModTileEntity implements I
     public void invalidate()
     {
         super.invalidate();
+
+        if(!FMLCommonHandler.instance().getEffectiveSide().isClient())
         if(Loader.isModLoaded("IC2"))
         MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent(this));
     }
@@ -167,7 +172,6 @@ public abstract class TileEntityPowerBaseTile extends ModTileEntity implements I
         return false;
     }
 
-    @Override
     public int receiveEnergy(int maxReceive, boolean simulate) {
 
         int energy = (int)GetPower();
@@ -185,7 +189,6 @@ public abstract class TileEntityPowerBaseTile extends ModTileEntity implements I
         return 100;
     }
 
-    @Override
     public int extractEnergy(int maxExtract, boolean simulate) {
 
 
@@ -204,44 +207,52 @@ public abstract class TileEntityPowerBaseTile extends ModTileEntity implements I
         return 1;
     }
 
-    @Override
     public boolean ConnectsToTile(TileEntity tile) {
         return true;
     }
 
 
-    @Override
     public int getEnergyStored() {
         return (int)GetPower();
     }
 
-    @Override
     public int getMaxEnergyStored() {
         return (int)GetMaxPower();
     }
 
-    @Override
     public boolean canConnectEnergy(ForgeDirection from) {
         return true;
     }
 
-    @Override
     public int receiveEnergy(ForgeDirection from, int maxReceive, boolean simulate) {
         return receiveEnergy(maxReceive, simulate);
     }
 
-    @Override
     public int extractEnergy(ForgeDirection from, int maxExtract, boolean simulate) {
         return extractEnergy(maxExtract, simulate);
     }
 
-    @Override
     public int getEnergyStored(ForgeDirection from) {
         return getEnergyStored();
     }
 
-    @Override
     public int getMaxEnergyStored(ForgeDirection from) {
         return getMaxEnergyStored();
+    }
+
+    public void setEnergy(ForgeDirection from, double energy) {
+        Power = energy;
+
+        if(Power > PowerMax)
+            Power = PowerMax;
+
+    }
+
+    public double getEnergy(ForgeDirection from) {
+        return Power;
+    }
+
+    public double getEnergyCapacity(ForgeDirection from) {
+        return PowerMax;
     }
 }

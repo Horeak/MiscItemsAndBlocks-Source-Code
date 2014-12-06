@@ -1,5 +1,12 @@
 package com.miscitems.MiscItemsAndBlocks.Gui.Computer.Programs.Utils;
 
+import MiscUtils.Network.PacketHandler;
+import com.miscitems.MiscItemsAndBlocks.Gui.Computer.Programs.Utils.ChatPackets.AddChannel;
+import com.miscitems.MiscItemsAndBlocks.Gui.Computer.Programs.Utils.ChatPackets.CloseChannel;
+import com.miscitems.MiscItemsAndBlocks.Gui.Computer.Programs.Utils.ChatPackets.ConnectToChannel;
+import com.miscitems.MiscItemsAndBlocks.Gui.Computer.Programs.Utils.ChatPackets.CreateChannel;
+import com.miscitems.MiscItemsAndBlocks.Gui.Computer.Programs.Utils.ChatPackets.DisconnectFromChannel;
+import com.miscitems.MiscItemsAndBlocks.Main.Main;
 import net.minecraft.entity.player.EntityPlayer;
 
 import java.util.ArrayList;
@@ -12,16 +19,10 @@ public class ChannelUtils {
 
 
     public static ChatChannel CreateChannel(String Name, EntityPlayer player){
-        ChatChannel channel = ChannelUtils.GetChannel(Name);
+        PacketHandler.sendToServer(new CreateChannel(Name), Main.Utils.channels);
+        ChatChannel channel = GetChannel(Name);
 
-        if (channel == null) {
-            channel = new ChatChannel(Name, Name, true);
-            channel.SetPlayerRank(player, ChatRanks.Owner);
-
-
-            ChannelUtils.AddChannel(channel);
-        }
-
+        channel.SetPlayerRank(player, ChatRanks.Owner);
 
         return channel;
     }
@@ -37,11 +38,11 @@ public class ChannelUtils {
         return null;
     }
 
+    //Should not be called outside of packets!
     public static boolean AddChannel(ChatChannel channel){
         for(ChatChannel chan : Channels){
             if(chan.ChannelId.equalsIgnoreCase(channel.ChannelId))
                 return false;
-
         }
         Channels.add(channel);
         ChannelIds.put(channel.ChannelId, channel);
@@ -49,20 +50,9 @@ public class ChannelUtils {
         return true;
     }
 
+
     public static boolean AddChannel(String Name, String ID, boolean CanClose){
-        ChatChannel channel = new ChatChannel(ID, Name, CanClose);
-
-        for(ChatChannel chan : Channels){
-            if(chan.ChannelId.equalsIgnoreCase(channel.ChannelId))
-                return false;
-
-        }
-
-        Channels.add(channel);
-        ChannelIds.put(ID, channel);
-
-
-        return true;
+        return AddChannel(Name, ID, CanClose, false);
     }
 
     public static boolean AddChannel(String Name, String ID, boolean CanClose, boolean OpAdmins){
@@ -74,58 +64,32 @@ public class ChannelUtils {
 
         }
 
-        channel.OpAdmins = OpAdmins;
-
-        Channels.add(channel);
-        ChannelIds.put(ID, channel);
-
+        PacketHandler.sendToServer(new AddChannel(Name, ID, CanClose, OpAdmins), Main.Utils.channels);
 
         return true;
     }
 
-    public static boolean CloseChannel(ChatChannel channel){
-        if(channel.Close){
-            Channels.remove(channel);
-            ChannelIds.remove(channel.ChannelId);
-            return true;
-        }
 
-        return false;
+
+    public static boolean CloseChannel(ChatChannel channel){
+
+        PacketHandler.sendToServer(new CloseChannel(channel.ChannelName), Main.Utils.channels);
+
+        return GetChannel(channel.ChannelName) == null;
     }
 
     public static boolean ConnectToChannel(String Id, EntityPlayer player){
         ChatChannel channel = ChannelIds.get(Id);
 
-        if(channel.CanConnectPlayer(player)){
-
-            channel.ConnectPlayer(player);
-
-            return true;
-        }
-
-        return false;
+        PacketHandler.sendToServer(new ConnectToChannel(Id, player.getCommandSenderName()), Main.Utils.channels);
+        return channel.ConnectedPlayers.contains(player);
     }
 
     public static boolean DisconnectFromChannel(String Id, EntityPlayer player){
         ChatChannel channel = ChannelIds.get(Id);
 
-
-        if(channel.IsPlayerConnected(player)){
-
-            channel.DisconnectPlayer(player);
-
-            if(channel.Close){
-                if(channel.ConnectedPlayers.size() <= 0){
-                    CloseChannel(channel);
-                }
-            }
-
-            return true;
-        }
-
-
-
-        return false;
+        PacketHandler.sendToServer(new DisconnectFromChannel(Id, player.getCommandSenderName()), Main.Utils.channels);
+        return channel.Close || channel == null || !channel.ConnectedPlayers.contains(player);
     }
 
 

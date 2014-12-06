@@ -76,7 +76,6 @@ public class ChatChannel {
 
 
     public void RemovePlayer(EntityPlayer pl){
-
         ConnectedPlayers.remove(pl);
 
         if(GetPlayerRank(pl) != null)
@@ -113,11 +112,25 @@ public class ChatChannel {
 
 
     public boolean IsPlayerConnected(EntityPlayer player){
-        return ConnectedPlayers.contains(player);
+        boolean Connected = false;
+
+        for(EntityPlayer pl : ConnectedPlayers){
+            if(pl.getCommandSenderName().equals(player.getCommandSenderName()))
+                Connected = true;
+        }
+
+        return Connected;
     }
 
     public boolean CanConnectPlayer(EntityPlayer player){
-        return !Banned.contains(player);
+        boolean can = true;
+
+        for(EntityPlayer pl : Banned){
+            if(pl.getCommandSenderName().equals(player.getCommandSenderName()))
+                can = false;
+        }
+
+        return can;
     }
 
     public void ConnectPlayer(EntityPlayer player){

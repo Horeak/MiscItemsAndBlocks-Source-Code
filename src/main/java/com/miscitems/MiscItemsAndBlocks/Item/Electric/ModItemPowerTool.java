@@ -13,7 +13,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.StatCollector;
+import universalelectricity.api.item.IEnergyItem;
 
 import java.util.List;
 import java.util.Set;
@@ -21,11 +23,12 @@ import java.util.Set;
 @Optional.InterfaceList( value =
 
         {@Optional.Interface(iface = "ic2.api.item.IElectricItem", modid =  "IC2", striprefs = true),
-        @Optional.Interface(iface = "cofh.api.energy.IEnergyContainerItem", modid =  "CoFHCore", striprefs = true)
+        @Optional.Interface(iface = "cofh.api.energy.IEnergyContainerItem", modid =  "CoFHCore", striprefs = true),
+        @Optional.Interface(iface = "universalelectricity.api.item.IEnergyItem", modid =  "UniversalElectricity", striprefs = true)
 
         })
 
-public abstract class ModItemPowerTool extends ItemTool implements IPowerItem, IElectricItem, IEnergyContainerItem{
+public abstract class ModItemPowerTool extends ItemTool implements IPowerItem, IElectricItem, IEnergyContainerItem, IEnergyItem{
 
 	public ModItemPowerTool(float damage, ToolMaterial material, Set blocks) {
 		super(damage, material, blocks);
@@ -38,7 +41,6 @@ public abstract class ModItemPowerTool extends ItemTool implements IPowerItem, I
     }
 
 
-    @Override
     public void AddPower(ItemStack stack, double Amount) {
 
         if(Amount > getMaxCharge(stack))
@@ -61,7 +63,6 @@ public abstract class ModItemPowerTool extends ItemTool implements IPowerItem, I
 
     }
 
-    @Override
     public void RemovePower(ItemStack stack, double Amount) {
 
         if(Amount > getMaxCharge(stack))
@@ -111,12 +112,10 @@ public abstract class ModItemPowerTool extends ItemTool implements IPowerItem, I
 
 
 
-    @Override
     public double ChargeAmount(ItemStack stack) {
         return 1;
     }
 
-    @Override
     public boolean CanBackpackRecharge(ItemStack stack) {
         return false;
     }
@@ -180,7 +179,6 @@ public abstract class ModItemPowerTool extends ItemTool implements IPowerItem, I
 
     }
 
-    @Override
     public int receiveEnergy(ItemStack container, int maxReceive, boolean simulate) {
 
         int energy = (int)CurrentPower(container);
@@ -194,7 +192,6 @@ public abstract class ModItemPowerTool extends ItemTool implements IPowerItem, I
         return 1000;
     }
 
-    @Override
     public int extractEnergy(ItemStack container, int maxExtract, boolean simulate) {
 
 
@@ -214,15 +211,59 @@ public abstract class ModItemPowerTool extends ItemTool implements IPowerItem, I
         return 1000;
     }
 
-    @Override
     public int getEnergyStored(ItemStack container) {
 
         return (int)CurrentPower(container);
     }
 
-    @Override
     public int getMaxEnergyStored(ItemStack container) {
 
         return (int)getMaxCharge(container);
+    }
+
+    public double recharge(ItemStack itemStack, double energy, boolean doRecharge) {
+        double t = (MaxPower(itemStack) - CurrentPower(itemStack));
+        double accept = t - (t - energy) ;
+
+        if(doRecharge){
+            AddPower(itemStack, energy);
+        }
+
+        if(t >= energy)
+            return t;
+
+        return accept;
+    }
+
+    public double discharge(ItemStack itemStack, double energy, boolean doDischarge) {
+        double cn = CurrentPower(itemStack);
+
+        if(doDischarge){
+            RemovePower(itemStack, energy);
+        }
+
+        if(cn >= energy)
+            return energy;
+
+        return MathHelper.clamp_double(cn - energy, 0, MaxPower(itemStack));
+    }
+
+    public double getEnergy(ItemStack theItem) {
+        return CurrentPower(theItem);
+    }
+
+    public double getEnergyCapacity(ItemStack theItem) {
+        return getMaxCharge(theItem);
+    }
+
+    public void setEnergy(ItemStack itemStack, double energy) {
+          RemovePower(itemStack, CurrentPower((itemStack)));
+
+        AddPower(itemStack, energy);
+
+    }
+
+    public double getVoltage(ItemStack theItem) {
+        return Integer.MAX_VALUE;
     }
 }

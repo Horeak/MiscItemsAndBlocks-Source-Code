@@ -7,6 +7,7 @@ import com.miscitems.MiscItemsAndBlocks.Gui.Computer.Programs.Utils.ChannelUtils
 import com.miscitems.MiscItemsAndBlocks.Gui.Computer.Programs.Utils.ChatChannel;
 import com.miscitems.MiscItemsAndBlocks.Gui.Computer.Programs.Utils.ChatRanks;
 import com.miscitems.MiscItemsAndBlocks.Gui.Computer.Programs.Utils.PlayerButton;
+import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
@@ -52,7 +53,7 @@ public class ChatProgram extends ComputerProgram {
 
 
     public void ConnectToChannel(String Name){
-        EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+        EntityPlayer player = FMLClientHandler.instance().getClientPlayerEntity();
 
         if(!CurrentChannel.ChannelName.equals(Name)) {
             ChannelUtils.DisconnectFromChannel(CurrentChannel.ChannelId, player);
@@ -105,7 +106,7 @@ public class ChatProgram extends ComputerProgram {
                 if(keycode == Keyboard.KEY_RETURN){
                     if(CurrentChannel != null){
 
-                        EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+                        EntityPlayer player = FMLClientHandler.instance().getClientPlayerEntity();
 
                         CurrentChannel.AddMessageFromPlayer(player, ChatText.getText());
 
@@ -128,10 +129,11 @@ public class ChatProgram extends ComputerProgram {
 
     public void OpenProgram(){
 
-        ChatChannel channel = ChannelUtils.GetChannel("Default");
+        ChatChannel channel = ChannelUtils.GetChannel("Default");  
+        EntityPlayer player = FMLClientHandler.instance().getClientPlayerEntity();
 
-        if(channel.CanConnectPlayer(Minecraft.getMinecraft().thePlayer)){
-            ChannelUtils.ConnectToChannel(channel.ChannelId, Minecraft.getMinecraft().thePlayer);
+        if(channel.CanConnectPlayer(player)){
+            ChannelUtils.ConnectToChannel(channel.ChannelId, player);
             CurrentChannel = ChannelUtils.GetChannel("Default");
         }
 
@@ -140,9 +142,9 @@ public class ChatProgram extends ComputerProgram {
     public void CloseProgram(){
 
         if(CurrentChannel != null)
-        if(CurrentChannel.IsPlayerConnected(Minecraft.getMinecraft().thePlayer)) {
+        if(CurrentChannel.IsPlayerConnected(FMLClientHandler.instance().getClientPlayerEntity())) {
 
-            ChannelUtils.DisconnectFromChannel(CurrentChannel.ChannelId, Minecraft.getMinecraft().thePlayer);
+            ChannelUtils.DisconnectFromChannel(CurrentChannel.ChannelId, FMLClientHandler.instance().getClientPlayerEntity());
             CurrentChannel = null;
         }
 
@@ -168,7 +170,7 @@ public class ChatProgram extends ComputerProgram {
         if(PlayerHandleWindow && CurrentHandel != null){
 
 
-            ChatRanks RankUse = CurrentChannel.GetPlayerRank(Minecraft.getMinecraft().thePlayer);
+            ChatRanks RankUse = CurrentChannel.GetPlayerRank(FMLClientHandler.instance().getClientPlayerEntity());
             ChatRanks RankCheck = CurrentChannel.GetPlayerRank(CurrentHandel);
 
             int i = 0;
@@ -281,7 +283,7 @@ public class ChatProgram extends ComputerProgram {
         }
 
         if(button instanceof PlayerButton && !PlayerHandleWindow){
-            EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+            EntityPlayer player = FMLClientHandler.instance().getClientPlayerEntity();
 
             EntityPlayer pl = CurrentChannel.ConnectedPlayers.get(button.id - 3);
 
@@ -352,7 +354,7 @@ public class ChatProgram extends ComputerProgram {
 
     @Override
     public void RenderWindow(GuiComputerScreen guiInstance, FontRenderer font, int xCord, int yCord) {
-        EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+        EntityPlayer player = FMLClientHandler.instance().getClientPlayerEntity();
         zLevel = guiInstance._zLevel;
 
         posX = xCord;

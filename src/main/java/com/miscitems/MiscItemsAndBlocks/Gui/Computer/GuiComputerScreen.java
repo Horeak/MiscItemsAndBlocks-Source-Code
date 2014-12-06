@@ -72,6 +72,8 @@ public class GuiComputerScreen extends GuiContainer{
                 this.mc.setIngameFocus();
             }
         }
+
+        super.keyTyped(ch, keyID);
     }
 	
 	    @Override
@@ -83,7 +85,7 @@ public class GuiComputerScreen extends GuiContainer{
 	    public void initGui() {
 			super.initGui();
 			buttonList.clear();
-			
+
 	        int posX = (this.width - xSizeOfTexture) / 2;
 	        int posY = (this.height - ySizeOfTexture) / 2;
 

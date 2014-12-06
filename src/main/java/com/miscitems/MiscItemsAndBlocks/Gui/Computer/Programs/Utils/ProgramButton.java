@@ -23,6 +23,7 @@ public class ProgramButton extends GuiButton{
     {
         if (this.visible)
         {
+            GL11.glPushMatrix();
 
             FontRenderer fontRendererObj = par1Minecraft.fontRenderer;
             par1Minecraft.getTextureManager().bindTexture(icon.GetTexture());
@@ -38,6 +39,7 @@ public class ProgramButton extends GuiButton{
             drawCenteredString(fontRendererObj, nm, (int)((this.xPosition + 8) * 2), (int)((this.yPosition + 17) * 2), new Color(182, 182, 182).getRGB());
 
 
+            GL11.glPopMatrix();
 
 
 
