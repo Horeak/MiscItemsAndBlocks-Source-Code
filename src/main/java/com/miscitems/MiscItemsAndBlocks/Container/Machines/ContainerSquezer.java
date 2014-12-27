@@ -1,6 +1,7 @@
 package com.miscitems.MiscItemsAndBlocks.Container.Machines;
 
 import MiscUtils.GuiObjects.Slots.SlotOutput;
+import MiscUtils.Utils.ContainerBase;
 import com.miscitems.MiscItemsAndBlocks.GuiObjects.Slots.SlotFruit;
 import com.miscitems.MiscItemsAndBlocks.GuiObjects.Slots.SlotLiquidContainer;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Machines.TileEntitySquezer;
@@ -8,12 +9,11 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
-import net.minecraft.item.ItemStack;
 
-public class ContainerSquezer  extends Container {
+public class ContainerSquezer  extends ContainerBase {
 
 	public TileEntitySquezer tile;
     private int workTime;
@@ -46,46 +46,13 @@ public class ContainerSquezer  extends Container {
     }
 
 }
-    
+
 
     @Override
-    public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2)
-    {
-
-        int m = 3;
-
-        ItemStack itemstack = null;
-        Slot slot = (Slot)this.inventorySlots.get(par2);
-
-        if (slot != null && slot.getHasStack())
-        {
-            ItemStack itemstack1 = slot.getStack();
-            itemstack = itemstack1.copy();
-
-            if (par2 < m)
-            {
-                if (!this.mergeItemStack(itemstack1, m, this.inventorySlots.size(), true))
-                {
-                    return null;
-                }
-            }
-            else if (!this.mergeItemStack(itemstack1, 0, m, false))
-            {
-                return null;
-            }
-
-            if (itemstack1.stackSize == 0)
-            {
-                slot.putStack((ItemStack)null);
-            }
-            else
-            {
-                slot.onSlotChanged();
-            }
-        }
-
-        return itemstack;
+    public IInventory getTile() {
+        return tile;
     }
+
     
     public void addCraftingToCrafters(ICrafting par1ICrafting)
     {

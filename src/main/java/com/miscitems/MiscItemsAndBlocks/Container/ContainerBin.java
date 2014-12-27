@@ -1,14 +1,14 @@
 package com.miscitems.MiscItemsAndBlocks.Container;
 
 import MiscUtils.GuiObjects.Slots.ModSlotArmor;
+import MiscUtils.Utils.ContainerBase;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Machines.TileEntityTrashBin;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Container;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
-import net.minecraft.item.ItemStack;
 
-public class ContainerBin extends Container{
+public class ContainerBin extends ContainerBase {
 
     private TileEntityTrashBin tile;
     
@@ -45,13 +45,11 @@ public class ContainerBin extends Container{
 		return tile.isUseableByPlayer(entityplayer);
 	}
 
-	
-	  public ItemStack transferStackInSlot(EntityPlayer player, int Slot)
-	    {
-		  Slot = Slot - 1;
-		  player.inventory.setInventorySlotContents(Slot, null);
-	       return player.inventory.getStackInSlot(Slot);
-	    }
-	  
+
+	@Override
+	public IInventory getTile() {
+		return tile;
+	}
+
 	  
 }

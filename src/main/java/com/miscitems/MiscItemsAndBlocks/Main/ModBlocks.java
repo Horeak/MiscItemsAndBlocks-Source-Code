@@ -261,7 +261,6 @@ public class ModBlocks {
         MetalPress = new ModBlockMetalPress().setCreativeTab(Main.ElectricTab);
         Utils.Register(MetalPress, ModItemBlockMetalPress.class, "Metal Press", TileEntityMetalPress.class);
 
-        //TODO Redo laser and lens system. people wanted to keep it
             LensBench = new ModBlockLensBench().setCreativeTab(Main.ElectricTab);
             Utils.Register(LensBench, "Lens Bench", TileEntityLensBench.class);
 

@@ -1,14 +1,13 @@
 package com.miscitems.MiscItemsAndBlocks.Container;
 
+import MiscUtils.Utils.ContainerBase;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Inventories.TileEntityCardboardBox;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
-import net.minecraft.item.ItemStack;
 
-public class ContainerBox extends Container{
+public class ContainerBox extends ContainerBase {
 
     private TileEntityCardboardBox tile;
     
@@ -55,51 +54,16 @@ public class ContainerBox extends Container{
 	public boolean canInteractWith(EntityPlayer entityplayer) {
 		return tile.isUseableByPlayer(entityplayer);
 	}
-	
-	 public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2)
-	    {
-	        ItemStack itemstack = null;
-	        Slot slot = (Slot)this.inventorySlots.get(par2);
 
-	        if (slot != null && slot.getHasStack())
-	        {
-	            ItemStack itemstack1 = slot.getStack();
-	            itemstack = itemstack1.copy();
+	@Override
+	public IInventory getTile() {
+		return tile;
+	}
 
-	            if (par2 < this.numRows * 9)
-	            {
-	                if (!this.mergeItemStack(itemstack1, this.numRows * 9, this.inventorySlots.size(), true))
-	                {
-	                    return null;
-	                }
-	            }
-	            else if (!this.mergeItemStack(itemstack1, 0, this.numRows * 9, false))
-	            {
-	                return null;
-	            }
-
-	            if (itemstack1.stackSize == 0)
-	            {
-	                slot.putStack((ItemStack)null);
-	            }
-	            else
-	            {
-	                slot.onSlotChanged();
-	            }
-	        }
-
-	        return itemstack;
-	    }
-	 
 	    public void onContainerClosed(EntityPlayer par1EntityPlayer)
 	    {
 	        super.onContainerClosed(par1EntityPlayer);
 	        this.tile.closeInventory();
-	    }
-	    
-	    public IInventory getLowerChestInventory()
-	    {
-	        return this.tile;
 	    }
 
 }

@@ -129,8 +129,15 @@ public class ChatProgram extends ComputerProgram {
 
     public void OpenProgram(){
 
-        ChatChannel channel = ChannelUtils.GetChannel("Default");  
+        ChatChannel channel = ChannelUtils.GetChannel("Default");
         EntityPlayer player = FMLClientHandler.instance().getClientPlayerEntity();
+
+        if(channel == null){
+            ChannelUtils.AddChannel("Default", "Default", false, true);
+            channel = ChannelUtils.GetChannel("Default");
+        }
+
+
 
         if(channel.CanConnectPlayer(player)){
             ChannelUtils.ConnectToChannel(channel.ChannelId, player);

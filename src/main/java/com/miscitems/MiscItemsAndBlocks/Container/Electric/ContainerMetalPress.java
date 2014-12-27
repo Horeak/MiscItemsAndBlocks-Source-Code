@@ -1,17 +1,16 @@
 package com.miscitems.MiscItemsAndBlocks.Container.Electric;
 
 import MiscUtils.GuiObjects.Slots.SlotOutput;
+import MiscUtils.Utils.ContainerBase;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Electric.TileEntityMetalPress;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
-import net.minecraft.item.ItemStack;
 
-public class ContainerMetalPress extends Container{
+public class ContainerMetalPress extends ContainerBase {
 
     private TileEntityMetalPress tile;
     
@@ -49,13 +48,7 @@ public class ContainerMetalPress extends Container{
     		}
     	}
     		
-    	
-    		
-    		
-		
-    		
-    	
-    	
+
     	
 
 }
@@ -66,44 +59,7 @@ public class ContainerMetalPress extends Container{
 	}
 
 
-    @Override
-    public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2)
-    {
 
-        int m = 5;
-
-        ItemStack itemstack = null;
-        Slot slot = (Slot)this.inventorySlots.get(par2);
-
-        if (slot != null && slot.getHasStack())
-        {
-            ItemStack itemstack1 = slot.getStack();
-            itemstack = itemstack1.copy();
-
-            if (par2 < m)
-            {
-                if (!this.mergeItemStack(itemstack1, m, this.inventorySlots.size(), true))
-                {
-                    return null;
-                }
-            }
-            else if (!this.mergeItemStack(itemstack1, 0, m, false))
-            {
-                return null;
-            }
-
-            if (itemstack1.stackSize == 0)
-            {
-                slot.putStack((ItemStack)null);
-            }
-            else
-            {
-                slot.onSlotChanged();
-            }
-        }
-
-        return itemstack;
-    }
 
 	    public void addCraftingToCrafters(ICrafting par1ICrafting)
 	    {

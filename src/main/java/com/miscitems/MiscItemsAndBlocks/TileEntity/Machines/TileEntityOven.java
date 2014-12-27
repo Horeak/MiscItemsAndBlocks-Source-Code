@@ -156,16 +156,14 @@ public class TileEntityOven extends TileEntityInvBase implements ISidedInventory
     	
     	if(Heat > 0){
     		if(this.getStackInSlot(1) != null){
-
-
-    			if(Output() != null && !this.worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord)){
+    			if(Output(getStackInSlot(1)) != null && !this.worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord)){
     				
     				if(WorkTime >= FinishTime){
     					WorkTime = 0;
     					
     					
     					if(this.getStackInSlot(2) == null || Inv[2].stackSize <= 0){
-    					this.setInventorySlotContents(2, Output());
+    					this.setInventorySlotContents(2, Output(getStackInSlot(1)));
     					}else{
     						Inv[2].stackSize = Inv[2].stackSize + 1;
     					}
@@ -279,9 +277,9 @@ public class TileEntityOven extends TileEntityInvBase implements ISidedInventory
     
     
     
-    public ItemStack Output(){
-    	if(this.getStackInSlot(1) != null) {
-            ItemStack itemU = this.getStackInSlot(1);
+    public static ItemStack Output(ItemStack stack){
+    	if(stack != null) {
+            ItemStack itemU = stack;
             Item item = itemU.getItem();
 
 

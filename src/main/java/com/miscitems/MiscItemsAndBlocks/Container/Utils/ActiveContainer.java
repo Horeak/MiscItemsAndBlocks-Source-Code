@@ -1,12 +1,12 @@
 package com.miscitems.MiscItemsAndBlocks.Container.Utils;
 
+import MiscUtils.Utils.ContainerBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.Container;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActiveContainer extends Container
+public abstract class ActiveContainer extends ContainerBase
 {
     public List<ActiveSlot> activeInventorySlots = new ArrayList<ActiveSlot>();
 
@@ -23,5 +23,6 @@ public class ActiveContainer extends Container
         this.addSlotToContainer(slot);
         return slot;
     }
+
 
 }

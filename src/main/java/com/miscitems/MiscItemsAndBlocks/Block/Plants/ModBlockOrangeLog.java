@@ -74,6 +74,9 @@ public class ModBlockOrangeLog extends ModBlockRotatedPillar {
     @SideOnly(Side.CLIENT)
     protected IIcon getSideIcon(int par1)
     {
+        if(par1 >= tree_sides.length)
+            return tree_sides[tree_sides.length-1];
+
         return this.tree_sides[par1];
     }
     
@@ -81,14 +84,6 @@ public class ModBlockOrangeLog extends ModBlockRotatedPillar {
     {
         return tree_top;
     }
-
-
-
-    public static int limitToValidMetadata(int par0)
-    {
-        return par0 & 3;
-    }
-
 
 
     @SideOnly(Side.CLIENT)

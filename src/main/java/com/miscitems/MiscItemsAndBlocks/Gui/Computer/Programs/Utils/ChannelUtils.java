@@ -22,6 +22,7 @@ public class ChannelUtils {
         PacketHandler.sendToServer(new CreateChannel(Name), Main.Utils.channels);
         ChatChannel channel = GetChannel(Name);
 
+        if(player != null)
         channel.SetPlayerRank(player, ChatRanks.Owner);
 
         return channel;

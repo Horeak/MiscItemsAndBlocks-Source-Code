@@ -5,8 +5,8 @@ import com.miscitems.MiscItemsAndBlocks.Container.Utils.ActiveSlot;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Inventories.TileEntityStorageBlock;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
-import net.minecraft.item.ItemStack;
 
 public class ContainerStorageBlock extends ActiveContainer
 {
@@ -15,6 +15,11 @@ public class ContainerStorageBlock extends ActiveContainer
     int slotRow;
     
     TileEntityStorageBlock tile;
+
+    @Override
+    public IInventory getTile() {
+        return tile;
+    }
 
     public ContainerStorageBlock(InventoryPlayer inventoryplayer, TileEntityStorageBlock tile)
     {
@@ -56,8 +61,6 @@ public class ContainerStorageBlock extends ActiveContainer
 
     public int updateRows (int invRow)
     {
-    	
-    	
         if (invRow != slotRow)
         {
             slotRow = invRow;
@@ -101,132 +104,7 @@ public class ContainerStorageBlock extends ActiveContainer
         return tile.isUseableByPlayer(entityplayer);
     }
 
-    @Override
-    public ItemStack transferStackInSlot (EntityPlayer player, int slotID)
-    {
-        ItemStack stack = null;
-        Slot slot = (Slot) this.inventorySlots.get(slotID);
-
-        if (slot != null && slot.getHasStack())
-        {
-            ItemStack slotStack = slot.getStack();
-            stack = slotStack.copy();
-
-            if (slotID < tile.getSizeInventory())
-            {
-                if (!this.mergeItemStack(slotStack, tile.getSizeInventory(), this.inventorySlots.size(), true))
-                {
-                    return null;
-                }
-            }
-            else if (!this.mergeItemStack(slotStack, 0, tile.getSizeInventory(), false))
-            {
-                return null;
-            }
-
-            if (slotStack.stackSize < tile.getInventoryStackLimit())
-            {
-                slot.putStack((ItemStack) null);
-            }
-            else
-            {
-                slot.onSlotChanged();
-            }
-        }
-
-        return stack;
-    }
-
-    @Override
-    protected boolean mergeItemStack (ItemStack inputStack, int startSlot, int endSlot, boolean flag)
-    {
-        boolean merged = false;
-        int slotPos = startSlot;
-
-        if (flag)
-        {
-            slotPos = endSlot - 1;
-        }
-
-        Slot slot;
-        ItemStack slotStack;
 
 
-        if (inputStack.isStackable() && startSlot >= tile.getSizeInventory())
-        {
-            while (inputStack.stackSize > tile.getInventoryStackLimit() && (!flag && slotPos < endSlot || flag && slotPos >= startSlot))
-            {
-                slot = (Slot) this.inventorySlots.get(slotPos);
-                slotStack = slot.getStack();
 
-                if (slotStack != null && slotStack == inputStack && (!inputStack.getHasSubtypes() || inputStack.getItemDamage() == slotStack.getItemDamage())&& ItemStack.areItemStackTagsEqual(inputStack, slotStack))
-                {
-                    int l = slotStack.stackSize + inputStack.stackSize;
-
-                    if (l <= inputStack.getMaxStackSize())
-                    {
-
-                        slotStack.stackSize = inputStack.stackSize;
-                        inputStack.stackSize = 0;
-                        slot.onSlotChanged();
-                        merged = true;
-                    }
-                    else if (slotStack.stackSize < inputStack.getMaxStackSize())
-                    {
-                        inputStack.stackSize -= inputStack.getMaxStackSize() - slotStack.stackSize;
-                        slotStack.stackSize = inputStack.getMaxStackSize();
-                        slot.onSlotChanged();
-                        merged = true;
-                    }
-                }
-
-                if (flag)
-                {
-                    --slotPos;
-                }
-                else
-                {
-                    ++slotPos;
-                }
-            }
-        }
-
-        if (inputStack.stackSize > 0)
-        {
-            if (flag)
-            {
-                slotPos = endSlot - 1;
-            }
-            else
-            {
-                slotPos = startSlot;
-            }
-
-            while (!flag && slotPos < endSlot || flag && slotPos >= startSlot)
-            {
-                slot = (Slot) this.inventorySlots.get(slotPos);
-                slotStack = slot.getStack();
-
-                if (slotStack == null)
-                {
-                    slot.putStack(inputStack.copy());
-                    slot.onSlotChanged();
-                    inputStack.stackSize -= 1;
-                    merged = true;
-                    break;
-                }
-
-                if (flag)
-                {
-                    --slotPos;
-                }
-                else
-                {
-                    ++slotPos;
-                }
-            }
-        }
-
-        return merged;
-    }
 }
