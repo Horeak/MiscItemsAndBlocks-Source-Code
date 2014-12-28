@@ -1,11 +1,17 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity.Machines;
 
 import MiscUtils.TileEntity.TileEntityInvBase;
+import MiscUtils.Utils.StackUtils;
 import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemDataChip;
 import com.miscitems.MiscItemsAndBlocks.Main.ModItems;
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.relauncher.Side;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.World;
+import net.minecraft.world.WorldProvider;
+import net.minecraftforge.common.DimensionManager;
 
 public class TileEntityWirelessItemTrans extends TileEntityInvBase implements ISidedInventory{
 
@@ -14,12 +20,11 @@ public class TileEntityWirelessItemTrans extends TileEntityInvBase implements IS
 		}
 
 	int CurrentUpdateTick = 0;
-	int UpdateTick = 20;
+	int UpdateTick = 15;
 	
 	int SendingTick = 0;
-	 int SendTick = 20;
+	int SendTick = 15;
 
-    //TODO Redo? Chunloading when sending? accross dimensions?
 	public void updateEntity(){
 		
 		if(IsLinked)
@@ -45,6 +50,8 @@ public class TileEntityWirelessItemTrans extends TileEntityInvBase implements IS
 					stack.stackTagCompound.setInteger("ItemTrans_x", this.xCoord);
 					stack.stackTagCompound.setInteger("ItemTrans_y", this.yCoord);
 					stack.stackTagCompound.setInteger("ItemTrans_z", this.zCoord);
+
+					stack.stackTagCompound.setInteger("ItemTrans_world", worldObj.provider.dimensionId);
 					
 					this.setInventorySlotContents(1, stack);
 					
@@ -55,7 +62,9 @@ public class TileEntityWirelessItemTrans extends TileEntityInvBase implements IS
 			}
 
 		}
-		
+
+
+		World world = null;
 		
 		if(CurrentUpdateTick >= UpdateTick){
 		if(this.getStackInSlot(2) != null ){
@@ -64,17 +73,22 @@ public class TileEntityWirelessItemTrans extends TileEntityInvBase implements IS
 			
 
 					if(this.getStackInSlot(2).stackTagCompound.getString("DataType").equalsIgnoreCase("Wireless Item Transfer")){
-						
 
-						
-						if(this.worldObj.getTileEntity(this.getStackInSlot(2).stackTagCompound.getInteger("ItemTrans_x"),
-								this.getStackInSlot(2).stackTagCompound.getInteger("ItemTrans_y"), this.getStackInSlot(2).stackTagCompound.getInteger("ItemTrans_z")
-								)instanceof TileEntityWirelessItemTrans){
-						
+
 						x = this.getStackInSlot(2).stackTagCompound.getInteger("ItemTrans_x");
 						y = this.getStackInSlot(2).stackTagCompound.getInteger("ItemTrans_y");
 						z = this.getStackInSlot(2).stackTagCompound.getInteger("ItemTrans_z");
-						
+
+						int WorldId = getStackInSlot(2).stackTagCompound.getInteger("ItemTrans_world");
+						WorldProvider provider = DimensionManager.getProvider(WorldId);
+
+						if (provider != null) {
+							world = provider.worldObj;
+						}
+
+						if(world != null)
+						if(world.getTileEntity(x,y,z)instanceof TileEntityWirelessItemTrans){
+
 						CardMode = 1;
 						
 						IsLinked = true;
@@ -114,14 +128,11 @@ public class TileEntityWirelessItemTrans extends TileEntityInvBase implements IS
 			
 		}else{
 			CurrentUpdateTick++;
-			
 		}
-		
-		
+
 		
 		boolean Sent = false;
-		
-		if(!this.worldObj.isRemote)
+		if(FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER)
 		if(Mode == 1 && CardMode == 1 && IsLinked){
 			
 			
@@ -133,53 +144,56 @@ public class TileEntityWirelessItemTrans extends TileEntityInvBase implements IS
 				SendingTick = 0;
 				
 				
-				
-				TileEntityWirelessItemTrans tile_e = (TileEntityWirelessItemTrans)this.worldObj.getTileEntity(x, y, z);
-				
+				TileEntityWirelessItemTrans tile_e = (TileEntityWirelessItemTrans)world.getTileEntity(x, y, z);
 				if(tile_e != null && this.getStackInSlot(3) != null){
-					
-					
-					for(int i = 4; i < this.getSizeInventory(); i++){
-						
+
+
+					for(int i = 4; i < tile_e.getSizeInventory(); i++){
 						Sent = false;
-							
-							if(tile_e.getStackInSlot(i) != null && tile_e.getStackInSlot(i).getItem() == this.getStackInSlot(3).getItem()){
-								
-								if(tile_e.getStackInSlot(i).stackSize < this.getInventoryStackLimit()){
 
-									ItemStack stack = tile_e.getStackInSlot(i).splitStack(tile_e.getStackInSlot(i).stackSize + 1);
+						ItemStack sending = getStackInSlot(3);
+						if(sending != null) {
 
-									tile_e.setInventorySlotContents(i, stack);
-									SendingTick = 0;
-									
-									Sent = true;
-									break;
-									
+							if (tile_e.getStackInSlot(i) != null) {
+								ItemStack stack = tile_e.getStackInSlot(i);
+
+								if(StackUtils.AreStacksEqual(stack, sending, false, false, true)) {
+
+									if (stack.stackSize < stack.getMaxStackSize()) {
+										if (stack.stackSize + 1 <= stack.getMaxStackSize()) {
+											ItemStack temp = stack.copy();
+											temp.stackSize += 1;
+
+											tile_e.setInventorySlotContents(i, temp);
+
+											Sent = true;
+											SendingTick = 0;
+
+											break;
+										}
+									}
+
 								}else{
 									continue;
 								}
-								
-								
-							}else if (tile_e.getStackInSlot(i) == null){
-								
-						
-								ItemStack stack = new ItemStack(this.getStackInSlot(3).getItem(), this.getStackInSlot(3).stackSize, this.getStackInSlot(3).getItemDamage());
-								stack.stackTagCompound = this.getStackInSlot(3).stackTagCompound;
-								stack.stackSize = 1;
-								
-								tile_e.setInventorySlotContents(i, stack);
-								
+
+							}else{
+								ItemStack temp = sending.copy();
+								temp.stackSize = 1;
+
+								tile_e.setInventorySlotContents(i, temp);
+
 								Sent = true;
 								SendingTick = 0;
+
 								break;
-								
-							}else{
-								continue;
 							}
+
+						}
+
 
 			}
 
-					
 					if(Sent && this.getStackInSlot(3) != null){
 						this.decrStackSize(3, 1);
 					}

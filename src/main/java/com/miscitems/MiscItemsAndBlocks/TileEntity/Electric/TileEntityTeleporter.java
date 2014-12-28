@@ -1,5 +1,6 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity.Electric;
 
+import MiscUtils.Utils.TeleportUtil;
 import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemDataChip;
 import com.miscitems.MiscItemsAndBlocks.Main.ModItems;
 import net.minecraft.entity.Entity;
@@ -7,6 +8,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.world.World;
+import net.minecraft.world.WorldProvider;
+import net.minecraft.world.WorldServer;
+import net.minecraft.world.chunk.Chunk;
+import net.minecraftforge.common.DimensionManager;
 
 import java.util.List;
 import java.util.Random;
@@ -21,7 +27,7 @@ public class TileEntityTeleporter extends TileEntityPowerInv{
 	int CurrentUpdateTick = 0;
 	int UpdateTick = 20;
 
-    //TODO Redo? Chunloading when sending? accross dimensions?
+
 	public void updateEntity(){
 		
 		if(this.GetPower() >= 100 && IsLinked)
@@ -43,23 +49,22 @@ public class TileEntityTeleporter extends TileEntityPowerInv{
 					ItemStack stack = new ItemStack(ModItems.DataChip, 1, 1);
 					
 					stack.setTagCompound(new NBTTagCompound());
-					
 					stack.stackTagCompound.setString("DataType", "Teleporter");
-					
 					stack.stackTagCompound.setInteger("Teleport_x", this.xCoord);
 					stack.stackTagCompound.setInteger("Teleport_y", this.yCoord);
 					stack.stackTagCompound.setInteger("Teleport_z", this.zCoord);
+
+					stack.stackTagCompound.setInteger("Teleport_world", worldObj.provider.dimensionId);
 					
 					this.setInventorySlotContents(1, stack);
-					
-					
+
 				}
 				}
-				
 			}
 
 		}
-		
+
+		World world = null;
 		
 		if(CurrentUpdateTick >= UpdateTick){
 		if(this.getStackInSlot(2) != null ){
@@ -68,31 +73,47 @@ public class TileEntityTeleporter extends TileEntityPowerInv{
 			
 
 					if(this.getStackInSlot(2).stackTagCompound.getString("DataType").equalsIgnoreCase("Teleporter")){
-						
 
-						
-						if(this.worldObj.getTileEntity(this.getStackInSlot(2).stackTagCompound.getInteger("Teleport_x"),
-								this.getStackInSlot(2).stackTagCompound.getInteger("Teleport_y"), this.getStackInSlot(2).stackTagCompound.getInteger("Teleport_z")
-								)instanceof TileEntityTeleporter){
-						
 						x = this.getStackInSlot(2).stackTagCompound.getInteger("Teleport_x");
 						y = this.getStackInSlot(2).stackTagCompound.getInteger("Teleport_y");
 						z = this.getStackInSlot(2).stackTagCompound.getInteger("Teleport_z");
-						
+
+						int worldId = getStackInSlot(2).stackTagCompound.getInteger("Teleport_world");
+						WorldProvider provider = DimensionManager.getProvider(worldId);
+
+
+						if(provider != null){
+							world = provider.worldObj;
+						}
+
+
+
+						if(world == null) {
+							CardMode = 0;
+							IsLinked = false;
+
+							x = 0;
+							y = 0;
+							z = 0;
+
+						}
+
+
+						if(world != null)
+						if(world.getTileEntity(x,y,z)instanceof TileEntityTeleporter){
 						CardMode = 1;
-						
 						IsLinked = true;
 						
 						if(GetPower() >= 100)
 						Mode = 1;
 						else
 							Mode = 2;
-						
+
+
 						}else{
 							CardMode = 0;
 							IsLinked = false;
-							
-							
+
 							x = 0;
 							y = 0;
 							z = 0;
@@ -111,8 +132,7 @@ public class TileEntityTeleporter extends TileEntityPowerInv{
 		}else{
 			CardMode = 0;
 			IsLinked = false;
-			
-			
+
 			x = 0;
 			y = 0;
 			z = 0;
@@ -121,39 +141,48 @@ public class TileEntityTeleporter extends TileEntityPowerInv{
 			
 		}else{
 			CurrentUpdateTick++;
-			
 		}
-		
-		
+
+
         AxisAlignedBB aabb = AxisAlignedBB.getBoundingBox(xCoord + 0.2, yCoord, zCoord + 0.2, xCoord + 0.9, yCoord + 0.8, zCoord + 0.9);
         List list = worldObj.getEntitiesWithinAABB(Entity.class, aabb);
 		
         
         for(int i = 0; i < list.size(); i++){
-        	
         	Entity ent = (Entity)list.get(i);
-        	
+
         	if(ent instanceof EntityPlayer){
-        		
         		EntityPlayer player = (EntityPlayer)ent;
-        		
         		if(player.isSneaking()){
         			
         			if(Mode == 1 && CardMode == 1 && IsLinked){
-        				
-        				if(!this.worldObj.isBlockIndirectlyGettingPowered(x, y, z)){
-        			this.worldObj.playSound(this.xCoord, this.yCoord, this.zCoord, "portal.trigger", 0.2F, 0.4F, true);
-        			
-        			
+        				if(!world.isBlockIndirectlyGettingPowered(x, y, z)){
+							worldObj.playSound(xCoord, yCoord, zCoord, "portal.trigger", 0.2F, 0.4F, true);
+							world.playSound(x, y, z, "portal.trigger", 0.2F, 0.4F, true);
+
+
         			for(int g = 0; g < 20; g++){
         				Random rand = new Random();
-        				this.worldObj.spawnParticle("smoke", xCoord + rand.nextFloat(), (yCoord + 2), zCoord  + rand.nextFloat(), 0, -0.2, 0);
-        				
+						worldObj.spawnParticle("smoke", xCoord + rand.nextFloat(), (yCoord + 2), zCoord  + rand.nextFloat(), 0, -0.2, 0);
+						world.spawnParticle("smoke", x + rand.nextFloat(), (y + 2), z  + rand.nextFloat(), 0, -0.2, 0);
+
         			}
-        			
-        			player.setLocationAndAngles(x + 0.5, y + 1, z + 0.5, player.rotationYaw, player.rotationPitch);
-        			
-        			this.SetPower(this.GetPower() - 100);
+
+							if(!world.isRemote) {
+								Chunk chunk = world.getChunkFromBlockCoords(x, z);
+
+								if(!chunk.isChunkLoaded)
+								chunk.onChunkLoad();
+							}
+
+							if(!worldObj.isRemote) {
+								TeleportUtil teleportUtils = new TeleportUtil((WorldServer) worldObj);
+								teleportUtils.teleport(player, world);
+							}
+
+							player.setLocationAndAngles(x + 0.5, y + 1, z + 0.5, player.rotationYaw, player.rotationPitch);
+							SetPower(GetPower() - 100);
+
         			}
         			
         			

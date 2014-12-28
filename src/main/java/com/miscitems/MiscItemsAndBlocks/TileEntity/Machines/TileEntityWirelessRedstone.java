@@ -5,6 +5,10 @@ import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemDataChip;
 import com.miscitems.MiscItemsAndBlocks.Main.ModItems;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.World;
+import net.minecraft.world.WorldProvider;
+import net.minecraft.world.chunk.Chunk;
+import net.minecraftforge.common.DimensionManager;
 
 public class TileEntityWirelessRedstone extends TileEntityInvBase {
 
@@ -16,7 +20,6 @@ public class TileEntityWirelessRedstone extends TileEntityInvBase {
 	int UpdateTick = 20;
 
 
-    //TODO Redo? Chunloading when sending? accross dimensions?
 	public void updateEntity(){
 		
 		if(IsLinked)
@@ -42,6 +45,8 @@ public class TileEntityWirelessRedstone extends TileEntityInvBase {
 					stack.stackTagCompound.setInteger("WirelessRedstone_x", this.xCoord);
 					stack.stackTagCompound.setInteger("WirelessRedstone_y", this.yCoord);
 					stack.stackTagCompound.setInteger("WirelessRedstone_z", this.zCoord);
+
+					stack.stackTagCompound.setInteger("WirelessRedstone_world", worldObj.provider.dimensionId);
 					
 					this.setInventorySlotContents(1, stack);
 					
@@ -52,7 +57,9 @@ public class TileEntityWirelessRedstone extends TileEntityInvBase {
 			}
 
 		}
-		
+
+
+		World world = null;
 		
 		if(CurrentUpdateTick >= UpdateTick){
 		if(this.getStackInSlot(2) != null ){
@@ -61,16 +68,21 @@ public class TileEntityWirelessRedstone extends TileEntityInvBase {
 			
 
 					if(this.getStackInSlot(2).stackTagCompound.getString("DataType").equalsIgnoreCase("Wireless Redstone")){
-						
 
-						
-						if(this.worldObj.getTileEntity(this.getStackInSlot(2).stackTagCompound.getInteger("WirelessRedstone_x"),
-								this.getStackInSlot(2).stackTagCompound.getInteger("WirelessRedstone_y"), this.getStackInSlot(2).stackTagCompound.getInteger("WirelessRedstone_z")
-								)instanceof TileEntityWirelessRedstone){
-						
 						x = this.getStackInSlot(2).stackTagCompound.getInteger("WirelessRedstone_x");
 						y = this.getStackInSlot(2).stackTagCompound.getInteger("WirelessRedstone_y");
 						z = this.getStackInSlot(2).stackTagCompound.getInteger("WirelessRedstone_z");
+
+						int worldId = getStackInSlot(2).stackTagCompound.getInteger("WirelessRedstone_world");
+						WorldProvider provider = DimensionManager.getProvider(worldId);
+
+						if(provider != null){
+							world = provider.worldObj;
+						}
+
+						if(world != null)
+						if(world.getTileEntity(x,y,z)instanceof TileEntityWirelessRedstone){
+
 						
 						CardMode = 1;
 						
@@ -119,15 +131,21 @@ public class TileEntityWirelessRedstone extends TileEntityInvBase {
 		
 		
 		if(IsLinked){
-			
-			if(Mode == 1 && CardMode == 1){
-				if(this.worldObj.getBlockMetadata(x,y,z) == 0 && this.worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord)){
-                        this.worldObj.setBlockMetadataWithNotify(x,y,z, 1, 3);
-                        this.worldObj.notifyBlocksOfNeighborChange(x,y,z,worldObj.getBlock(x,y,z));
+			if(!world.isRemote) {
+				Chunk chunk = world.getChunkFromBlockCoords(x, z);
 
-				}else if(!this.worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord) && this.worldObj.getBlockMetadata(x,y,z) == 1){
-						this.worldObj.setBlockMetadataWithNotify(x,y,z, 0, 3);
-                        this.worldObj.notifyBlocksOfNeighborChange(x,y,z,worldObj.getBlock(x,y,z));
+				if(!chunk.isChunkLoaded)
+					chunk.onChunkLoad();
+			}
+
+			if(Mode == 1 && CardMode == 1){
+				if(world.getBlockMetadata(x,y,z) == 0 && worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord)){
+					world.setBlockMetadataWithNotify(x,y,z, 1, 3);
+					world.notifyBlocksOfNeighborChange(x,y,z,world.getBlock(x,y,z));
+
+				}else if(!worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord) && world.getBlockMetadata(x,y,z) == 1){
+					world.setBlockMetadataWithNotify(x,y,z, 0, 3);
+					world.notifyBlocksOfNeighborChange(x,y,z,world.getBlock(x,y,z));
 				}
 
 		

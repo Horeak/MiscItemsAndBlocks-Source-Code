@@ -292,7 +292,7 @@ public class ModBlocks {
         OneWayGlass = new ModBlockOneWayGlass().setCreativeTab(Main.MiscTab);
         Utils.Register(OneWayGlass, "One Way Glass");
 
-        //TODO FINSIH!
+        //TODO FINSIH! or remove? poll on minecraft fourm is getting mostly "Never used it/Didnt know about it" so might be okay to remove
         if(MiscUtilsMain.IsLoadedInDev) {
             Computer = new ModBlockComputer().setCreativeTab(Main.MiscTab);
             Utils.Register(Computer, ModItemBlockComputer.class, "Computer", TileEntityComputer.class);
