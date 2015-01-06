@@ -56,7 +56,7 @@ public class MiscItemsGuideIntegration extends GuideInstance {
             Block bl = (Block) r;
             if (bl != null) {
                 GameRegistry.UniqueIdentifier id = GameRegistry.findUniqueIdentifierFor(bl);
-                if (id != null & id.modId.equalsIgnoreCase(Reference.Mod_Id)) {
+                if (id != null && id.modId != null && id.modId.equalsIgnoreCase(Reference.Mod_Id)) {
                     if (bl.getCreativeTabToDisplayOn() != null) {
                         BlocksTab.Register(bl);
                     }
@@ -71,7 +71,7 @@ public class MiscItemsGuideIntegration extends GuideInstance {
             Item itm = (Item) r;
             if (itm != null && !(itm instanceof ItemBlock)) {
                 GameRegistry.UniqueIdentifier id = GameRegistry.findUniqueIdentifierFor(itm);
-                if (id != null & id.modId.equalsIgnoreCase(Reference.Mod_Id)) {
+                if (id != null && id.modId != null && id.modId.equalsIgnoreCase(Reference.Mod_Id)) {
                     if (itm.getCreativeTab() != null) {
                         ItemsTab.Register(itm);
                     }
