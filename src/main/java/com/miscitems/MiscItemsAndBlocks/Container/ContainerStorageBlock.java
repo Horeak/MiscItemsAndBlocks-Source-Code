@@ -3,11 +3,13 @@ package com.miscitems.MiscItemsAndBlocks.Container;
 import com.miscitems.MiscItemsAndBlocks.Container.Utils.ActiveContainer;
 import com.miscitems.MiscItemsAndBlocks.Container.Utils.ActiveSlot;
 import com.miscitems.MiscItemsAndBlocks.TileEntity.Inventories.TileEntityStorageBlock;
+import invtweaks.api.container.ChestContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 
+@ChestContainer
 public class ContainerStorageBlock extends ActiveContainer
 {
     public InventoryPlayer playerInv;
@@ -103,7 +105,6 @@ public class ContainerStorageBlock extends ActiveContainer
     {
         return tile.isUseableByPlayer(entityplayer);
     }
-
 
 
 

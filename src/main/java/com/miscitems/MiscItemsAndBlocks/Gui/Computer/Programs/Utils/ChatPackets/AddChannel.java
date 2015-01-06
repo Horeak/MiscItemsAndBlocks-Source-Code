@@ -5,13 +5,10 @@ import MiscUtils.Network.PacketHandler;
 import com.miscitems.MiscItemsAndBlocks.Gui.Computer.Programs.Utils.ChannelUtils;
 import com.miscitems.MiscItemsAndBlocks.Gui.Computer.Programs.Utils.ChatChannel;
 import com.miscitems.MiscItemsAndBlocks.Main.Main;
-import com.sun.xml.internal.bind.v2.model.core.ID;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.relauncher.Side;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
-
-import java.nio.channels.Channels;
 
 public class AddChannel extends AbstractPacket {
 
