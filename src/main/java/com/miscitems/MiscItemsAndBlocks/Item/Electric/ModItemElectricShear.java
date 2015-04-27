@@ -163,8 +163,5 @@ public class ModItemElectricShear extends ModItemPowerTool{
 			return true;
 		}
 
-    @Override
-    public int getTier(ItemStack itemStack) {
-        return 1;
-    }
+
 }

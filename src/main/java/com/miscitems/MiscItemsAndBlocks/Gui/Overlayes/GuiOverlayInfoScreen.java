@@ -7,8 +7,6 @@ import com.miscitems.MiscItemsAndBlocks.Main.ModItems;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import ic2.api.item.ElectricItem;
-import ic2.api.item.IElectricItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.gui.GuiIngame;
@@ -73,38 +71,38 @@ public class GuiOverlayInfoScreen extends GuiIngame{
 
 
                 if(Loader.isModLoaded("IC2")) {
-                    if (player.inventory.armorInventory[2] != null && player.inventory.armorInventory[2].getItem() instanceof IElectricItem &&  !(player.inventory.armorInventory[2].getItem() instanceof IPowerItem)) {
+                    if (player.inventory.armorInventory[2] != null && player.inventory.armorInventory[2].getItem() instanceof IPowerItem &&  !(player.inventory.armorInventory[2].getItem() instanceof IPowerItem)) {
                         ItemStack stack = player.inventory.armorInventory[2];
-                        IElectricItem item1 = (IElectricItem) stack.getItem();
-                        int Percent = (int) (ElectricItem.manager.getCharge(stack) / item1.getMaxCharge(stack) * 100);
+                        IPowerItem item1 = (IPowerItem) stack.getItem();
+                        int Percent = (int) (item1.CurrentPower(stack) / item1.MaxPower(stack) * 100);
                         String Text = EnumChatFormatting.GOLD + StatCollector.translateToLocal("gui.string.chestplatepower") + ": " + GetColor(Percent) + Percent + "%";
                         RenderText(Text);
                     }
 
 
-                    if (player.inventory.armorInventory[1] != null && player.inventory.armorInventory[1].getItem() instanceof IElectricItem &&  !(player.inventory.armorInventory[1].getItem() instanceof IPowerItem)) {
+                    if (player.inventory.armorInventory[1] != null && player.inventory.armorInventory[1].getItem() instanceof IPowerItem &&  !(player.inventory.armorInventory[1].getItem() instanceof IPowerItem)) {
                         ItemStack stack = player.inventory.armorInventory[1];
-                        IElectricItem item1 = (IElectricItem) stack.getItem();
-                        int Percent = (int) (ElectricItem.manager.getCharge(stack) / item1.getMaxCharge(stack) * 100);
+                        IPowerItem item1 = (IPowerItem) stack.getItem();
+                        int Percent = (int) (item1.CurrentPower(stack) / item1.MaxPower(stack) * 100);
                         String Text = EnumChatFormatting.GOLD + StatCollector.translateToLocal("gui.string.leggingspower") + ": " + GetColor(Percent) + Percent + "%";
                         RenderText(Text);
                     }
 
 
-                    if (player.inventory.armorInventory[0] != null && player.inventory.armorInventory[0].getItem() instanceof IElectricItem &&  !(player.inventory.armorInventory[0].getItem() instanceof IPowerItem)) {
+                    if (player.inventory.armorInventory[0] != null && player.inventory.armorInventory[0].getItem() instanceof IPowerItem &&  !(player.inventory.armorInventory[0].getItem() instanceof IPowerItem)) {
                         ItemStack stack = player.inventory.armorInventory[0];
-                        IElectricItem item1 = (IElectricItem) stack.getItem();
-                        int Percent = (int) (ElectricItem.manager.getCharge(stack) / item1.getMaxCharge(stack) * 100);
+                        IPowerItem item1 = (IPowerItem) stack.getItem();
+                        int Percent = (int) (item1.CurrentPower(stack) / item1.MaxPower(stack) * 100);
                         String Text = EnumChatFormatting.GOLD + StatCollector.translateToLocal("gui.string.bootspower") + ": " + GetColor(Percent) + Percent + "%";
                         RenderText(Text);
                     }
 
 
 
-                    if(player.inventory.getCurrentItem() != null && player.inventory.getCurrentItem().getItem() instanceof IElectricItem &&  !(player.inventory.getCurrentItem().getItem() instanceof IPowerItem)) {
+                    if(player.inventory.getCurrentItem() != null && player.inventory.getCurrentItem().getItem() instanceof IPowerItem &&  !(player.inventory.getCurrentItem().getItem() instanceof IPowerItem)) {
                         ItemStack Item = player.inventory.getCurrentItem();
-                        IElectricItem item_e = (IElectricItem) Item.getItem();
-                        int Percent = (int) (ElectricItem.manager.getCharge(Item) / item_e.getMaxCharge(Item) * 100);
+                        IPowerItem item_e = (IPowerItem) Item.getItem();
+                        int Percent = (int) (item_e.CurrentPower(Item) / item_e.MaxPower(Item) * 100);
                         String Text = EnumChatFormatting.GOLD + StatCollector.translateToLocal("gui.string.currentitempower") + ": " + GetColor(Percent) + Percent + "%";
                         RenderText(Text);
                     }

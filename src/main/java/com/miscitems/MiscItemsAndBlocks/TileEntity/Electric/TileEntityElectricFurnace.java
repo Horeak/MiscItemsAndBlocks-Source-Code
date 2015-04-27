@@ -2,10 +2,6 @@ package com.miscitems.MiscItemsAndBlocks.TileEntity.Electric;
 
 import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemElArmor;
 import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemPowerTool;
-import com.miscitems.MiscItemsAndBlocks.Utils.PowerUtils;
-import cpw.mods.fml.common.Loader;
-import ic2.api.item.ElectricItem;
-import ic2.api.item.IElectricItem;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
@@ -48,21 +44,6 @@ public class TileEntityElectricFurnace extends TileEntityPowerInv implements ISi
                 }
 
 
-            }else {
-                if(Loader.isModLoaded("IC2")){
-                    if(dischargeStack.getItem() instanceof IElectricItem){
-                        if(ElectricItem.manager.getCharge(dischargeStack) > 10) {
-                            ElectricItem.manager.discharge(dischargeStack, PowerUtils.ModPower_For_MiscPower, ((IElectricItem)dischargeStack.getItem()).getTier(dischargeStack), false, false, false);
-                            AddPower(PowerUtils.MiscPower_For_ModPower);
-
-                        }else if (ElectricItem.manager.getCharge(dischargeStack) > 0){
-                            ElectricItem.manager.discharge(dischargeStack, PowerUtils.ModPower_For_MiscPower / 10, ((IElectricItem)dischargeStack.getItem()).getTier(dischargeStack), false, false, false);
-                            AddPower(PowerUtils.MiscPower_For_ModPower / 10);
-                        }
-
-
-                    }
-                }
             }
         }
 

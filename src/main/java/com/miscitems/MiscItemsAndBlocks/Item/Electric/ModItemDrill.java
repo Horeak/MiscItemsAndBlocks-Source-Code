@@ -386,8 +386,4 @@ public class ModItemDrill extends ModItemPowerTool{
 		}
 
 
-    @Override
-    public int getTier(ItemStack itemStack) {
-        return 1;
-    }
 }

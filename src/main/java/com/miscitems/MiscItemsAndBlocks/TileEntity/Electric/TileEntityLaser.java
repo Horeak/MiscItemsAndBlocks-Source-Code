@@ -5,12 +5,8 @@ import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemLens;
 import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemPowerTool;
 import com.miscitems.MiscItemsAndBlocks.Utils.Laser.LaserInstance;
 import com.miscitems.MiscItemsAndBlocks.Utils.Laser.LaserUtil;
-import com.miscitems.MiscItemsAndBlocks.Utils.PowerUtils;
-import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import ic2.api.item.ElectricItem;
-import ic2.api.item.IElectricItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
@@ -50,21 +46,6 @@ public void updateEntity() {
             }
 
 
-        } else {
-            if (Loader.isModLoaded("IC2")) {
-                if (dischargeStack.getItem() instanceof IElectricItem) {
-                    if (ElectricItem.manager.getCharge(dischargeStack) > 10) {
-                        ElectricItem.manager.discharge(dischargeStack, PowerUtils.ModPower_For_MiscPower, ((IElectricItem) dischargeStack.getItem()).getTier(dischargeStack), false, false, false);
-                        AddPower(PowerUtils.MiscPower_For_ModPower);
-
-                    } else if (ElectricItem.manager.getCharge(dischargeStack) > 0) {
-                        ElectricItem.manager.discharge(dischargeStack, PowerUtils.ModPower_For_MiscPower / 10, ((IElectricItem) dischargeStack.getItem()).getTier(dischargeStack), false, false, false);
-                        AddPower(PowerUtils.MiscPower_For_ModPower / 10);
-                    }
-
-
-                }
-            }
         }
     }
 

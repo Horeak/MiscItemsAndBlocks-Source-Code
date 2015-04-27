@@ -2,10 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.Item.Electric;
 
 import MiscItemsApi.Electric.IPowerItem;
 import cofh.api.energy.IEnergyContainerItem;
-import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Optional;
-import ic2.api.item.ElectricItem;
-import ic2.api.item.IElectricItem;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -28,7 +25,7 @@ import java.util.Set;
 
         })
 
-public abstract class ModItemPowerTool extends ItemTool implements IPowerItem, IElectricItem, IEnergyContainerItem, IEnergyItem{
+public abstract class ModItemPowerTool extends ItemTool implements IPowerItem,  IEnergyContainerItem, IEnergyItem{
 
 	public ModItemPowerTool(float damage, ToolMaterial material, Set blocks) {
 		super(damage, material, blocks);
@@ -47,10 +44,6 @@ public abstract class ModItemPowerTool extends ItemTool implements IPowerItem, I
             Amount = getMaxCharge(stack);
 
 
-        if(Loader.isModLoaded("IC2")) {
-            ElectricItem.manager.charge(stack, Amount, getTier(stack), true, false);
-            return;
-        }
 
         if(stack.getTagCompound() == null) {
             stack.setTagCompound(new NBTTagCompound());
@@ -68,10 +61,6 @@ public abstract class ModItemPowerTool extends ItemTool implements IPowerItem, I
         if(Amount > getMaxCharge(stack))
             Amount = getMaxCharge(stack);
 
-        if(Loader.isModLoaded("IC2")) {
-            ElectricItem.manager.discharge(stack, Amount, getTier(stack), false, true, false);
-            return;
-        }
 
         if(stack.getTagCompound() == null) {
             stack.setTagCompound(new NBTTagCompound());
@@ -91,8 +80,6 @@ public abstract class ModItemPowerTool extends ItemTool implements IPowerItem, I
 
     public double CurrentPower(ItemStack stack){
 
-        if(Loader.isModLoaded("IC2"))
-            return ElectricItem.manager.getCharge(stack);
 
         if(stack.getTagCompound() == null) {
             stack.setTagCompound(new NBTTagCompound());
@@ -170,9 +157,6 @@ public abstract class ModItemPowerTool extends ItemTool implements IPowerItem, I
         ItemStack stack = new ItemStack(par1, 1);
         stack.setTagCompound(new NBTTagCompound());
         stack.getTagCompound().setDouble("Power", MaxPower(stack));
-
-        if(Loader.isModLoaded("IC2"))
-            ElectricItem.manager.charge(stack, MaxPower(stack), getTier(stack), true, false);
 
 
         list.add(stack);

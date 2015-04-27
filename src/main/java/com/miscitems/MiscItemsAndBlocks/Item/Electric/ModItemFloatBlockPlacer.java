@@ -111,8 +111,4 @@ public class ModItemFloatBlockPlacer extends ModItemPowerTool{
 		return true;
 	}
 
-    @Override
-    public int getTier(ItemStack itemStack) {
-        return 1;
-    }
 }

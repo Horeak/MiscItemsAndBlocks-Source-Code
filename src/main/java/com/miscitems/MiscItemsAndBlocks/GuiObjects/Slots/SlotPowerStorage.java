@@ -2,8 +2,6 @@ package com.miscitems.MiscItemsAndBlocks.GuiObjects.Slots;
 
 import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemElArmor;
 import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemPowerTool;
-import cpw.mods.fml.common.Loader;
-import ic2.api.item.IElectricItem;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
@@ -16,11 +14,7 @@ public class SlotPowerStorage extends Slot{
 
     public boolean isItemValid(ItemStack item)
     {
-    	
 
-        if(Loader.isModLoaded("IC2"))
-            return item.getItem() instanceof IElectricItem  || item.getItem() instanceof ModItemPowerTool || item.getItem() instanceof ModItemElArmor;
-    	
     	return item.getItem() instanceof ModItemPowerTool || item.getItem() instanceof ModItemElArmor;
     	
     }

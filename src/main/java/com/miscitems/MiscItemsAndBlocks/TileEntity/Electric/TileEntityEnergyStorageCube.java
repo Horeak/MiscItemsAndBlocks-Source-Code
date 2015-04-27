@@ -1,17 +1,12 @@
 package com.miscitems.MiscItemsAndBlocks.TileEntity.Electric;
 
 
-import MiscItemsApi.Electric.IWrenchAble;
-import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemElArmor;
-import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemPowerTool;
 import MiscItemsApi.Electric.IEnergyEmitter;
+import MiscItemsApi.Electric.IWrenchAble;
 import MiscItemsApi.Electric.PacketUtils;
 import MiscItemsApi.Electric.PowerPacket;
-import com.miscitems.MiscItemsAndBlocks.Utils.PowerUtils;
-import cpw.mods.fml.common.Loader;
-import ic2.api.energy.tile.IEnergySink;
-import ic2.api.item.ElectricItem;
-import ic2.api.item.IElectricItem;
+import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemElArmor;
+import com.miscitems.MiscItemsAndBlocks.Item.Electric.ModItemPowerTool;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -153,21 +148,6 @@ public class TileEntityEnergyStorageCube extends TileEntityPowerInv implements I
                 }
 
 
-            }else {
-                if(Loader.isModLoaded("IC2")){
-                    if(dischargeStack.getItem() instanceof IElectricItem){
-                        if(ElectricItem.manager.getCharge(dischargeStack) > 10) {
-                            ElectricItem.manager.discharge(dischargeStack, PowerUtils.ModPower_For_MiscPower, ((IElectricItem)dischargeStack.getItem()).getTier(dischargeStack), false, false, false);
-                            AddPower(PowerUtils.MiscPower_For_ModPower);
-
-                        }else if (ElectricItem.manager.getCharge(dischargeStack) > 0){
-                            ElectricItem.manager.discharge(dischargeStack, PowerUtils.ModPower_For_MiscPower / 10, ((IElectricItem)dischargeStack.getItem()).getTier(dischargeStack), false, false, false);
-                            AddPower(PowerUtils.MiscPower_For_ModPower / 10);
-                        }
-
-
-                    }
-                }
             }
         }
 
@@ -201,20 +181,10 @@ public class TileEntityEnergyStorageCube extends TileEntityPowerInv implements I
 
 
             if(PowerToSend > 0) {
-                if (Loader.isModLoaded("IC2") && this.worldObj.getTileEntity(xCoord + forgeDirection.offsetX, yCoord + forgeDirection.offsetY, zCoord + forgeDirection.offsetZ) instanceof IEnergySink) {
-                    IEnergySink tile = (IEnergySink) this.worldObj.getTileEntity(xCoord + forgeDirection.offsetX, yCoord + forgeDirection.offsetY, zCoord + forgeDirection.offsetZ);
-
-                    if (tile.getDemandedEnergy() > 0) {
-                        tile.injectEnergy(forgeDirection, (PowerToSend / 10) * PowerUtils.ModPower_For_MiscPower, 10);
-                        SetPower(GetPower() - PowerToSend);
-                    }
-
-
-                } else {
 
                     PowerPacket packet = new PowerPacket(forgeDirection.getOpposite(), PowerToSend, -1);
                     PacketUtils.SendPacketToDir(packet, forgeDirection, this);
-                }
+
 
 
             }

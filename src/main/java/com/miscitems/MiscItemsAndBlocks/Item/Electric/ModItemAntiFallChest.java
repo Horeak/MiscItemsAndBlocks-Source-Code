@@ -71,8 +71,5 @@ public class ModItemAntiFallChest extends ModItemElArmor{
 			return false;
 		}
 
-    @Override
-    public int getTier(ItemStack itemStack) {
-        return 1;
-    }
+
 }

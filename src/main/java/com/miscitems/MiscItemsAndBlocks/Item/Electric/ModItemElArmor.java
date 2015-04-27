@@ -2,10 +2,7 @@ package com.miscitems.MiscItemsAndBlocks.Item.Electric;
 
 import MiscItemsApi.Electric.IPowerItem;
 import cofh.api.energy.IEnergyContainerItem;
-import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Optional;
-import ic2.api.item.ElectricItem;
-import ic2.api.item.IElectricItem;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -17,14 +14,8 @@ import net.minecraft.util.StatCollector;
 
 import java.util.List;
 
-@Optional.InterfaceList( value =
-
-        {@Optional.Interface(iface = "ic2.api.item.IElectricItem", modid =  "IC2", striprefs = true),
-                @Optional.Interface(iface = "cofh.api.energy.IEnergyContainerItem", modid =  "CoFHCore", striprefs = true)
-
-        })
-
-public abstract class ModItemElArmor extends ItemArmor implements IPowerItem, IElectricItem, IEnergyContainerItem {
+@Optional.Interface(iface = "cofh.api.energy.IEnergyContainerItem", modid =  "CoFHCore", striprefs = true)
+public abstract class ModItemElArmor extends ItemArmor implements IPowerItem,  IEnergyContainerItem {
 
 
 
@@ -41,10 +32,6 @@ public abstract class ModItemElArmor extends ItemArmor implements IPowerItem, IE
     @Override
     public void AddPower(ItemStack stack, double Amount) {
 
-        if(Loader.isModLoaded("IC2")) {
-            ElectricItem.manager.charge(stack, Amount, getTier(stack), false, false);
-            return;
-        }
 
         if(stack.getTagCompound() == null) {
             stack.setTagCompound(new NBTTagCompound());
@@ -59,10 +46,6 @@ public abstract class ModItemElArmor extends ItemArmor implements IPowerItem, IE
     @Override
     public void RemovePower(ItemStack stack, double Amount) {
 
-        if(Loader.isModLoaded("IC2")) {
-            ElectricItem.manager.discharge(stack, Amount, getTier(stack), false, true, false);
-            return;
-        }
 
         if(stack.getTagCompound() == null) {
             stack.setTagCompound(new NBTTagCompound());
@@ -82,9 +65,6 @@ public abstract class ModItemElArmor extends ItemArmor implements IPowerItem, IE
 
     public double CurrentPower(ItemStack stack){
 
-        if(Loader.isModLoaded("IC2"))
-            return ElectricItem.manager.getCharge(stack);
-
         if(stack.getTagCompound() == null) {
             stack.setTagCompound(new NBTTagCompound());
             stack.getTagCompound().setDouble("Power", 0);
@@ -94,35 +74,6 @@ public abstract class ModItemElArmor extends ItemArmor implements IPowerItem, IE
         return 0;
     }
 
-    @Override
-    public boolean canProvideEnergy(ItemStack itemStack) {
-        return false;
-    }
-
-    @Override
-    public Item getChargedItem(ItemStack itemStack) {
-        return itemStack.getItem();
-    }
-
-    @Override
-    public Item getEmptyItem(ItemStack itemStack) {
-        return itemStack.getItem();
-    }
-
-    @Override
-    public double getMaxCharge(ItemStack itemStack) {
-        return MaxPower(itemStack);
-    }
-
-    @Override
-    public int getTier(ItemStack itemStack) {
-        return 1;
-    }
-
-    @Override
-    public double getTransferLimit(ItemStack itemStack) {
-        return 10;
-    }
 
     public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List list)
     {
@@ -131,8 +82,6 @@ public abstract class ModItemElArmor extends ItemArmor implements IPowerItem, IE
         stack.setTagCompound(new NBTTagCompound());
         stack.getTagCompound().setDouble("Power", MaxPower(stack));
 
-        if(Loader.isModLoaded("IC2"))
-            ElectricItem.manager.charge(stack, MaxPower(stack), getTier(stack), true, false);
 
 
         list.add(stack);
@@ -146,7 +95,7 @@ public abstract class ModItemElArmor extends ItemArmor implements IPowerItem, IE
         int energy = (int)CurrentPower(container);
         double Added = 0.01;
 
-        if(energy < getMaxCharge(container)) {
+        if(energy < MaxPower(container)) {
             if (!simulate) {
                 AddPower(container, Added);
             }
@@ -184,6 +133,6 @@ public abstract class ModItemElArmor extends ItemArmor implements IPowerItem, IE
     @Override
     public int getMaxEnergyStored(ItemStack container) {
 
-        return (int)getMaxCharge(container);
+        return (int)MaxPower(container);
     }
 }

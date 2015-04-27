@@ -238,8 +238,5 @@ public class ModItemHeatDrill extends ModItemPowerTool{
 			return true;
 		}
 
-    @Override
-    public int getTier(ItemStack itemStack) {
-        return 1;
-    }
+
 }

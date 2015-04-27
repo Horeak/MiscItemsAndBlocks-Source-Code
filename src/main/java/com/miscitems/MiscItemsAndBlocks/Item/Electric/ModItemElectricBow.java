@@ -201,10 +201,7 @@ private IIcon _icon4;
 		}
 
 
-    @Override
-    public int getTier(ItemStack itemStack) {
-        return 1;
-    }
+
 
 }
 

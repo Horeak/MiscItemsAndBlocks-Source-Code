@@ -14,15 +14,12 @@ import net.minecraft.world.World;
 
 public class ModItemXpExtractor extends Item{
 
-	@SuppressWarnings("unused")
-	private static EntityPlayer player;
-	
-	private IIcon _icon1;
+private IIcon _icon1;
+
 private IIcon _icon2;
 private IIcon _icon3;
 	
 	public ModItemXpExtractor() {
-		super();
 
         this.maxStackSize = 1;
         this.setUnlocalizedName("XpExtractor");

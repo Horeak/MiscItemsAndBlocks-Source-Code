@@ -71,9 +71,6 @@ public class ModItemInfoScreenHelmet extends ModItemElArmor{
 			return true;
 		}
 
-    @Override
-    public int getTier(ItemStack itemStack) {
-        return 1;
-    }
+
 }
 

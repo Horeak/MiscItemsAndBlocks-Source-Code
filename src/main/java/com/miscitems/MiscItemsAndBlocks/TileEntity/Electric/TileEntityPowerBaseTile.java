@@ -7,31 +7,21 @@ import cofh.api.energy.IEnergyConnection;
 import cofh.api.energy.IEnergyHandler;
 import cofh.api.energy.IEnergyStorage;
 import com.miscitems.MiscItemsAndBlocks.Utils.PowerUtils;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Optional;
-import ic2.api.energy.event.EnergyTileLoadEvent;
-import ic2.api.energy.event.EnergyTileUnloadEvent;
-import ic2.api.energy.tile.IEnergyAcceptor;
-import ic2.api.energy.tile.IEnergySink;
-import ic2.api.energy.tile.IEnergyTile;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
 import universalelectricity.api.core.grid.electric.IEnergyContainer;
 
 
 @Optional.InterfaceList(    value =
-        {@Optional.Interface(iface = "ic2.api.energy.tile.IEnergyAcceptor",    modid = "IC2", striprefs = true),
-                @Optional.Interface(iface = "ic2.api.energy.tile.IEnergySink",    modid = "IC2", striprefs = true),
-                @Optional.Interface(iface = "ic2.api.energy.tile.IEnergyTile",    modid = "IC2", striprefs = true),
+        {
                 @Optional.Interface(iface = "cofh.api.energy.IEnergyStorage",    modid = "CoFHCore", striprefs = true),
                 @Optional.Interface(iface = "cofh.api.energy.IEnergyConnection",    modid = "CoFHCore", striprefs = true),
                 @Optional.Interface(iface = "cofh.api.energy.IEnergyHandler",    modid = "CoFHCore", striprefs = true),
         @Optional.Interface(iface = "universalelectricity.api.core.grid.electric.IEnergyContainer",    modid = "UniversalElectricity", striprefs = true)
         })
-public abstract class TileEntityPowerBaseTile extends ModTileEntity implements IPowerTile, IEnergySink, IEnergyAcceptor, IEnergyTile, IEnergyStorage, IEnergyConnection, IEnergyHandler, IEnergyContainer {
+public abstract class TileEntityPowerBaseTile extends ModTileEntity implements IPowerTile,   IEnergyStorage, IEnergyConnection, IEnergyHandler, IEnergyContainer {
 
     private double Power;
     private double PowerMax;
@@ -41,23 +31,7 @@ public abstract class TileEntityPowerBaseTile extends ModTileEntity implements I
         AddPower(packet.Stored);
     }
 
-    public void validate()
-    {
-      super.validate();
 
-        if(!FMLCommonHandler.instance().getEffectiveSide().isClient())
-        if(Loader.isModLoaded("IC2"))
-        MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
-    }
-
-    public void invalidate()
-    {
-        super.invalidate();
-
-        if(!FMLCommonHandler.instance().getEffectiveSide().isClient())
-        if(Loader.isModLoaded("IC2"))
-        MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent(this));
-    }
 
     public void SetPower(double i){
         Power = i;
@@ -162,12 +136,9 @@ public abstract class TileEntityPowerBaseTile extends ModTileEntity implements I
 
     public boolean acceptsEnergyFrom(TileEntity emitter, ForgeDirection direction){
 
-
         if(emitter instanceof  IPowerTile)
             return true;
 
-        if(Loader.isModLoaded("IC2"))
-            return emitter instanceof IEnergyTile;
 
         return false;
     }

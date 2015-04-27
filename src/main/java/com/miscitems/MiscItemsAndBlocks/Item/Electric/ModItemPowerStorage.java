@@ -128,10 +128,6 @@ public abstract class ModItemPowerStorage extends ModItemPowerTool{
 
 
 
-    @Override
-    public int getTier(ItemStack itemStack) {
-        return 1;
-    }
 
     @Override
     public double getTransferLimit(ItemStack itemStack) {
